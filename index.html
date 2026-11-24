@@ -3,242 +3,303 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB | 웹3 디지털 은행 &amp; 인터넷 뱅크</title>
+  <title>HKWB | 차세대 디지털 금융 혁신</title>
   <style>
     :root {
-      --bg-grad: linear-gradient(135deg, #060814 0%, #171033 50%, #050716 100%);
-      --card-grad: linear-gradient(145deg, #131732 0%, #0a0d24 100%);
+      --bg-dark: #0a0e1a;
+      --card-bg: rgba(18, 24, 43, 0.85);
+      --border-glow: rgba(168, 85, 247, 0.4);
       --gold-grad: linear-gradient(90deg, #f59e0b 0%, #fde047 100%);
-      --purple-btn: linear-gradient(90deg, #7c3aed 0%, #9333ea 100%);
-      --green-btn: linear-gradient(90deg, #059669 0%, #10b981 100%);
-      --text-main: #ffffff;
-      --text-sub: #cbd5e1;
-      --gold: #fde047;
-      --border-gold: rgba(250, 204, 21, 0.45);
+      --text-glow: linear-gradient(90deg, #ffffff 0%, #e2e8f0 100%);
+      --web3-btn: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+      --bank-btn: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
-      background: var(--bg-grad);
-      color: var(--text-main);
-      min-height: 100vh;
-      padding: 24px 16px 64px;
-    }
-    .topbar {
-      max-width: 1040px;
-      margin: 0 auto 12px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      position: relative;
-      z-index: 20;
-    }
-    .agi-box {
-      background: rgba(19, 23, 50, 0.95);
-      border: 1px solid var(--border-gold);
-      border-radius: 999px;
-      padding: 7px 14px;
-      font-size: 0.85rem;
-      color: var(--gold);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .agi-box select {
-      background: #0a0d24;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(120, 50, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 200, 255, 0.08) 0%, transparent 40%);
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 8px;
-      padding: 3px 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      outline: none;
-      cursor: pointer;
+      min-height: 100vh;
+      padding: 20px 24px 60px;
     }
-    .header {
-      text-align: center;
-      padding: 20px 20px 28px;
+
+    /* 상단 헤더 영역 */
+    .top-header {
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
     }
-    .logo {
-      font-size: 4rem;
+
+    .brand-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-size: 3.2rem;
       font-weight: 900;
       background: var(--gold-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 0.06em;
-      line-height: 1.1;
+      letter-spacing: 0.04em;
+      line-height: 1;
     }
-    .referrer {
+
+    .ref-code {
       font-size: 0.8rem;
       color: #94a3b8;
-      margin-top: 8px;
+      margin-top: 6px;
+      padding-left: 2px;
     }
-    .referrer strong {
-      color: var(--gold);
+    .ref-code strong {
+      color: #fde047;
+      font-weight: 600;
+    }
+
+    /* AGI 버튼 */
+    .agi-selector {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      border-radius: 999px;
+      padding: 6px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+    }
+
+    .agi-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #38bdf8;
+    }
+
+    .agi-select {
+      background: transparent;
+      color: #ffffff;
+      border: none;
+      font-size: 0.85rem;
       font-weight: 700;
+      outline: none;
+      cursor: pointer;
     }
-    .hero-box {
-      max-width: 1040px;
-      margin: 0 auto 28px;
-      background: var(--card-grad);
-      border: 2px solid var(--border-gold);
-      border-radius: 22px;
-      padding: 36px 28px;
+
+    .agi-select option {
+      background: #0f172a;
+      color: #ffffff;
+    }
+
+    /* 중앙 히어로 카드 */
+    .hero-container {
+      max-width: 860px;
+      margin: 20px auto 50px;
+    }
+
+    .hero-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-glow);
+      border-radius: 28px;
+      padding: 56px 40px;
       text-align: center;
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
-      position: relative;
-      z-index: 10;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(168, 85, 247, 0.15);
+      backdrop-filter: blur(10px);
     }
-    .hero-title {
-      font-size: 2rem;
-      font-weight: 800;
+
+    .hero-main-title {
+      font-size: 2.3rem;
+      font-weight: 900;
       line-height: 1.35;
-      margin-bottom: 12px;
-      background: linear-gradient(90deg, #93c5fd 0%, #e9d5ff 50%, #fde047 100%);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
     }
-    .hero-sub {
-      color: var(--text-sub);
-      font-size: 0.98rem;
-      margin-bottom: 24px;
+
+    .hero-sub-title {
+      color: #fbbf24;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+      letter-spacing: -0.01em;
     }
-    .room-buttons {
+
+    .btn-group {
       display: flex;
       justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 14px;
     }
-    .btn-room {
+
+    .action-btn {
       border: none;
-      border-radius: 12px;
-      padding: 14px 24px;
-      font-size: 0.98rem;
-      font-weight: 700;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-size: 0.92rem;
+      font-weight: 800;
       color: #ffffff;
       cursor: pointer;
-      display: inline-block;
-      position: relative;
-      z-index: 15;
-      transition: transform 0.15s ease, filter 0.15s ease;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
-    .btn-room:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
+
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      filter: brightness(1.1);
     }
-    .btn-web3 {
-      background: var(--purple-btn);
+
+    .btn-web3-entry {
+      background: var(--web3-btn);
+      box-shadow: 0 4px 20px rgba(217, 70, 239, 0.35);
     }
-    .btn-internet {
-      background: var(--green-btn);
+
+    .btn-bank-entry {
+      background: var(--bank-btn);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
     }
-    .room-view {
+
+    /* 방 콘텐츠 영역 */
+    .room-section {
       max-width: 1040px;
       margin: 0 auto;
       display: none;
     }
-    .room-view.active {
+
+    .room-section.active {
       display: block;
+      animation: fadeIn 0.4s ease-in-out;
     }
-    .room-card {
-      background: var(--card-grad);
-      border: 2px solid var(--border-gold);
-      border-radius: 22px;
-      padding: 30px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .room-title {
-      font-size: 1.9rem;
-      color: var(--gold);
+
+    .room-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+
+    .room-header-title {
+      font-size: 1.8rem;
+      color: #fde047;
       margin-bottom: 8px;
-      border-bottom: 1px solid rgba(250, 204, 21, 0.25);
+      border-bottom: 1px solid rgba(253, 224, 71, 0.2);
       padding-bottom: 12px;
     }
-    .room-desc {
-      color: var(--text-sub);
-      font-size: 0.96rem;
-      margin-bottom: 24px;
+
+    .room-header-sub {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 28px;
     }
-    .section-group {
+
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      gap: 20px;
     }
+
     @media (max-width: 768px) {
-      .logo { font-size: 3rem; }
-      .hero-title { font-size: 1.5rem; }
-      .section-group { grid-template-columns: 1fr; }
-      .room-card { padding: 20px; }
+      .hero-main-title { font-size: 1.6rem; }
+      .grid-2col { grid-template-columns: 1fr; }
+      .hero-card { padding: 36px 20px; }
     }
-    .sub-section {
-      background: rgba(6, 9, 22, 0.65);
-      padding: 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(192, 132, 252, 0.25);
+
+    .card-detail {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
     }
-    .sub-title {
-      font-weight: 700;
-      color: var(--gold);
+
+    .detail-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fde047;
       margin-bottom: 12px;
-      font-size: 1.05rem;
     }
-    .item-list {
+
+    .detail-list {
       list-style: none;
-      font-size: 0.9rem;
-      color: #e2e8f0;
+      font-size: 0.88rem;
+      color: #cbd5e1;
     }
-    .item-list li {
+
+    .detail-list li {
       padding: 7px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .item-list li:last-child {
-      border-bottom: none;
-    }
+    .detail-list li:last-child { border-bottom: none; }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <div class="agi-box">
-      <span id="agiStatusLabel">60개국 AGI 가동</span>
-      <select id="agiLangSelect" aria-label="60개국 AGI 언어 선택" onchange="changeAgiLanguage(this.value)">
-        <option value="ko" selected>한국어 (AGI 가동 중)</option>
-        <option value="en">영어 (AGI 가동 중)</option>
-        <option value="ja">일본어 (AGI 가동 중)</option>
-        <option value="zh">중국어 (AGI 가동 중)</option>
-        <option value="es">스페인어 (AGI 가동 중)</option>
-        <option value="fr">프랑스어 (AGI 가동 중)</option>
-        <option value="de">독일어 (AGI 가동 중)</option>
-        <option value="ar">아랍어 (AGI 가동 중)</option>
+  <!-- 상단 헤더 -->
+  <header class="top-header">
+    <div class="brand-group">
+      <div class="logo-title">HKWB</div>
+      <div class="ref-code">추천인 코드: <strong>ljw2358</strong></div>
+    </div>
+
+    <div class="agi-selector">
+      <div class="agi-dot"></div>
+      <select class="agi-select" id="agiSelect" onchange="changeLanguage(this.value)">
+        <option value="ko" selected>60개국 AGI 가동 중</option>
+        <option value="en">60-Nation AGI Active</option>
+        <option value="ja">60カ国 AGI 稼働中</option>
+        <option value="zh">60国 AGI 运行中</option>
+        <option value="es">60 Países AGI Activo</option>
       </select>
     </div>
-  </div>
-
-  <header class="header">
-    <div class="logo">HKWB</div>
-    <div class="referrer">추천인 코드: <strong>ljw2358</strong></div>
   </header>
 
-  <section class="hero-box">
-    <h1 class="hero-title" id="heroTitle">인류와 기술이 공존하는 차세대 디지털 금융 혁신</h1>
-    <p class="hero-sub" id="heroSub">10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼</p>
-    <div class="room-buttons">
-      <button type="button" class="btn-room btn-web3" onclick="openRoom('web3')">웹3 디지털 은행 방 열기</button>
-      <button type="button" class="btn-room btn-internet" onclick="openRoom('internet')">인터넷 뱅크 방 열기</button>
+  <!-- 중앙 히어로 박스 (사진 형태와 동일) -->
+  <main class="hero-container">
+    <div class="hero-card">
+      <h1 class="hero-main-title" id="mainTitle">
+        인류와 기술이 공존하는<br />차세대 디지털 금융 혁신
+      </h1>
+      <p class="hero-sub-title" id="subTitle">
+        10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
+      </p>
+      
+      <div class="btn-group">
+        <button class="action-btn btn-web3-entry" onclick="showRoom('web3')">
+          Web3 디지털 은행 진입하기 ›
+        </button>
+        <button class="action-btn btn-bank-entry" onclick="showRoom('internet')">
+          인터넷 뱅크 진입하기 ›
+        </button>
+      </div>
     </div>
-  </section>
+  </main>
 
-  <!-- 방 1: 웹3 디지털 은행 -->
-  <section class="room-view active" id="roomWeb3">
-    <div class="room-card">
-      <h2 class="room-title">방 1 · 웹3 디지털 은행</h2>
-      <p class="room-desc">온체인 데이터 연동 및 AGI·ASI 자율 금융 독립 공간</p>
+  <!-- 방 1: Web3 디지털 은행 -->
+  <section class="room-section active" id="roomWeb3">
+    <div class="room-box">
+      <h2 class="room-header-title">방 1 · Web3 디지털 은행</h2>
+      <p class="room-header-sub">온체인 데이터 연동 및 AGI·ASI 자율 금융 독립 공간</p>
 
-      <div class="section-group">
-        <div class="sub-section">
-          <div class="sub-title">핵심 법률 및 규제 준수</div>
-          <ul class="item-list">
+      <div class="grid-2col">
+        <div class="card-detail">
+          <div class="detail-title">핵심 법률 및 규제 준수</div>
+          <ul class="detail-list">
             <li>백서 (백서 0.1판 핵심 40선)</li>
             <li>자주 묻는 질문 (질문답변 20선 심층)</li>
             <li>3대 정책 (자금세탁방지·실명확인·통합보안 준수)</li>
@@ -247,9 +308,9 @@
           </ul>
         </div>
 
-        <div class="sub-section">
-          <div class="sub-title">HK 글로벌 생태계 허브</div>
-          <ul class="item-list">
+        <div class="card-detail">
+          <div class="detail-title">HK 글로벌 생태계 허브</div>
+          <ul class="detail-list">
             <li>로봇: HK-로봇</li>
             <li>스마트 캠퍼스: HK-넥서스</li>
             <li>도심항공금융: HK-도심항공</li>
@@ -266,15 +327,15 @@
   </section>
 
   <!-- 방 2: 인터넷 뱅크 -->
-  <section class="room-view" id="roomInternet">
-    <div class="room-card">
-      <h2 class="room-title">방 2 · 인터넷 뱅크</h2>
-      <p class="room-desc">지점 없는 차세대 무점포 실시간 뱅킹 독립 공간</p>
+  <section class="room-section" id="roomInternet">
+    <div class="room-box">
+      <h2 class="room-header-title">방 2 · 인터넷 뱅크 (HK-BANK)</h2>
+      <p class="room-header-sub">지점 없는 차세대 무점포 실시간 뱅킹 독립 공간</p>
 
-      <div class="section-group">
-        <div class="sub-section">
-          <div class="sub-title">핵심 법률 및 규제 준수</div>
-          <ul class="item-list">
+      <div class="grid-2col">
+        <div class="card-detail">
+          <div class="detail-title">핵심 법률 및 규제 준수</div>
+          <ul class="detail-list">
             <li>백서 (백서 0.1판 핵심 40선)</li>
             <li>자주 묻는 질문 (질문답변 20선 심층)</li>
             <li>3대 정책 (자금세탁방지·실명확인·통합보안 준수)</li>
@@ -283,9 +344,9 @@
           </ul>
         </div>
 
-        <div class="sub-section">
-          <div class="sub-title">HK 글로벌 생태계 허브</div>
-          <ul class="item-list">
+        <div class="card-detail">
+          <div class="detail-title">HK 글로벌 생태계 허브</div>
+          <ul class="detail-list">
             <li>로봇: HK-로봇</li>
             <li>스마트 캠퍼스: HK-넥서스</li>
             <li>도심항공금융: HK-도심항공</li>
@@ -302,70 +363,35 @@
   </section>
 
   <script>
-    function openRoom(roomType) {
-      var roomWeb3 = document.getElementById('roomWeb3');
-      var roomInternet = document.getElementById('roomInternet');
+    function showRoom(type) {
+      var w = document.getElementById('roomWeb3');
+      var i = document.getElementById('roomInternet');
 
-      if (roomType === 'web3') {
-        roomWeb3.classList.add('active');
-        roomInternet.classList.remove('active');
-        roomWeb3.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else if (roomType === 'internet') {
-        roomInternet.classList.add('active');
-        roomWeb3.classList.remove('active');
-        roomInternet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (type === 'web3') {
+        w.classList.add('active');
+        i.classList.remove('active');
+        w.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        i.classList.add('active');
+        w.classList.remove('active');
+        i.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
-    function changeAgiLanguage(langCode) {
-      var langMessages = {
-        ko: {
-          title: '인류와 기술이 공존하는 차세대 디지털 금융 혁신',
-          sub: '10대 글로벌 보안 기술 & AI 기술 기반 글로벌 자율 금융 플랫폼',
-          label: '60개국 AGI 가동'
-        },
-        en: {
-          title: 'Next-Generation Digital Financial Innovation Where Humanity and Technology Coexist',
-          sub: 'Global Autonomous Financial Platform Powered by Top 10 Security & AI Technologies',
-          label: '60-Nation AGI Active'
-        },
-        ja: {
-          title: '人類と技術が共存する次世代デジタル金融イノベーション',
-          sub: '10大グローバルセキュリティ技術＆AI技術基盤の自律金融プラットフォーム',
-          label: '60カ国 AGI 稼働中'
-        },
-        zh: {
-          title: '人类与科技共存的新一代数字金融创新',
-          sub: '基于十大全球安全技术与AI技术的全球自主金融平台',
-          label: '60国 AGI 运行中'
-        },
-        es: {
-          title: 'Innovación Financiera Digital de Próxima Generación Donde Conviven Humanidad y Tecnología',
-          sub: 'Plataforma Financiera Autónoma Global con Seguridad y Tecnología IA',
-          label: '60 Países AGI Activo'
-        },
-        fr: {
-          title: 'Innovation Financière Numérique de Nouvelle Génération Où Coexistent Humanité et Technologie',
-          sub: 'Plateforme Financière Autonome Mondiale Basée sur la Sécurité et l’IA',
-          label: '60 Pays AGI Actif'
-        },
-        de: {
-          title: 'Digitale Finanzinnovation der Nächsten Generation im Einklang von Mensch und Technologie',
-          sub: 'Globale Autonome Finanzplattform auf Basis von Sicherheit und KI',
-          label: '60 Länder AGI Aktiv'
-        },
-        ar: {
-          title: 'ابتكار مالي رقمي من الجيل التالي يجمع بين الإنسان والتكنولوجيا',
-          sub: 'منصة مالية عالمية مستقلة قائمة على تقنيات الأمان والذكاء الاصطناعي',
-          label: 'تشغيل AGI في 60 دولة'
-        }
-      };
+    function changeLanguage(lang) {
+      var t = document.getElementById('mainTitle');
+      var s = document.getElementById('subTitle');
 
-      var msg = langMessages[langCode] || langMessages.ko;
-      document.documentElement.lang = langCode;
-      document.getElementById('heroTitle').textContent = msg.title;
-      document.getElementById('heroSub').textContent = msg.sub;
-      document.getElementById('agiStatusLabel').textContent = msg.label;
+      if (lang === 'en') {
+        t.innerHTML = 'Next-Gen Digital Financial Innovation<br />Where Humanity & Tech Coexist';
+        s.textContent = 'Global Autonomous Platform Powered by Top 10 Security & AI Tech';
+      } else if (lang === 'ja') {
+        t.innerHTML = '人類と技術が共存する<br />次世代デジタル金融イノベーション';
+        s.textContent = '10大グローバルセキュリティ技術＆AI技術基盤の自律金融プラットフォーム';
+      } else {
+        t.innerHTML = '인류와 기술이 공존하는<br />차세대 디지털 금융 혁신';
+        s.textContent = '10대 글로벌 보안 기술 & AI 기술 기반 글로벌 자율 금융 플랫폼';
+      }
     }
   </script>
 
