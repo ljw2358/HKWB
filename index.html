@@ -6,13 +6,12 @@
   <title>HKWB | 차세대 디지털 금융 혁신</title>
   <style>
     :root {
-      --bg-dark: #0a0e1a;
-      --card-bg: rgba(18, 24, 43, 0.85);
-      --border-glow: rgba(168, 85, 247, 0.4);
-      --gold-grad: linear-gradient(90deg, #f59e0b 0%, #fde047 100%);
-      --text-glow: linear-gradient(90deg, #ffffff 0%, #e2e8f0 100%);
-      --web3-btn: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
-      --bank-btn: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+      --bg-dark: #070a14;
+      --card-bg: rgba(15, 20, 38, 0.9);
+      --gold-bright: #facc15;
+      --border-box: rgba(250, 204, 21, 0.35);
+      --web3-btn: linear-gradient(90deg, #d946ef 0%, #ec4899 100%);
+      --bank-btn: linear-gradient(90deg, #06b6d4 0%, #10b981 100%);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,73 +21,53 @@
       font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
       background-color: var(--bg-dark);
       background-image: 
-        radial-gradient(circle at 50% 20%, rgba(120, 50, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 200, 255, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 50% 30%, rgba(30, 40, 90, 0.5) 0%, transparent 60%);
       color: #ffffff;
       min-height: 100vh;
-      padding: 20px 24px 60px;
+      padding: 24px 32px 80px;
     }
 
-    /* 상단 헤더 영역 */
+    /* 상단 영역 */
     .top-header {
-      max-width: 1200px;
-      margin: 0 auto 30px;
+      max-width: 1280px;
+      margin: 0 auto 40px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .brand-group {
-      display: flex;
-      flex-direction: column;
+      align-items: center;
     }
 
     .logo-title {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 900;
-      background: var(--gold-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.04em;
+      color: var(--gold-bright);
+      letter-spacing: 0.05em;
       line-height: 1;
-    }
-
-    .ref-code {
-      font-size: 0.8rem;
-      color: #94a3b8;
-      margin-top: 6px;
-      padding-left: 2px;
-    }
-    .ref-code strong {
-      color: #fde047;
-      font-weight: 600;
     }
 
     /* AGI 버튼 */
     .agi-selector {
-      background: rgba(30, 41, 59, 0.8);
-      border: 1px solid rgba(56, 189, 248, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid #38bdf8;
       border-radius: 999px;
-      padding: 6px 14px;
-      display: inline-flex;
+      padding: 6px 16px;
+      display: flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
     }
 
     .agi-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background-color: #38bdf8;
       border-radius: 50%;
-      box-shadow: 0 0 8px #38bdf8;
     }
 
     .agi-select {
       background: transparent;
       color: #ffffff;
       border: none;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 700;
       outline: none;
       cursor: pointer;
@@ -99,78 +78,69 @@
       color: #ffffff;
     }
 
-    /* 중앙 히어로 카드 */
+    /* 중앙 히어로 박스 */
     .hero-container {
-      max-width: 860px;
-      margin: 20px auto 50px;
+      max-width: 760px;
+      margin: 30px auto 60px;
     }
 
     .hero-card {
       background: var(--card-bg);
-      border: 1.5px solid var(--border-glow);
-      border-radius: 28px;
-      padding: 56px 40px;
+      border: 1px solid var(--border-box);
+      border-radius: 20px;
+      padding: 48px 36px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(168, 85, 247, 0.15);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
     }
 
     .hero-main-title {
-      font-size: 2.3rem;
-      font-weight: 900;
-      line-height: 1.35;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 14px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
     }
 
     .hero-sub-title {
-      color: #fbbf24;
-      font-size: 0.95rem;
+      color: var(--gold-bright);
+      font-size: 0.88rem;
       font-weight: 700;
-      margin-bottom: 36px;
-      letter-spacing: -0.01em;
+      margin-bottom: 32px;
     }
 
     .btn-group {
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .action-btn {
       border: none;
       border-radius: 999px;
-      padding: 14px 28px;
-      font-size: 0.92rem;
-      font-weight: 800;
+      padding: 12px 22px;
+      font-size: 0.85rem;
+      font-weight: 700;
       color: #ffffff;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.15s ease, opacity 0.15s ease;
     }
 
     .action-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      filter: brightness(1.1);
+      transform: translateY(-2px);
+      opacity: 0.95;
     }
 
-    .btn-web3-entry {
+    .btn-web3 {
       background: var(--web3-btn);
-      box-shadow: 0 4px 20px rgba(217, 70, 239, 0.35);
     }
 
-    .btn-bank-entry {
+    .btn-bank {
       background: var(--bank-btn);
-      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
     }
 
-    /* 방 콘텐츠 영역 */
+    /* 하단 방 영역 */
     .room-section {
       max-width: 1040px;
       margin: 0 auto;
@@ -179,34 +149,34 @@
 
     .room-section.active {
       display: block;
-      animation: fadeIn 0.4s ease-in-out;
+      animation: fadeIn 0.3s ease-in;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .room-box {
       background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
-      padding: 36px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      border: 1px solid var(--border-box);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     .room-header-title {
       font-size: 1.8rem;
-      color: #fde047;
-      margin-bottom: 8px;
-      border-bottom: 1px solid rgba(253, 224, 71, 0.2);
-      padding-bottom: 12px;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+      padding-bottom: 10px;
     }
 
     .room-header-sub {
       color: #94a3b8;
-      font-size: 0.95rem;
-      margin-bottom: 28px;
+      font-size: 0.92rem;
+      margin-bottom: 24px;
     }
 
     .grid-2col {
@@ -216,23 +186,23 @@
     }
 
     @media (max-width: 768px) {
-      .hero-main-title { font-size: 1.6rem; }
+      .hero-main-title { font-size: 1.5rem; }
       .grid-2col { grid-template-columns: 1fr; }
-      .hero-card { padding: 36px 20px; }
+      .hero-card { padding: 32px 20px; }
     }
 
     .card-detail {
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(8, 12, 24, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 14px;
+      padding: 18px;
     }
 
     .detail-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #fde047;
-      margin-bottom: 12px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      margin-bottom: 10px;
     }
 
     .detail-list {
@@ -242,7 +212,7 @@
     }
 
     .detail-list li {
-      padding: 7px 0;
+      padding: 6px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     .detail-list li:last-child { border-bottom: none; }
@@ -252,24 +222,20 @@
 
   <!-- 상단 헤더 -->
   <header class="top-header">
-    <div class="brand-group">
-      <div class="logo-title">HKWB</div>
-      <div class="ref-code">추천인 코드: <strong>ljw2358</strong></div>
-    </div>
+    <div class="logo-title">HKWB</div>
 
     <div class="agi-selector">
       <div class="agi-dot"></div>
       <select class="agi-select" id="agiSelect" onchange="changeLanguage(this.value)">
-        <option value="ko" selected>60개국 AGI 가동 중</option>
-        <option value="en">60-Nation AGI Active</option>
-        <option value="ja">60カ国 AGI 稼働中</option>
-        <option value="zh">60国 AGI 运行中</option>
-        <option value="es">60 Países AGI Activo</option>
+        <option value="ko" selected>60개국 AGI 가동 중 ▼</option>
+        <option value="en">60-Nation AGI Active ▼</option>
+        <option value="ja">60カ国 AGI 稼働中 ▼</option>
+        <option value="zh">60国 AGI 运行中 ▼</option>
       </select>
     </div>
   </header>
 
-  <!-- 중앙 히어로 박스 (사진 형태와 동일) -->
+  <!-- 중앙 히어로 박스 -->
   <main class="hero-container">
     <div class="hero-card">
       <h1 class="hero-main-title" id="mainTitle">
@@ -280,11 +246,11 @@
       </p>
       
       <div class="btn-group">
-        <button class="action-btn btn-web3-entry" onclick="showRoom('web3')">
-          Web3 디지털 은행 진입하기 ›
+        <button class="action-btn btn-web3" onclick="showRoom('web3')">
+          Web3 디지털 은행 진입하기 ↓
         </button>
-        <button class="action-btn btn-bank-entry" onclick="showRoom('internet')">
-          인터넷 뱅크 진입하기 ›
+        <button class="action-btn btn-bank" onclick="showRoom('internet')">
+          인터넷 뱅크 진입하기 ↓
         </button>
       </div>
     </div>
