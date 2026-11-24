@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="page_title">HKWB | 서술형 백서 &amp; FAQ 20선 모달 통합</title>
+  <title data-i18n="page_title">HKWB | 차세대 디지털 금융 혁신</title>
   <style>
     :root {
       --bg-grad:
-        radial-gradient(circle at 14% 14%, rgba(139, 92, 246, 0.34) 0%, transparent 45%),
-        radial-gradient(circle at 86% 18%, rgba(250, 204, 21, 0.16) 0%, transparent 42%),
-        radial-gradient(circle at 50% 88%, rgba(79, 70, 229, 0.24) 0%, transparent 52%),
-        linear-gradient(155deg, #050711 0%, #100928 45%, #070b1c 100%);
-      --card-grad: linear-gradient(145deg, rgba(29, 17, 64, 0.92) 0%, rgba(11, 16, 38, 0.96) 100%);
+        radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.30) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(250, 204, 21, 0.14) 0%, transparent 42%),
+        linear-gradient(155deg, #060814 0%, #110b29 50%, #070b1d 100%);
+      --card-grad: linear-gradient(155deg, rgba(24, 27, 62, 0.94) 0%, rgba(12, 16, 40, 0.97) 100%);
       --gold-grad: linear-gradient(90deg, #f59e0b 0%, #fde047 52%, #eab308 100%);
       --purple-pill: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
       --mint-pill: linear-gradient(90deg, #10b981 0%, #34d399 100%);
@@ -24,7 +23,6 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -41,10 +39,8 @@
       background: var(--gold-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.22));
     }
 
-    /* 상단 헤더 & 60개국어 셀렉터 */
     .topbar {
       position: sticky;
       top: 0;
@@ -55,7 +51,7 @@
     }
 
     .topbar-inner {
-      max-width: 980px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 14px 20px;
       display: flex;
@@ -65,55 +61,67 @@
       flex-wrap: wrap;
     }
 
-    .brand-wrap {
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .logo {
-      padding: 7px 13px;
-      border-radius: 11px;
-      background: rgba(109, 40, 217, 0.45);
-      border: 1px solid var(--border-gold);
+    .brand-logo {
+      font-size: 1.25rem;
       font-weight: 900;
-      font-size: 1rem;
+      letter-spacing: 0.04em;
     }
 
-    .chairman {
-      font-size: 0.82rem;
+    .chairman-badge {
+      font-size: 0.8rem;
       color: var(--gold);
       border: 1px solid rgba(250, 204, 21, 0.35);
       background: rgba(250, 204, 21, 0.08);
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 999px;
       font-weight: 700;
     }
 
-    .header-actions {
+    .right-controls {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+    }
+
+    .ghost-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-sub);
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .ghost-btn:hover {
+      border-color: var(--border-gold);
+      color: var(--gold);
     }
 
     .lang-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: rgba(24, 15, 54, 0.92);
       border: 1px solid var(--border-gold);
-      border-radius: 11px;
-      padding: 6px 11px;
-      box-shadow: 0 0 16px rgba(147, 51, 234, 0.25);
+      border-radius: 10px;
+      padding: 5px 10px;
     }
 
     .lang-select {
       background: transparent;
       color: var(--text-main);
       border: none;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 700;
       outline: none;
       cursor: pointer;
@@ -124,122 +132,69 @@
       color: #f8fafc;
     }
 
-    .nav-doc-btn {
-      background: rgba(109, 40, 217, 0.35);
-      color: var(--gold);
-      border: 1px solid var(--border-gold);
-      border-radius: 11px;
-      padding: 7px 13px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.16s ease;
-    }
-
-    .nav-doc-btn:hover {
-      background: rgba(147, 51, 234, 0.55);
-      box-shadow: 0 0 16px rgba(250, 204, 21, 0.25);
-    }
-
     .container {
-      max-width: 980px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 28px 20px 76px;
+      padding: 36px 20px 80px;
     }
 
-    /* 메인 히어로 배너 */
-    .banner-card {
-      background: linear-gradient(150deg, rgba(24, 27, 62, 0.95) 0%, rgba(13, 17, 42, 0.98) 100%);
+    /* 세 번째 화면 중심 히어로 카드 */
+    .hero-card {
+      background: var(--card-grad);
       border: 1px solid var(--border-gold);
       border-radius: 24px;
-      padding: 40px 24px;
+      padding: 54px 24px;
       text-align: center;
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.58), 0 0 28px rgba(147, 51, 234, 0.22);
-      margin-bottom: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.58), 0 0 28px rgba(147, 51, 234, 0.2);
+      margin-bottom: 28px;
     }
 
-    .banner-title {
-      font-size: clamp(1.65rem, 4vw, 2.5rem);
+    .hero-title {
+      font-size: clamp(1.7rem, 4vw, 2.55rem);
       font-weight: 900;
-      line-height: 1.28;
-      margin-bottom: 12px;
+      line-height: 1.3;
+      margin-bottom: 14px;
     }
 
-    .banner-sub {
+    .hero-sub {
       font-size: clamp(0.95rem, 2vw, 1.12rem);
       color: var(--text-sub);
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
     }
 
-    .entry-btns {
+    .hero-actions {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    .btn-web3-entry {
+    .btn-web3 {
       background: var(--purple-pill);
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
-      padding: 12px 24px;
-      font-size: 0.94rem;
+      padding: 13px 26px;
+      font-size: 0.95rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.38);
     }
 
-    .btn-bank-entry {
+    .btn-bank {
       background: var(--mint-pill);
       color: #042f2e;
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 999px;
-      padding: 12px 24px;
-      font-size: 0.94rem;
+      padding: 13px 26px;
+      font-size: 0.95rem;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.38);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
     }
 
-    /* HK NAVIGATOR 퀵 바 (서술형 백서 & FAQ 20선 모달 트리거) */
-    .navigator-strip {
-      background: var(--card-grad);
-      border: 1px solid var(--border-gold);
-      border-radius: 20px;
-      padding: 18px 20px;
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
-    }
-
-    .navigator-label {
-      font-size: 0.82rem;
-      color: var(--gold);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .navigator-title {
-      font-size: 1.08rem;
-      font-weight: 900;
-      margin-top: 2px;
-    }
-
-    .navigator-triggers {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    /* 진입 후 열리는 섹션들 */
-    .sub-zone {
+    .zone-panel {
       display: none;
       background: var(--card-grad);
       border: 1px solid var(--border-gold);
@@ -249,7 +204,7 @@
       margin-bottom: 24px;
     }
 
-    .sub-zone.active {
+    .zone-panel.active {
       display: block;
     }
 
@@ -265,7 +220,7 @@
     }
 
     .zone-title {
-      font-size: 1.32rem;
+      font-size: 1.3rem;
       font-weight: 900;
     }
 
@@ -312,7 +267,7 @@
     }
 
     .stat-num {
-      font-size: 1.35rem;
+      font-size: 1.32rem;
       font-weight: 900;
     }
 
@@ -335,7 +290,6 @@
       border: 1px solid var(--border-sub);
       color: var(--text-main);
       cursor: pointer;
-      transition: all 0.15s ease;
     }
 
     .net-card:hover,
@@ -380,10 +334,6 @@
       outline: none;
     }
 
-    .field:focus {
-      border-color: var(--border-gold);
-    }
-
     .btn-exec {
       background: linear-gradient(135deg, #6d28d9 0%, #9333ea 55%, #c084fc 100%);
       color: #ffffff;
@@ -405,8 +355,8 @@
       font-size: 0.86rem;
     }
 
-    /* 모달 창 스타일 */
-    .hkwb-modal-backdrop {
+    /* 모달 창 */
+    .modal-backdrop {
       display: none;
       position: fixed;
       inset: 0;
@@ -414,122 +364,88 @@
       background: rgba(3, 5, 14, 0.84);
       backdrop-filter: blur(10px);
       padding: 20px;
-      overflow-y: auto;
       align-items: center;
       justify-content: center;
     }
 
-    .hkwb-modal-backdrop.open {
+    .modal-backdrop.open {
       display: flex;
     }
 
-    .hkwb-modal-dialog {
+    .modal-box {
       width: 100%;
-      max-width: 860px;
-      max-height: 88vh;
+      max-width: 840px;
+      max-height: 86vh;
       display: flex;
       flex-direction: column;
       background: linear-gradient(155deg, rgba(27, 16, 62, 0.98) 0%, rgba(10, 14, 34, 0.99) 100%);
       border: 1px solid var(--border-gold);
       border-radius: 22px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 32px rgba(250, 204, 21, 0.2);
       overflow: hidden;
     }
 
-    .hkwb-modal-header {
-      padding: 18px 22px;
+    .modal-head {
+      padding: 16px 20px;
       border-bottom: 1px solid var(--border-sub);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .hkwb-modal-tabs {
+    .modal-tabs {
       display: flex;
       gap: 8px;
-      padding: 12px 22px 0;
-      flex-wrap: wrap;
+      padding: 12px 20px 0;
     }
 
-    .hkwb-modal-tab {
-      padding: 8px 16px;
+    .modal-tab {
+      padding: 8px 14px;
       border-radius: 10px 10px 0 0;
       border: 1px solid var(--border-sub);
       border-bottom: none;
       background: rgba(255, 255, 255, 0.04);
       color: var(--text-sub);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 800;
       cursor: pointer;
     }
 
-    .hkwb-modal-tab.active {
+    .modal-tab.active {
       background: rgba(147, 51, 234, 0.35);
       border-color: var(--border-gold);
       color: var(--gold);
     }
 
-    .hkwb-modal-body {
-      padding: 20px 22px 26px;
+    .modal-body {
+      padding: 18px 20px 24px;
       overflow-y: auto;
       display: grid;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .modal-close-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: 1px solid var(--border-gold);
-      border-radius: 10px;
-      padding: 6px 12px;
-      font-size: 0.86rem;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .doc-chapter {
+    .doc-item {
       background: rgba(6, 9, 22, 0.72);
       border: 1px solid var(--border-sub);
       border-radius: 14px;
-      padding: 16px;
+      padding: 15px;
     }
 
-    .doc-chapter-h {
-      font-size: 1.02rem;
-      font-weight: 900;
+    .doc-q {
+      font-weight: 800;
       color: var(--gold);
       margin-bottom: 6px;
+      font-size: 0.95rem;
     }
 
-    .doc-chapter-p {
-      font-size: 0.9rem;
+    .doc-a {
       color: var(--text-sub);
+      font-size: 0.88rem;
       white-space: pre-line;
     }
 
-    .faq-item {
-      background: rgba(6, 9, 22, 0.72);
-      border: 1px solid var(--border-sub);
-      border-radius: 14px;
-      padding: 14px 16px;
-    }
-
-    .faq-q {
-      font-size: 0.94rem;
-      font-weight: 800;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .faq-a {
-      font-size: 0.88rem;
-      color: var(--text-sub);
-    }
-
     .foot {
-      margin-top: 22px;
+      margin-top: 24px;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.8rem;
@@ -537,8 +453,7 @@
 
     [dir="rtl"] .topbar-inner,
     [dir="rtl"] .zone-head,
-    [dir="rtl"] .navigator-strip,
-    [dir="rtl"] .hkwb-modal-header {
+    [dir="rtl"] .modal-head {
       direction: rtl;
     }
   </style>
@@ -546,18 +461,14 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand-wrap">
-        <div class="logo"><span class="gold-text" data-i18n="brand">HKWB</span></div>
-        <span class="chairman" data-i18n="chairman">이재완 · 혜공 체어맨</span>
+      <div class="brand-group">
+        <div class="brand-logo gold-text" data-i18n="brand">HKWB</div>
+        <span class="chairman-badge" data-i18n="chairman">이재완 · 혜공 체어맨</span>
       </div>
 
-      <div class="header-actions">
-        <button type="button" class="nav-doc-btn" data-open-modal="whitepaper" data-i18n="btn_modal_wp">
-          서술형 백서
-        </button>
-        <button type="button" class="nav-doc-btn" data-open-modal="faq" data-i18n="btn_modal_faq">
-          FAQ 20선
-        </button>
+      <div class="right-controls">
+        <button type="button" class="ghost-btn" data-open-doc="whitepaper" data-i18n="btn_wp">서술형 백서</button>
+        <button type="button" class="ghost-btn" data-open-doc="faq" data-i18n="btn_faq">FAQ 20선</button>
         <div class="lang-wrap">
           <span>🌐</span>
           <select id="lang-select" class="lang-select" aria-label="60 Languages"></select>
@@ -567,51 +478,33 @@
   </header>
 
   <main class="container">
-    <!-- 메인 진입 배너 -->
-    <section class="banner-card">
-      <h1 class="banner-title" data-i18n="banner_title">
+    <!-- 세 번째 화면 구도의 깔끔한 메인 카드 -->
+    <section class="hero-card">
+      <h1 class="hero-title" data-i18n="hero_title">
         인류와 기술이 공존하는<br />차세대 디지털 금융 혁신
       </h1>
-      <p class="banner-sub" data-i18n="banner_sub">
+      <p class="hero-sub" data-i18n="hero_sub">
         10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
       </p>
-      <div class="entry-btns">
-        <button type="button" id="btn-enter-web3" class="btn-web3-entry" data-i18n="btn_enter_web3">
+      <div class="hero-actions">
+        <button type="button" id="open-web3-btn" class="btn-web3" data-i18n="btn_web3">
           Web3 디지털 은행 진입하기 ↓
         </button>
-        <button type="button" id="btn-enter-bank" class="btn-bank-entry" data-i18n="btn_enter_bank">
+        <button type="button" id="open-bank-btn" class="btn-bank" data-i18n="btn_bank">
           인터넷 뱅크 진입하기 ↓
         </button>
       </div>
     </section>
 
-    <!-- HK NAVIGATOR 모달 바로 열기 스트립 -->
-    <section class="navigator-strip" aria-label="HK NAVIGATOR Documents">
-      <div>
-        <div class="navigator-label">HK NAVIGATOR</div>
-        <div class="navigator-title" data-i18n="nav_strip_title">
-          서술형 백서 &amp; FAQ 20선 심층 안내 (클릭 시 모달 창 즉시 오픈)
-        </div>
-      </div>
-      <div class="navigator-triggers">
-        <button type="button" class="btn-exec" data-open-modal="whitepaper" data-i18n="open_wp_btn">
-          📖 서술형 백서 열기
-        </button>
-        <button type="button" class="btn-exec" data-open-modal="faq" data-i18n="open_faq_btn">
-          ❓ FAQ 20선 열기
-        </button>
-      </div>
-    </section>
-
-    <!-- 진입 1: Web3 디지털 은행 구역 (사고팔고 제외) -->
-    <section id="zone-web3" class="sub-zone active">
+    <!-- Web3 디지털 은행 (사고팔고 제외) -->
+    <section id="zone-web3" class="zone-panel active">
       <div class="zone-head">
-        <h2 class="zone-title gold-text" data-i18n="web3_zone_title">Web3 디지털 은행</h2>
+        <h2 class="zone-title gold-text" data-i18n="web3_title">Web3 디지털 은행</h2>
         <span class="pill">AGI / ASI 이율 · UBI 30% / 운영 30% / 재단 최대 30%</span>
       </div>
 
       <div class="dash-box">
-        <div style="font-size: 0.95rem; font-weight: 800;" data-i18n="dash_title">개인 자산 대시보드</div>
+        <div style="font-size: 0.94rem; font-weight: 800;" data-i18n="dash_title">개인 자산 대시보드</div>
         <div class="stat-row">
           <div class="stat-card">
             <div class="stat-lbl" data-i18n="pi_lbl">● 보유 수량 (PI 수량 원장 동기화)</div>
@@ -672,21 +565,19 @@
       </div>
 
       <div class="dash-box" style="margin-bottom: 0;">
-        <div id="web3-selected-label" style="font-weight: 800; color: var(--gold);">
-          선택된 프로세스: 지갑연결
-        </div>
+        <div id="web3-proc-title" style="font-weight: 800; color: var(--gold);">선택된 프로세스: 지갑연결</div>
         <div class="run-row">
-          <input id="web3-input" type="text" class="field" placeholder="수량 또는 주소 입력 (예: 100)" />
-          <button id="web3-run-btn" type="button" class="btn-exec" data-i18n="btn_run">프로세스 실행</button>
+          <input id="web3-proc-input" type="text" class="field" placeholder="수량 또는 주소 입력 (예: 100)" />
+          <button id="web3-proc-run" type="button" class="btn-exec" data-i18n="btn_run">프로세스 실행</button>
         </div>
-        <div id="web3-out" class="out-box">Web3 디지털 은행 대기 중</div>
+        <div id="web3-proc-out" class="out-box">Web3 디지털 은행 대기 중</div>
       </div>
     </section>
 
-    <!-- 진입 2: 인터넷 뱅크 (무점포 인터넷 은행) 구역 -->
-    <section id="zone-bank" class="sub-zone">
+    <!-- 무점포 인터넷 뱅크 -->
+    <section id="zone-bank" class="zone-panel">
       <div class="zone-head">
-        <h2 class="zone-title gold-text" data-i18n="bank_zone_title">인터넷 뱅크 (HK-BANK · 무점포)</h2>
+        <h2 class="zone-title gold-text" data-i18n="bank_title">인터넷 뱅크 (HK-BANK · 무점포)</h2>
         <span class="pill" data-i18n="bank_pill">오프라인 지점 없는 인터넷 뱅킹</span>
       </div>
 
@@ -698,7 +589,7 @@
         </p>
         <div class="run-row">
           <input id="bank-amt" type="number" class="field" placeholder="이체 금액 (원, 예: 100000)" min="1" />
-          <button id="bank-run-btn" type="button" class="btn-exec" data-i18n="bank_send">무점포 즉시 이체</button>
+          <button id="bank-send" type="button" class="btn-exec" data-i18n="bank_send">무점포 즉시 이체</button>
         </div>
         <div id="bank-out" class="out-box">
           인터넷 뱅크 대기 중 · 문의: support@hkwb.world · 추천인: ljw2358
@@ -711,25 +602,18 @@
     </div>
   </main>
 
-  <!-- 서술형 백서 & FAQ 20선 전용 모달 창 -->
-  <div id="hkwb-doc-modal" class="hkwb-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
-    <div class="hkwb-modal-dialog">
-      <div class="hkwb-modal-header">
-        <div>
-          <div style="font-size: 0.78rem; color: var(--gold); font-weight: 800;">HK NAVIGATOR · OFFICIAL ARCHIVE</div>
-          <h2 id="modal-heading" class="gold-text" style="font-size: 1.25rem; font-weight: 900;">
-            HKWB 서술형 백서 &amp; FAQ 20선
-          </h2>
-        </div>
-        <button type="button" id="modal-close-btn" class="modal-close-btn">✕ 닫기 (ESC)</button>
+  <!-- 모달 창 -->
+  <div id="doc-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="doc-modal-title">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="doc-modal-title" class="gold-text" style="font-size: 1.2rem; font-weight: 900;">서술형 백서</h2>
+        <button type="button" id="doc-modal-close" class="ghost-btn">✕ 닫기</button>
       </div>
-
-      <div class="hkwb-modal-tabs">
-        <button type="button" class="hkwb-modal-tab active" data-modal-tab="whitepaper">서술형 백서</button>
-        <button type="button" class="hkwb-modal-tab" data-modal-tab="faq">FAQ 20선</button>
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab active" data-doc-tab="whitepaper">서술형 백서</button>
+        <button type="button" class="modal-tab" data-doc-tab="faq">FAQ 20선</button>
       </div>
-
-      <div id="modal-content-area" class="hkwb-modal-body"></div>
+      <div id="doc-modal-body" class="modal-body"></div>
     </div>
   </div>
 
@@ -762,19 +646,16 @@
 
       const I18N = {
         ko: {
-          page_title: 'HKWB | 서술형 백서 & FAQ 20선 모달 통합',
+          page_title: 'HKWB | 차세대 디지털 금융 혁신',
           brand: 'HKWB',
           chairman: '이재완 · 혜공 체어맨',
-          btn_modal_wp: '서술형 백서',
-          btn_modal_faq: 'FAQ 20선',
-          banner_title: '인류와 기술이 공존하는\n차세대 디지털 금융 혁신',
-          banner_sub: '10대 글로벌 보안 기술 & AI 기술 기반 글로벌 자율 금융 플랫폼',
-          btn_enter_web3: 'Web3 디지털 은행 진입하기 ↓',
-          btn_enter_bank: '인터넷 뱅크 진입하기 ↓',
-          nav_strip_title: '서술형 백서 & FAQ 20선 심층 안내 (클릭 시 모달 창 즉시 오픈)',
-          open_wp_btn: '📖 서술형 백서 열기',
-          open_faq_btn: '❓ FAQ 20선 열기',
-          web3_zone_title: 'Web3 디지털 은행',
+          btn_wp: '서술형 백서',
+          btn_faq: 'FAQ 20선',
+          hero_title: '인류와 기술이 공존하는\n차세대 디지털 금융 혁신',
+          hero_sub: '10대 글로벌 보안 기술 & AI 기술 기반 글로벌 자율 금융 플랫폼',
+          btn_web3: 'Web3 디지털 은행 진입하기 ↓',
+          btn_bank: '인터넷 뱅크 진입하기 ↓',
+          web3_title: 'Web3 디지털 은행',
           dash_title: '개인 자산 대시보드',
           pi_lbl: '● 보유 수량 (PI 수량 원장 동기화)',
           yield_lbl: '📈 실시간 누적 수익 (AGI / ASI 자율 산정)',
@@ -790,26 +671,23 @@
           p_lp: 'LP 스테이킹', p_lp_d: '유동성 공급 증명(PoL) 및 고배당 정산',
           p_pi: '파이 수량', p_pi_d: '파이 자산 메인넷 원장 실시간 동기화',
           btn_run: '프로세스 실행',
-          bank_zone_title: '인터넷 뱅크 (HK-BANK · 무점포)',
+          bank_title: '인터넷 뱅크 (HK-BANK · 무점포)',
           bank_pill: '오프라인 지점 없는 인터넷 뱅킹',
           bank_bal_lbl: '무점포 인터넷 뱅크 계좌 잔액',
           bank_desc: '물리적 지점 없이 비대면·모바일·웹으로 즉시 이체하며, 금리·수익률은 AGI/ASI가 자율 결정하고 순이익은 UBI 30% · 경영비 30% · HK 사회재단 최대 30%로 배분됩니다.',
           bank_send: '무점포 즉시 이체'
         },
         en: {
-          page_title: 'HKWB | Narrative Whitepaper & FAQ 20 Modal',
+          page_title: 'HKWB | Next-Gen Digital Finance Innovation',
           brand: 'HKWB',
           chairman: 'Jaewan Lee · Hyekong Chairman',
-          btn_modal_wp: 'Whitepaper',
-          btn_modal_faq: 'FAQ 20',
-          banner_title: 'Next-Generation Digital Finance\nWhere Humanity & Tech Coexist',
-          banner_sub: 'Autonomous global finance platform powered by top security & AI technologies',
-          btn_enter_web3: 'Enter Web3 Digital Bank ↓',
-          btn_enter_bank: 'Enter Internet Bank ↓',
-          nav_strip_title: 'Narrative Whitepaper & FAQ 20 (Opens Modal Immediately)',
-          open_wp_btn: '📖 Open Whitepaper',
-          open_faq_btn: '❓ Open FAQ 20',
-          web3_zone_title: 'Web3 Digital Bank',
+          btn_wp: 'Whitepaper',
+          btn_faq: 'FAQ 20',
+          hero_title: 'Next-Generation Digital Finance\nWhere Humanity & Tech Coexist',
+          hero_sub: 'Autonomous global finance platform powered by top security & AI technologies',
+          btn_web3: 'Enter Web3 Digital Bank ↓',
+          btn_bank: 'Enter Internet Bank ↓',
+          web3_title: 'Web3 Digital Bank',
           dash_title: 'Personal Asset Dashboard',
           pi_lbl: '● Holding Amount (PI Ledger Sync)',
           yield_lbl: '📈 Real-Time Yield (AGI / ASI Autonomous)',
@@ -825,98 +703,82 @@
           p_lp: 'LP Staking', p_lp_d: 'Proof of Liquidity (PoL) & yield settlement',
           p_pi: 'PI Quantity', p_pi_d: 'Real-time PI mainnet ledger sync',
           btn_run: 'Run Process',
-          bank_zone_title: 'Internet Bank (HK-BANK · Branchless)',
+          bank_title: 'Internet Bank (HK-BANK · Branchless)',
           bank_pill: 'Zero-Branch Internet Banking',
           bank_bal_lbl: 'Branchless Internet Bank Balance',
           bank_desc: 'Instant transfers without physical branches; AGI/ASI tunes rates and profit splits 30% UBI · 30% Ops · up to 30% HK Social Foundation.',
           bank_send: 'Instant Transfer'
         },
         zh: {
-          page_title: 'HKWB | 叙事白皮书与FAQ 20问答弹窗',
+          page_title: 'HKWB | 次世代数字金融创新',
           brand: 'HKWB',
           chairman: '李在完 · 慧空 会长',
-          btn_modal_wp: '叙事白皮书',
-          btn_modal_faq: 'FAQ 20问答',
-          banner_title: '人类与技术共生的\n次世代数字金融创新',
-          banner_sub: '基于全球安全与AI技术的全球自主金融平台',
-          btn_enter_web3: '进入 Web3 数字银行 ↓',
-          btn_enter_bank: '进入 互联网银行 ↓',
-          nav_strip_title: '叙事白皮书与FAQ 20问答（点击立即弹出窗口）',
-          open_wp_btn: '📖 打开白皮书',
-          open_faq_btn: '❓ 打开FAQ 20',
-          web3_zone_title: 'Web3 数字银行',
+          btn_wp: '叙事白皮书',
+          btn_faq: 'FAQ 20问答',
+          hero_title: '人类与技术共生的\n次世代数字金融创新',
+          hero_sub: '基于全球安全与AI技术的全球自主金融平台',
+          btn_web3: '进入 Web3 数字银行 ↓',
+          btn_bank: '进入 互联网银行 ↓',
+          web3_title: 'Web3 数字银行',
           dash_title: '个人资产仪表板',
           btn_run: '执行流程',
-          bank_zone_title: '互联网银行（HK-BANK · 无网点）',
+          bank_title: '互联网银行（HK-BANK · 无网点）',
           bank_send: '立即转账'
         },
         ja: {
-          page_title: 'HKWB | ストーリー型ホワイトペーパー＆FAQ 20選モーダル',
+          page_title: 'HKWB | 次世代デジタル金融イノベーション',
           brand: 'HKWB',
           chairman: 'イ・ジェワン · へゴン チェアマン',
-          btn_modal_wp: 'ホワイトペーパー',
-          btn_modal_faq: 'FAQ 20選',
-          banner_title: '人類と技術が共存する\n次世代デジタル金融イノベーション',
-          banner_sub: 'セキュリティ＆AI技術基盤のグローバル自律金融プラットフォーム',
-          btn_enter_web3: 'Web3 デジタル銀行へ ↓',
-          btn_enter_bank: 'インターネットバンクへ ↓',
-          nav_strip_title: 'ストーリー型ホワイトペーパー＆FAQ 20選（クリックで即モーダル表示）',
-          open_wp_btn: '📖 ホワイトペーパーを開く',
-          open_faq_btn: '❓ FAQ 20選を開く',
-          web3_zone_title: 'Web3 デジタル銀行',
+          btn_wp: 'ホワイトペーパー',
+          btn_faq: 'FAQ 20選',
+          hero_title: '人類と技術が共存する\n次世代デジタル金融イノベーション',
+          hero_sub: 'セキュリティ＆AI技術基盤のグローバル自律金融プラットフォーム',
+          btn_web3: 'Web3 デジタル銀行へ ↓',
+          btn_bank: 'インターネットバンクへ ↓',
+          web3_title: 'Web3 デジタル銀行',
           dash_title: '個人資産ダッシュボード',
           btn_run: 'プロセス実行',
-          bank_zone_title: 'インターネットバンク（HK-BANK・無店舗）',
+          bank_title: 'インターネットバンク（HK-BANK・無店舗）',
           bank_send: '即時振込'
         }
       };
 
-      // 서술형 백서 본문
-      const WHITEPAPER_CHAPTERS = [
+      const WHITEPAPER = [
         {
-          h: '제1장. HKWB의 탄생과 비전 — 기술과 사람이 함께 살아가는 금융',
-          p: 'HKWB는 2026년 2월 출범 이후 이재완·혜공 체어맨의 비전 아래 설계된 차세대 통합 금융 플랫폼입니다. 복잡하고 폐쇄적이던 기존 금융의 문턱을 낮추고, 웹3 디지털 은행과 물리적 지점이 없는 무점포 인터넷 뱅킹(HK-BANK)을 한 울타리 안에서 연결합니다. 기술은 사람을 지배하는 도구가 아니라, 모든 참여자가 존엄과 기회를 함께 나누는 공공 인프라가 되어야 한다는 철학이 HKWB의 출발점입니다.'
+          h: '1. 출범 배경과 철학 — 사람이 중심이 되는 자율 금융',
+          p: 'HKWB는 2026년 2월 시작된 이재완·혜공 체어맨의 비전을 바탕으로 설계된 통합 금융 플랫폼입니다. 기술의 발전이 소수에게만 머물지 않고, 누구나 빠르고 투명하게 자산과 기회를 연결할 수 있는 구조를 지향합니다.'
         },
         {
-          h: '제2장. 이원화 금융 아키텍처 — 웹3 디지털 은행과 무점포 인터넷 뱅크',
-          p: 'HKWB 부모 플랫폼 아래에는 성격이 명확히 구분되는 두 축이 자리합니다. 첫째는 온체인 지갑 연동, PI 수량 원장 동기화, 예치, 보상, 기본소득(UBI), 스왑, DEX 스왑, LP 스테이킹을 지원하는 웹3 디지털 은행입니다. 둘째는 오프라인 영업점 없이 모바일과 웹 중심으로 빠르고 직관적인 뱅킹을 제공하는 무점포 인터넷 뱅킹(HK-BANK)입니다. 두 영역은 각각 독립적인 편리함을 제공하면서도 HKWB라는 하나의 브랜드와 보안·다국어 체계로 단단히 묶여 있습니다.'
+          h: '2. 웹3 디지털 은행과 무점포 인터넷 뱅킹(HK-BANK)',
+          p: 'HKWB는 온체인 지갑연결·PI 원장 동기화·예치·보상·기본소득·스왑·DEX 스왑·LP 스테이킹을 아우르는 웹3 디지털 은행과, 오프라인 점포 없이 모바일·웹 중심으로 동작하는 무점포 인터넷 뱅킹(HK-BANK)으로 구성됩니다.'
         },
         {
-          h: '제3장. AGI / ASI 자율 이율 엔진 — 고정 금리를 넘어선 지능형 균형',
-          p: '전통 금융의 경직된 금리 구조나 임의적인 수익률 설정 대신, HKWB는 예금 이율과 스테이킹 수익률, 중도해지 조건 등을 AGI와 ASI가 실시간 시장 환경과 유동성 흐름에 맞춰 자율 조정하도록 설계되었습니다. 과도한 약속으로 지속가능성을 해치지도, 불합리한 조건으로 참여자에게 부담을 주지도 않도록 지능형 알고리즘이 균형점을 탐색합니다.'
-        },
-        {
-          h: '제4장. 순이익 배분 철학 — UBI 30% · 경영비 30% · HK 사회재단 최대 30%',
-          p: 'HKWB 생태계에서 발생하는 순이익은 명확한 원칙에 따라 배분됩니다. 순이익의 30%는 기본소득(UBI) 재원으로, 30%는 플랫폼과 조직을 안정적으로 유지하는 회사 경영비로, 그리고 최대 30%는 기업 인수나 미래 핵심 전략 자본이 필요한 순간을 위해 HK 사회재단에서 활용할 수 있도록 구조화했습니다. 단기 소비에 그치지 않고 재투자와 사회적 환원, 전략적 도약의 선순환을 만드는 것이 핵심입니다.'
-        },
-        {
-          h: '제5장. 60개국어 글로벌 연결과 2026년 11월 말 완공 로드맵',
-          p: '국경과 언어의 장벽을 없애기 위해 HKWB는 60개국어 네이티브 전환 엔진을 내장하고, 아랍어·히브리어·페르시아어·우르두어 등 우측에서 좌측으로 읽는 언어(RTL)까지 자동으로 대응합니다. 2026년 11월 말 완공을 목표로 핵심 기능을 단계적으로 고도화하고 있으며, 공식 추천인 코드는 ljw2358, 공식 문의 창구는 support@hkwb.world로 일원화되어 있습니다.'
+          h: '3. AGI / ASI 자율 이율과 순이익 배분 원칙',
+          p: '예금 이율, 스테이킹 수익률, 중도해지 조건은 AGI/ASI가 자율 조정하며, 플랫폼 순이익은 UBI 30% · 회사 경영비 30% · HK 사회재단 최대 30%(기업 인수 등 전략 자본 필요 시 활용) 원칙에 따라 배분됩니다.'
         }
       ];
 
-      // FAQ 20선 심층 문답
-      const FAQ_20 = [
-        { q: 'Q1. HKWB는 어떤 플랫폼인가요?', a: '웹3 디지털 은행과 무점포 인터넷 뱅킹(HK-BANK)을 아우르는 통합 금융 플랫폼으로, 2026년 11월 말 완공을 목표로 구축 중입니다.' },
-        { q: 'Q2. 웹3 디지털 은행과 무점포 인터넷 뱅크는 어떻게 다른가요?', a: '웹3 디지털 은행은 지갑연결·송금·결제·예치·보상·기본소득·스왑·DEX 스왑·LP 스테이킹·파이 수량 등 온체인/디지털자산 프로세스를 다루며, 인터넷 뱅크는 오프라인 지점 없는 비대면 인터넷 뱅킹 경험을 제공합니다.' },
-        { q: 'Q3. 왜 물리적 지점이 없는 무점포 인터넷 뱅킹을 지향하나요?', a: '불필요한 오프라인 점포 비용을 줄이고 모바일·웹 기반으로 언제 어디서나 빠르고 접근성 높은 금융 서비스를 제공하기 위해서입니다.' },
-        { q: 'Q4. 예금 이율이나 스테이킹 수익률은 누가 정하나요?', a: '고정된 수동 이율 대신 AGI / ASI가 시장 상황과 유동성·리스크 지표를 반영해 자율 조정합니다.' },
-        { q: 'Q5. 중도해지 이율 역시 AGI / ASI 기준이 적용되나요?', a: '네. 예치 이율과 스테이킹 수익률뿐 아니라 중도해지 조건 역시 AGI / ASI 자율 조정 체계 안에서 관리됩니다.' },
-        { q: 'Q6. 플랫폼 순이익은 어떤 비율로 배분되나요?', a: '순이익의 30%는 UBI(기본소득), 30%는 회사 경영비, 최대 30%는 전략 자본이 필요할 때 HK 사회재단에서 활용할 수 있도록 배분됩니다.' },
-        { q: 'Q7. HK 사회재단에 배분되는 최대 30%는 어디에 쓰이나요?', a: '기업 인수나 핵심 기술·사업 확장 등 중요한 전략 자본이 필요한 시점에 투자·확장 재원으로 활용될 수 있습니다.' },
-        { q: 'Q8. 기본소득(UBI)은 어떻게 연결되나요?', a: '순이익의 30% 배분 원칙을 바탕으로 생태계 참여자와 공유 가치를 나누는 기본소득 구조와 연동됩니다.' },
-        { q: 'Q9. 웹3 분산 연동망에서 "사고팔고" 기능은 왜 빠졌나요?', a: '현 화면 구성에서는 핵심 자산·유동성·결제·예치·보상·UBI·스왑·DEX 스왑·LP 스테이킹·파이 수량 프로세스에 집중하기 위해 사고팔고 항목을 제외했습니다[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).' },
-        { q: 'Q10. 대시보드의 PI 수량은 어떻게 반영되나요?', a: '개인 자산 대시보드에서 보유 수량(PI 수량 원장 동기화)과 실시간 누적 수익 흐름을 한눈에 확인할 수 있도록 구성했습니다[span_8](start_span)[span_8](end_span).' },
-        { q: 'Q11. 스왑과 DEX 스왑의 차이는 무엇인가요?', a: '스왑은 지원 자산 간 즉시 교환 흐름을 보여주며, DEX 스왑은 탈중앙화 유동성 풀·오더북 기반의 스왑 프로세스를 나타냅니다[span_9](start_span)[span_9](end_span).' },
-        { q: 'Q12. LP 스테이킹은 어떤 역할을 하나요?', a: '유동성 공급 참여(LP) 자산을 스테이킹하여 유동성 기여와 수익 정산 흐름을 관리하는 기능입니다[span_10](start_span)[span_10](end_span).' },
-        { q: 'Q13. 60개국어 선택기는 어떻게 작동하나요?', a: '상단 언어 선택기에서 60개 언어 중 하나를 고르면 화면의 주요 텍스트와 속성이 즉시 바뀌고 브라우저(localStorage)에 저장됩니다.' },
-        { q: 'Q14. 아랍어 같은 오른쪽에서 왼쪽으로 쓰는 언어도 지원하나요?', a: '네. 아랍어(ar), 히브리어(he), 페르시아어(fa), 우르두어(ur) 선택 시 문서 방향(dir="rtl")이 자동으로 전환됩니다.' },
-        { q: 'Q15. 추천인 코드는 무엇인가요?', a: '공식 추천인 코드는 소문자 ljw2358입니다.' },
-        { q: 'Q16. 공식 문의 이메일 주소는 무엇인가요?', a: '공식 문의 및 지원 창구는 support@hkwb.world입니다.' },
-        { q: 'Q17. 플랫폼의 공식 명칭과 직함 표기는 어떻게 되나요?', a: '은행·플랫폼 명칭은 HKWB이며, 대표 직함은 체어맨(이재완·혜공 체어맨)으로 통일합니다.' },
-        { q: 'Q18. 기존에 언급되던 HK-ROSES나 스마트 글래스 항목은 포함되나요?', a: '아니요. 현재 HKWB 집중 방향에 맞춰 HK-ROSES와 스마트 글래스 항목은 제외하고 금융 코어에 집중합니다.' },
-        { q: 'Q19. 11월 말 완공 목표 이후에는 어떤 점이 발전하나요?', a: '2026년 11월 말 1차 완공 목표를 기점으로 각 모듈의 연동 정교화, 다국어 완성도, 사용자 경험 고도화를 단계적으로 이어갑니다.' },
-        { q: 'Q20. 서술형 백서와 FAQ 20선은 언제든 다시 볼 수 있나요?', a: '네. 상단 또는 본문의 "서술형 백서"와 "FAQ 20선" 버튼을 클릭하면 모달 창이 바로 열려 언제든 확인하실 수 있습니다.' }
+      const FAQ20 = [
+        { q: 'Q1. HKWB는 어떤 곳인가요?', a: '웹3 디지털 은행과 무점포 인터넷 뱅킹(HK-BANK)을 통합한 차세대 금융 플랫폼입니다.' },
+        { q: 'Q2. 완공 목표 시점은 언제인가요?', a: '2026년 11월 말 완공을 목표로 구축하고 있습니다.' },
+        { q: 'Q3. HK-BANK는 지점이 있나요?', a: '없습니다. 오프라인 지점이 없는 무점포 인터넷 뱅킹입니다.' },
+        { q: 'Q4. 금리와 수익률은 누가 정하나요?', a: 'AGI / ASI가 자율적으로 조정·결정합니다.' },
+        { q: 'Q5. 중도해지 이율도 AGI / ASI가 정하나요?', a: '네. 예치·스테이킹·중도해지 조건 모두 AGI / ASI 자율 조정 체계에 따릅니다.' },
+        { q: 'Q6. 순이익은 어떻게 나뉘나요?', a: '순이익의 30%는 UBI, 30%는 회사 경영비, 최대 30%는 HK 사회재단으로 배분됩니다.' },
+        { q: 'Q7. HK 사회재단의 최대 30%는 언제 쓰이나요?', a: '기업 인수나 전략적 자본이 필요한 중요한 순간에 활용될 수 있습니다.' },
+        { q: 'Q8. 분산 연동망에서 사고팔고는 왜 없나요?', a: '핵심 자산·유동성·결제·예치·보상·UBI·스왑·DEX 스왑·LP 스테이킹·파이 수량 프로세스에 집중하기 위해 제외했습니다.' },
+        { q: 'Q9. 지갑연결은 어떤 기능인가요?', a: '노드 지갑 프로토콜을 연동하고 자동 연결하는 프로세스입니다.' },
+        { q: 'Q10. 송금은 어떻게 작동하나요?', a: '대륙간 초고속 멀티시그 암호화 전송 흐름을 지원합니다.' },
+        { q: 'Q11. 결제는 어떤 자산을 다루나요?', a: '현금·카드·디지털자산 실시간 상거래 결제 프로세스를 나타냅니다.' },
+        { q: 'Q12. 예치는 어떤 구조인가요?', a: 'AGI / ASI 자율 이율 기반 자산 신탁 예치 흐름입니다.' },
+        { q: 'Q13. 보상은 어떻게 쌓이나요?', a: '기여도 기반 인센티브 풀 적립 발행 모델과 연결됩니다.' },
+        { q: 'Q14. 기본소득(UBI)은 어떻게 연결되나요?', a: '순이익 30% 배분 원칙과 연계된 기본소득 모델입니다.' },
+        { q: 'Q15. 스왑과 DEX 스왑의 차이는 무엇인가요?', a: '스왑은 즉시 자산 교환, DEX 스왑은 탈중앙화 오더북·P2P 유동성 매칭을 뜻합니다.' },
+        { q: 'Q16. LP 스테이킹은 무엇인가요?', a: '유동성 공급 증명(PoL) 및 배당 정산 프로세스입니다.' },
+        { q: 'Q17. 파이 수량은 어디서 확인하나요?', a: '개인 자산 대시보드 및 파이 수량 동기화 프로세스에서 확인할 수 있습니다.' },
+        { q: 'Q18. 60개국어 변환은 어떻게 되나요?', a: '상단 언어 선택기에서 60개국어를 고르면 즉시 적용되고 저장됩니다.' },
+        { q: 'Q19. 추천인 코드는 무엇인가요?', a: '소문자 ljw2358입니다.' },
+        { q: 'Q20. 공식 문의 이메일은 무엇인가요?', a: 'support@hkwb.world입니다.' }
       ];
 
       const PROC_KO = {
@@ -925,14 +787,7 @@
         lp_staking: 'LP 스테이킹', pi_qty: '파이 수량'
       };
 
-      const st = {
-        lang: 'ko',
-        proc: 'wallet',
-        modalTab: 'whitepaper',
-        pi: 314159,
-        yieldAmt: 12450893.185,
-        bank: 24850000
-      };
+      const st = { lang: 'ko', proc: 'wallet', pi: 314159, yieldAmt: 12450893.185, bank: 24850000 };
 
       function refreshNums() {
         document.getElementById('pi-val').textContent =
@@ -942,57 +797,53 @@
         document.getElementById('bank-bal').textContent = `₩ ${st.bank.toLocaleString()}`;
       }
 
-      function renderModalBody(tabName) {
-        st.modalTab = tabName;
-        document.querySelectorAll('.hkwb-modal-tab').forEach((tab) => {
-          tab.classList.toggle('active', tab.dataset.modalTab === tabName);
-        });
+      function renderDoc(tab) {
+        document.querySelectorAll('.modal-tab').forEach((t) => t.classList.toggle('active', t.dataset.docTab === tab));
+        const body = document.getElementById('doc-modal-body');
+        const title = document.getElementById('doc-modal-title');
+        body.innerHTML = '';
 
-        const area = document.getElementById('modal-content-area');
-        const heading = document.getElementById('modal-heading');
-        area.innerHTML = '';
-
-        if (tabName === 'faq') {
-          heading.textContent = 'HKWB · FAQ 20선 심층 안내';
-          FAQ_20.forEach((item) => {
-            const box = document.createElement('div');
-            box.className = 'faq-item';
-            const qEl = document.createElement('div');
-            qEl.className = 'faq-q';
-            qEl.textContent = item.q;
-            const aEl = document.createElement('div');
-            aEl.className = 'faq-a';
-            aEl.textContent = item.a;
-            box.appendChild(qEl);
-            box.appendChild(aEl);
-            area.appendChild(box);
+        if (tab === 'faq') {
+          title.textContent = 'HKWB · FAQ 20선';
+          FAQ20.forEach((item) => {
+            const card = document.createElement('div');
+            card.className = 'doc-item';
+            const q = document.createElement('div');
+            q.className = 'doc-q';
+            q.textContent = item.q;
+            const a = document.createElement('div');
+            a.className = 'doc-a';
+            a.textContent = item.a;
+            card.appendChild(q);
+            card.appendChild(a);
+            body.appendChild(card);
           });
         } else {
-          heading.textContent = 'HKWB · 서술형 백서';
-          WHITEPAPER_CHAPTERS.forEach((ch) => {
-            const sec = document.createElement('article');
-            sec.className = 'doc-chapter';
-            const hEl = document.createElement('h3');
-            hEl.className = 'doc-chapter-h';
-            hEl.textContent = ch.h;
-            const pEl = document.createElement('p');
-            pEl.className = 'doc-chapter-p';
-            pEl.textContent = ch.p;
-            sec.appendChild(hEl);
-            sec.appendChild(pEl);
-            area.appendChild(sec);
+          title.textContent = 'HKWB · 서술형 백서';
+          WHITEPAPER.forEach((sec) => {
+            const card = document.createElement('article');
+            card.className = 'doc-item';
+            const h = document.createElement('div');
+            h.className = 'doc-q';
+            h.textContent = sec.h;
+            const p = document.createElement('div');
+            p.className = 'doc-a';
+            p.textContent = sec.p;
+            card.appendChild(h);
+            card.appendChild(p);
+            body.appendChild(card);
           });
         }
-        area.scrollTop = 0;
+        body.scrollTop = 0;
       }
 
-      function openModal(tabName = 'whitepaper') {
-        renderModalBody(tabName);
-        document.getElementById('hkwb-doc-modal').classList.add('open');
+      function openDocModal(tab) {
+        renderDoc(tab);
+        document.getElementById('doc-modal').classList.add('open');
       }
 
-      function closeModal() {
-        document.getElementById('hkwb-doc-modal').classList.remove('open');
+      function closeDocModal() {
+        document.getElementById('doc-modal').classList.remove('open');
       }
 
       function applyLang(code) {
@@ -1010,53 +861,49 @@
         try { localStorage.setItem('hkwb_lang', valid); } catch (_) {}
       }
 
-      function openZone(zoneId) {
-        document.querySelectorAll('.sub-zone').forEach((z) => z.classList.toggle('active', z.id === zoneId));
-        const target = document.getElementById(zoneId);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      function switchZone(id) {
+        document.querySelectorAll('.zone-panel').forEach((p) => p.classList.toggle('active', p.id === id));
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
       document.addEventListener('DOMContentLoaded', () => {
         const sel = document.getElementById('lang-select');
-        LANGS.forEach((l, idx) => {
+        LANGS.forEach((l, i) => {
           const opt = document.createElement('option');
           opt.value = l.code;
-          opt.textContent = `${String(idx + 1).padStart(2, '0')}. ${l.native} (${l.code.toUpperCase()})`;
+          opt.textContent = `${String(i + 1).padStart(2, '0')}. ${l.native} (${l.code.toUpperCase()})`;
           sel.appendChild(opt);
         });
         sel.addEventListener('change', (e) => applyLang(e.target.value));
 
-        document.querySelectorAll('[data-open-modal]').forEach((btn) => {
-          btn.addEventListener('click', () => openModal(btn.dataset.openModal));
+        document.querySelectorAll('[data-open-doc]').forEach((b) => {
+          b.addEventListener('click', () => openDocModal(b.dataset.openDoc));
         });
-
-        document.querySelectorAll('.hkwb-modal-tab').forEach((tab) => {
-          tab.addEventListener('click', () => renderModalBody(tab.dataset.modalTab));
+        document.querySelectorAll('.modal-tab').forEach((t) => {
+          t.addEventListener('click', () => renderDoc(t.dataset.docTab));
         });
-
-        document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-        document.getElementById('hkwb-doc-modal').addEventListener('click', (e) => {
-          if (e.target.id === 'hkwb-doc-modal') closeModal();
+        document.getElementById('doc-modal-close').addEventListener('click', closeDocModal);
+        document.getElementById('doc-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'doc-modal') closeDocModal();
         });
-
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeModal();
+          if (e.key === 'Escape') closeDocModal();
         });
 
-        document.getElementById('btn-enter-web3').addEventListener('click', () => openZone('zone-web3'));
-        document.getElementById('btn-enter-bank').addEventListener('click', () => openZone('zone-bank'));
+        document.getElementById('open-web3-btn').addEventListener('click', () => switchZone('zone-web3'));
+        document.getElementById('open-bank-btn').addEventListener('click', () => switchZone('zone-bank'));
 
         document.querySelectorAll('.net-card').forEach((card) => {
           card.addEventListener('click', () => {
             st.proc = card.dataset.proc;
             document.querySelectorAll('.net-card').forEach((c) => c.classList.toggle('selected', c === card));
-            document.getElementById('web3-selected-label').textContent =
-              `선택된 프로세스: ${PROC_KO[st.proc] || st.proc}`;
+            document.getElementById('web3-proc-title').textContent = `선택된 프로세스: ${PROC_KO[st.proc] || st.proc}`;
           });
         });
 
-        document.getElementById('web3-run-btn').addEventListener('click', () => {
-          const raw = (document.getElementById('web3-input').value || '').trim();
+        document.getElementById('web3-proc-run').addEventListener('click', () => {
+          const raw = (document.getElementById('web3-proc-input').value || '').trim();
           const num = parseFloat(raw.replace(/,/g, ''));
           const amt = !Number.isNaN(num) && num > 0 ? num : 100;
           const name = PROC_KO[st.proc] || st.proc;
@@ -1071,11 +918,11 @@
           }
 
           refreshNums();
-          document.getElementById('web3-out').textContent =
+          document.getElementById('web3-proc-out').textContent =
             `[${name}] 실행 완료 · 입력: ${raw || amt} · 보유 수량: ${st.pi.toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 })} PI`;
         });
 
-        document.getElementById('bank-run-btn').addEventListener('click', () => {
+        document.getElementById('bank-send').addEventListener('click', () => {
           const v = parseInt(document.getElementById('bank-amt').value, 10);
           const amt = !Number.isNaN(v) && v > 0 ? Math.min(v, st.bank) : 100000;
           st.bank -= amt;
