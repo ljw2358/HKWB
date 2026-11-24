@@ -39,6 +39,60 @@
       overflow-wrap: break-word;
     }
 
+    /* 상단 고정 헤더 (표지 전용) */
+    .cover-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      z-index: 40;
+      background: linear-gradient(to bottom, rgba(7, 9, 19, 0.88), rgba(7, 9, 19, 0));
+    }
+
+    .cover-logo {
+      font-size: clamp(2.5rem, 4.2vw, 3.6rem);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 2px;
+      line-height: 1;
+      cursor: pointer;
+      text-shadow: 0 4px 18px rgba(245, 185, 66, 0.25);
+      flex-shrink: 0;
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 19, 34, 0.96);
+      border: 1px solid rgba(255, 210, 130, 0.4);
+      border-radius: 999px;
+      padding: 7px 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      flex-shrink: 0;
+    }
+
+    .lang-select {
+      background: transparent;
+      color: #ffffff;
+      border: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      max-width: 195px;
+    }
+
+    .lang-select option {
+      background: #0d1224;
+      color: #ffffff;
+    }
+
     /* 표지 화면 */
     .cover-screen {
       position: relative;
@@ -51,52 +105,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 100px 18px 40px;
-    }
-
-    .cover-logo {
-      position: fixed;
-      top: 20px;
-      left: 32px;
-      font-size: clamp(2.8rem, 4.5vw, 3.8rem);
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: 2px;
-      line-height: 1;
-      z-index: 25;
-      cursor: pointer;
-      text-shadow: 0 4px 18px rgba(245, 185, 66, 0.25);
-    }
-
-    .lang-switcher {
-      position: fixed;
-      top: 24px;
-      right: 28px;
-      z-index: 25;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 19, 34, 0.92);
-      border: 1px solid rgba(255, 210, 130, 0.35);
-      border-radius: 999px;
-      padding: 6px 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-    }
-
-    .lang-select {
-      background: transparent;
-      color: #ffffff;
-      border: none;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      outline: none;
-      padding-right: 4px;
-    }
-
-    .lang-select option {
-      background: #0d1224;
-      color: #ffffff;
+      padding: 112px 18px 44px;
     }
 
     .cover-card {
@@ -168,7 +177,7 @@
       background-color: var(--green-btn-hover);
     }
 
-    /* 내부 섹션 */
+    /* 내부 섹션 (Web3 / 인터넷 뱅크) */
     .sub-view {
       display: none;
       min-height: 100vh;
@@ -180,13 +189,27 @@
 
     .top-bar {
       background: #0d1224;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .top-bar-brand {
@@ -203,18 +226,19 @@
     }
 
     .sub-btn {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       padding: 8px 14px;
       border-radius: 8px;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .sub-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.22);
     }
 
     /* Web3 디지털 은행 화면 */
@@ -359,16 +383,25 @@
     }
 
     @media (max-width: 600px) {
+      .cover-header {
+        padding: 14px 16px;
+      }
+
       .cover-logo {
-        top: 16px;
-        left: 20px;
-        font-size: 2.5rem;
+        font-size: 2.3rem;
       }
 
       .lang-switcher {
-        top: 18px;
-        right: 16px;
         padding: 5px 10px;
+      }
+
+      .lang-select {
+        max-width: 135px;
+        font-size: 0.82rem;
+      }
+
+      .cover-screen {
+        padding-top: 96px;
       }
 
       .cover-card {
@@ -390,25 +423,79 @@
 </head>
 <body>
 
-  <!-- 우측 상단 언어 선택기 -->
-  <div class="lang-switcher" aria-label="언어 선택">
-    <span style="font-size: 0.95rem;">🌐</span>
-    <select id="lang-select" class="lang-select" onchange="changeLanguage(this.value)">
-      <option value="ko" selected>한국어 (KO)</option>
-      <option value="en">English (EN)</option>
-      <option value="ja">日本語 (JA)</option>
-      <option value="zh">中文 (ZH)</option>
-      <option value="es">Español (ES)</option>
-      <option value="fr">Français (FR)</option>
-      <option value="de">Deutsch (DE)</option>
-      <option value="vi">Tiếng Việt (VI)</option>
-    </select>
-  </div>
+  <!-- 표지 전용 상단 헤더 (로고 & 60개 언어 선택기 나란히 배치해 겹침 방지) -->
+  <header id="cover-header" class="cover-header">
+    <div class="cover-logo" onclick="openBankingTab('cover')">HKWB</div>
+
+    <div class="lang-switcher" aria-label="언어 선택 (60개국)">
+      <span style="font-size: 0.95rem;">🌐</span>
+      <select id="lang-select" class="lang-select" onchange="changeLanguage(this.value)">
+        <option value="ko" selected>한국어 (KO)</option>
+        <option value="en">English (EN)</option>
+        <option value="ja">日本語 (JA)</option>
+        <option value="zh-CN">简体中文 (ZH-CN)</option>
+        <option value="zh-TW">繁體中文 (ZH-TW)</option>
+        <option value="es">Español (ES)</option>
+        <option value="fr">Français (FR)</option>
+        <option value="de">Deutsch (DE)</option>
+        <option value="vi">Tiếng Việt (VI)</option>
+        <option value="th">ไทย (TH)</option>
+        <option value="id">Bahasa Indonesia (ID)</option>
+        <option value="ms">Bahasa Melayu (MS)</option>
+        <option value="fil">Filipino (FIL)</option>
+        <option value="hi">हिन्दी (HI)</option>
+        <option value="bn">বাংলা (BN)</option>
+        <option value="ur">اردو (UR)</option>
+        <option value="ta">தமிழ் (TA)</option>
+        <option value="te">తెలుగు (TE)</option>
+        <option value="mr">मराठी (MR)</option>
+        <option value="gu">ગુજરાતી (GU)</option>
+        <option value="kn">ಕನ್ನಡ (KN)</option>
+        <option value="ml">മലയാളം (ML)</option>
+        <option value="pa">ਪੰਜਾਬੀ (PA)</option>
+        <option value="ne">नेपाली (NE)</option>
+        <option value="si">සිංහල (SI)</option>
+        <option value="km">ខ្មែរ (KM)</option>
+        <option value="lo">ລາວ (LO)</option>
+        <option value="my">မြန်မာ (MY)</option>
+        <option value="mn">Монгол (MN)</option>
+        <option value="kk">Қазақша (KK)</option>
+        <option value="uz">Oʻzbekcha (UZ)</option>
+        <option value="ru">Русский (RU)</option>
+        <option value="uk">Українська (UK)</option>
+        <option value="pl">Polski (PL)</option>
+        <option value="cs">Čeština (CS)</option>
+        <option value="sk">Slovenčina (SK)</option>
+        <option value="hu">Magyar (HU)</option>
+        <option value="ro">Română (RO)</option>
+        <option value="bg">Български (BG)</option>
+        <option value="hr">Hrvatski (HR)</option>
+        <option value="sr">Српски (SR)</option>
+        <option value="sl">Slovenščina (SL)</option>
+        <option value="el">Ελληνικά (EL)</option>
+        <option value="tr">Türkçe (TR)</option>
+        <option value="ar">العربية (AR)</option>
+        <option value="fa">فارسی (FA)</option>
+        <option value="he">עברית (HE)</option>
+        <option value="it">Italiano (IT)</option>
+        <option value="pt">Português (PT)</option>
+        <option value="nl">Nederlands (NL)</option>
+        <option value="sv">Svenska (SV)</option>
+        <option value="no">Norsk (NO)</option>
+        <option value="da">Dansk (DA)</option>
+        <option value="fi">Suomi (FI)</option>
+        <option value="et">Eesti (ET)</option>
+        <option value="lv">Latviešu (LV)</option>
+        <option value="lt">Lietuvių (LT)</option>
+        <option value="sw">Kiswahili (SW)</option>
+        <option value="am">አማርኛ (AM)</option>
+        <option value="af">Afrikaans (AF)</option>
+      </select>
+    </div>
+  </header>
 
   <!-- 표지 화면 -->
   <main id="view-cover" class="cover-screen">
-    <div class="cover-logo" onclick="openBankingTab('cover')">HKWB</div>
-
     <section class="cover-card" aria-label="HKWB 메인 표지">
       <h1 id="cover-title" class="cover-title">
         인류와 기술이 공존하는<br />
@@ -432,11 +519,11 @@
   <!-- Web3 디지털 은행 창 -->
   <section id="view-web3" class="sub-view">
     <div class="top-bar">
-      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+      <div class="top-bar-left">
         <span class="top-bar-brand" onclick="openBankingTab('cover')">HKWB</span>
         <span class="top-bar-info">Web3 디지털 은행 · 체어맨 이재완(혜공) · 추천인 ljw2358</span>
       </div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div class="top-bar-right">
         <button type="button" class="sub-btn" onclick="openBankingTab('internet')">인터넷 뱅크 진입하기</button>
         <button type="button" class="sub-btn" onclick="openBankingTab('cover')">표지 새 창 열기</button>
       </div>
@@ -481,11 +568,11 @@
   <!-- 인터넷 뱅크 창 -->
   <section id="view-internet" class="sub-view ib-page">
     <div class="top-bar">
-      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+      <div class="top-bar-left">
         <span class="top-bar-brand" onclick="openBankingTab('cover')">HKWB</span>
         <span class="top-bar-info">HKWB 무점포 인터넷 뱅크 · 추천인 ljw2358</span>
       </div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div class="top-bar-right">
         <button type="button" class="sub-btn" onclick="openBankingTab('web3')">Web3 디지털 은행 진입하기</button>
         <button type="button" class="sub-btn" onclick="openBankingTab('cover')">표지 새 창 열기</button>
       </div>
@@ -542,7 +629,7 @@
   <script>
     const API_BASE_URL = '';
 
-    const I18N = {
+    const TRANSLATIONS = {
       ko: {
         title: '인류와 기술이 공존하는<br />차세대 디지털 금융 혁신',
         subtitle: '10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼',
@@ -561,11 +648,17 @@
         web3Btn: 'Web3デジタル銀行へ進む ↓',
         internetBtn: 'インターネットバンクへ進む ↓'
       },
-      zh: {
+      'zh-CN': {
         title: '人类与技术共生的<br />新一代数字金融革新',
         subtitle: '基于十大全球安全技术与AI技术的全球自主金融平台',
         web3Btn: '进入 Web3 数字银行 ↓',
         internetBtn: '进入网络银行 ↓'
+      },
+      'zh-TW': {
+        title: '人類與技術共生的<br />新一代數位金融革新',
+        subtitle: '基於十大全球安全技術與AI技術的全球自主金融平台',
+        web3Btn: '進入 Web3 數位銀行 ↓',
+        internetBtn: '進入網路銀行 ↓'
       },
       es: {
         title: 'Donde Humanidad y Tecnología Coexisten<br />Innovación Financiera Digital de Próxima Generación',
@@ -603,7 +696,7 @@
     };
 
     function changeLanguage(lang) {
-      const pack = I18N[lang] || I18N.ko;
+      const pack = TRANSLATIONS[lang] || TRANSLATIONS.en;
       document.documentElement.lang = lang;
       document.getElementById('cover-title').innerHTML = pack.title;
       document.getElementById('cover-subtitle').innerHTML = pack.subtitle;
@@ -631,6 +724,7 @@
     }
 
     function renderView(viewName) {
+      const headerEl = document.getElementById('cover-header');
       const coverEl = document.getElementById('view-cover');
       const web3El = document.getElementById('view-web3');
       const internetEl = document.getElementById('view-internet');
@@ -640,10 +734,13 @@
       internetEl.classList.remove('active');
 
       if (viewName === 'web3') {
+        headerEl.style.display = 'none';
         web3El.classList.add('active');
       } else if (viewName === 'internet') {
+        headerEl.style.display = 'none';
         internetEl.classList.add('active');
       } else {
+        headerEl.style.display = 'flex';
         coverEl.style.display = 'flex';
       }
     }
@@ -750,10 +847,11 @@
       const lang = params.get('lang') || localStorage.getItem('hkwb_lang') || 'ko';
 
       const selectEl = document.getElementById('lang-select');
-      if (selectEl && I18N[lang]) {
-        selectEl.value = lang;
-      }
-      changeLanguage(I18N[lang] ? lang : 'ko');
+      const hasOption = Array.from(selectEl.options).some(opt => opt.value === lang);
+      const resolvedLang = hasOption ? lang : 'ko';
+
+      selectEl.value = resolvedLang;
+      changeLanguage(resolvedLang);
 
       if (API_BASE_URL) {
         document.getElementById('api-mode-label').textContent = `엔진 모드: 라이브 API (${API_BASE_URL})`;
