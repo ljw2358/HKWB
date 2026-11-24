@@ -7,7 +7,7 @@
   <style>
     :root {
       --bg-dark: #070a14;
-      --card-bg: rgba(15, 20, 38, 0.9);
+      --card-bg: rgba(15, 20, 38, 0.95);
       --gold-bright: #facc15;
       --border-box: rgba(250, 204, 21, 0.35);
       --web3-btn: linear-gradient(90deg, #d946ef 0%, #ec4899 100%);
@@ -16,49 +16,64 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
       background-color: var(--bg-dark);
-      background-image: 
+      background-image:
         radial-gradient(circle at 50% 30%, rgba(30, 40, 90, 0.5) 0%, transparent 60%);
       color: #ffffff;
       min-height: 100vh;
       padding: 24px 32px 80px;
     }
 
-    /* 상단 영역 */
     .top-header {
       max-width: 1280px;
-      margin: 0 auto 40px;
+      margin: 0 auto 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-box {
+      display: flex;
+      flex-direction: column;
     }
 
     .logo-title {
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 900;
       color: var(--gold-bright);
       letter-spacing: 0.05em;
       line-height: 1;
     }
 
-    /* AGI 버튼 */
+    .ref-code {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+
+    .ref-code strong {
+      color: var(--gold-bright);
+    }
+
     .agi-selector {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid #38bdf8;
       border-radius: 999px;
-      padding: 6px 16px;
+      padding: 8px 18px;
       display: flex;
       align-items: center;
-      gap: 6px;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+      gap: 8px;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
     }
 
     .agi-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       background-color: #38bdf8;
       border-radius: 50%;
     }
@@ -67,7 +82,7 @@
       background: transparent;
       color: #ffffff;
       border: none;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
       outline: none;
       cursor: pointer;
@@ -78,10 +93,9 @@
       color: #ffffff;
     }
 
-    /* 중앙 히어로 박스 */
     .hero-container {
-      max-width: 760px;
-      margin: 30px auto 60px;
+      max-width: 800px;
+      margin: 20px auto 50px;
     }
 
     .hero-card {
@@ -94,17 +108,16 @@
     }
 
     .hero-main-title {
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       font-weight: 800;
       line-height: 1.4;
       margin-bottom: 14px;
       color: #ffffff;
-      letter-spacing: -0.01em;
     }
 
     .hero-sub-title {
       color: var(--gold-bright);
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       font-weight: 700;
       margin-bottom: 32px;
     }
@@ -112,15 +125,15 @@
     .btn-group {
       display: flex;
       justify-content: center;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .action-btn {
       border: none;
       border-radius: 999px;
-      padding: 12px 22px;
-      font-size: 0.85rem;
+      padding: 14px 26px;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #ffffff;
       cursor: pointer;
@@ -132,17 +145,11 @@
       opacity: 0.95;
     }
 
-    .btn-web3 {
-      background: var(--web3-btn);
-    }
+    .btn-web3 { background: var(--web3-btn); }
+    .btn-bank { background: var(--bank-btn); }
 
-    .btn-bank {
-      background: var(--bank-btn);
-    }
-
-    /* 하단 방 영역 */
     .room-section {
-      max-width: 1040px;
+      max-width: 1100px;
       margin: 0 auto;
       display: none;
     }
@@ -161,12 +168,12 @@
       background: var(--card-bg);
       border: 1px solid var(--border-box);
       border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      padding: 36px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .room-header-title {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       color: var(--gold-bright);
       margin-bottom: 6px;
       border-bottom: 1px solid rgba(250, 204, 21, 0.2);
@@ -175,67 +182,125 @@
 
     .room-header-sub {
       color: #94a3b8;
-      font-size: 0.92rem;
-      margin-bottom: 24px;
+      font-size: 0.95rem;
+      margin-bottom: 28px;
     }
 
     .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 24px;
     }
 
     @media (max-width: 768px) {
-      .hero-main-title { font-size: 1.5rem; }
+      .hero-main-title { font-size: 1.6rem; }
       .grid-2col { grid-template-columns: 1fr; }
       .hero-card { padding: 32px 20px; }
     }
 
     .card-detail {
-      background: rgba(8, 12, 24, 0.8);
+      background: rgba(8, 12, 24, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
-      padding: 18px;
+      padding: 22px;
     }
 
     .detail-title {
-      font-size: 0.98rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--gold-bright);
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .detail-list {
       list-style: none;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: #cbd5e1;
     }
 
     .detail-list li {
-      padding: 6px 0;
+      padding: 8px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+
     .detail-list li:last-child { border-bottom: none; }
   </style>
 </head>
 <body>
 
-  <!-- 상단 헤더 -->
   <header class="top-header">
-    <div class="logo-title">HKWB</div>
+    <div class="brand-box">
+      <div class="logo-title">HKWB</div>
+      <div class="ref-code">추천인 코드: <strong>ljw2358</strong></div>
+    </div>
 
     <div class="agi-selector">
       <div class="agi-dot"></div>
-      <select class="agi-select" id="agiSelect" onchange="changeLanguage(this.value)">
-        <option value="ko" selected>60개국 AGI 가동 중 ▼</option>
-        <option value="en">60-Nation AGI Active ▼</option>
-        <option value="ja">60カ国 AGI 稼働中 ▼</option>
-        <option value="zh">60国 AGI 运行中 ▼</option>
+      <select class="agi-select" id="agiSelect" aria-label="60개국 AGI 언어 선택" onchange="changeLanguage(this.value)">
+        <option value="ko" selected>60개국 AGI 가동 중 (한국어) ▼</option>
+        <option value="en">60-Nation AGI Active (English) ▼</option>
+        <option value="ja">60カ国 AGI 稼働中 (日本語) ▼</option>
+        <option value="zh">60国 AGI 运行中 (中文) ▼</option>
+        <option value="es">60 Países AGI Activo (Español) ▼</option>
+        <option value="fr">60 Pays AGI Actif (Français) ▼</option>
+        <option value="de">60 Länder AGI Aktiv (Deutsch) ▼</option>
+        <option value="ar">60 دولة AGI نشط (العربية) ▼</option>
+        <option value="pt">60 Países AGI Ativo (Português) ▼</option>
+        <option value="ru">60 Страна AGI Активен (Русский) ▼</option>
+        <option value="vi">60 Quốc gia AGI Hoạt động (Tiếng Việt) ▼</option>
+        <option value="th">60 ประเทศ AGI เปิดใช้งาน (ไทย) ▼</option>
+        <option value="id">60 Negara AGI Aktif (Bahasa Indonesia) ▼</option>
+        <option value="hi">60 देश AGI सक्रिय (हिन्दी) ▼</option>
+        <option value="tr">60 Ülke AGI Aktif (Türkçe) ▼</option>
+        <option value="it">60 Paesi AGI Attivo (Italiano) ▼</option>
+        <option value="nl">60 Landen AGI Actief (Nederlands) ▼</option>
+        <option value="pl">60 Krajów AGI Aktywny (Polski) ▼</option>
+        <option value="sv">60 Länder AGI Aktiv (Svenska) ▼</option>
+        <option value="uk">60 Країн AGI Активний (Українська) ▼</option>
+        <option value="el">60 Χώρες AGI Ενεργό (Ελληνικά) ▼</option>
+        <option value="he">60 מדינות AGI פעיל (עברית) ▼</option>
+        <option value="ro">60 Țări AGI Activ (Română) ▼</option>
+        <option value="hu">60 Ország AGI Aktív (Magyar) ▼</option>
+        <option value="cs">60 Zemí AGI Aktivní (Čeština) ▼</option>
+        <option value="da">60 Lande AGI Aktivt (Dansk) ▼</option>
+        <option value="fi">60 Maata AGI Aktiivinen (Suomi) ▼</option>
+        <option value="no">60 Land AGI Aktiv (Norsk) ▼</option>
+        <option value="sk">60 Krajín AGI Aktívne (Slovenčina) ▼</option>
+        <option value="bg">60 Страни AGI Активен (Български) ▼</option>
+        <option value="hr">60 Zemalja AGI Aktivan (Hrvatski) ▼</option>
+        <option value="sr">60 Земаља AGI Активан (Српски) ▼</option>
+        <option value="lt">60 Šalių AGI Aktyvus (Lietuvių) ▼</option>
+        <option value="sl">60 Držav AGI Aktiven (Slovenščina) ▼</option>
+        <option value="et">60 Riiki AGI Aktiivne (Eesti) ▼</option>
+        <option value="lv">60 Valstis AGI Aktīvs (Latviešu) ▼</option>
+        <option value="ms">60 Negara AGI Aktif (Bahasa Melayu) ▼</option>
+        <option value="fil">60 Bansa AGI Aktibo (Tagalog) ▼</option>
+        <option value="fa">60 کشور AGI فعال (فارسی) ▼</option>
+        <option value="ur">60 ممالک AGI فعال (اردو) ▼</option>
+        <option value="bn">60 টি দেশ AGI সক্রিয় (বাংলা) ▼</option>
+        <option value="ta">60 நாடுகள் AGI செயலில் (தமிழ்) ▼</option>
+        <option value="te">60 దేశాలు AGI సక్రియం (తెలుగు) ▼</option>
+        <option value="kn">60 దేశగళు AGI ಸಕ್ರಿಯ (ಕನ್ನಡ) ▼</option>
+        <option value="mr">60 देश AGI सक्रिय (मराठी) ▼</option>
+        <option value="gu">60 દેશો AGI સક્રિય (ગુજરાતી) ▼</option>
+        <option value="sw">60 Nchi AGI Inafanya kazi (Kiswahili) ▼</option>
+        <option value="af">60 Lande AGI Aktief (Afrikaans) ▼</option>
+        <option value="is">60 Lönd AGI Virkt (Íslenska) ▼</option>
+        <option value="ga">60 Tír AGI Gníomhach (Gaeilge) ▼</option>
+        <option value="cy">60 Gwlad AGI Gweithredol (Cymraeg) ▼</option>
+        <option value="mt">60 Pajjiżi AGI Attiv (Malti) ▼</option>
+        <option value="sq">60 Shtete AGI Aktiv (Shqip) ▼</option>
+        <option value="mk">60 Земји AGI Активен (Македонски) ▼</option>
+        <option value="bs">60 Zemalja AGI Aktivan (Bosanski) ▼</option>
+        <option value="ka">60 ქვეყანა AGI აქტიური (ქართული) ▼</option>
+        <option value="hy">60 Երկիր AGI Ակտիվ (Հայերեն) ▼</option>
+        <option value="az">60 Ölkə AGI Aktiv (Azərbaycan) ▼</option>
+        <option value="kk">60 Ел AGI Белсенді (Қазақ) ▼</option>
+        <option value="uz">60 Mamlakat AGI Faol (Oʻzbek) ▼</option>
       </select>
     </div>
   </header>
 
-  <!-- 중앙 히어로 박스 -->
   <main class="hero-container">
     <div class="hero-card">
       <h1 class="hero-main-title" id="mainTitle">
@@ -244,19 +309,18 @@
       <p class="hero-sub-title" id="subTitle">
         10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
       </p>
-      
+
       <div class="btn-group">
-        <button class="action-btn btn-web3" onclick="showRoom('web3')">
+        <button type="button" class="action-btn btn-web3" id="btnWeb3" onclick="showRoom('web3')">
           Web3 디지털 은행 진입하기 ↓
         </button>
-        <button class="action-btn btn-bank" onclick="showRoom('internet')">
+        <button type="button" class="action-btn btn-bank" id="btnBank" onclick="showRoom('internet')">
           인터넷 뱅크 진입하기 ↓
         </button>
       </div>
     </div>
   </main>
 
-  <!-- 방 1: Web3 디지털 은행 -->
   <section class="room-section active" id="roomWeb3">
     <div class="room-box">
       <h2 class="room-header-title">방 1 · Web3 디지털 은행</h2>
@@ -292,7 +356,6 @@
     </div>
   </section>
 
-  <!-- 방 2: 인터넷 뱅크 -->
   <section class="room-section" id="roomInternet">
     <div class="room-box">
       <h2 class="room-header-title">방 2 · 인터넷 뱅크 (HK-BANK)</h2>
@@ -347,16 +410,31 @@
     function changeLanguage(lang) {
       var t = document.getElementById('mainTitle');
       var s = document.getElementById('subTitle');
+      var b1 = document.getElementById('btnWeb3');
+      var b2 = document.getElementById('btnBank');
+
+      document.documentElement.lang = lang;
 
       if (lang === 'en') {
-        t.innerHTML = 'Next-Gen Digital Financial Innovation<br />Where Humanity & Tech Coexist';
-        s.textContent = 'Global Autonomous Platform Powered by Top 10 Security & AI Tech';
+        t.innerHTML = 'Next-Gen Digital Financial Innovation<br />Where Humanity &amp; Tech Coexist';
+        s.textContent = 'Global Autonomous Platform Powered by Top 10 Security &amp; AI Tech';
+        b1.textContent = 'Enter Web3 Digital Bank ↓';
+        b2.textContent = 'Enter Internet Bank ↓';
       } else if (lang === 'ja') {
         t.innerHTML = '人類と技術が共存する<br />次世代デジタル金融イノベーション';
         s.textContent = '10大グローバルセキュリティ技術＆AI技術基盤の自律金融プラットフォーム';
+        b1.textContent = 'Web3デジタル銀行へ ↓';
+        b2.textContent = 'インターネットバンクへ ↓';
+      } else if (lang === 'zh') {
+        t.innerHTML = '人类与科技共存的<br />新一代数字金融创新';
+        s.textContent = '基于十大全球安全技术与AI技术的全球自主金融平台';
+        b1.textContent = '进入Web3数字银行 ↓';
+        b2.textContent = '进入互联网银行 ↓';
       } else {
         t.innerHTML = '인류와 기술이 공존하는<br />차세대 디지털 금융 혁신';
         s.textContent = '10대 글로벌 보안 기술 & AI 기술 기반 글로벌 자율 금융 플랫폼';
+        b1.textContent = 'Web3 디지털 은행 진입하기 ↓';
+        b2.textContent = '인터넷 뱅크 진입하기 ↓';
       }
     }
   </script>
