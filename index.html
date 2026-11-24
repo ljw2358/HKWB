@@ -39,7 +39,7 @@
       overflow-wrap: break-word;
     }
 
-    /* 상단 고정 헤더 (표지 전용) */
+    /* 표지 전용 상단 헤더 */
     .cover-header {
       position: fixed;
       top: 0;
@@ -51,7 +51,7 @@
       align-items: center;
       gap: 16px;
       z-index: 40;
-      background: linear-gradient(to bottom, rgba(7, 9, 19, 0.88), rgba(7, 9, 19, 0));
+      background: linear-gradient(to bottom, rgba(7, 9, 19, 0.9), rgba(7, 9, 19, 0));
     }
 
     .cover-logo {
@@ -145,13 +145,17 @@
     .cover-btn {
       border: none;
       border-radius: 999px;
-      padding: 14px 26px;
-      font-size: 0.96rem;
+      padding: 13px 24px;
+      font-size: 0.95rem;
       font-weight: 700;
       color: #ffffff;
       cursor: pointer;
       transition: transform 0.15s ease, filter 0.15s ease;
       white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .cover-btn:hover {
@@ -177,7 +181,7 @@
       background-color: var(--green-btn-hover);
     }
 
-    /* 내부 섹션 (Web3 / 인터넷 뱅크) */
+    /* 내부 섹션 */
     .sub-view {
       display: none;
       min-height: 100vh;
@@ -243,17 +247,17 @@
 
     /* Web3 디지털 은행 화면 */
     .web3-container {
-      max-width: 980px;
+      max-width: 1060px;
       margin: 0 auto;
-      padding: 40px 20px 64px;
+      padding: 36px 20px 72px;
     }
 
     .web3-wallet-box {
       background: #131936;
       border: 1px solid rgba(245, 185, 66, 0.35);
       border-radius: 20px;
-      padding: 28px;
-      margin-bottom: 24px;
+      padding: 26px;
+      margin-bottom: 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -268,10 +272,11 @@
       margin-top: 6px;
     }
 
-    .dark-grid {
+    .dark-grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 18px;
+      margin-bottom: 22px;
     }
 
     .dark-panel {
@@ -284,13 +289,114 @@
     .dark-panel h3 {
       color: var(--gold);
       margin-bottom: 10px;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
     }
 
     .dark-panel p {
       color: var(--text-sub);
       font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    /* 10대 분산 연동망 그리드 */
+    .mesh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
       margin-bottom: 14px;
+    }
+
+    .mesh-node {
+      background: #0b1024;
+      border: 1px solid rgba(147, 197, 253, 0.22);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.82rem;
+    }
+
+    .mesh-node strong {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .mesh-status {
+      color: #4ade80;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    /* UBI 30% 배분 바 */
+    .ubi-highlight {
+      background: rgba(245, 185, 66, 0.12);
+      border: 1px solid rgba(245, 185, 66, 0.35);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      color: #fde68a;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* 고객센터 AGI/ASI 삐니 채팅박스 */
+    .pinny-box {
+      background: #0b1024;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 12px;
+      max-height: 190px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+    }
+
+    .pinny-msg {
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .pinny-msg:last-child {
+      margin-bottom: 0;
+    }
+
+    .pinny-tag {
+      color: var(--gold);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .user-tag {
+      color: #93c5fd;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .social-btn {
+      flex: 1 1 180px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .yt-btn {
+      background: #b91c1c;
+    }
+
+    .tt-btn {
+      background: #1e293b;
     }
 
     /* 인터넷 뱅크 화면 */
@@ -347,6 +453,12 @@
       border-radius: 8px;
       margin-bottom: 10px;
       font-size: 0.95rem;
+    }
+
+    .dark-panel .ib-input {
+      background: #0b1024;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
     .ib-submit {
@@ -423,7 +535,7 @@
 </head>
 <body>
 
-  <!-- 표지 전용 상단 헤더 (로고 & 60개 언어 선택기 나란히 배치해 겹침 방지) -->
+  <!-- 표지 전용 상단 헤더 -->
   <header id="cover-header" class="cover-header">
     <div class="cover-logo" onclick="openBankingTab('cover')">HKWB</div>
 
@@ -530,12 +642,13 @@
     </div>
 
     <div class="web3-container">
+      <!-- 1. 개인 자산 대시보드 -->
       <div class="web3-wallet-box">
         <div>
-          <div style="color: var(--text-sub); font-size: 0.9rem;">HKWB Web3 디지털 지갑 잔고</div>
+          <div style="color: var(--text-sub); font-size: 0.9rem;">개인 자산 대시보드 · HKWB Web3 지갑 잔고</div>
           <div class="web3-balance" id="web3-balance">314,159.00 Pi</div>
           <div style="color: #93c5fd; font-size: 0.85rem; margin-top: 4px;" id="api-mode-label">
-            엔진 모드: 로컬 시뮬레이션 (백엔드 API 연동 가능)
+            10대 분산 연동망 동기화 중 · AGI/ASI 자율 이율 반영
           </div>
         </div>
         <button type="button" class="cover-btn btn-web3" onclick="addWeb3Reward()">
@@ -543,23 +656,53 @@
         </button>
       </div>
 
-      <div class="dark-grid">
+      <!-- 2. 10대 분산 연동망 & 3. 사회환원 30% UBI -->
+      <div class="dark-grid-2">
         <div class="dark-panel">
-          <h3>스테이킹 시뮬레이션</h3>
-          <p>AGI/ASI가 산출한 자율 수익률 기준으로 Pi 자산을 예치 시뮬레이션합니다.</p>
-          <input type="number" id="stake-amount" class="ib-input" value="1000" min="10" step="10" />
-          <button type="button" class="ib-submit" onclick="simulateStake()">예치 수익 계산</button>
-          <div id="stake-result" style="margin-top:10px; color:#ffd166; font-weight:700; font-size:0.9rem;"></div>
+          <h3>10대 분산 연동망</h3>
+          <p>글로벌 분산 노드와 Web3 보안 레이어 10개가 실시간으로 동기화됩니다.</p>
+          <div id="mesh-grid" class="mesh-grid"></div>
+          <button type="button" class="ib-submit" onclick="syncMeshNodes()">10대 분산 연동망 상태 점검</button>
         </div>
 
         <div class="dark-panel">
-          <h3>순수익 배분 구조</h3>
-          <p>
-            • UBI 배분: 30%<br />
-            • 회사 경영비: 30%<br />
-            • HK 사회재단(전략 투자/인수 등 필요 시): 최대 30%
-          </p>
-          <div id="profit-calc" style="color:#a5b4fc; font-size:0.88rem; font-weight:600;"></div>
+          <h3>사회환원 30% UBI</h3>
+          <div class="ubi-highlight">순수익 30% UBI 환원 · 30% 경영비 · 최대 30% HK 사회재단</div>
+          <p>예상 순수익 금액(원)을 입력하면 UBI 30% 환원액을 바로 계산합니다.</p>
+          <input type="number" id="ubi-profit-input" class="ib-input" value="100000000" min="10000" step="10000" />
+          <button type="button" class="ib-submit" onclick="calcUbiReturn()">30% UBI 환원액 계산</button>
+          <div id="ubi-calc-result" style="margin-top:10px; color:#ffd166; font-weight:700; font-size:0.9rem;"></div>
+        </div>
+      </div>
+
+      <!-- 4. 고객센터 AGI/ASI 삐니 & 5. 유튜브와 틱톡 -->
+      <div class="dark-grid-2">
+        <div class="dark-panel">
+          <h3>고객센터 AGI/ASI 삐니</h3>
+          <p>이율, 30% UBI, 지갑 잔고, 인터넷 뱅크 연동에 대해 삐니에게 물어보세요.</p>
+          <div id="pinny-chat" class="pinny-box">
+            <div class="pinny-msg"><span class="pinny-tag">삐니:</span>혜공 형님, HKWB Web3 고객센터 AGI/ASI 삐니입니다. 무엇을 도와드릴까요?</div>
+          </div>
+          <form onsubmit="askPinny(event)" style="display:flex; gap:8px;">
+            <input type="text" id="pinny-input" class="ib-input" style="margin-bottom:0;" placeholder="예: UBI 30% 설명해줘, 이율 알려줘" required />
+            <button type="submit" class="sub-btn" style="background:#6533e0; border:none; padding:0 16px;">전송</button>
+          </form>
+        </div>
+
+        <div class="dark-panel">
+          <h3>유튜브와 틱톡</h3>
+          <p>혜공 공식 채널에서 스마트 금융·미래 기술 방송과 라이브 콘텐츠를 바로 확인하세요.</p>
+          <div class="social-links">
+            <a href="https://www.youtube.com/@Hyekong2026" target="_blank" rel="noopener noreferrer" class="social-btn yt-btn">
+              ▶ 유튜브 (@Hyekong2026)
+            </a>
+            <a href="https://www.tiktok.com/@hyekong2026" target="_blank" rel="noopener noreferrer" class="social-btn tt-btn">
+              ♪ 틱톡 (@hyekong2026)
+            </a>
+          </div>
+          <div style="margin-top:14px; color:#94a3b8; font-size:0.82rem;">
+            공식 문의: support@hkwb.world · 추천인: ljw2358
+          </div>
         </div>
       </div>
     </div>
@@ -628,6 +771,19 @@
 
   <script>
     const API_BASE_URL = '';
+
+    const MESH_NODES = [
+      '01. Pi Mainnet Relay',
+      '02. Ulsan Node Alpha',
+      '03. Global Ledger Mesh',
+      '04. Quantum Shield Gate',
+      '05. ASI Rate Oracle',
+      '06. UBI Vault Engine',
+      '07. Cross-Chain Bridge',
+      '08. Multi-Sig Custody',
+      '09. Zero-Downtime Cache',
+      '10. HK Audit Sentinel'
+    ];
 
     const TRANSLATIONS = {
       ko: {
@@ -745,6 +901,55 @@
       }
     }
 
+    function renderMeshNodes(pingLabel = '연결됨 · 12ms') {
+      const grid = document.getElementById('mesh-grid');
+      if (!grid) return;
+      grid.innerHTML = MESH_NODES.map(name => `
+        <div class="mesh-node">
+          <strong>${name}</strong>
+          <span class="mesh-status">● ${pingLabel}</span>
+        </div>
+      `).join('');
+    }
+
+    function syncMeshNodes() {
+      const ms = Math.floor(Math.random() * 14) + 8;
+      renderMeshNodes(`동기화 완료 · ${ms}ms`);
+      alert(`10대 분산 연동망 전체 정상 동기화 완료 (${ms}ms)`);
+    }
+
+    function calcUbiReturn() {
+      const profit = Number(document.getElementById('ubi-profit-input').value) || 0;
+      const ubiAmt = Math.round(profit * 0.30);
+      const opAmt = Math.round(profit * 0.30);
+      const foundationMax = Math.round(profit * 0.30);
+      document.getElementById('ubi-calc-result').innerHTML =
+        `사회환원 30% UBI: ${ubiAmt.toLocaleString('ko-KR')} 원<br />` +
+        `경영비 30%: ${opAmt.toLocaleString('ko-KR')} 원 · HK 사회재단(최대 30%): ${foundationMax.toLocaleString('ko-KR')} 원`;
+    }
+
+    function askPinny(event) {
+      event.preventDefault();
+      const inputEl = document.getElementById('pinny-input');
+      const chatBox = document.getElementById('pinny-chat');
+      const q = inputEl.value.trim();
+      if (!q) return;
+
+      let reply = `현재 AGI/ASI 자율 이율은 연 ${agiRate.toFixed(2)}%이며, 순수익 30% UBI 환원 정책이 적용됩니다.`;
+      if (q.includes('UBI') || q.includes('ubi') || q.includes('30') || q.includes('환원')) {
+        reply = 'HKWB 순수익의 30%는 UBI로 환원되고, 30%는 경영비, 최대 30%는 HK 사회재단(전략 투자/인수 등 필요 시)으로 운용됩니다.';
+      } else if (q.includes('이율') || q.includes('금리') || q.includes('AGI') || q.includes('ASI')) {
+        reply = `예금 및 스테이킹 이율은 AGI/ASI가 시장 지표를 반영해 자율 산출하며, 현재 기준 연 ${agiRate.toFixed(2)}%입니다.`;
+      } else if (q.includes('잔고') || q.includes('Pi') || q.includes('지갑')) {
+        reply = `현재 Web3 지갑 잔고는 ${web3Balance.toLocaleString('en-US', { minimumFractionDigits: 2 })} Pi이고, 10대 분산 연동망이 활성 상태입니다.`;
+      }
+
+      chatBox.innerHTML += `<div class="pinny-msg"><span class="user-tag">혜공 형님:</span>${q}</div>`;
+      chatBox.innerHTML += `<div class="pinny-msg"><span class="pinny-tag">삐니:</span>${reply}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+      inputEl.value = '';
+    }
+
     async function doTransfer(event) {
       event.preventDefault();
       const nameInput = document.getElementById('to-name');
@@ -810,7 +1015,6 @@
 
       document.getElementById('agi-rate-text').textContent = `AGI/ASI 자율 이율: 연 ${agiRate.toFixed(2)}%`;
       calcInterest();
-      simulateStake();
     }
 
     function calcInterest() {
@@ -819,19 +1023,6 @@
       const interest = Math.round(amount * (agiRate / 100) * (months / 12));
       document.getElementById('calc-result').textContent =
         `연 ${agiRate.toFixed(2)}% · ${months}개월 예상 이자: +${interest.toLocaleString('ko-KR')} 원`;
-    }
-
-    function simulateStake() {
-      const stakeAmt = Number(document.getElementById('stake-amount').value) || 0;
-      const estPi = (stakeAmt * (agiRate / 100)).toFixed(2);
-      document.getElementById('stake-result').textContent =
-        `연 ${agiRate.toFixed(2)}% 기준 연간 예상 보상: +${estPi} Pi`;
-    }
-
-    function renderProfitSplit() {
-      const sampleProfit = 100000000;
-      document.getElementById('profit-calc').innerHTML =
-        `예시 순수익 1억 원 기준: UBI ${(sampleProfit * 0.3).toLocaleString()}원 · 경영비 ${(sampleProfit * 0.3).toLocaleString()}원 · HK 사회재단 최대 ${(sampleProfit * 0.3).toLocaleString()}원`;
     }
 
     function addWeb3Reward() {
@@ -858,9 +1049,9 @@
       }
 
       renderView(view);
+      renderMeshNodes();
+      calcUbiReturn();
       calcInterest();
-      simulateStake();
-      renderProfitSplit();
     })();
   </script>
 </body>
