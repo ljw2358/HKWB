@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB | 글로벌 디지털 & 인터넷 금융 플랫폼</title>
+  <title>HKWB | 인류와 기술이 공존하는 차세대 디지털 금융 혁신</title>
   <style>
     :root {
-      --bg-dark: #090d1f;
-      --bg-card: #121833;
-      --purple: #6c3ce9;
-      --purple-glow: rgba(108, 60, 233, 0.35);
-      --gold: #ffd166;
-      --green: #16a34a;
-      --green-glow: rgba(22, 163, 74, 0.35);
+      --bg-page: #070913;
+      --bg-box: rgba(16, 19, 34, 0.92);
+      --border-box: rgba(255, 210, 130, 0.28);
+      --gold: #f5b942;
+      --text-main: #ffffff;
+      --text-sub: #cbd5e1;
+      --purple-btn: #6533e0;
+      --purple-btn-hover: #7644f0;
+      --green-btn: #158f43;
+      --green-btn-hover: #1aa34e;
       --ib-bg: #f4f7fb;
       --ib-card: #ffffff;
       --ib-primary: #1d4ed8;
       --ib-text: #0f172a;
       --ib-muted: #64748b;
-      --text-light: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -31,194 +31,164 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      line-height: 1.6;
+      background-color: var(--bg-page);
+      color: var(--text-main);
       min-height: 100vh;
+      line-height: 1.5;
     }
 
-    /* 상단 헤더 */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(9, 13, 31, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
+    /* 표지 화면 */
+    .cover-screen {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(65, 48, 120, 0.16), transparent 65%),
+        var(--bg-page);
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .brand-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-    }
-
-    .brand-logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 1px;
-    }
-
-    .brand-sub {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .pill-badge {
-      background: rgba(255, 209, 102, 0.12);
-      color: var(--gold);
-      border: 1px solid rgba(255, 209, 102, 0.35);
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      border: 1px solid var(--border);
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .nav-btn:hover,
-    .nav-btn.active {
-      background: var(--purple);
-      border-color: var(--purple);
-    }
-
-    /* 화면 전환 */
-    .view-section {
-      display: none;
-    }
-
-    .view-section.active {
-      display: block;
-      animation: fadeIn 0.25s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 1. 메인 홈 화면 */
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 56px 24px 40px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 800;
-      margin-bottom: 14px;
-      line-height: 1.25;
-    }
-
-    .hero h1 span {
-      color: var(--gold);
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 720px;
-      margin: 0 auto 32px;
-    }
-
-    .entry-buttons {
-      display: flex;
+      flex-direction: column;
       justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 44px;
-    }
-
-    .entry-btn {
-      border: none;
-      border-radius: 14px;
-      padding: 16px 28px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.2s;
-      min-width: 245px;
-    }
-
-    .entry-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-web3 {
-      background: linear-gradient(135deg, #6c3ce9, #4f46e5);
-      box-shadow: 0 10px 25px var(--purple-glow);
-    }
-
-    .btn-internet {
-      background: linear-gradient(135deg, #16a34a, #15803d);
-      box-shadow: 0 10px 25px var(--green-glow);
-    }
-
-    /* 정책 요약 카드 그리드 */
-    .grid-3 {
-      max-width: 1100px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .dark-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      align-items: center;
       padding: 24px;
     }
 
-    .dark-card h3 {
+    .cover-logo {
+      position: fixed;
+      top: 24px;
+      left: 36px;
+      font-size: 1.65rem;
+      font-weight: 800;
       color: var(--gold);
-      margin-bottom: 10px;
-      font-size: 1.1rem;
+      letter-spacing: 1px;
+      z-index: 20;
+      cursor: pointer;
     }
 
-    .dark-card p {
-      color: var(--text-muted);
-      font-size: 0.92rem;
+    .cover-card {
+      width: 100%;
+      max-width: 700px;
+      background: var(--bg-box);
+      border: 1px solid var(--border-box);
+      border-radius: 22px;
+      padding: 54px 36px 46px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
     }
 
-    /* 2. Web3 디지털 은행 화면 */
-    .web3-wrap {
-      max-width: 1050px;
+    .cover-title {
+      font-size: clamp(1.65rem, 3.2vw, 2.45rem);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.32;
+      margin-bottom: 14px;
+    }
+
+    .cover-subtitle {
+      font-size: clamp(0.88rem, 1.4vw, 1.02rem);
+      color: var(--text-sub);
+      margin-bottom: 34px;
+    }
+
+    .cover-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cover-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 13px 26px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .cover-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn-web3 {
+      background-color: var(--purple-btn);
+      box-shadow: 0 8px 20px rgba(101, 51, 224, 0.35);
+    }
+
+    .btn-web3:hover {
+      background-color: var(--purple-btn-hover);
+    }
+
+    .btn-internet {
+      background-color: var(--green-btn);
+      box-shadow: 0 8px 20px rgba(21, 143, 67, 0.35);
+    }
+
+    .btn-internet:hover {
+      background-color: var(--green-btn-hover);
+    }
+
+    /* 내부 섹션 */
+    .sub-view {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .sub-view.active {
+      display: block;
+    }
+
+    .top-bar {
+      background: #0d1224;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .top-bar-brand {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold);
+      cursor: pointer;
+    }
+
+    .top-bar-info {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+
+    .sub-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sub-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Web3 디지털 은행 화면 */
+    .web3-container {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 36px 24px 64px;
+      padding: 40px 24px 64px;
     }
 
-    .balance-banner {
-      background: linear-gradient(135deg, #1c1644, #111836);
-      border: 1px solid rgba(255, 209, 102, 0.3);
+    .web3-wallet-box {
+      background: #131936;
+      border: 1px solid rgba(245, 185, 66, 0.35);
       border-radius: 20px;
       padding: 28px;
       margin-bottom: 24px;
@@ -229,104 +199,57 @@
       gap: 16px;
     }
 
-    .balance-amount {
+    .web3-balance {
       font-size: 2.2rem;
       font-weight: 800;
       color: var(--gold);
-      margin: 6px 0;
+      margin-top: 6px;
     }
 
-    /* 3. 인터넷 뱅크(무점포 인터넷 뱅킹) 화면 */
-    .ib-theme {
-      background-color: var(--ib-bg);
+    /* 인터넷 뱅크 화면 */
+    .ib-page {
+      background: var(--ib-bg);
       color: var(--ib-text);
-      min-height: calc(100vh - 64px);
-      padding: 32px 20px 72px;
+      min-height: 100vh;
     }
 
-    .ib-container {
-      max-width: 980px;
+    .ib-wrap {
+      max-width: 960px;
       margin: 0 auto;
+      padding: 36px 20px 64px;
     }
 
-    .ib-header-box {
+    .ib-banner {
       background: linear-gradient(135deg, #1e40af, #2563eb);
-      color: #fff;
+      color: #ffffff;
       border-radius: 20px;
       padding: 28px;
-      margin-bottom: 24px;
-      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.2);
+      margin-bottom: 22px;
     }
 
-    .ib-header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .ib-badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .ib-balance {
+    .ib-amount {
       font-size: 2.1rem;
       font-weight: 800;
-      margin: 6px 0 14px;
-    }
-
-    .ib-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .ib-btn {
-      border: none;
-      border-radius: 10px;
-      padding: 10px 18px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.15s;
-    }
-
-    .ib-btn-white {
-      background: #fff;
-      color: var(--ib-primary);
-    }
-
-    .ib-btn-outline {
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      margin: 8px 0 16px;
     }
 
     .ib-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .ib-card {
       background: var(--ib-card);
       border-radius: 16px;
       padding: 22px;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
       border: 1px solid #e2e8f0;
     }
 
     .ib-card h3 {
-      font-size: 1.05rem;
       margin-bottom: 12px;
-      color: var(--ib-text);
+      font-size: 1.05rem;
     }
 
     .ib-input,
@@ -350,23 +273,15 @@
       cursor: pointer;
     }
 
-    .ib-submit:hover {
-      background: #1e40af;
-    }
-
-    .tx-list {
-      list-style: none;
-    }
-
-    .tx-item {
+    .tx-row {
       display: flex;
       justify-content: space-between;
       padding: 10px 0;
       border-bottom: 1px solid #f1f5f9;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
-    .tx-item:last-child {
+    .tx-row:last-child {
       border-bottom: none;
     }
 
@@ -379,295 +294,223 @@
       color: #dc2626;
       font-weight: 700;
     }
-
-    footer {
-      text-align: center;
-      padding: 28px 20px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      background: var(--bg-dark);
-    }
   </style>
 </head>
 <body>
 
-  <!-- 상단 공통 헤더 -->
-  <header>
-    <div class="brand-area" onclick="switchView('home')">
-      <span class="brand-logo">HKWB</span>
-      <span class="brand-sub">체어맨 이재완(혜공) · 추천인: ljw2358</span>
-    </div>
+  <!-- 표지 화면 -->
+  <main id="view-cover" class="cover-screen">
+    <div class="cover-logo" onclick="openBankingTab('cover')">HKWB</div>
 
-    <div class="header-actions">
-      <span class="pill-badge">AGI/ASI 자율 이율 엔진 가동</span>
-      <button class="nav-btn active" id="nav-home" onclick="switchView('home')">홈</button>
-      <button class="nav-btn" id="nav-web3" onclick="switchView('web3')">Web3 디지털 은행</button>
-      <button class="nav-btn" id="nav-internet" onclick="switchView('internet')">인터넷 뱅크</button>
-    </div>
-  </header>
-
-  <!-- 1. 메인 홈 섹션 -->
-  <section id="view-home" class="view-section active">
-    <div class="hero">
-      <h1>인류와 기술이 공존하는<br /><span>HKWB</span> 글로벌 금융 플랫폼</h1>
-      <p>
-        부모 플랫폼 <strong>HKWB</strong> 아래 <strong>Web3 디지털 은행</strong>과 무점포 <strong>인터넷 뱅크</strong>로
-        연결됩니다. 버튼을 누르면 새 창(새 탭)으로 해당 금융 화면이 열립니다.
+    <section class="cover-card" aria-label="HKWB 메인 표지">
+      <h1 class="cover-title">
+        인류와 기술이 공존하는<br />
+        차세대 디지털 금융 혁신
+      </h1>
+      <p class="cover-subtitle">
+        10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
       </p>
 
-      <div class="entry-buttons">
-        <button class="entry-btn btn-web3" onclick="openBankingWindow('web3')">
+      <div class="cover-actions">
+        <button type="button" class="cover-btn btn-web3" onclick="openBankingTab('web3')">
           Web3 디지털 은행 진입하기 ↓
         </button>
-        <button class="entry-btn btn-internet" onclick="openBankingWindow('internet')">
+        <button type="button" class="cover-btn btn-internet" onclick="openBankingTab('internet')">
           인터넷 뱅크 진입하기 ↓
         </button>
       </div>
+    </section>
+  </main>
+
+  <!-- Web3 디지털 은행 창 -->
+  <section id="view-web3" class="sub-view">
+    <div class="top-bar">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="top-bar-brand" onclick="openBankingTab('cover')">HKWB</span>
+        <span class="top-bar-info">Web3 디지털 은행 · 체어맨 이재완(혜공) · 추천인 ljw2358</span>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="sub-btn" onclick="openBankingTab('internet')">인터넷 뱅크 새 창 열기</button>
+        <button type="button" class="sub-btn" onclick="openBankingTab('cover')">표지 새 창 열기</button>
+      </div>
     </div>
 
-    <div class="grid-3">
-      <div class="dark-card">
-        <h3>순수익 배분 원칙</h3>
-        <p>
-          플랫폼 순수익은 <strong>30% UBI</strong>, <strong>30% 회사 경영비</strong>,
-          <strong>최대 30% HK 사회재단</strong>(전략 투자 및 기업 인수 등 필요 시 활용) 구조로 운영됩니다.
-        </p>
-      </div>
-      <div class="dark-card">
-        <h3>AGI / ASI 자율 이율 조정</h3>
-        <p>
-          예치 이율, 스테이킹 수익률, 중도해지 조건은 고정 수치가 아닌 <strong>AGI/ASI</strong>가 실시간 시장·유동성 지표를 반영해 자율 조정합니다.
-        </p>
-      </div>
-      <div class="dark-card">
-        <h3>무점포 인터넷 뱅크</h3>
-        <p>
-          지점 방문 없이 웹·모바일에서 즉시 계좌 관리, 송금, 예적금 시뮬레이션이 가능한 스마트 인터넷 뱅킹 환경을 제공합니다.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. Web3 디지털 은행 섹션 -->
-  <section id="view-web3" class="view-section">
-    <div class="web3-wrap">
-      <div class="balance-banner">
+    <div class="web3-container">
+      <div class="web3-wallet-box">
         <div>
-          <div style="color: var(--text-muted); font-size: 0.9rem;">HKWB Web3 디지털 지갑 잔고</div>
-          <div class="balance-amount" id="web3-balance">314,159.00 Pi</div>
-          <div style="color: #a5b4fc; font-size: 0.85rem;">
-            AGI/ASI 자동 이율 반영 중 · 추천코드: ljw2358
+          <div style="color: var(--text-sub); font-size: 0.9rem;">HKWB Web3 디지털 지갑 잔고</div>
+          <div class="web3-balance" id="web3-balance">314,159.00 Pi</div>
+          <div style="color: #93c5fd; font-size: 0.85rem; margin-top: 4px;">
+            AGI/ASI 자율 이율 반영 중 · 순수익 30% UBI / 30% 경영비 / 최대 30% HK 사회재단
           </div>
         </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <button class="ib-btn ib-btn-white" onclick="simulateWeb3Reward()">AGI 이율 보상 받기 (+120 Pi)</button>
-          <button class="ib-btn ib-btn-outline" onclick="openBankingWindow('internet')">인터넷 뱅크 새 창 열기 →</button>
-        </div>
-      </div>
-
-      <div class="grid-3" style="padding: 0; margin-bottom: 0;">
-        <div class="dark-card">
-          <h3>1. 디지털 자산 지갑</h3>
-          <p>멀티시그니처 및 분산 금융 모듈을 통한 안전한 자산 보관과 실시간 조회를 지원합니다.</p>
-        </div>
-        <div class="dark-card">
-          <h3>2. 스테이킹 & 스왑</h3>
-          <p>AGI/ASI가 산출한 자율 수익률 기준으로 자산을 예치하고 즉시 스왑 시뮬레이션을 실행합니다.</p>
-        </div>
-        <div class="dark-card">
-          <h3>3. UBI & 사회재단 연계</h3>
-          <p>30% UBI 배분 및 최대 30% HK 사회재단 전략 자본 구조와 투명하게 연동됩니다.</p>
-        </div>
+        <button type="button" class="cover-btn btn-web3" onclick="addWeb3Reward()">
+          AGI 이율 보상 받기 (+120 Pi)
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- 3. 인터넷 뱅크(무점포 인터넷 뱅킹) 섹션 -->
-  <section id="view-internet" class="view-section ib-theme">
-    <div class="ib-container">
-      <div class="ib-header-box">
-        <div class="ib-header-top">
-          <span class="ib-badge">HKWB 무점포 인터넷 뱅크</span>
-          <span class="ib-badge" id="agi-rate-badge">현재 AGI 기준 예치 이율: 연 4.35% (실시간 조정)</span>
+  <!-- 인터넷 뱅크 창 -->
+  <section id="view-internet" class="sub-view ib-page">
+    <div class="top-bar">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="top-bar-brand" onclick="openBankingTab('cover')">HKWB</span>
+        <span class="top-bar-info">HKWB 무점포 인터넷 뱅크 · 추천인 ljw2358</span>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="sub-btn" onclick="openBankingTab('web3')">Web3 디지털 은행 새 창 열기</button>
+        <button type="button" class="sub-btn" onclick="openBankingTab('cover')">표지 새 창 열기</button>
+      </div>
+    </div>
+
+    <div class="ib-wrap">
+      <div class="ib-banner">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span style="font-size:0.9rem; opacity:0.95;">HKWB 입출금 통장 잔액</span>
+          <span id="agi-rate-text" style="font-size:0.85rem; background:rgba(255,255,255,0.18); padding:4px 12px; border-radius:999px;">
+            AGI/ASI 자율 이율: 연 4.35%
+          </span>
         </div>
-        <div style="font-size: 0.9rem; opacity: 0.9;">HKWB 입출금 통장 잔액 (추천인: ljw2358)</div>
-        <div class="ib-balance" id="ib-balance">12,500,000 원</div>
-        <div class="ib-actions">
-          <button class="ib-btn ib-btn-white" onclick="document.getElementById('transfer-amount').focus()">빠른 이체</button>
-          <button class="ib-btn ib-btn-outline" onclick="refreshAgiRate()">AGI 이율 재계산</button>
-          <button class="ib-btn ib-btn-outline" onclick="switchView('home')">메인으로 돌아가기</button>
-        </div>
+        <div class="ib-amount" id="ib-balance">12,500,000 원</div>
+        <button type="button" class="sub-btn" style="background:#fff; color:#1d4ed8;" onclick="updateAgiRate()">
+          AGI 자율 이율 새로고침
+        </button>
       </div>
 
       <div class="ib-grid">
-        <!-- 즉시 이체 카드 -->
         <div class="ib-card">
-          <h3>💸 즉시 이체하기</h3>
-          <form onsubmit="handleTransfer(event)">
-            <input type="text" id="transfer-target" class="ib-input" placeholder="받는 분 / 계좌 메모 (예: 모친 계좌)" required />
-            <input type="number" id="transfer-amount" class="ib-input" placeholder="이체 금액 (원)" min="100" step="100" required />
+          <h3>즉시 이체하기</h3>
+          <form onsubmit="doTransfer(event)">
+            <input type="text" id="to-name" class="ib-input" placeholder="받는 분 / 계좌 메모" required />
+            <input type="number" id="to-amount" class="ib-input" placeholder="이체 금액 (원)" min="100" step="100" required />
             <button type="submit" class="ib-submit">이체 실행</button>
           </form>
         </div>
 
-        <!-- AGI 자율 이율 예금 시뮬레이터 -->
         <div class="ib-card">
-          <h3>🤖 AGI/ASI 자율 이율 시뮬레이터</h3>
-          <label style="font-size: 0.85rem; color: var(--ib-muted); display: block; margin-bottom: 4px;">
-            예치 금액 (원)
-          </label>
-          <input type="number" id="sim-amount" class="ib-input" value="10000000" min="10000" step="10000" />
-          <label style="font-size: 0.85rem; color: var(--ib-muted); display: block; margin-bottom: 4px;">
-            예치 기간
-          </label>
-          <select id="sim-months" class="ib-select">
+          <h3>AGI/ASI 자율 이율 예금 계산기</h3>
+          <input type="number" id="calc-amount" class="ib-input" value="10000000" min="10000" step="10000" />
+          <select id="calc-months" class="ib-select">
             <option value="3">3개월</option>
             <option value="6">6개월</option>
             <option value="12" selected>12개월</option>
           </select>
-          <button type="button" class="ib-submit" onclick="calculateInterest()">예상 이자 계산</button>
-          <div id="sim-result" style="margin-top: 12px; font-size: 0.9rem; font-weight: 700; color: var(--ib-primary);"></div>
+          <button type="button" class="ib-submit" onclick="calcInterest()">예상 이자 계산</button>
+          <div id="calc-result" style="margin-top:10px; font-weight:700; color:#1d4ed8; font-size:0.9rem;"></div>
         </div>
       </div>
 
-      <!-- 최근 거래 내역 -->
       <div class="ib-card">
-        <h3>📋 최근 인터넷 뱅킹 거래 내역</h3>
-        <ul class="tx-list" id="tx-list">
-          <li class="tx-item">
-            <span>HKWB UBI 배분 (30% 정책 반영)</span>
-            <span class="plus">+500,000 원</span>
-          </li>
-          <li class="tx-item">
-            <span>AGI 자율 이자 정산</span>
-            <span class="plus">+43,500 원</span>
-          </li>
-          <li class="tx-item">
-            <span>무점포 계좌 개설 축하 지급</span>
-            <span class="plus">+100,000 원</span>
-          </li>
-        </ul>
+        <h3>최근 거래 내역</h3>
+        <div id="tx-box">
+          <div class="tx-row"><span>HKWB UBI 배분 (30% 정책)</span><span class="plus">+500,000 원</span></div>
+          <div class="tx-row"><span>AGI 자율 이자 정산</span><span class="plus">+43,500 원</span></div>
+          <div class="tx-row"><span>무점포 계좌 개설 축하 지급</span><span class="plus">+100,000 원</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    HKWB Platform · 체어맨 이재완(혜공) · 문의: support@hkwb.world · 추천인 코드: ljw2358
-  </footer>
-
   <script>
     let ibBalance = 12500000;
     let web3Balance = 314159;
-    let currentAgiRate = 4.35;
+    let agiRate = 4.35;
 
-    // 별도 외부 URL이 있다면 아래 주소로 교체 가능
-    const BANK_URLS = {
+    const EXTERNAL_URLS = {
       web3: null,
       internet: null
     };
 
-    function openBankingWindow(targetView) {
-      if (BANK_URLS[targetView]) {
-        window.open(BANK_URLS[targetView], '_blank', 'noopener,noreferrer');
+    function openBankingTab(target) {
+      if (EXTERNAL_URLS[target]) {
+        window.open(EXTERNAL_URLS[target], '_blank', 'noopener,noreferrer');
         return;
       }
 
-      const baseUrl = window.location.href.split('?')[0].split('#')[0];
-      const nextUrl = `${baseUrl}?view=${encodeURIComponent(targetView)}`;
-      const win = window.open(nextUrl, '_blank', 'noopener,noreferrer');
+      const cleanBase = window.location.href.split('?')[0].split('#')[0];
+      const nextUrl = target === 'cover'
+        ? cleanBase
+        : `${cleanBase}?view=${encodeURIComponent(target)}`;
 
-      // 로컬 파일 등 팝업이 차단되거나 동일 창 전환이 필요한 경우 fallback
-      if (!win) {
-        switchView(targetView);
+      const newWin = window.open(nextUrl, '_blank', 'noopener,noreferrer');
+      if (!newWin) {
+        renderView(target);
       }
     }
 
-    function switchView(viewName) {
-      const validViews = ['home', 'web3', 'internet'];
-      const nextView = validViews.includes(viewName) ? viewName : 'home';
+    function renderView(viewName) {
+      const coverEl = document.getElementById('view-cover');
+      const web3El = document.getElementById('view-web3');
+      const internetEl = document.getElementById('view-internet');
 
-      document.querySelectorAll('.view-section').forEach(section => {
-        section.classList.remove('active');
-      });
+      coverEl.style.display = 'none';
+      web3El.classList.remove('active');
+      internetEl.classList.remove('active');
 
-      const targetEl = document.getElementById('view-' + nextView);
-      if (targetEl) {
-        targetEl.classList.add('active');
+      if (viewName === 'web3') {
+        web3El.classList.add('active');
+      } else if (viewName === 'internet') {
+        internetEl.classList.add('active');
+      } else {
+        coverEl.style.display = 'flex';
       }
-
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-
-      const activeNav = document.getElementById('nav-' + nextView);
-      if (activeNav) {
-        activeNav.classList.add('active');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function formatWon(num) {
-      return Number(num).toLocaleString('ko-KR') + ' 원';
-    }
-
-    function handleTransfer(event) {
+    function doTransfer(event) {
       event.preventDefault();
-      const targetInput = document.getElementById('transfer-target');
-      const amountInput = document.getElementById('transfer-amount');
-      const target = targetInput.value.trim();
-      const amount = Number(amountInput.value);
+      const nameInput = document.getElementById('to-name');
+      const amtInput = document.getElementById('to-amount');
+      const name = nameInput.value.trim();
+      const amt = Number(amtInput.value);
 
-      if (!target || isNaN(amount) || amount <= 0) return;
-      if (amount > ibBalance) {
+      if (!name || isNaN(amt) || amt <= 0) return;
+      if (amt > ibBalance) {
         alert('잔액이 부족합니다.');
         return;
       }
 
-      ibBalance -= amount;
-      document.getElementById('ib-balance').textContent = formatWon(ibBalance);
+      ibBalance -= amt;
+      document.getElementById('ib-balance').textContent = ibBalance.toLocaleString('ko-KR') + ' 원';
 
-      const list = document.getElementById('tx-list');
-      const li = document.createElement('li');
-      li.className = 'tx-item';
-      li.innerHTML = `<span>${target} (즉시이체)</span><span class="minus">-${Number(amount).toLocaleString('ko-KR')} 원</span>`;
-      list.prepend(li);
+      const txBox = document.getElementById('tx-box');
+      const row = document.createElement('div');
+      row.className = 'tx-row';
+      row.innerHTML = `<span>${name} (즉시이체)</span><span class="minus">-${amt.toLocaleString('ko-KR')} 원</span>`;
+      txBox.prepend(row);
 
-      targetInput.value = '';
-      amountInput.value = '';
-      alert(`${target}으로 ${formatWon(amount)} 이체가 완료되었습니다.`);
+      nameInput.value = '';
+      amtInput.value = '';
+      alert(`${name}님께 ${amt.toLocaleString('ko-KR')} 원 이체가 완료되었습니다.`);
     }
 
-    function refreshAgiRate() {
-      const rates = [4.15, 4.35, 4.60, 4.85, 5.10];
-      currentAgiRate = rates[Math.floor(Math.random() * rates.length)];
-      document.getElementById('agi-rate-badge').textContent =
-        `현재 AGI 기준 예치 이율: 연 ${currentAgiRate.toFixed(2)}% (실시간 조정)`;
-      calculateInterest();
+    function updateAgiRate() {
+      const pool = [4.15, 4.35, 4.60, 4.85, 5.10];
+      agiRate = pool[Math.floor(Math.random() * pool.length)];
+      document.getElementById('agi-rate-text').textContent = `AGI/ASI 자율 이율: 연 ${agiRate.toFixed(2)}%`;
+      calcInterest();
     }
 
-    function calculateInterest() {
-      const amount = Number(document.getElementById('sim-amount').value) || 0;
-      const months = Number(document.getElementById('sim-months').value) || 12;
-      const estInterest = Math.round(amount * (currentAgiRate / 100) * (months / 12));
-      document.getElementById('sim-result').textContent =
-        `연 ${currentAgiRate.toFixed(2)}% 기준 ${months}개월 예상 이자: +${estInterest.toLocaleString('ko-KR')} 원`;
+    function calcInterest() {
+      const amount = Number(document.getElementById('calc-amount').value) || 0;
+      const months = Number(document.getElementById('calc-months').value) || 12;
+      const interest = Math.round(amount * (agiRate / 100) * (months / 12));
+      document.getElementById('calc-result').textContent =
+        `연 ${agiRate.toFixed(2)}% · ${months}개월 예상 이자: +${interest.toLocaleString('ko-KR')} 원`;
     }
 
-    function simulateWeb3Reward() {
+    function addWeb3Reward() {
       web3Balance += 120;
       document.getElementById('web3-balance').textContent =
         web3Balance.toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' Pi';
       alert('AGI 이율 보상 +120 Pi가 반영되었습니다.');
     }
 
-    // 새 창에서 ?view=web3 또는 ?view=internet 으로 열릴 때 해당 화면 표시
-    (function initViewFromQuery() {
+    (function init() {
       const params = new URLSearchParams(window.location.search);
-      const initialView = params.get('view') || 'home';
-      switchView(initialView);
-      calculateInterest();
+      const view = params.get('view') || 'cover';
+      renderView(view);
+      calcInterest();
     })();
   </script>
 </body>
