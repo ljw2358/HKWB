@@ -27,6 +27,7 @@
       padding: 24px 32px 80px;
     }
 
+    /* 상단 헤더 */
     .top-header {
       max-width: 1280px;
       margin: 0 auto 30px;
@@ -50,16 +51,7 @@
       line-height: 1;
     }
 
-    .ref-code {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      margin-top: 6px;
-    }
-
-    .ref-code strong {
-      color: var(--gold-bright);
-    }
-
+    /* AGI 선택 */
     .agi-selector {
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid #38bdf8;
@@ -93,9 +85,10 @@
       color: #ffffff;
     }
 
+    /* 메인 히어로 박스 */
     .hero-container {
       max-width: 800px;
-      margin: 20px auto 50px;
+      margin: 28px auto 50px;
     }
 
     .hero-card {
@@ -132,7 +125,7 @@
     .action-btn {
       border: none;
       border-radius: 999px;
-      padding: 14px 26px;
+      padding: 13px 26px;
       font-size: 0.9rem;
       font-weight: 700;
       color: #ffffff;
@@ -148,6 +141,7 @@
     .btn-web3 { background: var(--web3-btn); }
     .btn-bank { background: var(--bank-btn); }
 
+    /* 방 섹션 */
     .room-section {
       max-width: 1100px;
       margin: 0 auto;
@@ -222,85 +216,85 @@
       padding: 8px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-
     .detail-list li:last-child { border-bottom: none; }
   </style>
 </head>
 <body>
 
+  <!-- 상단 헤더 -->
   <header class="top-header">
     <div class="brand-box">
       <div class="logo-title">HKWB</div>
-      <div class="ref-code">추천인 코드: <strong>ljw2358</strong></div>
     </div>
 
     <div class="agi-selector">
       <div class="agi-dot"></div>
       <select class="agi-select" id="agiSelect" aria-label="60개국 AGI 언어 선택" onchange="changeLanguage(this.value)">
-        <option value="ko" selected>60개국 AGI 가동 중 (한국어) ▼</option>
-        <option value="en">60-Nation AGI Active (English) ▼</option>
-        <option value="ja">60カ国 AGI 稼働中 (日本語) ▼</option>
-        <option value="zh">60国 AGI 运行中 (中文) ▼</option>
-        <option value="es">60 Países AGI Activo (Español) ▼</option>
-        <option value="fr">60 Pays AGI Actif (Français) ▼</option>
-        <option value="de">60 Länder AGI Aktiv (Deutsch) ▼</option>
-        <option value="ar">60 دولة AGI نشط (العربية) ▼</option>
-        <option value="pt">60 Países AGI Ativo (Português) ▼</option>
-        <option value="ru">60 Страна AGI Активен (Русский) ▼</option>
-        <option value="vi">60 Quốc gia AGI Hoạt động (Tiếng Việt) ▼</option>
-        <option value="th">60 ประเทศ AGI เปิดใช้งาน (ไทย) ▼</option>
-        <option value="id">60 Negara AGI Aktif (Bahasa Indonesia) ▼</option>
-        <option value="hi">60 देश AGI सक्रिय (हिन्दी) ▼</option>
-        <option value="tr">60 Ülke AGI Aktif (Türkçe) ▼</option>
-        <option value="it">60 Paesi AGI Attivo (Italiano) ▼</option>
-        <option value="nl">60 Landen AGI Actief (Nederlands) ▼</option>
-        <option value="pl">60 Krajów AGI Aktywny (Polski) ▼</option>
-        <option value="sv">60 Länder AGI Aktiv (Svenska) ▼</option>
-        <option value="uk">60 Країн AGI Активний (Українська) ▼</option>
-        <option value="el">60 Χώρες AGI Ενεργό (Ελληνικά) ▼</option>
-        <option value="he">60 מדינות AGI פעיל (עברית) ▼</option>
-        <option value="ro">60 Țări AGI Activ (Română) ▼</option>
-        <option value="hu">60 Ország AGI Aktív (Magyar) ▼</option>
-        <option value="cs">60 Zemí AGI Aktivní (Čeština) ▼</option>
-        <option value="da">60 Lande AGI Aktivt (Dansk) ▼</option>
-        <option value="fi">60 Maata AGI Aktiivinen (Suomi) ▼</option>
-        <option value="no">60 Land AGI Aktiv (Norsk) ▼</option>
-        <option value="sk">60 Krajín AGI Aktívne (Slovenčina) ▼</option>
-        <option value="bg">60 Страни AGI Активен (Български) ▼</option>
-        <option value="hr">60 Zemalja AGI Aktivan (Hrvatski) ▼</option>
-        <option value="sr">60 Земаља AGI Активан (Српски) ▼</option>
-        <option value="lt">60 Šalių AGI Aktyvus (Lietuvių) ▼</option>
-        <option value="sl">60 Držav AGI Aktiven (Slovenščina) ▼</option>
-        <option value="et">60 Riiki AGI Aktiivne (Eesti) ▼</option>
-        <option value="lv">60 Valstis AGI Aktīvs (Latviešu) ▼</option>
-        <option value="ms">60 Negara AGI Aktif (Bahasa Melayu) ▼</option>
-        <option value="fil">60 Bansa AGI Aktibo (Tagalog) ▼</option>
-        <option value="fa">60 کشور AGI فعال (فارسی) ▼</option>
-        <option value="ur">60 ممالک AGI فعال (اردو) ▼</option>
-        <option value="bn">60 টি দেশ AGI সক্রিয় (বাংলা) ▼</option>
-        <option value="ta">60 நாடுகள் AGI செயலில் (தமிழ்) ▼</option>
-        <option value="te">60 దేశాలు AGI సక్రియం (తెలుగు) ▼</option>
-        <option value="kn">60 దేశగళు AGI ಸಕ್ರಿಯ (ಕನ್ನಡ) ▼</option>
-        <option value="mr">60 देश AGI सक्रिय (मराठी) ▼</option>
-        <option value="gu">60 દેશો AGI સક્રિય (ગુજરાતી) ▼</option>
-        <option value="sw">60 Nchi AGI Inafanya kazi (Kiswahili) ▼</option>
-        <option value="af">60 Lande AGI Aktief (Afrikaans) ▼</option>
-        <option value="is">60 Lönd AGI Virkt (Íslenska) ▼</option>
-        <option value="ga">60 Tír AGI Gníomhach (Gaeilge) ▼</option>
-        <option value="cy">60 Gwlad AGI Gweithredol (Cymraeg) ▼</option>
-        <option value="mt">60 Pajjiżi AGI Attiv (Malti) ▼</option>
-        <option value="sq">60 Shtete AGI Aktiv (Shqip) ▼</option>
-        <option value="mk">60 Земји AGI Активен (Македонски) ▼</option>
-        <option value="bs">60 Zemalja AGI Aktivan (Bosanski) ▼</option>
-        <option value="ka">60 ქვეყანა AGI აქტიური (ქართული) ▼</option>
-        <option value="hy">60 Երկիր AGI Ակտիվ (Հայերեն) ▼</option>
-        <option value="az">60 Ölkə AGI Aktiv (Azərbaycan) ▼</option>
-        <option value="kk">60 Ел AGI Белсенді (Қазақ) ▼</option>
-        <option value="uz">60 Mamlakat AGI Faol (Oʻzbek) ▼</option>
+        <option value="ko" selected>60개국 AGI 가동 중 ▼</option>
+        <option value="en">60-Nation AGI Active ▼</option>
+        <option value="ja">60カ国 AGI 稼働中 ▼</option>
+        <option value="zh">60国 AGI 运行中 ▼</option>
+        <option value="es">60 Países AGI Activo ▼</option>
+        <option value="fr">60 Pays AGI Actif ▼</option>
+        <option value="de">60 Länder AGI Aktiv ▼</option>
+        <option value="ar">60 دولة AGI نشط ▼</option>
+        <option value="pt">60 Países AGI Ativo ▼</option>
+        <option value="ru">60 Страна AGI Активен ▼</option>
+        <option value="vi">60 Quốc gia AGI Hoạt động ▼</option>
+        <option value="th">60 ประเทศ AGI เปิดใช้งาน ▼</option>
+        <option value="id">60 Negara AGI Aktif ▼</option>
+        <option value="hi">60 देश AGI सक्रिय ▼</option>
+        <option value="tr">60 Ülke AGI Aktif ▼</option>
+        <option value="it">60 Paesi AGI Attivo ▼</option>
+        <option value="nl">60 Landen AGI Actief ▼</option>
+        <option value="pl">60 Krajów AGI Aktywny ▼</option>
+        <option value="sv">60 Länder AGI Aktiv ▼</option>
+        <option value="uk">60 Країн AGI Активний ▼</option>
+        <option value="el">60 Χώρες AGI Ενεργό ▼</option>
+        <option value="he">60 מדינות AGI פעיל ▼</option>
+        <option value="ro">60 Țări AGI Activ ▼</option>
+        <option value="hu">60 Ország AGI Aktív ▼</option>
+        <option value="cs">60 Zemí AGI Aktivní ▼</option>
+        <option value="da">60 Lande AGI Aktivt ▼</option>
+        <option value="fi">60 Maata AGI Aktiivinen ▼</option>
+        <option value="no">60 Land AGI Aktiv ▼</option>
+        <option value="sk">60 Krajín AGI Aktívne ▼</option>
+        <option value="bg">60 Страни AGI Активен ▼</option>
+        <option value="hr">60 Zemalja AGI Aktivan ▼</option>
+        <option value="sr">60 Земаља AGI Активан ▼</option>
+        <option value="lt">60 Šalių AGI Aktyvus ▼</option>
+        <option value="sl">60 Držav AGI Aktiven ▼</option>
+        <option value="et">60 Riiki AGI Aktiivne ▼</option>
+        <option value="lv">60 Valstis AGI Aktīvs ▼</option>
+        <option value="ms">60 Negara AGI Aktif ▼</option>
+        <option value="fil">60 Bansa AGI Aktibo ▼</option>
+        <option value="fa">60 کشور AGI فعال ▼</option>
+        <option value="ur">60 ممالک AGI فعال ▼</option>
+        <option value="bn">60 টি দেশ AGI সক্রিয় ▼</option>
+        <option value="ta">60 நாடுகள் AGI செயலில் ▼</option>
+        <option value="te">60 దేశాలు AGI సక్రియం ▼</option>
+        <option value="kn">60 దేశగళు AGI ಸಕ್ರಿಯ ▼</option>
+        <option value="mr">60 देश AGI सक्रिय ▼</option>
+        <option value="gu">60 દેશો AGI સક્રિય ▼</option>
+        <option value="sw">60 Nchi AGI Inafanya kazi ▼</option>
+        <option value="af">60 Lande AGI Aktief ▼</option>
+        <option value="is">60 Lönd AGI Virkt ▼</option>
+        <option value="ga">60 Tír AGI Gníomhach ▼</option>
+        <option value="cy">60 Gwlad AGI Gweithredol ▼</option>
+        <option value="mt">60 Pajjiżi AGI Attiv ▼</option>
+        <option value="sq">60 Shtete AGI Aktiv ▼</option>
+        <option value="mk">60 Земји AGI Активен ▼</option>
+        <option value="bs">60 Zemalja AGI Aktivan ▼</option>
+        <option value="ka">60 ქვეყანა AGI აქტიური ▼</option>
+        <option value="hy">60 Երկիր AGI Ակտիվ ▼</option>
+        <option value="az">60 Ölkə AGI Aktiv ▼</option>
+        <option value="kk">60 Ел AGI Белсенді ▼</option>
+        <option value="uz">60 Mamlakat AGI Faol ▼</option>
       </select>
     </div>
   </header>
 
+  <!-- 메인 히어로 박스 -->
   <main class="hero-container">
     <div class="hero-card">
       <h1 class="hero-main-title" id="mainTitle">
@@ -321,6 +315,7 @@
     </div>
   </main>
 
+  <!-- 방 1: Web3 디지털 은행 -->
   <section class="room-section active" id="roomWeb3">
     <div class="room-box">
       <h2 class="room-header-title">방 1 · Web3 디지털 은행</h2>
@@ -356,6 +351,7 @@
     </div>
   </section>
 
+  <!-- 방 2: 인터넷 뱅크 -->
   <section class="room-section" id="roomInternet">
     <div class="room-box">
       <h2 class="room-header-title">방 2 · 인터넷 뱅크 (HK-BANK)</h2>
@@ -392,9 +388,11 @@
   </section>
 
   <script>
+    const LANG_STORAGE_KEY = 'hkwb_selected_lang';
+
     function showRoom(type) {
-      var w = document.getElementById('roomWeb3');
-      var i = document.getElementById('roomInternet');
+      const w = document.getElementById('roomWeb3');
+      const i = document.getElementById('roomInternet');
 
       if (type === 'web3') {
         w.classList.add('active');
@@ -407,11 +405,11 @@
       }
     }
 
-    function changeLanguage(lang) {
-      var t = document.getElementById('mainTitle');
-      var s = document.getElementById('subTitle');
-      var b1 = document.getElementById('btnWeb3');
-      var b2 = document.getElementById('btnBank');
+    function changeLanguage(lang, skipStorage) {
+      const t = document.getElementById('mainTitle');
+      const s = document.getElementById('subTitle');
+      const b1 = document.getElementById('btnWeb3');
+      const b2 = document.getElementById('btnBank');
 
       document.documentElement.lang = lang;
 
@@ -436,7 +434,27 @@
         b1.textContent = 'Web3 디지털 은행 진입하기 ↓';
         b2.textContent = '인터넷 뱅크 진입하기 ↓';
       }
+
+      if (!skipStorage) {
+        try {
+          localStorage.setItem(LANG_STORAGE_KEY, lang);
+        } catch (e) {}
+      }
     }
+
+    (function initLang() {
+      try {
+        const saved = localStorage.getItem(LANG_STORAGE_KEY);
+        const sel = document.getElementById('agiSelect');
+        if (saved && sel) {
+          const exists = Array.from(sel.options).some(opt => opt.value === saved);
+          if (exists) {
+            sel.value = saved;
+            changeLanguage(saved, true);
+          }
+        }
+      } catch (e) {}
+    })();
   </script>
 
 </body>
