@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="page_title">HKWB | 웹3 디지털 은행 &amp; HK-BANK 무점포 인터넷 은행</title>
+  <title data-i18n="page_title">HKWB | 개인 자산 대시보드 &amp; 분산 연동망</title>
   <style>
     :root {
       --bg-grad:
-        radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.30) 0%, transparent 45%),
-        radial-gradient(circle at 85% 18%, rgba(250, 204, 21, 0.16) 0%, transparent 42%),
-        linear-gradient(155deg, #050711 0%, #100928 48%, #070b1c 100%);
+        radial-gradient(circle at 12% 14%, rgba(139, 92, 246, 0.34) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(250, 204, 21, 0.17) 0%, transparent 42%),
+        radial-gradient(circle at 50% 88%, rgba(79, 70, 229, 0.24) 0%, transparent 52%),
+        linear-gradient(155deg, #050711 0%, #100928 45%, #070b1c 100%);
       --card-grad: linear-gradient(145deg, rgba(29, 17, 64, 0.92) 0%, rgba(11, 16, 38, 0.96) 100%);
       --gold-grad: linear-gradient(90deg, #f59e0b 0%, #fde047 52%, #eab308 100%);
       --purple-grad: linear-gradient(135deg, #6d28d9 0%, #9333ea 55%, #c084fc 100%);
@@ -23,6 +24,8 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
       background: var(--bg-grad);
@@ -30,25 +33,27 @@
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.55;
+      overflow-x: hidden;
     }
 
     .gold-text {
       background: var(--gold-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.22));
     }
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(7, 9, 22, 0.90);
+      background: rgba(7, 9, 22, 0.88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-sub);
     }
 
     .topbar-inner {
-      max-width: 920px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 14px 20px;
       display: flex;
@@ -62,6 +67,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -91,6 +97,7 @@
       border: 1px solid var(--border-gold);
       border-radius: 11px;
       padding: 6px 11px;
+      box-shadow: 0 0 16px rgba(147, 51, 234, 0.25);
     }
 
     .lang-select {
@@ -109,12 +116,75 @@
     }
 
     .container {
-      max-width: 920px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 26px 20px 64px;
+      padding: 28px 20px 68px;
     }
 
-    .door-row {
+    .dash-panel {
+      background: var(--card-grad);
+      border: 1px solid var(--border-gold);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 24px rgba(147, 51, 234, 0.2);
+      margin-bottom: 24px;
+    }
+
+    .dash-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .metric-card {
+      background: rgba(6, 9, 22, 0.78);
+      border: 1px solid var(--border-sub);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+
+    .metric-lbl {
+      font-size: 0.86rem;
+      color: var(--text-sub);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .metric-val {
+      font-size: clamp(1.35rem, 3vw, 1.95rem);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .metric-unit {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-left: 6px;
+    }
+
+    .net-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .net-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .net-tag {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .net-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 14px;
@@ -122,12 +192,12 @@
     }
 
     @media (max-width: 640px) {
-      .door-row { grid-template-columns: 1fr; }
+      .net-grid { grid-template-columns: 1fr; }
     }
 
-    .door-btn {
-      text-align: left;
-      padding: 18px 20px;
+    .net-card {
+      text-align: center;
+      padding: 20px 16px;
       border-radius: 18px;
       background: var(--card-grad);
       border: 1px solid var(--border-sub);
@@ -136,147 +206,48 @@
       transition: all 0.18s ease;
     }
 
-    .door-btn.active {
+    .net-card:hover,
+    .net-card.selected {
       border-color: var(--border-gold);
-      box-shadow: 0 0 24px rgba(250, 204, 21, 0.22), 0 0 18px rgba(147, 51, 234, 0.25);
+      box-shadow: 0 0 22px rgba(250, 204, 21, 0.22), 0 0 18px rgba(147, 51, 234, 0.28);
+      transform: translateY(-1px);
     }
 
-    .door-title {
-      font-size: 1.08rem;
+    .net-icon {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(147, 51, 234, 0.22);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      color: var(--gold);
       font-weight: 900;
-      display: block;
-      margin-bottom: 4px;
+      font-size: 1rem;
     }
 
-    .door-desc {
+    .net-name {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .net-desc {
       font-size: 0.84rem;
       color: var(--text-sub);
       display: block;
     }
 
-    .room-panel {
-      display: none;
+    .action-panel {
       background: var(--card-grad);
       border: 1px solid var(--border-gold);
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
-    }
-
-    .room-panel.active {
-      display: block;
-    }
-
-    .room-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      padding-bottom: 14px;
-      margin-bottom: 18px;
-      border-bottom: 1px solid var(--border-sub);
-    }
-
-    .room-h1 {
-      font-size: 1.32rem;
-      font-weight: 900;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      color: var(--gold);
-      background: rgba(250, 204, 21, 0.1);
-      border: 1px solid rgba(250, 204, 21, 0.35);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-weight: 700;
-    }
-
-    .dash-box {
-      background: rgba(6, 9, 22, 0.76);
-      border: 1px solid var(--border-sub);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 640px) {
-      .stat-row { grid-template-columns: 1fr; }
-    }
-
-    .stat-card {
-      padding: 14px;
-      border-radius: 13px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(192, 132, 252, 0.18);
-    }
-
-    .stat-lbl {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .stat-num {
-      font-size: 1.35rem;
-      font-weight: 900;
-    }
-
-    .net-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    @media (max-width: 640px) {
-      .net-grid { grid-template-columns: 1fr; }
-    }
-
-    .net-card {
-      text-align: left;
-      padding: 16px;
-      border-radius: 15px;
-      background: rgba(15, 19, 44, 0.88);
-      border: 1px solid var(--border-sub);
-      color: var(--text-main);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .net-card:hover,
-    .net-card.selected {
-      border-color: var(--border-gold);
-      box-shadow: 0 0 18px rgba(250, 204, 21, 0.18);
-    }
-
-    .net-name {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--gold);
-      margin-bottom: 4px;
-      display: block;
-    }
-
-    .net-desc {
-      font-size: 0.82rem;
-      color: var(--text-sub);
-      display: block;
-    }
-
-    .work-box {
-      background: rgba(6, 9, 22, 0.82);
-      border: 1px solid var(--border-gold);
-      border-radius: 16px;
-      padding: 18px;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
     }
 
     .run-row {
@@ -292,12 +263,12 @@
 
     .field {
       width: 100%;
-      padding: 11px 13px;
+      padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid var(--border-sub);
       background: rgba(5, 8, 19, 0.92);
       color: var(--text-main);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       outline: none;
     }
 
@@ -305,15 +276,16 @@
       border-color: var(--border-gold);
     }
 
-    .btn-action {
+    .btn-neon {
       background: var(--purple-grad);
       color: #ffffff;
       border: 1px solid rgba(253, 224, 71, 0.65);
       border-radius: 12px;
-      padding: 11px 18px;
-      font-size: 0.9rem;
+      padding: 12px 20px;
+      font-size: 0.92rem;
       font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 0 18px rgba(147, 51, 234, 0.42);
     }
 
     .out-box {
@@ -323,18 +295,18 @@
       background: rgba(4, 7, 18, 0.94);
       border: 1px solid rgba(250, 204, 21, 0.35);
       color: var(--gold);
-      font-size: 0.86rem;
+      font-size: 0.88rem;
     }
 
     .foot {
       margin-top: 22px;
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
 
     [dir="rtl"] .topbar-inner,
-    [dir="rtl"] .room-head {
+    [dir="rtl"] .net-section-head {
       direction: rtl;
     }
   </style>
@@ -355,118 +327,104 @@
   </header>
 
   <main class="container">
-    <!-- 방 2개 완전 분리 -->
-    <div class="door-row">
-      <button type="button" class="door-btn active" data-room="room-web3">
-        <span class="door-title gold-text" data-i18n="door_web3">방 1 · 웹3 디지털 은행</span>
-        <span class="door-desc" data-i18n="door_web3_sub">개인 자산 대시보드 · 분산 연동망(사고팔고 제외)</span>
-      </button>
-      <button type="button" class="door-btn" data-room="room-bank">
-        <span class="door-title gold-text" data-i18n="door_bank">방 2 · HK-BANK 무점포 인터넷 은행</span>
-        <span class="door-desc" data-i18n="door_bank_sub">오프라인 지점 없는 인터넷 뱅킹 · 즉시 이체</span>
-      </button>
-    </div>
+    <!-- 개인 자산 대시보드 (한 흐름 위쪽) -->
+    <section class="dash-panel">
+      <h1 class="dash-title" data-i18n="dash_title">개인 자산 대시보드</h1>
 
-    <!-- [독립 방 1] 웹3 디지털 은행 -->
-    <section id="room-web3" class="room-panel active">
-      <div class="room-head">
-        <h1 class="room-h1 gold-text" data-i18n="web3_title">웹3 디지털 은행</h1>
-        <span class="tag">AGI / ASI 이율 · UBI 30% / 운영 30% / 재단 최대 30%</span>
-      </div>
-
-      <div class="dash-box">
-        <div style="font-size: 0.95rem; font-weight: 800;" data-i18n="dash_heading">개인 자산 대시보드</div>
-        <div class="stat-row">
-          <div class="stat-card">
-            <div class="stat-lbl" data-i18n="pi_sync_lbl">보유 수량 (PI 수량 원장 동기화)</div>
-            <div id="dash-pi" class="stat-num gold-text">314,159.000000 PI</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-lbl" data-i18n="yield_lbl">실시간 누적 수익 (AGI / ASI 자율 산정)</div>
-            <div id="dash-yield" class="stat-num gold-text">12,450,893.185000 HK</div>
-          </div>
+      <div class="metric-card">
+        <div class="metric-lbl" data-i18n="pi_lbl">● 보유 수량 (PI 수량 원장 동기화)</div>
+        <div class="metric-val gold-text">
+          <span id="pi-val">314,159.000000</span><span class="metric-unit">PI / HK</span>
         </div>
       </div>
 
-      <div style="font-size: 0.92rem; font-weight: 800; margin-bottom: 10px;" data-i18n="net_heading">
-        분산 연동망 [개별 프로세스 작동]
-      </div>
-
-      <!-- 사고팔고 제외된 10개 프로세스 -->
-      <div class="net-grid" id="net-grid">
-        <button type="button" class="net-card selected" data-proc="wallet">
-          <span class="net-name">지갑연결</span>
-          <span class="net-desc">노드 지갑 프로토콜 연동 및 자동 연결</span>
-        </button>
-        <button type="button" class="net-card" data-proc="transfer">
-          <span class="net-name">송금</span>
-          <span class="net-desc">대륙간 초고속 멀티시그 암호화 전송 시스템</span>
-        </button>
-        <button type="button" class="net-card" data-proc="payment">
-          <span class="net-name">결제</span>
-          <span class="net-desc">현금·카드·디지털자산 실시간 상거래 결제</span>
-        </button>
-        <button type="button" class="net-card" data-proc="deposit">
-          <span class="net-name">예치</span>
-          <span class="net-desc">AGI / ASI 자율 이율 기반 자산 신탁 예치</span>
-        </button>
-        <button type="button" class="net-card" data-proc="reward">
-          <span class="net-name">보상</span>
-          <span class="net-desc">기여도 기반 인센티브 풀 적립 발행</span>
-        </button>
-        <button type="button" class="net-card" data-proc="ubi">
-          <span class="net-name">기본소득</span>
-          <span class="net-desc">HK 사회재단 &amp; 순이익 30% UBI 분배 모델</span>
-        </button>
-        <button type="button" class="net-card" data-proc="swap">
-          <span class="net-name">스왑</span>
-          <span class="net-desc">지원 자산 간 즉시 교환 스왑</span>
-        </button>
-        <button type="button" class="net-card" data-proc="dex_swap">
-          <span class="net-name">DEX 스왑</span>
-          <span class="net-desc">탈중앙화 오더북·P2P 유동성 자동 매칭</span>
-        </button>
-        <button type="button" class="net-card" data-proc="lp_staking">
-          <span class="net-name">LP 스테이킹</span>
-          <span class="net-desc">유동성 공급 증명(PoL) 및 고배당 정산</span>
-        </button>
-        <button type="button" class="net-card" data-proc="pi_qty">
-          <span class="net-name">파이 수량</span>
-          <span class="net-desc">파이 자산 메인넷 원장 실시간 동기화</span>
-        </button>
-      </div>
-
-      <div class="work-box">
-        <div id="proc-active-title" style="font-size: 1rem; font-weight: 800; color: var(--gold);">
-          선택된 프로세스: 지갑연결
+      <div class="metric-card" style="margin-bottom: 0;">
+        <div class="metric-lbl" data-i18n="yield_lbl">📈 실시간 누적 수익 (AGI / ASI 자율 산정)</div>
+        <div class="metric-val gold-text">
+          <span id="yield-val">12,450,893.185000</span><span class="metric-unit">HK</span>
         </div>
-        <div class="run-row">
-          <input id="proc-input" type="text" class="field" placeholder="수량 또는 지갑/수신 주소 입력 (예: 100)" />
-          <button id="proc-run-btn" type="button" class="btn-action" data-i18n="btn_run">프로세스 실행</button>
-        </div>
-        <div id="proc-log" class="out-box">대기 중: 프로세스를 선택하고 실행해 주세요.</div>
       </div>
     </section>
 
-    <!-- [독립 방 2] HK-BANK 무점포 인터넷 은행 -->
-    <section id="room-bank" class="room-panel">
-      <div class="room-head">
-        <h2 class="room-h1 gold-text" data-i18n="bank_title">HK-BANK · 무점포 인터넷 은행</h2>
-        <span class="tag" data-i18n="bank_tag">오프라인 지점 없는 인터넷 뱅킹</span>
+    <!-- 분산 연동망 (사고팔고 제외 · 한 흐름 아래쪽) -->
+    <section>
+      <div class="net-section-head">
+        <h2 class="net-title" data-i18n="net_title">분산 연동망</h2>
+        <span class="net-tag" data-i18n="net_tag">[개별 프로세스 작동]</span>
       </div>
 
-      <div class="dash-box">
-        <div class="stat-lbl" data-i18n="bank_bal_lbl">HK-BANK 무점포 계좌 잔액</div>
-        <div id="bank-bal" class="stat-num gold-text">₩ 24,850,000</div>
-        <p style="font-size: 0.88rem; color: var(--text-sub); margin-top: 8px;" data-i18n="bank_desc">
-          물리적 지점 없이 비대면·모바일·웹으로 즉시 이체하며, 금리·수익률은 AGI/ASI가 자율 결정합니다.
-        </p>
-        <div class="run-row">
-          <input id="bank-amt" type="number" class="field" placeholder="이체 금액 (원, 예: 100000)" min="1" />
-          <button id="bank-btn" type="button" class="btn-action" data-i18n="bank_send">무점포 즉시 이체</button>
+      <div class="net-grid" id="net-grid">
+        <button type="button" class="net-card selected" data-proc="wallet">
+          <div class="net-icon">🔗</div>
+          <span class="net-name" data-i18n="p_wallet">지갑연결</span>
+          <span class="net-desc" data-i18n="p_wallet_d">노드 지갑 프로토콜 연동 및 자동 연결</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="transfer">
+          <div class="net-icon">✈️</div>
+          <span class="net-name" data-i18n="p_transfer">송금</span>
+          <span class="net-desc" data-i18n="p_transfer_d">대륙간 초고속 멀티시그 암호화 전송 시스템</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="payment">
+          <div class="net-icon">💳</div>
+          <span class="net-name" data-i18n="p_payment">결제</span>
+          <span class="net-desc" data-i18n="p_payment_d">현금·카드·디지털자산 실시간 상거래 결제</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="deposit">
+          <div class="net-icon">🏦</div>
+          <span class="net-name" data-i18n="p_deposit">예치</span>
+          <span class="net-desc" data-i18n="p_deposit_d">AGI / ASI 자율 이율 기반 자산 신탁 예치</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="reward">
+          <div class="net-icon">🎁</div>
+          <span class="net-name" data-i18n="p_reward">보상</span>
+          <span class="net-desc" data-i18n="p_reward_d">기여도 기반 인센티브 풀 적립 발행</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="ubi">
+          <div class="net-icon">🌱</div>
+          <span class="net-name" data-i18n="p_ubi">기본소득</span>
+          <span class="net-desc" data-i18n="p_ubi_d">HK 사회재단 &amp; 순이익 30% UBI 분배 모델</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="swap">
+          <div class="net-icon">⇄</div>
+          <span class="net-name" data-i18n="p_swap">스왑</span>
+          <span class="net-desc" data-i18n="p_swap_d">지원 자산 간 즉시 교환 스왑</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="dex_swap">
+          <div class="net-icon">⚡</div>
+          <span class="net-name" data-i18n="p_dex">DEX 스왑</span>
+          <span class="net-desc" data-i18n="p_dex_d">탈중앙화 오더북·P2P 유동성 자동 매칭</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="lp_staking">
+          <div class="net-icon">🌊</div>
+          <span class="net-name" data-i18n="p_lp">LP 스테이킹</span>
+          <span class="net-desc" data-i18n="p_lp_d">유동성 공급 증명(PoL) 및 고배당 정산</span>
+        </button>
+
+        <button type="button" class="net-card" data-proc="pi_qty">
+          <div class="net-icon">🪙</div>
+          <span class="net-name" data-i18n="p_pi">파이 수량</span>
+          <span class="net-desc" data-i18n="p_pi_d">파이 자산 메인넷 원장 실시간 동기화</span>
+        </button>
+      </div>
+
+      <div class="action-panel">
+        <div id="selected-proc-label" style="font-weight: 800; color: var(--gold);">
+          선택된 프로세스: 지갑연결
         </div>
-        <div id="bank-log" class="out-box">
-          HK-BANK 무점포 인터넷 은행 대기 중 · 순이익 배분: UBI 30% · 경영비 30% · HK 사회재단 최대 30%
+        <div class="run-row">
+          <input id="proc-input" type="text" class="field" placeholder="수량 또는 주소 입력 (예: 100)" />
+          <button id="proc-run-btn" type="button" class="btn-neon" data-i18n="btn_run">프로세스 실행</button>
+        </div>
+        <div id="proc-out" class="out-box">
+          준비 완료 · AGI/ASI 자율 이율 · 순이익 배분(UBI 30% · 운영 30% · HK 사회재단 최대 30%)
         </div>
       </div>
     </section>
@@ -505,72 +463,78 @@
 
       const I18N = {
         ko: {
-          page_title: 'HKWB | 웹3 디지털 은행 & HK-BANK 무점포 인터넷 은행',
+          page_title: 'HKWB | 개인 자산 대시보드 & 분산 연동망',
           brand: 'HKWB',
           chairman: '이재완 · 혜공 체어맨',
-          door_web3: '방 1 · 웹3 디지털 은행',
-          door_web3_sub: '개인 자산 대시보드 · 분산 연동망(사고팔고 제외)',
-          door_bank: '방 2 · HK-BANK 무점포 인터넷 은행',
-          door_bank_sub: '오프라인 지점 없는 인터넷 뱅킹 · 즉시 이체',
-          web3_title: '웹3 디지털 은행',
-          dash_heading: '개인 자산 대시보드',
-          pi_sync_lbl: '보유 수량 (PI 수량 원장 동기화)',
-          yield_lbl: '실시간 누적 수익 (AGI / ASI 자율 산정)',
-          net_heading: '분산 연동망 [개별 프로세스 작동]',
-          btn_run: '프로세스 실행',
-          bank_title: 'HK-BANK · 무점포 인터넷 은행',
-          bank_tag: '오프라인 지점 없는 인터넷 뱅킹',
-          bank_bal_lbl: 'HK-BANK 무점포 계좌 잔액',
-          bank_desc: '물리적 지점 없이 비대면·모바일·웹으로 즉시 이체하며, 금리·수익률은 AGI/ASI가 자율 결정합니다.',
-          bank_send: '무점포 즉시 이체'
+          dash_title: '개인 자산 대시보드',
+          pi_lbl: '● 보유 수량 (PI 수량 원장 동기화)',
+          yield_lbl: '📈 실시간 누적 수익 (AGI / ASI 자율 산정)',
+          net_title: '분산 연동망',
+          net_tag: '[개별 프로세스 작동]',
+          p_wallet: '지갑연결', p_wallet_d: '노드 지갑 프로토콜 연동 및 자동 연결',
+          p_transfer: '송금', p_transfer_d: '대륙간 초고속 멀티시그 암호화 전송 시스템',
+          p_payment: '결제', p_payment_d: '현금·카드·디지털자산 실시간 상거래 결제',
+          p_deposit: '예치', p_deposit_d: 'AGI / ASI 자율 이율 기반 자산 신탁 예치',
+          p_reward: '보상', p_reward_d: '기여도 기반 인센티브 풀 적립 발행',
+          p_ubi: '기본소득', p_ubi_d: 'HK 사회재단 & 순이익 30% UBI 분배 모델',
+          p_swap: '스왑', p_swap_d: '지원 자산 간 즉시 교환 스왑',
+          p_dex: 'DEX 스왑', p_dex_d: '탈중앙화 오더북·P2P 유동성 자동 매칭',
+          p_lp: 'LP 스테이킹', p_lp_d: '유동성 공급 증명(PoL) 및 고배당 정산',
+          p_pi: '파이 수량', p_pi_d: '파이 자산 메인넷 원장 실시간 동기화',
+          btn_run: '프로세스 실행'
         },
         en: {
-          page_title: 'HKWB | Web3 Digital Bank & Branchless HK-BANK',
+          page_title: 'HKWB | Personal Asset Dashboard & Distributed Networks',
           brand: 'HKWB',
           chairman: 'Jaewan Lee · Hyekong Chairman',
-          door_web3: 'Room 1 · Web3 Digital Bank',
-          door_web3_sub: 'Personal Asset Dashboard · Distributed Networks (No Buy/Sell)',
-          door_bank: 'Room 2 · HK-BANK Branchless Internet Bank',
-          door_bank_sub: 'Zero-branch internet banking · Instant transfer',
-          web3_title: 'Web3 Digital Bank',
-          dash_heading: 'Personal Asset Dashboard',
-          pi_sync_lbl: 'Holding Amount (PI Ledger Sync)',
-          yield_lbl: 'Real-Time Yield (AGI / ASI Autonomous)',
-          net_heading: 'Distributed Networks [Individual Process]',
-          btn_run: 'Run Process',
-          bank_title: 'HK-BANK · Branchless Internet Bank',
-          bank_tag: 'Zero-Branch Internet Bank',
-          bank_bal_lbl: 'HK-BANK Balance',
-          bank_desc: 'Instant transfers without physical branches; rates are tuned autonomously by AGI/ASI.',
-          bank_send: 'Instant Transfer'
+          dash_title: 'Personal Asset Dashboard',
+          pi_lbl: '● Holding Amount (PI Ledger Sync)',
+          yield_lbl: '📈 Real-Time Accumulated Yield (AGI / ASI)',
+          net_title: 'Distributed Networks',
+          net_tag: '[Individual Process Active]',
+          p_wallet: 'Wallet Connect', p_wallet_d: 'Node wallet protocol sync & auto connect',
+          p_transfer: 'Transfer', p_transfer_d: 'High-speed multi-sig encrypted transfer',
+          p_payment: 'Payment', p_payment_d: 'Real-time cash, card & digital asset payment',
+          p_deposit: 'Deposit', p_deposit_d: 'AGI / ASI autonomous yield trust deposit',
+          p_reward: 'Rewards', p_reward_d: 'Contribution-based incentive pool rewards',
+          p_ubi: 'Basic Income', p_ubi_d: 'HK Social Foundation & 30% net profit UBI',
+          p_swap: 'Swap', p_swap_d: 'Instant swap across supported assets',
+          p_dex: 'DEX Swap', p_dex_d: 'Decentralized orderbook & P2P liquidity',
+          p_lp: 'LP Staking', p_lp_d: 'Proof of Liquidity (PoL) & yield settlement',
+          p_pi: 'PI Quantity', p_pi_d: 'Real-time PI mainnet ledger sync',
+          btn_run: 'Run Process'
         },
         zh: {
-          page_title: 'HKWB | Web3数字银行与无网点HK-BANK',
+          page_title: 'HKWB | 个人资产仪表板与分布式联动网络',
           brand: 'HKWB',
           chairman: '李在完 · 慧空 会长',
-          door_web3: '专区 1 · Web3 数字银行',
-          door_bank: '专区 2 · HK-BANK 无网点互联网银行',
-          web3_title: 'Web3 数字银行',
-          dash_heading: '个人资产仪表板',
-          btn_run: '执行流程',
-          bank_title: 'HK-BANK · 无网点互联网银行',
-          bank_send: '立即转账'
+          dash_title: '个人资产仪表板',
+          pi_lbl: '● 持有数量（PI账本同步）',
+          yield_lbl: '📈 实时累计收益（AGI / ASI 自主）',
+          net_title: '分布式联动网络',
+          net_tag: '[独立流程运行]',
+          p_wallet: '钱包连接', p_transfer: '转账', p_payment: '支付', p_deposit: '存入',
+          p_reward: '奖励', p_ubi: '基本收入', p_swap: '兑换', p_dex: 'DEX兑换',
+          p_lp: 'LP质押', p_pi: 'PI数量',
+          btn_run: '执行流程'
         },
         ja: {
-          page_title: 'HKWB | Web3デジタルバンク＆無店舗HK-BANK',
+          page_title: 'HKWB | 個人資産ダッシュボード＆分散連動網',
           brand: 'HKWB',
           chairman: 'イ・ジェワン · へゴン チェアマン',
-          door_web3: 'ルーム 1 · Web3 デジタルバンク',
-          door_bank: 'ルーム 2 · HK-BANK 無店舗インターネット銀行',
-          web3_title: 'Web3 デジタルバンク',
-          dash_heading: '個人資産ダッシュボード',
-          btn_run: 'プロセス実行',
-          bank_title: 'HK-BANK · 無店舗インターネット銀行',
-          bank_send: '即時振込'
+          dash_title: '個人資産ダッシュボード',
+          pi_lbl: '● 保有数量（PI台帳同期）',
+          yield_lbl: '📈 リアルタイム累積収益（AGI / ASI）',
+          net_title: '分散連動網',
+          net_tag: '[個別プロセス稼働]',
+          p_wallet: 'ウォレット連携', p_transfer: '送金', p_payment: '決済', p_deposit: '預け入れ',
+          p_reward: '報酬', p_ubi: 'ベーシックインカム', p_swap: 'スワップ', p_dex: 'DEXスワップ',
+          p_lp: 'LPステーキング', p_pi: 'PI数量',
+          btn_run: 'プロセス実行'
         }
       };
 
-      const PROC_LABELS = {
+      const PROC_KO = {
         wallet: '지갑연결',
         transfer: '송금',
         payment: '결제',
@@ -587,15 +551,17 @@
         lang: 'ko',
         proc: 'wallet',
         pi: 314159,
-        bank: 24850000
+        yieldAmt: 12450893.185
       };
 
-      function refreshView() {
-        document.getElementById('dash-pi').textContent = `${st.pi.toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 })} PI`;
-        document.getElementById('bank-bal').textContent = `₩ ${st.bank.toLocaleString()}`;
+      function refreshNums() {
+        document.getElementById('pi-val').textContent =
+          st.pi.toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 });
+        document.getElementById('yield-val').textContent =
+          st.yieldAmt.toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 });
       }
 
-      function setLang(code) {
+      function applyLang(code) {
         const valid = LANGS.some((l) => l.code === code) ? code : 'ko';
         st.lang = valid;
         document.documentElement.lang = valid;
@@ -618,21 +584,14 @@
           opt.textContent = `${String(idx + 1).padStart(2, '0')}. ${l.native} (${l.code.toUpperCase()})`;
           sel.appendChild(opt);
         });
-        sel.addEventListener('change', (e) => setLang(e.target.value));
-
-        document.querySelectorAll('.door-btn').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const target = btn.dataset.room;
-            document.querySelectorAll('.door-btn').forEach((b) => b.classList.toggle('active', b === btn));
-            document.querySelectorAll('.room-panel').forEach((p) => p.classList.toggle('active', p.id === target));
-          });
-        });
+        sel.addEventListener('change', (e) => applyLang(e.target.value));
 
         document.querySelectorAll('.net-card').forEach((card) => {
           card.addEventListener('click', () => {
             st.proc = card.dataset.proc;
             document.querySelectorAll('.net-card').forEach((c) => c.classList.toggle('selected', c === card));
-            document.getElementById('proc-active-title').textContent = `선택된 프로세스: ${PROC_LABELS[st.proc] || st.proc}`;
+            document.getElementById('selected-proc-label').textContent =
+              `선택된 프로세스: ${PROC_KO[st.proc] || st.proc}`;
           });
         });
 
@@ -640,32 +599,26 @@
           const raw = (document.getElementById('proc-input').value || '').trim();
           const num = parseFloat(raw.replace(/,/g, ''));
           const amt = !Number.isNaN(num) && num > 0 ? num : 100;
-          const label = PROC_LABELS[st.proc] || st.proc;
+          const name = PROC_KO[st.proc] || st.proc;
 
           if (st.proc === 'pi_qty' || st.proc === 'reward' || st.proc === 'ubi') {
             st.pi += amt;
           } else if (st.proc === 'transfer' || st.proc === 'payment' || st.proc === 'deposit' || st.proc === 'swap' || st.proc === 'dex_swap') {
             st.pi = Math.max(0, st.pi - Math.min(amt, st.pi));
+            st.yieldAmt += amt * 0.05;
+          } else if (st.proc === 'lp_staking') {
+            st.yieldAmt += amt * 0.1;
           }
 
-          refreshView();
-          document.getElementById('proc-log').textContent =
-            `[${label}] 실행 완료 · 입력값: ${raw || amt} · 현재 보유 수량: ${st.pi.toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 })} PI`;
-        });
-
-        document.getElementById('bank-btn').addEventListener('click', () => {
-          const v = parseInt(document.getElementById('bank-amt').value, 10);
-          const amt = !Number.isNaN(v) && v > 0 ? Math.min(v, st.bank) : 100000;
-          st.bank -= amt;
-          refreshView();
-          document.getElementById('bank-log').textContent =
-            `[HK-BANK 무점포 이체] ₩ ${amt.toLocaleString()} 완료 · 잔액: ₩ ${st.bank.toLocaleString()}`;
+          refreshNums();
+          document.getElementById('proc-out').textContent =
+            `[${name}] 실행 완료 · 입력: ${raw || amt} · 보유 수량: ${st.pi.toLocaleString(undefined, { minimumFractionDigits: 6, maximumFractionDigits: 6 })} PI`;
         });
 
         let saved = 'ko';
         try { saved = localStorage.getItem('hkwb_lang') || 'ko'; } catch (_) {}
-        setLang(saved);
-        refreshView();
+        applyLang(saved);
+        refreshNums();
       });
     })();
   </script>
