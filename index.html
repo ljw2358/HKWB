@@ -51,34 +51,69 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 72px 18px 36px;
+      padding: 100px 18px 40px;
     }
 
+    /* 좌측 상단 HKWB 로고 - 두 배 이상 키움 */
     .cover-logo {
       position: fixed;
-      top: 22px;
-      left: 24px;
-      font-size: 1.6rem;
-      font-weight: 800;
+      top: 20px;
+      left: 32px;
+      font-size: clamp(2.8rem, 4.5vw, 3.8rem);
+      font-weight: 900;
       color: var(--gold);
-      letter-spacing: 1px;
-      z-index: 20;
+      letter-spacing: 2px;
+      line-height: 1;
+      z-index: 25;
       cursor: pointer;
+      text-shadow: 0 4px 18px rgba(245, 185, 66, 0.25);
+    }
+
+    /* 우측 상단 언어 선택기 */
+    .lang-switcher {
+      position: fixed;
+      top: 24px;
+      right: 28px;
+      z-index: 25;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 19, 34, 0.92);
+      border: 1px solid rgba(255, 210, 130, 0.35);
+      border-radius: 999px;
+      padding: 6px 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .lang-select {
+      background: transparent;
+      color: #ffffff;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      padding-right: 4px;
+    }
+
+    .lang-select option {
+      background: #0d1224;
+      color: #ffffff;
     }
 
     .cover-card {
       width: 100%;
-      max-width: 700px;
+      max-width: 720px;
       background: var(--bg-box);
       border: 1px solid var(--border-box);
       border-radius: 22px;
-      padding: 44px 24px 38px;
+      padding: 50px 28px 42px;
       text-align: center;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
     }
 
     .cover-title {
-      font-size: clamp(1.32rem, 4.9vw, 2.45rem);
+      font-size: clamp(1.42rem, 4.8vw, 2.5rem);
       font-weight: 800;
       color: var(--text-main);
       line-height: 1.35;
@@ -87,10 +122,10 @@
     }
 
     .cover-subtitle {
-      font-size: clamp(0.82rem, 3.2vw, 1.02rem);
+      font-size: clamp(0.86rem, 3.1vw, 1.05rem);
       color: var(--text-sub);
       line-height: 1.55;
-      margin-bottom: 32px;
+      margin-bottom: 34px;
       word-break: keep-all;
     }
 
@@ -98,15 +133,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .cover-btn {
       border: none;
       border-radius: 999px;
-      padding: 13px 24px;
-      font-size: 0.95rem;
+      padding: 14px 26px;
+      font-size: 0.96rem;
       font-weight: 700;
       color: #ffffff;
       cursor: pointer;
@@ -150,7 +185,7 @@
     .top-bar {
       background: #0d1224;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 14px 20px;
+      padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -159,10 +194,11 @@
     }
 
     .top-bar-brand {
-      font-size: 1.3rem;
-      font-weight: 800;
+      font-size: 2rem;
+      font-weight: 900;
       color: var(--gold);
       cursor: pointer;
+      line-height: 1;
     }
 
     .top-bar-info {
@@ -301,11 +337,17 @@
       font-weight: 700;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .cover-logo {
-        top: 18px;
+        top: 16px;
         left: 20px;
-        font-size: 1.45rem;
+        font-size: 2.5rem;
+      }
+
+      .lang-switcher {
+        top: 18px;
+        right: 16px;
+        padding: 5px 10px;
       }
 
       .cover-card {
@@ -320,31 +362,46 @@
 
       .cover-btn {
         width: 100%;
-        max-width: 280px;
+        max-width: 290px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- 우측 상단 언어 선택기 -->
+  <div class="lang-switcher" aria-label="언어 선택">
+    <span style="font-size: 0.95rem;">🌐</span>
+    <select id="lang-select" class="lang-select" onchange="changeLanguage(this.value)">
+      <option value="ko" selected>한국어 (KO)</option>
+      <option value="en">English (EN)</option>
+      <option value="ja">日本語 (JA)</option>
+      <option value="zh">中文 (ZH)</option>
+      <option value="es">Español (ES)</option>
+      <option value="fr">Français (FR)</option>
+      <option value="de">Deutsch (DE)</option>
+      <option value="vi">Tiếng Việt (VI)</option>
+    </select>
+  </div>
+
   <!-- 표지 화면 -->
   <main id="view-cover" class="cover-screen">
     <div class="cover-logo" onclick="openBankingTab('cover')">HKWB</div>
 
     <section class="cover-card" aria-label="HKWB 메인 표지">
-      <h1 class="cover-title">
+      <h1 id="cover-title" class="cover-title">
         인류와 기술이 공존하는<br />
         차세대 디지털 금융 혁신
       </h1>
-      <p class="cover-subtitle">
+      <p id="cover-subtitle" class="cover-subtitle">
         10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
       </p>
 
       <div class="cover-actions">
-        <button type="button" class="cover-btn btn-web3" onclick="openBankingTab('web3')">
+        <button type="button" id="btn-web3-label" class="cover-btn btn-web3" onclick="openBankingTab('web3')">
           Web3 디지털 은행 진입하기 ↓
         </button>
-        <button type="button" class="cover-btn btn-internet" onclick="openBankingTab('internet')">
+        <button type="button" id="btn-internet-label" class="cover-btn btn-internet" onclick="openBankingTab('internet')">
           인터넷 뱅크 진입하기 ↓
         </button>
       </div>
@@ -442,6 +499,57 @@
   </section>
 
   <script>
+    const I18N = {
+      ko: {
+        title: '인류와 기술이 공존하는<br />차세대 디지털 금융 혁신',
+        subtitle: '10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼',
+        web3Btn: 'Web3 디지털 은행 진입하기 ↓',
+        internetBtn: '인터넷 뱅크 진입하기 ↓'
+      },
+      en: {
+        title: 'Where Humanity &amp; Tech Coexist<br />Next-Gen Digital Finance Innovation',
+        subtitle: 'Global Autonomous Financial Platform Powered by Top 10 Security &amp; AI',
+        web3Btn: 'Enter Web3 Digital Bank ↓',
+        internetBtn: 'Enter Internet Bank ↓'
+      },
+      ja: {
+        title: '人類と技術が共存する<br />次世代デジタル金融イノベーション',
+        subtitle: '10大グローバルセキュリティ＆AI技術ベースの自律金融プラットフォーム',
+        web3Btn: 'Web3デジタル銀行へ進む ↓',
+        internetBtn: 'インターネットバンクへ進む ↓'
+      },
+      zh: {
+        title: '人类与技术共生的<br />新一代数字金融革新',
+        subtitle: '基于十大全球安全技术与AI技术的全球自主金融平台',
+        web3Btn: '进入 Web3 数字银行 ↓',
+        internetBtn: '进入网络银行 ↓'
+      },
+      es: {
+        title: 'Donde Humanidad y Tecnología Coexisten<br />Innovación Financiera Digital de Próxima Generación',
+        subtitle: 'Plataforma Financiera Autónoma Global con Seguridad Top 10 e IA',
+        web3Btn: 'Entrar a Banca Digital Web3 ↓',
+        internetBtn: 'Entrar a Banca por Internet ↓'
+      },
+      fr: {
+        title: 'Là où Humanité et Tech Coexistent<br />Innovation Financière Numérique Nouvelle Génération',
+        subtitle: 'Plateforme Financière Autonome Mondiale Basée sur Sécurité Top 10 &amp; IA',
+        web3Btn: 'Accéder à la Banque Web3 ↓',
+        internetBtn: 'Accéder à la Banque en Ligne ↓'
+      },
+      de: {
+        title: 'Wo Mensch und Technik Koexistieren<br />Digitale Finanzinnovation der nächsten Generation',
+        subtitle: 'Globale Autonome Finanzplattform mit Top-10-Sicherheit &amp; KI',
+        web3Btn: 'Web3-Digitalbank öffnen ↓',
+        internetBtn: 'Internetbank öffnen ↓'
+      },
+      vi: {
+        title: 'Nơi Nhân Loại &amp; Công Nghệ Cùng Tồn Tại<br />Đột Phá Tài Chính Số Thế Hệ Mới',
+        subtitle: 'Nền Tảng Tài Chính Tự Chủ Toàn Cầu dựa trên Top 10 Bảo Mật &amp; AI',
+        web3Btn: 'Vào Ngân Hàng Số Web3 ↓',
+        internetBtn: 'Vào Ngân Hàng Trực Tuyến ↓'
+      }
+    };
+
     let ibBalance = 12500000;
     let web3Balance = 314159;
     let agiRate = 4.35;
@@ -451,16 +559,27 @@
       internet: null
     };
 
+    function changeLanguage(lang) {
+      const pack = I18N[lang] || I18N.ko;
+      document.documentElement.lang = lang;
+      document.getElementById('cover-title').innerHTML = pack.title;
+      document.getElementById('cover-subtitle').innerHTML = pack.subtitle;
+      document.getElementById('btn-web3-label').textContent = pack.web3Btn;
+      document.getElementById('btn-internet-label').textContent = pack.internetBtn;
+      localStorage.setItem('hkwb_lang', lang);
+    }
+
     function openBankingTab(target) {
       if (EXTERNAL_URLS[target]) {
         window.open(EXTERNAL_URLS[target], '_blank', 'noopener,noreferrer');
         return;
       }
 
+      const currentLang = document.getElementById('lang-select').value || 'ko';
       const cleanBase = window.location.href.split('?')[0].split('#')[0];
       const nextUrl = target === 'cover'
-        ? cleanBase
-        : `${cleanBase}?view=${encodeURIComponent(target)}`;
+        ? `${cleanBase}?lang=${encodeURIComponent(currentLang)}`
+        : `${cleanBase}?view=${encodeURIComponent(target)}&lang=${encodeURIComponent(currentLang)}`;
 
       const newWin = window.open(nextUrl, '_blank', 'noopener,noreferrer');
       if (!newWin) {
@@ -538,10 +657,17 @@
     (function init() {
       const params = new URLSearchParams(window.location.search);
       const view = params.get('view') || 'cover';
+      const lang = params.get('lang') || localStorage.getItem('hkwb_lang') || 'ko';
+
+      const selectEl = document.getElementById('lang-select');
+      if (selectEl && I18N[lang]) {
+        selectEl.value = lang;
+      }
+      changeLanguage(I18N[lang] ? lang : 'ko');
+
       renderView(view);
       calcInterest();
     })();
   </script>
 </body>
 </html>
-
