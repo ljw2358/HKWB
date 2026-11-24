@@ -3,459 +3,1903 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB | 차세대 디지털 금융 혁신</title>
+  <title>HKWB / Pi Trade & Swap Pro Simulator (2000L Edition)</title>
   <style>
+    /* ==========================================================================
+       1. DESIGN SYSTEM & CUSTOM PROPERTIES
+       ========================================================================== */
     :root {
-      --bg-dark: #070a14;
-      --card-bg: rgba(15, 20, 38, 0.95);
-      --gold-bright: #facc15;
-      --border-box: rgba(250, 204, 21, 0.35);
-      --web3-btn: linear-gradient(90deg, #d946ef 0%, #a855f7 100%);
-      --bank-btn: linear-gradient(90deg, #06b6d4 0%, #10b981 100%);
+      --bg-primary: #070b17;
+      --bg-secondary: #0d1326;
+      --bg-card: #121a33;
+      --bg-card-elevated: #182242;
+      --bg-input: #0b1021;
+      --bg-hover: #1e2b54;
+      --text-primary: #f4f7ff;
+      --text-secondary: #a6b4d4;
+      --text-muted: #6e7d9f;
+      --accent-gold: #f5b942;
+      --accent-gold-hover: #ffca5c;
+      --accent-blue: #4f86ff;
+      --accent-blue-hover: #6a9bff;
+      --accent-purple: #8b5cf6;
+      --status-ok: #22c55e;
+      --status-ok-bg: rgba(34, 197, 94, 0.14);
+      --status-warn: #f59e0b;
+      --status-warn-bg: rgba(245, 158, 11, 0.14);
+      --status-err: #ef4444;
+      --status-err-bg: rgba(239, 68, 68, 0.14);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.38);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --transition-fast: 0.14s ease;
+      --transition-med: 0.24s ease;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
-      background-color: var(--bg-dark);
-      background-image:
-        radial-gradient(circle at 50% 30%, rgba(30, 40, 90, 0.5) 0%, transparent 60%);
-      color: #ffffff;
+      font-family: var(--font-sans);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(79, 134, 255, 0.12), transparent 36%),
+        radial-gradient(circle at 88% 12%, rgba(245, 185, 66, 0.11), transparent 38%),
+        radial-gradient(circle at 50% 95%, rgba(139, 92, 246, 0.09), transparent 42%),
+        var(--bg-primary);
+      color: var(--text-primary);
       min-height: 100vh;
-      padding: 24px 32px 80px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* 상단 헤더 */
-    .top-header {
+    /* ==========================================================================
+       2. LAYOUT CONTAINER & HEADER
+       ========================================================================== */
+    .app-shell {
       max-width: 1280px;
-      margin: 0 auto 30px;
+      margin: 0 auto;
+      padding: 20px 18px 48px;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, rgba(18, 26, 51, 0.96), rgba(24, 34, 66, 0.94));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 18px;
+    }
+
+    .header-top {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      flex-wrap: wrap;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .brand-box {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-title {
-      font-size: 3.2rem;
-      font-weight: 900;
-      color: var(--gold-bright);
-      letter-spacing: 0.05em;
-      line-height: 1;
-    }
-
-    /* AGI 선택 */
-    .agi-selector {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid #38bdf8;
-      border-radius: 999px;
-      padding: 8px 18px;
+    .brand-block {
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+      gap: 14px;
     }
 
-    .agi-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #38bdf8;
-      border-radius: 50%;
+    .brand-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--accent-gold), #d97706);
+      color: #11131a;
+      font-weight: 900;
+      font-size: 1.25rem;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 18px rgba(245, 185, 66, 0.28);
+      flex-shrink: 0;
     }
 
-    .agi-select {
-      background: transparent;
-      color: #ffffff;
-      border: none;
-      font-size: 0.9rem;
-      font-weight: 700;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .agi-select option {
-      background: #0f172a;
-      color: #ffffff;
-    }
-
-    /* 메인 히어로 박스 */
-    .hero-container {
-      max-width: 800px;
-      margin: 28px auto 50px;
-    }
-
-    .hero-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-box);
-      border-radius: 20px;
-      padding: 48px 36px;
-      text-align: center;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    .hero-main-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      line-height: 1.4;
-      margin-bottom: 14px;
-      color: #ffffff;
-    }
-
-    .hero-sub-title {
-      color: var(--gold-bright);
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 32px;
-    }
-
-    .btn-group {
+    .brand-title-row {
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      align-items: center;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
-    .action-btn {
-      border: none;
-      border-radius: 999px;
-      padding: 13px 26px;
-      font-size: 0.9rem;
+    .brand-title-row h1 {
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .env-pill {
+      font-size: 0.74rem;
       font-weight: 700;
-      color: #ffffff;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--status-warn-bg);
+      color: var(--status-warn);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .brand-subtitle {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-top: 3px;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wallet-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .wallet-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wallet-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .wallet-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      position: relative;
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .wallet-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .wallet-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .wallet-val {
+      font-size: 1.16rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+    }
+
+    .wallet-sub {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION TABS & SUB-BAR
+       ========================================================================== */
+    .nav-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 720px) {
+      .nav-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .nav-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      transition: all var(--transition-fast);
     }
 
-    .action-btn:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
+    .nav-tab:hover {
+      background: var(--bg-card-elevated);
+      color: var(--text-primary);
     }
 
-    .btn-web3 { background: var(--web3-btn); }
-    .btn-bank { background: var(--bank-btn); }
+    .nav-tab.active {
+      background: linear-gradient(135deg, var(--accent-gold), #e5a932);
+      color: #10131d;
+      border-color: transparent;
+      box-shadow: 0 6px 18px rgba(245, 185, 66, 0.25);
+    }
 
-    /* 방 섹션 */
-    .room-section {
-      max-width: 1100px;
-      margin: 0 auto;
+    .nav-count {
+      font-size: 0.74rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    /* ==========================================================================
+       4. MAIN GRID & CARDS
+       ========================================================================== */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card + .card {
+      margin-top: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .card-header h2 {
+      font-size: 1.06rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .tab-panel {
       display: none;
     }
 
-    .room-section.active {
+    .tab-panel.active {
       display: block;
-      animation: fadeIn 0.3s ease-in;
+      animation: fadeIn 0.18s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(3px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .room-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-box);
-      border-radius: 20px;
-      padding: 36px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .room-header-title {
-      font-size: 1.9rem;
-      color: var(--gold-bright);
-      margin-bottom: 6px;
-      border-bottom: 1px solid rgba(250, 204, 21, 0.2);
-      padding-bottom: 10px;
-    }
-
-    .room-header-sub {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      margin-bottom: 28px;
-    }
-
-    .grid-2col {
+    /* ==========================================================================
+       5. FORM CONTROLS, BUTTONS & SUMMARY BOXES
+       ========================================================================== */
+    .form-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    @media (max-width: 768px) {
-      .hero-main-title { font-size: 1.6rem; }
-      .grid-2col { grid-template-columns: 1fr; }
-      .hero-card { padding: 32px 20px; }
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .card-detail {
-      background: rgba(8, 12, 24, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 22px;
-    }
-
-    .detail-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--gold-bright);
+    .form-group {
       margin-bottom: 14px;
     }
 
-    .detail-list {
-      list-style: none;
-      font-size: 0.9rem;
-      color: #cbd5e1;
+    .form-group label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
     }
 
-    .detail-list li {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .label-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
     }
-    .detail-list li:last-child { border-bottom: none; }
+
+    .input-control,
+    .select-control,
+    .textarea-control {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.94rem;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .input-control.mono {
+      font-family: var(--font-mono);
+    }
+
+    .input-control:focus,
+    .select-control:focus,
+    .textarea-control:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(79, 134, 255, 0.18);
+    }
+
+    .quick-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 7px;
+    }
+
+    .chip-btn {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card-elevated);
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .chip-btn:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    .calc-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .calc-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      padding: 4px 0;
+    }
+
+    .calc-line strong {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+    }
+
+    .calc-line.total {
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-strong);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .calc-line.total strong {
+      color: var(--accent-gold);
+      font-size: 1.04rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    .btn-gold {
+      background: var(--accent-gold);
+      color: #10131d;
+    }
+
+    .btn-gold:hover:not(:disabled) {
+      background: var(--accent-gold-hover);
+    }
+
+    .btn-blue {
+      background: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    .btn-blue:hover:not(:disabled) {
+      background: var(--accent-blue-hover);
+    }
+
+    .btn-ghost {
+      background: var(--bg-card-elevated);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .btn-danger-soft {
+      background: var(--status-err-bg);
+      color: #ff8a8a;
+      border-color: rgba(239, 68, 68, 0.28);
+    }
+
+    .btn-danger-soft:hover:not(:disabled) {
+      background: rgba(239, 68, 68, 0.24);
+    }
+
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 0.79rem;
+      border-radius: var(--radius-xs);
+    }
+
+    /* ==========================================================================
+       6. MARKETPLACE LISTINGS & FILTERS
+       ========================================================================== */
+    .filter-bar {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 680px) {
+      .filter-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .listings-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 540px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .listing-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: border-color var(--transition-fast);
+    }
+
+    .listing-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .listing-main {
+      flex: 1 1 260px;
+    }
+
+    .listing-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .listing-title {
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .tag {
+      font-size: 0.71rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(79, 134, 255, 0.16);
+      color: #8ab4ff;
+    }
+
+    .tag.mine {
+      background: rgba(245, 185, 66, 0.16);
+      color: var(--accent-gold);
+    }
+
+    .listing-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    .listing-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .partial-input {
+      width: 96px;
+      padding: 6px 8px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+    }
+
+    /* ==========================================================================
+       7. ORDERBOOK, LOGS, TOASTS & MODAL
+       ========================================================================== */
+    .orderbook-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+    }
+
+    .orderbook-table th,
+    .orderbook-table td {
+      padding: 8px 6px;
+      text-align: right;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .orderbook-table th:first-child,
+    .orderbook-table td:first-child {
+      text-align: left;
+    }
+
+    .orderbook-table th {
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.76rem;
+    }
+
+    .log-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .log-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 360px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .log-entry {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--accent-blue);
+      font-size: 0.81rem;
+    }
+
+    .log-entry.ok {
+      border-left-color: var(--status-ok);
+    }
+
+    .log-entry.warn {
+      border-left-color: var(--status-warn);
+    }
+
+    .log-entry.err {
+      border-left-color: var(--status-err);
+    }
+
+    .log-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      margin-bottom: 3px;
+    }
+
+    .log-msg {
+      color: var(--text-primary);
+      word-break: break-word;
+    }
+
+    .toast-stack {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 360px;
+    }
+
+    .toast {
+      padding: 12px 15px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card-elevated);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      animation: fadeIn 0.16s ease;
+    }
+
+    .toast.ok { border-left: 4px solid var(--status-ok); }
+    .toast.err { border-left: 4px solid var(--status-err); }
+    .toast.warn { border-left: 4px solid var(--status-warn); }
+
+    .disclaimer-box {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(79, 134, 255, 0.08);
+      border: 1px solid rgba(79, 134, 255, 0.22);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .empty-state {
+      padding: 28px 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
   </style>
 </head>
 <body>
-
-  <!-- 상단 헤더 -->
-  <header class="top-header">
-    <div class="brand-box">
-      <div class="logo-title">HKWB</div>
-    </div>
-
-    <div class="agi-selector">
-      <div class="agi-dot"></div>
-      <select class="agi-select" id="agiSelect" aria-label="60개국 AGI 언어 선택" onchange="changeLanguage(this.value)">
-        <option value="ko" selected>60개국 AGI 가동 중 ▼</option>
-        <option value="en">60-Nation AGI Active ▼</option>
-        <option value="ja">60カ国 AGI 稼働中 ▼</option>
-        <option value="zh">60国 AGI 运行中 ▼</option>
-        <option value="es">60 Países AGI Activo ▼</option>
-        <option value="fr">60 Pays AGI Actif ▼</option>
-        <option value="de">60 Länder AGI Aktiv ▼</option>
-        <option value="ar">60 دولة AGI نشط ▼</option>
-        <option value="pt">60 Países AGI Ativo ▼</option>
-        <option value="ru">60 Страна AGI Активен ▼</option>
-        <option value="vi">60 Quốc gia AGI Hoạt động ▼</option>
-        <option value="th">60 ประเทศ AGI เปิดใช้งาน ▼</option>
-        <option value="id">60 Negara AGI Aktif ▼</option>
-        <option value="hi">60 देश AGI सक्रिय ▼</option>
-        <option value="tr">60 Ülke AGI Aktif ▼</option>
-        <option value="it">60 Paesi AGI Attivo ▼</option>
-        <option value="nl">60 Landen AGI Actief ▼</option>
-        <option value="pl">60 Krajów AGI Aktywny ▼</option>
-        <option value="sv">60 Länder AGI Aktiv ▼</option>
-        <option value="uk">60 Країн AGI Активний ▼</option>
-        <option value="el">60 Χώρες AGI Ενεργό ▼</option>
-        <option value="he">60 מדינות AGI פעיל ▼</option>
-        <option value="ro">60 Țări AGI Activ ▼</option>
-        <option value="hu">60 Ország AGI Aktív ▼</option>
-        <option value="cs">60 Zemí AGI Aktivní ▼</option>
-        <option value="da">60 Lande AGI Aktivt ▼</option>
-        <option value="fi">60 Maata AGI Aktiivinen ▼</option>
-        <option value="no">60 Land AGI Aktiv ▼</option>
-        <option value="sk">60 Krajín AGI Aktívne ▼</option>
-        <option value="bg">60 Страни AGI Активен ▼</option>
-        <option value="hr">60 Zemalja AGI Aktivan ▼</option>
-        <option value="sr">60 Земаља AGI Активан ▼</option>
-        <option value="lt">60 Šalių AGI Aktyvus ▼</option>
-        <option value="sl">60 Držav AGI Aktiven ▼</option>
-        <option value="et">60 Riiki AGI Aktiivne ▼</option>
-        <option value="lv">60 Valstis AGI Aktīvs ▼</option>
-        <option value="ms">60 Negara AGI Aktif ▼</option>
-        <option value="fil">60 Bansa AGI Aktibo ▼</option>
-        <option value="fa">60 کشور AGI فعال ▼</option>
-        <option value="ur">60 ممالک AGI فعال ▼</option>
-        <option value="bn">60 টি দেশ AGI সক্রিয় ▼</option>
-        <option value="ta">60 நாடுகள் AGI செயலில் ▼</option>
-        <option value="te">60 దేశాలు AGI సక్రియం ▼</option>
-        <option value="kn">60 దేశగళు AGI ಸಕ್ರಿಯ ▼</option>
-        <option value="mr">60 देश AGI सक्रिय ▼</option>
-        <option value="gu">60 દેશો AGI સક્રિય ▼</option>
-        <option value="sw">60 Nchi AGI Inafanya kazi ▼</option>
-        <option value="af">60 Lande AGI Aktief ▼</option>
-        <option value="is">60 Lönd AGI Virkt ▼</option>
-        <option value="ga">60 Tír AGI Gníomhach ▼</option>
-        <option value="cy">60 Gwlad AGI Gweithredol ▼</option>
-        <option value="mt">60 Pajjiżi AGI Attiv ▼</option>
-        <option value="sq">60 Shtete AGI Aktiv ▼</option>
-        <option value="mk">60 Земји AGI Активен ▼</option>
-        <option value="bs">60 Zemalja AGI Aktivan ▼</option>
-        <option value="ka">60 ქვეყანა AGI აქტიური ▼</option>
-        <option value="hy">60 Երկիր AGI Ակտիվ ▼</option>
-        <option value="az">60 Ölkə AGI Aktiv ▼</option>
-        <option value="kk">60 Ел AGI Белсенді ▼</option>
-        <option value="uz">60 Mamlakat AGI Faol ▼</option>
-      </select>
-    </div>
-  </header>
-
-  <!-- 메인 히어로 박스 -->
-  <main class="hero-container">
-    <div class="hero-card">
-      <h1 class="hero-main-title" id="mainTitle">
-        인류와 기술이 공존하는<br />차세대 디지털 금융 혁신
-      </h1>
-      <p class="hero-sub-title" id="subTitle">
-        10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
-      </p>
-
-      <div class="btn-group">
-        <button type="button" class="action-btn btn-web3" id="btnWeb3" onclick="showRoom('web3')">
-          Web3 디지털 은행 진입하기 ↓
-        </button>
-        <button type="button" class="action-btn btn-bank" id="btnBank" onclick="showRoom('internet')">
-          인터넷 뱅크 진입하기 ↓
-        </button>
-      </div>
-    </div>
-  </main>
-
-  <!-- 방 1: Web3 디지털 은행 -->
-  <section class="room-section active" id="roomWeb3">
-    <div class="room-box">
-      <h2 class="room-header-title">방 1 · Web3 디지털 은행</h2>
-      <p class="room-header-sub">온체인 데이터 연동 및 AGI·ASI 자율 금융 독립 공간</p>
-
-      <div class="grid-2col">
-        <div class="card-detail">
-          <div class="detail-title">핵심 법률 및 규제 준수</div>
-          <ul class="detail-list">
-            <li>백서 (백서 0.1판 핵심 40선)</li>
-            <li>자주 묻는 질문 (질문답변 20선 심층)</li>
-            <li>3대 정책 (자금세탁방지·실명확인·통합보안 준수)</li>
-            <li>21개국 디지털 자산법 및 해킹 방어 웹 규정 준수</li>
-            <li>자금세탁방지기구 이동규칙 및 실시간 제재 명단 검증 규격</li>
-          </ul>
+  <div class="app-shell" id="appRoot">
+    <!-- ========================================================================
+         TOP HEADER & PORTFOLIO SNAPSHOT
+         ======================================================================== -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-block">
+          <div class="brand-badge" aria-hidden="true">π</div>
+          <div>
+            <div class="brand-title-row">
+              <h1 id="uiAppTitle">PI 판매 · 구매 · 스와프 통합 시뮬레이터</h1>
+              <span class="env-pill" id="uiEnvBadge">LOCAL SANDBOX v2.0</span>
+            </div>
+            <p class="brand-subtitle" id="uiAppSubtitle">
+              브라우저 로컬 상태 기반 모의 거래 및 스왑 엔진 (실제 Pi Mainnet API·실자산·실계좌 연동 없음)
+            </p>
+          </div>
         </div>
 
-        <div class="card-detail">
-          <div class="detail-title">HK 글로벌 생태계 허브</div>
-          <ul class="detail-list">
-            <li>로봇: HK-로봇</li>
-            <li>스마트 캠퍼스: HK-넥서스</li>
-            <li>도심항공금융: HK-도심항공</li>
-            <li>인공지능·핵융합: HK-퓨전</li>
-            <li>퀀텀바이오: HK-퀀텀바이오</li>
-            <li>우주인터넷: HK-스페이스</li>
-            <li>무점포은행: HK-파츠뱅크</li>
-            <li>국방기술: HK-디펜스 허브</li>
-            <li>TIIS 초특급 방트러스트 허브 (광주 사옥)</li>
-          </ul>
+        <div class="header-actions">
+          <select id="uiLangSelect" class="select-control" style="width:auto;padding:8px 10px;font-size:0.82rem;" aria-label="표시 언어 선택">
+            <option value="ko" selected>한국어 (KRW 기준)</option>
+            <option value="en">English (USD 환산 표시)</option>
+          </select>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnExportLogs">로그 CSV 저장</button>
+          <button type="button" class="btn btn-danger-soft btn-sm" id="btnResetState">상태 초기화</button>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- 방 2: 인터넷 뱅크 -->
-  <section class="room-section" id="roomInternet">
-    <div class="room-box">
-      <h2 class="room-header-title">방 2 · 인터넷 뱅크 (HK-BANK)</h2>
-      <p class="room-header-sub">지점 없는 차세대 무점포 실시간 뱅킹 독립 공간</p>
-
-      <div class="grid-2col">
-        <div class="card-detail">
-          <div class="detail-title">핵심 법률 및 규제 준수</div>
-          <ul class="detail-list">
-            <li>백서 (백서 0.1판 핵심 40선)</li>
-            <li>자주 묻는 질문 (질문답변 20선 심층)</li>
-            <li>3대 정책 (자금세탁방지·실명확인·통합보안 준수)</li>
-            <li>21개국 디지털 자산법 및 해킹 방어 웹 규정 준수</li>
-            <li>자금세탁방지기구 이동규칙 및 실시간 제재 명단 검증 규격</li>
-          </ul>
+      <div class="wallet-grid">
+        <div class="wallet-card">
+          <div class="wallet-label">
+            <span>보유 PI (가용)</span>
+            <span id="piEscrowBadge" style="color:var(--accent-gold);font-family:var(--font-mono);">에스크로: 0.00</span>
+          </div>
+          <div class="wallet-val" id="balPi">0.00</div>
+          <div class="wallet-sub" id="balPiSub">기준 단가 환산: 0 KRW</div>
         </div>
 
-        <div class="card-detail">
-          <div class="detail-title">HK 글로벌 생태계 허브</div>
-          <ul class="detail-list">
-            <li>로봇: HK-로봇</li>
-            <li>스마트 캠퍼스: HK-넥서스</li>
-            <li>도심항공금융: HK-도심항공</li>
-            <li>인공지능·핵융합: HK-퓨전</li>
-            <li>퀀텀바이오: HK-퀀텀바이오</li>
-            <li>우주인터넷: HK-스페이스</li>
-            <li>무점포은행: HK-파츠뱅크</li>
-            <li>국방기술: HK-디펜스 허브</li>
-            <li>TIIS 초특급 방트러스트 허브 (광주 사옥)</li>
-          </ul>
+        <div class="wallet-card">
+          <div class="wallet-label">
+            <span>보유 KRW (모의 원화)</span>
+            <span style="font-family:var(--font-mono);">DEMO FIAT</span>
+          </div>
+          <div class="wallet-val" id="balKrw">0</div>
+          <div class="wallet-sub" id="balKrwSub">구매/정산 모의 잔액</div>
+        </div>
+
+        <div class="wallet-card">
+          <div class="wallet-label">
+            <span>보유 WPI (래핑/유틸리티 모의 토큰)</span>
+            <span style="font-family:var(--font-mono);">WRAPPED</span>
+          </div>
+          <div class="wallet-val" id="balWpi">0.00</div>
+          <div class="wallet-sub" id="balWpiSub">스와프 풀 연동 잔액</div>
+        </div>
+
+        <div class="wallet-card">
+          <div class="wallet-label">
+            <span>누적 수수료 풀 (모의 적립)</span>
+            <span id="feeRateLabel" style="font-family:var(--font-mono);">0.5%</span>
+          </div>
+          <div class="wallet-val" id="balFeePool">0</div>
+          <div class="wallet-sub" id="balTotalEquity">총 추정 자산: 0 KRW</div>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
+    <!-- ========================================================================
+         MAIN NAVIGATION TABS
+         ======================================================================== -->
+    <nav class="nav-strip" role="tablist" aria-label="거래 기능 탭">
+      <button type="button" class="nav-tab active" data-tab="sell" role="tab" aria-selected="true">
+        <span>판매 등록</span>
+        <span class="nav-count" id="myListingCount">0</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="buy" role="tab" aria-selected="false">
+        <span>구매하기</span>
+        <span class="nav-count" id="marketListingCount">0</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="swap" role="tab" aria-selected="false">
+        <span>토큰 스와프</span>
+        <span class="nav-count" id="swapPairBadge">PI↔WPI</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="settings" role="tab" aria-selected="false">
+        <span>파라미터 설정</span>
+        <span class="nav-count">CFG</span>
+      </button>
+    </nav>
+
+    <!-- ========================================================================
+         MAIN WORKSPACE (LEFT: ACTIVE PANEL / RIGHT: ORDERBOOK & LOGS)
+         ======================================================================== -->
+    <div class="workspace-grid">
+      <!-- LEFT COLUMN -->
+      <main>
+        <!-- TAB 1: SELL -->
+        <section id="panel-sell" class="tab-panel active card" role="tabpanel">
+          <div class="card-header">
+            <div>
+              <h2>PI 판매 매물 등록 &amp; 내 매물 관리</h2>
+              <p class="card-desc">등록 시 가용 PI에서 에스크로로 수량이 잠기며, 구매 마켓에 즉시 노출됩니다.</p>
+            </div>
+          </div>
+
+          <form id="sellForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="sellAmount">
+                  <span>판매 수량 (PI)</span>
+                  <span class="label-hint" id="sellAvailHint">최대: 0.00 PI</span>
+                </label>
+                <input id="sellAmount" type="number" step="0.01" min="0.01" value="10" class="input-control mono" required />
+                <div class="quick-chips">
+                  <button type="button" class="chip-btn" data-sell-pct="0.1">10%</button>
+                  <button type="button" class="chip-btn" data-sell-pct="0.25">25%</button>
+                  <button type="button" class="chip-btn" data-sell-pct="0.5">50%</button>
+                  <button type="button" class="chip-btn" data-sell-pct="1">100%</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="sellPrice">
+                  <span>PI 1개당 판매가 (KRW)</span>
+                  <span class="label-hint" id="refPriceHint">기준가: 45,000</span>
+                </label>
+                <input id="sellPrice" type="number" step="100" min="100" value="45000" class="input-control mono" required />
+                <div class="quick-chips">
+                  <button type="button" class="chip-btn" data-price-delta="-0.05">-5%</button>
+                  <button type="button" class="chip-btn" data-price-delta="0">기준가</button>
+                  <button type="button" class="chip-btn" data-price-delta="0.05">+5%</button>
+                  <button type="button" class="chip-btn" data-price-delta="0.1">+10%</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="sellTitle">매물 제목</label>
+                <input id="sellTitle" type="text" maxlength="60" value="PI 마켓플레이스 판매 매물" class="input-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="sellSettlementType">거래 방식</label>
+                <select id="sellSettlementType" class="select-control">
+                  <option value="PARTIAL_ALLOWED">부분 구매 허용</option>
+                  <option value="FULL_ONLY">일괄 구매만 허용</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-box" id="sellCalcBox">
+              <div class="calc-line">
+                <span>매물 총액 (수량 × 단가)</span>
+                <strong id="sellGrossKRW">450,000 KRW</strong>
+              </div>
+              <div class="calc-line">
+                <span>예상 판매 수수료</span>
+                <strong id="sellFeeKRW">-2,250 KRW</strong>
+              </div>
+              <div class="calc-line total">
+                <span>체결 시 예상 수령액</span>
+                <strong id="sellNetKRW">447,750 KRW</strong>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-block" id="btnSubmitSell">
+              판매 매물 등록하기
+            </button>
+          </form>
+
+          <div style="margin-top:24px;">
+            <div class="card-header" style="margin-bottom:10px;">
+              <h2>내가 등록한 판매 매물</h2>
+              <span class="card-desc">취소 시 잠긴 PI가 가용 잔액으로 즉시 반환됩니다.</span>
+            </div>
+            <div id="myListingsContainer" class="listings-stack" style="max-height:260px;"></div>
+          </div>
+        </section>
+
+        <!-- TAB 2: BUY -->
+        <section id="panel-buy" class="tab-panel card" role="tabpanel">
+          <div class="card-header">
+            <div>
+              <h2>PI 매물 구매하기</h2>
+              <p class="card-desc">원하는 매물을 선택해 전량 또는 부분 수량으로 모의 구매를 체결합니다.</p>
+            </div>
+            <button type="button" class="btn btn-ghost btn-sm" id="btnSeedSampleListings">샘플 매물 보충</button>
+          </div>
+
+          <div class="filter-bar">
+            <input id="buySearchInput" type="text" placeholder="매물명 또는 판매자 검색..." class="input-control" />
+            <select id="buySortSelect" class="select-control">
+              <option value="price_asc">단가 낮은 순</option>
+              <option value="price_desc">단가 높은 순</option>
+              <option value="amount_desc">수량 많은 순</option>
+              <option value="newest">최근 등록 순</option>
+            </select>
+            <select id="buyFilterType" class="select-control">
+              <option value="ALL">전체 매물</option>
+              <option value="EXTERNAL">타 판매자 매물</option>
+              <option value="MINE">내 매물</option>
+            </select>
+          </div>
+
+          <div id="marketListingsContainer" class="listings-stack"></div>
+        </section>
+
+        <!-- TAB 3: SWAP -->
+        <section id="panel-swap" class="tab-panel card" role="tabpanel">
+          <div class="card-header">
+            <div>
+              <h2>토큰 스와프 (PI ↔ WPI)</h2>
+              <p class="card-desc">설정된 스와프 비율, 슬리피지 허용치, 수수료를 반영해 즉시 토큰을 전환합니다.</p>
+            </div>
+          </div>
+
+          <form id="swapForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="swapDirection">전환 방향</label>
+                <select id="swapDirection" class="select-control">
+                  <option value="PI_TO_WPI">PI → WPI</option>
+                  <option value="WPI_TO_PI">WPI → PI</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="swapAmount">
+                  <span>입력 수량</span>
+                  <span class="label-hint" id="swapAvailHint">가용: 0.00</span>
+                </label>
+                <input id="swapAmount" type="number" step="0.01" min="0.01" value="10" class="input-control mono" required />
+                <div class="quick-chips">
+                  <button type="button" class="chip-btn" data-swap-pct="0.25">25%</button>
+                  <button type="button" class="chip-btn" data-swap-pct="0.5">50%</button>
+                  <button type="button" class="chip-btn" data-swap-pct="1">100%</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-box">
+              <div class="calc-line">
+                <span>적용 환율 (1 PI 기준)</span>
+                <strong id="swapRateDisplay">1.0000 WPI</strong>
+              </div>
+              <div class="calc-line">
+                <span>스와프 수수료</span>
+                <strong id="swapFeeDisplay">0.00</strong>
+              </div>
+              <div class="calc-line">
+                <span>슬리피지 허용 한도</span>
+                <strong id="swapSlippageDisplay">1.0%</strong>
+              </div>
+              <div class="calc-line total">
+                <span>최소 예상 수령량</span>
+                <strong id="swapOutDisplay">9.95 WPI</strong>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-blue btn-block" id="btnSubmitSwap">
+              스와프 실행
+            </button>
+          </form>
+        </section>
+
+        <!-- TAB 4: SETTINGS -->
+        <section id="panel-settings" class="tab-panel card" role="tabpanel">
+          <div class="card-header">
+            <div>
+              <h2>시뮬레이션 파라미터 설정</h2>
+              <p class="card-desc">기준 단가, 수수료율, 스와프 비율, 슬리피지 한도를 자유롭게 변경해 테스트하세요.</p>
+            </div>
+          </div>
+
+          <form id="settingsForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cfgRefPrice">PI 기준 단가 (KRW)</label>
+                <input id="cfgRefPrice" type="number" step="100" min="1" class="input-control mono" />
+              </div>
+
+              <div class="form-group">
+                <label for="cfgFeeRate">거래/스와프 수수료율 (%)</label>
+                <input id="cfgFeeRate" type="number" step="0.1" min="0" max="20" class="input-control mono" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cfgSwapRate">PI → WPI 교환 비율 (1 PI = N WPI)</label>
+                <input id="cfgSwapRate" type="number" step="0.01" min="0.01" class="input-control mono" />
+              </div>
+
+              <div class="form-group">
+                <label for="cfgSlippage">슬리피지 허용치 (%)</label>
+                <input id="cfgSlippage" type="number" step="0.1" min="0" max="30" class="input-control mono" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cfgUsdRate">USD/KRW 환산 기준 (표시용)</label>
+              <input id="cfgUsdRate" type="number" step="1" min="100" class="input-control mono" />
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-block">설정 저장 및 적용</button>
+          </form>
+        </section>
+
+        <div class="disclaimer-box" id="uiDisclaimer">
+          <strong>안내:</strong> 본 코드는 브라우저에서 바로 실행되는 시뮬레이션 프로토타입입니다. 실제 Pi Network SDK 연동,
+          블록체인 노드 트랜잭션 서명, 에스크로 스마트컨트랙트, KYB/규제 준수 및 보안 검증은 운영 환경에 맞게 별도로 구축해야 합니다.
+        </div>
+      </main>
+
+      <!-- RIGHT COLUMN: ORDERBOOK & ACTIVITY LOGS -->
+      <aside>
+        <div class="card">
+          <div class="card-header">
+            <h2>실시간 모의 호가 요약</h2>
+            <span class="card-desc" id="orderbookSummary">0건 활성</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="orderbook-table" id="orderbookTable">
+              <thead>
+                <tr>
+                  <th>매물/판매자</th>
+                  <th>남은 PI</th>
+                  <th>단가 (KRW)</th>
+                </tr>
+              </thead>
+              <tbody id="orderbookBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>실행 로그</h2>
+            <button type="button" class="btn btn-ghost btn-sm" id="btnClearLogs">로그 비우기</button>
+          </div>
+
+          <div class="log-controls">
+            <select id="logLevelFilter" class="select-control" style="width:auto;padding:6px 10px;font-size:0.8rem;" aria-label="로그 필터">
+              <option value="ALL">전체 로그</option>
+              <option value="ok">성공 (OK)</option>
+              <option value="warn">경고 (WARN)</option>
+              <option value="err">오류 (ERR)</option>
+            </select>
+          </div>
+
+          <div id="logStream" class="log-stream"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toastStack" class="toast-stack" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       JAVASCRIPT ENGINE (STATE, VALIDATION, TRADING, SWAP, LOGGING, STORAGE)
+       ======================================================================== -->
   <script>
-    const LANG_STORAGE_KEY = 'hkwb_selected_lang';
+    (() => {
+      "use strict";
 
-    function showRoom(type) {
-      const w = document.getElementById('roomWeb3');
-      const i = document.getElementById('roomInternet');
+      const STORAGE_KEY = "PI_TRADE_SWAP_PRO_SIM_V2";
+      const MAX_LOGS = 200;
 
-      if (type === 'web3') {
-        w.classList.add('active');
-        i.classList.remove('active');
-        w.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        i.classList.add('active');
-        w.classList.remove('active');
-        i.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+      const DEFAULT_CONFIG = {
+        refPriceKrw: 45000,
+        feeRatePct: 0.5,
+        swapRatePiToWpi: 1.0,
+        slippagePct: 1.0,
+        usdKrw: 1400,
+        lang: "ko"
+      };
 
-    function changeLanguage(lang, skipStorage) {
-      const t = document.getElementById('mainTitle');
-      const s = document.getElementById('subTitle');
-      const b1 = document.getElementById('btnWeb3');
-      const b2 = document.getElementById('btnBank');
-
-      document.documentElement.lang = lang;
-
-      if (lang === 'en') {
-        t.innerHTML = 'Next-Gen Digital Financial Innovation<br />Where Humanity &amp; Tech Coexist';
-        s.textContent = 'Global Autonomous Platform Powered by Top 10 Security &amp; AI Tech';
-        b1.textContent = 'Enter Web3 Digital Bank ↓';
-        b2.textContent = 'Enter Internet Bank ↓';
-      } else if (lang === 'ja') {
-        t.innerHTML = '人類と技術が共存する<br />次世代デジタル金融イノベーション';
-        s.textContent = '10大グローバルセキュリティ技術＆AI技術基盤の自律金融プラットフォーム';
-        b1.textContent = 'Web3デジタル銀行へ ↓';
-        b2.textContent = 'インターネットバンクへ ↓';
-      } else if (lang === 'zh') {
-        t.innerHTML = '人类与科技共存的<br />新一代数字金融创新';
-        s.textContent = '基于十大全球安全技术与AI技术的全球自主金融平台';
-        b1.textContent = '进入Web3数字银行 ↓';
-        b2.textContent = '进入互联网银行 ↓';
-      } else {
-        t.innerHTML = '인류와 기술이 공존하는<br />차세대 디지털 금융 혁신';
-        s.textContent = '10대 글로벌 보안 기술 & AI 기술 기반 글로벌 자율 금융 플랫폼';
-        b1.textContent = 'Web3 디지털 은행 진입하기 ↓';
-        b2.textContent = '인터넷 뱅크 진입하기 ↓';
-      }
-
-      if (!skipStorage) {
-        try {
-          localStorage.setItem(LANG_STORAGE_KEY, lang);
-        } catch (e) {}
-      }
-    }
-
-    (function initLang() {
-      try {
-        const saved = localStorage.getItem(LANG_STORAGE_KEY);
-        const sel = document.getElementById('agiSelect');
-        if (saved && sel) {
-          const exists = Array.from(sel.options).some(opt => opt.value === saved);
-          if (exists) {
-            sel.value = saved;
-            changeLanguage(saved, true);
+      function createInitialListings() {
+        const now = Date.now();
+        return [
+          {
+            id: "LST-1001",
+            title: "PI 직거래 테스트 매물 #1",
+            seller: "Node_Alpha_01",
+            isMine: false,
+            amount: 25.0,
+            initialAmount: 25.0,
+            priceKrw: 43500,
+            allowPartial: true,
+            createdAt: now - 3600 * 1000 * 4
+          },
+          {
+            id: "LST-1002",
+            title: "소액 분할 가능 PI 매물",
+            seller: "Pioneer_Seoul",
+            isMine: false,
+            amount: 14.5,
+            initialAmount: 14.5,
+            priceKrw: 44800,
+            allowPartial: true,
+            createdAt: now - 3600 * 1000 * 2
+          },
+          {
+            id: "LST-1003",
+            title: "일괄 체결 전용 매물",
+            seller: "Market_Desk_Ulsan",
+            isMine: false,
+            amount: 8.0,
+            initialAmount: 8.0,
+            priceKrw: 46200,
+            allowPartial: false,
+            createdAt: now - 3600 * 1000 * 1
           }
+        ];
+      }
+
+      function createInitialState() {
+        return {
+          activeTab: "sell",
+          logFilter: "ALL",
+          buySearch: "",
+          buySort: "price_asc",
+          buyFilterType: "ALL",
+          config: { ...DEFAULT_CONFIG },
+          wallet: {
+            pi: 150.0,
+            piEscrow: 0.0,
+            krw: 2500000,
+            wpi: 75.0,
+            feePoolKrw: 0
+          },
+          listings: createInitialListings(),
+          logs: []
+        };
+      }
+
+      let state = loadState();
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            const initial = createInitialState();
+            appendLogInternal(initial, "시뮬레이터 초기 상태가 로드되었습니다.", "ok");
+            return initial;
+          }
+          const parsed = JSON.parse(raw);
+          const base = createInitialState();
+          return {
+            ...base,
+            ...parsed,
+            config: { ...base.config, ...(parsed.config || {}) },
+            wallet: { ...base.wallet, ...(parsed.wallet || {}) },
+            listings: Array.isArray(parsed.listings) ? parsed.listings : base.listings,
+            logs: Array.isArray(parsed.logs) ? parsed.logs.slice(0, MAX_LOGS) : []
+          };
+        } catch (err) {
+          const fallback = createInitialState();
+          appendLogInternal(fallback, `저장 상태 복구 중 기본값으로 대체됨: ${err.message}`, "warn");
+          return fallback;
         }
-      } catch (e) {}
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (_) {
+          // 스토리지 용량 초과 등 예외 시 무시
+        }
+      }
+
+      function appendLogInternal(targetState, message, level = "info") {
+        const entry = {
+          id: `LOG-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+          timestamp: new Date().toISOString(),
+          timeLabel: new Date().toLocaleTimeString("ko-KR", { hour12: false }),
+          level,
+          message
+        };
+        targetState.logs.unshift(entry);
+        if (targetState.logs.length > MAX_LOGS) {
+          targetState.logs.length = MAX_LOGS;
+        }
+      }
+
+      function logEvent(message, level = "info") {
+        appendLogInternal(state, message, level);
+        saveState();
+        renderLogs();
+      }
+
+      function showToast(message, level = "info") {
+        const stack = document.getElementById("toastStack");
+        if (!stack) return;
+        const el = document.createElement("div");
+        el.className = `toast ${level}`;
+        el.textContent = message;
+        stack.appendChild(el);
+        setTimeout(() => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(6px)";
+          el.style.transition = "all 0.2s ease";
+          setTimeout(() => el.remove(), 220);
+        }, 2800);
+      }
+
+      function round2(num) {
+        return Math.round((Number(num) + Number.EPSILON) * 100) / 100;
+      }
+
+      function round4(num) {
+        return Math.round((Number(num) + Number.EPSILON) * 10000) / 10000;
+      }
+
+      function formatNumber(num, decimals = 2) {
+        const n = Number(num);
+        if (!Number.isFinite(n)) return "0";
+        return n.toLocaleString("ko-KR", {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+
+      function formatKrw(krw) {
+        const n = Math.round(Number(krw) || 0);
+        if (state.config.lang === "en") {
+          const usd = n / Math.max(1, Number(state.config.usdKrw) || 1400);
+          return `$${formatNumber(usd, 2)} (${n.toLocaleString("ko-KR")} KRW)`;
+        }
+        return `${n.toLocaleString("ko-KR")} KRW`;
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      /* ======================================================================
+         TAB SWITCHING & UI SYNC
+         ====================================================================== */
+      function setActiveTab(tabName) {
+        const validTabs = ["sell", "buy", "swap", "settings"];
+        const target = validTabs.includes(tabName) ? tabName : "sell";
+        state.activeTab = target;
+        saveState();
+
+        document.querySelectorAll(".nav-tab").forEach((btn) => {
+          const isMatch = btn.dataset.tab === target;
+          btn.classList.toggle("active", isMatch);
+          btn.setAttribute("aria-selected", String(isMatch));
+        });
+
+        document.querySelectorAll(".tab-panel").forEach((panel) => {
+          panel.classList.toggle("active", panel.id === `panel-${target}`);
+        });
+
+        renderAll();
+      }
+
+      function syncSettingsInputs() {
+        document.getElementById("cfgRefPrice").value = state.config.refPriceKrw;
+        document.getElementById("cfgFeeRate").value = state.config.feeRatePct;
+        document.getElementById("cfgSwapRate").value = state.config.swapRatePiToWpi;
+        document.getElementById("cfgSlippage").value = state.config.slippagePct;
+        document.getElementById("cfgUsdRate").value = state.config.usdKrw;
+        document.getElementById("uiLangSelect").value = state.config.lang;
+      }
+
+      function renderWallet() {
+        const { pi, piEscrow, krw, wpi, feePoolKrw } = state.wallet;
+        const { refPriceKrw, feeRatePct, swapRatePiToWpi } = state.config;
+
+        document.getElementById("balPi").textContent = formatNumber(pi, 2);
+        document.getElementById("piEscrowBadge").textContent = `에스크로: ${formatNumber(piEscrow, 2)}`;
+        document.getElementById("balPiSub").textContent = `가용 환산: ${formatKrw(pi * refPriceKrw)}`;
+
+        document.getElementById("balKrw").textContent = Math.round(krw).toLocaleString("ko-KR");
+        document.getElementById("balKrwSub").textContent = state.config.lang === "en"
+          ? `Approx. $${formatNumber(krw / Math.max(1, state.config.usdKrw), 2)}`
+          : "모의 원화 잔액";
+
+        document.getElementById("balWpi").textContent = formatNumber(wpi, 2);
+        const wpiValueKrw = wpi * (refPriceKrw / Math.max(0.01, swapRatePiToWpi));
+        document.getElementById("balWpiSub").textContent = `환산 가치: ${formatKrw(wpiValueKrw)}`;
+
+        document.getElementById("feeRateLabel").textContent = `${formatNumber(feeRatePct, 1)}%`;
+        document.getElementById("balFeePool").textContent = Math.round(feePoolKrw).toLocaleString("ko-KR");
+
+        const totalEquityKrw =
+          (pi + piEscrow) * refPriceKrw +
+          krw +
+          wpiValueKrw;
+        document.getElementById("balTotalEquity").textContent = `총 추정 자산: ${formatKrw(totalEquityKrw)}`;
+
+        const myCount = state.listings.filter((l) => l.isMine && l.amount > 0).length;
+        const activeCount = state.listings.filter((l) => l.amount > 0).length;
+        document.getElementById("myListingCount").textContent = String(myCount);
+        document.getElementById("marketListingCount").textContent = String(activeCount);
+      }
+
+      /* ======================================================================
+         SELL CALCULATIONS & ACTIONS
+         ====================================================================== */
+      function updateSellPreview() {
+        const amtInput = document.getElementById("sellAmount");
+        const priceInput = document.getElementById("sellPrice");
+        const amt = Math.max(0, parseFloat(amtInput.value) || 0);
+        const price = Math.max(0, parseFloat(priceInput.value) || 0);
+        const feeRate = Math.max(0, Number(state.config.feeRatePct) || 0) / 100;
+
+        const gross = amt * price;
+        const fee = gross * feeRate;
+        const net = Math.max(0, gross - fee);
+
+        document.getElementById("sellAvailHint").textContent = `최대: ${formatNumber(state.wallet.pi, 2)} PI`;
+        document.getElementById("refPriceHint").textContent = `기준가: ${Number(state.config.refPriceKrw).toLocaleString("ko-KR")}`;
+        document.getElementById("sellGrossKRW").textContent = formatKrw(gross);
+        document.getElementById("sellFeeKRW").textContent = `-${formatKrw(fee)}`;
+        document.getElementById("sellNetKRW").textContent = formatKrw(net);
+      }
+
+      function handleSellSubmit(e) {
+        e.preventDefault();
+        const amount = round2(parseFloat(document.getElementById("sellAmount").value));
+        const priceKrw = Math.round(parseFloat(document.getElementById("sellPrice").value));
+        const title = (document.getElementById("sellTitle").value || "").trim() || "PI 판매 매물";
+        const allowPartial = document.getElementById("sellSettlementType").value === "PARTIAL_ALLOWED";
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+          showToast("판매할 PI 수량을 0보다 크게 입력하세요.", "err");
+          logEvent("판매 등록 실패: 유효하지 않은 PI 수량", "err");
+          return;
+        }
+        if (!Number.isFinite(priceKrw) || priceKrw < 1) {
+          showToast("단가(KRW)를 올바르게 입력하세요.", "err");
+          logEvent("판매 등록 실패: 유효하지 않은 판매 단가", "err");
+          return;
+        }
+        if (state.wallet.pi < amount) {
+          showToast(`보유 가용 PI가 부족합니다. (보유: ${formatNumber(state.wallet.pi, 2)} PI)`, "err");
+          logEvent(`판매 등록 거부: 가용 PI 부족 (요청 ${amount}, 보유 ${state.wallet.pi})`, "warn");
+          return;
+        }
+
+        state.wallet.pi = round2(state.wallet.pi - amount);
+        state.wallet.piEscrow = round2(state.wallet.piEscrow + amount);
+
+        const newListing = {
+          id: `LST-${Date.now().toString().slice(-6)}`,
+          title,
+          seller: "나 (내 지갑)",
+          isMine: true,
+          amount,
+          initialAmount: amount,
+          priceKrw,
+          allowPartial,
+          createdAt: Date.now()
+        };
+
+        state.listings.unshift(newListing);
+        saveState();
+        renderAll();
+
+        const msg = `판매 매물 등록 [${newListing.id}]: ${formatNumber(amount, 2)} PI @ ${priceKrw.toLocaleString("ko-KR")} KRW`;
+        logEvent(msg, "ok");
+        showToast(msg, "ok");
+      }
+
+      window.cancelMyListing = function cancelMyListing(listingId) {
+        const idx = state.listings.findIndex((item) => item.id === listingId && item.isMine);
+        if (idx === -1) return;
+
+        const item = state.listings[idx];
+        const refundPi = round2(item.amount);
+        state.wallet.piEscrow = Math.max(0, round2(state.wallet.piEscrow - refundPi));
+        state.wallet.pi = round2(state.wallet.pi + refundPi);
+        state.listings.splice(idx, 1);
+
+        saveState();
+        renderAll();
+        const msg = `판매 매물 취소 [${listingId}]: ${formatNumber(refundPi, 2)} PI 에스크로 반환`;
+        logEvent(msg, "warn");
+        showToast(msg, "warn");
+      };
+
+      /* ======================================================================
+         BUY MARKETPLACE & PARTIAL EXECUTION
+         ====================================================================== */
+      function getFilteredListings() {
+        const q = (state.buySearch || "").trim().toLowerCase();
+        const typeFilter = state.buyFilterType;
+        const sortMode = state.buySort;
+
+        let list = state.listings.filter((item) => item.amount > 0);
+
+        if (typeFilter === "MINE") {
+          list = list.filter((item) => item.isMine);
+        } else if (typeFilter === "EXTERNAL") {
+          list = list.filter((item) => !item.isMine);
+        }
+
+        if (q) {
+          list = list.filter(
+            (item) =>
+              item.title.toLowerCase().includes(q) ||
+              item.seller.toLowerCase().includes(q) ||
+              item.id.toLowerCase().includes(q)
+          );
+        }
+
+        list.sort((a, b) => {
+          if (sortMode === "price_asc") return a.priceKrw - b.priceKrw;
+          if (sortMode === "price_desc") return b.priceKrw - a.priceKrw;
+          if (sortMode === "amount_desc") return b.amount - a.amount;
+          return b.createdAt - a.createdAt;
+        });
+
+        return list;
+      }
+
+      window.executeBuyListing = function executeBuyListing(listingId, customQtyInputId = null) {
+        const item = state.listings.find((x) => x.id === listingId);
+        if (!item || item.amount <= 0) {
+          showToast("해당 매물을 찾을 수 없거나 이미 품절되었습니다.", "err");
+          return;
+        }
+
+        let buyQty = item.amount;
+        if (item.allowPartial && customQtyInputId) {
+          const inputEl = document.getElementById(customQtyInputId);
+          const parsed = round2(parseFloat(inputEl ? inputEl.value : item.amount));
+          if (!Number.isFinite(parsed) || parsed <= 0) {
+            showToast("구매 수량을 0보다 크게 입력하세요.", "err");
+            return;
+          }
+          if (parsed > item.amount) {
+            showToast(`남은 매물 수량(${formatNumber(item.amount, 2)} PI)을 초과할 수 없습니다.`, "err");
+            return;
+          }
+          buyQty = parsed;
+        }
+
+        const grossCost = buyQty * item.priceKrw;
+        const feeRate = Math.max(0, Number(state.config.feeRatePct) || 0) / 100;
+        const feeKrw = Math.round(grossCost * feeRate);
+        const totalPayKrw = Math.round(grossCost + feeKrw);
+
+        if (state.wallet.krw < totalPayKrw) {
+          showToast(`보유 KRW가 부족합니다. (필요: ${totalPayKrw.toLocaleString("ko-KR")} KRW)`, "err");
+          logEvent(`구매 실패 [${listingId}]: KRW 잔액 부족 (필요 ${totalPayKrw})`, "err");
+          return;
+        }
+
+        state.wallet.krw = Math.max(0, Math.round(state.wallet.krw - totalPayKrw));
+        state.wallet.feePoolKrw = Math.round(state.wallet.feePoolKrw + feeKrw);
+
+        if (item.isMine) {
+          state.wallet.piEscrow = Math.max(0, round2(state.wallet.piEscrow - buyQty));
+        }
+        state.wallet.pi = round2(state.wallet.pi + buyQty);
+        item.amount = round2(item.amount - buyQty);
+
+        if (item.amount <= 0) {
+          state.listings = state.listings.filter((x) => x.id !== listingId);
+        }
+
+        saveState();
+        renderAll();
+
+        const msg = `구매 체결 [${listingId}]: ${formatNumber(buyQty, 2)} PI (총 ${totalPayKrw.toLocaleString("ko-KR")} KRW, 수수료 ${feeKrw.toLocaleString("ko-KR")} KRW)`;
+        logEvent(msg, "ok");
+        showToast(msg, "ok");
+      };
+
+      function renderMarketListings() {
+        const container = document.getElementById("marketListingsContainer");
+        const list = getFilteredListings();
+
+        if (!list.length) {
+          container.innerHTML = `<div class="empty-state">조건에 맞는 활성 매물이 없습니다.</div>`;
+          return;
+        }
+
+        container.innerHTML = list
+          .map((item, index) => {
+            const inputId = `buyQty_${item.id}_${index}`;
+            const partialControl = item.allowPartial
+              ? `<input id="${inputId}" type="number" step="0.01" min="0.01" max="${item.amount}" value="${item.amount}" class="partial-input" aria-label="구매 수량" />`
+              : `<span class="tag">일괄체결</span>`;
+
+            return `
+              <div class="listing-card">
+                <div class="listing-main">
+                  <div class="listing-title-row">
+                    <span class="listing-title">${escapeHtml(item.title)}</span>
+                    <span class="tag ${item.isMine ? "mine" : ""}">${item.isMine ? "내 매물" : escapeHtml(item.seller)}</span>
+                    <span style="font-size:0.74rem;color:var(--text-muted);font-family:var(--font-mono);">${escapeHtml(item.id)}</span>
+                  </div>
+                  <div class="listing-meta">
+                    남은 수량: <strong>${formatNumber(item.amount, 2)} PI</strong> / 단가: <strong>${Number(item.priceKrw).toLocaleString("ko-KR")} KRW</strong> · 총액: ${Math.round(item.amount * item.priceKrw).toLocaleString("ko-KR")} KRW
+                  </div>
+                </div>
+                <div class="listing-actions">
+                  ${partialControl}
+                  <button type="button" class="btn btn-gold btn-sm" onclick="executeBuyListing('${escapeHtml(item.id)}', ${item.allowPartial ? `'${inputId}'` : "null"})">
+                    구매 실행
+                  </button>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+      }
+
+      function renderMyListings() {
+        const container = document.getElementById("myListingsContainer");
+        const mine = state.listings.filter((item) => item.isMine && item.amount > 0);
+
+        if (!mine.length) {
+          container.innerHTML = `<div class="empty-state">현재 등록된 내 판매 매물이 없습니다.</div>`;
+          return;
+        }
+
+        container.innerHTML = mine
+          .map(
+            (item) => `
+            <div class="listing-card">
+              <div class="listing-main">
+                <div class="listing-title-row">
+                  <span class="listing-title">${escapeHtml(item.title)}</span>
+                  <span class="tag mine">에스크로 잠김</span>
+                </div>
+                <div class="listing-meta">
+                  잔여: ${formatNumber(item.amount, 2)} PI · 단가: ${Number(item.priceKrw).toLocaleString("ko-KR")} KRW
+                </div>
+              </div>
+              <div class="listing-actions">
+                <button type="button" class="btn btn-danger-soft btn-sm" onclick="cancelMyListing('${escapeHtml(item.id)}')">
+                  매물 취소
+                </button>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      /* ======================================================================
+         SWAP ENGINE
+         ====================================================================== */
+      function computeSwapQuote() {
+        const dir = document.getElementById("swapDirection").value;
+        const amount = Math.max(0, parseFloat(document.getElementById("swapAmount").value) || 0);
+        const rate = Math.max(0.0001, Number(state.config.swapRatePiToWpi) || 1.0);
+        const feeRate = Math.max(0, Number(state.config.feeRatePct) || 0) / 100;
+        const slippage = Math.max(0, Number(state.config.slippagePct) || 0) / 100;
+
+        const isPiToWpi = dir === "PI_TO_WPI";
+        const inUnit = isPiToWpi ? "PI" : "WPI";
+        const outUnit = isPiToWpi ? "WPI" : "PI";
+        const availIn = isPiToWpi ? state.wallet.pi : state.wallet.wpi;
+
+        const rawOut = isPiToWpi ? amount * rate : amount / rate;
+        const feeOut = rawOut * feeRate;
+        const expectedOut = Math.max(0, rawOut - feeOut);
+        const minReceived = Math.max(0, expectedOut * (1 - slippage));
+
+        return {
+          dir,
+          inUnit,
+          outUnit,
+          availIn,
+          amount,
+          rate,
+          rawOut,
+          feeOut,
+          expectedOut,
+          minReceived
+        };
+      }
+
+      function updateSwapPreview() {
+        const q = computeSwapQuote();
+        document.getElementById("swapAvailHint").textContent = `가용: ${formatNumber(q.availIn, 2)} ${q.inUnit}`;
+        document.getElementById("swapRateDisplay").textContent =
+          q.dir === "PI_TO_WPI"
+            ? `1 PI = ${formatNumber(q.rate, 4)} WPI`
+            : `1 WPI = ${formatNumber(1 / q.rate, 4)} PI`;
+        document.getElementById("swapFeeDisplay").textContent = `-${formatNumber(q.feeOut, 4)} ${q.outUnit}`;
+        document.getElementById("swapSlippageDisplay").textContent = `${formatNumber(state.config.slippagePct, 1)}%`;
+        document.getElementById("swapOutDisplay").textContent = `${formatNumber(q.minReceived, 4)} ${q.outUnit}`;
+      }
+
+      function handleSwapSubmit(e) {
+        e.preventDefault();
+        const q = computeSwapQuote();
+
+        if (!Number.isFinite(q.amount) || q.amount <= 0) {
+          showToast("스와프 수량을 0보다 크게 입력하세요.", "err");
+          logEvent("스와프 실패: 유효하지 않은 입력 수량", "err");
+          return;
+        }
+        if (q.availIn < q.amount) {
+          showToast(`보유 ${q.inUnit} 잔액이 부족합니다.`, "err");
+          logEvent(`스와프 실패: ${q.inUnit} 잔액 부족 (요청 ${q.amount}, 보유 ${q.availIn})`, "warn");
+          return;
+        }
+
+        if (q.dir === "PI_TO_WPI") {
+          state.wallet.pi = round2(state.wallet.pi - q.amount);
+          state.wallet.wpi = round4(state.wallet.wpi + q.expectedOut);
+        } else {
+          state.wallet.wpi = round4(state.wallet.wpi - q.amount);
+          state.wallet.pi = round2(state.wallet.pi + q.expectedOut);
+        }
+
+        saveState();
+        renderAll();
+
+        const msg = `스와프 체결: ${formatNumber(q.amount, 2)} ${q.inUnit} → ${formatNumber(q.expectedOut, 4)} ${q.outUnit}`;
+        logEvent(msg, "ok");
+        showToast(msg, "ok");
+      }
+
+      /* ======================================================================
+         SETTINGS, ORDERBOOK, LOGS & EXPORT
+         ====================================================================== */
+      function handleSettingsSubmit(e) {
+        e.preventDefault();
+        const refPriceKrw = Math.max(1, Math.round(parseFloat(document.getElementById("cfgRefPrice").value) || DEFAULT_CONFIG.refPriceKrw));
+        const feeRatePct = Math.min(20, Math.max(0, parseFloat(document.getElementById("cfgFeeRate").value) || 0));
+        const swapRatePiToWpi = Math.max(0.0001, parseFloat(document.getElementById("cfgSwapRate").value) || DEFAULT_CONFIG.swapRatePiToWpi);
+        const slippagePct = Math.min(30, Math.max(0, parseFloat(document.getElementById("cfgSlippage").value) || 0));
+        const usdKrw = Math.max(100, parseFloat(document.getElementById("cfgUsdRate").value) || DEFAULT_CONFIG.usdKrw);
+
+        state.config = {
+          ...state.config,
+          refPriceKrw,
+          feeRatePct,
+          swapRatePiToWpi,
+          slippagePct,
+          usdKrw
+        };
+
+        saveState();
+        renderAll();
+        const msg = `파라미터 업데이트 완료 (기준가 ${refPriceKrw.toLocaleString("ko-KR")} KRW, 수수료 ${feeRatePct}%, 스와프비율 ${swapRatePiToWpi})`;
+        logEvent(msg, "ok");
+        showToast("파라미터가 저장되었습니다.", "ok");
+      }
+
+      function renderOrderbook() {
+        const tbody = document.getElementById("orderbookBody");
+        const active = state.listings
+          .filter((l) => l.amount > 0)
+          .sort((a, b) => a.priceKrw - b.priceKrw)
+          .slice(0, 8);
+
+        document.getElementById("orderbookSummary").textContent = `${active.length}건 활성`;
+
+        if (!active.length) {
+          tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;color:var(--text-muted);padding:16px;">등록된 호가가 없습니다.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = active
+          .map(
+            (row) => `
+            <tr>
+              <td>${escapeHtml(row.seller)}</td>
+              <td>${formatNumber(row.amount, 2)}</td>
+              <td style="color:var(--accent-gold);font-weight:700;">${Number(row.priceKrw).toLocaleString("ko-KR")}</td>
+            </tr>
+          `
+          )
+          .join("");
+      }
+
+      function renderLogs() {
+        const stream = document.getElementById("logStream");
+        const filter = state.logFilter || "ALL";
+        const filtered = filter === "ALL" ? state.logs : state.logs.filter((entry) => entry.level === filter);
+
+        if (!filtered.length) {
+          stream.innerHTML = `<div class="empty-state">표시할 실행 로그가 없습니다.</div>`;
+          return;
+        }
+
+        stream.innerHTML = filtered
+          .map(
+            (entry) => `
+            <div class="log-entry ${escapeHtml(entry.level)}">
+              <div class="log-top">
+                <span>${escapeHtml(entry.id)}</span>
+                <span>${escapeHtml(entry.timeLabel)} · ${escapeHtml(entry.level.toUpperCase())}</span>
+              </div>
+              <div class="log-msg">${escapeHtml(entry.message)}</div>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      function exportLogsCsv() {
+        if (!state.logs.length) {
+          showToast("내보낼 로그가 없습니다.", "warn");
+          return;
+        }
+        const headers = ["id", "timestamp", "level", "message"];
+        const rows = state.logs.map((l) =>
+          [l.id, l.timestamp, l.level, `"${String(l.message).replace(/"/g, '""')}"`].join(",")
+        );
+        const csvContent = "\uFEFF" + [headers.join(","), ...rows].join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `pi-simulator-logs-${Date.now()}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast("로그 CSV 파일을 다운로드했습니다.", "ok");
+      }
+
+      function resetAllState() {
+        localStorage.removeItem(STORAGE_KEY);
+        state = createInitialState();
+        appendLogInternal(state, "모든 시뮬레이션 잔액 및 매물 상태가 초기화되었습니다.", "warn");
+        saveState();
+        syncSettingsInputs();
+        renderAll();
+        showToast("시뮬레이션 상태가 초기화되었습니다.", "warn");
+      }
+
+      function seedSampleListings() {
+        const fresh = createInitialListings().map((item, idx) => ({
+          ...item,
+          id: `LST-SEED-${Date.now().toString().slice(-4)}-${idx + 1}`,
+          createdAt: Date.now() + idx
+        }));
+        state.listings.push(...fresh);
+        saveState();
+        renderAll();
+        logEvent(`샘플 판매 매물 ${fresh.length}건이 추가되었습니다.`, "info");
+        showToast(`샘플 매물 ${fresh.length}건이 추가되었습니다.`, "ok");
+      }
+
+      function renderAll() {
+        renderWallet();
+        updateSellPreview();
+        renderMyListings();
+        renderMarketListings();
+        updateSwapPreview();
+        renderOrderbook();
+        renderLogs();
+      }
+
+      /* ======================================================================
+         EVENT LISTENERS BINDING
+         ====================================================================== */
+      function bindEvents() {
+        document.querySelectorAll(".nav-tab").forEach((btn) => {
+          btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
+        });
+
+        document.getElementById("sellForm").addEventListener("submit", handleSellSubmit);
+        ["sellAmount", "sellPrice"].forEach((id) => {
+          document.getElementById(id).addEventListener("input", updateSellPreview);
+        });
+
+        document.querySelectorAll("[data-sell-pct]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const pct = parseFloat(btn.dataset.sellPct) || 0;
+            document.getElementById("sellAmount").value = round2(state.wallet.pi * pct).toFixed(2);
+            updateSellPreview();
+          });
+        });
+
+        document.querySelectorAll("[data-price-delta]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const delta = parseFloat(btn.dataset.priceDelta) || 0;
+            const base = Number(state.config.refPriceKrw) || 45000;
+            document.getElementById("sellPrice").value = Math.max(100, Math.round(base * (1 + delta)));
+            updateSellPreview();
+          });
+        });
+
+        document.getElementById("buySearchInput").addEventListener("input", (e) => {
+          state.buySearch = e.target.value;
+          saveState();
+          renderMarketListings();
+        });
+
+        document.getElementById("buySortSelect").addEventListener("change", (e) => {
+          state.buySort = e.target.value;
+          saveState();
+          renderMarketListings();
+        });
+
+        document.getElementById("buyFilterType").addEventListener("change", (e) => {
+          state.buyFilterType = e.target.value;
+          saveState();
+          renderMarketListings();
+        });
+
+        document.getElementById("btnSeedSampleListings").addEventListener("click", seedSampleListings);
+
+        document.getElementById("swapForm").addEventListener("submit", handleSwapSubmit);
+        ["swapDirection", "swapAmount"].forEach((id) => {
+          document.getElementById(id).addEventListener("input", updateSwapPreview);
+          document.getElementById(id).addEventListener("change", updateSwapPreview);
+        });
+
+        document.querySelectorAll("[data-swap-pct]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const pct = parseFloat(btn.dataset.swapPct) || 0;
+            const dir = document.getElementById("swapDirection").value;
+            const avail = dir === "PI_TO_WPI" ? state.wallet.pi : state.wallet.wpi;
+            document.getElementById("swapAmount").value = round2(avail * pct).toFixed(2);
+            updateSwapPreview();
+          });
+        });
+
+        document.getElementById("settingsForm").addEventListener("submit", handleSettingsSubmit);
+
+        document.getElementById("uiLangSelect").addEventListener("change", (e) => {
+          state.config.lang = e.target.value === "en" ? "en" : "ko";
+          saveState();
+          renderAll();
+        });
+
+        document.getElementById("logLevelFilter").addEventListener("change", (e) => {
+          state.logFilter = e.target.value;
+          saveState();
+          renderLogs();
+        });
+
+        document.getElementById("btnClearLogs").addEventListener("click", () => {
+          state.logs = [];
+          saveState();
+          renderLogs();
+          showToast("로그 목록을 비웠습니다.", "info");
+        });
+
+        document.getElementById("btnExportLogs").addEventListener("click", exportLogsCsv);
+        document.getElementById("btnResetState").addEventListener("click", resetAllState);
+      }
+
+      /* ======================================================================
+         BOOT SEQUENCE
+         ====================================================================== */
+      syncSettingsInputs();
+      bindEvents();
+      setActiveTab(state.activeTab || "sell");
     })();
   </script>
-
 </body>
 </html>
+
