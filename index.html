@@ -35,6 +35,8 @@
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.5;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     /* 표지 화면 */
@@ -49,14 +51,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 24px;
+      padding: 72px 18px 36px;
     }
 
     .cover-logo {
       position: fixed;
-      top: 24px;
-      left: 36px;
-      font-size: 1.65rem;
+      top: 22px;
+      left: 24px;
+      font-size: 1.6rem;
       font-weight: 800;
       color: var(--gold);
       letter-spacing: 1px;
@@ -70,42 +72,46 @@
       background: var(--bg-box);
       border: 1px solid var(--border-box);
       border-radius: 22px;
-      padding: 54px 36px 46px;
+      padding: 44px 24px 38px;
       text-align: center;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
     }
 
     .cover-title {
-      font-size: clamp(1.65rem, 3.2vw, 2.45rem);
+      font-size: clamp(1.32rem, 4.9vw, 2.45rem);
       font-weight: 800;
       color: var(--text-main);
-      line-height: 1.32;
+      line-height: 1.35;
       margin-bottom: 14px;
+      word-break: keep-all;
     }
 
     .cover-subtitle {
-      font-size: clamp(0.88rem, 1.4vw, 1.02rem);
+      font-size: clamp(0.82rem, 3.2vw, 1.02rem);
       color: var(--text-sub);
-      margin-bottom: 34px;
+      line-height: 1.55;
+      margin-bottom: 32px;
+      word-break: keep-all;
     }
 
     .cover-actions {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .cover-btn {
       border: none;
       border-radius: 999px;
-      padding: 13px 26px;
-      font-size: 0.96rem;
+      padding: 13px 24px;
+      font-size: 0.95rem;
       font-weight: 700;
       color: #ffffff;
       cursor: pointer;
       transition: transform 0.15s ease, filter 0.15s ease;
+      white-space: nowrap;
     }
 
     .cover-btn:hover {
@@ -144,7 +150,7 @@
     .top-bar {
       background: #0d1224;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 14px 28px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -183,7 +189,7 @@
     .web3-container {
       max-width: 980px;
       margin: 0 auto;
-      padding: 40px 24px 64px;
+      padding: 40px 20px 64px;
     }
 
     .web3-wallet-box {
@@ -200,7 +206,7 @@
     }
 
     .web3-balance {
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 800;
       color: var(--gold);
       margin-top: 6px;
@@ -294,6 +300,29 @@
       color: #dc2626;
       font-weight: 700;
     }
+
+    @media (max-width: 480px) {
+      .cover-logo {
+        top: 18px;
+        left: 20px;
+        font-size: 1.45rem;
+      }
+
+      .cover-card {
+        padding: 36px 18px 32px;
+        border-radius: 18px;
+      }
+
+      .cover-actions {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .cover-btn {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -325,12 +354,12 @@
   <!-- Web3 디지털 은행 창 -->
   <section id="view-web3" class="sub-view">
     <div class="top-bar">
-      <div style="display:flex; align-items:center; gap:14px;">
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
         <span class="top-bar-brand" onclick="openBankingTab('cover')">HKWB</span>
         <span class="top-bar-info">Web3 디지털 은행 · 체어맨 이재완(혜공) · 추천인 ljw2358</span>
       </div>
-      <div style="display:flex; gap:8px;">
-        <button type="button" class="sub-btn" onclick="openBankingTab('internet')">인터넷 뱅크 새 창 열기</button>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="sub-btn" onclick="openBankingTab('internet')">인터넷 뱅크 진입하기</button>
         <button type="button" class="sub-btn" onclick="openBankingTab('cover')">표지 새 창 열기</button>
       </div>
     </div>
@@ -354,12 +383,12 @@
   <!-- 인터넷 뱅크 창 -->
   <section id="view-internet" class="sub-view ib-page">
     <div class="top-bar">
-      <div style="display:flex; align-items:center; gap:14px;">
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
         <span class="top-bar-brand" onclick="openBankingTab('cover')">HKWB</span>
         <span class="top-bar-info">HKWB 무점포 인터넷 뱅크 · 추천인 ljw2358</span>
       </div>
-      <div style="display:flex; gap:8px;">
-        <button type="button" class="sub-btn" onclick="openBankingTab('web3')">Web3 디지털 은행 새 창 열기</button>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="sub-btn" onclick="openBankingTab('web3')">Web3 디지털 은행 진입하기</button>
         <button type="button" class="sub-btn" onclick="openBankingTab('cover')">표지 새 창 열기</button>
       </div>
     </div>
@@ -515,3 +544,4 @@
   </script>
 </body>
 </html>
+
