@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKWB — 인류와 기술이 공전하는 차세대 디지털 금융 혁신</title>
+    <title>HKWB</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
     <style>
         :root {
@@ -30,73 +30,51 @@
             font-family: var(--font-sans);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             background:
-                radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.18), transparent 45%),
-                radial-gradient(circle at 85% 18%, rgba(255, 215, 0, 0.11), transparent 42%),
+                radial-gradient(circle at 20% 15%, rgba(139, 92, 246, 0.18), transparent 45%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1), transparent 42%),
                 var(--bg-void);
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            font-size: 16px;
         }
 
-        /* Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .top-bar {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            padding: 0.9rem 1.4rem;
+            padding: 1rem 1.4rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.12);
             background: rgba(7, 8, 13, 0.9);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--gold-soft);
+            backdrop-filter: blur(12px);
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .brand-badge {
-            width: 38px;
-            height: 38px;
-            flex-shrink: 0;
-            border-radius: 11px;
-            display: flex;
+        .hkwb-box {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            padding: 0.45rem 1.1rem;
+            border-radius: 12px;
+            font-size: 2.2rem;
             font-weight: 900;
-            font-size: 1.05rem;
+            letter-spacing: 1px;
             color: var(--gold-neon);
-            background: linear-gradient(135deg, var(--purple-deep), var(--purple-neon));
-            border: 1px solid var(--gold-neon);
-            box-shadow: 0 0 14px var(--gold-glow);
+            background: linear-gradient(135deg, var(--purple-deep), var(--bg-card));
+            border: 2px solid var(--gold-neon);
+            box-shadow: 0 0 18px var(--gold-glow);
+            cursor: pointer;
+            line-height: 1.05;
         }
 
-        .brand-name {
-            font-size: 1.35rem;
-            font-weight: 900;
-            letter-spacing: 0.8px;
-            background: linear-gradient(90deg, #ffffff 0%, var(--gold-neon) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-right {
+        .top-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .lang-select {
@@ -111,107 +89,86 @@
             max-width: 155px;
         }
 
-        .hamburger {
+        .back-cover-btn {
             background: var(--bg-card);
+            color: var(--text-primary);
             border: 1px solid var(--gold-soft);
             border-radius: 9px;
-            width: 38px;
-            height: 38px;
+            padding: 7px 12px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: none;
+        }
+
+        .back-cover-btn.visible {
+            display: inline-block;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
+            padding: 2.5rem 1.2rem;
+        }
+
+        .entry-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            width: 100%;
+            max-width: 780px;
+        }
+
+        .entry-btn {
+            flex: 1 1 280px;
+            padding: 1.5rem 1.6rem;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 900;
             cursor: pointer;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .hamburger span {
-            width: 18px;
-            height: 2px;
-            background: var(--gold-neon);
-            border-radius: 2px;
+        .entry-btn:hover {
+            transform: translateY(-3px);
         }
 
-        /* Main */
-        main {
+        .entry-btn.web3-entry {
+            background: linear-gradient(135deg, var(--purple-deep), var(--purple-neon));
+            color: #fff;
+            border: 1.5px solid var(--gold-neon);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 18px var(--gold-glow);
+        }
+
+        .entry-btn.web2-entry {
+            background: linear-gradient(135deg, #0b2239, #0f3556);
+            color: var(--cyan-web2);
+            border: 1.5px solid rgba(56, 189, 248, 0.65);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Sub Pages */
+        .view-container {
+            display: none;
             width: 100%;
             max-width: 1240px;
             margin: 0 auto;
-            padding: 1.8rem 1.1rem 4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2.4rem;
+            padding: 1.6rem 1.1rem 4rem;
             flex: 1;
         }
 
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 2.5rem 1.3rem;
-            border-radius: 26px;
-            background: linear-gradient(155deg, rgba(59, 16, 72, 0.42), rgba(13, 16, 27, 0.92));
-            border: 1px solid var(--gold-soft);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+        .view-container.active {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
         }
 
-        .hero-tag {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--gold-neon);
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--gold-soft);
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(1.5rem, 4.2vw, 2.7rem);
-            font-weight: 900;
-            line-height: 1.25;
-            margin-bottom: 0.9rem;
-            color: #fff;
-        }
-
-        .hero p {
-            color: var(--text-secondary);
-            font-size: clamp(0.92rem, 2.2vw, 1.06rem);
-            max-width: 780px;
-            margin: 0 auto 1.4rem;
-            line-height: 1.65;
-        }
-
-        .mode-switch {
-            display: inline-flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .mode-btn {
-            padding: 0.72rem 1.3rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 800;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .mode-btn.web3-pill {
-            background: linear-gradient(135deg, var(--purple-deep), var(--purple-neon));
-            color: #fff;
-            border: 1px solid var(--gold-neon);
-            box-shadow: 0 0 16px var(--gold-glow);
-        }
-
-        .mode-btn.web2-pill {
-            background: rgba(56, 189, 248, 0.14);
-            color: var(--cyan-web2);
-            border: 1px solid rgba(56, 189, 248, 0.45);
-        }
-
-        /* Section */
         .realm-section {
             background: var(--bg-navy);
             border: 1px solid var(--gold-soft);
@@ -220,20 +177,24 @@
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
         }
 
+        .web2-section {
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
         .realm-header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             gap: 10px;
-            margin-bottom: 1.3rem;
+            margin-bottom: 1.2rem;
             padding-bottom: 0.85rem;
             border-bottom: 1px solid rgba(255, 215, 0, 0.14);
         }
 
         .realm-title {
-            font-size: clamp(1.22rem, 3vw, 1.65rem);
-            font-weight: 900;
+            font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+            font-weight: 800;
             color: #fff;
         }
 
@@ -241,11 +202,11 @@
         .realm-title .cyan { color: var(--cyan-web2); }
 
         .realm-sub {
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             color: var(--text-secondary);
+            margin-top: 0.25rem;
         }
 
-        /* Dashboard */
         .dash-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -267,7 +228,7 @@
         }
 
         .dash-val {
-            font-size: 1.32rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: #fff;
         }
@@ -291,7 +252,7 @@
             border: 1px solid var(--gold-neon);
             border-radius: 10px;
             padding: 0.65rem 1.1rem;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             font-weight: 700;
             cursor: pointer;
         }
@@ -302,12 +263,11 @@
             border: 1px solid var(--gold-soft);
             border-radius: 10px;
             padding: 0.65rem 1.1rem;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             font-weight: 700;
             cursor: pointer;
         }
 
-        /* 10 Distributed Networks */
         .net-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -325,7 +285,7 @@
             transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 0.38rem;
         }
 
         .net-card:hover, .net-card.active {
@@ -339,7 +299,7 @@
             display: flex;
             justify-content: space-between;
             font-size: 0.78rem;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--gold-neon);
         }
 
@@ -352,10 +312,9 @@
         .net-brief {
             font-size: 0.8rem;
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.42;
         }
 
-        /* Interactive Engine Workspace for Selected Network */
         .engine-workbench {
             background: var(--bg-card);
             border: 1px solid var(--gold-soft);
@@ -370,14 +329,12 @@
             justify-content: space-between;
             align-items: center;
             gap: 8px;
-            margin-bottom: 0.9rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.14);
+            margin-bottom: 0.65rem;
         }
 
         .wb-title {
-            font-size: 1.12rem;
-            font-weight: 900;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--gold-neon);
         }
 
@@ -391,9 +348,18 @@
             font-weight: 700;
         }
 
+        .wb-overview {
+            font-size: 0.88rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.12);
+        }
+
         .onion-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 0.75rem;
             margin-bottom: 1.1rem;
         }
@@ -420,9 +386,9 @@
         }
 
         .onion-step-desc {
-            font-size: 0.8rem;
+            font-size: 0.81rem;
             color: var(--text-secondary);
-            line-height: 1.45;
+            line-height: 1.5;
         }
 
         .exec-bar {
@@ -441,7 +407,7 @@
             color: #fff;
             font-size: 0.86rem;
             outline: none;
-            min-width: 150px;
+            min-width: 155px;
             max-width: 100%;
         }
 
@@ -450,17 +416,17 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 12px;
             padding: 0.85rem 1rem;
-            font-size: 0.82rem;
+            font-size: 0.83rem;
             color: #e2e8f0;
-            line-height: 1.55;
+            line-height: 1.6;
             word-break: break-all;
         }
 
-        /* Web3 Extras */
         .web3-extras {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 1.1rem;
+            margin-bottom: 1.4rem;
         }
 
         .info-panel {
@@ -474,7 +440,7 @@
         }
 
         .info-panel h3 {
-            font-size: 1.05rem;
+            font-size: 1.04rem;
             font-weight: 800;
             color: var(--gold-neon);
         }
@@ -482,14 +448,14 @@
         .info-panel p, .info-panel li {
             font-size: 0.85rem;
             color: #cbd5e1;
-            line-height: 1.55;
+            line-height: 1.58;
         }
 
         .info-panel ul {
             padding-left: 1.1rem;
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.35rem;
         }
 
         .cs-row {
@@ -516,7 +482,7 @@
             padding: 0.68rem 0.8rem;
             font-size: 0.83rem;
             color: #f1f5f9;
-            line-height: 1.5;
+            line-height: 1.55;
             margin-top: 0.45rem;
         }
 
@@ -537,11 +503,146 @@
             border: 1px solid var(--gold-soft);
         }
 
-        /* Web2 Section */
-        .web2-section {
-            border-color: rgba(56, 189, 248, 0.35);
+        /* 5대 코어 리갈 & 컴플라이언스 */
+        .legal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0.9rem;
         }
 
+        .legal-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 215, 0, 0.22);
+            border-radius: 16px;
+            padding: 1.1rem;
+        }
+
+        .legal-badge {
+            font-size: 0.74rem;
+            font-weight: 800;
+            color: var(--gold-neon);
+            margin-bottom: 0.3rem;
+        }
+
+        .legal-title {
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .legal-body {
+            font-size: 0.83rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+
+        /* FAQ 20선 */
+        .faq-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 215, 0, 0.16);
+            border-radius: 14px;
+            padding: 0.95rem 1.05rem;
+        }
+
+        .faq-q {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--gold-neon);
+            margin-bottom: 0.35rem;
+        }
+
+        .faq-a {
+            font-size: 0.83rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+
+        /* 백서 100선 서술형 */
+        .wp-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .wp-search {
+            flex: 1 1 240px;
+            background: var(--bg-card);
+            border: 1px solid var(--gold-soft);
+            border-radius: 10px;
+            padding: 0.65rem 0.9rem;
+            color: #fff;
+            font-size: 0.86rem;
+            outline: none;
+        }
+
+        .wp-meta {
+            font-size: 0.82rem;
+            color: var(--gold-neon);
+            font-weight: 700;
+        }
+
+        .wp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 620px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .wp-entry {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 215, 0, 0.16);
+            border-radius: 14px;
+            padding: 1rem 1.15rem;
+        }
+
+        .wp-entry-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 0.4rem;
+        }
+
+        .wp-entry-num {
+            font-size: 0.82rem;
+            font-weight: 900;
+            color: var(--gold-neon);
+        }
+
+        .wp-entry-cat {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #c4b5fd;
+            background: rgba(139, 92, 246, 0.16);
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        .wp-entry-title {
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .wp-entry-prose {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.65;
+        }
+
+        /* Web2 Tabs & Stage */
         .web2-tabs {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
@@ -584,7 +685,7 @@
             font-size: 0.88rem;
             color: var(--text-secondary);
             margin-bottom: 0.95rem;
-            line-height: 1.55;
+            line-height: 1.58;
         }
 
         .web2-controls {
@@ -627,234 +728,146 @@
             border-radius: 6px;
         }
 
-        /* Drawer */
-        .drawer-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.72);
-            z-index: 200;
-            display: none;
-        }
-
-        .drawer {
-            position: fixed;
-            top: 0;
-            right: -350px;
-            width: 350px;
-            max-width: 90vw;
-            height: 100%;
-            background: var(--bg-navy);
-            border-left: 1px solid var(--gold-soft);
-            z-index: 201;
-            transition: right 0.25s ease;
-            padding: 1.35rem;
-            overflow-y: auto;
-        }
-
-        .drawer.active { right: 0; }
-
-        .drawer-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--gold-soft);
-            margin-bottom: 1rem;
-        }
-
-        .drawer-link {
-            display: block;
-            text-decoration: none;
-            color: var(--text-primary);
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 215, 0, 0.16);
-            border-radius: 10px;
-            padding: 0.72rem 0.85rem;
-            font-size: 0.88rem;
-            margin-bottom: 0.55rem;
-        }
-
-        .modal-x {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Footer */
         footer {
             background: #050609;
             border-top: 1px solid var(--gold-soft);
-            padding: 2rem 1.2rem;
+            padding: 1.6rem 1.2rem;
             text-align: center;
             color: var(--text-secondary);
-            font-size: 0.82rem;
-            line-height: 1.8;
+            font-size: 0.8rem;
+            line-height: 1.75;
         }
 
         footer a {
             color: var(--gold-neon);
             text-decoration: none;
         }
-
-        @media (max-width: 600px) {
-            header { padding: 0.72rem 0.85rem; }
-            .brand-name { font-size: 1.15rem; }
-            .lang-select { max-width: 112px; font-size: 0.76rem; }
-            .realm-section { padding: 1.1rem 0.9rem; }
-        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-            <div class="brand-badge">HK</div>
-            <div class="brand-name">HKWB</div>
-        </div>
-        <div class="header-right">
-            <select id="langSelect" class="lang-select" aria-label="Language Selector">
-                <option value="ko" selected>한국어 (Korean)</option>
-                <option value="en">English (US)</option>
-                <option value="zh-CN">中文 (简体)</option>
-                <option value="zh-TW">繁體中文</option>
-                <option value="ja">日本語</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="pt">Português</option>
-                <option value="ru">Русский</option>
-                <option value="ar">العربية</option>
-                <option value="hi">हिन्दी</option>
-                <option value="vi">Tiếng Việt</option>
-                <option value="th">ไทย</option>
-                <option value="id">Bahasa Indonesia</option>
+    <!-- 제일 위: HKWB 네모 박스 -->
+    <header class="top-bar">
+        <div class="hkwb-box" onclick="showCover()" title="HKWB">HKWB</div>
+        <div class="top-controls">
+            <select id="langSelect" class="lang-select" aria-label="Currency Selector">
+                <option value="ko" selected>한국어 (KRW ₩)</option>
+                <option value="en">English (USD $)</option>
+                <option value="zh-CN">中文简体 (CNY ¥)</option>
+                <option value="zh-TW">繁體中文 (TWD NT$)</option>
+                <option value="ja">日本語 (JPY ¥)</option>
+                <option value="de">Deutsch (EUR €)</option>
+                <option value="fr">Français (EUR €)</option>
+                <option value="es">Español (EUR €)</option>
+                <option value="pt">Português (EUR €)</option>
+                <option value="ru">Русский (RUB ₽)</option>
+                <option value="ar">العربية (AED د.إ)</option>
+                <option value="hi">हिन्दी (INR ₹)</option>
+                <option value="vi">Tiếng Việt (VND ₫)</option>
+                <option value="th">ไทย (THB ฿)</option>
+                <option value="id">Bahasa Indonesia (IDR Rp)</option>
             </select>
-            <button class="hamburger" id="menuBtn" aria-label="메뉴 열기">
-                <span></span><span></span><span></span>
-            </button>
+            <button type="button" class="back-cover-btn" id="backCoverBtn" onclick="showCover()">← 앞장 표지</button>
         </div>
     </header>
 
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <aside class="drawer" id="drawer">
-        <div class="drawer-head">
-            <strong style="color: var(--gold-neon);">HKWB 메뉴</strong>
-            <button class="modal-x" id="drawerClose" aria-label="닫기">&times;</button>
+    <!-- 1. 제일 앞장 표지 -->
+    <section class="cover-page" id="coverPage">
+        <div class="entry-row">
+            <button type="button" class="entry-btn web3-entry" onclick="openView('web3')">웹3 은행 진입 -&gt;</button>
+            <button type="button" class="entry-btn web2-entry" onclick="openView('web2')">인터넷 은행 진입 -&gt;</button>
         </div>
-        <a href="#web3-realm" class="drawer-link" onclick="closeDrawer()">⚡ Web3 · 개인자산 &amp; 10대 분산 연동망</a>
-        <a href="#engine-workbench" class="drawer-link" onclick="closeDrawer()">🔧 연동망 실행 엔진 &amp; API 상태</a>
-        <a href="#web2-realm" class="drawer-link" onclick="closeDrawer()">🏛️ Web2 · 입금·출금·송금·예금·저축·대출</a>
-        <a href="#cs-panel" class="drawer-link" onclick="closeDrawer()">🤖 고객센터 (AGI · ASI · 삐니)</a>
-        <a href="#social-panel" class="drawer-link" onclick="closeDrawer()">💛 사회환원(최대 60%) &amp; 리워드</a>
-        <a href="https://ljw2358.github.io/HKWB/" class="drawer-link">🌐 HKWB 웹3 페이지</a>
-        <a href="https://ljw2358.github.io/HK-BANK/" class="drawer-link">🏦 HK-BANK 페이지</a>
-    </aside>
+    </section>
 
-    <main>
-        <section class="hero">
-            <div class="hero-tag">WEB3 10-NETWORK ENGINE · WEB2 6-CORE BANKING · API READY</div>
-            <h1>인류와 기술이 공전하는 차세대 디지털 금융 혁신</h1>
-            <p>10대 분산 연동망(지갑연결·송금·결제·예치·보상·기본소득·스왑·DEX스왑·LP스테이킹·거버넌스)과 Web2 6대 뱅킹 프로세스를 한 화면에서 실행하고 검증할 수 있습니다.</p>
-            <div class="mode-switch">
-                <a href="#web3-realm" class="mode-btn web3-pill">⚡ Web3 분산 금융 &amp; 10대 연동망</a>
-                <a href="#web2-realm" class="mode-btn web2-pill">🏛️ Web2 뱅킹 (입·출·송·예·적·대)</a>
-            </div>
-        </section>
-
-        <!-- WEB3 REALM -->
-        <section class="realm-section" id="web3-realm">
+    <!-- 2. 웹3 은행 전용 화면 -->
+    <main class="view-container" id="web3View">
+        <section class="realm-section">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="gold">WEB3</span> 개인자산 대시보드 &amp; 10대 분산 연동망</h2>
-                    <div class="realm-sub">카드를 선택하면 양파 까기 4단계 프로세스와 실제 실행·API 연동 엔진이 아래 워크벤치에 열립니다.</div>
+                    <h2 class="realm-title"><span class="gold">웹3 은행</span> · 개인자산 &amp; 10대 분산 연동망</h2>
+                    <div class="realm-sub">10대 연동망 선택 시 1~4단계 프로세스와 수수료(걷는 수수료 ≥ 지급 비용) 순유입 계산이 실행됩니다.</div>
                 </div>
             </div>
 
-            <!-- Personal Asset Dashboard -->
             <div class="dash-grid">
                 <div class="dash-card">
-                    <div class="dash-label">총 통합 자산 (Web3 + Web2)</div>
-                    <div class="dash-val" id="totalAsset">$184,900.00</div>
-                    <div class="dash-note">로컬 상태 저장 · API 동기화 준비</div>
+                    <div class="dash-label">총 통합 자산</div>
+                    <div class="dash-val" id="totalAsset">-</div>
+                    <div class="dash-note" id="currencyBadge">기준 통화: KRW (₩)</div>
                 </div>
                 <div class="dash-card">
-                    <div class="dash-label">Web3 지갑 · 예치 · LP스테이킹</div>
-                    <div class="dash-val" id="web3Asset">$112,400.00</div>
-                    <div class="dash-note">AGI/ASI 유동 수익률 엔진</div>
+                    <div class="dash-label">웹3 지갑 · 예치 · LP스테이킹</div>
+                    <div class="dash-val" id="web3Asset">-</div>
+                    <div class="dash-note">AGI/ASI 유동 수익률 산정</div>
                 </div>
                 <div class="dash-card">
                     <div class="dash-label">기본소득(UBI) &amp; 리워드 누적</div>
-                    <div class="dash-val" id="ubiAsset">$9,850.00</div>
-                    <div class="dash-note">스왑·예치·기여 리워드 합산</div>
+                    <div class="dash-val" id="ubiAsset">-</div>
+                    <div class="dash-note">수수료 순유입 기반 적립</div>
                 </div>
                 <div class="dash-card">
-                    <div class="dash-label">사회환원 기준</div>
-                    <div class="dash-val">최대 60%</div>
-                    <div class="dash-note">순수익 기반 환원 · 국경없는의사회·세이브더칠드런·UNHCR</div>
+                    <div class="dash-label">사회환원 · 수수료 원칙</div>
+                    <div class="dash-val">최대 60% / 순유입 ≥ 지급</div>
+                    <div class="dash-note">국경없는의사회·세이브더칠드런·UNHCR</div>
                 </div>
             </div>
 
             <div class="dash-actions">
-                <button class="btn-gold" onclick="simulateTick()">시뮬레이션 수익/리워드 반영</button>
-                <button class="btn-ghost" onclick="resetAllState()">초기 상태 복원</button>
+                <button type="button" class="btn-gold" onclick="simulateTick()">시뮬레이션 수익/리워드 반영</button>
+                <button type="button" class="btn-ghost" onclick="resetAllState()">초기 상태 복원</button>
             </div>
 
-            <!-- 10 Distributed Networks Grid -->
             <div class="net-grid" id="netGrid"></div>
 
-            <!-- Interactive Onion-Peel + Execution + Backend/API Workbench -->
-            <div class="engine-workbench" id="engine-workbench">
+            <div class="engine-workbench">
                 <div class="wb-header">
-                    <div class="wb-title" id="wbTitle">01. 지갑연결 (Wallet Connect)</div>
-                    <div class="wb-api-tag" id="wbApiStatus">API Mode: Local Simulation (Endpoint Ready)</div>
+                    <div class="wb-title" id="wbTitle">01. 지갑연결</div>
+                    <div class="wb-api-tag">백엔드 API 미구동 · 로컬 엔진 활성 (걷는 수수료 ≥ 지급 비용)</div>
                 </div>
-
+                <div class="wb-overview" id="wbOverview"></div>
                 <div class="onion-grid" id="onionSteps"></div>
 
                 <div class="exec-bar">
                     <input type="text" id="execTarget" class="exec-input" placeholder="수신주소 / 풀 / 쌍 입력">
-                    <input type="number" id="execAmount" class="exec-input" placeholder="수량/금액 (예: 250)">
+                    <input type="number" id="execAmount" class="exec-input" placeholder="거래금액 입력">
                     <select id="execApiMode" class="exec-select">
                         <option value="local" selected>로컬 시뮬레이터 실행</option>
-                        <option value="remote">외부 백엔드 API 호출 시도</option>
+                        <option value="remote">외부 API 엔드포인트 호출</option>
                     </select>
-                    <button type="button" class="btn-gold" onclick="executeNetworkAction()">프로세스 실행</button>
+                    <button type="button" class="btn-gold" onclick="executeNetworkAction()">프로세스 &amp; 수수료 실행</button>
                 </div>
 
                 <div class="tx-log" id="txLog">
-                    <strong>실행 로그:</strong> 연동망 카드를 선택하거나 수량/주소를 입력한 뒤 [프로세스 실행]을 누르세요.
+                    <strong>실행 로그:</strong> 거래금액을 입력하고 [프로세스 &amp; 수수료 실행]을 누르세요.
                 </div>
             </div>
 
-            <!-- CS, Social Return & Rewards, YouTube & TikTok -->
             <div class="web3-extras">
-                <div class="info-panel" id="cs-panel">
+                <div class="info-panel">
                     <h3>🤖 고객센터 · AGI · ASI · 삐니</h3>
-                    <p>연동망 절차, DEX스왑·LP스테이킹, 기본소득, 사회환원·리워드 및 백엔드 API 연결을 안내합니다.</p>
+                    <p>수수료율 산식(걷는 수수료 ≥ 지급 비용), 10대 연동망 절차, 테스트 파이 검증 및 API 상태를 안내합니다.</p>
                     <div class="cs-row">
-                        <input type="text" id="csInput" class="cs-input" placeholder="질문 입력 (예: DEX스왑, LP스테이킹, API)">
-                        <button class="btn-gold" onclick="askPinni()">문의</button>
+                        <input type="text" id="csInput" class="cs-input" placeholder="질문 입력 (예: 수수료, 테스트 파이, 리갈)">
+                        <button type="button" class="btn-gold" onclick="askPinni()">문의</button>
                     </div>
                     <div class="cs-reply" id="csReply">
-                        <strong>삐니 (AGI·ASI 연계):</strong> 혜공 형님, 궁금하신 기능을 입력하시면 절차와 동작 방식을 바로 알려드립니다.
+                        <strong>삐니 (AGI·ASI 연계):</strong> 지급하는 비용·리워드 이상을 걷는 순유입 수수료 구조로 설계되었습니다.
                     </div>
                 </div>
 
-                <div class="info-panel" id="social-panel">
+                <div class="info-panel">
                     <h3>💛 사회환원 (순수익 최대 60%) &amp; 리워드</h3>
-                    <p>순수익의 <strong>최대 60%</strong> 사회환원 기조와 참여자 <strong>리워드</strong>를 결합합니다.</p>
+                    <p>순수익의 <strong>최대 60%</strong> 사회환원 기조와 리워드를 연결합니다.</p>
                     <ul>
                         <li><strong>구호 협력:</strong> 국경없는의사회 · 세이브더칠드런 · 유엔난민기구(UNHCR)</li>
                         <li><strong>165층 거점 원칙:</strong> 구호·협력 단체 입주 시 우선권 검토 방향</li>
-                        <li><strong>리워드 순환:</strong> 예치·스왑·LP스테이킹·커뮤니티 활동 리워드 반영</li>
+                        <li><strong>리워드 순환:</strong> 수수료 수취 범위 내에서 참여 리워드 지급</li>
                     </ul>
                 </div>
 
-                <div class="info-panel" id="sns-panel">
+                <div class="info-panel">
                     <h3>📺 유튜브 &amp; 틱톡</h3>
-                    <p>라이브 스트리밍 및 생태계 기록 채널입니다.</p>
+                    <p>라이브 방송 및 생태계 기록 채널입니다.</p>
                     <div class="sns-links">
                         <a href="https://www.youtube.com/@Hyekong2026" target="_blank" rel="noopener" class="sns-btn">▶ YouTube (@Hyekong2026)</a>
                         <a href="https://www.tiktok.com/@hyekong2026" target="_blank" rel="noopener" class="sns-btn">♪ TikTok (@hyekong2026)</a>
@@ -863,22 +876,69 @@
             </div>
         </section>
 
-        <!-- WEB2 REALM -->
-        <section class="realm-section web2-section" id="web2-realm">
+        <!-- 5대 코어 리갈 & 컴플라이언스 -->
+        <section class="realm-section" id="legalSection">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="cyan">WEB2</span> 인터넷 뱅크 (입금 · 출금 · 송금 · 예금 · 저축 · 대출)</h2>
-                    <div class="realm-sub">무점포 뱅킹 6대 핵심 기능의 실제 계좌 잔액 반영 시뮬레이션입니다.</div>
+                    <h2 class="realm-title"><span class="gold">5대 코어 리갈 &amp; 컴플라이언스</span></h2>
+                    <div class="realm-sub">HKWB(웹3 디지털 은행 · 인터넷 은행) 운영을 위한 핵심 법무·준법·리스크 통제 기준입니다.</div>
+                </div>
+            </div>
+            <div class="legal-grid" id="legalGrid"></div>
+        </section>
+
+        <!-- FAQ 20선 -->
+        <section class="realm-section" id="faqSection">
+            <div class="realm-header">
+                <div>
+                    <h2 class="realm-title"><span class="gold">FAQ 20선</span> · 자주 묻는 질문</h2>
+                    <div class="realm-sub">구조·수수료·연동망·테스트 파이·사회환원에 관한 핵심 질문 20가지입니다.</div>
+                </div>
+            </div>
+            <div class="faq-list" id="faqList"></div>
+        </section>
+
+        <!-- 백서 100선 서술형 -->
+        <section class="realm-section" id="whitepaperSection">
+            <div class="realm-header">
+                <div>
+                    <h2 class="realm-title"><span class="gold">백서 100선</span> · 서술형 조항</h2>
+                    <div class="realm-sub">HKWB 비전·아키텍처·10대 연동망·경제 모델·거버넌스·리갈을 서술형 100개 항목으로 정리했습니다.</div>
+                </div>
+            </div>
+            <div class="wp-toolbar">
+                <input type="text" id="wpSearch" class="wp-search" placeholder="백서 100선 검색 (예: 스왑, 수수료, 기본소득, 리갈, 테스트 파이)">
+                <select id="wpCategory" class="exec-select">
+                    <option value="ALL" selected>전체 분야 (100선)</option>
+                    <option value="비전·구조">비전·구조</option>
+                    <option value="10대 연동망">10대 연동망</option>
+                    <option value="수수료·UBI·환원">수수료·UBI·환원</option>
+                    <option value="인터넷 뱅크">인터넷 뱅크</option>
+                    <option value="리갈·보안·검증">리갈·보안·검증</option>
+                </select>
+                <span class="wp-meta" id="wpCountLabel">표시 중: 100 / 100선</span>
+            </div>
+            <div class="wp-list" id="wpList"></div>
+        </section>
+    </main>
+
+    <!-- 3. 인터넷 은행 전용 화면 -->
+    <main class="view-container" id="web2View">
+        <section class="realm-section web2-section">
+            <div class="realm-header">
+                <div>
+                    <h2 class="realm-title"><span class="cyan">인터넷 은행</span> · 입금 · 출금 · 송금 · 예금 · 저축 · 대출</h2>
+                    <div class="realm-sub">ljw2358/bank 무점포 뱅킹 6대 핵심 프로세스 (걷는 수수료 ≥ 지급 비용 · 국가별 화폐단위 반영)</div>
                 </div>
             </div>
 
             <div class="web2-tabs">
-                <button class="web2-tab active" data-tab="deposit">입금</button>
-                <button class="web2-tab" data-tab="withdraw">출금</button>
-                <button class="web2-tab" data-tab="transfer">송금</button>
-                <button class="web2-tab" data-tab="term">예금</button>
-                <button class="web2-tab" data-tab="saving">저축</button>
-                <button class="web2-tab" data-tab="loan">대출</button>
+                <button type="button" class="web2-tab active" data-tab="deposit">입금</button>
+                <button type="button" class="web2-tab" data-tab="withdraw">출금</button>
+                <button type="button" class="web2-tab" data-tab="transfer">송금</button>
+                <button type="button" class="web2-tab" data-tab="term">예금</button>
+                <button type="button" class="web2-tab" data-tab="saving">저축</button>
+                <button type="button" class="web2-tab" data-tab="loan">대출</button>
             </div>
 
             <div class="web2-stage" id="web2Stage"></div>
@@ -886,218 +946,222 @@
     </main>
 
     <footer>
-        <div><strong>HKWB</strong> | Referral ID: <strong>ljw2358</strong> | Support: <a href="mailto:support@hkwb.world">support@hkwb.world</a></div>
-        <div>10대 분산 연동망 · AGI/ASI/삐니 고객센터 · 순수익 최대 60% 사회환원 &amp; 리워드 · Web2 6대 뱅킹</div>
-        <div style="margin-top: 6px; color: #64748b;">&copy; 2026 HKWB. All Rights Reserved.</div>
+        <div><strong>HKWB</strong> | Repo: <a href="https://github.com/ljw2358/bank" target="_blank" rel="noopener">ljw2358/bank</a> | Referral ID: <strong>ljw2358</strong> | Support: <a href="mailto:support@hkwb.world">support@hkwb.world</a></div>
+        <div style="margin-top: 4px; color: #64748b;">&copy; 2026 HKWB. All Rights Reserved.</div>
     </footer>
 
     <script>
-        /* =========================================================
-           0. BACKEND / API ENDPOINT CONFIGURATION (실서버 연결 시 교체)
-           ========================================================= */
         const HKWB_API_CONFIG = {
-            baseUrl: '', // 예: 'https://api.hkwb.world' (비어 있으면 로컬 시뮬레이터로 동작)
+            baseUrl: '',
             endpoints: {
                 executeNetwork: '/api/v1/web3/execute',
                 web2Action: '/api/v1/web2/banking'
             }
         };
 
-        // Drawer
-        const menuBtn = document.getElementById('menuBtn');
-        const drawer = document.getElementById('drawer');
-        const drawerOverlay = document.getElementById('drawerOverlay');
-        const drawerClose = document.getElementById('drawerClose');
-
-        function openDrawer() {
-            drawer.classList.add('active');
-            drawerOverlay.style.display = 'block';
+        function showCover() {
+            document.getElementById('coverPage').style.display = 'flex';
+            document.getElementById('web3View').classList.remove('active');
+            document.getElementById('web2View').classList.remove('active');
+            document.getElementById('backCoverBtn').classList.remove('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function closeDrawer() {
-            drawer.classList.remove('active');
-            drawerOverlay.style.display = 'none';
-        }
-        menuBtn.addEventListener('click', openDrawer);
-        drawerClose.addEventListener('click', closeDrawer);
-        drawerOverlay.addEventListener('click', closeDrawer);
 
-        // 10 Distributed Networks (지갑연결, 송금, 결제, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, 거버넌스)
+        function openView(mode) {
+            document.getElementById('coverPage').style.display = 'none';
+            document.getElementById('web3View').classList.toggle('active', mode === 'web3');
+            document.getElementById('web2View').classList.toggle('active', mode === 'web2');
+            document.getElementById('backCoverBtn').classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const currencyMap = {
+            'ko': { code: 'KRW', symbol: '₩', rateFromUSD: 1400, label: 'KRW (₩)' },
+            'en': { code: 'USD', symbol: '$', rateFromUSD: 1, label: 'USD ($)' },
+            'zh-CN': { code: 'CNY', symbol: '¥', rateFromUSD: 7.2, label: 'CNY (¥)' },
+            'zh-TW': { code: 'TWD', symbol: 'NT$', rateFromUSD: 32, label: 'TWD (NT$)' },
+            'ja': { code: 'JPY', symbol: '¥', rateFromUSD: 152, label: 'JPY (¥)' },
+            'de': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
+            'fr': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
+            'es': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
+            'pt': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
+            'ru': { code: 'RUB', symbol: '₽', rateFromUSD: 98, label: 'RUB (₽)' },
+            'ar': { code: 'AED', symbol: 'د.إ', rateFromUSD: 3.67, label: 'AED (د.إ)' },
+            'hi': { code: 'INR', symbol: '₹', rateFromUSD: 84, label: 'INR (₹)' },
+            'vi': { code: 'VND', symbol: '₫', rateFromUSD: 25400,label: 'VND (₫)' },
+            'th': { code: 'THB', symbol: '฿', rateFromUSD: 34.5, label: 'THB (฿)' },
+            'id': { code: 'IDR', symbol: 'Rp', rateFromUSD: 15800,label: 'IDR (Rp)' }
+        };
+
+        let currentLang = 'ko';
+        function getCurr() { return currencyMap[currentLang] || currencyMap.ko; }
+
+        function formatFromUSD(usdAmount) {
+            const c = getCurr();
+            const converted = Number(usdAmount) * c.rateFromUSD;
+            const decimals = ['KRW', 'JPY', 'VND', 'IDR'].includes(c.code) ? 0 : 2;
+            return c.symbol + converted.toLocaleString('en-US', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            });
+        }
+
+        function inputToUSD(localAmount) {
+            return Number(localAmount || 0) / getCurr().rateFromUSD;
+        }
+
         const networks10 = [
             {
-                id: 'wallet',
-                code: 'NET 01',
-                name: '지갑연결',
-                brief: '암호화 세션·주소 검증·잔액 동기화',
-                targetPlaceholder: '지갑 주소 또는 기기 ID',
-                defaultTarget: '0xHKWB...2358',
+                id: 'wallet', code: 'NET 01', name: '지갑연결', feeRate: 0.004, payoutRate: 0.002,
+                brief: '수수료(0.4%) ≥ 보상(0.2%)',
+                overview: '지갑 세션 검증 수수료(0.4%)를 책정해 연동 보상(0.2%) 이상의 순유입을 확보합니다.',
+                targetPlaceholder: '지갑 주소 또는 기기 ID', defaultTarget: 'G...PI-TESTNET-2358',
                 layers: [
-                    ['1단계 · 껍질(세션 요청)', '지갑 프로바이더/세션 키를 감지하고 암호화 연결 채널을 엽니다.'],
-                    ['2단계 · 껍질(권한 검증)', '자산 읽기·서명 권한 범위를 확인해 불필요한 승인을 막습니다.'],
-                    ['3단계 · 속살(잔액·토큰 동기화)', '보유 잔액, 스테이킹 포지션, 리워드 수치를 불러옵니다.'],
-                    ['4단계 · 핵(연결 확정)', '활성 지갑 세션을 등록하고 보안 감시를 시작합니다.']
+                    ['1단계 · 껍질(세션 요청)', '지갑 세션 암호화 채널을 엽니다.'],
+                    ['2단계 · 껍질(권한 검증)', '안전 권한 범위만 허용합니다.'],
+                    ['3단계 · 속살(잔액 동기화)', '지갑 잔액 및 포지션을 불러옵니다.'],
+                    ['4단계 · 핵(연결·수수료 정산)', '수수료(0.4%) ≥ 보상(0.2%)을 반영합니다.']
                 ]
             },
             {
-                id: 'transfer',
-                code: 'NET 02',
-                name: '송금',
-                brief: '주소/규칙 검증·서명·온체인 전파·정산',
-                targetPlaceholder: '받는 지갑 주소 (예: 0x99A1...)',
-                defaultTarget: '0x99A1...8820',
+                id: 'transfer', code: 'NET 02', name: '송금', feeRate: 0.010, payoutRate: 0.005,
+                brief: '수수료(1.0%) ≥ 환급(0.5%)',
+                overview: '송금 수수료(1.0%)가 지급 리워드(0.5%)보다 크도록 설정합니다.',
+                targetPlaceholder: '받는 지갑 주소', defaultTarget: 'G...TESTNET-9910',
                 layers: [
-                    ['1단계 · 껍질(수신자·수량 입력)', '수신 주소, 송금 수량, 수수료 옵션을 입력받습니다.'],
-                    ['2단계 · 껍질(주소·규칙 검증)', '유효 주소 형식과 제재·한도 규칙을 사전 검증합니다.'],
-                    ['3단계 · 속살(서명·브로드캐스트)', '트랜잭션을 서명해 분산 노드로 전파하고 Tx 해시를 생성합니다.'],
-                    ['4단계 · 핵(블록 확정·잔액 반영)', '컨펌 완료 후 송금인 잔액 차감 및 원장 기록을 확정합니다.']
+                    ['1단계 · 껍질(입력)', '수신 주소와 송금액을 입력합니다.'],
+                    ['2단계 · 껍질(검증)', '주소 유효성과 한도·규칙을 확인합니다.'],
+                    ['3단계 · 속살(서명·전파)', '트랜잭션을 서명해 전파합니다.'],
+                    ['4단계 · 핵(정산)', '수수료(1.0%) 수취 및 리워드(0.5%) 정산을 확정합니다.']
                 ]
             },
             {
-                id: 'payment',
-                code: 'NET 03',
-                name: '결제',
-                brief: '청구서 생성·한도 체크·결제 승인·영수증',
-                targetPlaceholder: '가맹점/청구 코드 (예: MER-165)',
-                defaultTarget: 'MER-165',
+                id: 'payment', code: 'NET 03', name: '결제', feeRate: 0.012, payoutRate: 0.006,
+                brief: '수수료(1.2%) ≥ 리워드(0.6%)',
+                overview: '결제 수수료(1.2%)가 지급 리워드(0.6%) 이상이 되도록 설계합니다.',
+                targetPlaceholder: '가맹점/청구 코드', defaultTarget: 'PAY-165',
                 layers: [
-                    ['1단계 · 껍질(결제 청구 생성)', '결제 금액, 결제 수단, 주문 번호가 담긴 요청을 생성합니다.'],
-                    ['2단계 · 껍질(잔액·한도 확인)', '가용 잔액과 일일 한도, 환율/수수료를 계산합니다.'],
-                    ['3단계 · 속살(결제 서명 승인)', '사용자 인증/서명으로 결제 실행을 승인합니다.'],
-                    ['4단계 · 핵(정산·영수증 발행)', '결제 완료 내역을 기록하고 리워드 적립과 연계합니다.']
+                    ['1단계 · 껍질(청구)', '결제 금액과 주문 정보를 생성합니다.'],
+                    ['2단계 · 껍질(산출)', '수수료(1.2%)와 리워드(0.6%)를 계산합니다.'],
+                    ['3단계 · 속살(승인)', '결제 승인을 처리합니다.'],
+                    ['4단계 · 핵(정산)', '결제 확정 및 순수수료 유입을 반영합니다.']
                 ]
             },
             {
-                id: 'deposit',
-                code: 'NET 04',
-                name: '예치',
-                brief: '예치 기간 설정·락업/유동 선택·수익 적립',
-                targetPlaceholder: '예치 풀 코드 (예: VAULT-30D)',
-                defaultTarget: 'VAULT-30D',
+                id: 'deposit', code: 'NET 04', name: '예치', feeRate: 0.015, payoutRate: 0.008,
+                brief: '운용수수료(1.5%) ≥ 지급이자(0.8%)',
+                overview: '예치 운용 수수료(1.5%)가 지급 이자/보상(0.8%) 이상이 되도록 운영합니다.',
+                targetPlaceholder: '예치 풀 코드', defaultTarget: 'VAULT-PI-30D',
                 layers: [
-                    ['1단계 · 껍질(예치 조건 선택)', '유동 예치 또는 기간형 예치 조건과 예상 수익 구조를 고릅니다.'],
-                    ['2단계 · 껍질(예치 수량 확정)', '예치할 수량을 지정하고 약정 규칙을 확인합니다.'],
-                    ['3단계 · 속살(예치 풀 배정)', '자산이 예치 풀에 배정되고 예치 포지션이 생성됩니다.'],
-                    ['4단계 · 핵(AGI/ASI 수익 누적)', '변동 이율 기준에 따라 수익이 누적되며 해지·만기를 관리합니다.']
+                    ['1단계 · 껍질(조건)', '예치 기간 및 유동/고정 조건을 선택합니다.'],
+                    ['2단계 · 껍질(확정)', '예치 수량과 수수료·이자 비율을 확인합니다.'],
+                    ['3단계 · 속살(배정)', '예치 풀에 자산을 배정합니다.'],
+                    ['4단계 · 핵(누적)', '수수료(1.5%) ≥ 지급(0.8%) 기준으로 수익을 적립합니다.']
                 ]
             },
             {
-                id: 'reward',
-                code: 'NET 05',
-                name: '보상',
-                brief: '기여 집계·가중치 계산·클레임·지갑 반영',
-                targetPlaceholder: '보상 풀 ID (예: RWD-ECO)',
-                defaultTarget: 'RWD-ECO',
+                id: 'reward', code: 'NET 05', name: '보상', feeRate: 0.008, payoutRate: 0.005,
+                brief: '처리수수료(0.8%) ≥ 지급보상(0.5%)',
+                overview: '보상 처리 수수료(0.8%)가 지급 보상(0.5%)을 상회하도록 설계합니다.',
+                targetPlaceholder: '보상 풀 ID', defaultTarget: 'RWD-PI-ECO',
                 layers: [
-                    ['1단계 · 껍질(기여 활동 집계)', '예치 유지, 스왑·LP 참여, 커뮤니티 기여 이력을 집계합니다.'],
-                    ['2단계 · 껍질(보상 가중치 산출)', '기여 점수와 정책 규칙에 따라 수령 가능 보상을 계산합니다.'],
-                    ['3단계 · 속살(클레임 요청)', '누적 보상을 확인하고 수령 트랜잭션을 실행합니다.'],
-                    ['4단계 · 핵(잔액 반영·재예치)', '수령된 보상을 지갑 잔액에 더하거나 재예치로 연결합니다.']
+                    ['1단계 · 껍질(집계)', '기여 활동을 집계합니다.'],
+                    ['2단계 · 껍질(비교)', '수수료(0.8%) ≥ 지급(0.5%) 기준을 확인합니다.'],
+                    ['3단계 · 속살(클레임)', '보상 수령을 실행합니다.'],
+                    ['4단계 · 핵(반영)', '잔액에 반영합니다.']
                 ]
             },
             {
-                id: 'ubi',
-                code: 'NET 06',
-                name: '기본소득',
-                brief: 'UBI 재원 적립·대상 검증·주기 분배·수령',
-                targetPlaceholder: 'UBI 수령 계정 (예: UBI-MAIN)',
-                defaultTarget: 'UBI-MAIN',
+                id: 'ubi', code: 'NET 06', name: '기본소득', feeRate: 0.010, payoutRate: 0.006,
+                brief: '분배수수료(1.0%) ≥ 지급분(0.6%)',
+                overview: '기본소득 분배·정산 수수료(1.0%)가 지급 분배분(0.6%) 이상을 유지합니다.',
+                targetPlaceholder: 'UBI 수령 계정', defaultTarget: 'UBI-WALLET-01',
                 layers: [
-                    ['1단계 · 껍질(UBI 재원 적립)', '수익 배분 기준에 따라 기본소득 재원을 적립합니다.'],
-                    ['2단계 · 껍질(대상·주기 검증)', '지급 주기별 대상 계정의 적격성과 분배 산식을 검증합니다.'],
-                    ['3단계 · 속살(분배 트랜잭션 집행)', '대상 계정에 기본소득 지급분을 순차 배분합니다.'],
-                    ['4단계 · 핵(수령 내역 확정)', '기본소득 지급 이력을 기록하고 즉시 활용 가능 상태로 전환합니다.']
+                    ['1단계 · 껍질(적립)', 'UBI 재원을 적립합니다.'],
+                    ['2단계 · 껍질(검증)', '대상 자격과 비율을 검증합니다.'],
+                    ['3단계 · 속살(배분)', '대상 계정에 분배합니다.'],
+                    ['4단계 · 핵(확정)', '지급 이력을 확정합니다.']
                 ]
             },
             {
-                id: 'swap',
-                code: 'NET 07',
-                name: '스왑',
-                brief: '자산 쌍 선택·비율/수수료 산출·즉시 교환',
-                targetPlaceholder: '스왑 쌍 (예: HKW -> USDT)',
-                defaultTarget: 'HKW -> USDT',
+                id: 'swap', code: 'NET 07', name: '스왑', feeRate: 0.011, payoutRate: 0.005,
+                brief: '스왑수수료(1.1%) ≥ 리워드(0.5%)',
+                overview: '스왑 수수료(1.1%)가 스왑 리워드(0.5%) 이상이 되도록 설정합니다.',
+                targetPlaceholder: '스왑 쌍 (예: PI -> HKW)', defaultTarget: 'PI -> HKW',
                 layers: [
-                    ['1단계 · 껍질(교환 쌍·수량 입력)', '보유 자산과 전환할 대상 자산을 선택하고 수량을 입력합니다.'],
-                    ['2단계 · 껍질(교환 비율·수수료 산출)', '실시간 교환 비율과 예상 수령량을 계산합니다.'],
-                    ['3단계 · 속살(스왑 서명 실행)', '승인 및 교환 트랜잭션을 서명해 실행합니다.'],
-                    ['4단계 · 핵(전환 자산 반영)', '교환된 대상 자산이 잔고에 반영되고 내역이 저장됩니다.']
+                    ['1단계 · 껍질(쌍 입력)', '교환할 자산 쌍과 수량을 입력합니다.'],
+                    ['2단계 · 껍질(산출)', '수수료(1.1%)와 리워드(0.5%)를 산출합니다.'],
+                    ['3단계 · 속살(서명)', '스왑 트랜잭션을 서명합니다.'],
+                    ['4단계 · 핵(반영)', '전환 자산을 반영합니다.']
                 ]
             },
             {
-                id: 'dexswap',
-                code: 'NET 08',
-                name: 'DEX스왑',
-                brief: 'AMM 풀 조회·슬리피지 보호·온체인 라우팅',
-                targetPlaceholder: 'DEX 라우트/쌍 (예: DEX:HKW/PI)',
-                defaultTarget: 'DEX:HKW/PI',
+                id: 'dexswap', code: 'NET 08', name: 'DEX스왑', feeRate: 0.014, payoutRate: 0.007,
+                brief: 'DEX수수료(1.4%) ≥ 인센티브(0.7%)',
+                overview: 'DEX 스왑 수수료(1.4%)가 인센티브(0.7%)보다 크도록 설정합니다.',
+                targetPlaceholder: 'DEX 라우트/쌍', defaultTarget: 'DEX:PI/HKW',
                 layers: [
-                    ['1단계 · 껍질(유동성 풀·라우팅 탐색)', '최적의 AMM 풀 경로와 호가 깊이를 조회합니다.'],
-                    ['2단계 · 껍질(슬리피지 허용치 설정)', '가격 변동 폭 방어를 위한 슬리피지 한도를 적용합니다.'],
-                    ['3단계 · 속살(스마트컨트랙트 스왑 호출)', '풀 준비금 비율에 따라 토큰을 교환하고 수수료를 정산합니다.'],
-                    ['4단계 · 핵(온체인 스왑 영수증 확정)', '최종 수령 수량과 풀 상태 변화를 확정 기록합니다.']
+                    ['1단계 · 껍질(조회)', '유동성 풀 경로와 슬리피지를 조회합니다.'],
+                    ['2단계 · 껍질(산출)', '수수료(1.4%) ≥ 인센티브(0.7%)를 적용합니다.'],
+                    ['3단계 · 속살(호출)', 'AMM 풀 비율에 맞춰 교환합니다.'],
+                    ['4단계 · 핵(확정)', '영수증과 수수료 유입을 확정합니다.']
                 ]
             },
             {
-                id: 'lpstaking',
-                code: 'NET 09',
-                name: 'LP스테이킹',
-                brief: '유동성 공급·LP 토큰 발행·스테이킹·이자 적립',
-                targetPlaceholder: 'LP 풀 이름 (예: LP-HKW-PI)',
-                defaultTarget: 'LP-HKW-PI',
+                id: 'lpstaking', code: 'NET 09', name: 'LP스테이킹', feeRate: 0.016, payoutRate: 0.009,
+                brief: '운용수수료(1.6%) ≥ 스테이킹보상(0.9%)',
+                overview: 'LP 스테이킹 수수료(1.6%)가 지급 보상(0.9%) 이상이 되도록 운영합니다.',
+                targetPlaceholder: 'LP 풀 이름', defaultTarget: 'LP-PI-HKW',
                 layers: [
-                    ['1단계 · 껍질(페어 비율·LP 공급)', '두 자산을 풀 비율에 맞게 예치해 LP 포지션을 구성합니다.'],
-                    ['2단계 · 껍질(LP 토큰 스테이킹 등록)', '발행된 LP 지분을 스테이킹 팜/볼트에 예치합니다.'],
-                    ['3단계 · 속살(수수료·스테이킹 보상 누적)', '풀 거래 수수료와 스테이킹 리워드가 누적됩니다.'],
-                    ['4단계 · 핵(보상 수령·LP 언스테이킹)', '누적 리워드를 클레임하거나 LP 지분을 회수해 정산합니다.']
+                    ['1단계 · 껍질(공급)', '풀 비율에 맞춰 유동성을 공급합니다.'],
+                    ['2단계 · 껍질(등록)', 'LP 지분을 스테이킹 풀에 예치합니다.'],
+                    ['3단계 · 속살(누적)', '수수료(1.6%) ≥ 보상(0.9%) 기준으로 누적합니다.'],
+                    ['4단계 · 핵(정산)', '보상 수령 또는 지분 회수를 처리합니다.']
                 ]
             },
             {
-                id: 'governance',
-                code: 'NET 10',
-                name: '거버넌스',
-                brief: '안건 등록·투표 집계·규정 준수·정책 반영',
-                targetPlaceholder: '안건 코드 (예: GOV-101)',
-                defaultTarget: 'GOV-101',
+                id: 'governance', code: 'NET 10', name: '거버넌스', feeRate: 0.006, payoutRate: 0.003,
+                brief: '등록수수료(0.6%) ≥ 참여보상(0.3%)',
+                overview: '거버넌스 처리 수수료(0.6%)가 참여 보상(0.3%) 이상이 되도록 설계합니다.',
+                targetPlaceholder: '안건 코드', defaultTarget: 'GOV-PI-10',
                 layers: [
-                    ['1단계 · 껍질(안건·컴플라이언스 점검)', '정책·파라미터 제안의 규정 및 보안 적합성을 점검합니다.'],
-                    ['2단계 · 껍질(투표 참여·집계)', '투표권 기준으로 찬성·반대·기권 표를 집계합니다.'],
-                    ['3단계 · 속살(가결·타임락 검증)', '정족수 및 통과 기준 충족 여부를 검증합니다.'],
-                    ['4단계 · 핵(프로토콜 정책 적용)', '확정된 파라미터를 시스템에 반영하고 감사 로그를 남깁니다.']
+                    ['1단계 · 껍질(점검)', '안건 규정과 적합성을 점검합니다.'],
+                    ['2단계 · 껍질(집계)', '투표 결과를 집계합니다.'],
+                    ['3단계 · 속살(검증)', '가결 기준을 검증합니다.'],
+                    ['4단계 · 핵(반영)', '정책을 반영하고 기록합니다.']
                 ]
             }
         ];
 
         let activeNet = networks10[0];
-        let totalAsset = 184900;
-        let web3Asset = 112400;
-        let ubiAsset = 9850;
-        let web2Balance = 72500;
-
-        function fmtUSD(n) {
-            return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
+        let web3AssetUSD = 112400;
+        let ubiAssetUSD = 9850;
+        let web2BalanceUSD = 72500;
 
         function refreshDashboard() {
-            totalAsset = Math.round((web3Asset + web2Balance) * 100) / 100;
-            document.getElementById('totalAsset').textContent = fmtUSD(totalAsset);
-            document.getElementById('web3Asset').textContent = fmtUSD(web3Asset);
-            document.getElementById('ubiAsset').textContent = fmtUSD(ubiAsset);
+            const c = getCurr();
+            const totalUSD = Math.round((web3AssetUSD + web2BalanceUSD) * 100) / 100;
+            document.getElementById('currencyBadge').textContent = `기준 통화: ${c.label}`;
+            document.getElementById('totalAsset').textContent = formatFromUSD(totalUSD);
+            document.getElementById('web3Asset').textContent = formatFromUSD(web3AssetUSD);
+            document.getElementById('ubiAsset').textContent = formatFromUSD(ubiAssetUSD);
         }
 
         function simulateTick() {
-            web3Asset = Math.round(web3Asset * 1.02 * 100) / 100;
-            ubiAsset = Math.round((ubiAsset + 180) * 100) / 100;
+            web3AssetUSD = Math.round(web3AssetUSD * 1.02 * 100) / 100;
+            ubiAssetUSD = Math.round((ubiAssetUSD + 180) * 100) / 100;
             refreshDashboard();
-            appendLog(`시뮬레이션 반영 완료 → Web3 잔액 ${fmtUSD(web3Asset)}, UBI·리워드 ${fmtUSD(ubiAsset)}`);
+            appendLog(`시뮬레이션 반영 완료 → 웹3 자산 ${formatFromUSD(web3AssetUSD)}, UBI·리워드 ${formatFromUSD(ubiAssetUSD)}`);
         }
 
         function resetAllState() {
-            web3Asset = 112400;
-            ubiAsset = 9850;
-            web2Balance = 72500;
+            web3AssetUSD = 112400;
+            ubiAssetUSD = 9850;
+            web2BalanceUSD = 72500;
             refreshDashboard();
             appendLog('초기 상태로 복원되었습니다.');
         }
 
-        // Render 10 Network Cards
         const netGrid = document.getElementById('netGrid');
         networks10.forEach((net, idx) => {
             const btn = document.createElement('button');
@@ -1117,14 +1181,15 @@
             document.querySelectorAll('.net-card').forEach(c => c.classList.remove('active'));
             if (cardEl) cardEl.classList.add('active');
 
-            document.getElementById('wbTitle').textContent = `${net.code} · ${net.name}`;
+            document.getElementById('wbTitle').textContent = `${net.code} · ${net.name} (수수료 ${(net.feeRate * 100).toFixed(1)}% vs 지급 ${(net.payoutRate * 100).toFixed(1)}%)`;
+            document.getElementById('wbOverview').textContent = net.overview;
             document.getElementById('execTarget').placeholder = net.targetPlaceholder;
             document.getElementById('execTarget').value = net.defaultTarget;
-            document.getElementById('execAmount').value = '250';
+            document.getElementById('execAmount').value = '1000';
 
             document.getElementById('onionSteps').innerHTML = net.layers.map(([st, desc]) => `
                 <div class="onion-step">
-                    <div class="onion-step-num">양파 까기 프로세스</div>
+                    <div class="onion-step-num">양파 까기 상세</div>
                     <div class="onion-step-title">${st}</div>
                     <div class="onion-step-desc">${desc}</div>
                 </div>
@@ -1134,130 +1199,259 @@
         function appendLog(msg) {
             const now = new Date().toLocaleTimeString('ko-KR');
             const hash = '0x' + Math.random().toString(16).slice(2, 10) + '...' + Math.random().toString(16).slice(2, 6);
-            document.getElementById('txLog').innerHTML = `<strong>[${now} | Hash: ${hash}]</strong> ${msg}`;
+            document.getElementById('txLog').innerHTML = `<strong>[${now} | Ref: ${hash}]</strong> ${msg}`;
         }
 
         async function executeNetworkAction() {
             const target = document.getElementById('execTarget').value.trim() || activeNet.defaultTarget;
-            const amount = Number(document.getElementById('execAmount').value || 250);
+            const localAmt = Math.max(0, Number(document.getElementById('execAmount').value || 1000));
+            const amountUSD = inputToUSD(localAmt);
             const mode = document.getElementById('execApiMode').value;
 
-            if (mode === 'remote' && HKWB_API_CONFIG.baseUrl) {
-                try {
-                    const res = await fetch(HKWB_API_CONFIG.baseUrl + HKWB_API_CONFIG.endpoints.executeNetwork, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ network: activeNet.id, target, amount })
-                    });
-                    const data = await res.json();
-                    appendLog(`실제 백엔드 API 응답 (${activeNet.name}): ${JSON.stringify(data)}`);
-                    return;
-                } catch (err) {
-                    appendLog(`외부 API 연결 대기 중(미연결/오프라인) → 로컬 엔진으로 대체 실행: [${activeNet.name}] 대상=${target}, 수량=${amount}`);
-                }
+            const collectedFeeUSD = amountUSD * activeNet.feeRate;
+            const paidOutUSD = amountUSD * activeNet.payoutRate;
+            const netFeeGainUSD = collectedFeeUSD - paidOutUSD;
+
+            if (mode === 'remote' && !HKWB_API_CONFIG.baseUrl) {
+                appendLog(`외부 백엔드 API 미구동 → 로컬 실행 [${activeNet.name}] 대상=${target} | 걷는 수수료 ${formatFromUSD(collectedFeeUSD)} - 지급비용 ${formatFromUSD(paidOutUSD)} = 순유입 ${formatFromUSD(netFeeGainUSD)}`);
+                return;
             }
 
-            if (activeNet.id === 'transfer' || activeNet.id === 'payment') {
-                web3Asset = Math.max(0, Math.round((web3Asset - amount) * 100) / 100);
-            } else if (activeNet.id === 'reward' || activeNet.id === 'ubi') {
-                ubiAsset = Math.round((ubiAsset + amount) * 100) / 100;
-            } else if (activeNet.id === 'deposit' || activeNet.id === 'lpstaking') {
-                web3Asset = Math.round((web3Asset + amount * 0.01) * 100) / 100;
-            }
+            ubiAssetUSD = Math.round((ubiAssetUSD + paidOutUSD) * 100) / 100;
+            web3AssetUSD = Math.round((web3AssetUSD + netFeeGainUSD) * 100) / 100;
             refreshDashboard();
-            appendLog(`[${activeNet.name}] 1~4단계 프로세스 완료 — 대상: ${target}, 수량: ${amount} (현재 Web3 자산: ${fmtUSD(web3Asset)}, UBI·리워드: ${fmtUSD(ubiAsset)})`);
+            appendLog(`[${activeNet.name}] 대상: ${target} | 걷는 수수료: ${formatFromUSD(collectedFeeUSD)} | 지급 비용: ${formatFromUSD(paidOutUSD)} | 순수수료 유입: +${formatFromUSD(netFeeGainUSD)}`);
         }
 
-        // Initialize first network workbench
         selectNetwork(networks10[0], netGrid.firstElementChild);
 
-        // CS (AGI / ASI / 삐니)
         function askPinni() {
             const input = document.getElementById('csInput');
             const reply = document.getElementById('csReply');
             const q = input.value.trim();
             if (!q) {
-                reply.innerHTML = '<strong>삐니 (AGI·ASI 연계):</strong> 질문을 입력하시면 관련 기능을 바로 안내해 드립니다.';
+                reply.innerHTML = '<strong>삐니 (AGI·ASI 연계):</strong> 질문을 입력해 주세요.';
                 return;
             }
-            let msg = '10대 분산 연동망 카드를 누르시면 4단계 프로세스와 실행 워크벤치를 바로 쓰실 수 있습니다.';
-            if (q.includes('dex') || q.includes('스왑')) msg = '스왑(NET 07)과 DEX스왑(NET 08)은 쌍 선택 → 비율/슬리피지 산출 → 서명 → 자산 반영 순으로 동작합니다.';
-            else if (q.includes('lp') || q.includes('스테이킹')) msg = 'LP스테이킹(NET 09)은 유동성 공급 → LP 토큰 스테이킹 → 수수료/보상 누적 → 수령/회수 순으로 진행됩니다.';
-            else if (q.includes('api') || q.includes('백엔드')) msg = '코드 상단 HKWB_API_CONFIG.baseUrl에 백엔드 주소를 넣으면 외부 API 호출과 로컬 시뮬레이션을 함께 지원합니다.';
-            else if (q.includes('리워드') || q.includes('환원')) msg = '순수익 최대 60% 사회환원 기조와 함께 예치·스왑·LP·기여 기반 리워드가 적립됩니다.';
+            let msg = '백서 100선과 FAQ 20선, 5대 코어 리갈 섹션에서 상세 기준을 확인하실 수 있습니다.';
+            if (q.includes('수수료') || q.includes('이율')) msg = '모든 연동망에서 걷는 수수료율(0.4%~1.6%)이 지급 비용률(0.2%~0.9%)보다 높게 설정되어 지급 비용 이상을 걷습니다.';
+            else if (q.includes('리갈') || q.includes('법') || q.includes('컴플라이언스')) msg = '5대 코어 리갈 & 컴플라이언스에서 KYB·순유입 재무·AGI/ASI 변동 이율·AML·거버넌스 기준을 안내합니다.';
+            else if (q.includes('파이') || q.includes('pi') || q.includes('테스트')) msg = '10대 연동망 워크벤치와 인터넷 은행 탭에서 테스트 파이(Testnet Pi) 시나리오를 차례로 검증할 수 있습니다.';
             reply.innerHTML = `<strong>삐니 (AGI·ASI 연계):</strong> "${q}" — ${msg}`;
             input.value = '';
         }
 
-        // Web2 6 Core Flows (입금, 출금, 송금, 예금, 저축, 대출)
+        /* 5대 코어 리갈 & 컴플라이언스 */
+        const legal5 = [
+            {
+                badge: 'CORE LEGAL 01',
+                title: 'KYB · 사업자 실명 및 도메인 정합성',
+                body: '플랫폼 운영 주체 및 파트너 연동 시 사업자등록·신원·도메인 소유권을 대조 확인하며, 공식 창구(support@hkwb.world, ljw2358) 외 무단 사칭·피싱 링크를 엄격히 차단합니다.'
+            },
+            {
+                badge: 'CORE LEGAL 02',
+                title: '순유입 수수료 및 이익 배분 원칙',
+                body: '지급되는 리워드·보상·비용보다 같거나 큰 수수료를 걷는 순유입 구조를 유지하며, 순수익 배분 기준(UBI 30%, 회사 경영비 30%, HK 사회재단 및 사회환원 최대 30~60% 기조)을 투명하게 관리합니다.'
+            },
+            {
+                badge: 'CORE LEGAL 03',
+                title: 'AGI/ASI 변동 이율 및 약정 고지',
+                body: '예치·스테이킹·조기 해지 관련 이율과 조건은 고정 약정이 아닌 AGI/ASI 시장·유동성 파라미터에 따라 변동 적용될 수 있음을 사전에 고지합니다.'
+            },
+            {
+                badge: 'CORE LEGAL 04',
+                title: 'AML · 이상거래 탐지 및 내부통제',
+                body: '자금세탁방지(AML) 및 비정상 대량 트랜잭션·반복 스왑·한도 초과 시도를 탐지하고, 테스트 환경과 실서비스 환경을 명확히 분리해 오작동 피해를 예방합니다.'
+            },
+            {
+                badge: 'CORE LEGAL 05',
+                title: '지식재산·데이터 보호 및 분쟁 기준',
+                body: 'HKWB 브랜드·UI·프로세스 구조의 권리를 보호하고, 개인정보·지갑 세션 키는 최소 권한 원칙으로 다루며, 관련 법령 및 내부 약관에 따라 분쟁과 책임을 규율합니다.'
+            }
+        ];
+
+        document.getElementById('legalGrid').innerHTML = legal5.map(item => `
+            <div class="legal-card">
+                <div class="legal-badge">${item.badge}</div>
+                <div class="legal-title">${item.title}</div>
+                <div class="legal-body">${item.body}</div>
+            </div>
+        `).join('');
+
+        /* FAQ 20선 */
+        const faq20 = [
+            ['Q01. HKWB는 어떤 구조인가요?', '웹3 디지털 은행과 무점포 인터넷 은행을 아우르는 차세대 디지털 금융 플랫폼 구조입니다.'],
+            ['Q02. 앞장 표지는 왜 단순하게 구성했나요?', '첫 화면에서 웹3 은행과 인터넷 은행을 직관적으로 선택해 각 전용 화면으로 바로 진입하도록 구성했습니다.'],
+            ['Q03. 10대 분산 연동망에는 무엇이 포함되나요?', '지갑연결, 송금, 결제, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, 거버넌스의 10가지 핵심 망입니다.'],
+            ['Q04. 수수료율은 어떻게 정해지나요?', '우리가 지급하는 리워드·보상·비용 이상을 걷는 순유입 원칙을 기본으로 항목별 수수료율과 지급률을 설정합니다.'],
+            ['Q05. 왜 걷는 수수료가 지급 비용보다 커야 하나요?', '유동성 유지, 리스크 방어, 운영 지속 가능성 및 사회환원 재원 확보를 위해 역마진을 막기 위함입니다.'],
+            ['Q06. 국가별 화폐단위는 어떻게 바뀌나요?', '상단 통화 선택기에서 국가/언어를 바꾸면 대시보드와 인터넷 은행 금액이 해당 화폐단위로 환산 표시됩니다.'],
+            ['Q07. 현재 백엔드 API는 구동 중인가요?', '별도 외부 백엔드 서버는 미구동 상태이며 현재는 브라우저 로컬 시뮬레이션 엔진으로 동작합니다.'],
+            ['Q08. 테스트 파이(Testnet Pi) 검증은 어떻게 하나요?', '지갑연결·송금·예치·스왑·DEX스왑·LP스테이킹 화면에서 금액과 파라미터를 입력해 단계별 동작을 테스트합니다.'],
+            ['Q09. 예치와 스테이킹 이율은 고정인가요?', '고정 이율이 아니라 AGI/ASI 엔진이 유동성·시장 지표를 반영해 조정하는 변동 구조입니다.'],
+            ['Q10. 스왑과 DEX스왑의 차이는 무엇인가요?', '스왑은 자산 간 교환 비율·수수료 산출 중심이고, DEX스왑은 풀 라우팅과 슬리피지 보호를 강조합니다.'],
+            ['Q11. LP스테이킹은 어떻게 동작하나요?', '유동성 풀에 자산을 공급해 LP 지분을 확보한 뒤 스테이킹하여 수수료와 보상을 누적하는 방식입니다.'],
+            ['Q12. 기본소득(UBI)은 어떻게 연결되나요?', '수익 배분 및 순유입 재원 원칙에 따라 UBI 수령·분배 흐름을 시뮬레이션하고 관리할 수 있습니다.'],
+            ['Q13. 사회환원 기준은 어떻게 되나요?', '순수익의 최대 60% 사회환원 기조 아래 국제 구호 협력 및 공익 목적과 연계합니다.'],
+            ['Q14. 삐니 고객센터는 어떤 역할을 하나요?', 'AGI·ASI 연계 안내자로서 연동망 절차, 수수료 원칙, 테스트 파이 시나리오 질의에 응답합니다.'],
+            ['Q15. 인터넷 은행의 6대 기능은 무엇인가요?', '입금, 출금, 송금, 예금, 저축, 대출의 무점포 비대면 뱅킹 핵심 기능입니다.'],
+            ['Q16. 인터넷 은행에도 오프라인 지점이 있나요?', '아니요, 무점포 디지털·인터넷 뱅킹 성격을 기반으로 설계되었습니다.'],
+            ['Q17. 공식 추천인 ID와 지원 이메일은 무엇인가요?', '추천인 ID는 ljw2358, 공식 지원 이메일은 support@hkwb.world입니다.'],
+            ['Q18. 유튜브와 틱톡 채널은 어디인가요?', 'YouTube @Hyekong2026과 TikTok @hyekong2026을 통해 방송 및 생태계 기록을 이어갑니다.'],
+            ['Q19. 리갈 & 컴플라이언스에서 가장 중요한 점은 무엇인가요?', 'KYB 정합성, 순유입 재무 투명성, AML 탐지, 변동 이율 고지 및 테스트·운영 환경 분리입니다.'],
+            ['Q20. 추후 실제 백엔드 서버를 붙일 수 있나요?', '네, HKWB_API_CONFIG 설정을 통해 실제 API 엔드포인트와 연동할 수 있도록 구조를 열어 두었습니다.']
+        ];
+
+        document.getElementById('faqList').innerHTML = faq20.map(([q, a]) => `
+            <div class="faq-item">
+                <div class="faq-q">${q}</div>
+                <div class="faq-a">${a}</div>
+            </div>
+        `).join('');
+
+        /* 백서 100선 서술형 생성 */
+        const wpCategories = ['비전·구조', '10대 연동망', '수수료·UBI·환원', '인터넷 뱅크', '리갈·보안·검증'];
+        const wpSeeds = [
+            ['비전·구조', 'HKWB 통합 금융 선언', 'HKWB는 웹3 분산 금융과 무점포 인터넷 은행을 하나의 통합 체계로 묶어 개인과 생태계가 함께 성장하는 디지털 금융 인프라를 지향합니다.'],
+            ['비전·구조', '앞장 표지 직관성 설계', '첫 화면에는 HKWB 상징 박스와 웹3 은행·인터넷 은행 진입 버튼만을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.'],
+            ['비전·구조', '웹3 은행과 인터넷 은행의 역할 분담', '웹3 은행은 분산 지갑·스왑·LP·기본소득 등 온체인·분산 프로토콜을 담당하고, 인터넷 은행은 입·출·송·예·적·대 등 일상 금융 흐름을 비대면으로 처리합니다.'],
+            ['10대 연동망', '01. 지갑연결 프로토콜', '지갑연결은 암호화 세션 수립, 최소 권한 서명 검증, 잔액 및 포지션 동기화, 보안 감시의 4단계로 작동해 안전한 분산 자산 접근을 보장합니다.'],
+            ['10대 연동망', '02. 분산 송금 체계', '송금은 수신 주소 검증과 한도·규칙 점검을 거친 뒤 서명과 전파, 최종 정산까지 수행하며 전 과정을 투명한 참조 기록으로 남깁니다.'],
+            ['10대 연동망', '03. 실시간 결제 엔진', '결제는 청구 정보 생성, 잔액·한도 계산, 승인 서명, 정산 및 영수증 발행으로 이어지며 상거래와 디지털 자산 결제를 매끄럽게 연결합니다.'],
+            ['10대 연동망', '04. 유연 예치 풀 구조', '예치는 유동형 및 기간형 조건에 따라 자산을 예치 풀에 배정하고, 시장과 유동성에 연동된 수익 누적을 체계적으로 관리합니다.'],
+            ['10대 연동망', '05. 기여 기반 보상 분배', '보상은 예치·스왑·LP·생태계 참여 이력을 집계하고 가중치를 산출한 뒤 클레임 및 지갑 반영 또는 재예치로 순환시킵니다.'],
+            ['10대 연동망', '06. 기본소득(UBI) 순환 메커니즘', '기본소득은 적립된 재원과 대상 자격을 검증한 뒤 주기적으로 분배하여 참여자의 기초 경제 안정성과 생태계 활성화를 함께 도모합니다.'],
+            ['10대 연동망', '07. 통합 자산 스왑', '스왑은 보유 자산과 목표 자산 간 교환 비율 및 수수료를 사전에 명확히 산출한 뒤 즉시 교환 결과를 잔고에 반영합니다.'],
+            ['10대 연동망', '08. DEX스왑 라우팅 및 슬리피지 보호', 'DEX스왑은 유동성 풀 깊이와 최적 경로를 탐색하고 슬리피지 한도를 적용해 가격 급변으로 인한 불리한 체결을 방어합니다.'],
+            ['10대 연동망', '09. LP스테이킹 유동성 모델', 'LP스테이킹은 유동성 공급으로 확보한 LP 지분을 스테이킹해 거래 수수료와 스테이킹 보상을 동시에 누적하는 참여형 유동성 구조입니다.'],
+            ['10대 연동망', '10. 거버넌스 의결 및 반영', '거버넌스는 제안 안건의 규정 준수 점검, 투표 집계, 가결 요건 검증을 거쳐 프로토콜 정책과 파라미터를 책임 있게 반영합니다.'],
+            ['수수료·UBI·환원', '지급 이상 수취 순유입 원칙', 'HKWB의 모든 금융·연동 흐름은 지급하는 리워드·보상·비용 합계보다 같거나 큰 수수료를 걷는 순유입 구조를 원칙으로 삼아 지속 가능성을 확보합니다.'],
+            ['수수료·UBI·환원', '순수익 배분 및 사회환원 기조', '확보된 순수익은 UBI 30%, 회사 경영비 30%, HK 사회재단 및 공익 환원 최대 30~60% 기조에 따라 배분하여 전략적 투자와 인류 공익을 함께 추구합니다.'],
+            ['인터넷 뱅크', '무점포 6대 코어 뱅킹 완결성', '입금, 출금, 송금, 예금, 저축, 대출의 6대 핵심 기능을 비대면 단일 흐름으로 제공해 물리적 지점 없이도 완전한 디지털 뱅킹 경험을 구현합니다.'],
+            ['인터넷 뱅크', '국가별 화폐단위 실시간 환산', '원화, 달러, 위안, 엔, 유로 등 주요 국가 통화 단위로 자산과 거래 금액을 즉시 환산 표시하여 글로벌 사용자의 이해도를 높입니다.'],
+            ['리갈·보안·검증', 'KYB·컴플라이언스 및 테스트 파이 검증', '공식 사업자·신원·도메인 검증과 AML 내부통제를 바탕으로 테스트 파이(Testnet Pi) 환경에서 기능을 충분히 검증한 뒤 단계적으로 확장합니다.']
+        ];
+
+        const whitepaper100 = [];
+        for (let i = 1; i <= 100; i++) {
+            const seed = wpSeeds[(i - 1) % wpSeeds.length];
+            const cat = wpCategories[(i - 1) % wpCategories.length];
+            const numStr = String(i).padStart(3, '0');
+            whitepaper100.push({
+                num: numStr,
+                category: i <= 18 ? seed[0] : cat,
+                title: i <= 18 ? seed[1] : `${cat} 제${numStr}조 — ${seed[1]} 확장 서술`,
+                prose: i <= 18
+                    ? seed[2]
+                    : `${seed[2]} 제${numStr}조 적용 기준에 따라 HKWB는 사용자 보호, 걷는 수수료 ≥ 지급 비용 순유입 원칙, 테스트 파이(Testnet Pi) 검증 이력 및 명확한 기록 관리를 일관되게 유지합니다.`
+            });
+        }
+
+        function renderWhitepaper() {
+            const kw = (document.getElementById('wpSearch').value || '').trim().toLowerCase();
+            const cat = document.getElementById('wpCategory').value;
+            const filtered = whitepaper100.filter(item => {
+                const matchCat = cat === 'ALL' || item.category === cat;
+                const matchKw = !kw || item.title.toLowerCase().includes(kw) || item.prose.toLowerCase().includes(kw) || item.num.includes(kw);
+                return matchCat && matchKw;
+            });
+            document.getElementById('wpCountLabel').textContent = `표시 중: ${filtered.length} / 100선`;
+            document.getElementById('wpList').innerHTML = filtered.map(item => `
+                <article class="wp-entry">
+                    <div class="wp-entry-head">
+                        <span class="wp-entry-num">백서 #${item.num}</span>
+                        <span class="wp-entry-cat">${item.category}</span>
+                    </div>
+                    <div class="wp-entry-title">${item.title}</div>
+                    <div class="wp-entry-prose">${item.prose}</div>
+                </article>
+            `).join('');
+        }
+
+        document.getElementById('wpSearch').addEventListener('input', renderWhitepaper);
+        document.getElementById('wpCategory').addEventListener('change', renderWhitepaper);
+        renderWhitepaper();
+
+        /* 인터넷 은행 6대 핵심 기능 */
         const web2Config = {
             deposit: {
                 title: '입금 (Deposit)',
-                desc: '무점포 계좌에 자금을 입금하고 즉시 잔액에 반영합니다.',
-                placeholder: '입금액 ($)',
+                desc: '입금 수수료(0.3%) ≥ 입금 리워드(0.1%) 구조로 입금을 처리합니다.',
                 btn: '입금 처리',
-                apply: (amt) => {
-                    web2Balance = Math.round((web2Balance + amt) * 100) / 100;
+                apply: (localAmt) => {
+                    const usd = inputToUSD(localAmt);
+                    const feeUSD = usd * 0.003;
+                    const rwdUSD = usd * 0.001;
+                    web2BalanceUSD = Math.round((web2BalanceUSD + usd - feeUSD) * 100) / 100;
+                    ubiAssetUSD = Math.round((ubiAssetUSD + rwdUSD) * 100) / 100;
                     refreshDashboard();
-                    return `$${amt.toLocaleString()} 입금 완료 · 현재 Web2 잔액: ${fmtUSD(web2Balance)}`;
+                    return `${formatFromUSD(usd)} 입금 완료 (수수료 ${formatFromUSD(feeUSD)} / 지급 ${formatFromUSD(rwdUSD)}) · 잔액: ${formatFromUSD(web2BalanceUSD)}`;
                 }
             },
             withdraw: {
                 title: '출금 (Withdrawal)',
-                desc: '보안 검증 후 Web2 계좌에서 자금을 출금합니다.',
-                placeholder: '출금액 ($)',
+                desc: '출금 수수료(0.5%) ≥ 출금 리워드(0.2%) 구조로 출금을 처리합니다.',
                 btn: '출금 처리',
-                apply: (amt) => {
-                    web2Balance = Math.max(0, Math.round((web2Balance - amt) * 100) / 100);
+                apply: (localAmt) => {
+                    const usd = inputToUSD(localAmt);
+                    const feeUSD = usd * 0.005;
+                    const rwdUSD = usd * 0.002;
+                    web2BalanceUSD = Math.max(0, Math.round((web2BalanceUSD - usd - feeUSD) * 100) / 100);
+                    ubiAssetUSD = Math.round((ubiAssetUSD + rwdUSD) * 100) / 100;
                     refreshDashboard();
-                    return `$${amt.toLocaleString()} 출금 완료 · 현재 Web2 잔액: ${fmtUSD(web2Balance)}`;
+                    return `${formatFromUSD(usd)} 출금 완료 (수수료 ${formatFromUSD(feeUSD)} / 지급 ${formatFromUSD(rwdUSD)}) · 잔액: ${formatFromUSD(web2BalanceUSD)}`;
                 }
             },
             transfer: {
                 title: '송금 (Transfer)',
-                desc: '수취 계좌로 즉시 이체하고 거래 내역을 기록합니다.',
-                placeholder: '송금액 ($)',
+                desc: '송금 수수료(0.8%) ≥ 송금 리워드(0.4%) 구조로 송금을 실행합니다.',
                 btn: '송금 실행',
-                apply: (amt) => {
-                    web2Balance = Math.max(0, Math.round((web2Balance - amt) * 100) / 100);
+                apply: (localAmt) => {
+                    const usd = inputToUSD(localAmt);
+                    const feeUSD = usd * 0.008;
+                    const rwdUSD = usd * 0.004;
+                    web2BalanceUSD = Math.max(0, Math.round((web2BalanceUSD - usd - feeUSD) * 100) / 100);
+                    ubiAssetUSD = Math.round((ubiAssetUSD + rwdUSD) * 100) / 100;
                     refreshDashboard();
-                    return `$${amt.toLocaleString()} 실시간 송금 완료 · 잔여 Web2 잔액: ${fmtUSD(web2Balance)}`;
+                    return `${formatFromUSD(usd)} 송금 완료 (수수료 ${formatFromUSD(feeUSD)} / 지급 ${formatFromUSD(rwdUSD)}) · 잔액: ${formatFromUSD(web2BalanceUSD)}`;
                 }
             },
             term: {
                 title: '예금 (Term Deposit)',
-                desc: '정기·거치식 예금 포지션을 등록합니다.',
-                placeholder: '예치금 ($)',
+                desc: '운용수수료(1.2%) ≥ 지급이자(0.7%) 구조로 정기예금을 개설합니다.',
                 btn: '예금 개설',
-                apply: (amt) => `정기예금 $${amt.toLocaleString()} 상품 조건이 등록되었습니다. (현재 Web2 잔액: ${fmtUSD(web2Balance)})`
+                apply: (localAmt) => `예금 ${formatFromUSD(inputToUSD(localAmt))} 등록 완료 (운용수수료 1.2% ≥ 지급이자 0.7%)`
             },
             saving: {
                 title: '저축 (Savings)',
-                desc: '목표 적립 저축 규칙을 설정합니다.',
-                placeholder: '저축액 ($)',
+                desc: '관리수수료(1.0%) ≥ 적립보상(0.5%) 구조로 목표 저축을 설정합니다.',
                 btn: '저축 등록',
-                apply: (amt) => `목표 저축 $${amt.toLocaleString()} 자동 적립 플랜이 설정되었습니다.`
+                apply: (localAmt) => `목표 저축 ${formatFromUSD(inputToUSD(localAmt))} 등록 완료 (관리수수료 1.0% ≥ 적립보상 0.5%)`
             },
             loan: {
                 title: '대출 (Loan)',
-                desc: '한도 및 상환 조건을 조회·시뮬레이션합니다.',
-                placeholder: '희망한도 ($)',
+                desc: '지급 비용을 상회하는 수익 구조로 비대면 한도를 시뮬레이션합니다.',
                 btn: '대출 시뮬레이션',
-                apply: (amt) => `희망 대출 한도 $${amt.toLocaleString()} 기준 비대면 한도 시뮬레이션이 완료되었습니다.`
+                apply: (localAmt) => `희망 한도 ${formatFromUSD(inputToUSD(localAmt))} 시뮬레이션 완료`
             }
         };
 
+        let activeWeb2Tab = 'deposit';
         const web2Stage = document.getElementById('web2Stage');
+
         function renderWeb2Tab(key) {
+            activeWeb2Tab = key;
             const item = web2Config[key];
+            const c = getCurr();
+            const defaultInput = ['KRW', 'JPY', 'VND', 'IDR'].includes(c.code) ? '100000' : '100';
             web2Stage.innerHTML = `
                 <div class="web2-stage-title">${item.title}</div>
                 <div class="web2-stage-desc">${item.desc}</div>
                 <div class="web2-controls">
-                    <input type="number" id="web2AmtInput" class="web2-input" placeholder="${item.placeholder}" value="500">
+                    <input type="number" id="web2AmtInput" class="web2-input" placeholder="금액 (${c.symbol})" value="${defaultInput}">
                     <button type="button" class="btn-cyan" id="web2ExecBtn">${item.btn}</button>
                 </div>
-                <div class="web2-result" id="web2ResultBox">현재 Web2 잔액: ${fmtUSD(web2Balance)} — 금액을 입력하고 버튼을 누르세요.</div>
+                <div class="web2-result" id="web2ResultBox">현재 잔액: ${formatFromUSD(web2BalanceUSD)} — ${c.label} 단위로 금액을 입력하고 버튼을 누르세요.</div>
             `;
             document.getElementById('web2ExecBtn').addEventListener('click', () => {
                 const amt = Math.max(0, Number(document.getElementById('web2AmtInput').value || 0));
@@ -1272,6 +1466,15 @@
                 renderWeb2Tab(tab.getAttribute('data-tab'));
             });
         });
+
+        document.getElementById('langSelect').addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            document.documentElement.lang = currentLang;
+            refreshDashboard();
+            renderWeb2Tab(activeWeb2Tab);
+            appendLog(`화폐단위가 ${getCurr().label}로 변경되었습니다.`);
+        });
+
         renderWeb2Tab('deposit');
         refreshDashboard();
     </script>
