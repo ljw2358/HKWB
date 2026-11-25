@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB — 웹3 디지털 은행 &amp; 무점포 인터넷 은행</title>
+  <title>HKWB — 표지 · 웹3 디지털 은행 방 · 인터넷 은행 방</title>
   <style>
     :root {
       --bg-navy: #070917;
       --bg-purple: #140b2e;
-      --surface-1: #101531;
-      --surface-2: #19153d;
       --gold-1: #ffe28a;
       --gold-2: #f4b942;
       --gold-3: #b87b14;
@@ -20,14 +18,9 @@
       --border-soft: rgba(148, 163, 184, 0.22);
       --ok: #34d399;
       --bad: #f87171;
-      --shadow-glow: 0 14px 36px rgba(139, 92, 246, 0.25);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       min-height: 100%;
@@ -36,27 +29,16 @@
         radial-gradient(circle at 86% 18%, rgba(244, 185, 66, 0.16), transparent 38%),
         linear-gradient(160deg, var(--bg-navy) 0%, var(--bg-purple) 52%, #080b1c 100%);
       color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
     }
 
-    button, input, select {
-      font-family: inherit;
-      color: inherit;
-    }
+    button, input, select { font-family: inherit; color: inherit; }
+    button { cursor: pointer; border: none; background: transparent; }
+    .hidden { display: none !important; }
 
-    button {
-      cursor: pointer;
-      border: none;
-      background: transparent;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* 상단 헤더 & 은행 왕복 스위처 */
+    /* 상단바 */
     .topbar {
       position: sticky;
       top: 0;
@@ -66,20 +48,13 @@
       justify-content: space-between;
       gap: 10px;
       padding: 12px 16px;
-      background: linear-gradient(90deg, rgba(9, 13, 30, 0.96) 0%, rgba(24, 14, 54, 0.96) 55%, rgba(12, 18, 42, 0.96) 100%);
+      background: rgba(9, 13, 30, 0.96);
       border-bottom: 1px solid var(--border-gold);
       backdrop-filter: blur(12px);
-      flex-wrap: wrap;
-    }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .logo-mark {
-      font-size: 1.28rem;
+      font-size: 1.3rem;
       font-weight: 900;
       letter-spacing: 0.04em;
       background: linear-gradient(135deg, #fff3c4 0%, var(--gold-2) 55%, #ff9f1c 100%);
@@ -87,42 +62,13 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .bank-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      border-radius: 999px;
-      background: rgba(7, 10, 24, 0.85);
-      border: 1px solid var(--border-gold);
-    }
-
-    .sw-btn {
-      padding: 6px 11px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--text-sub);
-      transition: all 0.18s ease;
-    }
-
-    .sw-btn.active {
-      color: #090c18;
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
-    }
-
-    .top-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .top-right { display: flex; align-items: center; gap: 8px; }
 
     .lang-select {
       padding: 7px 10px;
       border-radius: 10px;
-      background: linear-gradient(145deg, #161d3f, #221949);
+      background: #161d3f;
       border: 1px solid var(--border-gold);
-      color: #ffffff;
       font-size: 0.8rem;
       font-weight: 700;
     }
@@ -130,7 +76,7 @@
     .hamburger-btn {
       padding: 8px 11px;
       border-radius: 10px;
-      background: linear-gradient(135deg, rgba(244, 185, 66, 0.2), rgba(139, 92, 246, 0.24));
+      background: rgba(244, 185, 66, 0.18);
       border: 1px solid var(--border-gold);
       font-weight: 800;
       font-size: 0.84rem;
@@ -138,35 +84,35 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 18px 16px 90px;
+      padding: 20px 16px 88px;
     }
 
-    /* 표지 화면 (모바일: 웹3 디지털 은행 위 -> 인터넷 은행 아래) */
-    .cover-hero {
+    /* 표지 화면 */
+    .cover-box {
       border-radius: 24px;
-      padding: 22px 18px;
+      padding: 24px 18px;
       margin-bottom: 18px;
-      background: linear-gradient(135deg, rgba(23, 30, 68, 0.95) 0%, rgba(36, 20, 74, 0.95) 55%, rgba(16, 24, 54, 0.97) 100%);
-      border: 1px solid var(--border-gold);
-      box-shadow: var(--shadow-glow);
+      background: linear-gradient(135deg, rgba(23, 30, 68, 0.96), rgba(36, 20, 74, 0.96));
+      border: 1.5px solid var(--border-gold);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
     }
 
-    .cover-badge {
+    .cover-tag {
       display: inline-block;
       font-size: 0.75rem;
       font-weight: 800;
-      padding: 4px 11px;
+      padding: 4px 12px;
       border-radius: 999px;
       color: var(--gold-1);
-      background: rgba(244, 185, 66, 0.14);
+      background: rgba(244, 185, 66, 0.15);
       border: 1px solid var(--border-gold);
       margin-bottom: 10px;
     }
 
     .cover-slogan {
-      font-size: clamp(1.22rem, 3.6vw, 1.85rem);
+      font-size: clamp(1.24rem, 3.6vw, 1.85rem);
       font-weight: 900;
       line-height: 1.35;
       background: linear-gradient(95deg, #ffffff 0%, #ffe699 55%, #f4b942 100%);
@@ -180,101 +126,78 @@
       color: var(--text-sub);
     }
 
-    /* 손폰 세로 순서 기준: 1. 웹3 디지털 은행 위 / 2. 인터넷 은행 아래 */
-    .cover-stack {
+    /* 손폰 세로 배치: 1. 웹3 디지털 은행 방 (위) -> 2. 인터넷 은행 방 (아래) */
+    .room-select-stack {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-bottom: 24px;
     }
 
-    .cover-card {
+    .room-door {
       border-radius: 22px;
-      padding: 20px 18px;
+      padding: 22px 18px;
       border: 1.5px solid var(--border-gold);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .cover-card.web3-first {
-      background: linear-gradient(145deg, rgba(40, 19, 88, 0.96) 0%, rgba(20, 24, 58, 0.96) 62%, rgba(124, 58, 237, 0.45) 100%);
-      box-shadow: 0 14px 32px rgba(124, 58, 237, 0.25);
+    .room-door.web3-door {
+      background: linear-gradient(145deg, rgba(42, 19, 92, 0.97), rgba(20, 24, 58, 0.97) 65%, rgba(124, 58, 237, 0.45));
     }
 
-    .cover-card.internet-second {
-      background: linear-gradient(145deg, rgba(16, 33, 74, 0.96) 0%, rgba(23, 24, 66, 0.96) 62%, rgba(30, 58, 138, 0.5) 100%);
-      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.22);
+    .room-door.internet-door {
+      background: linear-gradient(145deg, rgba(16, 33, 74, 0.97), rgba(23, 24, 66, 0.97) 65%, rgba(30, 58, 138, 0.5));
     }
 
-    .cover-card-top {
+    .door-top {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 10px;
     }
 
-    .order-pill {
-      font-size: 0.74rem;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--gold-1);
-      border: 1px solid rgba(244, 185, 66, 0.35);
-      margin-bottom: 6px;
-      display: inline-block;
-    }
-
-    .cover-card-title {
-      font-size: 1.28rem;
+    .door-title {
+      font-size: 1.32rem;
       font-weight: 900;
       color: #ffffff;
     }
 
-    .cover-card-copy {
-      font-size: 0.94rem;
+    .door-copy {
+      font-size: 0.95rem;
       font-weight: 700;
       color: #f1f5f9;
     }
 
-    .cover-card-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 2px;
-    }
-
     .btn-gold {
-      padding: 10px 16px;
+      padding: 11px 16px;
       border-radius: 12px;
       font-size: 0.88rem;
       font-weight: 800;
       color: #090c18;
-      background: linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
-      box-shadow: 0 6px 18px rgba(244, 185, 66, 0.3);
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-2) 55%, var(--gold-3));
     }
 
-    .btn-grad-blue {
-      padding: 10px 16px;
+    .btn-violet {
+      padding: 11px 16px;
       border-radius: 12px;
       font-size: 0.88rem;
       font-weight: 800;
       color: #ffffff;
-      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 60%, #7c3aed 100%);
+      background: linear-gradient(135deg, #7c3aed, #9333ea 60%, #d97706 130%);
     }
 
-    .btn-grad-violet {
-      padding: 10px 16px;
+    .btn-blue {
+      padding: 11px 16px;
       border-radius: 12px;
       font-size: 0.88rem;
       font-weight: 800;
       color: #ffffff;
-      background: linear-gradient(135deg, #7c3aed 0%, #9333ea 60%, #d97706 130%);
+      background: linear-gradient(135deg, #2563eb, #4f46e5 60%, #7c3aed);
     }
 
     .btn-ghost {
-      padding: 9px 13px;
+      padding: 10px 14px;
       border-radius: 12px;
       font-size: 0.84rem;
       font-weight: 700;
@@ -283,91 +206,71 @@
       color: var(--text-sub);
     }
 
-    /* 활성 은행 워크스페이스 배너 */
-    .active-bank-banner {
-      border-radius: 20px;
-      padding: 16px 18px;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(20, 29, 66, 0.96), rgba(38, 20, 78, 0.96));
-      border: 1.5px solid var(--gold-2);
+    /* 각 방 공통 상단 바 */
+    .room-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 16px 18px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      border: 1.5px solid var(--border-gold);
+      background: rgba(16, 22, 52, 0.95);
+    }
+
+    .room-nav-btns {
+      display: flex;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .agi-bbok-box {
+    .agi-chip {
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 8px 12px;
       border-radius: 14px;
-      background: rgba(9, 13, 30, 0.85);
+      background: rgba(8, 12, 28, 0.9);
       border: 1px solid rgba(244, 185, 66, 0.4);
     }
 
-    .agi-avatar-svg {
-      width: 44px;
-      height: 44px;
+    .agi-chip svg {
+      width: 42px;
+      height: 42px;
       flex-shrink: 0;
     }
 
     .section-box {
       border-radius: 22px;
       padding: 20px 18px;
-      margin-bottom: 22px;
-      background: linear-gradient(155deg, rgba(16, 22, 52, 0.94), rgba(24, 16, 52, 0.94));
+      margin-bottom: 20px;
+      background: linear-gradient(155deg, rgba(16, 22, 52, 0.95), rgba(24, 16, 52, 0.95));
       border: 1px solid var(--border-soft);
     }
 
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
     .section-title {
-      font-size: 1.14rem;
+      font-size: 1.12rem;
       font-weight: 800;
+      margin-bottom: 12px;
       color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title::before {
-      content: "";
-      width: 5px;
-      height: 18px;
-      border-radius: 4px;
-      background: linear-gradient(180deg, var(--gold-1), var(--gold-3));
-    }
-
-    .section-sub {
-      font-size: 0.82rem;
-      color: var(--text-muted);
     }
 
     /* 8개 금융 모듈 (2x4) */
-    .modules-grid-2x4 {
+    .modules-2x4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
 
     @media (max-width: 900px) {
-      .modules-grid-2x4 {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .modules-2x4 { grid-template-columns: repeat(2, 1fr); }
     }
 
     .mod-card {
       text-align: left;
-      padding: 15px;
+      padding: 14px;
       border-radius: 16px;
       background: linear-gradient(145deg, rgba(28, 37, 84, 0.92), rgba(36, 21, 76, 0.92));
       border: 1px solid rgba(244, 185, 66, 0.28);
@@ -376,47 +279,19 @@
       gap: 6px;
     }
 
-    .mod-card:hover {
-      border-color: var(--gold-2);
-    }
-
-    .mod-icon {
-      font-size: 1.2rem;
-    }
-
-    .mod-name {
-      font-size: 0.98rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .mod-desc {
-      font-size: 0.78rem;
-      color: var(--text-sub);
-    }
-
-    .mod-cta {
-      margin-top: auto;
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: var(--gold-1);
-    }
-
-    /* 예적금 쇼케이스: PC 3x2 / 모바일 2x3 */
-    .deposit-grid-3x2 {
+    /* 예적금 쇼케이스: 모바일 2x3 / PC 3x2 */
+    .deposit-3x2 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
 
     @media (max-width: 768px) {
-      .deposit-grid-3x2 {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .deposit-3x2 { grid-template-columns: repeat(2, 1fr); }
     }
 
     .dep-card {
-      padding: 15px;
+      padding: 14px;
       border-radius: 16px;
       background: linear-gradient(150deg, rgba(20, 32, 68, 0.95), rgba(42, 23, 86, 0.92));
       border: 1px solid var(--border-soft);
@@ -425,97 +300,43 @@
       gap: 6px;
     }
 
-    .dep-rate {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: var(--gold-1);
-    }
-
-    /* 백엔드 테스트 워크벤치 */
-    .test-layout {
+    /* 백엔드 테스트 */
+    .test-grid {
       display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    @media (max-width: 920px) {
-      .test-layout {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 860px) {
+      .test-grid { grid-template-columns: 1fr; }
     }
 
-    .account-summary {
+    .form-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    @media (max-width: 600px) {
-      .account-summary {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .acc-box {
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(9, 14, 34, 0.9);
-      border: 1px solid rgba(244, 185, 66, 0.28);
-    }
-
-    .acc-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .acc-val {
-      margin-top: 4px;
-      font-size: 1rem;
-      font-weight: 900;
-      color: var(--gold-1);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 10px;
     }
 
     @media (max-width: 560px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .field-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-sub);
+      .form-row { grid-template-columns: 1fr; }
     }
 
     .input-ctrl, .select-ctrl {
+      width: 100%;
       padding: 10px 12px;
       border-radius: 11px;
       background: rgba(8, 12, 28, 0.94);
       border: 1px solid var(--border-soft);
-      color: #ffffff;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
     }
 
-    .tx-log-box {
-      max-height: 270px;
+    .tx-box {
+      max-height: 240px;
       overflow-y: auto;
       border-radius: 14px;
-      padding: 12px;
-      background: rgba(7, 10, 24, 0.88);
+      padding: 10px;
+      background: rgba(7, 10, 24, 0.9);
       border: 1px solid var(--border-soft);
       display: flex;
       flex-direction: column;
@@ -523,138 +344,98 @@
     }
 
     .tx-item {
-      padding: 10px 12px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, rgba(24, 33, 72, 0.78), rgba(35, 22, 72, 0.78));
+      padding: 9px 11px;
+      border-radius: 10px;
+      background: rgba(28, 36, 76, 0.75);
       border-left: 3px solid var(--gold-2);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
 
-    .tx-top {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .tx-meta {
-      margin-top: 2px;
-      color: var(--text-muted);
-      font-size: 0.74rem;
-    }
-
-    /* 내비게이터 */
-    .nav-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
+    /* 내비게이터 (서술형 백서 / 컴플라이언스 / FAQ 20개) */
+    .nav-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
     .nav-tab {
-      padding: 9px 14px;
-      border-radius: 12px;
+      padding: 8px 14px;
+      border-radius: 11px;
       font-size: 0.84rem;
       font-weight: 800;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border-soft);
-      color: var(--text-sub);
     }
-
     .nav-tab.active {
       color: #090c18;
       background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
     }
 
-    .prose-whitepaper {
+    .prose-paper {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(8, 12, 28, 0.8);
+      border: 1px solid var(--border-soft);
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding: 16px;
-      border-radius: 16px;
-      background: rgba(8, 12, 28, 0.75);
-      border: 1px solid var(--border-soft);
-      font-size: 0.9rem;
+      gap: 10px;
+      font-size: 0.88rem;
       color: #e2e8f0;
-      line-height: 1.75;
+      line-height: 1.72;
     }
 
-    .comp-grid {
+    .comp-2x2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
-    @media (max-width: 820px) {
-      .comp-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 800px) {
+      .comp-2x2 { grid-template-columns: 1fr; }
     }
 
     .comp-card {
-      padding: 15px;
-      border-radius: 16px;
-      background: linear-gradient(145deg, rgba(17, 25, 58, 0.92), rgba(33, 19, 68, 0.92));
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(18, 25, 56, 0.92);
       border: 1px solid rgba(244, 185, 66, 0.3);
-    }
-
-    .comp-card h4 {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--gold-1);
-      margin-bottom: 6px;
-    }
-
-    .comp-card p, .comp-card li {
       font-size: 0.82rem;
       color: var(--text-sub);
-      line-height: 1.58;
     }
 
-    .comp-card ul {
-      padding-left: 16px;
-    }
+    .comp-card h4 { color: var(--gold-1); margin-bottom: 6px; font-size: 0.94rem; }
 
-    .faq-list {
+    .faq-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
 
-    @media (max-width: 820px) {
-      .faq-list {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 800px) {
+      .faq-grid { grid-template-columns: 1fr; }
     }
 
     .faq-item {
       border-radius: 12px;
-      background: rgba(9, 13, 30, 0.86);
+      background: rgba(9, 13, 30, 0.88);
       border: 1px solid var(--border-soft);
-      overflow: hidden;
     }
 
     .faq-q {
       width: 100%;
       text-align: left;
-      padding: 11px 13px;
-      font-size: 0.84rem;
+      padding: 10px 12px;
+      font-size: 0.82rem;
       font-weight: 800;
-      color: #ffffff;
       display: flex;
       justify-content: space-between;
       gap: 8px;
     }
 
     .faq-a {
-      padding: 9px 13px 12px;
-      font-size: 0.8rem;
+      padding: 8px 12px 11px;
+      font-size: 0.78rem;
       color: var(--text-sub);
       border-top: 1px dashed rgba(148, 163, 184, 0.16);
     }
 
-    /* 하단 고정 빠른 은행 이동 Dock (손폰에서 여기갔다 저기갔다 편리하게) */
-    .quick-dock {
+    /* 하단 이동 바 */
+    .bottom-bar {
       position: fixed;
       left: 0;
       right: 0;
@@ -665,112 +446,22 @@
       padding: 10px 14px;
       background: rgba(8, 12, 28, 0.96);
       border-top: 1px solid var(--border-gold);
-      backdrop-filter: blur(10px);
     }
 
-    .dock-btn {
+    .bottom-bar button {
       flex: 1;
-      padding: 10px 10px;
-      border-radius: 12px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    /* 보안 잠금 모달(필요할 때만 띄움 - 표지를 가리지 않음) */
-    .lock-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(4, 6, 16, 0.85);
-      backdrop-filter: blur(10px);
-    }
-
-    .lock-card {
-      width: 100%;
-      max-width: 420px;
-      background: linear-gradient(155deg, rgba(25, 21, 61, 0.98), rgba(11, 16, 38, 0.99));
-      border: 1px solid var(--border-gold);
-      border-radius: 22px;
-      padding: 20px 18px;
-    }
-
-    .auth-tabs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin: 12px 0;
-      background: rgba(7, 10, 24, 0.75);
-      padding: 4px;
-      border-radius: 12px;
-    }
-
-    .auth-tab {
-      padding: 8px 6px;
-      border-radius: 9px;
+      padding: 10px 8px;
+      border-radius: 11px;
       font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-muted);
+      font-weight: 800;
     }
 
-    .auth-tab.active {
-      background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
-      color: #090c18;
-    }
-
-    #patternCanvas {
-      width: 240px;
-      height: 240px;
-      border-radius: 18px;
-      background: rgba(14, 20, 48, 0.95);
-      border: 1px solid rgba(244, 185, 66, 0.35);
-      touch-action: none;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .pin-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 12px 0;
-    }
-
-    .pin-dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      border: 2px solid var(--gold-2);
-    }
-
-    .pin-dot.filled {
-      background: var(--gold-2);
-    }
-
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .key-btn {
-      padding: 12px 0;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      background: rgba(35, 42, 86, 0.85);
-      border: 1px solid var(--border-soft);
-    }
-
-    .drawer-backdrop, .modal-backdrop {
+    /* 잠금 / 드로어 / 모달 */
+    .overlay {
       position: fixed;
       inset: 0;
-      z-index: 150;
-      background: rgba(3, 5, 14, 0.78);
+      z-index: 160;
+      background: rgba(3, 5, 14, 0.82);
       backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
@@ -778,59 +469,47 @@
       padding: 16px;
     }
 
-    .drawer-backdrop {
-      justify-content: flex-end;
-      padding: 0;
-    }
+    .overlay.drawer-mode { justify-content: flex-end; padding: 0; }
 
-    .drawer-panel {
+    .box-card {
       width: 100%;
-      max-width: 320px;
-      height: 100%;
-      background: linear-gradient(180deg, #111738 0%, #1c103d 100%);
-      border-left: 1px solid var(--border-gold);
-      padding: 20px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow-y: auto;
-    }
-
-    .drawer-link {
-      width: 100%;
-      text-align: left;
-      padding: 11px 13px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-soft);
-    }
-
-    .modal-card {
-      width: 100%;
-      max-width: 540px;
-      max-height: 85vh;
+      max-width: 420px;
+      max-height: 86vh;
       overflow-y: auto;
       border-radius: 20px;
       padding: 20px;
       background: linear-gradient(155deg, #151c42, #23144a);
       border: 1px solid var(--border-gold);
     }
+
+    .drawer-card {
+      width: 100%;
+      max-width: 310px;
+      height: 100%;
+      background: #121838;
+      border-left: 1px solid var(--border-gold);
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #patternCanvas {
+      width: 230px;
+      height: 230px;
+      border-radius: 16px;
+      background: rgba(14, 20, 48, 0.95);
+      border: 1px solid rgba(244, 185, 66, 0.35);
+      touch-action: none;
+      display: block;
+      margin: 10px auto;
+    }
   </style>
 </head>
 <body>
-  <!-- 상단 고정 헤더 & 양쪽 은행 바로 전환 스위처 -->
   <header class="topbar">
-    <div class="logo-wrap">
-      <span class="logo-mark" onclick="scrollToSection('coverTop')" style="cursor:pointer;">HKWB</span>
-      <div class="bank-switcher" role="group" aria-label="은행 전환">
-        <button type="button" class="sw-btn active" id="swWeb3Btn" onclick="enterBank('web3')">웹3 디지털</button>
-        <button type="button" class="sw-btn" id="swInternetBtn" onclick="enterBank('internet')">인터넷 은행</button>
-      </div>
-    </div>
-
-    <div class="top-controls">
+    <button type="button" class="logo-mark" onclick="showView('cover')">HKWB</button>
+    <div class="top-right">
       <select id="langSelect" class="lang-select" aria-label="언어 선택">
         <option value="ko" selected>한국어</option>
         <option value="en">English</option>
@@ -841,143 +520,153 @@
     </div>
   </header>
 
-  <main class="container" id="coverTop">
-    <!-- 표지 헤더 -->
-    <section class="cover-hero">
-      <span class="cover-badge">HKWB 표지 · 손폰 순서(웹3 위 → 인터넷 아래)</span>
-      <h1 class="cover-slogan">일상의 무점포 인터넷 은행과 미래의 웹3 디지털 은행, HKWB 하나로 연결됩니다.</h1>
-      <p class="cover-sub">원하시는 은행을 바로 선택해 들어가고, 상단·하단 스위처로 양쪽 은행을 언제든 편리하게 오가실 수 있습니다.</p>
-    </section>
+  <main class="container">
+    <!-- 1. 표지 화면 (방 선택 전 첫 화면) -->
+    <section id="view-cover">
+      <div class="cover-box">
+        <span class="cover-tag">HKWB 표지 · 방을 선택하세요</span>
+        <h1 class="cover-slogan">일상의 무점포 인터넷 은행과 미래의 웹3 디지털 은행, HKWB 하나로 연결됩니다.</h1>
+        <p class="cover-sub">손폰 기준 위쪽 웹3 디지털 은행 방, 아래쪽 인터넷 은행 방 중 원하는 방으로 바로 들어가세요.</p>
+      </div>
 
-    <!-- 표지 카드 순서: 1. 웹3 디지털 은행 (위) / 2. 무점포 인터넷 은행 (아래) -->
-    <section class="cover-stack" aria-label="표지 은행 선택">
-      <!-- 1번: 웹3 디지털 은행 (위) -->
-      <article class="cover-card web3-first">
-        <div class="cover-card-top">
-          <div>
-            <span class="order-pill">1순위 · 위쪽 카드</span>
-            <h2 class="cover-card-title">HKWB 웹3 디지털 은행</h2>
+      <div class="room-select-stack">
+        <!-- 위: 웹3 디지털 은행 방 -->
+        <article class="room-door web3-door">
+          <div class="door-top">
+            <div>
+              <span style="font-size:0.74rem; color:var(--gold-1); font-weight:800;">위쪽 방 · 고수익 이자</span>
+              <h2 class="door-title">웹3 디지털 은행 방</h2>
+            </div>
+            <button type="button" class="btn-gold" id="coverBrowseWeb3Btn">둘러보기</button>
           </div>
-          <button type="button" class="btn-gold" id="web3BrowseBtn">둘러보기</button>
-        </div>
-        <p class="cover-card-copy">이자 수익률이 높은 웹3 디지털 은행을 이용해보세요!</p>
-        <div class="cover-card-actions">
-          <button type="button" class="btn-grad-violet" onclick="enterBank('web3')">웹3 디지털 은행 가기 →</button>
-          <button type="button" class="btn-ghost" onclick="openAuthModal('줄 그리기')">줄 그리기 보안 진입</button>
-        </div>
-      </article>
-
-      <!-- 2번: 무점포 인터넷 은행 (아래) -->
-      <article class="cover-card internet-second">
-        <div class="cover-card-top">
-          <div>
-            <span class="order-pill">2순위 · 아래쪽 카드</span>
-            <h2 class="cover-card-title">HKWB 무점포 인터넷 은행</h2>
+          <p class="door-copy">이자 수익률이 높은 웹3 디지털 은행을 이용해보세요!</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+            <button type="button" class="btn-violet" onclick="showView('web3')">웹3 디지털 은행 방 들어가기 →</button>
+            <button type="button" class="btn-ghost" onclick="openLock()">줄 그리기 보안 진입</button>
           </div>
-          <button type="button" class="btn-ghost" onclick="openAuthModal('줄 그리기')">보안 잠금</button>
-        </div>
-        <p class="cover-card-copy">참여하고 보상(리워드) 받아가세요</p>
-        <div class="cover-card-actions">
-          <button type="button" class="btn-grad-blue" onclick="enterBank('internet')">인터넷 은행 가기 →</button>
-          <button type="button" class="btn-gold" id="claimRewardQuickBtn">참여 보상(리워드) 받기</button>
-        </div>
-      </article>
+        </article>
+
+        <!-- 아래: 인터넷 은행 방 -->
+        <article class="room-door internet-door">
+          <div class="door-top">
+            <div>
+              <span style="font-size:0.74rem; color:var(--gold-1); font-weight:800;">아래쪽 방 · 참여 보상</span>
+              <h2 class="door-title">인터넷 은행 방</h2>
+            </div>
+            <button type="button" class="btn-ghost" onclick="openLock()">보안 잠금</button>
+          </div>
+          <p class="door-copy">참여하고 보상(리워드) 받아가세요</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+            <button type="button" class="btn-blue" onclick="showView('internet')">인터넷 은행 방 들어가기 →</button>
+            <button type="button" class="btn-gold" onclick="quickRewardAndEnter()">참여 보상(리워드) 받고 들어가기</button>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- 현재 선택한 은행 안내 & 선명한 AGI 뾩이 -->
-    <section class="active-bank-banner" id="workspaceAnchor">
-      <div>
-        <div style="font-size:0.78rem; color:var(--gold-1); font-weight:800;" id="activeBankBadge">
-          현재 선택: HKWB 웹3 디지털 은행 (고수익 이자 중심)
-        </div>
-        <div style="font-size:1rem; font-weight:800; color:#ffffff; margin-top:2px;" id="activeBankDesc">
-          상단 스위처 또는 아래 버튼으로 인터넷 은행과 웹3 디지털 은행을 바로 오갈 수 있습니다.
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
-          <button type="button" class="btn-grad-violet" onclick="enterBank('web3')">웹3 디지털 은행으로 전환</button>
-          <button type="button" class="btn-grad-blue" onclick="enterBank('internet')">인터넷 은행으로 전환</button>
-        </div>
-      </div>
-
-      <div class="agi-bbok-box">
-        <svg class="agi-avatar-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AGI 뾩이">
-          <defs>
-            <linearGradient id="bbokBody2" x1="12" y1="10" x2="68" y2="70" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#FFE699"/>
-              <stop offset="55%" stop-color="#F4B942"/>
-              <stop offset="100%" stop-color="#9333EA"/>
-            </linearGradient>
-          </defs>
-          <circle cx="40" cy="42" r="28" fill="url(#bbokBody2)" stroke="#FFF8DC" stroke-width="2.5"/>
-          <path d="M40 6 L45 15 L35 15 Z" fill="#FFE699"/>
-          <circle cx="30" cy="39" r="5" fill="#0B1026"/>
-          <circle cx="50" cy="39" r="5" fill="#0B1026"/>
-          <circle cx="28.5" cy="37.5" r="1.8" fill="#FFFFFF"/>
-          <circle cx="48.5" cy="37.5" r="1.8" fill="#FFFFFF"/>
-          <path d="M31 50 Q40 58 49 50" stroke="#0B1026" stroke-width="3" stroke-linecap="round" fill="none"/>
-        </svg>
+    <!-- 2. 웹3 디지털 은행 전용 방 -->
+    <section id="view-web3" class="hidden">
+      <div class="room-header">
         <div>
-          <div style="font-size:0.86rem; font-weight:900; color:var(--gold-1);">AGI 뾩이</div>
-          <div style="font-size:0.78rem; color:#f1f5f9;" id="agiGuideText">원하시는 은행을 눌러 바로 이동하세요!</div>
+          <span style="font-size:0.75rem; color:var(--gold-1); font-weight:800;">독립 방 · 웹3 디지털 은행</span>
+          <h2 style="font-size:1.25rem; font-weight:900;">웹3 디지털 은행 방</h2>
+          <p style="font-size:0.86rem; color:var(--text-sub);">이자 수익률이 높은 웹3 디지털 은행을 이용해보세요!</p>
         </div>
+        <div class="room-nav-btns">
+          <button type="button" class="btn-gold" id="roomWeb3BrowseBtn">둘러보기</button>
+          <button type="button" class="btn-blue" onclick="showView('internet')">인터넷 은행 방으로 이동</button>
+          <button type="button" class="btn-ghost" onclick="showView('cover')">표지로</button>
+        </div>
+        <div class="agi-chip">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AGI 뾩이">
+            <circle cx="40" cy="42" r="28" fill="#F4B942" stroke="#FFF8DC" stroke-width="2.5"/>
+            <path d="M40 6 L45 15 L35 15 Z" fill="#FFE699"/>
+            <circle cx="30" cy="39" r="5" fill="#0B1026"/>
+            <circle cx="50" cy="39" r="5" fill="#0B1026"/>
+            <path d="M31 50 Q40 58 49 50" stroke="#0B1026" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div style="font-size:0.82rem; font-weight:900; color:var(--gold-1);">AGI 뾩이</div>
+            <div style="font-size:0.75rem;">웹3 디지털 방 전용 안내 중</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-box">
+        <h3 class="section-title">웹3 고수익 예치 · 저축 상품 (모바일 2×3 · PC 3×2)</h3>
+        <div class="deposit-3x2" id="web3DepositGrid"></div>
       </div>
     </section>
 
-    <!-- 8개 금융 모듈 (2x4) -->
-    <section class="section-box" id="modulesSection">
-      <div class="section-head">
+    <!-- 3. 인터넷 은행 전용 방 -->
+    <section id="view-internet" class="hidden">
+      <div class="room-header">
         <div>
-          <h2 class="section-title">금융 서비스 모듈 (2×4)</h2>
-          <p class="section-sub">입금·출금·송금·예금·적금·저축·대출·참여 보상을 한눈에 선택하고 테스트합니다.</p>
+          <span style="font-size:0.75rem; color:var(--gold-1); font-weight:800;">독립 방 · 무점포 인터넷 은행</span>
+          <h2 style="font-size:1.25rem; font-weight:900;">인터넷 은행 방</h2>
+          <p style="font-size:0.86rem; color:var(--text-sub);">참여하고 보상(리워드) 받아가세요</p>
+        </div>
+        <div class="room-nav-btns">
+          <button type="button" class="btn-gold" onclick="claimRewardOnly()">참여 보상(리워드) 받기</button>
+          <button type="button" class="btn-violet" onclick="showView('web3')">웹3 디지털 방으로 이동</button>
+          <button type="button" class="btn-ghost" onclick="showView('cover')">표지로</button>
+        </div>
+        <div class="agi-chip">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AGI 뾩이">
+            <circle cx="40" cy="42" r="28" fill="#FFE28A" stroke="#FFF8DC" stroke-width="2.5"/>
+            <path d="M40 6 L45 15 L35 15 Z" fill="#F4B942"/>
+            <circle cx="30" cy="39" r="5" fill="#0B1026"/>
+            <circle cx="50" cy="39" r="5" fill="#0B1026"/>
+            <path d="M31 50 Q40 58 49 50" stroke="#0B1026" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div style="font-size:0.82rem; font-weight:900; color:var(--gold-1);">AGI 뾩이</div>
+            <div style="font-size:0.75rem;">인터넷 은행 방 전용 안내 중</div>
+          </div>
         </div>
       </div>
-      <div class="modules-grid-2x4" id="modulesGrid"></div>
-    </section>
 
-    <!-- 예·적금/저축 (PC 3x2 / 모바일 2x3) -->
-    <section class="section-box" id="depositSection">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">예금 · 적금 · 저축 (모바일 2×3 · PC 3×2)</h2>
-          <p class="section-sub">상품을 누르면 백엔드 테스트 계산기에 금리와 상품명이 반영됩니다.</p>
-        </div>
+      <div class="section-box">
+        <h3 class="section-title">인터넷 은행 금융 모듈 (2×4)</h3>
+        <div class="modules-2x4" id="internetModulesGrid"></div>
       </div>
-      <div class="deposit-grid-3x2" id="depositGrid"></div>
+
+      <div class="section-box">
+        <h3 class="section-title">예금 · 적금 · 저축 (모바일 2×3 · PC 3×2)</h3>
+        <div class="deposit-3x2" id="internetDepositGrid"></div>
+      </div>
     </section>
 
-    <!-- 백엔드 테스트 워크벤치 -->
+    <!-- 공통 하단: 백엔드 테스트 & 내비게이터(서술형 백서·컴플라이언스·FAQ 20개) -->
     <section class="section-box" id="backendSection">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">백엔드 테스트 워크벤치</h2>
-          <p class="section-sub">입출금·송금·예적금·대출·리워드 잔액과 거래 원장을 실시간 검증합니다.</p>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button type="button" class="btn-ghost" id="autoTestBtn">자동 테스트 실행</button>
-          <button type="button" class="btn-ghost" id="resetTestBtn">초기화</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+        <h3 class="section-title" style="margin:0;">백엔드 테스트 (잔액 · 원장 · 이자 · 리워드)</h3>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn-ghost" id="runScenarioBtn">자동 테스트</button>
+          <button type="button" class="btn-ghost" id="resetDataBtn">초기화</button>
         </div>
       </div>
 
-      <div class="account-summary">
-        <div class="acc-box">
-          <div class="acc-label">인터넷 은행 잔액</div>
-          <div class="acc-val" id="sumCash">12,500,000원</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px;">
+        <div style="padding:12px; border-radius:12px; background:rgba(9,14,34,0.9); border:1px solid var(--border-soft);">
+          <div style="font-size:0.74rem; color:var(--text-muted);">인터넷 계좌 잔액</div>
+          <div style="font-size:1rem; font-weight:900; color:var(--gold-1);" id="balCash">12,500,000원</div>
         </div>
-        <div class="acc-box">
-          <div class="acc-label">웹3 예치·적금·저축</div>
-          <div class="acc-val" id="sumSavings">8,000,000원</div>
+        <div style="padding:12px; border-radius:12px; background:rgba(9,14,34,0.9); border:1px solid var(--border-soft);">
+          <div style="font-size:0.74rem; color:var(--text-muted);">웹3 예치·적금·저축</div>
+          <div style="font-size:1rem; font-weight:900; color:var(--gold-1);" id="balSav">8,000,000원</div>
         </div>
-        <div class="acc-box">
-          <div class="acc-label">대출 / 참여 리워드</div>
-          <div class="acc-val" id="sumLoanReward">0원 · 24,500 P</div>
+        <div style="padding:12px; border-radius:12px; background:rgba(9,14,34,0.9); border:1px solid var(--border-soft);">
+          <div style="font-size:0.74rem; color:var(--text-muted);">대출 / 참여 리워드</div>
+          <div style="font-size:1rem; font-weight:900; color:var(--gold-1);" id="balLoanRew">0원 · 24,500 P</div>
         </div>
       </div>
 
-      <div class="test-layout">
-        <form id="txForm" style="background:rgba(8,12,28,0.65); padding:14px; border-radius:16px; border:1px solid var(--border-soft);">
-          <div class="form-grid">
-            <div class="field-group">
-              <label class="field-label" for="txType">거래 구분</label>
+      <div class="test-grid">
+        <form id="txForm" style="background:rgba(8,12,28,0.65); padding:14px; border-radius:14px; border:1px solid var(--border-soft);">
+          <div class="form-row">
+            <div>
+              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">거래 구분</label>
               <select id="txType" class="select-ctrl">
                 <option value="deposit">입금</option>
                 <option value="withdraw">출금</option>
@@ -990,550 +679,355 @@
                 <option value="reward_claim">참여 보상(리워드)</option>
               </select>
             </div>
-            <div class="field-group">
-              <label class="field-label" for="txAmount">금액 (원 / P)</label>
+            <div>
+              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">금액 (원 / P)</label>
               <input id="txAmount" type="number" class="input-ctrl" value="500000" min="1000" step="1000" required />
             </div>
-            <div class="field-group">
-              <label class="field-label" for="txCounterparty">대상 / 상품명</label>
-              <input id="txCounterparty" type="text" class="input-ctrl" value="HKWB 테스트" />
+            <div>
+              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">대상 / 상품명</label>
+              <input id="txMemo" type="text" class="input-ctrl" value="HKWB 테스트" />
             </div>
-            <div class="field-group">
-              <label class="field-label" for="txRate">연이율 (%)</label>
-              <input id="txRate" type="number" class="input-ctrl" value="8.4" min="0" max="30" step="0.1" />
+            <div>
+              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">연이율 (%)</label>
+              <input id="txRate" type="number" class="input-ctrl" value="9.2" min="0" max="30" step="0.1" />
             </div>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="submit" class="btn-gold">실행</button>
-            <button type="button" class="btn-grad-blue" id="calcInterestBtn">예상 이자 보기</button>
+            <button type="button" class="btn-blue" id="calcBtn">예상 이자</button>
           </div>
-          <div id="txFeedback" style="margin-top:8px; font-size:0.82rem; font-weight:700; color:var(--ok);"></div>
+          <div id="txMsg" style="margin-top:8px; font-size:0.8rem; font-weight:700; color:var(--ok);"></div>
         </form>
 
-        <div>
-          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-            <span class="field-label">거래 원장 로그</span>
-            <span class="section-sub" id="txCountLabel">총 3건</span>
-          </div>
-          <div class="tx-log-box" id="txLogList"></div>
-        </div>
+        <div class="tx-box" id="txLog"></div>
       </div>
     </section>
 
-    <!-- 내비게이터: 번호 없는 서술형 백서 / 컴플라이언스 / FAQ 20개 -->
     <section class="section-box" id="navigatorSection">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">백서 · 컴플라이언스 · FAQ 20개</h2>
-          <p class="section-sub">번호 없는 서술형 백서, 21개국 디지털 자산 범위·해킹 방어, FATF 트래블 룰·실시간 제재 리스트·검증 규격, FAQ 20개.</p>
-        </div>
-      </div>
-
+      <h3 class="section-title">백서 · 컴플라이언스 · FAQ 20개</h3>
       <div class="nav-tabs">
-        <button type="button" class="nav-tab active" data-nav-tab="whitepaper">서술형 백서</button>
-        <button type="button" class="nav-tab" data-nav-tab="compliance">컴플라이언스 규격</button>
-        <button type="button" class="nav-tab" data-nav-tab="faq">FAQ 20개</button>
+        <button type="button" class="nav-tab active" data-tab="paper">서술형 백서</button>
+        <button type="button" class="nav-tab" data-tab="comp">컴플라이언스</button>
+        <button type="button" class="nav-tab" data-tab="faq">FAQ 20개</button>
       </div>
 
-      <div id="navTab-whitepaper" class="prose-whitepaper">
-        <p>
-          HKWB는 지점 중심의 기존 금융 구조를 넘어 일상 속 무점포 인터넷 은행과 고수익 온체인 금융을 아우르는 웹3 디지털 은행을 하나로 연결합니다. 고객은 입금, 출금, 송금, 예금, 적금, 저축, 대출과 참여 보상을 직관적인 흐름으로 이용하면서 상황에 맞게 두 은행을 자유롭게 오갈 수 있습니다.
-        </p>
-        <p>
-          무점포 인터넷 은행은 빠르고 익숙한 계좌 거래와 생활 금융·참여 보상을 제공하고, 웹3 디지털 은행은 높은 이자 수익률 중심의 디지털 예치와 유동성 운용을 지원합니다. 두 축이 유기적으로 이어져 일상 금융과 미래 자산 운용을 한곳에서 경험할 수 있습니다.
-        </p>
-        <p>
-          HKWB는 보안과 규제 준수를 핵심 토대로 삼아 다중 인증, 해킹 방어, FATF 트래블 룰, 실시간 제재 리스트 대조 및 검증 규격을 체계적으로 반영합니다.
-        </p>
+      <div id="tab-paper" class="prose-paper">
+        <p>HKWB는 무점포 인터넷 은행의 편리함과 웹3 디지털 은행의 높은 이자 수익률 구조를 하나의 연결된 금융 생태계로 제공합니다. 표지에서 원하는 방을 선택해 바로 들어가고, 필요할 때 언제든 다른 방으로 오갈 수 있도록 구성했습니다.</p>
+        <p>인터넷 은행 방은 일상 속 입금·출금·송금·예금·적금·저축·대출과 참여 보상에 집중하며, 웹3 디지털 은행 방은 고수익 디지털 예치와 온체인 자산 운용을 중심으로 설계되었습니다.</p>
+        <p>모든 서비스는 해킹 방어와 다중 보안 인증, 21개국 디지털 자산 범위 점검, FATF 트래블 룰, 실시간 제재 리스트 대조 및 검증 규격을 따릅니다.</p>
       </div>
 
-      <div id="navTab-compliance" class="comp-grid hidden">
+      <div id="tab-comp" class="comp-2x2 hidden">
         <div class="comp-card">
           <h4>21개국 디지털 자산 범위 &amp; 컴플라이언스</h4>
-          <p>
-            대한민국, 미국, 일본, 싱가포르, 영국, 독일, 프랑스, 스위스, 캐나다, 호주, 홍콩, UAE, 네덜란드, 스웨덴, 노르웨이, 핀란드, 덴마크, 아일랜드, 룩셈부르크, 뉴질랜드, 브라질 등 주요 21개국 디지털 자산 규제 및 지원 범위를 기준으로 컴플라이언스를 점검합니다.
-          </p>
+          <p>한국·미국·일본·싱가포르·영국·독일·프랑스·스위스·캐나다·호주·홍콩·UAE·네덜란드·스웨덴·노르웨이·핀란드·덴마크·아일랜드·룩셈부르크·뉴질랜드·브라질 등 21개국 기준 컴플라이언스를 반영합니다.</p>
         </div>
         <div class="comp-card">
-          <h4>해킹 방어 체계</h4>
-          <ul>
-            <li>콜드·핫 키 분리 및 다중 서명(Multi-Sig) 승인</li>
-            <li>실시간 비정상 접속·출금 탐지 및 API 무결성 검증</li>
-            <li>암호화 통신 및 줄 그리기·PIN·지문 보안 잠금</li>
-          </ul>
+          <h4>해킹 방어</h4>
+          <p>멀티시그 키 관리, 암호화 통신, 이상 거래 탐지, 줄 그리기·PIN·지문 보안 잠금으로 자산을 보호합니다.</p>
         </div>
         <div class="comp-card">
           <h4>FATF 트래블 룰</h4>
-          <p>
-            FATF 트래블 룰 기준에 따라 송신·수취 식별 정보를 암호화 규격으로 검증·전달하여 투명한 자산 이동을 지원합니다.
-          </p>
+          <p>송신·수취 식별 정보 검증 및 암호화 전송 규격을 준수합니다.</p>
         </div>
         <div class="comp-card">
           <h4>실시간 제재 리스트 &amp; 검증 규격</h4>
-          <ul>
-            <li>글로벌 제재 리스트 실시간 대조 및 자동 보류</li>
-            <li>고위험 지갑 스크리닝 및 AML/KYC 검증 규격 적용</li>
-            <li>검증 이력 감사 로그 및 규격 준수 리포트 기록</li>
-          </ul>
+          <p>글로벌 제재 리스트 실시간 대조, 고위험 주소 스크리닝 및 AML/KYC 검증 규격을 적용합니다.</p>
         </div>
       </div>
 
-      <div id="navTab-faq" class="faq-list hidden"></div>
+      <div id="tab-faq" class="faq-grid hidden"></div>
     </section>
   </main>
 
-  <!-- 손폰 하단 빠른 왕복 Dock -->
-  <nav class="quick-dock" aria-label="빠른 은행 이동">
-    <button type="button" class="dock-btn btn-grad-violet" onclick="enterBank('web3')">웹3 디지털</button>
-    <button type="button" class="dock-btn btn-grad-blue" onclick="enterBank('internet')">인터넷 은행</button>
-    <button type="button" class="dock-btn btn-ghost" onclick="scrollToSection('coverTop')">표지</button>
+  <!-- 손폰 하단 빠른 왕복 바 -->
+  <nav class="bottom-bar" aria-label="방 이동">
+    <button type="button" class="btn-ghost" onclick="showView('cover')">표지</button>
+    <button type="button" class="btn-violet" onclick="showView('web3')">웹3 디지털 방</button>
+    <button type="button" class="btn-blue" onclick="showView('internet')">인터넷 은행 방</button>
   </nav>
 
-  <!-- 보안 잠금 모달 (버튼 누를 때만 열림) -->
-  <div id="lockModal" class="lock-backdrop hidden">
-    <div class="lock-card">
+  <!-- 줄 그리기 잠금 오버레이 -->
+  <div id="lockOverlay" class="overlay hidden">
+    <div class="box-card">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong style="color:var(--gold-1);">HKWB 보안 인증</strong>
-        <button type="button" class="btn-ghost" id="closeLockModalBtn" style="padding:5px 10px;">닫기 ✕</button>
+        <strong style="color:var(--gold-1);">줄 그리기 보안 잠금</strong>
+        <button type="button" class="btn-ghost" onclick="closeLock()" style="padding:5px 10px;">닫기 ✕</button>
       </div>
-      <div class="auth-tabs">
-        <button type="button" class="auth-tab active" data-auth-tab="pattern">줄 그리기</button>
-        <button type="button" class="auth-tab" data-auth-tab="pin">숫자 6자리</button>
-        <button type="button" class="auth-tab" data-auth-tab="bio">지문</button>
-      </div>
-
-      <div id="authPatternView">
-        <canvas id="patternCanvas" width="240" height="240"></canvas>
-        <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:6px;">3×3 점을 4개 이상 이어 그려주세요.</p>
-      </div>
-
-      <div id="authPinView" class="hidden">
-        <div class="pin-dots" id="pinDots">
-          <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
-          <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
-        </div>
-        <div class="keypad" id="pinKeypad"></div>
-      </div>
-
-      <div id="authBioView" class="hidden" style="text-align:center; padding:14px 0;">
-        <button type="button" class="btn-gold" id="bioScanBtn" style="padding:14px 22px; border-radius:999px;">👆 지문 스캔 완료</button>
-      </div>
-
-      <div id="lockStatus" style="margin-top:10px; font-size:0.82rem; font-weight:700; color:var(--gold-1); text-align:center;">줄 그리기 대기 중</div>
+      <canvas id="patternCanvas" width="230" height="230"></canvas>
+      <p id="lockMsg" style="font-size:0.82rem; color:var(--gold-1); text-align:center; font-weight:700;">3×3 점을 4개 이상 이어 그려주세요.</p>
     </div>
   </div>
 
   <!-- 삼선 메뉴 드로어 -->
-  <div id="drawerBackdrop" class="drawer-backdrop hidden">
-    <aside class="drawer-panel">
+  <div id="drawerOverlay" class="overlay drawer-mode hidden">
+    <aside class="drawer-card">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <strong style="color:var(--gold-1);">HKWB 메뉴</strong>
-        <button type="button" class="btn-ghost" id="closeDrawerBtn" style="padding:5px 10px;">닫기 ✕</button>
+        <button type="button" class="btn-ghost" onclick="closeDrawer()" style="padding:5px 10px;">닫기 ✕</button>
       </div>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndGo('coverTop')">표지 (웹3 위 → 인터넷 아래)</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndEnter('web3')">웹3 디지털 은행으로 가기</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndEnter('internet')">인터넷 은행으로 가기</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndGo('modulesSection')">금융 서비스 모듈 (2×4)</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndGo('depositSection')">예금·적금·저축 (2×3 / 3×2)</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndGo('backendSection')">백엔드 테스트 워크벤치</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndGo('navigatorSection')">백서·컴플라이언스·FAQ 20개</button>
-      <button type="button" class="drawer-link" onclick="closeDrawerAndOpenLock()">보안 잠금(줄 그리기·PIN·지문)</button>
+      <button type="button" class="btn-ghost" style="text-align:left;" onclick="closeDrawer(); showView('cover');">표지 화면</button>
+      <button type="button" class="btn-violet" style="text-align:left;" onclick="closeDrawer(); showView('web3');">웹3 디지털 은행 방</button>
+      <button type="button" class="btn-blue" style="text-align:left;" onclick="closeDrawer(); showView('internet');">인터넷 은행 방</button>
+      <button type="button" class="btn-ghost" style="text-align:left;" onclick="closeDrawer(); openLock();">줄 그리기 보안 잠금</button>
     </aside>
   </div>
 
-  <!-- 웹3 둘러보기 모달 -->
-  <div id="modalBackdrop" class="modal-backdrop hidden">
-    <div class="modal-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h3 id="modalTitle" style="color:var(--gold-1); font-size:1.08rem;">안내</h3>
-        <button type="button" class="btn-ghost" id="closeModalBtn" style="padding:5px 10px;">닫기 ✕</button>
+  <!-- 둘러보기 모달 -->
+  <div id="infoOverlay" class="overlay hidden">
+    <div class="box-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong style="color:var(--gold-1);">웹3 디지털 은행 · 둘러보기</strong>
+        <button type="button" class="btn-ghost" onclick="closeInfo()" style="padding:5px 10px;">닫기 ✕</button>
       </div>
-      <div id="modalBody" style="font-size:0.88rem; color:var(--text-sub); line-height:1.65;"></div>
+      <p style="font-size:0.88rem; color:var(--text-sub); margin-bottom:14px;">
+        이자 수익률이 높은 웹3 디지털 은행을 이용해보세요! 고수익 디지털 예치·저축과 컴플라이언스 구조를 먼저 살펴보실 수 있습니다.
+      </p>
+      <button type="button" class="btn-violet" onclick="closeInfo(); showView('web3');">웹3 디지털 은행 방 들어가기</button>
     </div>
   </div>
 
   <script>
     const state = {
-      activeBank: "web3",
-      cashBalance: 12500000,
-      savingsBalance: 8000000,
-      loanBalance: 0,
-      rewardPoints: 24500,
-      transactions: [
-        { id: "TX-1001", type: "초기 잔액", label: "무점포 인터넷 은행", amount: 12500000, unit: "원", time: "초기" },
-        { id: "TX-1002", type: "웹3 예치", label: "고수익 디지털 예치", amount: 8000000, unit: "원", time: "초기" },
-        { id: "TX-1003", type: "참여 리워드", label: "참여 보상 포인트", amount: 24500, unit: "P", time: "초기" }
+      cash: 12500000,
+      sav: 8000000,
+      loan: 0,
+      rew: 24500,
+      logs: [
+        { id: "TX-101", t: "입금", m: "인터넷 계좌 초기 잔액", v: 12500000, u: "원" },
+        { id: "TX-102", t: "예금", m: "웹3 고수익 예치 초기", v: 8000000, u: "원" },
+        { id: "TX-103", t: "참여 보상", m: "초기 참여 리워드", v: 24500, u: "P" }
       ]
     };
 
-    const eightModules = [
-      { key: "deposit", icon: "📥", name: "입금", desc: "계좌 즉시 입금", rate: 4.0, cta: "입금 테스트" },
-      { key: "withdraw", icon: "📤", name: "출금", desc: "계좌 출금 검증", rate: 4.0, cta: "출금 테스트" },
-      { key: "transfer", icon: "💸", name: "송금", desc: "빠른 이체·송금", rate: 4.0, cta: "송금 테스트" },
-      { key: "term_deposit", icon: "🏦", name: "예금", desc: "거치식 예금 이자", rate: 8.8, cta: "예금 테스트" },
-      { key: "installment", icon: "📅", name: "적금", desc: "정기·자유 적금", rate: 8.2, cta: "적금 테스트" },
-      { key: "auto_save", icon: "🌱", name: "저축", desc: "생활·웹3 저축", rate: 9.0, cta: "저축 테스트" },
-      { key: "loan_take", icon: "💳", name: "대출", desc: "한도·실행·상환", rate: 5.5, cta: "대출 테스트" },
-      { key: "reward_claim", icon: "🎁", name: "참여 보상", desc: "리워드 적립 수령", rate: 9.4, cta: "리워드 받기" }
+    const mods2x4 = [
+      ["deposit", "📥 입금", "계좌 즉시 입금", 4.0],
+      ["withdraw", "📤 출금", "계좌 즉시 출금", 4.0],
+      ["transfer", "💸 송금", "빠른 계좌 송금", 4.0],
+      ["term_deposit", "🏦 예금", "정기예금 이자", 6.8],
+      ["installment", "📅 적금", "목돈 적금 납입", 7.8],
+      ["auto_save", "🌱 저축", "생활 자동 저축", 7.5],
+      ["loan_take", "💳 대출", "대출 실행·상환", 5.5],
+      ["reward_claim", "🎁 참여 보상", "리워드 받기", 0]
     ];
 
-    const depositProducts = [
-      { type: "term_deposit", title: "웹3 고수익 예치", rate: "연 9.4%", term: "웹3 디지털 은행", desc: "높은 이자 수익률 중심 예치" },
-      { type: "term_deposit", title: "무점포 정기예금", rate: "연 6.8%", term: "인터넷 은행", desc: "안정적인 정기예금 상품" },
-      { type: "installment", title: "플렉스 적금", rate: "연 8.0%", term: "6~24개월", desc: "자유 납입 적금 플랜" },
-      { type: "installment", title: "목표 달성 적금", rate: "연 8.5%", term: "12개월", desc: "우대금리 적용 적금" },
-      { type: "auto_save", title: "일상 자동저축", rate: "연 7.4%", term: "수시 저축", desc: "생활 거래 연계 저축" },
-      { type: "auto_save", title: "리워드 부스터 저축", rate: "연 9.1%", term: "웹3 연동", desc: "고수익 저축 시뮬레이션" }
+    const products3x2 = [
+      ["term_deposit", "웹3 고수익 예치", "연 9.4%", "고수익 디지털 예치"],
+      ["auto_save", "웹3 수익 부스터 저축", "연 9.1%", "온체인 고수익 저축"],
+      ["term_deposit", "무점포 정기예금", "연 6.8%", "안정적인 정기예금"],
+      ["installment", "자유적립 플러스 적금", "연 8.0%", "자유 납입 적금"],
+      ["installment", "목표달성 적금", "연 8.5%", "우대금리 적금"],
+      ["auto_save", "생활비 저축", "연 7.4%", "일상 저축 플랜"]
     ];
 
-    const faqData = [
-      ["표지 순서는 어떻게 되어 있나요?", "손폰 화면에서 웹3 디지털 은행이 위에, 인터넷 은행이 아래에 오도록 배치되어 있습니다."],
-      ["선택한 은행으로 어떻게 가나요?", "표지 카드 버튼, 상단 스위처, 하단 바를 눌러 원하는 은행으로 바로 이동합니다."],
-      ["웹3 디지털 은행 둘러보기는 어디 있나요?", "웹3 디지털 은행 카드 상단 우측 '둘러보기' 버튼에서 바로 열 수 있습니다."],
-      ["인터넷 은행의 핵심 특징은 무엇인가요?", "참여하고 보상(리워드)을 받아가는 무점포 인터넷 은행 경험입니다."],
-      ["웹3 디지털 은행의 특징은 무엇인가요?", "이자 수익률이 높은 웹3 디지털 은행 구조를 체험할 수 있습니다."],
-      ["금융 모듈은 몇 개로 구성되나요?", "입금, 출금, 송금, 예금, 적금, 저축, 대출, 참여 보상까지 8개(2×4)입니다."],
-      ["예금·적금·저축 격자는 어떻게 변하나요?", "모바일에서는 2×3, PC에서는 3×2로 반응형 정렬됩니다."],
-      ["백엔드 테스트는 어디서 하나요?", "백엔드 테스트 워크벤치에서 잔액과 원장 변동을 실시간 확인합니다."],
-      ["자동 테스트 버튼은 무슨 역할을 하나요?", "입금·송금·예금·리워드 흐름을 한 번에 연속 테스트합니다."],
-      ["백서는 어떤 형식인가요?", "번호 매기기 없는 서술형 백서로 구성되어 있습니다."],
-      ["디지털 자산 범위는 몇 개국 기준인가요?", "주요 21개국 디지털 자산 기준과 컴플라이언스를 반영합니다."],
-      ["FATF 트래블 룰은 포함되나요?", "네, 송신·수취 식별 검증 및 암호화 전송 규격을 담았습니다."],
-      ["실시간 제재 리스트는 무엇을 하나요?", "제재 대상 및 고위험 주소 실시간 대조와 검증 규격을 다룹니다."],
-      ["해킹 방어 항목은 무엇이 있나요?", "멀티시그·암호화 통신·이상 탐지·보안 잠금을 포함합니다."],
-      ["보안 잠금은 어떤 방식을 지원하나요?", "줄 그리기, 숫자 6자리 PIN, 지문 인증을 지원합니다."],
-      ["양쪽 은행을 자주 오가도 상태가 유지되나요?", "네, 잔액과 거래 내역이 그대로 유지되며 은행별 맞춤 안내가 바뀝니다."],
-      ["대출 실행과 상환도 테스트되나요?", "백엔드 폼에서 대출 실행과 상환을 선택해 테스트할 수 있습니다."],
-      ["예상 이자 보기는 어떻게 계산하나요?", "입력한 금액과 연이율을 기준으로 연/월 예상 이자를 계산합니다."],
-      ["상단 삼선 메뉴에서는 무엇을 하나요?", "표지·모듈·예적금·워크벤치·백서/FAQ·보안 잠금으로 바로 이동합니다."],
-      ["초기화를 누르면 어떻게 되나요?", "백엔드 잔액과 거래 원장이 초기 테스트 상태로 돌아갑니다."]
+    const faqs = [
+      ["표지는 어디서 보나요?", "첫 화면이 표지이며, 언제든 상단 로고나 하단 '표지' 버튼으로 돌아옵니다."],
+      ["웹3 방과 인터넷 방은 나뉘어 있나요?", "네, 각 방이 독립적으로 나뉘어 있어 헷갈리지 않게 선택할 수 있습니다."],
+      ["손폰에서 위아래 순서는 어떻게 되나요?", "표지에서 웹3 디지털 은행 방이 위, 인터넷 은행 방이 아래에 배치됩니다."],
+      ["다른 방으로 바로 갈 수 있나요?", "각 방 상단과 하단 바에서 상대 방으로 바로 이동할 수 있습니다."],
+      ["둘러보기는 어디에 있나요?", "웹3 디지털 은행 카드와 웹3 방 상단 '둘러보기' 버튼에 있습니다."],
+      ["인터넷 은행 방의 문구는 무엇인가요?", "참여하고 보상(리워드) 받아가세요 문구가 안내됩니다."],
+      ["웹3 은행 방의 문구는 무엇인가요?", "이자 수익률이 높은 웹3 디지털 은행을 이용해보세요! 문구가 안내됩니다."],
+      ["금융 모듈은 몇 개(2×4)인가요?", "입금·출금·송금·예금·적금·저축·대출·참여 보상 8개입니다."],
+      ["예금·적금·저축 격자는 어떻게 되나요?", "모바일 2×3, PC 3×2로 반응형 정렬됩니다."],
+      ["백엔드 테스트는 어디서 하나요?", "중앙 백엔드 테스트 폼에서 입출금·송금·예적금·대출·리워드를 검증합니다."],
+      ["자동 테스트 버튼은 무엇을 하나요?", "입금·송금·예금·리워드 흐름을 연속 실행합니다."],
+      ["초기화는 어떻게 되나요?", "잔액과 거래 로그가 초기 상태로 돌아갑니다."],
+      ["백서는 어떤 형식인가요?", "번호 없는 서술형 백서로 구성되어 있습니다."],
+      ["21개국 디지털 자산 범위가 있나요?", "컴플라이언스 탭에서 21개국 기준과 정책을 확인할 수 있습니다."],
+      ["FATF 트래블 룰이 포함되나요?", "송신·수취 검증 및 암호화 전송 규격을 반영했습니다."],
+      ["실시간 제재 리스트는 무엇인가요?", "제재 리스트 실시간 대조 및 검증 규격을 안내합니다."],
+      ["해킹 방어 항목은 무엇인가요?", "멀티시그·암호화·이상 탐지·보안 잠금을 다룹니다."],
+      ["줄 그리기 잠금은 어떻게 쓰나요?", "보안 잠금 버튼을 눌러 3×3 점을 4개 이상 이어 그리면 됩니다."],
+      ["거래 내역은 남나요?", "백엔드 테스트를 실행할 때마다 원장 로그에 쌓입니다."],
+      ["예상 이자 계산도 되나요?", "금액과 연이율을 입력하고 '예상 이자'를 누르면 계산됩니다."]
     ];
 
-    function formatWon(n) {
-      return Number(n || 0).toLocaleString("ko-KR") + "원";
-    }
+    const fmtWon = n => Number(n || 0).toLocaleString("ko-KR") + "원";
+    const fmtPts = n => Number(n || 0).toLocaleString("ko-KR") + " P";
 
-    function formatPts(n) {
-      return Number(n || 0).toLocaleString("ko-KR") + " P";
-    }
-
-    window.enterBank = function(bank) {
-      state.activeBank = bank;
-      const web3Btn = document.getElementById("swWeb3Btn");
-      const intBtn = document.getElementById("swInternetBtn");
-      const badge = document.getElementById("activeBankBadge");
-      const desc = document.getElementById("activeBankDesc");
-      const guide = document.getElementById("agiGuideText");
-
-      if (bank === "web3") {
-        web3Btn.classList.add("active");
-        intBtn.classList.remove("active");
-        badge.textContent = "현재 선택: HKWB 웹3 디지털 은행";
-        desc.textContent = "이자 수익률이 높은 웹3 디지털 은행 모드입니다. 예금/저축 금리를 9.4%로 맞췄어요.";
-        guide.textContent = "웹3 디지털 은행 이동 완료! 인터넷 은행으로 바로 가실 수도 있어요.";
+    window.showView = function(name) {
+      ["cover", "web3", "internet"].forEach(v => {
+        document.getElementById("view-" + v).classList.toggle("hidden", v !== name);
+      });
+      if (name === "web3") {
         document.getElementById("txType").value = "term_deposit";
-        document.getElementById("txCounterparty").value = "웹3 고수익 예치";
+        document.getElementById("txMemo").value = "웹3 고수익 예치";
         document.getElementById("txRate").value = "9.4";
-      } else {
-        intBtn.classList.add("active");
-        web3Btn.classList.remove("active");
-        badge.textContent = "현재 선택: HKWB 무점포 인터넷 은행";
-        desc.textContent = "참여하고 보상(리워드) 받아가는 무점포 인터넷 은행 모드입니다. 송금/리워드를 바로 테스트하세요.";
-        guide.textContent = "인터넷 은행 이동 완료! 웹3 디지털 은행으로 다시 가셔도 됩니다.";
+      } else if (name === "internet") {
         document.getElementById("txType").value = "transfer";
-        document.getElementById("txCounterparty").value = "무점포 간편 송금";
+        document.getElementById("txMemo").value = "인터넷 은행 송금";
         document.getElementById("txRate").value = "6.8";
       }
-      scrollToSection("workspaceAnchor");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    function updateDashboard() {
-      document.getElementById("sumCash").textContent = formatWon(state.cashBalance);
-      document.getElementById("sumSavings").textContent = formatWon(state.savingsBalance);
-      document.getElementById("sumLoanReward").textContent = `${formatWon(state.loanBalance)} · ${formatPts(state.rewardPoints)}`;
-      document.getElementById("txCountLabel").textContent = `총 ${state.transactions.length}건`;
+    window.quickRewardAndEnter = function() {
+      applyTx("reward_claim", 15000, "참여 보상 수령", 0);
+      showView("internet");
+    };
 
-      document.getElementById("txLogList").innerHTML = state.transactions.map(tx => `
+    window.claimRewardOnly = function() {
+      applyTx("reward_claim", 15000, "참여 보상 수령", 0);
+    };
+
+    function renderBalances() {
+      document.getElementById("balCash").textContent = fmtWon(state.cash);
+      document.getElementById("balSav").textContent = fmtWon(state.sav);
+      document.getElementById("balLoanRew").textContent = `${fmtWon(state.loan)} · ${fmtPts(state.rew)}`;
+      document.getElementById("txLog").innerHTML = state.logs.map(x => `
         <div class="tx-item">
-          <div class="tx-top">
-            <span>[${tx.id}] ${tx.type} · ${tx.label}</span>
-            <span style="color:var(--gold-1);">${tx.unit === "P" ? formatPts(tx.amount) : formatWon(tx.amount)}</span>
+          <div style="display:flex; justify-content:space-between; font-weight:800;">
+            <span>[${x.id}] ${x.t} · ${x.m}</span>
+            <span style="color:var(--gold-1);">${x.u === "P" ? fmtPts(x.v) : fmtWon(x.v)}</span>
           </div>
-          <div class="tx-meta">${tx.time} · 잔액 ${formatWon(state.cashBalance)}</div>
         </div>
       `).join("");
     }
 
-    function addTx(type, label, amount, unit = "원") {
-      const id = "TX-" + Math.floor(1000 + Math.random() * 9000);
-      const t = new Date().toTimeString().slice(0, 8);
-      state.transactions.unshift({ id, type, label, amount, unit, time: t });
-      updateDashboard();
-    }
-
-    function runTx(type, amount, counterparty, rate) {
+    function applyTx(type, amount, memo, rate) {
       const val = Number(amount);
       const r = Number(rate || 0);
-      const fb = document.getElementById("txFeedback");
-      if (!val || val <= 0) {
-        fb.style.color = "var(--bad)";
-        fb.textContent = "금액을 올바르게 입력해주세요.";
-        return;
-      }
-      if (type === "deposit") {
-        state.cashBalance += val;
-        addTx("입금", counterparty || "입금", val, "원");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `${formatWon(val)} 입금 완료!`;
-      } else if (type === "withdraw") {
-        if (state.cashBalance < val) { fb.style.color = "var(--bad)"; fb.textContent = "잔액이 부족합니다."; return; }
-        state.cashBalance -= val;
-        addTx("출금", counterparty || "출금", val, "원");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `${formatWon(val)} 출금 완료!`;
-      } else if (type === "transfer") {
-        if (state.cashBalance < val) { fb.style.color = "var(--bad)"; fb.textContent = "송금 잔액이 부족합니다."; return; }
-        state.cashBalance -= val;
-        addTx("송금", counterparty || "송금", val, "원");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `${formatWon(val)} 송금 완료!`;
-      } else if (type === "term_deposit" || type === "installment" || type === "auto_save") {
-        if (state.cashBalance < val) { fb.style.color = "var(--bad)"; fb.textContent = "잔액이 부족합니다."; return; }
-        const map = { term_deposit: "예금", installment: "적금", auto_save: "저축" };
-        state.cashBalance -= val;
-        state.savingsBalance += val;
-        addTx(map[type], `${counterparty || map[type]} (${r}%)`, val, "원");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `${map[type]} ${formatWon(val)} 반영 완료 (연 ${r}%)`;
-      } else if (type === "loan_take") {
-        state.loanBalance += val;
-        state.cashBalance += val;
-        addTx("대출 실행", `${counterparty || "대출"} (${r}%)`, val, "원");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `대출 ${formatWon(val)} 실행 완료!`;
-      } else if (type === "loan_repay") {
-        const pay = Math.min(val, state.loanBalance, state.cashBalance);
-        if (pay <= 0) { fb.style.color = "var(--bad)"; fb.textContent = "상환할 금액이 없습니다."; return; }
-        state.loanBalance -= pay;
-        state.cashBalance -= pay;
-        addTx("대출 상환", counterparty || "상환", pay, "원");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `대출 ${formatWon(pay)} 상환 완료!`;
-      } else if (type === "reward_claim") {
-        const pts = Math.max(100, Math.round(val / 100));
-        state.rewardPoints += pts;
-        addTx("참여 보상", counterparty || "리워드 수령", pts, "P");
-        fb.style.color = "var(--ok)";
-        fb.textContent = `참여 보상 ${formatPts(pts)} 수령 완료!`;
-      }
+      const msg = document.getElementById("txMsg");
+      if (!val || val <= 0) { msg.style.color = "var(--bad)"; msg.textContent = "금액을 입력하세요."; return; }
+
+      if (type === "deposit") { state.cash += val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "입금", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${fmtWon(val)} 입금 완료`; }
+      else if (type === "withdraw") { if (state.cash < val) { msg.style.color = "var(--bad)"; msg.textContent = "잔액 부족"; return; } state.cash -= val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "출금", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${fmtWon(val)} 출금 완료`; }
+      else if (type === "transfer") { if (state.cash < val) { msg.style.color = "var(--bad)"; msg.textContent = "잔액 부족"; return; } state.cash -= val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "송금", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${fmtWon(val)} 송금 완료`; }
+      else if (type === "term_deposit" || type === "installment" || type === "auto_save") { if (state.cash < val) { msg.style.color = "var(--bad)"; msg.textContent = "잔액 부족"; return; } const label = type === "term_deposit" ? "예금" : type === "installment" ? "적금" : "저축"; state.cash -= val; state.sav += val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: label, m: `${memo}(${r}%)`, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${label} ${fmtWon(val)} 완료`; }
+      else if (type === "loan_take") { state.loan += val; state.cash += val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "대출 실행", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `대출 ${fmtWon(val)} 실행 완료`; }
+      else if (type === "loan_repay") { const pay = Math.min(val, state.loan, state.cash); if (pay <= 0) { msg.style.color = "var(--bad)"; msg.textContent = "상환 대상 없음"; return; } state.loan -= pay; state.cash -= pay; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "대출 상환", m: memo, v: pay, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `대출 ${fmtWon(pay)} 상환 완료`; }
+      else if (type === "reward_claim") { const pts = Math.max(100, Math.round(val / 100)); state.rew += pts; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "참여 보상", m: memo, v: pts, u: "P" }); msg.style.color = "var(--ok)"; msg.textContent = `참여 보상 ${fmtPts(pts)} 수령 완료`; }
+      renderBalances();
     }
 
-    function renderGrid() {
-      document.getElementById("modulesGrid").innerHTML = eightModules.map(m => `
-        <button type="button" class="mod-card" onclick="pickModule('${m.key}', '${m.name}', ${m.rate})">
-          <span class="mod-icon">${m.icon}</span>
-          <span class="mod-name">${m.name}</span>
-          <span class="mod-desc">${m.desc}</span>
-          <span class="mod-cta">${m.cta} →</span>
+    function initLists() {
+      document.getElementById("internetModulesGrid").innerHTML = mods2x4.map(([k, title, desc, r]) => `
+        <button type="button" class="mod-card" onclick="pickMod('${k}','${title}',${r})">
+          <strong style="font-size:0.95rem;">${title}</strong>
+          <span style="font-size:0.78rem; color:var(--text-sub);">${desc}</span>
+          <span style="font-size:0.75rem; color:var(--gold-1); font-weight:800; margin-top:auto;">테스트 →</span>
         </button>
       `).join("");
 
-      document.getElementById("depositGrid").innerHTML = depositProducts.map(p => `
-        <article class="dep-card">
+      const prodHtml = products3x2.map(([t, title, rate, desc]) => `
+        <div class="dep-card">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="font-size:0.92rem;">${p.title}</strong>
-            <span class="dep-rate">${p.rate}</span>
+            <strong style="font-size:0.9rem;">${title}</strong>
+            <span style="color:var(--gold-1); font-weight:900; font-size:0.92rem;">${rate}</span>
           </div>
-          <div style="font-size:0.75rem; color:var(--gold-1);">${p.term}</div>
-          <p style="font-size:0.78rem; color:var(--text-sub);">${p.desc}</p>
-          <button type="button" class="btn-ghost" style="margin-top:auto;" onclick="pickDeposit('${p.type}', '${p.title}', '${p.rate}')">테스트 선택</button>
-        </article>
+          <p style="font-size:0.78rem; color:var(--text-sub);">${desc}</p>
+          <button type="button" class="btn-ghost" style="margin-top:auto;" onclick="pickProd('${t}','${title}','${rate}')">선택</button>
+        </div>
       `).join("");
 
-      document.getElementById("navTab-faq").innerHTML = faqData.map(([q, a], i) => `
+      document.getElementById("web3DepositGrid").innerHTML = prodHtml;
+      document.getElementById("internetDepositGrid").innerHTML = prodHtml;
+
+      document.getElementById("tab-faq").innerHTML = faqs.map(([q, a], idx) => `
         <div class="faq-item">
-          <button type="button" class="faq-q" onclick="toggleFaq(${i})"><span>Q${i + 1}. ${q}</span><span>+</span></button>
-          <div class="faq-a hidden" id="faqA-${i}">${a}</div>
+          <button type="button" class="faq-q" onclick="toggleF(${idx})"><span>Q${idx + 1}. ${q}</span><span>+</span></button>
+          <div class="faq-a hidden" id="fa-${idx}">${a}</div>
         </div>
       `).join("");
     }
 
-    window.pickModule = function(key, name, rate) {
-      document.getElementById("txType").value = key;
-      document.getElementById("txCounterparty").value = `HKWB ${name}`;
-      document.getElementById("txRate").value = rate;
-      scrollToSection("backendSection");
-    };
+    window.pickMod = (k, title, r) => { document.getElementById("txType").value = k; document.getElementById("txMemo").value = title; document.getElementById("txRate").value = r; document.getElementById("backendSection").scrollIntoView({ behavior: "smooth" }); };
+    window.pickProd = (t, title, rate) => { document.getElementById("txType").value = t; document.getElementById("txMemo").value = title; document.getElementById("txRate").value = parseFloat(rate) || 8.0; document.getElementById("backendSection").scrollIntoView({ behavior: "smooth" }); };
+    window.toggleF = idx => document.getElementById("fa-" + idx).classList.toggle("hidden");
 
-    window.pickDeposit = function(type, title, rateStr) {
-      document.getElementById("txType").value = type;
-      document.getElementById("txCounterparty").value = title;
-      document.getElementById("txRate").value = parseFloat(rateStr) || 7.5;
-      scrollToSection("backendSection");
-    };
-
-    window.toggleFaq = function(i) {
-      document.getElementById("faqA-" + i).classList.toggle("hidden");
-    };
-
-    document.querySelectorAll(".nav-tab").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".nav-tab").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const t = btn.dataset.navTab;
-        ["whitepaper", "compliance", "faq"].forEach(k => {
-          document.getElementById("navTab-" + k).classList.toggle("hidden", k !== t);
-        });
+    document.querySelectorAll(".nav-tab").forEach(b => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll(".nav-tab").forEach(x => x.classList.remove("active"));
+        b.classList.add("active");
+        const t = b.dataset.tab;
+        ["paper", "comp", "faq"].forEach(k => document.getElementById("tab-" + k).classList.toggle("hidden", k !== t));
       });
     });
 
     document.getElementById("txForm").addEventListener("submit", e => {
       e.preventDefault();
-      runTx(
-        document.getElementById("txType").value,
-        document.getElementById("txAmount").value,
-        document.getElementById("txCounterparty").value,
-        document.getElementById("txRate").value
-      );
+      applyTx(document.getElementById("txType").value, document.getElementById("txAmount").value, document.getElementById("txMemo").value, document.getElementById("txRate").value);
     });
 
-    document.getElementById("calcInterestBtn").addEventListener("click", () => {
-      const amt = Number(document.getElementById("txAmount").value || 0);
+    document.getElementById("calcBtn").addEventListener("click", () => {
+      const a = Number(document.getElementById("txAmount").value || 0);
       const r = Number(document.getElementById("txRate").value || 0);
-      const yr = Math.round(amt * (r / 100));
-      document.getElementById("txFeedback").style.color = "var(--gold-1)";
-      document.getElementById("txFeedback").textContent = `${formatWon(amt)} · 연 ${r}% → 연 이자 ${formatWon(yr)} (월 약 ${formatWon(Math.round(yr / 12))})`;
+      const yr = Math.round(a * (r / 100));
+      document.getElementById("txMsg").style.color = "var(--gold-1)";
+      document.getElementById("txMsg").textContent = `연 ${r}% 기준 예상 연이자 ${fmtWon(yr)} (월 약 ${fmtWon(Math.round(yr / 12))})`;
     });
 
-    document.getElementById("autoTestBtn").addEventListener("click", () => {
-      runTx("deposit", 1000000, "자동 입금", 4.0);
-      runTx("transfer", 200000, "자동 송금", 4.0);
-      runTx("term_deposit", 500000, "웹3 고수익 예치", 9.4);
-      runTx("reward_claim", 15000, "참여 리워드", 0);
+    document.getElementById("runScenarioBtn").addEventListener("click", () => {
+      applyTx("deposit", 1000000, "자동 입금", 4.0);
+      applyTx("transfer", 200000, "자동 송금", 4.0);
+      applyTx("term_deposit", 500000, "웹3 고수익 예치", 9.4);
+      applyTx("reward_claim", 15000, "참여 리워드", 0);
     });
 
-    document.getElementById("resetTestBtn").addEventListener("click", () => {
-      state.cashBalance = 12500000;
-      state.savingsBalance = 8000000;
-      state.loanBalance = 0;
-      state.rewardPoints = 24500;
-      state.transactions = [
-        { id: "TX-1001", type: "초기 잔액", label: "무점포 인터넷 은행", amount: 12500000, unit: "원", time: "초기" },
-        { id: "TX-1002", type: "웹3 예치", label: "고수익 디지털 예치", amount: 8000000, unit: "원", time: "초기" },
-        { id: "TX-1003", type: "참여 리워드", label: "참여 보상 포인트", amount: 24500, unit: "P", time: "초기" }
+    document.getElementById("resetDataBtn").addEventListener("click", () => {
+      state.cash = 12500000; state.sav = 8000000; state.loan = 0; state.rew = 24500;
+      state.logs = [
+        { id: "TX-101", t: "입금", m: "인터넷 계좌 초기 잔액", v: 12500000, u: "원" },
+        { id: "TX-102", t: "예금", m: "웹3 고수익 예치 초기", v: 8000000, u: "원" },
+        { id: "TX-103", t: "참여 보상", m: "초기 참여 리워드", v: 24500, u: "P" }
       ];
-      updateDashboard();
-      document.getElementById("txFeedback").textContent = "초기화되었습니다.";
+      renderBalances();
+      document.getElementById("txMsg").textContent = "초기화되었습니다.";
     });
 
-    document.getElementById("claimRewardQuickBtn").addEventListener("click", () => {
-      runTx("reward_claim", 15000, "무점포 인터넷 은행 참여 보상", 0);
-      scrollToSection("backendSection");
-    });
+    // 둘러보기 / 드로어 / 잠금
+    const openInfo = () => document.getElementById("infoOverlay").classList.remove("hidden");
+    window.closeInfo = () => document.getElementById("infoOverlay").classList.add("hidden");
+    document.getElementById("coverBrowseWeb3Btn").addEventListener("click", openInfo);
+    document.getElementById("roomWeb3BrowseBtn").addEventListener("click", openInfo);
 
-    // 둘러보기 모달
-    document.getElementById("web3BrowseBtn").addEventListener("click", () => {
-      document.getElementById("modalTitle").textContent = "HKWB 웹3 디지털 은행 · 둘러보기";
-      document.getElementById("modalBody").innerHTML = `
-        <p style="color:#fff; font-weight:700; margin-bottom:8px;">이자 수익률이 높은 웹3 디지털 은행을 이용해보세요!</p>
-        <p style="margin-bottom:12px;">고수익 디지털 예치·스테이킹 구조와 21개국 컴플라이언스/트래블 룰 검증 규격을 미리 확인하실 수 있습니다.</p>
-        <button type="button" class="btn-gold" onclick="document.getElementById('modalBackdrop').classList.add('hidden'); enterBank('web3');">웹3 디지털 은행으로 이동</button>
-      `;
-      document.getElementById("modalBackdrop").classList.remove("hidden");
-    });
-    document.getElementById("closeModalBtn").addEventListener("click", () => document.getElementById("modalBackdrop").classList.add("hidden"));
-
-    // 드로어
-    document.getElementById("openDrawerBtn").addEventListener("click", () => document.getElementById("drawerBackdrop").classList.remove("hidden"));
-    document.getElementById("closeDrawerBtn").addEventListener("click", () => document.getElementById("drawerBackdrop").classList.add("hidden"));
-    window.closeDrawerAndGo = id => { document.getElementById("drawerBackdrop").classList.add("hidden"); scrollToSection(id); };
-    window.closeDrawerAndEnter = b => { document.getElementById("drawerBackdrop").classList.add("hidden"); enterBank(b); };
-    window.closeDrawerAndOpenLock = () => { document.getElementById("drawerBackdrop").classList.add("hidden"); openAuthModal("줄 그리기"); };
-    window.scrollToSection = id => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth" }); };
-
-    // 보안 인증 모달 (줄 그리기 / PIN / 지문)
-    window.openAuthModal = function(label) {
-      document.getElementById("lockStatus").textContent = `${label} 인증을 진행하세요.`;
-      document.getElementById("lockModal").classList.remove("hidden");
-      drawPattern();
-    };
-    document.getElementById("closeLockModalBtn").addEventListener("click", () => document.getElementById("lockModal").classList.add("hidden"));
+    document.getElementById("openDrawerBtn").addEventListener("click", () => document.getElementById("drawerOverlay").classList.remove("hidden"));
+    window.closeDrawer = () => document.getElementById("drawerOverlay").classList.add("hidden");
 
     const canvas = document.getElementById("patternCanvas");
     const ctx = canvas.getContext("2d");
-    const nodes = [];
-    for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) nodes.push({ idx: r * 3 + c, x: 44 + c * 76, y: 44 + r * 76 });
-    let picked = [], drawing = false, curPt = null;
+    const pts = [];
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) pts.push({ i: r * 3 + c, x: 42 + c * 73, y: 42 + r * 73 });
+    let sel = [], down = false, ptr = null;
 
-    function drawPattern() {
+    function drawP() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (picked.length) {
+      if (sel.length) {
         ctx.beginPath();
-        picked.forEach((id, i) => { const n = nodes[id]; if (i === 0) ctx.moveTo(n.x, n.y); else ctx.lineTo(n.x, n.y); });
-        if (drawing && curPt) ctx.lineTo(curPt.x, curPt.y);
-        ctx.strokeStyle = "#f4b942"; ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.stroke();
+        sel.forEach((idx, i) => { const p = pts[idx]; if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
+        if (down && ptr) ctx.lineTo(ptr.x, ptr.y);
+        ctx.strokeStyle = "#f4b942"; ctx.lineWidth = 4; ctx.stroke();
       }
-      nodes.forEach(n => {
-        const active = picked.includes(n.idx);
-        ctx.beginPath(); ctx.arc(n.x, n.y, active ? 13 : 10, 0, Math.PI * 2);
-        ctx.fillStyle = active ? "#ffe28a" : "rgba(255,255,255,0.15)"; ctx.fill();
-        ctx.strokeStyle = active ? "#f4b942" : "#94a3b8"; ctx.lineWidth = 2; ctx.stroke();
+      pts.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, sel.includes(p.i) ? 12 : 9, 0, Math.PI * 2);
+        ctx.fillStyle = sel.includes(p.i) ? "#ffe28a" : "rgba(255,255,255,0.16)"; ctx.fill();
+        ctx.strokeStyle = sel.includes(p.i) ? "#f4b942" : "#94a3b8"; ctx.lineWidth = 2; ctx.stroke();
       });
     }
 
-    function getPt(e) {
-      const rect = canvas.getBoundingClientRect();
+    const pos = e => {
+      const r = canvas.getBoundingClientRect();
       const cx = e.touches ? e.touches[0].clientX : e.clientX;
       const cy = e.touches ? e.touches[0].clientY : e.clientY;
-      return { x: ((cx - rect.left) / rect.width) * canvas.width, y: ((cy - rect.top) / rect.height) * canvas.height };
-    }
+      return { x: ((cx - r.left) / r.width) * canvas.width, y: ((cy - r.top) / r.height) * canvas.height };
+    };
 
-    function hitNode(pt) {
-      for (const n of nodes) if (Math.hypot(pt.x - n.x, pt.y - n.y) <= 22) return n.idx;
-      return -1;
-    }
+    const hit = p => { for (const n of pts) if (Math.hypot(p.x - n.x, p.y - n.y) <= 22) return n.i; return -1; };
 
-    function completeAuth(msg) {
-      document.getElementById("lockStatus").textContent = `${msg} 인증 완료!`;
-      setTimeout(() => { document.getElementById("lockModal").classList.add("hidden"); picked = []; drawPattern(); }, 200);
-    }
+    window.openLock = () => { document.getElementById("lockOverlay").classList.remove("hidden"); sel = []; drawP(); document.getElementById("lockMsg").textContent = "3×3 점을 4개 이상 이어 그려주세요."; };
+    window.closeLock = () => document.getElementById("lockOverlay").classList.add("hidden");
 
-    canvas.addEventListener("mousedown", e => { e.preventDefault(); drawing = true; picked = []; const p = getPt(e); curPt = p; const h = hitNode(p); if (h !== -1) picked.push(h); drawPattern(); });
-    window.addEventListener("mousemove", e => { if (!drawing) return; const p = getPt(e); curPt = p; const h = hitNode(p); if (h !== -1 && !picked.includes(h)) picked.push(h); drawPattern(); });
-    window.addEventListener("mouseup", () => { if (!drawing) return; drawing = false; curPt = null; drawPattern(); if (picked.length >= 4) completeAuth(`줄 그리기(${picked.length}점)`); else { picked = []; drawPattern(); document.getElementById("lockStatus").textContent = "4개 이상 이어주세요."; } });
-    canvas.addEventListener("touchstart", e => { e.preventDefault(); drawing = true; picked = []; const p = getPt(e); curPt = p; const h = hitNode(p); if (h !== -1) picked.push(h); drawPattern(); }, { passive: false });
-    window.addEventListener("touchmove", e => { if (!drawing) return; const p = getPt(e); curPt = p; const h = hitNode(p); if (h !== -1 && !picked.includes(h)) picked.push(h); drawPattern(); }, { passive: false });
-    window.addEventListener("touchend", () => { if (!drawing) return; drawing = false; curPt = null; drawPattern(); if (picked.length >= 4) completeAuth(`줄 그리기(${picked.length}점)`); else { picked = []; drawPattern(); } });
+    canvas.addEventListener("mousedown", e => { e.preventDefault(); down = true; sel = []; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1) sel.push(h); drawP(); });
+    window.addEventListener("mousemove", e => { if (!down) return; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1 && !sel.includes(h)) sel.push(h); drawP(); });
+    window.addEventListener("mouseup", () => { if (!down) return; down = false; ptr = null; drawP(); if (sel.length >= 4) { document.getElementById("lockMsg").textContent = "인증 성공!"; setTimeout(closeLock, 200); } else { sel = []; drawP(); } });
+    canvas.addEventListener("touchstart", e => { e.preventDefault(); down = true; sel = []; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1) sel.push(h); drawP(); }, { passive: false });
+    window.addEventListener("touchmove", e => { if (!down) return; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1 && !sel.includes(h)) sel.push(h); drawP(); }, { passive: false });
+    window.addEventListener("touchend", () => { if (!down) return; down = false; ptr = null; drawP(); if (sel.length >= 4) { document.getElementById("lockMsg").textContent = "인증 성공!"; setTimeout(closeLock, 200); } else { sel = []; drawP(); } });
 
-    let pin = "";
-    const kp = document.getElementById("pinKeypad");
-    kp.innerHTML = ["1","2","3","4","5","6","7","8","9","←","0","확인"].map(k => `<button type="button" class="key-btn" data-k="${k}">${k}</button>`).join("");
-    kp.addEventListener("click", e => {
-      const btn = e.target.closest(".key-btn"); if (!btn) return;
-      const k = btn.dataset.k;
-      if (k === "←") pin = pin.slice(0, -1);
-      else if (k === "확인") { if (pin.length === 6) completeAuth("6자리 PIN"); }
-      else if (pin.length < 6) { pin += k; if (pin.length === 6) completeAuth("6자리 PIN"); }
-      document.querySelectorAll("#pinDots .pin-dot").forEach((d, idx) => d.classList.toggle("filled", idx < pin.length));
-      pin = pin.length === 6 ? "" : pin;
-    });
-
-    document.getElementById("bioScanBtn").addEventListener("click", () => completeAuth("지문 인증"));
-
-    document.querySelectorAll(".auth-tab").forEach(t => {
-      t.addEventListener("click", () => {
-        document.querySelectorAll(".auth-tab").forEach(x => x.classList.remove("active"));
-        t.classList.add("active");
-        const m = t.dataset.authTab;
-        document.getElementById("authPatternView").classList.toggle("hidden", m !== "pattern");
-        document.getElementById("authPinView").classList.toggle("hidden", m !== "pin");
-        document.getElementById("authBioView").classList.toggle("hidden", m !== "bio");
-      });
-    });
-
-    renderGrid();
-    updateDashboard();
-    drawPattern();
+    initLists();
+    renderBalances();
+    drawP();
   </script>
 </body>
 </html>
