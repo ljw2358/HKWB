@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB</title>
+  <title>HKWB — 초연결 차세대 디지털 금융 혁신</title>
   <style>
     :root {
-      --bg-deep: #070918;
-      --bg-navy: #0e1433;
-      --bg-purple: #1b1138;
-      --card-bg: rgba(16, 22, 54, 0.82);
-      --card-border: rgba(255, 215, 115, 0.28);
-      --gold-neon: #ffd452;
-      --gold-bright: #ffe88c;
-      --purple-neon: #9b6dff;
-      --blue-neon: #4ea8ff;
-      --text-main: #f6f8ff;
-      --text-sub: #b7c2e8;
+      --bg-void: #050714;
+      --bg-navy: #0b122e;
+      --bg-purple: #190d36;
+      --glass-bg: rgba(15, 22, 56, 0.72);
+      --glass-border: rgba(255, 215, 90, 0.28);
+      --gold-pure: #ffd600;
+      --gold-glow: rgba(255, 214, 0, 0.45);
+      --purple-glow: rgba(139, 92, 246, 0.35);
+      --blue-glow: rgba(56, 189, 248, 0.32);
+      --text-primary: #f8faff;
+      --text-secondary: #bcc8eb;
     }
 
     * {
@@ -28,34 +28,28 @@
     body {
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-      color: var(--text-main);
+      color: var(--text-primary);
       background:
-        radial-gradient(circle at 18% 12%, rgba(155, 109, 255, 0.24), transparent 42%),
-        radial-gradient(circle at 82% 18%, rgba(78, 168, 255, 0.18), transparent 44%),
-        radial-gradient(circle at 50% 85%, rgba(255, 212, 82, 0.12), transparent 48%),
-        linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-navy) 52%, var(--bg-purple) 100%);
+        radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.26), transparent 44%),
+        radial-gradient(circle at 85% 18%, rgba(56, 189, 248, 0.2), transparent 46%),
+        radial-gradient(circle at 50% 82%, rgba(255, 214, 0, 0.14), transparent 52%),
+        linear-gradient(155deg, var(--bg-void) 0%, var(--bg-navy) 52%, var(--bg-purple) 100%);
       overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1040px;
+    .wrap {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 24px 20px 64px;
+      padding: 22px 20px 72px;
     }
 
-    /* 상단 헤더: 우측 상단 1/3 축소 언어 선택기 + 초대형 HKWB 로고 */
-    .top-header {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 36px;
-    }
-
-    .lang-bar {
+    /* 상단 헤더 & 우측 상단 언어 선택기 */
+    .header-top {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       min-height: 24px;
+      margin-bottom: 8px;
     }
 
     .lang-select {
@@ -63,145 +57,177 @@
       line-height: 1.2;
       padding: 3px 7px;
       border-radius: 6px;
-      background: rgba(10, 14, 34, 0.85);
-      color: var(--text-sub);
-      border: 1px solid rgba(255, 212, 82, 0.35);
+      background: rgba(8, 12, 30, 0.88);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 214, 0, 0.42);
       outline: none;
       cursor: pointer;
-      max-width: 120px;
+      max-width: 124px;
     }
 
     .lang-select:focus {
-      border-color: var(--gold-neon);
-      color: var(--text-main);
+      border-color: var(--gold-pure);
+      color: var(--text-primary);
     }
 
-    .brand-hero {
+    /* 웅장한 HKWB 브랜드 로고 */
+    .hero-brand {
       text-align: center;
-      padding: 12px 0 8px;
+      padding: 8px 0 12px;
     }
 
-    .brand-logo {
+    .hkwb-logo {
       display: inline-block;
-      font-size: clamp(54px, 11vw, 108px);
+      font-size: clamp(58px, 11.5vw, 114px);
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       line-height: 1;
-      color: var(--gold-bright);
+      color: var(--gold-pure);
       text-shadow:
-        0 0 14px rgba(255, 212, 82, 0.65),
-        0 0 36px rgba(255, 212, 82, 0.35),
-        0 0 64px rgba(155, 109, 255, 0.35);
+        0 0 14px rgba(255, 214, 0, 0.8),
+        0 0 36px rgba(255, 214, 0, 0.45),
+        0 0 72px rgba(139, 92, 246, 0.45);
       user-select: none;
     }
 
-    /* 히어로 타이틀 영역 */
-    .hero-section {
+    .hero-title-wrap {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 42px;
     }
 
     .hero-title {
-      font-size: clamp(26px, 5vw, 44px);
+      font-size: clamp(26px, 4.8vw, 44px);
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.25;
-      color: var(--text-main);
+      color: var(--text-primary);
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     }
 
-    /* 2열 은행 선택 카드 */
-    .bank-grid {
+    /* 메인 2열 카드 선택 영역 */
+    .gateway-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
       margin-bottom: 36px;
     }
 
-    .bank-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 22px;
+    .gateway-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(22, 31, 74, 0.82), rgba(12, 17, 44, 0.88));
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
       padding: 28px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 22px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(12px);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      gap: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.48);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .bank-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold-neon);
-      box-shadow: 0 20px 46px rgba(255, 212, 82, 0.14);
+    .gateway-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-pure);
+      box-shadow: 0 24px 60px rgba(255, 214, 0, 0.16), 0 0 32px rgba(139, 92, 246, 0.2);
     }
 
-    .bank-card-title {
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .card-badge-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .badge-web3 {
+      background: linear-gradient(135deg, #4c1d95 0%, #2563eb 55%, #ffd600 135%);
+      border: 1px solid rgba(255, 214, 0, 0.55);
+      box-shadow: 0 0 22px rgba(255, 214, 0, 0.25);
+    }
+
+    .badge-branchless {
+      background: linear-gradient(135deg, #0369a1 0%, #3b82f6 55%, #7c3aed 135%);
+      border: 1px solid rgba(125, 211, 252, 0.55);
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.28);
+    }
+
+    .card-title {
       font-size: 24px;
       font-weight: 800;
-      color: var(--gold-bright);
-      margin-bottom: 10px;
+      color: var(--gold-pure);
       letter-spacing: -0.01em;
     }
 
-    .bank-card-desc {
+    .card-subtitle {
       font-size: 16px;
       font-weight: 500;
-      color: var(--text-sub);
+      color: var(--text-secondary);
       line-height: 1.5;
     }
 
-    .enter-btn {
+    .btn-enter {
       width: 100%;
       padding: 15px 18px;
       border: none;
       border-radius: 14px;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       transition: filter 0.18s ease, transform 0.12s ease;
     }
 
-    .enter-btn:active {
+    .btn-enter:active {
       transform: scale(0.99);
     }
 
-    .enter-btn-web3 {
-      background: linear-gradient(135deg, #ffd452 0%, #f5b324 100%);
-      color: #0b0e24;
-      box-shadow: 0 0 20px rgba(255, 212, 82, 0.3);
+    .btn-enter-web3 {
+      background: linear-gradient(135deg, #ffe24a 0%, #ffd600 55%, #f5b700 100%);
+      color: #090c20;
+      box-shadow: 0 0 24px rgba(255, 214, 0, 0.34);
     }
 
-    .enter-btn-web3:hover {
-      filter: brightness(1.06);
-    }
-
-    .enter-btn-internet {
-      background: linear-gradient(135deg, #4ea8ff 0%, #7c5cff 100%);
+    .btn-enter-branchless {
+      background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
       color: #ffffff;
-      box-shadow: 0 0 20px rgba(78, 168, 255, 0.28);
+      box-shadow: 0 0 24px rgba(99, 102, 241, 0.34);
     }
 
-    .enter-btn-internet:hover {
-      filter: brightness(1.06);
+    .btn-enter:hover {
+      filter: brightness(1.07);
     }
 
-    /* 웹3 디지털 은행 전용 화면 */
-    .workspace-panel {
+    /* 내부 워크스페이스 화면 */
+    .panel {
       display: none;
-      background: rgba(12, 17, 43, 0.92);
-      border: 1px solid rgba(255, 212, 82, 0.35);
-      border-radius: 22px;
-      padding: 26px 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      background: linear-gradient(165deg, rgba(16, 23, 58, 0.9), rgba(9, 13, 34, 0.94));
+      border: 1px solid rgba(255, 214, 0, 0.35);
+      border-radius: 24px;
+      padding: 28px 24px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.58);
+      animation: panelFade 0.25s ease;
     }
 
-    .workspace-panel.active {
+    .panel.active {
       display: block;
     }
 
-    .workspace-top {
+    @keyframes panelFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-bar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -209,365 +235,667 @@
       gap: 12px;
       padding-bottom: 18px;
       margin-bottom: 22px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .workspace-heading {
-      font-size: 20px;
+    .panel-heading-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .panel-heading {
+      font-size: 21px;
       font-weight: 800;
-      color: var(--gold-bright);
+      color: var(--gold-pure);
     }
 
-    .back-btn {
-      padding: 8px 14px;
+    .btn-back {
+      padding: 9px 15px;
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
     }
 
-    .back-btn:hover {
-      border-color: var(--gold-neon);
+    .btn-back:hover {
+      border-color: var(--gold-pure);
+      color: var(--gold-pure);
     }
 
-    .feature-box {
-      background: rgba(20, 28, 68, 0.78);
-      border: 1px solid rgba(155, 109, 255, 0.28);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 18px;
+    .section-card {
+      background: rgba(20, 29, 72, 0.72);
+      border: 1px solid rgba(139, 92, 246, 0.32);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
-    .feature-box:last-child {
+    .section-card:last-child {
       margin-bottom: 0;
     }
 
-    .feature-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--gold-neon);
-      margin-bottom: 12px;
-    }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .stat-item {
-      background: rgba(8, 12, 30, 0.7);
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-bottom: 6px;
-    }
-
-    .stat-val {
+    .section-title {
       font-size: 18px;
       font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .network-tags {
+      color: var(--gold-pure);
+      margin-bottom: 14px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
     }
 
-    .net-tag {
-      font-size: 13px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(78, 168, 255, 0.14);
-      border: 1px solid rgba(78, 168, 255, 0.35);
-      color: var(--text-main);
+    /* 개인 자산 대시보드 */
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
+    .asset-box {
+      background: linear-gradient(150deg, rgba(10, 15, 38, 0.85), rgba(26, 18, 62, 0.75));
+      border: 1px solid rgba(255, 214, 0, 0.22);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .asset-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .asset-value {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    /* 10대 분산 연동망 세련된 그리드 */
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      color: #ffffff;
-      background: linear-gradient(135deg, #6d4aff 0%, #3b82f6 100%);
-    }
-
-    .support-box {
+    .net-tile {
+      background: linear-gradient(145deg, rgba(15, 23, 58, 0.9), rgba(34, 20, 74, 0.82));
+      border: 1px solid rgba(99, 102, 241, 0.42);
+      border-radius: 14px;
+      padding: 14px 12px;
       display: flex;
       flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .net-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-pure);
+    }
+
+    .net-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: #7dd3fc;
+      letter-spacing: 0.04em;
+    }
+
+    .net-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    /* 유튜브 & 틱톡 소셜 카드 */
+    .channel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .channel-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 800;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.85), rgba(14, 165, 233, 0.78));
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 24px rgba(14, 165, 233, 0.2);
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .channel-card:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .channel-handle {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fef08a;
+    }
+
+    /* 고객센터 AGI 삥이 */
+    .agi-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .agi-log {
+      min-height: 82px;
+      max-height: 220px;
+      overflow-y: auto;
+      background: rgba(8, 12, 30, 0.84);
+      border: 1px solid rgba(255, 214, 0, 0.25);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .agi-form {
+      display: flex;
       gap: 10px;
     }
 
-    .chat-log {
-      min-height: 68px;
-      background: rgba(8, 12, 30, 0.72);
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 14px;
-      color: var(--text-sub);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .chat-form {
-      display: flex;
-      gap: 8px;
-    }
-
-    .chat-input {
+    .agi-input {
       flex: 1;
-      padding: 11px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 212, 82, 0.35);
-      background: rgba(8, 12, 30, 0.85);
-      color: var(--text-main);
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 214, 0, 0.38);
+      background: rgba(8, 12, 30, 0.9);
+      color: var(--text-primary);
       font-size: 14px;
       outline: none;
     }
 
-    .chat-send {
-      padding: 11px 18px;
-      border-radius: 10px;
+    .agi-input:focus {
+      border-color: var(--gold-pure);
+    }
+
+    .agi-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
       border: none;
-      background: var(--gold-neon);
-      color: #0b0e24;
-      font-weight: 700;
+      background: linear-gradient(135deg, #ffe24a 0%, #ffd600 100%);
+      color: #090c20;
+      font-weight: 800;
       font-size: 14px;
       cursor: pointer;
     }
 
-    @media (max-width: 720px) {
-      .bank-grid {
-        grid-template-columns: 1fr;
-      }
+    /* 무점포 인터넷 은행 전용 메뉴 */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-      .stat-row {
+    .service-tile {
+      background: rgba(11, 16, 40, 0.82);
+      border: 1px solid rgba(125, 211, 252, 0.3);
+      border-radius: 14px;
+      padding: 18px 16px;
+    }
+
+    .service-tile-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #7dd3fc;
+      margin-bottom: 6px;
+    }
+
+    .service-tile-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .network-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .gateway-grid,
+      .asset-grid,
+      .channel-grid,
+      .service-grid {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="top-header">
-      <div class="lang-bar">
-        <select id="languageSelect" class="lang-select" aria-label="Language Selector"></select>
-      </div>
-      <div class="brand-hero">
-        <div class="brand-logo">HKWB</div>
-      </div>
+  <div class="wrap">
+    <header class="header-top">
+      <select id="languageSelect" class="lang-select" aria-label="Language Selector"></select>
     </header>
 
-    <section class="hero-section">
-      <h1 class="hero-title">초연결 차세대 디지털 금융 혁신</h1>
+    <div class="hero-brand">
+      <div class="hkwb-logo" id="brandLogo">HKWB</div>
+    </div>
+
+    <section class="hero-title-wrap">
+      <h1 class="hero-title" id="heroTitle">초연결 차세대 디지털 금융 혁신</h1>
     </section>
 
-    <main id="bankSelection" class="bank-grid">
-      <article class="bank-card">
+    <main id="gatewayGrid" class="gateway-grid">
+      <!-- 웹3 디지털 은행 카드 -->
+      <article class="gateway-card">
         <div>
-          <h2 class="bank-card-title">웹3 디지털 은행</h2>
-          <p class="bank-card-desc">웹3 디지털 자산 지갑 스테이킹</p>
+          <div class="card-head">
+            <div class="card-badge-logo badge-web3" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffd600" stroke-width="2.4">
+                <polygon points="12 2 20 7 20 17 12 22 4 17 4 7"></polygon>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <h2 class="card-title" id="web3Title">웹3 디지털 은행</h2>
+          </div>
+          <p class="card-subtitle" id="web3Subtitle">웹3 디지털 자산 지갑 스테이킹</p>
         </div>
-        <button type="button" id="enterWeb3Btn" class="enter-btn enter-btn-web3">
+        <button type="button" id="enterWeb3Btn" class="btn-enter btn-enter-web3">
           웹3 디지털 은행 진입
         </button>
       </article>
 
-      <article class="bank-card">
+      <!-- 무점포 인터넷 은행 카드 -->
+      <article class="gateway-card">
         <div>
-          <h2 class="bank-card-title">무점포 인터넷 은행</h2>
-          <p class="bank-card-desc">브랜치리스 모바일 인터넷 뱅킹</p>
+          <div class="card-head">
+            <div class="card-badge-logo badge-branchless" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4">
+                <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                <path d="M3 10h18"></path>
+                <path d="M7 15h4"></path>
+              </svg>
+            </div>
+            <h2 class="card-title" id="branchlessTitle">무점포 인터넷 은행</h2>
+          </div>
+          <p class="card-subtitle" id="branchlessSubtitle">무점포 모바일 인터넷 뱅킹</p>
         </div>
-        <button type="button" id="enterInternetBtn" class="enter-btn enter-btn-internet">
-          인터넷 은행 진입
+        <button type="button" id="enterBranchlessBtn" class="btn-enter btn-enter-branchless">
+          무점포 인터넷 은행 진입
         </button>
       </article>
     </main>
 
-    <!-- 웹3 디지털 은행 진입 시 표시되는 워크스페이스 -->
-    <section id="web3Workspace" class="workspace-panel" aria-live="polite">
-      <div class="workspace-top">
-        <h2 class="workspace-heading">웹3 디지털 은행 · 개인 자산 대시보드</h2>
-        <button type="button" id="backToSelectionBtn" class="back-btn">은행 선택으로 돌아가기</button>
+    <!-- 웹3 디지털 은행 전용 화면 -->
+    <section id="web3Panel" class="panel" aria-live="polite">
+      <div class="panel-bar">
+        <div class="panel-heading-group">
+          <div class="card-badge-logo badge-web3" style="width:38px;height:38px;border-radius:11px;" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffd600" stroke-width="2.4">
+              <polygon points="12 2 20 7 20 17 12 22 4 17 4 7"></polygon>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <h2 class="panel-heading" id="web3PanelTitle">웹3 디지털 은행 · 개인 자산 대시보드</h2>
+        </div>
+        <button type="button" id="backFromWeb3" class="btn-back">메인으로 돌아가기</button>
       </div>
 
-      <div class="feature-box">
-        <h3 class="feature-title">개인 자산 대시보드</h3>
-        <div class="stat-row">
-          <div class="stat-item">
-            <div class="stat-label">총 디지털 자산</div>
-            <div class="stat-val">128,450.00 HKW</div>
+      <!-- 1. 개인 자산 대시보드 -->
+      <div class="section-card">
+        <h3 class="section-title" id="assetHeading">개인 자산 대시보드</h3>
+        <div class="asset-grid">
+          <div class="asset-box">
+            <div class="asset-label" id="assetLabel1">총 디지털 자산</div>
+            <div class="asset-value">128,450.00 HKW</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">스테이킹 예치 자산</div>
-            <div class="stat-val">64,200.00 HKW</div>
+          <div class="asset-box">
+            <div class="asset-label" id="assetLabel2">스테이킹 예치 자산</div>
+            <div class="asset-value">64,200.00 HKW</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">연결 지갑 상태</div>
-            <div class="stat-val">활성 (멀티시그)</div>
+          <div class="asset-box">
+            <div class="asset-label" id="assetLabel3">연결 지갑 상태</div>
+            <div class="asset-value" id="walletStatusVal">멀티시그 지갑 연결됨</div>
           </div>
         </div>
       </div>
 
-      <div class="feature-box">
-        <h3 class="feature-title">10대 분산 연동망</h3>
-        <div class="network-tags" id="tenNetworksList"></div>
+      <!-- 2. 10대 분산 연동망 -->
+      <div class="section-card">
+        <h3 class="section-title" id="networkHeading">10대 분산 연동망</h3>
+        <div id="networkGrid" class="network-grid"></div>
       </div>
 
-      <div class="feature-box">
-        <h3 class="feature-title">유튜브 &amp; 틱톡 채널</h3>
-        <div class="social-links">
-          <a class="social-btn" href="https://www.youtube.com/@Hyekong2026" target="_blank" rel="noopener noreferrer">
-            유튜브 (@Hyekong2026)
+      <!-- 3. 유튜브 & 틱톡 -->
+      <div class="section-card">
+        <h3 class="section-title" id="socialHeading">유튜브 &amp; 틱톡</h3>
+        <div class="channel-grid">
+          <a class="channel-card" href="https://www.youtube.com/@Hyekong2026" target="_blank" rel="noopener noreferrer">
+            <span>YouTube</span>
+            <span class="channel-handle">@Hyekong2026 ↗</span>
           </a>
-          <a class="social-btn" href="https://www.tiktok.com/@hyekong2026" target="_blank" rel="noopener noreferrer">
-            틱톡 (@hyekong2026)
+          <a class="channel-card" href="https://www.tiktok.com/@hyekong2026" target="_blank" rel="noopener noreferrer">
+            <span>TikTok</span>
+            <span class="channel-handle">@hyekong2026 ↗</span>
           </a>
         </div>
       </div>
 
-      <div class="feature-box">
-        <h3 class="feature-title">고객센터 AGI 삥이</h3>
-        <div class="support-box">
-          <div id="bingChatLog" class="chat-log">
-            안녕하세요! HKWB 고객센터 AGI 삥이입니다. 개인 자산, 스테이킹, 10대 분산 연동망에 대해 문의해 주세요.
+      <!-- 4. 고객센터 AGI 삥이 -->
+      <div class="section-card">
+        <h3 class="section-title" id="agiHeading">고객센터 AGI 삥이</h3>
+        <div class="agi-box">
+          <div id="agiLog" class="agi-log">
+            <strong>AGI 삥이:</strong> 안녕하세요! HKWB 고객센터 AGI 삥이입니다. 개인 자산, 스테이킹, 10대 분산 연동망 안내를 도와드립니다.
           </div>
-          <form id="bingChatForm" class="chat-form">
+          <form id="agiForm" class="agi-form">
             <input
-              id="bingChatInput"
+              id="agiInput"
               type="text"
-              class="chat-input"
-              placeholder="고객센터 AGI 삥이에게 질문하기..."
+              class="agi-input"
+              placeholder="고객센터 AGI 삥이에게 문의하세요..."
               autocomplete="off"
             />
-            <button type="submit" class="chat-send">전송</button>
+            <button type="submit" id="agiSendBtn" class="agi-btn">전송</button>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- 무점포 인터넷 은행 진입 시 표시되는 워크스페이스 -->
-    <section id="internetWorkspace" class="workspace-panel" aria-live="polite">
-      <div class="workspace-top">
-        <h2 class="workspace-heading">무점포 인터넷 은행</h2>
-        <button type="button" id="backFromInternetBtn" class="back-btn">은행 선택으로 돌아가기</button>
+    <!-- 무점포 인터넷 은행 전용 화면 -->
+    <section id="branchlessPanel" class="panel" aria-live="polite">
+      <div class="panel-bar">
+        <div class="panel-heading-group">
+          <div class="card-badge-logo badge-branchless" style="width:38px;height:38px;border-radius:11px;" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4">
+              <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+              <path d="M3 10h18"></path>
+              <path d="M7 15h4"></path>
+            </svg>
+          </div>
+          <h2 class="panel-heading" id="branchlessPanelTitle">무점포 인터넷 은행</h2>
+        </div>
+        <button type="button" id="backFromBranchless" class="btn-back">메인으로 돌아가기</button>
       </div>
-      <div class="feature-box">
-        <h3 class="feature-title">브랜치리스 모바일 인터넷 뱅킹</h3>
-        <p class="bank-card-desc">물리 지점 없는 모바일·웹 전용 인터넷 은행 화면입니다.</p>
+
+      <div class="section-card">
+        <h3 class="section-title" id="branchlessSubHeading">무점포 모바일 인터넷 뱅킹</h3>
+        <div class="service-grid">
+          <div class="service-tile">
+            <div class="service-tile-title" id="srv1Title">무점포 즉시 계좌 · 이체</div>
+            <div class="service-tile-desc" id="srv1Desc">물리 영업점 없이 모바일과 웹에서 바로 계좌 개설과 송금을 처리합니다.</div>
+          </div>
+          <div class="service-tile">
+            <div class="service-tile-title" id="srv2Title">무점포 통합 예·적금</div>
+            <div class="service-tile-desc" id="srv2Desc">실시간 이율 조건에 맞춰 무점포 디지털 계좌를 운용합니다.</div>
+          </div>
+          <div class="service-tile">
+            <div class="service-tile-title" id="srv3Title">무점포 스마트 결제</div>
+            <div class="service-tile-desc" id="srv3Desc">온·오프라인 결제를 하나의 무점포 모바일 지갑 흐름으로 연결합니다.</div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 
   <script>
-    const LANGUAGES = [
-      "한국어", "English", "日本語", "中文 (简体)", "中文 (繁體)", "Español", "Français", "Deutsch",
-      "Italiano", "Português", "Русский", "العربية", "हिन्दी", "Tiếng Việt", "ภาษาไทย", "Bahasa Indonesia",
-      "Bahasa Melayu", "Türkçe", "Nederlands", "Polski", "Українська", "Svenska", "Norsk", "Dansk",
-      "Suomi", "Čeština", "Magyar", "Română", "Ελληνικά", "עברית", "فارسی", "اردو",
-      "বাংলা", "தமிழ்", "తెలుగు", "मराठी", "ગુજરાતી", "ಕನ್ನಡ", "മലയാളം", "ਪੰਜਾਬੀ",
-      "Tagalog", "Kiswahili", "Afrikaans", "Català", "Euskara", "Galego", "Gaeilge", "Cymraeg",
-      "Lietuvių", "Latviešu", "Eesti", "Slovenčina", "Slovenščina", "Hrvatski", "Srpski", "Български",
-      "Монгол", "қазақ тілі", "Oʻzbek", "ქართული"
+    const TRANSLATIONS = {
+      "한국어": {
+        heroTitle: "초연결 차세대 디지털 금융 혁신",
+        web3Title: "웹3 디지털 은행",
+        web3Subtitle: "웹3 디지털 자산 지갑 스테이킹",
+        web3Btn: "웹3 디지털 은행 진입",
+        branchlessTitle: "무점포 인터넷 은행",
+        branchlessSubtitle: "무점포 모바일 인터넷 뱅킹",
+        branchlessBtn: "무점포 인터넷 은행 진입",
+        web3PanelTitle: "웹3 디지털 은행 · 개인 자산 대시보드",
+        assetHeading: "개인 자산 대시보드",
+        assetLabel1: "총 디지털 자산",
+        assetLabel2: "스테이킹 예치 자산",
+        assetLabel3: "연결 지갑 상태",
+        walletStatusVal: "멀티시그 지갑 연결됨",
+        networkHeading: "10대 분산 연동망",
+        socialHeading: "유튜브 & 틱톡",
+        agiHeading: "고객센터 AGI 삥이",
+        agiPlaceholder: "고객센터 AGI 삥이에게 문의하세요...",
+        agiSend: "전송",
+        branchlessPanelTitle: "무점포 인터넷 은행",
+        branchlessSubHeading: "무점포 모바일 인터넷 뱅킹",
+        srv1Title: "무점포 즉시 계좌 · 이체",
+        srv1Desc: "물리 영업점 없이 모바일과 웹에서 바로 계좌 개설과 송금을 처리합니다.",
+        srv2Title: "무점포 통합 예·적금",
+        srv2Desc: "실시간 이율 조건에 맞춰 무점포 디지털 계좌를 운용합니다.",
+        srv3Title: "무점포 스마트 결제",
+        srv3Desc: "온·오프라인 결제를 하나의 무점포 모바일 지갑 흐름으로 연결합니다.",
+        backText: "메인으로 돌아가기"
+      },
+      "English": {
+        heroTitle: "Hyperconnected Next-Generation Digital Financial Innovation",
+        web3Title: "Web3 Digital Bank",
+        web3Subtitle: "Web3 Digital Asset Wallet Staking",
+        web3Btn: "Enter Web3 Digital Bank",
+        branchlessTitle: "Branchless Internet Bank",
+        branchlessSubtitle: "Branchless Mobile Internet Banking",
+        branchlessBtn: "Enter Branchless Internet Bank",
+        web3PanelTitle: "Web3 Digital Bank · Personal Asset Dashboard",
+        assetHeading: "Personal Asset Dashboard",
+        assetLabel1: "Total Digital Assets",
+        assetLabel2: "Staked Deposit Assets",
+        assetLabel3: "Connected Wallet Status",
+        walletStatusVal: "Multisig Wallet Connected",
+        networkHeading: "Top 10 Distributed Interconnected Networks",
+        socialHeading: "YouTube & TikTok",
+        agiHeading: "Customer Center AGI Pping-i",
+        agiPlaceholder: "Ask Customer Center AGI Pping-i...",
+        agiSend: "Send",
+        branchlessPanelTitle: "Branchless Internet Bank",
+        branchlessSubHeading: "Branchless Mobile Internet Banking",
+        srv1Title: "Instant Branchless Account & Transfer",
+        srv1Desc: "Open accounts and send transfers on mobile and web without physical branches.",
+        srv2Title: "Branchless Savings & Deposits",
+        srv2Desc: "Manage branchless digital accounts with dynamic rate conditions.",
+        srv3Title: "Branchless Smart Payment",
+        srv3Desc: "Connect payments seamlessly through a branchless mobile banking flow.",
+        backText: "Back to Main"
+      },
+      "日本語": {
+        heroTitle: "超接続次世代デジタル金融イノベーション",
+        web3Title: "Web3デジタル銀行",
+        web3Subtitle: "Web3デジタル資産ウォレットステーキング",
+        web3Btn: "Web3デジタル銀行へ入る",
+        branchlessTitle: "無店舗インターネット銀行",
+        branchlessSubtitle: "無店舗モバイルインターネットバンキング",
+        branchlessBtn: "無店舗インターネット銀行へ入る",
+        web3PanelTitle: "Web3デジタル銀行 · 個人資産ダッシュボード",
+        assetHeading: "個人資産ダッシュボード",
+        assetLabel1: "総デジタル資産",
+        assetLabel2: "ステーキング預け入れ資産",
+        assetLabel3: "接続ウォレット状態",
+        walletStatusVal: "マルチシグ接続完了",
+        networkHeading: "10大分散連動網",
+        socialHeading: "YouTube & TikTok",
+        agiHeading: "カスタマーセンター AGI ッピンイ",
+        agiPlaceholder: "カスタマーセンター AGI ッピンイに質問する...",
+        agiSend: "送信",
+        branchlessPanelTitle: "無店舗インターネット銀行",
+        branchlessSubHeading: "無店舗モバイルインターネットバンキング",
+        srv1Title: "無店舗即時口座・送金",
+        srv1Desc: "実店舗なしでモバイルとWebから口座開設や送金をすぐに利用できます。",
+        srv2Title: "無店舗統合預金・積立",
+        srv2Desc: "リアルタイム金利条件に合わせて無店舗デジタル口座を運用します。",
+        srv3Title: "無店舗スマート決済",
+        srv3Desc: "決済を無店舗モバイルバンキングの動線でスムーズに連携します。",
+        backText: "メインへ戻る"
+      },
+      "中文 (简体)": {
+        heroTitle: "超连接新一代数字金融创新",
+        web3Title: "Web3 数字银行",
+        web3Subtitle: "Web3 数字资产钱包质押",
+        web3Btn: "进入 Web3 数字银行",
+        branchlessTitle: "无网点互联网银行",
+        branchlessSubtitle: "无网点移动互联网银行",
+        branchlessBtn: "进入无网点互联网银行",
+        web3PanelTitle: "Web3 数字银行 · 个人资产仪表板",
+        assetHeading: "个人资产仪表板",
+        assetLabel1: "总数字资产",
+        assetLabel2: "质押托管资产",
+        assetLabel3: "连接钱包状态",
+        walletStatusVal: "多签钱包已连接",
+        networkHeading: "十大分布式互联网络",
+        socialHeading: "YouTube 与 TikTok",
+        agiHeading: "客服中心 AGI 拼伊",
+        agiPlaceholder: "向客服中心 AGI 拼伊提问...",
+        agiSend: "发送",
+        branchlessPanelTitle: "无网点互联网银行",
+        branchlessSubHeading: "无网点移动互联网银行",
+        srv1Title: "无网点即时账户与转账",
+        srv1Desc: "无需实体网点，在移动端和网页端即时办理开户与转账。",
+        srv2Title: "无网点综合存单",
+        srv2Desc: "根据实时利率条件灵活管理无网点数字账户。",
+        srv3Title: "无网点智能支付",
+        srv3Desc: "在无网点移动银行流程中顺畅连接各项支付。",
+        backText: "返回主页"
+      }
+    };
+
+    const EXTRA_LANGUAGES = [
+      "中文 (繁體)", "Español", "Français", "Deutsch", "Italiano", "Português", "Русский", "العربية",
+      "हिन्दी", "Tiếng Việt", "ภาษาไทย", "Bahasa Indonesia", "Bahasa Melayu", "Türkçe", "Nederlands", "Polski",
+      "Українська", "Svenska", "Norsk", "Dansk", "Suomi", "Čeština", "Magyar", "Română",
+      "Ελληνικά", "עברית", "فارسی", "اردو", "বাংলা", "தமிழ்", "తెలుగు", "मराठी",
+      "ગુજરાતી", "ಕನ್ನಡ", "മലയാളം", "ਪੰਜਾਬੀ", "Tagalog", "Kiswahili", "Afrikaans", "Català",
+      "Euskara", "Galego", "Gaeilge", "Cymraeg", "Lietuvių", "Latviešu", "Eesti", "Slovenčina",
+      "Slovenščina", "Hrvatski", "Srpski", "Български", "Монгол", "қазақ тілі", "Oʻzbek", "ქართული"
     ];
 
+    const ALL_LANGUAGES = [...Object.keys(TRANSLATIONS), ...EXTRA_LANGUAGES];
+
     const TEN_NETWORKS = [
-      "01. Pi 분산 노드망",
-      "02. 이더리움 메인넷",
-      "03. BNB 체인",
-      "04. 솔라나 고속망",
-      "05. 아발란체 서브넷",
-      "06. 폴리곤 PoS",
-      "07. 아비트럼 원",
-      "08. 옵티미즘 OP",
-      "09. 코스모스 IBC",
-      "10. HKWB 크로스체인 브릿지"
+      { num: "NET 01", name: "Pi 분산 노드망" },
+      { num: "NET 02", name: "이더리움 메인넷" },
+      { num: "NET 03", name: "BNB 체인" },
+      { num: "NET 04", name: "솔라나 고속망" },
+      { num: "NET 05", name: "아발란체 서브넷" },
+      { num: "NET 06", name: "폴리곤 PoS" },
+      { num: "NET 07", name: "아비트럼 원" },
+      { num: "NET 08", name: "옵티미즘 OP" },
+      { num: "NET 09", name: "코스모스 IBC" },
+      { num: "NET 10", name: "HKWB 크로스체인 브릿지" }
     ];
 
     const langSelect = document.getElementById("languageSelect");
-    LANGUAGES.forEach((lang, idx) => {
-      const option = document.createElement("option");
-      option.value = lang;
-      option.textContent = lang;
-      if (idx === 0) option.selected = true;
-      langSelect.appendChild(option);
+    ALL_LANGUAGES.forEach((lang, index) => {
+      const opt = document.createElement("option");
+      opt.value = lang;
+      opt.textContent = lang;
+      if (index === 0) opt.selected = true;
+      langSelect.appendChild(opt);
     });
 
-    const netContainer = document.getElementById("tenNetworksList");
-    TEN_NETWORKS.forEach((netName) => {
-      const span = document.createElement("span");
-      span.className = "net-tag";
-      span.textContent = netName;
-      netContainer.appendChild(span);
+    const networkGrid = document.getElementById("networkGrid");
+    TEN_NETWORKS.forEach((item) => {
+      const tile = document.createElement("div");
+      tile.className = "net-tile";
+      tile.innerHTML = `<span class="net-num">${item.num}</span><span class="net-name">${item.name}</span>`;
+      networkGrid.appendChild(tile);
     });
 
-    const bankSelection = document.getElementById("bankSelection");
-    const web3Workspace = document.getElementById("web3Workspace");
-    const internetWorkspace = document.getElementById("internetWorkspace");
+    function applyLanguage(selectedLang) {
+      const t = TRANSLATIONS[selectedLang] || TRANSLATIONS["English"];
+      document.getElementById("heroTitle").textContent = t.heroTitle;
+      document.getElementById("web3Title").textContent = t.web3Title;
+      document.getElementById("web3Subtitle").textContent = t.web3Subtitle;
+      document.getElementById("enterWeb3Btn").textContent = t.web3Btn;
+      document.getElementById("branchlessTitle").textContent = t.branchlessTitle;
+      document.getElementById("branchlessSubtitle").textContent = t.branchlessSubtitle;
+      document.getElementById("enterBranchlessBtn").textContent = t.branchlessBtn;
+      document.getElementById("web3PanelTitle").textContent = t.web3PanelTitle;
+      document.getElementById("assetHeading").textContent = t.assetHeading;
+      document.getElementById("assetLabel1").textContent = t.assetLabel1;
+      document.getElementById("assetLabel2").textContent = t.assetLabel2;
+      document.getElementById("assetLabel3").textContent = t.assetLabel3;
+      document.getElementById("walletStatusVal").textContent = t.walletStatusVal;
+      document.getElementById("networkHeading").textContent = t.networkHeading;
+      document.getElementById("socialHeading").textContent = t.socialHeading;
+      document.getElementById("agiHeading").textContent = t.agiHeading;
+      document.getElementById("agiInput").placeholder = t.agiPlaceholder;
+      document.getElementById("agiSendBtn").textContent = t.agiSend;
+      document.getElementById("branchlessPanelTitle").textContent = t.branchlessPanelTitle;
+      document.getElementById("branchlessSubHeading").textContent = t.branchlessSubHeading;
+      document.getElementById("srv1Title").textContent = t.srv1Title;
+      document.getElementById("srv1Desc").textContent = t.srv1Desc;
+      document.getElementById("srv2Title").textContent = t.srv2Title;
+      document.getElementById("srv2Desc").textContent = t.srv2Desc;
+      document.getElementById("srv3Title").textContent = t.srv3Title;
+      document.getElementById("srv3Desc").textContent = t.srv3Desc;
+      document.getElementById("backFromWeb3").textContent = t.backText;
+      document.getElementById("backFromBranchless").textContent = t.backText;
+    }
+
+    langSelect.addEventListener("change", (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    const gatewayGrid = document.getElementById("gatewayGrid");
+    const web3Panel = document.getElementById("web3Panel");
+    const branchlessPanel = document.getElementById("branchlessPanel");
 
     document.getElementById("enterWeb3Btn").addEventListener("click", () => {
-      bankSelection.style.display = "none";
-      internetWorkspace.classList.remove("active");
-      web3Workspace.classList.add("active");
+      gatewayGrid.style.display = "none";
+      branchlessPanel.classList.remove("active");
+      web3Panel.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    document.getElementById("enterInternetBtn").addEventListener("click", () => {
-      bankSelection.style.display = "none";
-      web3Workspace.classList.remove("active");
-      internetWorkspace.classList.add("active");
+    document.getElementById("enterBranchlessBtn").addEventListener("click", () => {
+      gatewayGrid.style.display = "none";
+      web3Panel.classList.remove("active");
+      branchlessPanel.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    function goHome() {
-      web3Workspace.classList.remove("active");
-      internetWorkspace.classList.remove("active");
-      bankSelection.style.display = "grid";
+    function returnHome() {
+      web3Panel.classList.remove("active");
+      branchlessPanel.classList.remove("active");
+      gatewayGrid.style.display = "grid";
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    document.getElementById("backToSelectionBtn").addEventListener("click", goHome);
-    document.getElementById("backFromInternetBtn").addEventListener("click", goHome);
+    document.getElementById("backFromWeb3").addEventListener("click", returnHome);
+    document.getElementById("backFromBranchless").addEventListener("click", returnHome);
 
-    const bingForm = document.getElementById("bingChatForm");
-    const bingInput = document.getElementById("bingChatInput");
-    const bingLog = document.getElementById("bingChatLog");
+    const agiForm = document.getElementById("agiForm");
+    const agiInput = document.getElementById("agiInput");
+    const agiLog = document.getElementById("agiLog");
 
-    bingForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const q = bingInput.value.trim();
-      if (!q) return;
-      bingLog.innerHTML =
-        `<div><strong>나:</strong> ${escapeHtml(q)}</div>` +
-        `<div style="margin-top:6px;color:#ffd452;"><strong>AGI 삥이:</strong> "${escapeHtml(q)}" 항목을 개인 자산 대시보드 및 10대 분산 연동망 기준으로 확인 중입니다.</div>`;
-      bingInput.value = "";
-    });
-
-    function escapeHtml(str) {
+    function escapeText(str) {
       return str
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
     }
+
+    agiForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const raw = agiInput.value.trim();
+      if (!raw) return;
+      const safe = escapeText(raw);
+      agiLog.innerHTML +=
+        `<div style="margin-top:8px;"><strong>나:</strong> ${safe}</div>` +
+        `<div style="margin-top:4px;color:#ffd600;"><strong>AGI 삥이:</strong> "${safe}" 내용을 HKWB 웹3 자산 및 10대 분산 연동망 기준으로 안내해 드립니다.</div>`;
+      agiLog.scrollTop = agiLog.scrollHeight;
+      agiInput.value = "";
+    });
   </script>
 </body>
 </html>
