@@ -14,8 +14,8 @@
             --purple-deep: #3b1048;
             --purple-neon: #8b5cf6;
             --gold-neon: #ffd700;
-            --gold-soft: rgba(255, 215, 0, 0.28);
-            --gold-glow: rgba(255, 215, 0, 0.22);
+            --gold-soft: rgba(255, 215, 0, 0.24);
+            --gold-glow: rgba(255, 215, 0, 0.16);
             --cyan-web2: #38bdf8;
             --emerald: #10b981;
             --text-primary: #f8fafc;
@@ -48,27 +48,48 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 0.9rem 1.5rem;
             border-bottom: 1px solid rgba(255, 215, 0, 0.14);
             background: rgba(7, 8, 13, 0.92);
             backdrop-filter: blur(12px);
         }
 
-        .hkwb-box {
+        /* 세련된 HKWB 브랜드 로고 */
+        .hkwb-brand {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 0.45rem 1.15rem;
-            border-radius: 12px;
-            font-size: 2.1rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: var(--gold-neon);
-            background: linear-gradient(135deg, var(--purple-deep), var(--bg-card));
-            border: 2px solid var(--gold-neon);
-            box-shadow: 0 0 16px var(--gold-glow);
+            gap: 0.55rem;
+            padding: 0.42rem 0.95rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(59, 16, 72, 0.85), rgba(19, 23, 38, 0.95));
+            border: 1px solid rgba(255, 215, 0, 0.42);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(139, 92, 246, 0.22);
             cursor: pointer;
-            line-height: 1.05;
+            transition: transform 0.16s ease, border-color 0.16s ease;
+        }
+
+        .hkwb-brand:hover {
+            transform: translateY(-1px);
+            border-color: var(--gold-neon);
+        }
+
+        .hkwb-orb {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff3a1 0%, var(--gold-neon) 60%, #d97706 100%);
+            box-shadow: 0 0 10px var(--gold-neon);
+            flex-shrink: 0;
+        }
+
+        .hkwb-wordmark {
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            background: linear-gradient(90deg, #fff7c2 0%, var(--gold-neon) 55%, #e2b800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
         }
 
         .top-controls {
@@ -116,19 +137,20 @@
         }
 
         .cover-title {
-            font-size: clamp(1.65rem, 3.6vw, 2.4rem);
+            font-size: clamp(1.7rem, 3.6vw, 2.45rem);
             font-weight: 900;
             color: #fff;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.75rem;
             letter-spacing: -0.02em;
         }
 
         .cover-sub {
-            color: var(--text-secondary);
-            font-size: clamp(0.95rem, 1.8vw, 1.08rem);
-            max-width: 660px;
+            color: #cbd5e1;
+            font-size: clamp(1rem, 1.9vw, 1.15rem);
+            max-width: 720px;
             margin: 0 auto 2.2rem;
             line-height: 1.65;
+            font-weight: 500;
         }
 
         .entry-row {
@@ -817,7 +839,10 @@
 <body>
 
     <header class="top-bar">
-        <div class="hkwb-box" onclick="showCover()" title="HKWB">HKWB</div>
+        <div class="hkwb-brand" onclick="showCover()" title="HKWB">
+            <span class="hkwb-orb" aria-hidden="true"></span>
+            <span class="hkwb-wordmark">HKWB</span>
+        </div>
         <div class="top-controls">
             <select id="langSelect" class="lang-select" aria-label="Language & Currency Selector">
                 <option value="ko" selected>한국어 · KRW (₩)</option>
@@ -841,11 +866,11 @@
     </header>
 
     <section class="cover-page" id="coverPage">
-        <h1 class="cover-title" id="coverTitle">HKWB 디지털 금융 플랫폼</h1>
-        <p class="cover-sub" id="coverSub">웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 바로 진입하세요.</p>
+        <h1 class="cover-title" id="coverTitle">인류와 기술이 공전하는 차세대 디지털 금융 혁신</h1>
+        <p class="cover-sub" id="coverSub">HKWB 디지털 금융 플랫폼 — 웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 진입하세요.</p>
         <div class="entry-row">
-            <button type="button" class="entry-btn web3-entry" id="web3EntryBtn" onclick="openView('web3')">웹3 은행 진입 -&gt;</button>
-            <button type="button" class="entry-btn web2-entry" id="web2EntryBtn" onclick="openView('web2')">인터넷 은행 진입 -&gt;</button>
+            <button type="button" class="entry-btn web3-entry" id="web3EntryBtn" onclick="openView('web3')">웹3 은행 진입</button>
+            <button type="button" class="entry-btn web2-entry" id="web2EntryBtn" onclick="openView('web2')">인터넷 은행 진입</button>
         </div>
     </section>
 
@@ -993,7 +1018,7 @@
                 <article class="wp-entry" data-cat="비전·구조">
                     <div class="wp-entry-head"><span class="wp-entry-num">백서 #002</span><span class="wp-entry-cat">비전·구조</span></div>
                     <div class="wp-entry-title">앞장 표지 직관성 설계</div>
-                    <div class="wp-entry-prose">첫 화면에는 HKWB 상징 박스와 표지 안내, 웹3 은행·인터넷 은행 진입 버튼을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.</div>
+                    <div class="wp-entry-prose">첫 화면에는 HKWB 로고와 표지 안내, 웹3 은행·인터넷 은행 진입 버튼을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.</div>
                 </article>
                 <article class="wp-entry" data-cat="비전·구조">
                     <div class="wp-entry-head"><span class="wp-entry-num">백서 #003</span><span class="wp-entry-cat">비전·구조</span></div>
@@ -1135,10 +1160,10 @@
 
         const i18nUI = {
             ko: {
-                coverTitle: 'HKWB 디지털 금융 플랫폼',
-                coverSub: '웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 바로 진입하세요.',
-                web3Entry: '웹3 은행 진입 ->',
-                web2Entry: '인터넷 은행 진입 ->',
+                coverTitle: '인류와 기술이 공전하는 차세대 디지털 금융 혁신',
+                coverSub: 'HKWB 디지털 금융 플랫폼 — 웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 진입하세요.',
+                web3Entry: '웹3 은행 진입',
+                web2Entry: '인터넷 은행 진입',
                 backCover: '← 앞장 표지',
                 web3Heading: '<span class="gold">웹3 은행</span> · 개인자산 & 10대 분산 연동망',
                 web3Sub: '10대 연동망 선택 시 1~4단계 프로세스와 수수료(걷는 수수료 ≥ 지급 비용) 순유입 계산이 실행됩니다.',
@@ -1166,10 +1191,10 @@
                 web2Sub: 'ljw2358/bank 무점포 뱅킹 6대 핵심 프로세스 (걷는 수수료 ≥ 지급 비용 · 국가별 화폐단위 반영)'
             },
             en: {
-                coverTitle: 'HKWB Digital Finance Platform',
-                coverSub: 'Select Web3 Bank or Branchless Internet Bank to open its dedicated view.',
-                web3Entry: 'Enter Web3 Bank ->',
-                web2Entry: 'Enter Internet Bank ->',
+                coverTitle: 'Next-Gen Digital Finance Where Humanity & Tech Orbit',
+                coverSub: 'HKWB Digital Finance Platform — Choose Web3 Bank or Branchless Internet Bank to enter.',
+                web3Entry: 'Enter Web3 Bank',
+                web2Entry: 'Enter Internet Bank',
                 backCover: '← Cover',
                 web3Heading: '<span class="gold">Web3 Bank</span> · Assets & 10 Distributed Networks',
                 web3Sub: 'Select a network to run the 4-stage flow and net-inflow fee calculation (Collected Fee ≥ Payout Cost).',
@@ -1195,6 +1220,37 @@
                 wpHeading: '<span class="gold">Whitepaper 100</span> · Narrative Clauses',
                 web2Heading: '<span class="cyan">Internet Bank</span> · Deposit · Withdraw · Transfer · Term · Saving · Loan',
                 web2Sub: 'ljw2358/bank Branchless 6-Core Banking (Collected Fee ≥ Payout Cost · Local Currency)'
+            },
+            th: {
+                coverTitle: 'นวัตกรรมการเงินดิจิทัลยุคใหม่ที่มนุษย์และเทคโนโลยีโคจรร่วมกัน',
+                coverSub: 'แพลตฟอร์มการเงินดิจิทัล HKWB — เลือกธนาคาร Web3 หรือธนาคารอินเทอร์เน็ตไร้สาขา',
+                web3Entry: 'เข้าสู่ธนาคาร Web3',
+                web2Entry: 'เข้าสู่ธนาคารอินเทอร์เน็ต',
+                backCover: '← หน้าปก',
+                web3Heading: '<span class="gold">ธนาคาร Web3</span> · สินทรัพย์และ 10 เครือข่ายกระจายศูนย์',
+                web3Sub: 'เลือกเครือข่ายเพื่อรัน 4 ขั้นตอนและคำนวณค่าธรรมเนียมสุทธิ (ค่าธรรมเนียมที่เก็บ ≥ ต้นทุนจ่าย)',
+                lblTotal: 'สินทรัพย์รวมทั้งหมด',
+                lblWeb3: 'กระเป๋า Web3 · ฝาก · LP สเตกกิ้ง',
+                lblUbi: 'รายได้พื้นฐาน (UBI) และรางวัลสะสม',
+                lblSocial: 'การคืนสู่สังคม · หลักค่าธรรมเนียม',
+                valSocial: 'สูงสุด 60% / รายรับ ≥ จ่าย',
+                noteWeb3: 'คำนวณผลตอบแทนแบบยืดหยุ่น AGI/ASI',
+                noteUbi: 'สะสมจากค่าธรรมเนียมสุทธิ',
+                noteSocial: 'MSF · Save the Children · UNHCR',
+                simTick: 'จำลองผลตอบแทนและรางวัล',
+                resetState: 'คืนค่าเริ่มต้น',
+                execBtn: 'ดำเนินการและคำนวณค่าธรรมเนียม',
+                apiTag: 'ระบบจำลองทำงาน · ค่าธรรมเนียม ≥ จ่าย',
+                csHeading: '🤖 ศูนย์บริการ · AGI · ASI · พินนี่',
+                csDesc: 'ข้อมูลสูตรค่าธรรมเนียมสุทธิ 10 เครือข่าย การทดสอบ Pi และสถานะ API',
+                btnAskPinni: 'สอบถาม',
+                socialHeading: '💛 คืนสู่สังคม (สูงสุด 60% ของกำไรสุทธิ) และรางวัล',
+                snsHeading: '📺 YouTube และ TikTok',
+                legalHeading: '<span class="gold">5 เสาหลักกฎหมายและการปฏิบัติตามกฎ</span>',
+                faqHeading: '<span class="gold">คำถามที่พบบ่อย 20 ข้อ</span>',
+                wpHeading: '<span class="gold">สมุดปกขาว 100 ข้อ</span>',
+                web2Heading: '<span class="cyan">ธนาคารอินเทอร์เน็ต</span> · ฝาก · ถอน · โอน · เงินฝากประจำ · ออมทรัพย์ · สินเชื่อ',
+                web2Sub: 'ljw2358/bank ธนาคารไร้สาขา 6 บริการหลัก (ค่าธรรมเนียม ≥ ต้นทุนจ่าย · สกุลเงินท้องถิ่น)'
             }
         };
 
@@ -1549,7 +1605,7 @@
 
         const faq20 = [
             ['Q01. HKWB는 어떤 구조인가요?', '웹3 디지털 은행과 무점포 인터넷 은행을 아우르는 차세대 디지털 금융 플랫폼 구조입니다.'],
-            ['Q02. 앞장 표지는 어떻게 구성되어 있나요?', '상단 HKWB 네모 박스와 표지 안내, 웹3 은행 진입 및 인터넷 은행 진입 버튼으로 구성됩니다.'],
+            ['Q02. 앞장 표지는 어떻게 구성되어 있나요?', '상단 HKWB 로고와 표지 안내, 웹3 은행 진입 및 인터넷 은행 진입 버튼으로 구성됩니다.'],
             ['Q03. 10대 분산 연동망에는 무엇이 포함되나요?', '지갑연결, 송금, 결제, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, 거버넌스의 10가지 핵심 망입니다.'],
             ['Q04. 수수료율은 어떻게 정해지나요?', '우리가 지급하는 리워드·보상·비용 이상을 걷는 순유입 원칙을 기본으로 항목별 수수료율과 지급률을 설정합니다.'],
             ['Q05. 왜 걷는 수수료가 지급 비용보다 커야 하나요?', '유동성 유지, 리스크 방어, 운영 지속 가능성 및 사회환원 재원 확보를 위해 역마진을 막기 위함입니다.'],
