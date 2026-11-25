@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKWB - 차세대 웹3 디지털 & 인터넷 은행</title>
+    <title>HKWB - 어미 메인 & 웹3 디지털 은행 & 인터넷 뱅킹</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,6 +13,7 @@
             --accent-purple: #7b2cbf;
             --accent-gold: #ffd700;
             --accent-blue: #00d4ff;
+            --accent-green: #00e676;
             --text-main: #ffffff;
             --text-sub: #94a3b8;
         }
@@ -31,13 +32,13 @@
             padding-bottom: 50px;
         }
 
-        /* 헤더 영역 */
+        /* ==================== 최상단 헤더 ==================== */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 30px;
-            background-color: rgba(20, 24, 36, 0.8);
+            background-color: rgba(20, 24, 36, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--card-border);
             position: sticky;
@@ -45,11 +46,26 @@
             z-index: 100;
         }
 
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: var(--accent-gold);
             letter-spacing: 1.5px;
+        }
+
+        .logo-tag {
+            font-size: 11px;
+            background: linear-gradient(135deg, var(--accent-purple), #4a148c);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #fff;
         }
 
         .nav-btn-group {
@@ -58,13 +74,14 @@
         }
 
         .btn {
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 8px;
             border: 1px solid var(--card-border);
             background-color: #1e2538;
             color: var(--text-main);
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
@@ -73,20 +90,101 @@
             color: var(--accent-gold);
         }
 
-        .btn-active {
-            background: linear-gradient(135deg, var(--accent-purple), #4a148c);
-            border: none;
-            box-shadow: 0 0 10px rgba(123, 44, 191, 0.5);
+        /* 3대 방 전용 버튼 스타일 */
+        .btn-mother {
+            background: linear-gradient(135deg, #2b3245, #1e2538);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
         }
 
-        /* 메인 컨테이너 */
-        .container {
+        .btn-son {
+            background: linear-gradient(135deg, var(--accent-purple), #4a148c);
+            border: none;
+            color: #fff;
+        }
+
+        .btn-daughter {
+            background: linear-gradient(135deg, #00897b, #004d40);
+            border: none;
+            color: #fff;
+        }
+
+        .btn-active {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            transform: scale(1.05);
+        }
+
+        /* ==================== 독립된 방(뷰) 제어 ==================== */
+        .room-view {
+            display: none;
             max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
         }
 
-        /* 대시보드 카드 */
+        .room-view.active {
+            display: block;
+        }
+
+        /* ==================== 1. 어미 방 (HKWB 메인) 스타일 ==================== */
+        .mother-hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, #1c2336 0%, #0a0c14 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
+        }
+
+        .mother-title {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .mother-subtitle {
+            font-size: 16px;
+            color: var(--accent-gold);
+            margin-bottom: 35px;
+        }
+
+        .room-entrance-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .entrance-btn {
+            padding: 18px 36px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .entrance-btn-son {
+            background: linear-gradient(135deg, var(--accent-purple), #4a148c);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(123, 44, 191, 0.5);
+        }
+
+        .entrance-btn-daughter {
+            background: linear-gradient(135deg, #00b0ff, #0077c2);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(0, 176, 255, 0.5);
+        }
+
+        .entrance-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+        }
+
+        /* 카드 및 모듈 공통 스타일 */
         .dashboard-card {
             background: linear-gradient(135deg, #181d2d 0%, #111420 100%);
             border: 1px solid var(--card-border);
@@ -141,7 +239,6 @@
             margin-top: 4px;
         }
 
-        /* 금융 모듈 그리드 */
         .section-title {
             font-size: 20px;
             font-weight: 700;
@@ -172,7 +269,7 @@
         }
 
         .module-icon {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 12px;
         }
 
@@ -188,7 +285,7 @@
             line-height: 1.4;
         }
 
-        /* 모달 팝업 */
+        /* ==================== 모달 팝업 ==================== */
         .modal {
             display: none;
             position: fixed;
@@ -196,7 +293,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.75);
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -251,24 +348,66 @@
 </head>
 <body>
 
+    <!-- 최상단 헤더 -->
     <header>
-        <div class="logo">HKWB</div>
+        <div class="logo-area" onclick="openRoom('motherRoom')">
+            <div class="logo">HKWB</div>
+            <div class="logo-tag">어미 통합 플랫폼</div>
+        </div>
         <div class="nav-btn-group">
-            <button class="btn btn-active" onclick="switchView('web3')">Web3 디지털 은행</button>
-            <button class="btn" onclick="switchView('internet')">인터넷 은행</button>
-            <button class="btn" onclick="copySourceCode()">코드 복사</button>
+            <button class="btn btn-mother btn-active" id="btn-mother" onclick="openRoom('motherRoom')">어미 방 (HKWB 홈)</button>
+            <button class="btn btn-son" id="btn-son" onclick="openRoom('sonRoom')">아들 방 (Web3 디지털 은행)</button>
+            <button class="btn btn-daughter" id="btn-daughter" onclick="openRoom('daughterRoom')">딸 방 (인터넷 뱅킹)</button>
+            <button class="btn" onclick="copyEntireCode()">코드 복사</button>
         </div>
     </header>
 
-    <div class="container">
-        <!-- 메인 대시보드 -->
-        <div class="dashboard-card">
+    <!-- ==================== 1. 어미 방 (HKWB 메인) ==================== -->
+    <div class="room-view active" id="motherRoom">
+        <div class="mother-hero">
+            <h1 class="mother-title">인류와 기술이 공존하는 차세대 디지털 금융 혁신</h1>
+            <p class="mother-subtitle">10대 글로벌 보안 기술 & AGI 기반 글로벌 자율 금융 메인 플랫폼</p>
+            <div class="room-entrance-group">
+                <button class="entrance-btn entrance-btn-son" onclick="openRoom('sonRoom')">아들 방: Web3 디지털 은행 진입하기 ↓</button>
+                <button class="entrance-btn entrance-btn-daughter" onclick="openRoom('daughterRoom')">딸 방: 인터넷 뱅킹 진입하기 ↓</button>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <span>HKWB 어미 시스템 자식 모듈 현황</span>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-card" onclick="openRoom('sonRoom')">
+                <div class="module-icon">🌐</div>
+                <div class="module-title">아들 방: Web3 디지털 은행</div>
+                <div class="module-desc">Pi Network 기반 P2P 분산 자산, 스테이킹, UBI 수령 및 글로벌 메인넷 전용 방</div>
+            </div>
+            <div class="module-card" onclick="openRoom('daughterRoom')">
+                <div class="module-icon">💳</div>
+                <div class="module-title">딸 방: 인터넷 뱅킹</div>
+                <div class="module-desc">원화/외화 일반 계좌 이체, 비대면 계좌 개설, 신용 대출 전용 독립 뱅킹 방</div>
+            </div>
+            <div class="module-card" onclick="alert('AGI 실시간 조정 이율 정책: 현행 6.0% ~ 8.5% 가변 운용 중입니다.')">
+                <div class="module-icon">🧠</div>
+                <div class="module-title">AGI/ASI 자율 정책</div>
+                <div class="module-desc">시장 동향 및 위험도 실시간 감지형 금리 자동 결정 시스템</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 2. 아들 방 (Web3 디지털 은행) ==================== -->
+    <div class="room-view" id="sonRoom">
+        <div class="dashboard-card" style="border-color: var(--accent-purple);">
             <div class="card-header">
                 <div>
-                    <div class="balance-title">통합 보유 자산 현황</div>
-                    <div class="balance-value" id="userBalance">314,159.00 Pi</div>
+                    <div class="balance-title">[아들 방] Web3 디지털 은행 Pi 자산</div>
+                    <div class="balance-value" id="web3Balance">314,159.00 Pi</div>
                 </div>
-                <button class="btn" onclick="openModal('sendModal')">송금하기</button>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-son" onclick="openModal('sendModal')">송금하기</button>
+                    <button class="btn btn-son" onclick="openModal('payModal')">QR 결제</button>
+                </div>
             </div>
             
             <div class="info-grid">
@@ -281,57 +420,111 @@
                     <div class="info-val">14,250.00 Pi</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">AGI 실시간 조정 이율</div>
+                    <div class="info-label">중도 해지 이율 (AGI)</div>
                     <div class="info-val" style="color: var(--accent-blue);">6.0% ~ 8.5%</div>
                 </div>
             </div>
         </div>
 
-        <!-- 10대 분산 금융망 모듈 -->
         <div class="section-title">
-            <span>10대 분산 금융망 모듈</span>
+            <span>아들 방 전용 - 10대 분산 금융망 모듈</span>
         </div>
 
         <div class="module-grid">
             <div class="module-card" onclick="openModal('sendModal')">
                 <div class="module-icon">🔗</div>
                 <div class="module-title">1. 지갑 연결 및 송금</div>
-                <div class="module-desc">테스트넷/메인넷 지갑 간 즉시 P2P 송금 연동</div>
+                <div class="module-desc">테스트넷/메인넷 지갑 간 즉시 P2P 계좌 송금</div>
             </div>
             <div class="module-card" onclick="openModal('payModal')">
-                <div class="module-icon">💳</div>
+                <div class="module-icon">📲</div>
                 <div class="module-title">2. QR 결제 시스템</div>
-                <div class="module-desc">스마트폰 QR 코드를 활용한 차세대 결제 모듈</div>
+                <div class="module-desc">글로벌 즉시 P2P 결제 모듈 연동</div>
             </div>
-            <div class="module-card" onclick="alert('AGI 자산관리 서포터 페니가 가동 중입니다.')">
+            <div class="module-card" onclick="alert('AGI 고객센터 페니가 가동 중입니다.')">
                 <div class="module-icon">🤖</div>
                 <div class="module-title">3. AGI 자산관리 '페니'</div>
-                <div class="module-desc">인공지능 실시간 포트폴리오 및 이율 최적화</div>
+                <div class="module-desc">인공지능 실시간 포트폴리오 안내</div>
             </div>
-            <div class="module-card" onclick="alert('예치 및 적금 모듈로 이동합니다.')">
+            <div class="module-card" onclick="alert('Pi 스테이킹 예치 모듈로 이동합니다.')">
                 <div class="module-icon">📈</div>
                 <div class="module-title">4. 예치 / 파이 적금</div>
-                <div class="module-desc">AGI/ASI 맞춤형 스테이킹 보상 창출</div>
+                <div class="module-desc">6개월~3년 AGI 가변 이율 적용</div>
             </div>
-            <div class="module-card" onclick="alert('대출 신청 한도를 조회합니다.')">
-                <div class="module-icon">🏦</div>
-                <div class="module-title">5. 신용 & 담보 대출</div>
-                <div class="module-desc">분산 원장 기반 분산형 대출 서비스</div>
+            <div class="module-card" onclick="alert('Web3 보상 채굴 리워드가 정상 적립 중입니다.')">
+                <div class="module-icon">🎁</div>
+                <div class="module-title">5. 보상 & UBI</div>
+                <div class="module-desc">생태계 활동 리워드 및 UBI 자동지급</div>
             </div>
-            <div class="module-card" onclick="alert('거버넌스 투표 시스템이 준비되어 있습니다.')">
+            <div class="module-card" onclick="alert('거버넌스 투표 모듈입니다.')">
                 <div class="module-icon">🏛️</div>
-                <div class="module-title">6. 거버넌스 투표</div>
-                <div class="module-desc">플랫폼 운용 및 이익 배분 정책 의결</div>
+                <div class="module-title">6. 거버넌스 (DAO)</div>
+                <div class="module-desc">플랫폼 이익 배분 정책 투표</div>
             </div>
         </div>
     </div>
 
-    <!-- 송금 모달 -->
+    <!-- ==================== 3. 딸 방 (인터넷 뱅킹) ==================== -->
+    <div class="room-view" id="daughterRoom">
+        <div class="dashboard-card" style="border-color: #00b0ff;">
+            <div class="card-header">
+                <div>
+                    <div class="balance-title">[딸 방] HKWB 인터넷 뱅킹 원화 계좌</div>
+                    <div class="balance-value" style="color: var(--accent-blue);" id="krwBalance">154,200,000 원</div>
+                </div>
+                <button class="btn btn-daughter" onclick="openModal('krwSendModal')">원화 이체하기</button>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">주거래 계좌 번호</div>
+                    <div class="info-val">1002-777-8888-HK</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">대출 승인 한도</div>
+                    <div class="info-val" style="color: var(--accent-green);">최대 500,000,000 원</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">적금 우대 금리</div>
+                    <div class="info-val">연 4.5%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <span>딸 방 전용 - 인터넷 뱅킹 서비스</span>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-card" onclick="openModal('krwSendModal')">
+                <div class="module-icon">💸</div>
+                <div class="module-title">1. 빠른 원화 이체</div>
+                <div class="module-desc">수수료 면제 타행 및 당행 즉시 이체</div>
+            </div>
+            <div class="module-card" onclick="alert('비대면 신용대출 즉시 심사가 진행됩니다.')">
+                <div class="module-icon">📑</div>
+                <div class="module-title">2. 원스톱 대출 신청</div>
+                <div class="module-desc">서류 없이 AGI 1분 신용/담보 대출</div>
+            </div>
+            <div class="module-card" onclick="alert('HKWB 체크카드 발급 모듈입니다.')">
+                <div class="module-icon">💳</div>
+                <div class="module-title">3. 스마트 카드리스트</div>
+                <div class="module-desc">실물 및 디지털 카드 즉시 발급</div>
+            </div>
+            <div class="module-card" onclick="alert('외화 환전 서비스: USD, EUR, JPY 지원')">
+                <div class="module-icon">💱</div>
+                <div class="module-title">4. 외화 환전 센터</div>
+                <div class="module-desc">실시간 우대 환율 환전 서비스</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 팝업: Web3 송금 -->
     <div class="modal" id="sendModal">
         <div class="modal-content">
-            <div class="modal-header">P2P 지갑 송금</div>
+            <div class="modal-header">P2P 지갑 송금 (아들 방)</div>
             <div class="input-group">
-                <label>받는 사람 지갑 주소</label>
+                <label>받는 사람 Pi 지갑 주소</label>
                 <input type="text" placeholder="Pi 지갑 주소 입력">
             </div>
             <div class="input-group">
@@ -340,39 +533,69 @@
             </div>
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal('sendModal')">취소</button>
-                <button class="btn btn-active" onclick="processSend()">송금 완료</button>
+                <button class="btn btn-son" onclick="processSend()">송금 완료</button>
             </div>
         </div>
     </div>
 
-    <!-- 결제 모달 -->
+    <!-- 모달 팝업: Web3 QR 결제 -->
     <div class="modal" id="payModal">
         <div class="modal-content">
-            <div class="modal-header">QR 결제 요청</div>
+            <div class="modal-header">QR 스마트 결제 (아들 방)</div>
             <div class="input-group">
                 <label>결제 금액 (Pi)</label>
                 <input type="number" id="payAmount" placeholder="0.00">
             </div>
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal('payModal')">취소</button>
-                <button class="btn btn-active" onclick="processPay()">결제 승인</button>
+                <button class="btn btn-son" onclick="processPay()">결제 승인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 팝업: 원화 이체 -->
+    <div class="modal" id="krwSendModal">
+        <div class="modal-content">
+            <div class="modal-header">원화 계좌 이체 (딸 방)</div>
+            <div class="input-group">
+                <label>입금 은행 & 계좌번호</label>
+                <input type="text" placeholder="예: 카카오뱅크 3333-xxxx">
+            </div>
+            <div class="input-group">
+                <label>이체 금액 (원)</label>
+                <input type="number" id="krwSendAmount" placeholder="0">
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('krwSendModal')">취소</button>
+                <button class="btn btn-daughter" onclick="processKrwSend()">이체 실행</button>
             </div>
         </div>
     </div>
 
     <script>
-        let balance = 314159.00;
+        let piBalance = 314159.00;
+        let krwBalance = 154200000;
 
         function updateBalanceDisplay() {
-            document.getElementById('userBalance').innerText = balance.toLocaleString('en-US', {minimumFractionDigits: 2}) + " Pi";
+            document.getElementById('web3Balance').innerText = piBalance.toLocaleString('en-US', {minimumFractionDigits: 2}) + " Pi";
+            document.getElementById('krwBalance').innerText = krwBalance.toLocaleString('ko-KR') + " 원";
         }
 
-        function switchView(type) {
-            if (type === 'web3') {
-                alert("웹3 디지털 은행 모드로 전환되었습니다.");
-            } else {
-                alert("인터넷 은행 전용 모드로 전환되었습니다.");
-            }
+        // 방(화면) 전환 핵심 함수
+        function openRoom(roomId) {
+            // 모든 방 숨기기
+            document.querySelectorAll('.room-view').forEach(r => r.classList.remove('active'));
+            document.querySelectorAll('.nav-btn-group .btn').forEach(b => b.classList.remove('btn-active'));
+
+            // 선택한 방만 켜기
+            document.getElementById(roomId).classList.add('active');
+
+            // 상단 버튼 하이라이트
+            if (roomId === 'motherRoom') document.getElementById('btn-mother').classList.add('btn-active');
+            if (roomId === 'sonRoom') document.getElementById('btn-son').classList.add('btn-active');
+            if (roomId === 'daughterRoom') document.getElementById('btn-daughter').classList.add('btn-active');
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function openModal(id) {
@@ -385,31 +608,43 @@
 
         function processSend() {
             const amt = parseFloat(document.getElementById('sendAmount').value);
-            if (amt && amt <= balance) {
-                balance -= amt;
+            if (amt && amt <= piBalance) {
+                piBalance -= amt;
                 updateBalanceDisplay();
-                alert(amt + " Pi 송금이 완료되었습니다.");
+                alert(amt + " Pi 송금이 정상 완료되었습니다.");
                 closeModal('sendModal');
             } else {
-                alert("올바른 수량을 입력해 주세요.");
+                alert("잔액이 부족하거나 올바른 수량이 아닙니다.");
             }
         }
 
         function processPay() {
             const amt = parseFloat(document.getElementById('payAmount').value);
-            if (amt && amt <= balance) {
-                balance -= amt;
+            if (amt && amt <= piBalance) {
+                piBalance -= amt;
                 updateBalanceDisplay();
-                alert(amt + " Pi 결제가 정상 완료되었습니다.");
+                alert(amt + " Pi 결제가 승인되었습니다.");
                 closeModal('payModal');
             } else {
-                alert("올바른 결제 금액을 입력해 주세요.");
+                alert("잔액이 부족하거나 올바른 금액이 아닙니다.");
             }
         }
 
-        function copySourceCode() {
+        function processKrwSend() {
+            const amt = parseInt(document.getElementById('krwSendAmount').value);
+            if (amt && amt <= krwBalance) {
+                krwBalance -= amt;
+                updateBalanceDisplay();
+                alert(amt.toLocaleString('ko-KR') + " 원 원화 이체가 완료되었습니다.");
+                closeModal('krwSendModal');
+            } else {
+                alert("잔액이 부족하거나 올바른 금액을 입력하세요.");
+            }
+        }
+
+        function copyEntireCode() {
             navigator.clipboard.writeText(document.documentElement.outerHTML).then(() => {
-                alert("소스 코드가 클립보드에 복사되었습니다! 메모장이나 에디터에 붙여넣어 쓰시면 됩니다.");
+                alert("전체 소스 코드가 클립보드에 복사되었습니다!");
             });
         }
     </script>
