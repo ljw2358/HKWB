@@ -3,1031 +3,1229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB — 표지 · 웹3 디지털 은행 방 · 인터넷 은행 방</title>
+  <title>HKWB — 웹3 디지털 은행 & 무점포 인터넷 은행</title>
   <style>
     :root {
-      --bg-navy: #070917;
-      --bg-purple: #140b2e;
-      --gold-1: #ffe28a;
-      --gold-2: #f4b942;
-      --gold-3: #b87b14;
-      --text-main: #f8fafc;
-      --text-sub: #cbd5e1;
-      --text-muted: #94a3b8;
-      --border-gold: rgba(244, 185, 66, 0.42);
-      --border-soft: rgba(148, 163, 184, 0.22);
-      --ok: #34d399;
-      --bad: #f87171;
+      --bg-950: #070510;
+      --bg-900: #0d091d;
+      --bg-800: #15102b;
+      --bg-700: #1e173d;
+      --gold: #ffd54f;
+      --gold-strong: #ffbe0b;
+      --gold-soft: rgba(255, 213, 79, 0.16);
+      --gold-border: rgba(255, 213, 79, 0.34);
+      --cyan: #22d3ee;
+      --emerald: #34d399;
+      --rose: #fb7185;
+      --text: #f8fafc;
+      --muted: #a5a1c2;
+      --ib-bg: #f4f7fb;
+      --ib-card: #ffffff;
+      --ib-text: #0f172a;
+      --ib-muted: #526071;
+      --ib-blue: #1d63ed;
+      --ib-blue-soft: rgba(29, 99, 237, 0.1);
+      --ib-border: #dce4f0;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      min-height: 100%;
-      background:
-        radial-gradient(circle at 15% 12%, rgba(139, 92, 246, 0.24), transparent 42%),
-        radial-gradient(circle at 86% 18%, rgba(244, 185, 66, 0.16), transparent 38%),
-        linear-gradient(160deg, var(--bg-navy) 0%, var(--bg-purple) 52%, #080b1c 100%);
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-      line-height: 1.5;
-      overflow-x: hidden;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    button, input, select { font-family: inherit; color: inherit; }
-    button { cursor: pointer; border: none; background: transparent; }
-    .hidden { display: none !important; }
+    body {
+      background: radial-gradient(circle at 15% 0%, #1c1238 0%, var(--bg-950) 48%, #05040b 100%);
+      color: var(--text);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
 
-    /* 상단바 */
+    /* 상단 헤더 & 네비게이션 */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 80;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px 16px;
-      background: rgba(9, 13, 30, 0.96);
-      border-bottom: 1px solid var(--border-gold);
-      backdrop-filter: blur(12px);
+      z-index: 60;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 6, 20, 0.86);
+      border-bottom: 1px solid var(--gold-border);
     }
 
-    .logo-mark {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      background: linear-gradient(135deg, #fff3c4 0%, var(--gold-2) 55%, #ff9f1c 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .top-right { display: flex; align-items: center; gap: 8px; }
-
-    .lang-select {
-      padding: 7px 10px;
-      border-radius: 10px;
-      background: #161d3f;
-      border: 1px solid var(--border-gold);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .hamburger-btn {
-      padding: 8px 11px;
-      border-radius: 10px;
-      background: rgba(244, 185, 66, 0.18);
-      border: 1px solid var(--border-gold);
-      font-weight: 800;
-      font-size: 0.84rem;
-      color: var(--gold-1);
-    }
-
-    .container {
-      max-width: 1120px;
+    .topbar-inner {
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 20px 16px 88px;
-    }
-
-    /* 표지 화면 */
-    .cover-box {
-      border-radius: 24px;
-      padding: 24px 18px;
-      margin-bottom: 18px;
-      background: linear-gradient(135deg, rgba(23, 30, 68, 0.96), rgba(36, 20, 74, 0.96));
-      border: 1.5px solid var(--border-gold);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-    }
-
-    .cover-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 4px 12px;
-      border-radius: 999px;
-      color: var(--gold-1);
-      background: rgba(244, 185, 66, 0.15);
-      border: 1px solid var(--border-gold);
-      margin-bottom: 10px;
-    }
-
-    .cover-slogan {
-      font-size: clamp(1.24rem, 3.6vw, 1.85rem);
-      font-weight: 900;
-      line-height: 1.35;
-      background: linear-gradient(95deg, #ffffff 0%, #ffe699 55%, #f4b942 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .cover-sub {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-    }
-
-    /* 손폰 세로 배치: 1. 웹3 디지털 은행 방 (위) -> 2. 인터넷 은행 방 (아래) */
-    .room-select-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .room-door {
-      border-radius: 22px;
-      padding: 22px 18px;
-      border: 1.5px solid var(--border-gold);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .room-door.web3-door {
-      background: linear-gradient(145deg, rgba(42, 19, 92, 0.97), rgba(20, 24, 58, 0.97) 65%, rgba(124, 58, 237, 0.45));
-    }
-
-    .room-door.internet-door {
-      background: linear-gradient(145deg, rgba(16, 33, 74, 0.97), rgba(23, 24, 66, 0.97) 65%, rgba(30, 58, 138, 0.5));
-    }
-
-    .door-top {
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-    }
-
-    .door-title {
-      font-size: 1.32rem;
-      font-weight: 900;
-      color: #ffffff;
-    }
-
-    .door-copy {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #f1f5f9;
-    }
-
-    .btn-gold {
-      padding: 11px 16px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: #090c18;
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-2) 55%, var(--gold-3));
-    }
-
-    .btn-violet {
-      padding: 11px 16px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: #ffffff;
-      background: linear-gradient(135deg, #7c3aed, #9333ea 60%, #d97706 130%);
-    }
-
-    .btn-blue {
-      padding: 11px 16px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: #ffffff;
-      background: linear-gradient(135deg, #2563eb, #4f46e5 60%, #7c3aed);
-    }
-
-    .btn-ghost {
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid var(--border-soft);
-      color: var(--text-sub);
-    }
-
-    /* 각 방 공통 상단 바 */
-    .room-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      gap: 14px;
       flex-wrap: wrap;
-      padding: 16px 18px;
-      border-radius: 20px;
-      margin-bottom: 18px;
-      border: 1.5px solid var(--border-gold);
-      background: rgba(16, 22, 52, 0.95);
     }
 
-    .room-nav-btns {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--gold), #b47b00);
+      color: #090614;
+      font-weight: 900;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 22px rgba(255, 213, 79, 0.35);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-tabs {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .agi-chip {
+    .tab-btn {
+      background: var(--bg-800);
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      border-color: var(--gold-border);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      color: #090614;
+      border-color: transparent;
+      box-shadow: 0 0 18px rgba(255, 213, 79, 0.3);
+    }
+
+    .util-controls {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 14px;
-      background: rgba(8, 12, 28, 0.9);
-      border: 1px solid rgba(244, 185, 66, 0.4);
+      gap: 8px;
     }
 
-    .agi-chip svg {
-      width: 42px;
-      height: 42px;
-      flex-shrink: 0;
+    .select-lang, .hamburger-btn {
+      background: var(--bg-800);
+      color: var(--text);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .section-box {
-      border-radius: 22px;
-      padding: 20px 18px;
-      margin-bottom: 20px;
-      background: linear-gradient(155deg, rgba(16, 22, 52, 0.95), rgba(24, 16, 52, 0.95));
-      border: 1px solid var(--border-soft);
+    /* 메인 레이아웃 */
+    .main-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
     }
 
-    .section-title {
-      font-size: 1.12rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: #ffffff;
+    .view-panel {
+      display: none;
+      animation: fadeIn 0.22s ease;
     }
 
-    /* 8개 금융 모듈 (2x4) */
-    .modules-2x4 {
+    .view-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 공통 배너 & 정책 */
+    .hero-strip {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
     }
 
-    @media (max-width: 900px) {
-      .modules-2x4 { grid-template-columns: repeat(2, 1fr); }
+    .glass-card {
+      background: linear-gradient(160deg, rgba(28, 21, 58, 0.92), rgba(13, 9, 29, 0.95));
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
     }
 
-    .mod-card {
-      text-align: left;
-      padding: 14px;
-      border-radius: 16px;
-      background: linear-gradient(145deg, rgba(28, 37, 84, 0.92), rgba(36, 21, 76, 0.92));
-      border: 1px solid rgba(244, 185, 66, 0.28);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
     }
 
-    /* 예적금 쇼케이스: 모바일 2x3 / PC 3x2 */
-    .deposit-3x2 {
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .split-bars {
+      margin-top: 12px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 8px;
     }
 
-    @media (max-width: 768px) {
-      .deposit-3x2 { grid-template-columns: repeat(2, 1fr); }
+    .split-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 10px;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 12px;
     }
 
-    .dep-card {
-      padding: 14px;
-      border-radius: 16px;
-      background: linear-gradient(150deg, rgba(20, 32, 68, 0.95), rgba(42, 23, 86, 0.92));
-      border: 1px solid var(--border-soft);
+    .split-pill strong {
+      display: block;
+      color: var(--gold);
+      font-size: 15px;
+    }
+
+    /* 1. 개인 자산 대시보드 */
+    .dashboard-box {
+      background: linear-gradient(135deg, #1b1338 0%, #100b24 60%, #191136 100%);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 0 36px rgba(255, 213, 79, 0.14);
+    }
+
+    .dash-head {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
-    /* 백엔드 테스트 */
-    .test-grid {
+    .dash-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 14px;
     }
 
-    @media (max-width: 860px) {
-      .test-grid { grid-template-columns: 1fr; }
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    @media (max-width: 560px) {
-      .form-row { grid-template-columns: 1fr; }
-    }
-
-    .input-ctrl, .select-ctrl {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 11px;
-      background: rgba(8, 12, 28, 0.94);
-      border: 1px solid var(--border-soft);
-      font-size: 0.86rem;
-    }
-
-    .tx-box {
-      max-height: 240px;
-      overflow-y: auto;
-      border-radius: 14px;
-      padding: 10px;
-      background: rgba(7, 10, 24, 0.9);
-      border: 1px solid var(--border-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .tx-item {
-      padding: 9px 11px;
-      border-radius: 10px;
-      background: rgba(28, 36, 76, 0.75);
-      border-left: 3px solid var(--gold-2);
-      font-size: 0.78rem;
-    }
-
-    /* 내비게이터 (서술형 백서 / 컴플라이언스 / FAQ 20개) */
-    .nav-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-    .nav-tab {
-      padding: 8px 14px;
-      border-radius: 11px;
-      font-size: 0.84rem;
-      font-weight: 800;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-soft);
-    }
-    .nav-tab.active {
-      color: #090c18;
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
-    }
-
-    .prose-paper {
+    .metric-card {
+      background: rgba(7, 5, 16, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
       padding: 16px;
-      border-radius: 14px;
-      background: rgba(8, 12, 28, 0.8);
-      border: 1px solid var(--border-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: #e2e8f0;
-      line-height: 1.72;
     }
 
-    .comp-2x2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    .metric-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
     }
 
-    @media (max-width: 800px) {
-      .comp-2x2 { grid-template-columns: 1fr; }
+    .metric-val {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
     }
 
-    .comp-card {
-      padding: 14px;
-      border-radius: 14px;
-      background: rgba(18, 25, 56, 0.92);
-      border: 1px solid rgba(244, 185, 66, 0.3);
-      font-size: 0.82rem;
-      color: var(--text-sub);
+    .metric-val.cyan {
+      color: var(--cyan);
     }
 
-    .comp-card h4 { color: var(--gold-1); margin-bottom: 6px; font-size: 0.94rem; }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+    .metric-val.emerald {
+      color: var(--emerald);
     }
 
-    @media (max-width: 800px) {
-      .faq-grid { grid-template-columns: 1fr; }
+    .metric-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
     }
 
-    .faq-item {
-      border-radius: 12px;
-      background: rgba(9, 13, 30, 0.88);
-      border: 1px solid var(--border-soft);
-    }
-
-    .faq-q {
-      width: 100%;
-      text-align: left;
-      padding: 10px 12px;
-      font-size: 0.82rem;
-      font-weight: 800;
+    /* 2. 10대 분산 연동망 */
+    .section-heading {
       display: flex;
       justify-content: space-between;
-      gap: 8px;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 24px 0 14px;
     }
 
-    .faq-a {
-      padding: 8px 12px 11px;
-      font-size: 0.78rem;
-      color: var(--text-sub);
-      border-top: 1px dashed rgba(148, 163, 184, 0.16);
+    .section-heading h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gold);
     }
 
-    /* 하단 이동 바 */
-    .bottom-bar {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 90;
+    .section-heading span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .net-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .net-btn {
+      text-align: left;
+      background: var(--bg-800);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .net-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      background: #231a47;
+    }
+
+    .net-btn.selected {
+      border-color: var(--gold);
+      background: linear-gradient(145deg, #2b1f59, #181233);
+      box-shadow: 0 0 22px rgba(255, 213, 79, 0.22);
+    }
+
+    .net-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .net-name {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .net-brief {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* 폼 & 인터랙티브 컨트롤 */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .field {
       display: flex;
-      gap: 8px;
-      padding: 10px 14px;
-      background: rgba(8, 12, 28, 0.96);
-      border-top: 1px solid var(--border-gold);
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .bottom-bar button {
-      flex: 1;
-      padding: 10px 8px;
-      border-radius: 11px;
-      font-size: 0.8rem;
+    .field label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .field input, .field select, .field textarea {
+      background: rgba(8, 6, 18, 0.9);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      color: #090614;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 11px 16px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: filter 0.15s ease;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.06);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .result-box {
+      margin-top: 14px;
+      background: rgba(6, 4, 14, 0.85);
+      border: 1px dashed var(--gold-border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 13px;
+      color: #e2e8f0;
+    }
+
+    /* 인터넷 은행 (무점포 라이트 뱅킹 UI) */
+    .ib-shell {
+      background: var(--ib-bg);
+      color: var(--ib-text);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid var(--ib-border);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .ib-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--ib-border);
+      margin-bottom: 20px;
+    }
+
+    .ib-badge {
+      background: var(--ib-blue-soft);
+      color: var(--ib-blue);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    .ib-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .ib-card {
+      background: var(--ib-card);
+      border: 1px solid var(--ib-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .ib-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .ib-card p {
+      font-size: 13px;
+      color: var(--ib-muted);
+    }
+
+    .ib-balance {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--ib-blue);
+      margin: 10px 0 14px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ib-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .ib-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ib-muted);
+    }
+
+    .ib-field input, .ib-field select {
+      background: #f8fafc;
+      color: var(--ib-text);
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 13px;
+    }
+
+    .btn-ib {
+      margin-top: 12px;
+      background: var(--ib-blue);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .ib-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .ib-table th, .ib-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--ib-border);
+      text-align: left;
+    }
+
+    .ib-table th {
+      background: #eef3fa;
       font-weight: 800;
     }
 
-    /* 잠금 / 드로어 / 모달 */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 160;
-      background: rgba(3, 5, 14, 0.82);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
+    .ib-log {
+      margin-top: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--ib-border);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 12.5px;
+      color: var(--ib-text);
+      line-height: 1.6;
     }
 
-    .overlay.drawer-mode { justify-content: flex-end; padding: 0; }
-
-    .box-card {
-      width: 100%;
-      max-width: 420px;
-      max-height: 86vh;
-      overflow-y: auto;
-      border-radius: 20px;
-      padding: 20px;
-      background: linear-gradient(155deg, #151c42, #23144a);
-      border: 1px solid var(--border-gold);
-    }
-
-    .drawer-card {
-      width: 100%;
-      max-width: 310px;
-      height: 100%;
-      background: #121838;
-      border-left: 1px solid var(--border-gold);
-      padding: 18px 16px;
+    /* 삥(PING) 고객센터 */
+    .chat-box {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding: 14px;
+      background: rgba(6, 4, 14, 0.72);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 12px;
     }
 
-    #patternCanvas {
-      width: 230px;
-      height: 230px;
-      border-radius: 16px;
-      background: rgba(14, 20, 48, 0.95);
-      border: 1px solid rgba(244, 185, 66, 0.35);
-      touch-action: none;
-      display: block;
-      margin: 10px auto;
+    .msg {
+      padding: 10px 13px;
+      border-radius: 12px;
+      font-size: 13px;
+      max-width: 86%;
+    }
+
+    .msg.bot {
+      background: rgba(255, 213, 79, 0.14);
+      border: 1px solid var(--gold-border);
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      background: rgba(34, 211, 238, 0.16);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      align-self: flex-end;
+    }
+
+    /* 양파껍질 구조 (백서 · 컴플라이언스 · FAQ 20개) */
+    .onion-steps {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .step-chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      border: 1px solid var(--gold-border);
+      background: var(--bg-800);
+      color: var(--muted);
+    }
+
+    .step-chip.active {
+      background: var(--gold);
+      color: #090614;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    details.faq-item {
+      background: rgba(8, 6, 18, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+    }
+
+    details.faq-item summary {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    details.faq-item p {
+      margin-top: 8px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+
+    /* 삼선 드로어 & 토스트 */
+    .drawer-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.68);
+      z-index: 90;
+      justify-content: flex-end;
+    }
+
+    .drawer-backdrop.open {
+      display: flex;
+    }
+
+    .drawer-panel {
+      width: min(360px, 90vw);
+      height: 100%;
+      background: var(--bg-900);
+      border-left: 1px solid var(--gold-border);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow-y: auto;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 120;
+      background: var(--gold);
+      color: #090614;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .brand-title { font-size: 16px; }
+      .metric-val { font-size: 19px; }
+      .ib-balance { font-size: 23px; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <button type="button" class="logo-mark" onclick="showView('cover')">HKWB</button>
-    <div class="top-right">
-      <select id="langSelect" class="lang-select" aria-label="언어 선택">
-        <option value="ko" selected>한국어</option>
-        <option value="en">English</option>
-        <option value="ja">日本語</option>
-        <option value="zh">中文</option>
-      </select>
-      <button type="button" class="hamburger-btn" id="openDrawerBtn">☰ 메뉴</button>
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">HK</div>
+        <div>
+          <div class="brand-title">HKWB 통합 뱅킹 플랫폼</div>
+          <div class="brand-sub">체어맨 이재완(혜공) · hkwb.world · 추천인 ljw2358</div>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" aria-label="주요 메뉴">
+        <button class="tab-btn active" data-tab="web3-tab" onclick="switchTab('web3-tab')">웹3 디지털 은행 (대시보드 & 10대 연동망)</button>
+        <button class="tab-btn" data-tab="ib-tab" onclick="switchTab('ib-tab')">무점포 인터넷 은행</button>
+        <button class="tab-btn" data-tab="ping-tab" onclick="switchTab('ping-tab')">삥(PING) 고객센터</button>
+        <button class="tab-btn" data-tab="onion-tab" onclick="switchTab('onion-tab')">백서 · 컴플라이언스 · FAQ</button>
+      </nav>
+
+      <div class="util-controls">
+        <select class="select-lang" id="langSelect" onchange="notify('언어 설정: ' + this.value)">
+          <option value="한국어 (KO)">🌐 KO</option>
+          <option value="English (EN)">🌐 EN</option>
+          <option value="中文 (ZH)">🌐 ZH</option>
+          <option value="日本語 (JA)">🌐 JA</option>
+          <option value="Español (ES)">🌐 ES</option>
+          <option value="Deutsch (DE)">🌐 DE</option>
+        </select>
+        <button class="hamburger-btn" onclick="toggleDrawer(true)">☰ 삼선</button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- 1. 표지 화면 (방 선택 전 첫 화면) -->
-    <section id="view-cover">
-      <div class="cover-box">
-        <span class="cover-tag">HKWB 표지 · 방을 선택하세요</span>
-        <h1 class="cover-slogan">일상의 무점포 인터넷 은행과 미래의 웹3 디지털 은행, HKWB 하나로 연결됩니다.</h1>
-        <p class="cover-sub">손폰 기준 위쪽 웹3 디지털 은행 방, 아래쪽 인터넷 은행 방 중 원하는 방으로 바로 들어가세요.</p>
+  <main class="main-wrap">
+    <!-- 공통 경영 정책 스트립 -->
+    <section class="hero-strip">
+      <div class="glass-card">
+        <span class="card-tag">AGI / ASI 동적 금리 정책</span>
+        <div class="card-title">예금·스테이킹·중도해지율 자동 산정</div>
+        <div class="card-desc">수동 고정 이율이 아닌 AGI/ASI 엔진이 유동성과 시장 조건을 반영해 실시간 산정·조정합니다.</div>
       </div>
-
-      <div class="room-select-stack">
-        <!-- 위: 웹3 디지털 은행 방 -->
-        <article class="room-door web3-door">
-          <div class="door-top">
-            <div>
-              <span style="font-size:0.74rem; color:var(--gold-1); font-weight:800;">위쪽 방 · 고수익 이자</span>
-              <h2 class="door-title">웹3 디지털 은행 방</h2>
-            </div>
-            <button type="button" class="btn-gold" id="coverBrowseWeb3Btn">둘러보기</button>
-          </div>
-          <p class="door-copy">이자 수익률이 높은 웹3 디지털 은행을 이용해보세요!</p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
-            <button type="button" class="btn-violet" onclick="showView('web3')">웹3 디지털 은행 방 들어가기 →</button>
-            <button type="button" class="btn-ghost" onclick="openLock()">줄 그리기 보안 진입</button>
-          </div>
-        </article>
-
-        <!-- 아래: 인터넷 은행 방 -->
-        <article class="room-door internet-door">
-          <div class="door-top">
-            <div>
-              <span style="font-size:0.74rem; color:var(--gold-1); font-weight:800;">아래쪽 방 · 참여 보상</span>
-              <h2 class="door-title">인터넷 은행 방</h2>
-            </div>
-            <button type="button" class="btn-ghost" onclick="openLock()">보안 잠금</button>
-          </div>
-          <p class="door-copy">참여하고 보상(리워드) 받아가세요</p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
-            <button type="button" class="btn-blue" onclick="showView('internet')">인터넷 은행 방 들어가기 →</button>
-            <button type="button" class="btn-gold" onclick="quickRewardAndEnter()">참여 보상(리워드) 받고 들어가기</button>
-          </div>
-        </article>
+      <div class="glass-card">
+        <span class="card-tag">순이익 배분 원칙</span>
+        <div class="card-title">UBI · 경영비 · HK 사회재단 배분</div>
+        <div class="split-bars">
+          <div class="split-pill"><strong>30%</strong>UBI 지급</div>
+          <div class="split-pill"><strong>30%</strong>회사 경영비</div>
+          <div class="split-pill"><strong>최대 30%</strong>HK 사회재단</div>
+        </div>
       </div>
     </section>
 
-    <!-- 2. 웹3 디지털 은행 전용 방 -->
-    <section id="view-web3" class="hidden">
-      <div class="room-header">
-        <div>
-          <span style="font-size:0.75rem; color:var(--gold-1); font-weight:800;">독립 방 · 웹3 디지털 은행</span>
-          <h2 style="font-size:1.25rem; font-weight:900;">웹3 디지털 은행 방</h2>
-          <p style="font-size:0.86rem; color:var(--text-sub);">이자 수익률이 높은 웹3 디지털 은행을 이용해보세요!</p>
-        </div>
-        <div class="room-nav-btns">
-          <button type="button" class="btn-gold" id="roomWeb3BrowseBtn">둘러보기</button>
-          <button type="button" class="btn-blue" onclick="showView('internet')">인터넷 은행 방으로 이동</button>
-          <button type="button" class="btn-ghost" onclick="showView('cover')">표지로</button>
-        </div>
-        <div class="agi-chip">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AGI 뾩이">
-            <circle cx="40" cy="42" r="28" fill="#F4B942" stroke="#FFF8DC" stroke-width="2.5"/>
-            <path d="M40 6 L45 15 L35 15 Z" fill="#FFE699"/>
-            <circle cx="30" cy="39" r="5" fill="#0B1026"/>
-            <circle cx="50" cy="39" r="5" fill="#0B1026"/>
-            <path d="M31 50 Q40 58 49 50" stroke="#0B1026" stroke-width="3" stroke-linecap="round"/>
-          </svg>
+    <!-- TAB 1: 웹3 디지털 은행 (1번 개인 자산 대시보드 + 2번 10대 분산 연동망) -->
+    <section id="web3-tab" class="view-panel active">
+      <div class="dashboard-box">
+        <div class="dash-head">
           <div>
-            <div style="font-size:0.82rem; font-weight:900; color:var(--gold-1);">AGI 뾩이</div>
-            <div style="font-size:0.75rem;">웹3 디지털 방 전용 안내 중</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-box">
-        <h3 class="section-title">웹3 고수익 예치 · 저축 상품 (모바일 2×3 · PC 3×2)</h3>
-        <div class="deposit-3x2" id="web3DepositGrid"></div>
-      </div>
-    </section>
-
-    <!-- 3. 인터넷 은행 전용 방 -->
-    <section id="view-internet" class="hidden">
-      <div class="room-header">
-        <div>
-          <span style="font-size:0.75rem; color:var(--gold-1); font-weight:800;">독립 방 · 무점포 인터넷 은행</span>
-          <h2 style="font-size:1.25rem; font-weight:900;">인터넷 은행 방</h2>
-          <p style="font-size:0.86rem; color:var(--text-sub);">참여하고 보상(리워드) 받아가세요</p>
-        </div>
-        <div class="room-nav-btns">
-          <button type="button" class="btn-gold" onclick="claimRewardOnly()">참여 보상(리워드) 받기</button>
-          <button type="button" class="btn-violet" onclick="showView('web3')">웹3 디지털 방으로 이동</button>
-          <button type="button" class="btn-ghost" onclick="showView('cover')">표지로</button>
-        </div>
-        <div class="agi-chip">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AGI 뾩이">
-            <circle cx="40" cy="42" r="28" fill="#FFE28A" stroke="#FFF8DC" stroke-width="2.5"/>
-            <path d="M40 6 L45 15 L35 15 Z" fill="#F4B942"/>
-            <circle cx="30" cy="39" r="5" fill="#0B1026"/>
-            <circle cx="50" cy="39" r="5" fill="#0B1026"/>
-            <path d="M31 50 Q40 58 49 50" stroke="#0B1026" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-          <div>
-            <div style="font-size:0.82rem; font-weight:900; color:var(--gold-1);">AGI 뾩이</div>
-            <div style="font-size:0.75rem;">인터넷 은행 방 전용 안내 중</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-box">
-        <h3 class="section-title">인터넷 은행 금융 모듈 (2×4)</h3>
-        <div class="modules-2x4" id="internetModulesGrid"></div>
-      </div>
-
-      <div class="section-box">
-        <h3 class="section-title">예금 · 적금 · 저축 (모바일 2×3 · PC 3×2)</h3>
-        <div class="deposit-3x2" id="internetDepositGrid"></div>
-      </div>
-    </section>
-
-    <!-- 공통 하단: 백엔드 테스트 & 내비게이터(서술형 백서·컴플라이언스·FAQ 20개) -->
-    <section class="section-box" id="backendSection">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-        <h3 class="section-title" style="margin:0;">백엔드 테스트 (잔액 · 원장 · 이자 · 리워드)</h3>
-        <div style="display:flex; gap:8px;">
-          <button type="button" class="btn-ghost" id="runScenarioBtn">자동 테스트</button>
-          <button type="button" class="btn-ghost" id="resetDataBtn">초기화</button>
-        </div>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px;">
-        <div style="padding:12px; border-radius:12px; background:rgba(9,14,34,0.9); border:1px solid var(--border-soft);">
-          <div style="font-size:0.74rem; color:var(--text-muted);">인터넷 계좌 잔액</div>
-          <div style="font-size:1rem; font-weight:900; color:var(--gold-1);" id="balCash">12,500,000원</div>
-        </div>
-        <div style="padding:12px; border-radius:12px; background:rgba(9,14,34,0.9); border:1px solid var(--border-soft);">
-          <div style="font-size:0.74rem; color:var(--text-muted);">웹3 예치·적금·저축</div>
-          <div style="font-size:1rem; font-weight:900; color:var(--gold-1);" id="balSav">8,000,000원</div>
-        </div>
-        <div style="padding:12px; border-radius:12px; background:rgba(9,14,34,0.9); border:1px solid var(--border-soft);">
-          <div style="font-size:0.74rem; color:var(--text-muted);">대출 / 참여 리워드</div>
-          <div style="font-size:1rem; font-weight:900; color:var(--gold-1);" id="balLoanRew">0원 · 24,500 P</div>
-        </div>
-      </div>
-
-      <div class="test-grid">
-        <form id="txForm" style="background:rgba(8,12,28,0.65); padding:14px; border-radius:14px; border:1px solid var(--border-soft);">
-          <div class="form-row">
-            <div>
-              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">거래 구분</label>
-              <select id="txType" class="select-ctrl">
-                <option value="deposit">입금</option>
-                <option value="withdraw">출금</option>
-                <option value="transfer">송금</option>
-                <option value="term_deposit">예금</option>
-                <option value="installment">적금</option>
-                <option value="auto_save">저축</option>
-                <option value="loan_take">대출 실행</option>
-                <option value="loan_repay">대출 상환</option>
-                <option value="reward_claim">참여 보상(리워드)</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">금액 (원 / P)</label>
-              <input id="txAmount" type="number" class="input-ctrl" value="500000" min="1000" step="1000" required />
-            </div>
-            <div>
-              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">대상 / 상품명</label>
-              <input id="txMemo" type="text" class="input-ctrl" value="HKWB 테스트" />
-            </div>
-            <div>
-              <label style="font-size:0.76rem; color:var(--text-sub); display:block; margin-bottom:4px;">연이율 (%)</label>
-              <input id="txRate" type="number" class="input-ctrl" value="9.2" min="0" max="30" step="0.1" />
-            </div>
+            <span class="card-tag">1번 · 개인 자산 대시보드</span>
+            <h2 style="font-size: 22px; font-weight: 900;">실시간 원장 동기화 & 복리 수익 현황</h2>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="submit" class="btn-gold">실행</button>
-            <button type="button" class="btn-blue" id="calcBtn">예상 이자</button>
+            <button class="btn-gold" onclick="syncPiBalance()">원장 수량 동기화</button>
+            <button class="btn-ghost" onclick="toggleAutoTick()">자동 복리 틱: <span id="tickStatus">ON</span></button>
           </div>
-          <div id="txMsg" style="margin-top:8px; font-size:0.8rem; font-weight:700; color:var(--ok);"></div>
-        </form>
+        </div>
 
-        <div class="tx-box" id="txLog"></div>
+        <div class="dash-grid">
+          <div class="metric-card">
+            <div class="metric-label">보유 수량 (Pi 수량 원청 동기화)</div>
+            <div class="metric-val" id="dashPiQty">314,159.000000</div>
+            <div class="metric-sub">메인넷 원장 기준 실시간 반영</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">실시간 누적 이자 (3년 31.41% APY 복리)</div>
+            <div class="metric-val cyan" id="dashAccrued">12,450,985.268757 HK</div>
+            <div class="metric-sub" id="dashApyInfo">AGI/ASI 산정 기준 연 31.41% 복리 적용</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">예상 월 수령 환산액</div>
+            <div class="metric-val emerald" id="dashMonthly">345,860.70 HK / 월</div>
+            <div class="metric-sub">누적 이자·스테이킹 연동 시뮬레이션</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <h2>2번 · 10대 분산 연동망</h2>
+        <span>각 모듈을 선택하면 실시간 시뮬레이션 작업대가 열립니다.</span>
+      </div>
+
+      <div class="net-grid" id="networkGrid"></div>
+
+      <!-- 선택된 10대 연동망 워크벤치 -->
+      <div class="glass-card" id="networkWorkbench"></div>
+    </section>
+
+    <!-- TAB 2: 무점포 인터넷 은행 -->
+    <section id="ib-tab" class="view-panel">
+      <div class="ib-shell">
+        <div class="ib-top">
+          <div>
+            <span class="ib-badge">점포 없는 무점포 인터넷 은행 · 모바일 뱅킹</span>
+            <h2 style="font-size: 22px; font-weight: 900; margin-top: 6px;">HKWB 인터넷 뱅킹 & 백엔드 테스트</h2>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn-ib" style="margin-top:0;" onclick="switchTab('ping-tab')">삥(PING) 고객센터 열기</button>
+          </div>
+        </div>
+
+        <div class="ib-grid-2">
+          <!-- 잔액 및 백엔드 테스트 -->
+          <div class="ib-card">
+            <h3>백엔드 테스트 (잔액 · 출금 · 이자 · 리워드)</h3>
+            <p>인터넷 계좌 잔액과 거래 구분(예금/출금/이자/리워드)을 테스트합니다.</p>
+            <div class="ib-balance" id="ibBalanceDisplay">12,500,000원</div>
+
+            <div class="ib-field">
+              <label for="ibTxType">거래 구분</label>
+              <select id="ibTxType">
+                <option value="예금">예금 (+)</option>
+                <option value="출금">출금 (-)</option>
+                <option value="이자">이자 지급 (+)</option>
+                <option value="리워드">리워드 적립 (+)</option>
+              </select>
+            </div>
+
+            <div class="ib-field">
+              <label for="ibTxTarget">대상 / 상품명</label>
+              <input id="ibTxTarget" type="text" value="인터넷 은행 송금 / 웹3 예치" />
+            </div>
+
+            <div class="ib-field">
+              <label for="ibTxAmount">금액 (원)</label>
+              <input id="ibTxAmount" type="number" value="500000" min="1000" step="1000" />
+            </div>
+
+            <button class="btn-ib" onclick="runIbBackendTest()">거래 실행 및 잔액 반영</button>
+            <div class="ib-log" id="ibBackendLog">대기 중: 12,500,000원 잔액 기준 테스트 준비 완료.</div>
+          </div>
+
+          <!-- 예금 · 적금 · 저축 -->
+          <div class="ib-card">
+            <h3>예금 · 적금 · 저축 (웹3 고수익 예치 & 자유적립 플러스)</h3>
+            <p>기간별 적용 금리(1개월 4.0~7.0%, 2개월 5.5~9.0%, 3개월 7.0~11.5%, 4개월 8.5~14.0%)를 계산합니다.</p>
+
+            <div class="ib-field">
+              <label for="ibProductType">상품 선택</label>
+              <select id="ibProductType">
+                <option value="웹3 고수익 예치">웹3 고수익 예치 (거치식)</option>
+                <option value="자유적립 플러스 적금">자유적립 플러스 적금 (자유 납입)</option>
+              </select>
+            </div>
+
+            <div class="ib-field">
+              <label for="ibTermSelect">가입 기간 및 금리 구간</label>
+              <select id="ibTermSelect">
+                <option value="1|4.0|7.0">1개월 (연 4.0% ~ 7.0%)</option>
+                <option value="2|5.5|9.0">2개월 (연 5.5% ~ 9.0%)</option>
+                <option value="3|7.0|11.5" selected>3개월 (연 7.0% ~ 11.5%)</option>
+                <option value="4|8.5|14.0">4개월 (연 8.5% ~ 14.0%)</option>
+              </select>
+            </div>
+
+            <div class="ib-field">
+              <label for="ibPrincipal">예치·적립 원금 (원)</label>
+              <input id="ibPrincipal" type="number" value="10000000" min="10000" step="10000" />
+            </div>
+
+            <button class="btn-ib" onclick="calcIbDeposit()">예상 이자 및 만기 수령액 계산</button>
+            <div class="ib-log" id="ibDepositResult">3개월 기준 예상 세전 이자 및 만기 금액을 확인해 보세요.</div>
+          </div>
+        </div>
+
+        <div class="ib-card">
+          <h3>기간별 금리 기준표</h3>
+          <table class="ib-table">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>가입 기간</th>
+                <th>적용 금리 (연)</th>
+                <th>운용 특징</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>웹3 고수익 예치 / 자유적립</td>
+                <td>1개월</td>
+                <td>4.0% ~ 7.0%</td>
+                <td>단기 유동성 운용</td>
+              </tr>
+              <tr>
+                <td>웹3 고수익 예치 / 자유적립</td>
+                <td>2개월</td>
+                <td>5.5% ~ 9.0%</td>
+                <td>중단기 금리 최적화</td>
+              </tr>
+              <tr>
+                <td>웹3 고수익 예치 / 자유적립</td>
+                <td>3개월</td>
+                <td>7.0% ~ 11.5%</td>
+                <td>복리 수익 강화</td>
+              </tr>
+              <tr>
+                <td>웹3 고수익 예치 / 자유적립</td>
+                <td>4개월</td>
+                <td>8.5% ~ 14.0%</td>
+                <td>최고 구간 수익 설계</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <section class="section-box" id="navigatorSection">
-      <h3 class="section-title">백서 · 컴플라이언스 · FAQ 20개</h3>
-      <div class="nav-tabs">
-        <button type="button" class="nav-tab active" data-tab="paper">서술형 백서</button>
-        <button type="button" class="nav-tab" data-tab="comp">컴플라이언스</button>
-        <button type="button" class="nav-tab" data-tab="faq">FAQ 20개</button>
-      </div>
+    <!-- TAB 3: 삥(PING) 고객센터 -->
+    <section id="ping-tab" class="view-panel">
+      <div class="glass-card">
+        <span class="card-tag">4번 · 고객센터 에이전트 삥(PING)</span>
+        <h2 style="font-size: 21px; font-weight: 900; margin-bottom: 6px;">삥(PING) 스마트 상담 콘솔</h2>
+        <p class="card-desc" style="margin-bottom: 14px;">지갑 연동, 예금/적금 이율, 백엔드 테스트, 컴플라이언스·FAQ 질문을 즉시 안내합니다.</p>
 
-      <div id="tab-paper" class="prose-paper">
-        <p>HKWB는 무점포 인터넷 은행의 편리함과 웹3 디지털 은행의 높은 이자 수익률 구조를 하나의 연결된 금융 생태계로 제공합니다. 표지에서 원하는 방을 선택해 바로 들어가고, 필요할 때 언제든 다른 방으로 오갈 수 있도록 구성했습니다.</p>
-        <p>인터넷 은행 방은 일상 속 입금·출금·송금·예금·적금·저축·대출과 참여 보상에 집중하며, 웹3 디지털 은행 방은 고수익 디지털 예치와 온체인 자산 운용을 중심으로 설계되었습니다.</p>
-        <p>모든 서비스는 해킹 방어와 다중 보안 인증, 21개국 디지털 자산 범위 점검, FATF 트래블 룰, 실시간 제재 리스트 대조 및 검증 규격을 따릅니다.</p>
-      </div>
+        <div class="chat-box" id="pingChatBox">
+          <div class="msg bot">안녕하세요, 혜공 체어맨님! HKWB 고객센터 에이전트 <b>삥(PING)</b>입니다. 무엇을 도와드릴까요?</div>
+        </div>
 
-      <div id="tab-comp" class="comp-2x2 hidden">
-        <div class="comp-card">
-          <h4>21개국 디지털 자산 범위 &amp; 컴플라이언스</h4>
-          <p>한국·미국·일본·싱가포르·영국·독일·프랑스·스위스·캐나다·호주·홍콩·UAE·네덜란드·스웨덴·노르웨이·핀란드·덴마크·아일랜드·룩셈부르크·뉴질랜드·브라질 등 21개국 기준 컴플라이언스를 반영합니다.</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+          <button class="btn-ghost" onclick="askPing('금리 정책과 배분 비율 알려줘')">금리·배분 비율</button>
+          <button class="btn-ghost" onclick="askPing('314,159 파이 수량과 31.41% APY 설명해줘')">파이 수량·APY</button>
+          <button class="btn-ghost" onclick="askPing('백서와 컴플라이언스 숨김 구조 안내해줘')">백서·컴플라이언스</button>
         </div>
-        <div class="comp-card">
-          <h4>해킹 방어</h4>
-          <p>멀티시그 키 관리, 암호화 통신, 이상 거래 탐지, 줄 그리기·PIN·지문 보안 잠금으로 자산을 보호합니다.</p>
-        </div>
-        <div class="comp-card">
-          <h4>FATF 트래블 룰</h4>
-          <p>송신·수취 식별 정보 검증 및 암호화 전송 규격을 준수합니다.</p>
-        </div>
-        <div class="comp-card">
-          <h4>실시간 제재 리스트 &amp; 검증 규격</h4>
-          <p>글로벌 제재 리스트 실시간 대조, 고위험 주소 스크리닝 및 AML/KYC 검증 규격을 적용합니다.</p>
+
+        <div style="display:flex; gap:8px;">
+          <input id="pingInput" type="text" placeholder="삥(PING)에게 질문을 입력하세요..." style="flex:1; background:rgba(8,6,18,0.9); color:var(--text); border:1px solid rgba(255,255,255,0.16); border-radius:12px; padding:10px 12px;" onkeydown="if(event.key==='Enter') sendPingMessage()" />
+          <button class="btn-gold" onclick="sendPingMessage()">전송</button>
         </div>
       </div>
+    </section>
 
-      <div id="tab-faq" class="faq-grid hidden"></div>
+    <!-- TAB 4: 백서 · 컴플라이언스 · FAQ 20개 (양파껍질 구조) -->
+    <section id="onion-tab" class="view-panel">
+      <div class="glass-card">
+        <span class="card-tag">5번·6번 · 양파껍질 단계 공개 구조</span>
+        <h2 style="font-size: 21px; font-weight: 900; margin-bottom: 8px;">백서 · 컴플라이언스 · FAQ 20선</h2>
+        <p class="card-desc" style="margin-bottom: 14px;">초기 화면에서는 핵심 UI만 노출하고, 필요한 단계만 껍질 벗기듯 순차적으로 열람합니다.</p>
+
+        <div class="onion-steps">
+          <button class="step-chip active" onclick="setOnionStep(1, this)">1단계: 서술형 백서</button>
+          <button class="step-chip" onclick="setOnionStep(2, this)">2단계: 컴플라이언스</button>
+          <button class="step-chip" onclick="setOnionStep(3, this)">3단계: FAQ 20개</button>
+        </div>
+
+        <div id="onionContent" class="result-box"></div>
+      </div>
     </section>
   </main>
 
-  <!-- 손폰 하단 빠른 왕복 바 -->
-  <nav class="bottom-bar" aria-label="방 이동">
-    <button type="button" class="btn-ghost" onclick="showView('cover')">표지</button>
-    <button type="button" class="btn-violet" onclick="showView('web3')">웹3 디지털 방</button>
-    <button type="button" class="btn-blue" onclick="showView('internet')">인터넷 은행 방</button>
-  </nav>
-
-  <!-- 줄 그리기 잠금 오버레이 -->
-  <div id="lockOverlay" class="overlay hidden">
-    <div class="box-card">
+  <!-- 삼선(☰) 드로어 -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="if(event.target===this) toggleDrawer(false)">
+    <aside class="drawer-panel">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong style="color:var(--gold-1);">줄 그리기 보안 잠금</strong>
-        <button type="button" class="btn-ghost" onclick="closeLock()" style="padding:5px 10px;">닫기 ✕</button>
+        <strong style="color:var(--gold); font-size:16px;">HKWB 빠른 메뉴</strong>
+        <button class="btn-ghost" onclick="toggleDrawer(false)">닫기</button>
       </div>
-      <canvas id="patternCanvas" width="230" height="230"></canvas>
-      <p id="lockMsg" style="font-size:0.82rem; color:var(--gold-1); text-align:center; font-weight:700;">3×3 점을 4개 이상 이어 그려주세요.</p>
-    </div>
-  </div>
-
-  <!-- 삼선 메뉴 드로어 -->
-  <div id="drawerOverlay" class="overlay drawer-mode hidden">
-    <aside class="drawer-card">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong style="color:var(--gold-1);">HKWB 메뉴</strong>
-        <button type="button" class="btn-ghost" onclick="closeDrawer()" style="padding:5px 10px;">닫기 ✕</button>
-      </div>
-      <button type="button" class="btn-ghost" style="text-align:left;" onclick="closeDrawer(); showView('cover');">표지 화면</button>
-      <button type="button" class="btn-violet" style="text-align:left;" onclick="closeDrawer(); showView('web3');">웹3 디지털 은행 방</button>
-      <button type="button" class="btn-blue" style="text-align:left;" onclick="closeDrawer(); showView('internet');">인터넷 은행 방</button>
-      <button type="button" class="btn-ghost" style="text-align:left;" onclick="closeDrawer(); openLock();">줄 그리기 보안 잠금</button>
+      <p style="font-size:12.5px; color:var(--muted);">
+        문의 메일: <strong style="color:var(--text);">support@hkwb.world</strong><br/>
+        추천인 코드: <strong style="color:var(--text);">ljw2358</strong>
+      </p>
+      <button class="btn-gold" onclick="switchTab('web3-tab'); toggleDrawer(false)">웹3 디지털 은행 이동</button>
+      <button class="btn-gold" onclick="switchTab('ib-tab'); toggleDrawer(false)">무점포 인터넷 은행 이동</button>
+      <button class="btn-gold" onclick="switchTab('ping-tab'); toggleDrawer(false)">삥(PING) 고객센터 이동</button>
+      <button class="btn-gold" onclick="switchTab('onion-tab'); toggleDrawer(false)">백서 · 컴플라이언스 · FAQ</button>
     </aside>
   </div>
 
-  <!-- 둘러보기 모달 -->
-  <div id="infoOverlay" class="overlay hidden">
-    <div class="box-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-        <strong style="color:var(--gold-1);">웹3 디지털 은행 · 둘러보기</strong>
-        <button type="button" class="btn-ghost" onclick="closeInfo()" style="padding:5px 10px;">닫기 ✕</button>
-      </div>
-      <p style="font-size:0.88rem; color:var(--text-sub); margin-bottom:14px;">
-        이자 수익률이 높은 웹3 디지털 은행을 이용해보세요! 고수익 디지털 예치·저축과 컴플라이언스 구조를 먼저 살펴보실 수 있습니다.
-      </p>
-      <button type="button" class="btn-violet" onclick="closeInfo(); showView('web3');">웹3 디지털 은행 방 들어가기</button>
-    </div>
-  </div>
+  <div class="toast" id="toastBox"></div>
 
   <script>
     const state = {
-      cash: 12500000,
-      sav: 8000000,
-      loan: 0,
-      rew: 24500,
-      logs: [
-        { id: "TX-101", t: "입금", m: "인터넷 계좌 초기 잔액", v: 12500000, u: "원" },
-        { id: "TX-102", t: "예금", m: "웹3 고수익 예치 초기", v: 8000000, u: "원" },
-        { id: "TX-103", t: "참여 보상", m: "초기 참여 리워드", v: 24500, u: "P" }
-      ]
+      piBalance: 314159.0,
+      accruedInterest: 12450985.268757,
+      apyRate: 0.3141,
+      autoTick: true,
+      ibBalance: 12500000,
+      selectedModule: "wallet"
     };
 
-    const mods2x4 = [
-      ["deposit", "📥 입금", "계좌 즉시 입금", 4.0],
-      ["withdraw", "📤 출금", "계좌 즉시 출금", 4.0],
-      ["transfer", "💸 송금", "빠른 계좌 송금", 4.0],
-      ["term_deposit", "🏦 예금", "정기예금 이자", 6.8],
-      ["installment", "📅 적금", "목돈 적금 납입", 7.8],
-      ["auto_save", "🌱 저축", "생활 자동 저축", 7.5],
-      ["loan_take", "💳 대출", "대출 실행·상환", 5.5],
-      ["reward_claim", "🎁 참여 보상", "리워드 받기", 0]
+    const modules = [
+      { id: "wallet", num: "01", name: "지갑 연결", brief: "노드 지갑 프로토콜 연동 및 자동 인증", desc: "테스트넷/메인넷 지갑 주소 자동 연동 및 6자리 보안 인증번호 검증 시뮬레이션입니다." },
+      { id: "transfer", num: "02", name: "송금", brief: "멀티시그 암호화 전송 시스템", desc: "수신자 지갑 주소(G... 또는 Pi Test ID)와 전송 수량, 보안 인증번호를 검증합니다." },
+      { id: "pay", num: "03", name: "결제", brief: "현금·카드·타코인 실시간 에스크로 결제", desc: "상거래 에스크로 조건과 결제 수량을 입력해 즉시 결제 승인 흐름을 확인합니다." },
+      { id: "deposit", num: "04", name: "예치", brief: "3년 만기 31.41% APY 자산 신탁", desc: "예치 기간과 원금을 기준으로 만기 예상 수익과 이자를 계산합니다." },
+      { id: "reward", num: "05", name: "리워드", brief: "기여도 기반 인센티브 볼트 적립", desc: "노드·생태계 기여도에 따른 리워드 수량 적립 및 볼트 클레임을 시뮬레이션합니다." },
+      { id: "ubi", num: "06", name: "UBI", brief: "순이익 30% 기반 보편적 기본소득 분배", desc: "플랫폼 순이익 배분 규칙(UBI 30%, 경영비 30%, HK 사회재단 최대 30%)을 계산합니다." },
+      { id: "swap", num: "07", name: "토큰 스왑", brief: "현금·카드·타코인 즉각 코인 스왑", desc: "입금 수단과 수량을 입력해 예상 스왑 수량을 산출합니다." },
+      { id: "dex", num: "08", name: "덱스 스왑", brief: "탈중앙화 오더북 · P2P 유동성 스왑", desc: "P2P 매수·매도 수량과 호가 기준 체결 예상치를 확인합니다." },
+      { id: "lp", num: "09", name: "LP 스테이킹", brief: "유동성 공급 풀(LP) 및 기간별 수익", desc: "LP 수량과 예치 기간을 선택해 예상 LP 수익을 계산합니다." },
+      { id: "pi", num: "10", name: "파이 수량", brief: "파이 원장 실시간 동기화 상태 관리", desc: "원청 수량(314,159.000000)과 동기화 인증 코드를 점검합니다." }
     ];
 
-    const products3x2 = [
-      ["term_deposit", "웹3 고수익 예치", "연 9.4%", "고수익 디지털 예치"],
-      ["auto_save", "웹3 수익 부스터 저축", "연 9.1%", "온체인 고수익 저축"],
-      ["term_deposit", "무점포 정기예금", "연 6.8%", "안정적인 정기예금"],
-      ["installment", "자유적립 플러스 적금", "연 8.0%", "자유 납입 적금"],
-      ["installment", "목표달성 적금", "연 8.5%", "우대금리 적금"],
-      ["auto_save", "생활비 저축", "연 7.4%", "일상 저축 플랜"]
+    const faq20 = [
+      ["Q1. 표지는 어디서 보나요?", "첫 화면이 표지이며, 상단 탭과 '☰ 삼선' 메뉴에서 전체 영역으로 바로 이동할 수 있습니다."],
+      ["Q2. 314,159 수량은 무엇인가요?", "개인 자산 대시보드에 연동된 기준 보유 수량이며, 원장 동기화 버튼으로 갱신할 수 있습니다."],
+      ["Q3. 실시간 누적 이자는 어떻게 계산되나요?", "3년 31.41% APY 복리 기준과 AGI/ASI 동적 조정 조건을 반영해 실시간으로 산출됩니다."],
+      ["Q4. 예금 이율은 누가 정하나요?", "고정 수치가 아니라 AGI/ASI 엔진이 유동성과 시장 지표를 바탕으로 산정·조정합니다."],
+      ["Q5. 순이익 배분 비율은 어떻게 되나요?", "UBI 30%, 회사 경영비 30%, HK 사회재단 최대 30% 구조로 설계되어 있습니다."],
+      ["Q6. HK 사회재단은 언제 활용하나요?", "기업 인수나 전략적 투자자본이 필요한 중요 국면에서 활용할 수 있도록 설계했습니다."],
+      ["Q7. 인터넷 은행은 지점이 있나요?", "아니요. 오프라인 영업점이 없는 무점포 인터넷 은행 모델로 구성했습니다."],
+      ["Q8. 인터넷 은행 기본 테스트 잔액은 얼마인가요?", "초기 백엔드 테스트 기준 잔액은 12,500,000원입니다."],
+      ["Q9. 예금·적금 기간별 금리는 어떻게 되나요?", "1개월 4.0~7.0%, 2개월 5.5~9.0%, 3개월 7.0~11.5%, 4개월 8.5~14.0% 구간을 제공합니다."],
+      ["Q10. 고객센터 에이전트는 누구인가요?", "고객센터 에이전트 '삥(PING)'이 안내와 질의응답을 담당합니다."],
+      ["Q11. 왜 백서와 컴플라이언스를 단계별로 숨기나요?", "양파껍질 구조처럼 첫 화면은 깔끔하게 유지하고 필요한 단계만 순차적으로 열람하기 위함입니다."],
+      ["Q12. 10대 분산 연동망에는 어떤 기능이 있나요?", "지갑 연결, 송금, 결제, 예치, 리워드, UBI, 토큰 스왑, 덱스 스왑, LP 스테이킹, 파이 수량 10가지입니다."],
+      ["Q13. 송금 시 어떤 값을 확인하나요?", "수신자 지갑 주소(G... 또는 Pi Test ID), 전송 수량, 6자리 보안 인증번호를 확인합니다."],
+      ["Q14. 결제 모듈은 어떤 방식인가요?", "현금·카드·타코인 기반 상거래 에스크로 결제 흐름을 테스트합니다."],
+      ["Q15. 토큰 스왑과 덱스 스왑의 차이는 무엇인가요?", "토큰 스왑은 즉각 전환 스왑, 덱스 스왑은 오더북·P2P 유동성 기반 스왑 시뮬레이션입니다."],
+      ["Q16. LP 스테이킹은 무엇을 다루나요?", "유동성 공급 풀(LP) 수량과 예치 기간에 따른 예상 수익을 계산합니다."],
+      ["Q17. 추천인 코드는 무엇인가요?", "공식 추천인 코드는 소문자 ljw2358입니다."],
+      ["Q18. 공식 문의 이메일은 무엇인가요?", "공식 문의 주소는 support@hkwb.world입니다."],
+      ["Q19. 다국어 선택기는 어디에 있나요?", "상단 헤더 우측의 🌐 언어 셀렉터에서 선택할 수 있습니다."],
+      ["Q20. 데이터를 초기화하거나 다시 계산할 수 있나요?", "각 탭과 워크벤치의 버튼으로 즉시 재계산하고 잔액·수량을 테스트할 수 있습니다."]
     ];
 
-    const faqs = [
-      ["표지는 어디서 보나요?", "첫 화면이 표지이며, 언제든 상단 로고나 하단 '표지' 버튼으로 돌아옵니다."],
-      ["웹3 방과 인터넷 방은 나뉘어 있나요?", "네, 각 방이 독립적으로 나뉘어 있어 헷갈리지 않게 선택할 수 있습니다."],
-      ["손폰에서 위아래 순서는 어떻게 되나요?", "표지에서 웹3 디지털 은행 방이 위, 인터넷 은행 방이 아래에 배치됩니다."],
-      ["다른 방으로 바로 갈 수 있나요?", "각 방 상단과 하단 바에서 상대 방으로 바로 이동할 수 있습니다."],
-      ["둘러보기는 어디에 있나요?", "웹3 디지털 은행 카드와 웹3 방 상단 '둘러보기' 버튼에 있습니다."],
-      ["인터넷 은행 방의 문구는 무엇인가요?", "참여하고 보상(리워드) 받아가세요 문구가 안내됩니다."],
-      ["웹3 은행 방의 문구는 무엇인가요?", "이자 수익률이 높은 웹3 디지털 은행을 이용해보세요! 문구가 안내됩니다."],
-      ["금융 모듈은 몇 개(2×4)인가요?", "입금·출금·송금·예금·적금·저축·대출·참여 보상 8개입니다."],
-      ["예금·적금·저축 격자는 어떻게 되나요?", "모바일 2×3, PC 3×2로 반응형 정렬됩니다."],
-      ["백엔드 테스트는 어디서 하나요?", "중앙 백엔드 테스트 폼에서 입출금·송금·예적금·대출·리워드를 검증합니다."],
-      ["자동 테스트 버튼은 무엇을 하나요?", "입금·송금·예금·리워드 흐름을 연속 실행합니다."],
-      ["초기화는 어떻게 되나요?", "잔액과 거래 로그가 초기 상태로 돌아갑니다."],
-      ["백서는 어떤 형식인가요?", "번호 없는 서술형 백서로 구성되어 있습니다."],
-      ["21개국 디지털 자산 범위가 있나요?", "컴플라이언스 탭에서 21개국 기준과 정책을 확인할 수 있습니다."],
-      ["FATF 트래블 룰이 포함되나요?", "송신·수취 검증 및 암호화 전송 규격을 반영했습니다."],
-      ["실시간 제재 리스트는 무엇인가요?", "제재 리스트 실시간 대조 및 검증 규격을 안내합니다."],
-      ["해킹 방어 항목은 무엇인가요?", "멀티시그·암호화·이상 탐지·보안 잠금을 다룹니다."],
-      ["줄 그리기 잠금은 어떻게 쓰나요?", "보안 잠금 버튼을 눌러 3×3 점을 4개 이상 이어 그리면 됩니다."],
-      ["거래 내역은 남나요?", "백엔드 테스트를 실행할 때마다 원장 로그에 쌓입니다."],
-      ["예상 이자 계산도 되나요?", "금액과 연이율을 입력하고 '예상 이자'를 누르면 계산됩니다."]
-    ];
+    function notify(msg) {
+      const el = document.getElementById("toastBox");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove("show"), 2400);
+    }
 
-    const fmtWon = n => Number(n || 0).toLocaleString("ko-KR") + "원";
-    const fmtPts = n => Number(n || 0).toLocaleString("ko-KR") + " P";
-
-    window.showView = function(name) {
-      ["cover", "web3", "internet"].forEach(v => {
-        document.getElementById("view-" + v).classList.toggle("hidden", v !== name);
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tabId);
       });
-      if (name === "web3") {
-        document.getElementById("txType").value = "term_deposit";
-        document.getElementById("txMemo").value = "웹3 고수익 예치";
-        document.getElementById("txRate").value = "9.4";
-      } else if (name === "internet") {
-        document.getElementById("txType").value = "transfer";
-        document.getElementById("txMemo").value = "인터넷 은행 송금";
-        document.getElementById("txRate").value = "6.8";
-      }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    window.quickRewardAndEnter = function() {
-      applyTx("reward_claim", 15000, "참여 보상 수령", 0);
-      showView("internet");
-    };
-
-    window.claimRewardOnly = function() {
-      applyTx("reward_claim", 15000, "참여 보상 수령", 0);
-    };
-
-    function renderBalances() {
-      document.getElementById("balCash").textContent = fmtWon(state.cash);
-      document.getElementById("balSav").textContent = fmtWon(state.sav);
-      document.getElementById("balLoanRew").textContent = `${fmtWon(state.loan)} · ${fmtPts(state.rew)}`;
-      document.getElementById("txLog").innerHTML = state.logs.map(x => `
-        <div class="tx-item">
-          <div style="display:flex; justify-content:space-between; font-weight:800;">
-            <span>[${x.id}] ${x.t} · ${x.m}</span>
-            <span style="color:var(--gold-1);">${x.u === "P" ? fmtPts(x.v) : fmtWon(x.v)}</span>
-          </div>
-        </div>
-      `).join("");
+      document.querySelectorAll(".view-panel").forEach(panel => {
+        panel.classList.toggle("active", panel.id === tabId);
+      });
     }
 
-    function applyTx(type, amount, memo, rate) {
-      const val = Number(amount);
-      const r = Number(rate || 0);
-      const msg = document.getElementById("txMsg");
-      if (!val || val <= 0) { msg.style.color = "var(--bad)"; msg.textContent = "금액을 입력하세요."; return; }
-
-      if (type === "deposit") { state.cash += val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "입금", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${fmtWon(val)} 입금 완료`; }
-      else if (type === "withdraw") { if (state.cash < val) { msg.style.color = "var(--bad)"; msg.textContent = "잔액 부족"; return; } state.cash -= val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "출금", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${fmtWon(val)} 출금 완료`; }
-      else if (type === "transfer") { if (state.cash < val) { msg.style.color = "var(--bad)"; msg.textContent = "잔액 부족"; return; } state.cash -= val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "송금", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${fmtWon(val)} 송금 완료`; }
-      else if (type === "term_deposit" || type === "installment" || type === "auto_save") { if (state.cash < val) { msg.style.color = "var(--bad)"; msg.textContent = "잔액 부족"; return; } const label = type === "term_deposit" ? "예금" : type === "installment" ? "적금" : "저축"; state.cash -= val; state.sav += val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: label, m: `${memo}(${r}%)`, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `${label} ${fmtWon(val)} 완료`; }
-      else if (type === "loan_take") { state.loan += val; state.cash += val; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "대출 실행", m: memo, v: val, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `대출 ${fmtWon(val)} 실행 완료`; }
-      else if (type === "loan_repay") { const pay = Math.min(val, state.loan, state.cash); if (pay <= 0) { msg.style.color = "var(--bad)"; msg.textContent = "상환 대상 없음"; return; } state.loan -= pay; state.cash -= pay; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "대출 상환", m: memo, v: pay, u: "원" }); msg.style.color = "var(--ok)"; msg.textContent = `대출 ${fmtWon(pay)} 상환 완료`; }
-      else if (type === "reward_claim") { const pts = Math.max(100, Math.round(val / 100)); state.rew += pts; state.logs.unshift({ id: "TX-" + Math.floor(100 + Math.random()*900), t: "참여 보상", m: memo, v: pts, u: "P" }); msg.style.color = "var(--ok)"; msg.textContent = `참여 보상 ${fmtPts(pts)} 수령 완료`; }
-      renderBalances();
+    function toggleDrawer(open) {
+      document.getElementById("drawerBackdrop").classList.toggle("open", open);
     }
 
-    function initLists() {
-      document.getElementById("internetModulesGrid").innerHTML = mods2x4.map(([k, title, desc, r]) => `
-        <button type="button" class="mod-card" onclick="pickMod('${k}','${title}',${r})">
-          <strong style="font-size:0.95rem;">${title}</strong>
-          <span style="font-size:0.78rem; color:var(--text-sub);">${desc}</span>
-          <span style="font-size:0.75rem; color:var(--gold-1); font-weight:800; margin-top:auto;">테스트 →</span>
+    function renderDashboard() {
+      document.getElementById("dashPiQty").textContent = state.piBalance.toLocaleString("ko-KR", {
+        minimumFractionDigits: 6,
+        maximumFractionDigits: 6
+      });
+      document.getElementById("dashAccrued").textContent =
+        state.accruedInterest.toLocaleString("ko-KR", { minimumFractionDigits: 6, maximumFractionDigits: 6 }) + " HK";
+      const monthlyEst = (state.accruedInterest * (state.apyRate / 12));
+      document.getElementById("dashMonthly").textContent =
+        monthlyEst.toLocaleString("ko-KR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " HK / 월";
+    }
+
+    function syncPiBalance() {
+      state.piBalance = 314159.0;
+      renderDashboard();
+      notify("원청 파이 수량(314,159.000000) 동기화 완료");
+    }
+
+    function toggleAutoTick() {
+      state.autoTick = !state.autoTick;
+      document.getElementById("tickStatus").textContent = state.autoTick ? "ON" : "OFF";
+      notify(state.autoTick ? "실시간 복리 틱 재개" : "실시간 복리 틱 일시정지");
+    }
+
+    setInterval(() => {
+      if (!state.autoTick) return;
+      const perSec = (state.accruedInterest * state.apyRate) / (365 * 24 * 3600);
+      state.accruedInterest += perSec * 0.25;
+      renderDashboard();
+    }, 250);
+
+    function renderNetworkGrid() {
+      const grid = document.getElementById("networkGrid");
+      grid.innerHTML = modules.map(m => `
+        <button class="net-btn ${state.selectedModule === m.id ? "selected" : ""}" onclick="selectModule('${m.id}')">
+          <div class="net-num">${m.num} · 연동망</div>
+          <div class="net-name">${m.name}</div>
+          <div class="net-brief">${m.brief}</div>
         </button>
       `).join("");
+      renderWorkbench();
+    }
 
-      const prodHtml = products3x2.map(([t, title, rate, desc]) => `
-        <div class="dep-card">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="font-size:0.9rem;">${title}</strong>
-            <span style="color:var(--gold-1); font-weight:900; font-size:0.92rem;">${rate}</span>
+    function selectModule(id) {
+      state.selectedModule = id;
+      renderNetworkGrid();
+    }
+
+    function renderWorkbench() {
+      const mod = modules.find(m => m.id === state.selectedModule) || modules[0];
+      const wb = document.getElementById("networkWorkbench");
+      wb.innerHTML = `
+        <span class="card-tag">연동망 ${mod.num} · ${mod.name}</span>
+        <h3 style="font-size:18px; font-weight:800; margin-bottom:6px;">${mod.name} 시뮬레이션</h3>
+        <p class="card-desc">${mod.desc}</p>
+        <div class="form-grid">
+          <div class="field">
+            <label>대상 주소 / 계정 / 풀</label>
+            <input id="wbTarget" type="text" value="GCKWB7LJW2358PI000000000000000000000000000001" />
           </div>
-          <p style="font-size:0.78rem; color:var(--text-sub);">${desc}</p>
-          <button type="button" class="btn-ghost" style="margin-top:auto;" onclick="pickProd('${t}','${title}','${rate}')">선택</button>
+          <div class="field">
+            <label>처리 수량</label>
+            <input id="wbAmount" type="number" value="1000" min="1" step="10" />
+          </div>
+          <div class="field">
+            <label>6자리 보안 인증번호</label>
+            <input id="wbCode" type="text" maxlength="6" value="488104" />
+          </div>
         </div>
-      `).join("");
-
-      document.getElementById("web3DepositGrid").innerHTML = prodHtml;
-      document.getElementById("internetDepositGrid").innerHTML = prodHtml;
-
-      document.getElementById("tab-faq").innerHTML = faqs.map(([q, a], idx) => `
-        <div class="faq-item">
-          <button type="button" class="faq-q" onclick="toggleF(${idx})"><span>Q${idx + 1}. ${q}</span><span>+</span></button>
-          <div class="faq-a hidden" id="fa-${idx}">${a}</div>
+        <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn-gold" onclick="executeModule('${mod.name}')">${mod.name} 시뮬레이션 실행</button>
+          <button class="btn-ghost" onclick="notify('${mod.name} 모듈 상태 정상')">상태 점검</button>
         </div>
-      `).join("");
+        <div class="result-box" id="wbOutput">${mod.name} 모듈 입력 대기 중입니다.</div>
+      `;
     }
 
-    window.pickMod = (k, title, r) => { document.getElementById("txType").value = k; document.getElementById("txMemo").value = title; document.getElementById("txRate").value = r; document.getElementById("backendSection").scrollIntoView({ behavior: "smooth" }); };
-    window.pickProd = (t, title, rate) => { document.getElementById("txType").value = t; document.getElementById("txMemo").value = title; document.getElementById("txRate").value = parseFloat(rate) || 8.0; document.getElementById("backendSection").scrollIntoView({ behavior: "smooth" }); };
-    window.toggleF = idx => document.getElementById("fa-" + idx).classList.toggle("hidden");
-
-    document.querySelectorAll(".nav-tab").forEach(b => {
-      b.addEventListener("click", () => {
-        document.querySelectorAll(".nav-tab").forEach(x => x.classList.remove("active"));
-        b.classList.add("active");
-        const t = b.dataset.tab;
-        ["paper", "comp", "faq"].forEach(k => document.getElementById("tab-" + k).classList.toggle("hidden", k !== t));
-      });
-    });
-
-    document.getElementById("txForm").addEventListener("submit", e => {
-      e.preventDefault();
-      applyTx(document.getElementById("txType").value, document.getElementById("txAmount").value, document.getElementById("txMemo").value, document.getElementById("txRate").value);
-    });
-
-    document.getElementById("calcBtn").addEventListener("click", () => {
-      const a = Number(document.getElementById("txAmount").value || 0);
-      const r = Number(document.getElementById("txRate").value || 0);
-      const yr = Math.round(a * (r / 100));
-      document.getElementById("txMsg").style.color = "var(--gold-1)";
-      document.getElementById("txMsg").textContent = `연 ${r}% 기준 예상 연이자 ${fmtWon(yr)} (월 약 ${fmtWon(Math.round(yr / 12))})`;
-    });
-
-    document.getElementById("runScenarioBtn").addEventListener("click", () => {
-      applyTx("deposit", 1000000, "자동 입금", 4.0);
-      applyTx("transfer", 200000, "자동 송금", 4.0);
-      applyTx("term_deposit", 500000, "웹3 고수익 예치", 9.4);
-      applyTx("reward_claim", 15000, "참여 리워드", 0);
-    });
-
-    document.getElementById("resetDataBtn").addEventListener("click", () => {
-      state.cash = 12500000; state.sav = 8000000; state.loan = 0; state.rew = 24500;
-      state.logs = [
-        { id: "TX-101", t: "입금", m: "인터넷 계좌 초기 잔액", v: 12500000, u: "원" },
-        { id: "TX-102", t: "예금", m: "웹3 고수익 예치 초기", v: 8000000, u: "원" },
-        { id: "TX-103", t: "참여 보상", m: "초기 참여 리워드", v: 24500, u: "P" }
-      ];
-      renderBalances();
-      document.getElementById("txMsg").textContent = "초기화되었습니다.";
-    });
-
-    // 둘러보기 / 드로어 / 잠금
-    const openInfo = () => document.getElementById("infoOverlay").classList.remove("hidden");
-    window.closeInfo = () => document.getElementById("infoOverlay").classList.add("hidden");
-    document.getElementById("coverBrowseWeb3Btn").addEventListener("click", openInfo);
-    document.getElementById("roomWeb3BrowseBtn").addEventListener("click", openInfo);
-
-    document.getElementById("openDrawerBtn").addEventListener("click", () => document.getElementById("drawerOverlay").classList.remove("hidden"));
-    window.closeDrawer = () => document.getElementById("drawerOverlay").classList.add("hidden");
-
-    const canvas = document.getElementById("patternCanvas");
-    const ctx = canvas.getContext("2d");
-    const pts = [];
-    for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) pts.push({ i: r * 3 + c, x: 42 + c * 73, y: 42 + r * 73 });
-    let sel = [], down = false, ptr = null;
-
-    function drawP() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (sel.length) {
-        ctx.beginPath();
-        sel.forEach((idx, i) => { const p = pts[idx]; if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
-        if (down && ptr) ctx.lineTo(ptr.x, ptr.y);
-        ctx.strokeStyle = "#f4b942"; ctx.lineWidth = 4; ctx.stroke();
+    function executeModule(name) {
+      const target = document.getElementById("wbTarget").value.trim() || "-";
+      const amt = Number(document.getElementById("wbAmount").value || 0);
+      const code = document.getElementById("wbCode").value.trim();
+      if (!/^\d{6}$/.test(code)) {
+        notify("6자리 보안 인증번호를 입력해 주세요.");
+        return;
       }
-      pts.forEach(p => {
-        ctx.beginPath(); ctx.arc(p.x, p.y, sel.includes(p.i) ? 12 : 9, 0, Math.PI * 2);
-        ctx.fillStyle = sel.includes(p.i) ? "#ffe28a" : "rgba(255,255,255,0.16)"; ctx.fill();
-        ctx.strokeStyle = sel.includes(p.i) ? "#f4b942" : "#94a3b8"; ctx.lineWidth = 2; ctx.stroke();
-      });
+      const ubiShare = (amt * 0.3).toFixed(2);
+      const opsShare = (amt * 0.3).toFixed(2);
+      const fdnShare = (amt * 0.3).toFixed(2);
+      document.getElementById("wbOutput").innerHTML =
+        `<b>[${name}]</b> 처리 완료 · 대상: <code>${target}</code> · 수량: <b>${amt.toLocaleString("ko-KR")}</b> · 인증번호: <b>${code}</b><br/>` +
+        `배분 기준 참고(30/30/최대30): UBI ${ubiShare} / 경영비 ${opsShare} / HK 사회재단 ${fdnShare}`;
+      notify(`${name} 처리 완료`);
     }
 
-    const pos = e => {
-      const r = canvas.getBoundingClientRect();
-      const cx = e.touches ? e.touches[0].clientX : e.clientX;
-      const cy = e.touches ? e.touches[0].clientY : e.clientY;
-      return { x: ((cx - r.left) / r.width) * canvas.width, y: ((cy - r.top) / r.height) * canvas.height };
-    };
+    function runIbBackendTest() {
+      const type = document.getElementById("ibTxType").value;
+      const target = document.getElementById("ibTxTarget").value.trim() || "내부 테스트";
+      const amt = Math.max(0, Number(document.getElementById("ibTxAmount").value || 0));
+      if (amt <= 0) {
+        notify("금액을 0보다 크게 입력해 주세요.");
+        return;
+      }
+      if (type === "출금") {
+        if (state.ibBalance < amt) {
+          notify("잔액이 부족합니다.");
+          return;
+        }
+        state.ibBalance -= amt;
+      } else {
+        state.ibBalance += amt;
+      }
+      document.getElementById("ibBalanceDisplay").textContent = state.ibBalance.toLocaleString("ko-KR") + "원";
+      document.getElementById("ibBackendLog").innerHTML =
+        `<b>[${type}]</b> ${target} · 변동액: <b>${type === "출금" ? "-" : "+"}${amt.toLocaleString("ko-KR")}원</b> → 현재 잔액: <b>${state.ibBalance.toLocaleString("ko-KR")}원</b>`;
+      notify(`인터넷 은행 ${type} 반영 완료`);
+    }
 
-    const hit = p => { for (const n of pts) if (Math.hypot(p.x - n.x, p.y - n.y) <= 22) return n.i; return -1; };
+    function calcIbDeposit() {
+      const prod = document.getElementById("ibProductType").value;
+      const [months, minR, maxR] = document.getElementById("ibTermSelect").value.split("|").map(Number);
+      const principal = Math.max(0, Number(document.getElementById("ibPrincipal").value || 0));
+      const minInterest = Math.round(principal * (minR / 100) * (months / 12));
+      const maxInterest = Math.round(principal * (maxR / 100) * (months / 12));
+      document.getElementById("ibDepositResult").innerHTML =
+        `<b>[${prod} · ${months}개월]</b> 원금 <b>${principal.toLocaleString("ko-KR")}원</b> 기준<br/>` +
+        `예상 세전 이자: <b>${minInterest.toLocaleString("ko-KR")}원 ~ ${maxInterest.toLocaleString("ko-KR")}원</b> (연 ${minR.toFixed(1)}% ~ ${maxR.toFixed(1)}%)<br/>` +
+        `예상 만기 수령액: <b>${(principal + minInterest).toLocaleString("ko-KR")}원 ~ ${(principal + maxInterest).toLocaleString("ko-KR")}원</b>`;
+    }
 
-    window.openLock = () => { document.getElementById("lockOverlay").classList.remove("hidden"); sel = []; drawP(); document.getElementById("lockMsg").textContent = "3×3 점을 4개 이상 이어 그려주세요."; };
-    window.closeLock = () => document.getElementById("lockOverlay").classList.add("hidden");
+    function addPingMsg(text, sender) {
+      const box = document.getElementById("pingChatBox");
+      const div = document.createElement("div");
+      div.className = `msg ${sender}`;
+      div.textContent = text;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
 
-    canvas.addEventListener("mousedown", e => { e.preventDefault(); down = true; sel = []; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1) sel.push(h); drawP(); });
-    window.addEventListener("mousemove", e => { if (!down) return; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1 && !sel.includes(h)) sel.push(h); drawP(); });
-    window.addEventListener("mouseup", () => { if (!down) return; down = false; ptr = null; drawP(); if (sel.length >= 4) { document.getElementById("lockMsg").textContent = "인증 성공!"; setTimeout(closeLock, 200); } else { sel = []; drawP(); } });
-    canvas.addEventListener("touchstart", e => { e.preventDefault(); down = true; sel = []; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1) sel.push(h); drawP(); }, { passive: false });
-    window.addEventListener("touchmove", e => { if (!down) return; const p = pos(e); ptr = p; const h = hit(p); if (h !== -1 && !sel.includes(h)) sel.push(h); drawP(); }, { passive: false });
-    window.addEventListener("touchend", () => { if (!down) return; down = false; ptr = null; drawP(); if (sel.length >= 4) { document.getElementById("lockMsg").textContent = "인증 성공!"; setTimeout(closeLock, 200); } else { sel = []; drawP(); } });
+    function getPingReply(q) {
+      if (q.includes("금리") || q.includes("배분") || q.includes("30%")) {
+        return "예금·스테이킹·중도해지율은 AGI/ASI가 동적으로 산정하며, 순이익은 UBI 30%, 회사 경영비 30%, HK 사회재단 최대 30%로 배분됩니다.";
+      }
+      if (q.includes("파이") || q.includes("314") || q.includes("apy")) {
+        return "개인 자산 대시보드 기준 보유 수량은 314,159.000000이며, 3년 31.41% APY 복리 기준으로 실시간 누적 이자와 월 환산액을 확인할 수 있습니다.";
+      }
+      if (q.includes("백서") || q.includes("컴플라이언스") || q.includes("양파")) {
+        return "백서·컴플라이언스·FAQ 20선은 양파껍질 구조로 단계별 공개되도록 구성되어 있습니다. 상단 '백서 · 컴플라이언스 · FAQ' 탭에서 1~3단계를 확인해 보세요.";
+      }
+      return `삥(PING) 안내입니다: '${q}' 관련 기능은 웹3 디지털 은행(대시보드·10대 연동망) 및 무점포 인터넷 은행 탭에서 직접 시뮬레이션하실 수 있습니다.`;
+    }
 
-    initLists();
-    renderBalances();
-    drawP();
+    function askPing(preset) {
+      addPingMsg(preset, "user");
+      setTimeout(() => addPingMsg(getPingReply(preset), "bot"), 140);
+    }
+
+    function sendPingMessage() {
+      const input = document.getElementById("pingInput");
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = "";
+      askPing(val);
+    }
+
+    function setOnionStep(step, btn) {
+      document.querySelectorAll(".step-chip").forEach(c => c.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      const box = document.getElementById("onionContent");
+      if (step === 1) {
+        box.innerHTML =
+          `<b>[1단계 · 서술형 백서]</b><br/>` +
+          `HKWB는 웹3 디지털 은행과 무점포 인터넷 은행을 양대 축으로 삼는 통합 금융 플랫폼입니다. ` +
+          `AGI/ASI 동적 금리 산정, 10대 분산 연동망, UBI 30%·경영비 30%·HK 사회재단 최대 30% 배분 원칙을 결합했습니다.`;
+      } else if (step === 2) {
+        box.innerHTML =
+          `<b>[2단계 · 컴플라이언스]</b><br/>` +
+          `• 인증 및 검증: 지갑 자동 연동, 6자리 보안 인증번호, 원장 수량 동기화 검증<br/>` +
+          `• 투명성 원칙: 순이익 배분 한도(UBI 30% / 경영비 30% / HK 사회재단 최대 30%) 및 거래 이력 기록<br/>` +
+          `• 공식 채널: hkwb.world · support@hkwb.world · 추천인 ljw2358`;
+      } else {
+        box.innerHTML =
+          `<b>[3단계 · FAQ 20선]</b><div class="faq-list">` +
+          faq20.map(([q, a]) => `<details class="faq-item"><summary>${q}</summary><p>${a}</p></details>`).join("") +
+          `</div>`;
+      }
+    }
+
+    renderDashboard();
+    renderNetworkGrid();
+    calcIbDeposit();
+    setOnionStep(1, document.querySelector(".step-chip"));
   </script>
 </body>
 </html>
