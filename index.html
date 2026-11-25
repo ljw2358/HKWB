@@ -86,7 +86,7 @@
             font-size: 0.82rem;
             outline: none;
             cursor: pointer;
-            max-width: 175px;
+            max-width: 195px;
         }
 
         .back-cover-btn {
@@ -782,7 +782,7 @@
         </div>
     </header>
 
-    <!-- 1. 제일 앞장 표지 (표지 글 + 웹3 은행 진입 -> / 인터넷 은행 진입 ->) -->
+    <!-- 1. 제일 앞장 표지 -->
     <section class="cover-page" id="coverPage">
         <h1 class="cover-title" id="coverTitle">HKWB 디지털 금융 플랫폼</h1>
         <p class="cover-sub" id="coverSub">웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 바로 진입하세요.</p>
@@ -857,11 +857,11 @@
 
             <div class="web3-extras">
                 <div class="info-panel">
-                    <h3>🤖 고객센터 · AGI · ASI · 삐니</h3>
-                    <p>수수료율 산식(걷는 수수료 ≥ 지급 비용), 10대 연동망 절차, 테스트 파이 검증 및 API 상태를 안내합니다.</p>
+                    <h3 id="csHeading">🤖 고객센터 · AGI · ASI · 삐니</h3>
+                    <p id="csDesc">수수료율 산식(걷는 수수료 ≥ 지급 비용), 10대 연동망 절차, 테스트 파이 검증 및 API 상태를 안내합니다.</p>
                     <div class="cs-row">
                         <input type="text" id="csInput" class="cs-input" placeholder="질문 입력 (예: 수수료, 테스트 파이, 리갈)">
-                        <button type="button" class="btn-gold" onclick="askPinni()">문의</button>
+                        <button type="button" class="btn-gold" id="btnAskPinni" onclick="askPinni()">문의</button>
                     </div>
                     <div class="cs-reply" id="csReply">
                         <strong>삐니 (AGI·ASI 연계):</strong> 지급하는 비용·리워드 이상을 걷는 순유입 수수료 구조로 설계되었습니다.
@@ -869,8 +869,8 @@
                 </div>
 
                 <div class="info-panel">
-                    <h3>💛 사회환원 (순수익 최대 60%) &amp; 리워드</h3>
-                    <p>순수익의 <strong>최대 60%</strong> 사회환원 기조와 리워드를 연결합니다.</p>
+                    <h3 id="socialHeading">💛 사회환원 (순수익 최대 60%) &amp; 리워드</h3>
+                    <p id="socialDesc">순수익의 <strong>최대 60%</strong> 사회환원 기조와 리워드를 연결합니다.</p>
                     <ul>
                         <li><strong>구호 협력:</strong> 국경없는의사회 · 세이브더칠드런 · 유엔난민기구(UNHCR)</li>
                         <li><strong>165층 거점 원칙:</strong> 구호·협력 단체 입주 시 우선권 검토 방향</li>
@@ -879,8 +879,8 @@
                 </div>
 
                 <div class="info-panel">
-                    <h3>📺 유튜브 &amp; 틱톡</h3>
-                    <p>라이브 방송 및 생태계 기록 채널입니다.</p>
+                    <h3 id="snsHeading">📺 유튜브 &amp; 틱톡</h3>
+                    <p id="snsDesc">라이브 방송 및 생태계 기록 채널입니다.</p>
                     <div class="sns-links">
                         <a href="https://www.youtube.com/@Hyekong2026" target="_blank" rel="noopener" class="sns-btn">▶ YouTube (@Hyekong2026)</a>
                         <a href="https://www.tiktok.com/@hyekong2026" target="_blank" rel="noopener" class="sns-btn">♪ TikTok (@hyekong2026)</a>
@@ -893,8 +893,8 @@
         <section class="realm-section" id="legalSection">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="gold">5대 코어 리갈 &amp; 컴플라이언스</span></h2>
-                    <div class="realm-sub">HKWB(웹3 디지털 은행 · 인터넷 은행) 운영을 위한 핵심 법무·준법·리스크 통제 기준입니다.</div>
+                    <h2 class="realm-title" id="legalHeading"><span class="gold">5대 코어 리갈 &amp; 컴플라이언스</span></h2>
+                    <div class="realm-sub" id="legalSub">HKWB(웹3 디지털 은행 · 인터넷 은행) 운영을 위한 핵심 법무·준법·리스크 통제 기준입니다.</div>
                 </div>
             </div>
             <div class="legal-grid" id="legalGrid"></div>
@@ -904,8 +904,8 @@
         <section class="realm-section" id="faqSection">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="gold">FAQ 20선</span> · 자주 묻는 질문</h2>
-                    <div class="realm-sub">구조·수수료·연동망·테스트 파이·사회환원에 관한 핵심 질문 20가지입니다.</div>
+                    <h2 class="realm-title" id="faqHeading"><span class="gold">FAQ 20선</span> · 자주 묻는 질문</h2>
+                    <div class="realm-sub" id="faqSub">구조·수수료·연동망·테스트 파이·사회환원에 관한 핵심 질문 20가지입니다.</div>
                 </div>
             </div>
             <div class="faq-list" id="faqList"></div>
@@ -915,8 +915,8 @@
         <section class="realm-section" id="whitepaperSection">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="gold">백서 100선</span> · 서술형 조항</h2>
-                    <div class="realm-sub">HKWB 비전·아키텍처·10대 연동망·경제 모델·거버넌스·리갈을 서술형 100개 항목으로 정리했습니다.</div>
+                    <h2 class="realm-title" id="wpHeading"><span class="gold">백서 100선</span> · 서술형 조항</h2>
+                    <div class="realm-sub" id="wpSub">HKWB 비전·아키텍처·10대 연동망·경제 모델·거버넌스·리갈을 서술형 100개 항목으로 정리했습니다.</div>
                 </div>
             </div>
             <div class="wp-toolbar">
@@ -972,7 +972,24 @@
             }
         };
 
-        /* 다국어 UI 번역 + 국가별 화폐단위 */
+        const currencyMap = {
+            'ko': { code: 'KRW', symbol: '₩', rateFromUSD: 1400, label: 'KRW (₩)', name: '한국어' },
+            'en': { code: 'USD', symbol: '$', rateFromUSD: 1, label: 'USD ($)', name: 'English' },
+            'zh-CN': { code: 'CNY', symbol: '¥', rateFromUSD: 7.2, label: 'CNY (¥)', name: '中文简体' },
+            'zh-TW': { code: 'TWD', symbol: 'NT$', rateFromUSD: 32, label: 'TWD (NT$)', name: '繁體中文' },
+            'ja': { code: 'JPY', symbol: '¥', rateFromUSD: 152, label: 'JPY (¥)', name: '日本語' },
+            'de': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)', name: 'Deutsch' },
+            'fr': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)', name: 'Français' },
+            'es': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)', name: 'Español' },
+            'pt': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)', name: 'Português' },
+            'ru': { code: 'RUB', symbol: '₽', rateFromUSD: 98, label: 'RUB (₽)', name: 'Русский' },
+            'ar': { code: 'AED', symbol: 'د.إ', rateFromUSD: 3.67, label: 'AED (د.إ)', name: 'العربية' },
+            'hi': { code: 'INR', symbol: '₹', rateFromUSD: 84, label: 'INR (₹)', name: 'हिन्दी' },
+            'vi': { code: 'VND', symbol: '₫', rateFromUSD: 25400,label: 'VND (₫)', name: 'Tiếng Việt' },
+            'th': { code: 'THB', symbol: '฿', rateFromUSD: 34.5, label: 'THB (฿)', name: 'ไทย' },
+            'id': { code: 'IDR', symbol: 'Rp', rateFromUSD: 15800,label: 'IDR (Rp)', name: 'Bahasa Indonesia' }
+        };
+
         const i18nUI = {
             ko: {
                 coverTitle: 'HKWB 디지털 금융 플랫폼',
@@ -980,81 +997,114 @@
                 web3Entry: '웹3 은행 진입 ->',
                 web2Entry: '인터넷 은행 진입 ->',
                 backCover: '← 앞장 표지',
+                web3Heading: '<span class="gold">웹3 은행</span> · 개인자산 & 10대 분산 연동망',
+                web3Sub: '10대 연동망 선택 시 1~4단계 프로세스와 수수료(걷는 수수료 ≥ 지급 비용) 순유입 계산이 실행됩니다.',
                 lblTotal: '총 통합 자산',
                 lblWeb3: '웹3 지갑 · 예치 · LP스테이킹',
                 lblUbi: '기본소득(UBI) & 리워드 누적',
                 lblSocial: '사회환원 · 수수료 원칙',
                 valSocial: '최대 60% / 순유입 ≥ 지급',
+                noteWeb3: 'AGI/ASI 유동 수익률 산정',
+                noteUbi: '수수료 순유입 기반 적립',
+                noteSocial: '국경없는의사회·세이브더칠드런·UNHCR',
                 simTick: '시뮬레이션 수익/리워드 반영',
                 resetState: '초기 상태 복원',
-                execBtn: '프로세스 & 수수료 실행'
+                execBtn: '프로세스 & 수수료 실행',
+                apiTag: '백엔드 API 미구동 · 로컬 엔진 활성 (걷는 수수료 ≥ 지급 비용)',
+                csHeading: '🤖 고객센터 · AGI · ASI · 삐니',
+                csDesc: '수수료율 산식(걷는 수수료 ≥ 지급 비용), 10대 연동망 절차, 테스트 파이 검증 및 API 상태를 안내합니다.',
+                btnAskPinni: '문의',
+                socialHeading: '💛 사회환원 (순수익 최대 60%) & 리워드',
+                snsHeading: '📺 유튜브 & 틱톡',
+                legalHeading: '<span class="gold">5대 코어 리갈 & 컴플라이언스</span>',
+                faqHeading: '<span class="gold">FAQ 20선</span> · 자주 묻는 질문',
+                wpHeading: '<span class="gold">백서 100선</span> · 서술형 조항',
+                web2Heading: '<span class="cyan">인터넷 은행</span> · 입금 · 출금 · 송금 · 예금 · 저축 · 대출',
+                web2Sub: 'ljw2358/bank 무점포 뱅킹 6대 핵심 프로세스 (걷는 수수료 ≥ 지급 비용 · 국가별 화폐단위 반영)'
             },
             en: {
                 coverTitle: 'HKWB Digital Finance Platform',
-                coverSub: 'Select Web3 Bank or Internet Bank to enter its dedicated view.',
+                coverSub: 'Select Web3 Bank or Branchless Internet Bank to open its dedicated view.',
                 web3Entry: 'Enter Web3 Bank ->',
                 web2Entry: 'Enter Internet Bank ->',
                 backCover: '← Cover',
+                web3Heading: '<span class="gold">Web3 Bank</span> · Assets & 10 Distributed Networks',
+                web3Sub: 'Select a network to run the 4-stage flow and net-inflow fee calculation (Collected Fee ≥ Payout Cost).',
                 lblTotal: 'Total Unified Assets',
                 lblWeb3: 'Web3 Wallet · Vault · LP Staking',
                 lblUbi: 'UBI & Rewards Accumulated',
                 lblSocial: 'Social Return · Fee Rule',
-                valSocial: 'Up to 60% / Net Inflow ≥ Payout',
+                valSocial: 'Up to 60% / Inflow ≥ Payout',
+                noteWeb3: 'AGI/ASI Dynamic Yield Engine',
+                noteUbi: 'Accrued from Net Fee Inflow',
+                noteSocial: 'MSF · Save the Children · UNHCR',
                 simTick: 'Simulate Yield & Rewards',
                 resetState: 'Reset State',
-                execBtn: 'Execute Process & Fee'
-            },
-            'zh-CN': {
-                coverTitle: 'HKWB 数字金融平台',
-                coverSub: '请选择进入 Web3 银行或无网点互联网银行。',
-                web3Entry: '进入 Web3 银行 ->',
-                web2Entry: '进入互联网银行 ->',
-                backCover: '← 返回封面',
-                lblTotal: '综合总资产',
-                lblWeb3: 'Web3 钱包 · 质押 · LP质押',
-                lblUbi: '基本收入(UBI) 与奖励累计',
-                lblSocial: '社会回馈 · 手续费原则',
-                valSocial: '最高 60% / 净流入 ≥ 支出',
-                simTick: '模拟收益与奖励',
-                resetState: '恢复初始状态',
-                execBtn: '执行流程与手续费'
-            },
-            ja: {
-                coverTitle: 'HKWB デジタル金融プラットフォーム',
-                coverSub: 'Web3銀行またはインターネット銀行を選択して専用画面へ進みます。',
-                web3Entry: 'Web3銀行へ ->',
-                web2Entry: 'インターネット銀行へ ->',
-                backCover: '← 表紙へ',
-                lblTotal: '統合総資産',
-                lblWeb3: 'Web3ウォレット・預入・LPステーキング',
-                lblUbi: 'ベーシックインカム(UBI)・リワード累計',
-                lblSocial: '社会還元・手数料原則',
-                valSocial: '最大 60% / 純流入 ≥ 支給',
-                simTick: '収益・リワード反映',
-                resetState: '初期状態へ戻す',
-                execBtn: 'プロセス・手数料実行'
+                execBtn: 'Execute Process & Fee',
+                apiTag: 'Backend API Idle · Local Engine Active (Fee ≥ Payout)',
+                csHeading: '🤖 Support · AGI · ASI · Pinni',
+                csDesc: 'Guidance on net-inflow fee rules, 10 networks, Testnet Pi checks, and API status.',
+                btnAskPinni: 'Ask',
+                socialHeading: '💛 Social Return (Up to 60%) & Rewards',
+                snsHeading: '📺 YouTube & TikTok',
+                legalHeading: '<span class="gold">5 Core Legal & Compliance Pillars</span>',
+                faqHeading: '<span class="gold">Top 20 FAQs</span>',
+                wpHeading: '<span class="gold">Whitepaper 100</span> · Narrative Clauses',
+                web2Heading: '<span class="cyan">Internet Bank</span> · Deposit · Withdraw · Transfer · Term · Saving · Loan',
+                web2Sub: 'ljw2358/bank Branchless 6-Core Banking (Collected Fee ≥ Payout Cost · Local Currency)'
             }
         };
 
+        let currentLang = 'ko';
+
+        function getCurr() {
+            return currencyMap[currentLang] || currencyMap.ko;
+        }
+
         function getUI() {
-            return i18nUI[currentLang] || i18nUI.ko;
+            if (i18nUI[currentLang]) return i18nUI[currentLang];
+            const c = getCurr();
+            return {
+                ...i18nUI.en,
+                coverTitle: `HKWB (${c.name})`,
+                coverSub: `${c.name} · ${c.label} — Select Web3 Bank or Internet Bank.`,
+                web3Heading: `<span class="gold">Web3 Bank</span> (${c.name})`,
+                web2Heading: `<span class="cyan">Internet Bank</span> (${c.name})`
+            };
         }
 
         function applyLanguageUI() {
             const u = getUI();
+            const c = getCurr();
             document.getElementById('coverTitle').textContent = u.coverTitle;
             document.getElementById('coverSub').textContent = u.coverSub;
             document.getElementById('web3EntryBtn').textContent = u.web3Entry;
             document.getElementById('web2EntryBtn').textContent = u.web2Entry;
             document.getElementById('backCoverBtn').textContent = u.backCover;
+            document.getElementById('web3Heading').innerHTML = u.web3Heading;
+            document.getElementById('web3Sub').textContent = u.web3Sub;
             document.getElementById('lblTotalAsset').textContent = u.lblTotal;
             document.getElementById('lblWeb3Asset').textContent = u.lblWeb3;
             document.getElementById('lblUbiAsset').textContent = u.lblUbi;
             document.getElementById('lblSocialFee').textContent = u.lblSocial;
             document.getElementById('valSocialFee').textContent = u.valSocial;
+            document.getElementById('noteWeb3Asset').textContent = u.noteWeb3;
+            document.getElementById('noteUbiAsset').textContent = u.noteUbi;
+            document.getElementById('noteSocialFee').textContent = u.noteSocial;
             document.getElementById('btnSimTick').textContent = u.simTick;
             document.getElementById('btnResetState').textContent = u.resetState;
             document.getElementById('btnExecNet').textContent = u.execBtn;
+            document.getElementById('wbApiStatus').textContent = u.apiTag;
+            document.getElementById('csHeading').textContent = u.csHeading;
+            document.getElementById('csDesc').textContent = u.csDesc;
+            document.getElementById('btnAskPinni').textContent = u.btnAskPinni;
+            document.getElementById('socialHeading').textContent = u.socialHeading;
+            document.getElementById('snsHeading').textContent = u.snsHeading;
+            document.getElementById('legalHeading').innerHTML = u.legalHeading;
+            document.getElementById('faqHeading').innerHTML = u.faqHeading;
+            document.getElementById('wpHeading').innerHTML = u.wpHeading;
+            document.getElementById('web2Heading').innerHTML = u.web2Heading;
+            document.getElementById('web2Sub').textContent = `${u.web2Sub} [${c.label}]`;
         }
 
         function showCover() {
@@ -1072,27 +1122,6 @@
             document.getElementById('backCoverBtn').classList.add('visible');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        const currencyMap = {
-            'ko': { code: 'KRW', symbol: '₩', rateFromUSD: 1400, label: 'KRW (₩)' },
-            'en': { code: 'USD', symbol: '$', rateFromUSD: 1, label: 'USD ($)' },
-            'zh-CN': { code: 'CNY', symbol: '¥', rateFromUSD: 7.2, label: 'CNY (¥)' },
-            'zh-TW': { code: 'TWD', symbol: 'NT$', rateFromUSD: 32, label: 'TWD (NT$)' },
-            'ja': { code: 'JPY', symbol: '¥', rateFromUSD: 152, label: 'JPY (¥)' },
-            'de': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
-            'fr': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
-            'es': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
-            'pt': { code: 'EUR', symbol: '€', rateFromUSD: 0.92, label: 'EUR (€)' },
-            'ru': { code: 'RUB', symbol: '₽', rateFromUSD: 98, label: 'RUB (₽)' },
-            'ar': { code: 'AED', symbol: 'د.إ', rateFromUSD: 3.67, label: 'AED (د.إ)' },
-            'hi': { code: 'INR', symbol: '₹', rateFromUSD: 84, label: 'INR (₹)' },
-            'vi': { code: 'VND', symbol: '₫', rateFromUSD: 25400,label: 'VND (₫)' },
-            'th': { code: 'THB', symbol: '฿', rateFromUSD: 34.5, label: 'THB (฿)' },
-            'id': { code: 'IDR', symbol: 'Rp', rateFromUSD: 15800,label: 'IDR (Rp)' }
-        };
-
-        let currentLang = 'ko';
-        function getCurr() { return currencyMap[currentLang] || currencyMap.ko; }
 
         function formatFromUSD(usdAmount) {
             const c = getCurr();
@@ -1239,7 +1268,7 @@
         function refreshDashboard() {
             const c = getCurr();
             const totalUSD = Math.round((web3AssetUSD + web2BalanceUSD) * 100) / 100;
-            document.getElementById('currencyBadge').textContent = `기준 통화: ${c.label}`;
+            document.getElementById('currencyBadge').textContent = `${c.name} · ${c.label}`;
             document.getElementById('totalAsset').textContent = formatFromUSD(totalUSD);
             document.getElementById('web3Asset').textContent = formatFromUSD(web3AssetUSD);
             document.getElementById('ubiAsset').textContent = formatFromUSD(ubiAssetUSD);
@@ -1381,7 +1410,7 @@
             ['Q03. 10대 분산 연동망에는 무엇이 포함되나요?', '지갑연결, 송금, 결제, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, 거버넌스의 10가지 핵심 망입니다.'],
             ['Q04. 수수료율은 어떻게 정해지나요?', '우리가 지급하는 리워드·보상·비용 이상을 걷는 순유입 원칙을 기본으로 항목별 수수료율과 지급률을 설정합니다.'],
             ['Q05. 왜 걷는 수수료가 지급 비용보다 커야 하나요?', '유동성 유지, 리스크 방어, 운영 지속 가능성 및 사회환원 재원 확보를 위해 역마진을 막기 위함입니다.'],
-            ['Q06. 국가별 화폐단위는 어떻게 바뀌나요?', '상단 통화 선택기에서 국가/언어를 바꾸면 대시보드와 인터넷 은행 금액이 해당 화폐단위로 환산 표시됩니다.'],
+            ['Q06. 국가별 화폐단위는 어떻게 바뀌나요?', '상단 선택기에서 언어/통화를 바꾸면 대시보드와 인터넷 은행 금액과 문구가 함께 반영됩니다.'],
             ['Q07. 현재 백엔드 API는 구동 중인가요?', '별도 외부 백엔드 서버는 미구동 상태이며 현재는 브라우저 로컬 시뮬레이션 엔진으로 동작합니다.'],
             ['Q08. 테스트 파이(Testnet Pi) 검증은 어떻게 하나요?', '지갑연결·송금·예치·스왑·DEX스왑·LP스테이킹 화면에서 금액과 파라미터를 입력해 단계별 동작을 테스트합니다.'],
             ['Q09. 예치와 스테이킹 이율은 고정인가요?', '고정 이율이 아니라 AGI/ASI 엔진이 유동성·시장 지표를 반영해 조정하는 변동 구조입니다.'],
@@ -1408,7 +1437,7 @@
         const wpCategories = ['비전·구조', '10대 연동망', '수수료·UBI·환원', '인터넷 뱅크', '리갈·보안·검증'];
         const wpSeeds = [
             ['비전·구조', 'HKWB 통합 금융 선언', 'HKWB는 웹3 분산 금융과 무점포 인터넷 은행을 하나의 통합 체계로 묶어 개인과 생태계가 함께 성장하는 디지털 금융 인프라를 지향합니다.'],
-            ['비전·구조', '앞장 표지 직관성 설계', '첫 화면에는 HKWB 상징 박스와 웹3 은행·인터넷 은행 진입 버튼을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.'],
+            ['비전·구조', '앞장 표지 직관성 설계', '첫 화면에는 HKWB 상징 박스와 표지 안내, 웹3 은행·인터넷 은행 진입 버튼을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.'],
             ['비전·구조', '웹3 은행과 인터넷 은행의 역할 분담', '웹3 은행은 분산 지갑·스왑·LP·기본소득 등 온체인·분산 프로토콜을 담당하고, 인터넷 은행은 입·출·송·예·적·대 등 일상 금융 흐름을 비대면으로 처리합니다.'],
             ['10대 연동망', '01. 지갑연결 프로토콜', '지갑연결은 암호화 세션 수립, 최소 권한 서명 검증, 잔액 및 포지션 동기화, 보안 감시의 4단계로 작동해 안전한 분산 자산 접근을 보장합니다.'],
             ['10대 연동망', '02. 분산 송금 체계', '송금은 수신 주소 검증과 한도·규칙 점검을 거친 뒤 서명과 전파, 최종 정산까지 수행하며 전 과정을 투명한 참조 기록으로 남깁니다.'],
@@ -1567,7 +1596,7 @@
             applyLanguageUI();
             refreshDashboard();
             renderWeb2Tab(activeWeb2Tab);
-            appendLog(`언어 및 화폐단위가 ${getCurr().label}로 변경되었습니다.`);
+            appendLog(`언어 및 화폐단위가 ${getCurr().name} · ${getCurr().label}로 변경되었습니다.`);
         });
 
         applyLanguageUI();
