@@ -86,7 +86,7 @@
             font-size: 0.82rem;
             outline: none;
             cursor: pointer;
-            max-width: 155px;
+            max-width: 175px;
         }
 
         .back-cover-btn {
@@ -113,6 +113,22 @@
             align-items: center;
             justify-content: center;
             padding: 2.5rem 1.2rem;
+            text-align: center;
+        }
+
+        .cover-title {
+            font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 0.65rem;
+        }
+
+        .cover-sub {
+            color: var(--text-secondary);
+            font-size: clamp(0.92rem, 2vw, 1.05rem);
+            max-width: 680px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
         }
 
         .entry-row {
@@ -128,7 +144,7 @@
             flex: 1 1 280px;
             padding: 1.5rem 1.6rem;
             border-radius: 20px;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 900;
             cursor: pointer;
             text-align: center;
@@ -503,7 +519,6 @@
             border: 1px solid var(--gold-soft);
         }
 
-        /* 5대 코어 리갈 & 컴플라이언스 */
         .legal-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -537,7 +552,6 @@
             line-height: 1.55;
         }
 
-        /* FAQ 20선 */
         .faq-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -564,7 +578,6 @@
             line-height: 1.55;
         }
 
-        /* 백서 100선 서술형 */
         .wp-toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -642,7 +655,6 @@
             line-height: 1.65;
         }
 
-        /* Web2 Tabs & Stage */
         .web2-tabs {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
@@ -746,36 +758,37 @@
 </head>
 <body>
 
-    <!-- 제일 위: HKWB 네모 박스 -->
     <header class="top-bar">
         <div class="hkwb-box" onclick="showCover()" title="HKWB">HKWB</div>
         <div class="top-controls">
-            <select id="langSelect" class="lang-select" aria-label="Currency Selector">
-                <option value="ko" selected>한국어 (KRW ₩)</option>
-                <option value="en">English (USD $)</option>
-                <option value="zh-CN">中文简体 (CNY ¥)</option>
-                <option value="zh-TW">繁體中文 (TWD NT$)</option>
-                <option value="ja">日本語 (JPY ¥)</option>
-                <option value="de">Deutsch (EUR €)</option>
-                <option value="fr">Français (EUR €)</option>
-                <option value="es">Español (EUR €)</option>
-                <option value="pt">Português (EUR €)</option>
-                <option value="ru">Русский (RUB ₽)</option>
-                <option value="ar">العربية (AED د.إ)</option>
-                <option value="hi">हिन्दी (INR ₹)</option>
-                <option value="vi">Tiếng Việt (VND ₫)</option>
-                <option value="th">ไทย (THB ฿)</option>
-                <option value="id">Bahasa Indonesia (IDR Rp)</option>
+            <select id="langSelect" class="lang-select" aria-label="Language & Currency Selector">
+                <option value="ko" selected>한국어 · KRW (₩)</option>
+                <option value="en">English · USD ($)</option>
+                <option value="zh-CN">中文简体 · CNY (¥)</option>
+                <option value="zh-TW">繁體中文 · TWD (NT$)</option>
+                <option value="ja">日本語 · JPY (¥)</option>
+                <option value="de">Deutsch · EUR (€)</option>
+                <option value="fr">Français · EUR (€)</option>
+                <option value="es">Español · EUR (€)</option>
+                <option value="pt">Português · EUR (€)</option>
+                <option value="ru">Русский · RUB (₽)</option>
+                <option value="ar">العربية · AED (د.إ)</option>
+                <option value="hi">हिन्दी · INR (₹)</option>
+                <option value="vi">Tiếng Việt · VND (₫)</option>
+                <option value="th">ไทย · THB (฿)</option>
+                <option value="id">Bahasa Indonesia · IDR (Rp)</option>
             </select>
             <button type="button" class="back-cover-btn" id="backCoverBtn" onclick="showCover()">← 앞장 표지</button>
         </div>
     </header>
 
-    <!-- 1. 제일 앞장 표지 -->
+    <!-- 1. 제일 앞장 표지 (표지 글 + 웹3 은행 진입 -> / 인터넷 은행 진입 ->) -->
     <section class="cover-page" id="coverPage">
+        <h1 class="cover-title" id="coverTitle">HKWB 디지털 금융 플랫폼</h1>
+        <p class="cover-sub" id="coverSub">웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 바로 진입하세요.</p>
         <div class="entry-row">
-            <button type="button" class="entry-btn web3-entry" onclick="openView('web3')">웹3 은행 진입 -&gt;</button>
-            <button type="button" class="entry-btn web2-entry" onclick="openView('web2')">인터넷 은행 진입 -&gt;</button>
+            <button type="button" class="entry-btn web3-entry" id="web3EntryBtn" onclick="openView('web3')">웹3 은행 진입 -&gt;</button>
+            <button type="button" class="entry-btn web2-entry" id="web2EntryBtn" onclick="openView('web2')">인터넷 은행 진입 -&gt;</button>
         </div>
     </section>
 
@@ -784,37 +797,37 @@
         <section class="realm-section">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="gold">웹3 은행</span> · 개인자산 &amp; 10대 분산 연동망</h2>
-                    <div class="realm-sub">10대 연동망 선택 시 1~4단계 프로세스와 수수료(걷는 수수료 ≥ 지급 비용) 순유입 계산이 실행됩니다.</div>
+                    <h2 class="realm-title" id="web3Heading"><span class="gold">웹3 은행</span> · 개인자산 &amp; 10대 분산 연동망</h2>
+                    <div class="realm-sub" id="web3Sub">10대 연동망 선택 시 1~4단계 프로세스와 수수료(걷는 수수료 ≥ 지급 비용) 순유입 계산이 실행됩니다.</div>
                 </div>
             </div>
 
             <div class="dash-grid">
                 <div class="dash-card">
-                    <div class="dash-label">총 통합 자산</div>
+                    <div class="dash-label" id="lblTotalAsset">총 통합 자산</div>
                     <div class="dash-val" id="totalAsset">-</div>
                     <div class="dash-note" id="currencyBadge">기준 통화: KRW (₩)</div>
                 </div>
                 <div class="dash-card">
-                    <div class="dash-label">웹3 지갑 · 예치 · LP스테이킹</div>
+                    <div class="dash-label" id="lblWeb3Asset">웹3 지갑 · 예치 · LP스테이킹</div>
                     <div class="dash-val" id="web3Asset">-</div>
-                    <div class="dash-note">AGI/ASI 유동 수익률 산정</div>
+                    <div class="dash-note" id="noteWeb3Asset">AGI/ASI 유동 수익률 산정</div>
                 </div>
                 <div class="dash-card">
-                    <div class="dash-label">기본소득(UBI) &amp; 리워드 누적</div>
+                    <div class="dash-label" id="lblUbiAsset">기본소득(UBI) &amp; 리워드 누적</div>
                     <div class="dash-val" id="ubiAsset">-</div>
-                    <div class="dash-note">수수료 순유입 기반 적립</div>
+                    <div class="dash-note" id="noteUbiAsset">수수료 순유입 기반 적립</div>
                 </div>
                 <div class="dash-card">
-                    <div class="dash-label">사회환원 · 수수료 원칙</div>
-                    <div class="dash-val">최대 60% / 순유입 ≥ 지급</div>
-                    <div class="dash-note">국경없는의사회·세이브더칠드런·UNHCR</div>
+                    <div class="dash-label" id="lblSocialFee">사회환원 · 수수료 원칙</div>
+                    <div class="dash-val" id="valSocialFee">최대 60% / 순유입 ≥ 지급</div>
+                    <div class="dash-note" id="noteSocialFee">국경없는의사회·세이브더칠드런·UNHCR</div>
                 </div>
             </div>
 
             <div class="dash-actions">
-                <button type="button" class="btn-gold" onclick="simulateTick()">시뮬레이션 수익/리워드 반영</button>
-                <button type="button" class="btn-ghost" onclick="resetAllState()">초기 상태 복원</button>
+                <button type="button" class="btn-gold" id="btnSimTick" onclick="simulateTick()">시뮬레이션 수익/리워드 반영</button>
+                <button type="button" class="btn-ghost" id="btnResetState" onclick="resetAllState()">초기 상태 복원</button>
             </div>
 
             <div class="net-grid" id="netGrid"></div>
@@ -822,7 +835,7 @@
             <div class="engine-workbench">
                 <div class="wb-header">
                     <div class="wb-title" id="wbTitle">01. 지갑연결</div>
-                    <div class="wb-api-tag">백엔드 API 미구동 · 로컬 엔진 활성 (걷는 수수료 ≥ 지급 비용)</div>
+                    <div class="wb-api-tag" id="wbApiStatus">백엔드 API 미구동 · 로컬 엔진 활성 (걷는 수수료 ≥ 지급 비용)</div>
                 </div>
                 <div class="wb-overview" id="wbOverview"></div>
                 <div class="onion-grid" id="onionSteps"></div>
@@ -834,7 +847,7 @@
                         <option value="local" selected>로컬 시뮬레이터 실행</option>
                         <option value="remote">외부 API 엔드포인트 호출</option>
                     </select>
-                    <button type="button" class="btn-gold" onclick="executeNetworkAction()">프로세스 &amp; 수수료 실행</button>
+                    <button type="button" class="btn-gold" id="btnExecNet" onclick="executeNetworkAction()">프로세스 &amp; 수수료 실행</button>
                 </div>
 
                 <div class="tx-log" id="txLog">
@@ -927,8 +940,8 @@
         <section class="realm-section web2-section">
             <div class="realm-header">
                 <div>
-                    <h2 class="realm-title"><span class="cyan">인터넷 은행</span> · 입금 · 출금 · 송금 · 예금 · 저축 · 대출</h2>
-                    <div class="realm-sub">ljw2358/bank 무점포 뱅킹 6대 핵심 프로세스 (걷는 수수료 ≥ 지급 비용 · 국가별 화폐단위 반영)</div>
+                    <h2 class="realm-title" id="web2Heading"><span class="cyan">인터넷 은행</span> · 입금 · 출금 · 송금 · 예금 · 저축 · 대출</h2>
+                    <div class="realm-sub" id="web2Sub">ljw2358/bank 무점포 뱅킹 6대 핵심 프로세스 (걷는 수수료 ≥ 지급 비용 · 국가별 화폐단위 반영)</div>
                 </div>
             </div>
 
@@ -958,6 +971,91 @@
                 web2Action: '/api/v1/web2/banking'
             }
         };
+
+        /* 다국어 UI 번역 + 국가별 화폐단위 */
+        const i18nUI = {
+            ko: {
+                coverTitle: 'HKWB 디지털 금융 플랫폼',
+                coverSub: '웹3 분산 은행과 무점포 인터넷 은행을 선택해 전용 화면으로 바로 진입하세요.',
+                web3Entry: '웹3 은행 진입 ->',
+                web2Entry: '인터넷 은행 진입 ->',
+                backCover: '← 앞장 표지',
+                lblTotal: '총 통합 자산',
+                lblWeb3: '웹3 지갑 · 예치 · LP스테이킹',
+                lblUbi: '기본소득(UBI) & 리워드 누적',
+                lblSocial: '사회환원 · 수수료 원칙',
+                valSocial: '최대 60% / 순유입 ≥ 지급',
+                simTick: '시뮬레이션 수익/리워드 반영',
+                resetState: '초기 상태 복원',
+                execBtn: '프로세스 & 수수료 실행'
+            },
+            en: {
+                coverTitle: 'HKWB Digital Finance Platform',
+                coverSub: 'Select Web3 Bank or Internet Bank to enter its dedicated view.',
+                web3Entry: 'Enter Web3 Bank ->',
+                web2Entry: 'Enter Internet Bank ->',
+                backCover: '← Cover',
+                lblTotal: 'Total Unified Assets',
+                lblWeb3: 'Web3 Wallet · Vault · LP Staking',
+                lblUbi: 'UBI & Rewards Accumulated',
+                lblSocial: 'Social Return · Fee Rule',
+                valSocial: 'Up to 60% / Net Inflow ≥ Payout',
+                simTick: 'Simulate Yield & Rewards',
+                resetState: 'Reset State',
+                execBtn: 'Execute Process & Fee'
+            },
+            'zh-CN': {
+                coverTitle: 'HKWB 数字金融平台',
+                coverSub: '请选择进入 Web3 银行或无网点互联网银行。',
+                web3Entry: '进入 Web3 银行 ->',
+                web2Entry: '进入互联网银行 ->',
+                backCover: '← 返回封面',
+                lblTotal: '综合总资产',
+                lblWeb3: 'Web3 钱包 · 质押 · LP质押',
+                lblUbi: '基本收入(UBI) 与奖励累计',
+                lblSocial: '社会回馈 · 手续费原则',
+                valSocial: '最高 60% / 净流入 ≥ 支出',
+                simTick: '模拟收益与奖励',
+                resetState: '恢复初始状态',
+                execBtn: '执行流程与手续费'
+            },
+            ja: {
+                coverTitle: 'HKWB デジタル金融プラットフォーム',
+                coverSub: 'Web3銀行またはインターネット銀行を選択して専用画面へ進みます。',
+                web3Entry: 'Web3銀行へ ->',
+                web2Entry: 'インターネット銀行へ ->',
+                backCover: '← 表紙へ',
+                lblTotal: '統合総資産',
+                lblWeb3: 'Web3ウォレット・預入・LPステーキング',
+                lblUbi: 'ベーシックインカム(UBI)・リワード累計',
+                lblSocial: '社会還元・手数料原則',
+                valSocial: '最大 60% / 純流入 ≥ 支給',
+                simTick: '収益・リワード反映',
+                resetState: '初期状態へ戻す',
+                execBtn: 'プロセス・手数料実行'
+            }
+        };
+
+        function getUI() {
+            return i18nUI[currentLang] || i18nUI.ko;
+        }
+
+        function applyLanguageUI() {
+            const u = getUI();
+            document.getElementById('coverTitle').textContent = u.coverTitle;
+            document.getElementById('coverSub').textContent = u.coverSub;
+            document.getElementById('web3EntryBtn').textContent = u.web3Entry;
+            document.getElementById('web2EntryBtn').textContent = u.web2Entry;
+            document.getElementById('backCoverBtn').textContent = u.backCover;
+            document.getElementById('lblTotalAsset').textContent = u.lblTotal;
+            document.getElementById('lblWeb3Asset').textContent = u.lblWeb3;
+            document.getElementById('lblUbiAsset').textContent = u.lblUbi;
+            document.getElementById('lblSocialFee').textContent = u.lblSocial;
+            document.getElementById('valSocialFee').textContent = u.valSocial;
+            document.getElementById('btnSimTick').textContent = u.simTick;
+            document.getElementById('btnResetState').textContent = u.resetState;
+            document.getElementById('btnExecNet').textContent = u.execBtn;
+        }
 
         function showCover() {
             document.getElementById('coverPage').style.display = 'flex';
@@ -1241,7 +1339,6 @@
             input.value = '';
         }
 
-        /* 5대 코어 리갈 & 컴플라이언스 */
         const legal5 = [
             {
                 badge: 'CORE LEGAL 01',
@@ -1278,10 +1375,9 @@
             </div>
         `).join('');
 
-        /* FAQ 20선 */
         const faq20 = [
             ['Q01. HKWB는 어떤 구조인가요?', '웹3 디지털 은행과 무점포 인터넷 은행을 아우르는 차세대 디지털 금융 플랫폼 구조입니다.'],
-            ['Q02. 앞장 표지는 왜 단순하게 구성했나요?', '첫 화면에서 웹3 은행과 인터넷 은행을 직관적으로 선택해 각 전용 화면으로 바로 진입하도록 구성했습니다.'],
+            ['Q02. 앞장 표지는 어떻게 구성되어 있나요?', '상단 HKWB 네모 박스와 표지 안내, 웹3 은행 진입 및 인터넷 은행 진입 버튼으로 구성됩니다.'],
             ['Q03. 10대 분산 연동망에는 무엇이 포함되나요?', '지갑연결, 송금, 결제, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, 거버넌스의 10가지 핵심 망입니다.'],
             ['Q04. 수수료율은 어떻게 정해지나요?', '우리가 지급하는 리워드·보상·비용 이상을 걷는 순유입 원칙을 기본으로 항목별 수수료율과 지급률을 설정합니다.'],
             ['Q05. 왜 걷는 수수료가 지급 비용보다 커야 하나요?', '유동성 유지, 리스크 방어, 운영 지속 가능성 및 사회환원 재원 확보를 위해 역마진을 막기 위함입니다.'],
@@ -1309,11 +1405,10 @@
             </div>
         `).join('');
 
-        /* 백서 100선 서술형 생성 */
         const wpCategories = ['비전·구조', '10대 연동망', '수수료·UBI·환원', '인터넷 뱅크', '리갈·보안·검증'];
         const wpSeeds = [
             ['비전·구조', 'HKWB 통합 금융 선언', 'HKWB는 웹3 분산 금융과 무점포 인터넷 은행을 하나의 통합 체계로 묶어 개인과 생태계가 함께 성장하는 디지털 금융 인프라를 지향합니다.'],
-            ['비전·구조', '앞장 표지 직관성 설계', '첫 화면에는 HKWB 상징 박스와 웹3 은행·인터넷 은행 진입 버튼만을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.'],
+            ['비전·구조', '앞장 표지 직관성 설계', '첫 화면에는 HKWB 상징 박스와 웹3 은행·인터넷 은행 진입 버튼을 두어 사용자가 목적에 따라 혼선 없이 각 전용 공간으로 이동할 수 있게 합니다.'],
             ['비전·구조', '웹3 은행과 인터넷 은행의 역할 분담', '웹3 은행은 분산 지갑·스왑·LP·기본소득 등 온체인·분산 프로토콜을 담당하고, 인터넷 은행은 입·출·송·예·적·대 등 일상 금융 흐름을 비대면으로 처리합니다.'],
             ['10대 연동망', '01. 지갑연결 프로토콜', '지갑연결은 암호화 세션 수립, 최소 권한 서명 검증, 잔액 및 포지션 동기화, 보안 감시의 4단계로 작동해 안전한 분산 자산 접근을 보장합니다.'],
             ['10대 연동망', '02. 분산 송금 체계', '송금은 수신 주소 검증과 한도·규칙 점검을 거친 뒤 서명과 전파, 최종 정산까지 수행하며 전 과정을 투명한 참조 기록으로 남깁니다.'],
@@ -1372,7 +1467,6 @@
         document.getElementById('wpCategory').addEventListener('change', renderWhitepaper);
         renderWhitepaper();
 
-        /* 인터넷 은행 6대 핵심 기능 */
         const web2Config = {
             deposit: {
                 title: '입금 (Deposit)',
@@ -1470,11 +1564,13 @@
         document.getElementById('langSelect').addEventListener('change', (e) => {
             currentLang = e.target.value;
             document.documentElement.lang = currentLang;
+            applyLanguageUI();
             refreshDashboard();
             renderWeb2Tab(activeWeb2Tab);
-            appendLog(`화폐단위가 ${getCurr().label}로 변경되었습니다.`);
+            appendLog(`언어 및 화폐단위가 ${getCurr().label}로 변경되었습니다.`);
         });
 
+        applyLanguageUI();
         renderWeb2Tab('deposit');
         refreshDashboard();
     </script>
