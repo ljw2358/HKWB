@@ -1,20 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKWB - 글로벌 자율 금융 플랫폼</title>
+    <title>HKWB - 글로벌 차세대 금융 플랫폼</title>
     <style>
         :root {
-            --bg-dark: #0a051b;
-            --card-bg: #150d2a;
+            --bg-dark: #090517;
+            --card-bg: #140c29;
+            --modal-bg: #1c274c;
             --accent-purple: #7b2cbf;
             --accent-gold: #ffb703;
             --accent-blue: #00b4d8;
             --text-light: #f8f9fa;
-            --text-muted: #a0a0ba;
-            --border-color: #2a1b4e;
+            --text-muted: #a4a4c4;
+            --border-color: #2c1c54;
         }
 
         * {
@@ -37,38 +37,139 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 2rem;
-            background-color: rgba(21, 13, 42, 0.9);
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.4rem 2.2rem;
+            background-color: rgba(20, 12, 41, 0.96);
+            border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .menu-btn {
+            background: #1e1340;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.65rem 0.9rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .menu-btn:hover {
+            border-color: var(--accent-gold);
+        }
+
+        /* HKWB 로고 2배 확대 */
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 3.6rem;
+            line-height: 1;
+            font-weight: 900;
             color: var(--accent-gold);
             cursor: pointer;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 18px rgba(255, 183, 3, 0.35);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.9rem;
         }
 
         .lang-select {
-            background: var(--card-bg);
+            background: #1b1138;
             color: var(--text-light);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 0.8rem;
+            border: 1px solid var(--accent-gold);
+            padding: 0.65rem 1rem;
             border-radius: 8px;
+            font-size: 0.98rem;
+            font-weight: 700;
             cursor: pointer;
         }
 
-        /* Service Container */
+        /* HK Navigator Drawer */
+        .drawer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 180;
+        }
+
+        .drawer-overlay.active {
+            display: block;
+        }
+
+        .navigator-drawer {
+            position: fixed;
+            top: 0;
+            left: -380px;
+            width: 360px;
+            max-width: 90vw;
+            height: 100vh;
+            background: #111936;
+            border-right: 1px solid #2d3e75;
+            padding: 1.5rem;
+            overflow-y: auto;
+            transition: left 0.25s ease;
+            z-index: 190;
+        }
+
+        .navigator-drawer.active {
+            left: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #283766;
+        }
+
+        .drawer-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .drawer-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .drawer-group-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #8ea2d6;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+
+        .drawer-item {
+            background: #182347;
+            border: 1px solid #2a3c73;
+            border-radius: 10px;
+            padding: 0.75rem 0.9rem;
+            margin-bottom: 0.55rem;
+            font-size: 0.88rem;
+            color: #eef2ff;
+            cursor: pointer;
+        }
+
+        .drawer-item:hover {
+            border-color: var(--accent-blue);
+            background: #1f2d5c;
+        }
+
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -77,88 +178,86 @@
             flex: 1;
         }
 
-        /* Main Portal View */
         .portal-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.8rem;
         }
 
         .portal-title h1 {
-            font-size: 2.5rem;
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
+            font-size: 2.4rem;
+            margin-bottom: 0.7rem;
         }
 
         .portal-title p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.08rem;
         }
 
         .portal-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         .portal-card {
-            background: linear-gradient(145deg, #180f33, #110826);
+            background: linear-gradient(145deg, #180f33, #100824);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 2.3rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
         .portal-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(123, 44, 191, 0.3);
+            box-shadow: 0 12px 28px rgba(123, 44, 191, 0.28);
         }
 
         .portal-card.web3::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
+            top: 0; left: 0; right: 0;
+            height: 5px;
             background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
         }
 
-        .portal-card.bank::before {
+        .portal-card.web2::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
+            top: 0; left: 0; right: 0;
+            height: 5px;
             background: linear-gradient(90deg, var(--accent-blue), #48cae4);
         }
 
         .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 3.3rem;
+            margin-bottom: 1.2rem;
         }
 
         .portal-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            margin-bottom: 0.9rem;
         }
 
         .portal-card p {
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
         }
 
         .btn-entry {
-            display: inline-block;
             width: 100%;
-            padding: 1rem;
+            padding: 0.95rem 1.2rem;
             border-radius: 12px;
             font-weight: 700;
             font-size: 1rem;
             border: none;
             cursor: pointer;
-            transition: opacity 0.2s;
         }
 
         .btn-web3 {
@@ -166,12 +265,11 @@
             color: #fff;
         }
 
-        .btn-bank {
+        .btn-web2 {
             background: linear-gradient(90deg, var(--accent-blue), #0077b6);
             color: #fff;
         }
 
-        /* Financial Policy Banner */
         .policy-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -187,16 +285,15 @@
         .policy-item h4 {
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
         .policy-item p {
             color: var(--accent-gold);
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 800;
         }
 
-        /* Sub View Display */
         .view-section {
             display: none;
         }
@@ -209,79 +306,237 @@
             background: transparent;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
+            padding: 0.55rem 1rem;
             border-radius: 8px;
             cursor: pointer;
             margin-bottom: 1.5rem;
         }
 
         .btn-back:hover {
-            color: var(--text-light);
-            border-color: var(--text-light);
+            color: #fff;
+            border-color: #fff;
         }
 
-        .dashboard-grid {
+        /* 개인자산 대시보드 */
+        .asset-dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
 
-        .dash-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
+        .asset-card {
+            background: #141c38;
+            border: 1px solid #2b3c70;
             border-radius: 16px;
-            padding: 1.8rem;
+            padding: 1.4rem;
         }
 
-        .dash-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-
-        .input-group {
-            margin-bottom: 1rem;
-        }
-
-        .input-group label {
-            display: block;
+        .asset-label {
             font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
+            color: #9cb0de;
+            margin-bottom: 0.5rem;
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #0e0722;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        .asset-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .asset-sub {
+            font-size: 0.8rem;
+            color: #7d91c2;
+        }
+
+        /* 10대 분산 연동망 */
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .net-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.1rem;
+        }
+
+        .net-card {
+            background: #141c38;
+            border: 1px solid #293863;
+            border-radius: 14px;
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .net-card:hover {
+            border-color: var(--accent-gold);
+            background: #1a254a;
+            transform: translateY(-3px);
+        }
+
+        .net-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .net-title {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .net-desc {
+            font-size: 0.8rem;
+            color: #96a8d4;
+            line-height: 1.35;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            z-index: 220;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--modal-bg);
+            border: 1px solid #3f538c;
+            border-radius: 16px;
+            width: 92%;
+            max-width: 450px;
+            padding: 1.8rem;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 800;
             color: #fff;
         }
 
-        /* Footer */
+        .modal-close {
+            font-size: 1.6rem;
+            color: #b8c7eb;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-desc {
+            font-size: 0.88rem;
+            color: #a7bce6;
+            margin-bottom: 1.2rem;
+            line-height: 1.45;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 0.85rem;
+            color: #9eb3de;
+            margin-bottom: 0.45rem;
+        }
+
+        .input-box, .select-box {
+            width: 100%;
+            padding: 0.8rem;
+            background: #0e162c;
+            border: 1px solid #334575;
+            border-radius: 8px;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-modal {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--accent-gold);
+            color: #100922;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             border-top: 1px solid var(--border-color);
-            background-color: #070314;
+            background: #070314;
         }
 
         footer p {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- GNB -->
+    <!-- Navigator Drawer -->
+    <div id="drawerOverlay" class="drawer-overlay" onclick="toggleNavigator(false)"></div>
+    <aside id="navigatorDrawer" class="navigator-drawer">
+        <div class="drawer-header">
+            <div class="drawer-title">HK NAVIGATOR</div>
+            <button class="modal-close" onclick="toggleNavigator(false)">×</button>
+        </div>
+
+        <div class="drawer-group">
+            <div class="drawer-group-title">CORE LEGAL & COMPLIANCE</div>
+            <div class="drawer-item" onclick="showInfoModal('백서 (Whitepaper v5.1)', 'HKWB 글로벌 자율 금융 구조, AGI/ASI 금리 조정 및 30/30/30 수익 배분 원칙을 안내합니다.')">📄 백서 (Whitepaper v5.1)</div>
+            <div class="drawer-item" onclick="showInfoModal('자주 묻는 질문 (FAQ)', '웹3 디지털 은행, 웹2 은행(HK-BANK), 지갑연결, 예치 및 LP 스테이킹 주요 질문 20문 20답입니다.')">❓ 자주 묻는 질문 (FAQ 20문 20답)</div>
+            <div class="drawer-item" onclick="showInfoModal('3대 POLICIES', 'AML / KYC / 컴플라이언스 정책 및 본인·사업자 인증 기준을 확인합니다.')">🛡️ 3대 POLICIES (AML·KYC·컴플라이언스)</div>
+            <div class="drawer-item" onclick="showInfoModal('디지털 자산 컴플라이언스', '21개국 디지털 자산법 및 자금세탁·매칭 방지 컴플라이언스 기준을 적용합니다.')">🌐 21개국 디지털 자산 컴플라이언스</div>
+            <div class="drawer-item" onclick="showInfoModal('FATF 트래블룰 검증', 'FATF 트래블룰 및 실시간 제재 리스트 검증 규칙을 준수합니다.')">✅ FATF 트래블룰 & 실시간 제재 검증</div>
+        </div>
+
+        <div class="drawer-group">
+            <div class="drawer-group-title">HK GLOBAL ECOSYSTEM HUBS</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-ROBOT', '차세대 로봇 산업 허브 연동 모듈입니다.')">🤖 로봇: HK-ROBOT</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-NEXUS', '스마트 글래스 및 엣지 디바이스 허브입니다.')">👓 스마트 글래스: HK-NEXUS</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-UAM', '도심항공교통(UAM) 모빌리티 허브입니다.')">🛸 도심항공교통: HK-UAM</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-FUSION', '핵융합발전 에너지 허브입니다.')">☀️ 핵융합발전: HK-FUSION</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-QUANTUMBIO', '양자바이오 융합 연구 허브입니다.')">🧬 양자바이오: HK-QUANTUMBIO</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-SPACE', '우주항공모빌리티 허브입니다.')">🚀 우주항공모빌리티: HK-SPACE</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-PARTSBANK', '정밀 부품은행 허브입니다.')">⚙️ 부품은행: HK-PARTSBANK</div>
+            <div class="drawer-item" onclick="showInfoModal('HK-DEFENCE-HUB', '국방기술 산업 허브입니다.')">🛡️ 국방기술: HK-DEFENCE-HUB</div>
+        </div>
+    </aside>
+
+    <!-- Header -->
     <header>
-        <div class="logo" onclick="showPortal()">HKWB</div>
+        <div class="header-left">
+            <button class="menu-btn" onclick="toggleNavigator(true)" aria-label="메뉴">☰</button>
+            <div class="logo" onclick="showPortal()">HKWB</div>
+        </div>
         <div class="header-right">
-            <select class="lang-select">
+            <select class="lang-select" id="langSelect" onchange="changeLanguage()">
                 <option value="ko">한국어 (KR)</option>
                 <option value="en">English (US)</option>
                 <option value="ja">日本語 (JP)</option>
@@ -290,126 +545,307 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
     <div class="container">
 
-        <!-- 1. 메인 포털 화면 (홈) -->
+        <!-- 1. 메인 포털 화면 -->
         <div id="portalView" class="view-section active">
             <div class="portal-title">
-                <h1>글로벌 차세대 금융 플랫폼 HKWB</h1>
-                <p>원하시는 금융 서비스를 선택하여 진입하세요.</p>
+                <h1 id="txt-title">글로벌 차세대 금융 플랫폼 HKWB</h1>
+                <p id="txt-subtitle">웹3 디지털 은행과 웹2 은행 중 원하시는 서비스를 선택하세요.</p>
             </div>
 
             <div class="portal-grid">
-                <!-- 웹3 디지털 은행 카드 -->
                 <div class="portal-card web3" onclick="showView('web3View')">
                     <div class="card-icon">🌐</div>
-                    <h2>웹3 디지털 은행</h2>
-                    <p>파이코인 및 암호자산 연동, AGI/ASI 자율 알고리즘 금리 적용, 블록체인 기반 UBI 분배 시스템</p>
-                    <button class="btn-entry btn-web3">웹3 디지털 은행 진입</button>
+                    <h2 id="txt-web3-title">웹3 디지털 은행</h2>
+                    <p id="txt-web3-desc">개인자산 대시보드, 10대 분산 연동망(지갑연결·예치·LP스테이킹·스왑 등), AGI/ASI 자율 금리 및 UBI 분배</p>
+                    <button class="btn-entry btn-web3" id="btn-web3">웹3 디지털 은행 진입</button>
                 </div>
 
-                <!-- 인터넷 은행 카드 -->
-                <div class="portal-card bank" onclick="showView('bankView')">
+                <div class="portal-card web2" onclick="showView('web2View')">
                     <div class="card-icon">🏦</div>
-                    <h2>인터넷 은행 (HK-BANK)</h2>
-                    <p>점포 없는 모바일·웹 전용 간편 금융. 예·적금, 빠른 송금, 스마트 간편 대출 서비스</p>
-                    <button class="btn-entry btn-bank">인터넷 은행 진입</button>
+                    <h2 id="txt-web2-title">웹2 은행 (HK-BANK)</h2>
+                    <p id="txt-web2-desc">점포 없는 모바일·웹 인터넷 은행. 간편 계좌 조회, 즉시 이체, 예·적금 및 간편 대출 서비스</p>
+                    <button class="btn-entry btn-web2" id="btn-web2">웹2 은행 진입</button>
                 </div>
             </div>
 
-            <!-- 수익 배분 구조 안내 -->
             <div class="policy-box">
                 <div class="policy-item">
-                    <h4>UBI 기본소득 배분</h4>
+                    <h4 id="pol-ubi-label">UBI 기본소득 배분</h4>
                     <p>30%</p>
                 </div>
                 <div class="policy-item">
-                    <h4>회사 경영 및 운영비</h4>
+                    <h4 id="pol-ops-label">회사 경영 및 운영비</h4>
                     <p>30%</p>
                 </div>
                 <div class="policy-item">
-                    <h4>HK 사회재단 기금</h4>
+                    <h4 id="pol-fdn-label">HK 사회재단 기금</h4>
                     <p>최대 30%</p>
                 </div>
                 <div class="policy-item">
-                    <h4>이율 결정 모델</h4>
-                    <p>AGI / ASI 변동 금리</p>
+                    <h4 id="pol-rate-label">이율 결정 모델</h4>
+                    <p id="pol-rate-val">AGI / ASI 변동 금리</p>
                 </div>
             </div>
         </div>
 
-        <!-- 2. 웹3 디지털 은행 화면 -->
+        <!-- 2. 웹3 디지털 은행 화면 (개인자산 대시보드 + 10대 분산 연동망) -->
         <div id="web3View" class="view-section">
-            <button class="btn-back" onclick="showPortal()">← 메인으로 돌아가기</button>
-            <h2 style="margin-bottom: 1.5rem; color: var(--accent-gold);">🌐 HKWB 웹3 디지털 은행</h2>
-            
-            <div class="dashboard-grid">
-                <div class="dash-card">
-                    <h3>지갑 연동 & 파이 네트워크</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Testnet Pi / Web3 Wallet</p>
-                    <button class="btn-entry btn-web3" style="padding: 0.75rem;">지갑 연결하기</button>
+            <button class="btn-back" onclick="showPortal()" id="btn-back-web3">← 메인으로 돌아가기</button>
+            <h2 style="margin-bottom: 0.4rem; color: var(--accent-gold);" id="w3-heading">🌐 HKWB 웹3 디지털 은행</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;" id="w3-subheading">개인자산 대시보드 & 10대 분산 연동망 프로세스</p>
+
+            <!-- 개인자산 대시보드 -->
+            <div class="asset-dashboard">
+                <div class="asset-card">
+                    <div class="asset-label">총 보유 PI 수량</div>
+                    <div class="asset-value" id="dash-pi">10,000.00 PI</div>
+                    <div class="asset-sub">메인넷/테스트넷 실시간 연동 기준</div>
+                </div>
+                <div class="asset-card">
+                    <div class="asset-label">예치 및 LP 스테이킹 자산</div>
+                    <div class="asset-value" id="dash-stake">4,500.00 PI</div>
+                    <div class="asset-sub">AGI / ASI 자율 변동 수익 적용</div>
+                </div>
+                <div class="asset-card">
+                    <div class="asset-label">누적 UBI / 보상 수령</div>
+                    <div class="asset-value" id="dash-ubi">320.00 PI</div>
+                    <div class="asset-sub">수익 30% UBI 배분 레이어</div>
+                </div>
+                <div class="asset-card">
+                    <div class="asset-label">지갑 연결 상태</div>
+                    <div class="asset-value" id="dash-wallet">0x8b9...2358</div>
+                    <div class="asset-sub">추천인 ID: ljw2358</div>
+                </div>
+            </div>
+
+            <!-- 10대 분산 연동망 -->
+            <div class="section-heading">
+                <h3>10대 분산 연동망</h3>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">각 항목을 눌러 프로세스를 실행하세요</span>
+            </div>
+
+            <div class="net-grid">
+                <div class="net-card" onclick="openProcessModal('지갑연결', '자동 연동 또는 테스트넷/메인넷 지갑 주소를 입력하고 6자리 인증번호로 연결합니다.', '지갑 주소', '0x8b9...2358 (Auto-Linked)')">
+                    <div class="net-icon">🔗</div>
+                    <div class="net-title">1. 지갑연결</div>
+                    <div class="net-desc">노드 지갑 프로토콜 연동 및 자동 연결</div>
                 </div>
 
-                <div class="dash-card">
-                    <h3>AGI/ASI 자율 금리 현황</h3>
-                    <div class="input-group">
-                        <label>현재 적용 알고리즘 금리</label>
-                        <input type="text" value="실시간 시장 변동 연동 (공격적 운용 모드)" readonly>
-                    </div>
+                <div class="net-card" onclick="openProcessModal('송금', '수신 지갑 주소와 전송 수량을 입력하여 멀티시그 송금을 실행합니다.', '수신 주소 및 수량', '100 PI')">
+                    <div class="net-icon">✈️</div>
+                    <div class="net-title">2. 송금</div>
+                    <div class="net-desc">초고속 멀티시그 암호화 전송</div>
                 </div>
 
-                <div class="dash-card">
-                    <h3>KYB / 본인 인증 상태</h3>
-                    <p style="color: #4cc9f0; margin-bottom: 0.5rem;">✔ 개인사업자 검증 완료</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">추천인 ID: ljw2358</p>
+                <div class="net-card" onclick="openProcessModal('결제', '현금·카드·파이코인 실시간 상거래 에스크로 결제를 진행합니다.', '결제 금액 / 가맹 코드', '50,000 KRW / 5 PI')">
+                    <div class="net-icon">💳</div>
+                    <div class="net-title">3. 결제</div>
+                    <div class="net-desc">실시간 상거래 에스크로 결제</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('예치', '예치 수량과 기간을 선택하여 AGI/ASI 변동 수익 예치 볼트에 등록합니다.', '예치 수량 (PI)', '1,000 PI')">
+                    <div class="net-icon">🔒</div>
+                    <div class="net-title">4. 예치</div>
+                    <div class="net-desc">자율 변동 이율 예치 볼트</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('보상', '기여도 기반 인센티브 볼트 적립 내역을 확인하고 수령합니다.', '보상 수령 지갑', '0x8b9...2358')">
+                    <div class="net-icon">🎁</div>
+                    <div class="net-title">5. 보상</div>
+                    <div class="net-desc">기여도 기반 인센티브 보상</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('기본소득', 'HK 사회재단 및 수익 30% UBI 분배 내역을 조회하고 수령합니다.', 'UBI 수령 계정', 'ljw2358')">
+                    <div class="net-icon">🏛️</div>
+                    <div class="net-title">6. 기본소득</div>
+                    <div class="net-desc">30% UBI 기본소득 분배 모델</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('스왑', '보유 자산을 원하는 코인 또는 화폐로 즉시 스왑합니다.', '스왑 수량', '500 PI')">
+                    <div class="net-icon">🔄</div>
+                    <div class="net-title">7. 스왑</div>
+                    <div class="net-desc">통합 자산 즉시 교환 스왑</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('DEX 스왑', '오더북 기반 P2P 유동성 매칭으로 DEX 스왑 주문을 등록합니다.', 'P2P 매수/매도 수량', '314.159000')">
+                    <div class="net-icon">📈</div>
+                    <div class="net-title">8. DEX 스왑</div>
+                    <div class="net-desc">P2P 유동성 자동 매칭 스왑</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('LP 스테이킹', '유동성 공급 풀(Pool)에 자산을 스테이킹하고 유동성 보상을 받습니다.', 'LP 스테이킹 수량', '2,000 LP')">
+                    <div class="net-icon">💧</div>
+                    <div class="net-title">9. LP 스테이킹</div>
+                    <div class="net-desc">유동성 풀 공급 및 스테이킹</div>
+                </div>
+
+                <div class="net-card" onclick="openProcessModal('PI 수량', '지갑의 PI 보유 수량과 실시간 평가 기준을 동기화합니다.', '조회 대상 PI 지갑', '0x8b9...2358')">
+                    <div class="net-icon">🥧</div>
+                    <div class="net-title">10. PI 수량</div>
+                    <div class="net-desc">실시간 PI 수량 동기화 및 조회</div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. 인터넷 은행 화면 (HK-BANK) -->
-        <div id="bankView" class="view-section">
+        <!-- 3. 웹2 은행 화면 (인터넷 은행 / HK-BANK) -->
+        <div id="web2View" class="view-section">
             <button class="btn-back" onclick="showPortal()">← 메인으로 돌아가기</button>
-            <h2 style="margin-bottom: 1.5rem; color: var(--accent-blue);">🏦 HK-BANK 인터넷 은행</h2>
-            
-            <div class="dashboard-grid">
-                <div class="dash-card">
-                    <h3>내 계좌 현황</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">HK-BANK 입출금 통장</p>
-                    <h2 style="margin: 1rem 0; color: #fff;">1,000,000 원</h2>
-                    <button class="btn-entry btn-bank" style="padding: 0.75rem;">이체하기</button>
-                </div>
+            <h2 style="margin-bottom: 0.4rem; color: var(--accent-blue);">🏦 HKWB 웹2 은행 (HK-BANK)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">점포 없는 모바일·웹 인터넷 뱅킹 서비스</p>
 
-                <div class="dash-card">
-                    <h3>스마트 예·적금 신청</h3>
-                    <div class="input-group">
-                        <label>예치 기간 선택</label>
-                        <input type="text" value="AGI 자율 변동금리 예금" readonly>
-                    </div>
-                    <button class="btn-entry btn-bank" style="padding: 0.75rem;">신청하기</button>
+            <div class="asset-dashboard">
+                <div class="asset-card">
+                    <div class="asset-label">HK-BANK 입출금 계좌</div>
+                    <div class="asset-value">2,500,000 KRW</div>
+                    <div class="asset-sub">무점포 인터넷 뱅킹 계좌</div>
                 </div>
-
-                <div class="dash-card">
-                    <h3>빠른 대출 / 자금 운용</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">점포 방문 없이 신속 승인</p>
-                    <button class="btn-entry btn-bank" style="padding: 0.75rem; background: #3a0ca3;">대출 한도 조회</button>
+                <div class="asset-card">
+                    <div class="asset-label">스마트 예·적금</div>
+                    <div class="asset-value">10,000,000 KRW</div>
+                    <div class="asset-sub">AGI / ASI 변동 금리 적용</div>
+                </div>
+                <div class="asset-card">
+                    <div class="asset-label">간편 이체 · 대출</div>
+                    <div class="asset-value">즉시 실행 가능</div>
+                    <div class="asset-sub">실시간 비대면 처리</div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Footer -->
+    <!-- 프로세스 실행 모달 -->
+    <div id="processModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title" id="pm-title">프로세스</div>
+                <button class="modal-close" onclick="closeModal('processModal')">×</button>
+            </div>
+            <div class="modal-desc" id="pm-desc">프로세스 설명</div>
+
+            <label class="field-label" id="pm-label">입력 값</label>
+            <input type="text" class="input-box" id="pm-input">
+
+            <label class="field-label">옵션 / 기간 선택</label>
+            <select class="select-box" id="pm-option">
+                <option value="AGI/ASI 자율 변동 모드">AGI / ASI 자율 변동 모드</option>
+                <option value="6개월 변동 플랜">6개월 변동 플랜</option>
+                <option value="1년 변동 플랜">1년 변동 플랜</option>
+                <option value="2년 변동 플랜">2년 변동 플랜</option>
+                <option value="3년 변동 플랜">3년 변동 플랜</option>
+            </select>
+
+            <label class="field-label">인증번호 (6자리)</label>
+            <input type="password" class="input-box" id="pm-code" placeholder="6자리 인증번호를 입력하세요">
+
+            <button class="btn-modal" onclick="submitProcess()">프로세스 확정 실행</button>
+        </div>
+    </div>
+
+    <!-- 네비게이터 안내 모달 -->
+    <div id="infoModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title" id="im-title">안내</div>
+                <button class="modal-close" onclick="closeModal('infoModal')">×</button>
+            </div>
+            <div class="modal-desc" id="im-desc">상세 내용</div>
+            <button class="btn-modal" onclick="closeModal('infoModal')">확인</button>
+        </div>
+    </div>
+
     <footer>
-        <p><strong>HKWB (HK WorldBank)</strong> | 고객지원: support@hkwb.world | 추천인 코드: ljw2358</p>
+        <p><strong>HKWB</strong> | 고객지원: support@hkwb.world | 추천인 ID: ljw2358</p>
         <p>© 2026 HKWB Platform. All rights reserved.</p>
     </footer>
 
     <script>
+        const i18n = {
+            ko: {
+                title: "글로벌 차세대 금융 플랫폼 HKWB",
+                subtitle: "웹3 디지털 은행과 웹2 은행 중 원하시는 서비스를 선택하세요.",
+                web3Title: "웹3 디지털 은행",
+                web3Desc: "개인자산 대시보드, 10대 분산 연동망(지갑연결·예치·LP스테이킹·스왑 등), AGI/ASI 자율 금리 및 UBI 분배",
+                web3Btn: "웹3 디지털 은행 진입",
+                web2Title: "웹2 은행 (HK-BANK)",
+                web2Desc: "점포 없는 모바일·웹 인터넷 은행. 간편 계좌 조회, 즉시 이체, 예·적금 및 간편 대출 서비스",
+                web2Btn: "웹2 은행 진입",
+                polUbi: "UBI 기본소득 배분",
+                polOps: "회사 경영 및 운영비",
+                polFdn: "HK 사회재단 기금",
+                polRateLabel: "이율 결정 모델",
+                polRateVal: "AGI / ASI 변동 금리"
+            },
+            en: {
+                title: "Global Next-Gen Financial Platform HKWB",
+                subtitle: "Choose between Web3 Digital Bank and Web2 Bank.",
+                web3Title: "Web3 Digital Bank",
+                web3Desc: "Personal Asset Dashboard, 10 Distributed Networks (Wallet, Deposit, LP Staking, Swap, etc.), AGI/ASI Rates & UBI",
+                web3Btn: "Enter Web3 Digital Bank",
+                web2Title: "Web2 Bank (HK-BANK)",
+                web2Desc: "Branchless online banking. Account overview, instant transfer, savings, and smart loans",
+                web2Btn: "Enter Web2 Bank",
+                polUbi: "UBI Allocation",
+                polOps: "Company Operations",
+                polFdn: "HK Social Foundation",
+                polRateLabel: "Interest Rate Model",
+                polRateVal: "AGI / ASI Dynamic Rate"
+            },
+            ja: {
+                title: "グローバル次世代金融プラットフォーム HKWB",
+                subtitle: "Web3デジタル銀行とWeb2銀行からご希望のサービスをお選びください。",
+                web3Title: "Web3 デジタル銀行",
+                web3Desc: "個人資産ダッシュボード、10大分散連動網（ウォレット連携・預金・LPステーキング・スワップ等）、AGI/ASI金利とUBI",
+                web3Btn: "Web3 デジタル銀行へ",
+                web2Title: "Web2 銀行 (HK-BANK)",
+                web2Desc: "店舗のないネット銀行。口座照会、即時送金、預積金、スマートローンサービス",
+                web2Btn: "Web2 銀行へ",
+                polUbi: "UBI 配分",
+                polOps: "会社運営費",
+                polFdn: "HK 社会財団基金",
+                polRateLabel: "金利決定モデル",
+                polRateVal: "AGI / ASI 変動金利"
+            },
+            zh: {
+                title: "全球下一代金融平台 HKWB",
+                subtitle: "请选择 Web3 数字银行或 Web2 银行服务。",
+                web3Title: "Web3 数字银行",
+                web3Desc: "个人资产仪表板、十大分布式联动网络（钱包连接、存款、LP质押、兑换等）、AGI/ASI利率与UBI",
+                web3Btn: "进入 Web3 数字银行",
+                web2Title: "Web2 银行 (HK-BANK)",
+                web2Desc: "无网点互联网银行。账户查询、实时转账、储蓄及便捷贷款服务",
+                web2Btn: "进入 Web2 银行",
+                polUbi: "UBI 分配比例",
+                polOps: "公司运营费用",
+                polFdn: "HK 社会基金会",
+                polRateLabel: "利率决策模型",
+                polRateVal: "AGI / ASI 浮动利率"
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSelect').value;
+            const t = i18n[lang] || i18n.ko;
+            document.documentElement.lang = lang;
+            document.getElementById('txt-title').innerText = t.title;
+            document.getElementById('txt-subtitle').innerText = t.subtitle;
+            document.getElementById('txt-web3-title').innerText = t.web3Title;
+            document.getElementById('txt-web3-desc').innerText = t.web3Desc;
+            document.getElementById('btn-web3').innerText = t.web3Btn;
+            document.getElementById('txt-web2-title').innerText = t.web2Title;
+            document.getElementById('txt-web2-desc').innerText = t.web2Desc;
+            document.getElementById('btn-web2').innerText = t.web2Btn;
+            document.getElementById('pol-ubi-label').innerText = t.polUbi;
+            document.getElementById('pol-ops-label').innerText = t.polOps;
+            document.getElementById('pol-fdn-label').innerText = t.polFdn;
+            document.getElementById('pol-rate-label').innerText = t.polRateLabel;
+            document.getElementById('pol-rate-val').innerText = t.polRateVal;
+        }
+
         function showView(viewId) {
-            document.querySelectorAll('.view-section').forEach(el => {
-                el.classList.remove('active');
-            });
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
             window.scrollTo(0, 0);
         }
@@ -417,6 +853,40 @@
         function showPortal() {
             showView('portalView');
         }
+
+        function toggleNavigator(open) {
+            document.getElementById('drawerOverlay').classList.toggle('active', open);
+            document.getElementById('navigatorDrawer').classList.toggle('active', open);
+        }
+
+        function openProcessModal(title, desc, label, defaultValue) {
+            document.getElementById('pm-title').innerText = title;
+            document.getElementById('pm-desc').innerText = desc;
+            document.getElementById('pm-label').innerText = label;
+            document.getElementById('pm-input').value = defaultValue || '';
+            document.getElementById('pm-code').value = '';
+            document.getElementById('processModal').classList.add('active');
+        }
+
+        function submitProcess() {
+            const title = document.getElementById('pm-title').innerText;
+            const val = document.getElementById('pm-input').value;
+            const opt = document.getElementById('pm-option').value;
+            alert(`[${title}] 프로세스가 접수되었습니다.\n입력: ${val}\n설정: ${opt}`);
+            closeModal('processModal');
+        }
+
+        function showInfoModal(title, desc) {
+            toggleNavigator(false);
+            document.getElementById('im-title').innerText = title;
+            document.getElementById('im-desc').innerText = desc;
+            document.getElementById('infoModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
     </script>
 </body>
 </html>
+
