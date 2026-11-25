@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB — 차세대 디지털 금융 혁신</title>
+  <title>HKWB — 인류와 기술이 공존하는 차세대 디지털 금융 혁신</title>
   <style>
     * {
       box-sizing: border-box;
@@ -14,303 +14,379 @@
     body {
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
-      background: radial-gradient(circle at 50% 42%, #181a1f 0%, #0b0c0f 65%, #060709 100%);
+      background: #0b0d12;
       color: #f3f4f6;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+      line-height: 1.5;
     }
 
-    /* 상단 헤더 */
+    /* 상단 네비게이션 바 */
     .topbar {
       width: 100%;
-      padding: 20px 32px;
+      padding: 14px 28px;
+      background: #0d1016;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
     .brand-logo {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       color: #f5b921;
       text-decoration: none;
-      user-select: none;
     }
 
-    .lang-wrap {
-      position: relative;
-    }
-
-    .lang-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .ref-badge {
+      font-size: 12px;
       color: #9ca3af;
-      font-size: 13px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
     }
 
-    .lang-btn:hover {
+    .ref-badge strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: #151922;
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 7px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: #1f2533;
       color: #ffffff;
       border-color: rgba(245, 185, 33, 0.45);
     }
 
-    .lang-dropdown {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: 38px;
-      width: 180px;
-      max-height: 240px;
-      overflow-y: auto;
-      background: #14161c;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 12px;
-      padding: 6px;
-      z-index: 20;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+    /* 메인 컨테이너 */
+    .container {
+      max-width: 1060px;
+      margin: 26px auto 56px;
+      padding: 0 20px;
     }
 
-    .lang-dropdown.open {
-      display: block;
-    }
-
-    .lang-option {
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      border: none;
-      color: #d1d5db;
-      font-size: 13px;
-      padding: 8px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .lang-option:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-    }
-
-    /* 중앙 메인 히어로 영역 */
-    .hero-wrapper {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 20px 64px;
-    }
-
-    .hero-card {
-      width: 100%;
-      max-width: 780px;
-      padding: 56px 36px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(22, 25, 31, 0.85) 0%, rgba(13, 15, 19, 0.92) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    /* 중앙 메인 히어로 카드 */
+    .hero-banner {
+      background: radial-gradient(circle at 50% 10%, rgba(30, 58, 95, 0.55), rgba(14, 18, 26, 0.96) 72%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 36px 24px 28px;
       text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-logo {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #f5b921;
+      margin-bottom: 10px;
     }
 
     .hero-title {
-      font-size: clamp(26px, 4.2vw, 42px);
+      font-size: clamp(20px, 3vw, 28px);
       font-weight: 800;
-      line-height: 1.32;
-      letter-spacing: -0.02em;
       color: #f9fafb;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
-    .hero-subtitle {
-      font-size: clamp(13px, 1.8vw, 15px);
-      font-weight: 400;
+    .hero-sub {
+      font-size: 13px;
       color: #9ca3af;
-      line-height: 1.5;
-      margin-bottom: 34px;
+      margin-bottom: 28px;
     }
 
-    .cta-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* 3칸 지표 요약 바 */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      flex-wrap: wrap;
+      background: rgba(9, 12, 18, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
     }
 
-    .btn-portal {
-      appearance: none;
+    .stat-item {
+      padding: 4px 10px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .stat-value-pi {
+      font-size: 17px;
+      font-weight: 800;
+      color: #f59e0b;
+    }
+
+    .stat-value-krw {
+      font-size: 17px;
+      font-weight: 800;
+      color: #34d399;
+    }
+
+    .stat-value-ref {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
+    /* 하단 2단 은행 카드 영역 */
+    .bank-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .bank-card {
+      background: #12161f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38);
+    }
+
+    .bank-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .bank-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .bank-desc {
+      font-size: 12.5px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+      min-height: 38px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .feature-list li {
+      background: #0b0e14;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 12px;
+      color: #d1d5db;
+    }
+
+    .action-btn {
+      width: 100%;
       border: none;
-      border-radius: 10px;
-      padding: 12px 24px;
-      font-size: 14px;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 13px;
       font-weight: 700;
       color: #ffffff;
       cursor: pointer;
-      transition: transform 0.16s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.15s ease, filter 0.18s ease;
     }
 
-    .btn-portal:hover {
-      transform: translateY(-2px);
+    .action-btn:hover {
+      transform: translateY(-1px);
       filter: brightness(1.08);
     }
 
-    .btn-portal:active {
-      transform: translateY(0);
+    .btn-purple {
+      background: linear-gradient(90deg, #6d28d9, #7c3aed);
     }
 
-    .btn-web3 {
-      background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%);
-      box-shadow: 0 8px 24px rgba(109, 40, 217, 0.35);
+    .btn-green {
+      background: linear-gradient(90deg, #059669, #10b981);
     }
 
-    .btn-internet {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.28);
-    }
-
-    /* 상태 안내 모달/토스트 */
-    .status-toast {
+    /* 알림 토스트 */
+    .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 22px;
       left: 50%;
-      transform: translateX(-50%) translateY(16px);
-      background: #181b22;
+      transform: translateX(-50%) translateY(14px);
+      background: #1a202c;
       color: #f9fafb;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 11px 18px;
-      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 10px;
       font-size: 13px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 50;
+      z-index: 100;
     }
 
-    .status-toast.show {
+    .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
 
-    @media (max-width: 520px) {
-      .topbar {
-        padding: 16px 20px;
-      }
-      .hero-card {
-        padding: 40px 20px;
-      }
-      .cta-group {
-        flex-direction: column;
-      }
-      .btn-portal {
-        width: 100%;
-        max-width: 280px;
+    @media (max-width: 780px) {
+      .stats-grid,
+      .bank-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <a href="#" class="brand-logo" id="logoLink">HKWB</a>
-
-    <div class="lang-wrap">
-      <button type="button" class="lang-btn" id="langBtn" aria-expanded="false">
-        <span>🌐</span>
-        <span id="langLabel">60개국어</span>
-      </button>
-      <div class="lang-dropdown" id="langDropdown" role="menu"></div>
+    <div class="brand-area">
+      <a href="#" class="brand-logo" id="homeLogo">HKWB</a>
+      <span class="ref-badge">추천인 ID: <strong id="topRefId">ljw2358</strong></span>
     </div>
+
+    <nav class="nav-tabs" aria-label="주요 메뉴">
+      <button type="button" class="nav-btn active" data-target="top">표지 (총괄문)</button>
+      <button type="button" class="nav-btn" data-target="web3">아들 방 · HKWB Web3</button>
+    </nav>
   </header>
 
-  <main class="hero-wrapper">
-    <section class="hero-card" aria-labelledby="heroTitle">
-      <h1 class="hero-title" id="heroTitle">
-        인류와 기술이 공존하는<br />
-        차세대 디지털 금융 혁신
-      </h1>
-      <p class="hero-subtitle" id="heroSubtitle">
-        10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
+  <main class="container">
+    <section class="hero-banner">
+      <div class="hero-logo">HKWB</div>
+      <h1 class="hero-title">인류와 기술이 공존하는 차세대 디지털 금융 혁신</h1>
+      <p class="hero-sub">
+        중앙 표지에서 Web3 디지털 은행(아들 방)과 HK 뱅크 인터넷 뱅크(딸 방)으로 바로 진입하고, 각 방에서 언제든 표지로 돌아올 수 있습니다.
       </p>
 
-      <div class="cta-group">
-        <button type="button" class="btn-portal btn-web3" id="web3Btn">
-          Web3 디지털 은행 진입하기
-        </button>
-        <button type="button" class="btn-portal btn-internet" id="internetBtn">
-          인터넷 뱅크 진입하기
-        </button>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-label">아들 방 · HKWB 보유량</div>
+          <div class="stat-value-pi" id="piBalance">314,159.00 Pi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">은행 · HK 뱅크 원화 잔액</div>
+          <div class="stat-value-krw" id="krwBalance">154,200,000 원</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">추천인 코드</div>
+          <div class="stat-value-ref" id="cardRefCode">ljw2358</div>
+        </div>
       </div>
+    </section>
+
+    <section class="bank-grid" aria-label="은행 서비스 선택">
+      <!-- 좌측 카드: HKWB Web3 디지털 은행 -->
+      <article class="bank-card" id="web3Card">
+        <div>
+          <div class="bank-tag">아들 방 · Web3 디지털 은행</div>
+          <h2 class="bank-name">HKWB Web3 디지털 은행</h2>
+          <p class="bank-desc">
+            Pi Network 기반 지갑 연동 및 즉시 P2P 송금, 스테이킹 생태계 리워드 및 UBI 현황을 한눈에 관리합니다.
+          </p>
+          <ul class="feature-list">
+            <li>1. 파이 지갑 연동 및 즉시 P2P 전송</li>
+            <li>2. 스테이킹 예치 및 노드 리워드 관리</li>
+            <li>3. 생태계 전환율 및 수익 내역 확인</li>
+          </ul>
+        </div>
+        <button type="button" class="action-btn btn-purple" id="enterWeb3Btn">
+          아들 방 진입하기
+        </button>
+      </article>
+
+      <!-- 우측 카드: HK 뱅크 (HK Bank) -->
+      <article class="bank-card" id="internetBankCard">
+        <div>
+          <div class="bank-tag">딸 방 · 인터넷 뱅크</div>
+          <h2 class="bank-name">HK 뱅크 (HK Bank)</h2>
+          <p class="bank-desc">
+            원화 주거래 계좌 이체, 한도 관리, 예금·대출 현황 및 생활 금융 서비스를 바로 이용할 수 있습니다.
+          </p>
+          <ul class="feature-list">
+            <li>1. 원화 주거래 계좌 즉시 이체 및 내역 조회</li>
+            <li>2. 일일·1회 이체 한도 및 예산 한도 관리</li>
+            <li>3. 체크카드 · 공과·생활 금융 메뉴 개설</li>
+          </ul>
+        </div>
+        <button type="button" class="action-btn btn-green" id="enterBankBtn">
+          딸 방 진입하기
+        </button>
+      </article>
     </section>
   </main>
 
-  <div class="status-toast" id="statusToast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const languages = [
-      "한국어 (KO)", "English (EN)", "日本語 (JA)", "中文简体 (ZH-CN)", "中文繁體 (ZH-TW)",
-      "Español (ES)", "Français (FR)", "Deutsch (DE)", "Italiano (IT)", "Português (PT)",
-      "Русский (RU)", "العربية (AR)", "हिन्दी (HI)", "Tiếng Việt (VI)", "ไทย (TH)",
-      "Bahasa Indonesia (ID)", "Bahasa Melayu (MS)", "Türkçe (TR)", "Nederlands (NL)", "Polski (PL)"
-    ];
+    const toast = document.getElementById("toast");
 
-    const langBtn = document.getElementById("langBtn");
-    const langDropdown = document.getElementById("langDropdown");
-    const langLabel = document.getElementById("langLabel");
-    const toast = document.getElementById("statusToast");
-
-    function showToast(message) {
-      toast.textContent = message;
+    function notify(msg) {
+      toast.textContent = msg;
       toast.classList.add("show");
-      clearTimeout(showToast._timer);
-      showToast._timer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2400);
+      clearTimeout(notify._t);
+      notify._t = setTimeout(() => toast.classList.remove("show"), 2300);
     }
 
-    languages.forEach((lang) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "lang-option";
-      btn.textContent = lang;
+    document.querySelectorAll(".nav-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        langLabel.textContent = lang.split(" ")[0];
-        langDropdown.classList.remove("open");
-        langBtn.setAttribute("aria-expanded", "false");
-        showToast(`선택된 언어: ${lang}`);
+        document.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const target = btn.dataset.target;
+        if (target === "top") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          notify("HKWB 중앙 표지 화면입니다.");
+        } else if (target === "web3") {
+          document.getElementById("web3Card").scrollIntoView({ behavior: "smooth", block: "center" });
+          notify("아들 방 · HKWB Web3 영역으로 이동했습니다.");
+        }
       });
-      langDropdown.appendChild(btn);
     });
 
-    langBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = langDropdown.classList.toggle("open");
-      langBtn.setAttribute("aria-expanded", String(isOpen));
+    document.getElementById("enterWeb3Btn").addEventListener("click", () => {
+      notify("아들 방 (HKWB Web3 디지털 은행)으로 진입합니다.");
     });
 
-    document.addEventListener("click", () => {
-      langDropdown.classList.remove("open");
-      langBtn.setAttribute("aria-expanded", "false");
+    document.getElementById("enterBankBtn").addEventListener("click", () => {
+      notify("딸 방 (HK 뱅크 인터넷 뱅크)으로 진입합니다.");
     });
 
-    document.getElementById("web3Btn").addEventListener("click", () => {
-      showToast("HKWB Web3 디지털 은행으로 이동합니다.");
-      // 실제 이동 경로 연결 시 아래 주석 해제:
-      // window.location.href = "./web3.html";
-    });
-
-    document.getElementById("internetBtn").addEventListener("click", () => {
-      showToast("HKWB 인터넷 뱅크로 이동합니다.");
-      // 실제 이동 경로 연결 시 아래 주석 해제:
-      // window.location.href = "./bank.html";
-    });
-
-    document.getElementById("logoLink").addEventListener("click", (e) => {
+    document.getElementById("homeLogo").addEventListener("click", (e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
