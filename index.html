@@ -1,852 +1,319 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKWB · HK 뱅크 통합 금융 플랫폼</title>
-    <style>
-        :root {
-            --bg-main: #090c14;
-            --bg-panel: #121827;
-            --bg-card: #182136;
-            --bg-soft: #1f2a44;
-            --text-main: #f4f6fb;
-            --text-sub: #9aa6be;
-            --gold: #f5b942;
-            --purple: #7c3aed;
-            --blue: #2563eb;
-            --green: #10b981;
-            --border: #2a3754;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HKWB — 차세대 디지털 금융 혁신</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
-        }
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
+      background: radial-gradient(circle at 50% 42%, #181a1f 0%, #0b0c0f 65%, #060709 100%);
+      color: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            min-height: 100vh;
-            line-height: 1.5;
-        }
+    /* 상단 헤더 */
+    .topbar {
+      width: 100%;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        /* 상단 헤더 */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: rgba(18, 24, 39, 0.96);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
+    .brand-logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #f5b921;
+      text-decoration: none;
+      user-select: none;
+    }
 
-        .brand-area {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
+    .lang-wrap {
+      position: relative;
+    }
 
-        .logo-main {
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 2px;
-            cursor: pointer;
-            line-height: 1;
-        }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #9ca3af;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
 
-        .ref-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 999px;
-            font-size: 13px;
-            color: var(--text-sub);
-        }
+    .lang-btn:hover {
+      color: #ffffff;
+      border-color: rgba(245, 185, 33, 0.45);
+    }
 
-        .ref-box strong {
-            color: var(--gold);
-        }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 38px;
+      width: 180px;
+      max-height: 240px;
+      overflow-y: auto;
+      background: #14161c;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 6px;
+      z-index: 20;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+    }
 
-        .top-tabs {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+    .lang-dropdown.open {
+      display: block;
+    }
 
-        .tab-btn {
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 9px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    .lang-option {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: #d1d5db;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
-        .tab-btn:hover,
-        .tab-btn.active {
-            border-color: var(--gold);
-            background: var(--bg-soft);
-            color: var(--gold);
-        }
+    .lang-option:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
 
-        /* 레이아웃 */
-        .container {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 28px 20px 60px;
-        }
+    /* 중앙 메인 히어로 영역 */
+    .hero-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px 64px;
+    }
 
-        .view {
-            display: none;
-        }
+    .hero-card {
+      width: 100%;
+      max-width: 780px;
+      padding: 56px 36px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(22, 25, 31, 0.85) 0%, rgba(13, 15, 19, 0.92) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      text-align: center;
+    }
 
-        .view.active {
-            display: block;
-        }
+    .hero-title {
+      font-size: clamp(26px, 4.2vw, 42px);
+      font-weight: 800;
+      line-height: 1.32;
+      letter-spacing: -0.02em;
+      color: #f9fafb;
+      margin-bottom: 16px;
+    }
 
-        /* 표지 (중앙문) */
-        .hero-box {
-            background: linear-gradient(160deg, #162036 0%, #101624 100%);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 44px 28px;
-            text-align: center;
-            margin-bottom: 28px;
-        }
+    .hero-subtitle {
+      font-size: clamp(13px, 1.8vw, 15px);
+      font-weight: 400;
+      color: #9ca3af;
+      line-height: 1.5;
+      margin-bottom: 34px;
+    }
 
-        .hero-logo {
-            font-size: 72px;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 4px;
-            line-height: 1.05;
-            margin-bottom: 10px;
-        }
+    .cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-        .hero-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
+    .btn-portal {
+      appearance: none;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform 0.16s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .hero-sub {
-            font-size: 14px;
-            color: var(--text-sub);
-            max-width: 680px;
-            margin: 0 auto 28px;
-        }
+    .btn-portal:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
 
-        .summary-strip {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 14px;
-            margin-top: 24px;
-            text-align: left;
-        }
+    .btn-portal:active {
+      transform: translateY(0);
+    }
 
-        .mini-stat {
-            background: rgba(9, 12, 20, 0.65);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 16px;
-        }
+    .btn-web3 {
+      background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%);
+      box-shadow: 0 8px 24px rgba(109, 40, 217, 0.35);
+    }
 
-        .mini-stat span {
-            display: block;
-            font-size: 12px;
-            color: var(--text-sub);
-            margin-bottom: 4px;
-        }
+    .btn-internet {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.28);
+    }
 
-        .mini-stat strong {
-            font-size: 18px;
-            color: var(--gold);
-        }
+    /* 상태 안내 모달/토스트 */
+    .status-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: #181b22;
+      color: #f9fafb;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+    }
 
-        .door-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
+    .status-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
-        .door-panel {
-            background: var(--bg-panel);
-            border: 2px solid var(--border);
-            border-radius: 20px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .door-panel:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold);
-        }
-
-        .room-badge {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 800;
-            padding: 5px 11px;
-            border-radius: 999px;
-            margin-bottom: 12px;
-            background: rgba(245, 185, 66, 0.14);
-            color: var(--gold);
-        }
-
-        .door-panel h2 {
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-
-        .door-panel p {
-            font-size: 14px;
-            color: var(--text-sub);
-            margin-bottom: 18px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 24px;
-            display: grid;
-            gap: 8px;
-            font-size: 13px;
-            color: #d6deee;
-        }
-
-        .feature-list li {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 10px 12px;
-            border-radius: 10px;
-        }
-
-        .enter-btn {
-            width: 100%;
-            padding: 14px 18px;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .btn-son {
-            background: var(--purple);
-            color: #fff;
-        }
-
-        .btn-daughter {
-            background: var(--green);
-            color: #06140e;
-        }
-
-        /* 방 공통 상단 */
-        .room-header {
-            background: var(--bg-panel);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 22px 24px;
-            margin-bottom: 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .room-header h2 {
-            font-size: 24px;
-        }
-
-        .room-header p {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-top: 4px;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 22px;
-        }
-
-        .kpi-card {
-            background: var(--bg-panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .kpi-card .label {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 8px;
-        }
-
-        .kpi-card .val {
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--gold);
-        }
-
-        .kpi-card .sub {
-            font-size: 12px;
-            color: var(--text-sub);
-            margin-top: 6px;
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 20px;
-            margin-bottom: 22px;
-        }
-
-        .panel {
-            background: var(--bg-panel);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 22px;
-        }
-
-        .panel h3 {
-            font-size: 17px;
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .form-row {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 14px;
-        }
-
-        .form-row input,
-        .form-row select {
-            width: 100%;
-            padding: 11px 13px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-main);
-            font-size: 14px;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            padding: 11px 16px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-main);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .action-btn:hover {
-            border-color: var(--gold);
-        }
-
-        .action-btn.gold {
-            background: var(--gold);
-            color: #111;
-            border-color: var(--gold);
-        }
-
-        .action-btn.purple {
-            background: var(--purple);
-            color: #fff;
-            border-color: var(--purple);
-        }
-
-        .tx-list {
-            list-style: none;
-            display: grid;
-            gap: 10px;
-            max-height: 260px;
-            overflow-y: auto;
-        }
-
-        .tx-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-        }
-
-        .tx-item small {
-            display: block;
-            color: var(--text-sub);
-            font-size: 11px;
-            margin-top: 2px;
-        }
-
-        .tx-amount {
-            font-weight: 800;
-            color: var(--gold);
-            white-space: nowrap;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .service-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 16px;
-        }
-
-        .service-box strong {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 6px;
-        }
-
-        .service-box span {
-            display: block;
-            font-size: 12px;
-            color: var(--text-sub);
-            margin-bottom: 12px;
-        }
-
-        .status-msg {
-            margin-top: 12px;
-            padding: 11px 14px;
-            border-radius: 10px;
-            background: rgba(16, 185, 129, 0.14);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            color: #a7f3d0;
-            font-size: 13px;
-            display: none;
-        }
-
-        .status-msg.show {
-            display: block;
-        }
-    </style>
+    @media (max-width: 520px) {
+      .topbar {
+        padding: 16px 20px;
+      }
+      .hero-card {
+        padding: 40px 20px;
+      }
+      .cta-group {
+        flex-direction: column;
+      }
+      .btn-portal {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="topbar">
+    <a href="#" class="brand-logo" id="logoLink">HKWB</a>
 
-    <header>
-        <div class="brand-area">
-            <div class="logo-main" onclick="switchView('cover')">HKWB</div>
-            <div class="ref-box">추천인 ID: <strong>ljw2358</strong></div>
-        </div>
-        <nav class="top-tabs">
-            <button id="tab-cover" class="tab-btn active" onclick="switchView('cover')">표지 (중앙문)</button>
-            <button id="tab-son" class="tab-btn" onclick="switchView('son-room')">아들 방 · HKWB Web3</button>
-            <button id="tab-daughter" class="tab-btn" onclick="switchView('daughter-room')">딸 방 · HK 뱅크</button>
-        </nav>
-    </header>
-
-    <div class="container">
-
-        <!-- 표지 (중앙문) -->
-        <section id="cover" class="view active">
-            <div class="hero-box">
-                <div class="hero-logo">HKWB</div>
-                <div class="hero-title">인류와 기술이 공존하는 차세대 디지털 금융 혁신</div>
-                <p class="hero-sub">중앙 표지에서 Web3 디지털 은행(아들 방)과 HK 뱅크 인터넷 뱅킹(딸 방)으로 바로 진입하고, 각 방에서 언제든 표지로 돌아올 수 있습니다.</p>
-
-                <div class="summary-strip">
-                    <div class="mini-stat">
-                        <span>아들 방 · HKWB 보유 Pi</span>
-                        <strong id="cover-pi">314,159.00 Pi</strong>
-                    </div>
-                    <div class="mini-stat">
-                        <span>딸 방 · HK 뱅크 원화 잔액</span>
-                        <strong id="cover-krw">154,200,000 원</strong>
-                    </div>
-                    <div class="mini-stat">
-                        <span>추천인 코드</span>
-                        <strong>ljw2358</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="door-grid">
-                <div class="door-panel">
-                    <div>
-                        <span class="room-badge">아들 방 · WEB3 디지털 은행</span>
-                        <h2>HKWB Web3 디지털 은행</h2>
-                        <p>Pi Network 기반 지갑 연동, P2P 송금, 스테이킹, 생태계 리워드 및 UBI 현황을 한곳에서 관리합니다.</p>
-                        <ul class="feature-list">
-                            <li>1. 파이 지갑 연동 및 즉시 P2P 전송</li>
-                            <li>2. 스테이킹 예치 및 누적 리워드 관리</li>
-                            <li>3. 생태계 리워드 · UBI 수령 내역 확인</li>
-                        </ul>
-                    </div>
-                    <button class="enter-btn btn-son" onclick="switchView('son-room')">아들 방 진입하기</button>
-                </div>
-
-                <div class="door-panel">
-                    <div>
-                        <span class="room-badge">딸 방 · 인터넷 뱅킹</span>
-                        <h2>HK 뱅크 (HK Bank)</h2>
-                        <p>원화 주거래 계좌 이체, 한도 관리, 예금·대출 현황 및 생활 금융 서비스를 바로 이용할 수 있습니다.</p>
-                        <ul class="feature-list">
-                            <li>1. 원화 주거래 계좌 즉시 이체 및 내역 조회</li>
-                            <li>2. 일일·1회 이체 한도 및 여신 한도 관리</li>
-                            <li>3. 체크카드 · 환율 · 생활 금융 메뉴 제공</li>
-                        </ul>
-                    </div>
-                    <button class="enter-btn btn-daughter" onclick="switchView('daughter-room')">딸 방 진입하기</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 아들 방: HKWB Web3 디지털 은행 -->
-        <section id="son-room" class="view">
-            <div class="room-header">
-                <div>
-                    <span class="room-badge">아들 방</span>
-                    <h2>HKWB Web3 디지털 은행</h2>
-                    <p>Pi 자산 전송, 스테이킹 예치, 생태계 리워드 수령을 직접 테스트할 수 있습니다.</p>
-                </div>
-                <div class="header-actions">
-                    <button class="tab-btn" onclick="switchView('cover')">표지 (중앙문)으로 가기</button>
-                    <button class="tab-btn" onclick="switchView('daughter-room')">딸 방으로 이동</button>
-                </div>
-            </div>
-
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="label">통합 보유 Pi 자산</div>
-                    <div class="val" id="son-balance">314,159.00 Pi</div>
-                    <div class="sub">추천인 ID: ljw2358</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="label">스테이킹 예치 Pi</div>
-                    <div class="val" id="son-staked">45,000.00 Pi</div>
-                    <div class="sub">락업 및 리워드 적립 중</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="label">누적 생태계 · UBI 리워드</div>
-                    <div class="val" id="son-reward">12,840.50 Pi</div>
-                    <div class="sub">지갑 수령 가능 잔액 포함</div>
-                </div>
-            </div>
-
-            <div class="work-grid">
-                <div class="panel">
-                    <h3>Pi 전송 및 스테이킹 실행</h3>
-                    <div class="form-row">
-                        <input type="text" id="pi-recipient" placeholder="받는 지갑 주소 또는 친구 아이디 (예: @hyekong)">
-                        <input type="number" id="pi-amount" placeholder="수량 입력 (Pi)" min="1" step="0.01">
-                        <select id="pi-action-type">
-                            <option value="transfer">P2P Pi 송금</option>
-                            <option value="stake">Pi 스테이킹 예치</option>
-                        </select>
-                    </div>
-                    <div class="btn-row">
-                        <button class="action-btn purple" onclick="executePiAction()">실행하기</button>
-                        <button class="action-btn gold" onclick="claimPiReward()">생태계 리워드 +250 Pi 수령</button>
-                    </div>
-                    <div id="son-msg" class="status-msg"></div>
-                </div>
-
-                <div class="panel">
-                    <h3>최근 Web3 거래 내역</h3>
-                    <ul id="son-tx-list" class="tx-list">
-                        <li class="tx-item">
-                            <div>
-                                <strong>생태계 UBI 리워드 수령</strong>
-                                <small>추천인 ljw2358 · 완료</small>
-                            </div>
-                            <span class="tx-amount">+250.00 Pi</span>
-                        </li>
-                        <li class="tx-item">
-                            <div>
-                                <strong>노드 스테이킹 예치</strong>
-                                <small>메인넷 노드 연동 · 완료</small>
-                            </div>
-                            <span class="tx-amount">5,000.00 Pi</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="panel">
-                <h3>Web3 주요 모듈</h3>
-                <div class="service-grid">
-                    <div class="service-box">
-                        <strong>지갑 연결 상태</strong>
-                        <span>HKWB 지갑 및 노드 연결 준비 완료</span>
-                        <button class="action-btn" onclick="showNotice('son-msg', 'Web3 지갑 연결 상태가 정상으로 확인되었습니다.')">연결 점검</button>
-                    </div>
-                    <div class="service-box">
-                        <strong>QR 결제 스캐너</strong>
-                        <span>가맹점 Pi QR 결제 및 영수증 발행</span>
-                        <button class="action-btn" onclick="showNotice('son-msg', 'QR 결제 스캐너 모듈이 준비되었습니다.')">QR 열기</button>
-                    </div>
-                    <div class="service-box">
-                        <strong>거버넌스 제안함</strong>
-                        <span>커뮤니티 안건 및 정책 투표 목록</span>
-                        <button class="action-btn" onclick="showNotice('son-msg', '현재 진행 중인 거버넌스 안건 3건이 확인되었습니다.')">안건 보기</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 딸 방: HK 뱅크 -->
-        <section id="daughter-room" class="view">
-            <div class="room-header">
-                <div>
-                    <span class="room-badge">딸 방</span>
-                    <h2>HK 뱅크 (HK Bank 인터넷 뱅킹)</h2>
-                    <p>원화 계좌 이체, 한도 조회, 카드 및 생활 금융 서비스를 바로 이용할 수 있습니다.</p>
-                </div>
-                <div class="header-actions">
-                    <button class="tab-btn" onclick="switchView('cover')">표지 (중앙문)으로 가기</button>
-                    <button class="tab-btn" onclick="switchView('son-room')">아들 방으로 이동</button>
-                </div>
-            </div>
-
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="label">원화 주거래 계좌 잔액</div>
-                    <div class="val" id="daughter-balance">154,200,000 원</div>
-                    <div class="sub">HK 뱅크 입출금 자유계좌</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="label">1일 이체 한도</div>
-                    <div class="val" id="daughter-limit">100,000,000 원</div>
-                    <div class="sub">비대면 보안 인증 적용</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="label">이번 달 카드 이용액</div>
-                    <div class="val">2,480,000 원</div>
-                    <div class="sub">HK 뱅크 체크·신용 통합</div>
-                </div>
-            </div>
-
-            <div class="work-grid">
-                <div class="panel">
-                    <h3>원화 계좌 이체</h3>
-                    <div class="form-row">
-                        <input type="text" id="krw-target" placeholder="받는 분 또는 계좌 메모 (예: 가족 생활비)">
-                        <input type="number" id="krw-amount" placeholder="이체 금액 입력 (원)" min="1000" step="1000">
-                        <select id="krw-account">
-                            <option value="주거래 입출금 계좌">주거래 입출금 계좌</option>
-                            <option value="비상금 파킹 계좌">비상금 파킹 계좌</option>
-                        </select>
-                    </div>
-                    <div class="btn-row">
-                        <button class="action-btn gold" onclick="executeKrwTransfer()">즉시 이체하기</button>
-                        <button class="action-btn" onclick="increaseKrwLimit()">이체 한도 증액 신청</button>
-                    </div>
-                    <div id="daughter-msg" class="status-msg"></div>
-                </div>
-
-                <div class="panel">
-                    <h3>최근 원화 입출금 내역</h3>
-                    <ul id="daughter-tx-list" class="tx-list">
-                        <li class="tx-item">
-                            <div>
-                                <strong>주거래 계좌 입금</strong>
-                                <small>정산 입금 · 완료</small>
-                            </div>
-                            <span class="tx-amount">+12,500,000 원</span>
-                        </li>
-                        <li class="tx-item">
-                            <div>
-                                <strong>가족 생활비 이체</strong>
-                                <small>즉시 이체 · 완료</small>
-                            </div>
-                            <span class="tx-amount">-1,500,000 원</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="panel">
-                <h3>HK 뱅크 주요 서비스</h3>
-                <div class="service-grid">
-                    <div class="service-box">
-                        <strong>스마트 체크카드</strong>
-                        <span>국내외 결제 및 교통카드 연동 관리</span>
-                        <button class="action-btn" onclick="showNotice('daughter-msg', '스마트 체크카드 상태가 정상 이용 중입니다.')">카드 관리</button>
-                    </div>
-                    <div class="service-box">
-                        <strong>실시간 환율 센터</strong>
-                        <span>USD · JPY · EUR 환율 및 환전 계산</span>
-                        <button class="action-btn" onclick="showNotice('daughter-msg', '실시간 환율 정보가 최신 상태로 갱신되었습니다.')">환율 조회</button>
-                    </div>
-                    <div class="service-box">
-                        <strong>계좌 개설 · 예금</strong>
-                        <span>자유입출금 및 정기예금 상품 안내</span>
-                        <button class="action-btn" onclick="showNotice('daughter-msg', 'HK 뱅크 신규 계좌 및 예금 메뉴를 불러왔습니다.')">상품 보기</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    <div class="lang-wrap">
+      <button type="button" class="lang-btn" id="langBtn" aria-expanded="false">
+        <span>🌐</span>
+        <span id="langLabel">60개국어</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown" role="menu"></div>
     </div>
+  </header>
 
-    <script>
-        let piBalance = 314159.00;
-        let piStaked = 45000.00;
-        let piReward = 12840.50;
+  <main class="hero-wrapper">
+    <section class="hero-card" aria-labelledby="heroTitle">
+      <h1 class="hero-title" id="heroTitle">
+        인류와 기술이 공존하는<br />
+        차세대 디지털 금융 혁신
+      </h1>
+      <p class="hero-subtitle" id="heroSubtitle">
+        10대 글로벌 보안 기술 &amp; AI 기술 기반 글로벌 자율 금융 플랫폼
+      </p>
 
-        let krwBalance = 154200000;
-        let krwLimit = 100000000;
+      <div class="cta-group">
+        <button type="button" class="btn-portal btn-web3" id="web3Btn">
+          Web3 디지털 은행 진입하기
+        </button>
+        <button type="button" class="btn-portal btn-internet" id="internetBtn">
+          인터넷 뱅크 진입하기
+        </button>
+      </div>
+    </section>
+  </main>
 
-        function formatPi(num) {
-            return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Pi';
-        }
+  <div class="status-toast" id="statusToast" role="status" aria-live="polite"></div>
 
-        function formatKrw(num) {
-            return num.toLocaleString('ko-KR') + ' 원';
-        }
+  <script>
+    const languages = [
+      "한국어 (KO)", "English (EN)", "日本語 (JA)", "中文简体 (ZH-CN)", "中文繁體 (ZH-TW)",
+      "Español (ES)", "Français (FR)", "Deutsch (DE)", "Italiano (IT)", "Português (PT)",
+      "Русский (RU)", "العربية (AR)", "हिन्दी (HI)", "Tiếng Việt (VI)", "ไทย (TH)",
+      "Bahasa Indonesia (ID)", "Bahasa Melayu (MS)", "Türkçe (TR)", "Nederlands (NL)", "Polski (PL)"
+    ];
 
-        function syncDashboard() {
-            document.getElementById('son-balance').textContent = formatPi(piBalance);
-            document.getElementById('son-staked').textContent = formatPi(piStaked);
-            document.getElementById('son-reward').textContent = formatPi(piReward);
-            document.getElementById('cover-pi').textContent = formatPi(piBalance);
+    const langBtn = document.getElementById("langBtn");
+    const langDropdown = document.getElementById("langDropdown");
+    const langLabel = document.getElementById("langLabel");
+    const toast = document.getElementById("statusToast");
 
-            document.getElementById('daughter-balance').textContent = formatKrw(krwBalance);
-            document.getElementById('daughter-limit').textContent = formatKrw(krwLimit);
-            document.getElementById('cover-krw').textContent = formatKrw(krwBalance);
-        }
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
 
-        function switchView(viewId) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
+    languages.forEach((lang) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "lang-option";
+      btn.textContent = lang;
+      btn.addEventListener("click", () => {
+        langLabel.textContent = lang.split(" ")[0];
+        langDropdown.classList.remove("open");
+        langBtn.setAttribute("aria-expanded", "false");
+        showToast(`선택된 언어: ${lang}`);
+      });
+      langDropdown.appendChild(btn);
+    });
 
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if (viewId === 'cover') document.getElementById('tab-cover').classList.add('active');
-            if (viewId === 'son-room') document.getElementById('tab-son').classList.add('active');
-            if (viewId === 'daughter-room') document.getElementById('tab-daughter').classList.add('active');
+    langBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.toggle("open");
+      langBtn.setAttribute("aria-expanded", String(isOpen));
+    });
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    document.addEventListener("click", () => {
+      langDropdown.classList.remove("open");
+      langBtn.setAttribute("aria-expanded", "false");
+    });
 
-        function showNotice(elementId, message) {
-            const el = document.getElementById(elementId);
-            el.textContent = message;
-            el.classList.add('show');
-        }
+    document.getElementById("web3Btn").addEventListener("click", () => {
+      showToast("HKWB Web3 디지털 은행으로 이동합니다.");
+      // 실제 이동 경로 연결 시 아래 주석 해제:
+      // window.location.href = "./web3.html";
+    });
 
-        function prependHistory(listId, title, detail, amountText) {
-            const list = document.getElementById(listId);
-            const li = document.createElement('li');
-            li.className = 'tx-item';
-            li.innerHTML = `
-                <div>
-                    <strong>${title}</strong>
-                    <small>${detail}</small>
-                </div>
-                <span class="tx-amount">${amountText}</span>
-            `;
-            list.prepend(li);
-        }
+    document.getElementById("internetBtn").addEventListener("click", () => {
+      showToast("HKWB 인터넷 뱅크로 이동합니다.");
+      // 실제 이동 경로 연결 시 아래 주석 해제:
+      // window.location.href = "./bank.html";
+    });
 
-        function executePiAction() {
-            const recipient = document.getElementById('pi-recipient').value.trim() || '지정 지갑';
-            const amount = parseFloat(document.getElementById('pi-amount').value);
-            const type = document.getElementById('pi-action-type').value;
-
-            if (isNaN(amount) || amount <= 0) {
-                showNotice('son-msg', '올바른 Pi 수량을 입력해 주세요.');
-                return;
-            }
-            if (amount > piBalance) {
-                showNotice('son-msg', '보유 Pi 잔액이 부족합니다.');
-                return;
-            }
-
-            piBalance -= amount;
-            if (type === 'stake') {
-                piStaked += amount;
-                prependHistory('son-tx-list', 'Pi 스테이킹 예치', `${recipient} · 예치 완료`, `${amount.toLocaleString()} Pi`);
-                showNotice('son-msg', `${amount.toLocaleString()} Pi 스테이킹 예치가 완료되었습니다.`);
-            } else {
-                prependHistory('son-tx-list', 'P2P Pi 송금', `수신: ${recipient} · 완료`, `-${amount.toLocaleString()} Pi`);
-                showNotice('son-msg', `${recipient}님에게 ${amount.toLocaleString()} Pi 송금이 완료되었습니다.`);
-            }
-
-            document.getElementById('pi-amount').value = '';
-            syncDashboard();
-        }
-
-        function claimPiReward() {
-            const bonus = 250.00;
-            piBalance += bonus;
-            piReward += bonus;
-            prependHistory('son-tx-list', '생태계 리워드 수령', '추천인 ljw2358 · 수령 완료', `+${bonus.toFixed(2)} Pi`);
-            showNotice('son-msg', `생태계 리워드 ${bonus.toFixed(2)} Pi가 지갑에 반영되었습니다.`);
-            syncDashboard();
-        }
-
-        function executeKrwTransfer() {
-            const target = document.getElementById('krw-target').value.trim() || '계좌 이체';
-            const amount = parseInt(document.getElementById('krw-amount').value, 10);
-            const account = document.getElementById('krw-account').value;
-
-            if (isNaN(amount) || amount <= 0) {
-                showNotice('daughter-msg', '이체할 금액을 입력해 주세요.');
-                return;
-            }
-            if (amount > krwBalance) {
-                showNotice('daughter-msg', '계좌 잔액이 부족합니다.');
-                return;
-            }
-
-            krwBalance -= amount;
-            prependHistory('daughter-tx-list', target, `${account} · 이체 완료`, `-${formatKrw(amount)}`);
-            showNotice('daughter-msg', `${target}으로 ${formatKrw(amount)} 이체가 완료되었습니다.`);
-            document.getElementById('krw-amount').value = '';
-            syncDashboard();
-        }
-
-        function increaseKrwLimit() {
-            krwLimit += 50000000;
-            showNotice('daughter-msg', `1일 이체 한도가 ${formatKrw(krwLimit)}으로 상향되었습니다.`);
-            syncDashboard();
-        }
-
-        syncDashboard();
-    </script>
+    document.getElementById("logoLink").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
 </body>
 </html>
