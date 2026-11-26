@@ -3,82 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB — Web3 Digital Bank &amp; Internet Bank</title>
+  <title>HKWB — hkwb.world Web3 &amp; Internet Banking</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap');
 
+    :root {
+      --bg-void: #050712;
+      --gold-bright: #fde68a;
+      --gold-main: #f59e0b;
+      --gold-deep: #b45309;
+    }
+
     body {
       font-family: 'Pretendard', sans-serif;
-      background-color: #070916;
+      background-color: var(--bg-void);
       background-image:
-        radial-gradient(circle at 15% 12%, rgba(124, 58, 237, 0.22), transparent 42%),
-        radial-gradient(circle at 85% 18%, rgba(245, 158, 11, 0.16), transparent 38%),
-        radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.14), transparent 45%);
+        radial-gradient(ellipse 80% 50% at 15% 8%, rgba(124, 58, 237, 0.25), transparent 55%),
+        radial-gradient(ellipse 70% 45% at 88% 12%, rgba(245, 158, 11, 0.2), transparent 52%),
+        radial-gradient(ellipse 75% 55% at 50% 92%, rgba(29, 78, 216, 0.18), transparent 60%);
       color: #f8fafc;
+      overflow-x: hidden;
     }
 
-    .royal-card {
-      background: linear-gradient(155deg, rgba(22, 26, 54, 0.88) 0%, rgba(12, 15, 34, 0.92) 100%);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(251, 191, 36, 0.24);
-      box-shadow: 0 18px 45px -15px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    .hkwb-surface {
+      background: linear-gradient(155deg, rgba(24, 27, 60, 0.88) 0%, rgba(10, 13, 30, 0.94) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      box-shadow:
+        0 24px 60px -18px rgba(0, 0, 0, 0.78),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
     }
 
-    .royal-card-hover {
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    .hkwb-card-lift {
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.24s ease, box-shadow 0.24s ease;
     }
 
-    .royal-card-hover:hover {
-      transform: translateY(-3px);
-      border-color: rgba(251, 191, 36, 0.65);
-      box-shadow: 0 22px 48px -14px rgba(245, 158, 11, 0.22);
+    .hkwb-card-lift:hover {
+      transform: translateY(-4px);
+      border-color: rgba(251, 191, 36, 0.72);
+      box-shadow:
+        0 26px 56px -16px rgba(245, 158, 11, 0.25),
+        0 0 24px -6px rgba(139, 92, 246, 0.28);
     }
 
-    .gold-title {
-      background: linear-gradient(125deg, #fffbeb 0%, #fcd34d 38%, #f59e0b 72%, #d97706 100%);
+    .royal-gold-text {
+      background: linear-gradient(120deg, #fffbeb 0%, #fde047 35%, #f59e0b 68%, #d97706 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .gold-pill-btn {
-      background: linear-gradient(135deg, #fde68a 0%, #f59e0b 52%, #d97706 100%);
-      color: #090c1a;
+    .royal-gold-btn {
+      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 52%, #b45309 100%);
+      color: #070914;
       font-weight: 800;
-      box-shadow: 0 8px 24px -6px rgba(245, 158, 11, 0.45);
-      transition: filter 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 10px 28px -8px rgba(245, 158, 11, 0.55);
+      transition: transform 0.18s ease, filter 0.18s ease;
     }
 
-    .gold-pill-btn:hover {
-      filter: brightness(1.06);
+    .royal-gold-btn:hover {
+      filter: brightness(1.07);
       transform: translateY(-1px);
     }
   </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen pb-24">
 
-  <!-- 상단 내비게이션 바 -->
-  <header class="sticky top-0 z-40 royal-card border-b border-amber-400/20 px-4 py-3.5">
+  <!-- 상단 헤더 -->
+  <header class="sticky top-0 z-40 hkwb-surface border-b border-amber-400/25 px-4 py-3.5">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400/25 to-purple-600/25 border border-amber-300/45 flex items-center justify-center font-black text-amber-300 text-lg tracking-tight">
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-300/25 via-purple-500/20 to-amber-600/25 border border-amber-300/50 flex items-center justify-center font-black text-amber-300 text-lg tracking-tight shadow-inner">
           HK
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-xl md:text-2xl font-black gold-title tracking-tight">HKWB</h1>
-            <span class="hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/15 text-amber-300 border border-amber-400/30">
-              WEB3 · ISOLATED
+            <h1 class="text-xl md:text-2xl font-black royal-gold-text tracking-tight">HKWB</h1>
+            <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400/15 text-amber-200 border border-amber-400/35">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span>
+              hkwb.world
             </span>
           </div>
-          <p class="text-xs text-slate-300/80">웹3 디지털 은행 · 인터넷 은행 완전 격리 플랫폼</p>
+          <p class="text-xs text-slate-300/80">웹3 디지털 은행 · 인터넷 은행 완전 격리 아키텍처</p>
         </div>
       </div>
 
       <div class="flex items-center gap-2 md:gap-3">
         <!-- 60개국어 선택기 -->
-        <select id="langSelect" onchange="applyLanguage(this.value)" class="bg-slate-950/90 text-amber-200 text-xs border border-amber-400/35 rounded-xl px-2.5 py-2 focus:outline-none focus:border-amber-300">
+        <select id="langSelect" onchange="applyLanguage(this.value)" class="bg-slate-950/95 text-amber-200 text-xs border border-amber-400/40 rounded-xl px-2.5 py-2 focus:outline-none focus:border-amber-300">
           <option value="ko">1. 한국어 (Korean)</option>
           <option value="en">2. English</option>
           <option value="ja">3. 日本語</option>
@@ -142,13 +155,13 @@
         </select>
 
         <!-- HK NAVIGATOR 버튼 -->
-        <button onclick="openNavigator()" class="gold-pill-btn text-xs md:text-sm px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+        <button onclick="openNavigator()" class="royal-gold-btn text-xs md:text-sm px-3.5 py-2 rounded-xl flex items-center gap-1.5">
           <i class="fa-solid fa-compass"></i>
           <span>HK NAVIGATOR</span>
         </button>
 
-        <!-- 삼선 메뉴 버튼 -->
-        <button onclick="toggleDrawer()" class="w-10 h-10 rounded-xl bg-slate-950/80 border border-amber-400/25 text-amber-300 flex items-center justify-center hover:border-amber-300 transition" aria-label="메뉴">
+        <!-- 삼선 메뉴 -->
+        <button onclick="toggleDrawer()" class="w-10 h-10 rounded-xl bg-slate-950/90 border border-amber-400/30 text-amber-300 flex items-center justify-center hover:border-amber-300 transition" aria-label="메뉴">
           <i class="fa-solid fa-bars text-base"></i>
         </button>
       </div>
@@ -156,86 +169,86 @@
 
     <!-- 삼선 드로어 -->
     <nav id="navDrawer" class="hidden max-w-7xl mx-auto mt-3 pt-3 border-t border-amber-400/20 grid grid-cols-2 md:grid-cols-6 gap-2 text-xs md:text-sm">
-      <a href="#dashboard" class="px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-amber-400/15 text-slate-200 border border-white/5">개인자산 대시보드</a>
-      <a href="#networks" class="px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-amber-400/15 text-slate-200 border border-white/5">10대 분산 연동망</a>
-      <a href="#ubi" class="px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-amber-400/15 text-slate-200 border border-white/5">사회환원 UBI</a>
-      <a href="#bbini" class="px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-amber-400/15 text-slate-200 border border-white/5">고객센터 AGI/ASI 삐니</a>
-      <a href="#channels" class="px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-amber-400/15 text-slate-200 border border-white/5">유튜브와 틱톡</a>
-      <a href="#internet-bank-room" class="px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-amber-400/15 text-slate-200 border border-white/5">인터넷 은행 격리방</a>
+      <a href="#dashboard" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">개인자산 대시보드</a>
+      <a href="#networks" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">10대 분산 연동망</a>
+      <a href="#ubi" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">사회환원 UBI</a>
+      <a href="#bbini" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">고객센터 AGI/ASI 삐니</a>
+      <a href="#channels" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">유튜브와 틱톡</a>
+      <a href="#internet-bank-room" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">인터넷 은행 격리방</a>
     </nav>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 space-y-10 mt-7">
+  <main class="max-w-7xl mx-auto px-4 space-y-11 mt-7">
 
-    <!-- 웅장한 히어로 & 개인자산 대시보드 -->
-    <section id="dashboard" class="royal-card rounded-3xl p-6 md:p-8 space-y-6">
+    <!-- 1. 개인자산 대시보드 & 변수/목표 변동 -->
+    <section id="dashboard" class="hkwb-surface rounded-3xl p-6 md:p-8 space-y-6">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 border-b border-amber-400/15 pb-6">
         <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/35 text-emerald-300 text-xs font-bold">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span id="lblLangBadge">언어 코드: KO (60개국어 연동)</span>
           </div>
-          <h2 id="lblDashboardTitle" class="text-2xl md:text-4xl font-black tracking-tight text-white">
-            HKWB <span class="gold-title">개인자산 대시보드</span>
+          <h2 class="text-2xl md:text-4xl font-black tracking-tight text-white">
+            HKWB <span class="royal-gold-text">개인자산 대시보드</span>
           </h2>
           <p class="text-xs md:text-sm text-slate-300/85">
-            레퍼럴 ID: <span class="text-amber-300 font-mono font-semibold">ljw2358</span>
+            레퍼럴 ID: <span class="text-amber-300 font-mono font-bold">ljw2358</span>
             <span class="mx-2 text-slate-600">|</span>
-            공식 문의: <span class="text-amber-300 font-medium">support@hkwb.world</span>
+            공식 문의: <span class="text-amber-300 font-semibold">support@hkwb.world</span>
             <span class="mx-2 text-slate-600">|</span>
-            격리 구역: <span class="text-emerald-400 font-mono font-semibold">WEB3_ISOLATED_ROOM</span>
+            격리 방: <span class="text-emerald-300 font-mono font-semibold">WEB3_DIGITAL_BANK_ISOLATED</span>
           </p>
         </div>
 
         <!-- 변수 & 목표 변동 컨트롤 -->
-        <div class="flex flex-wrap items-center gap-3 bg-slate-950/85 p-3.5 rounded-2xl border border-amber-400/25">
+        <div class="flex flex-wrap items-center gap-3 bg-slate-950/90 p-3.5 rounded-2xl border border-amber-400/30">
           <div class="flex items-center gap-2">
-            <label for="targetMultiplier" class="text-xs text-slate-300 font-medium">목표 배율</label>
-            <input id="targetMultiplier" type="number" step="0.1" min="0.1" value="1.0" onchange="recalculateState()" class="w-20 bg-slate-900 border border-amber-400/35 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none" />
+            <label for="targetMultiplier" class="text-xs text-slate-300 font-semibold">목표 배율</label>
+            <input id="targetMultiplier" type="number" step="0.1" min="0.1" value="1.0" onchange="recalculateState()" class="w-20 bg-slate-900 border border-amber-400/40 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none" />
           </div>
           <div class="flex items-center gap-2">
-            <label for="netProfitInput" class="text-xs text-slate-300 font-medium">순이익(만원)</label>
-            <input id="netProfitInput" type="number" step="100" min="0" value="10000" onchange="recalculateState()" class="w-28 bg-slate-900 border border-amber-400/35 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none" />
+            <label for="netProfitInput" class="text-xs text-slate-300 font-semibold">순이익(만원)</label>
+            <input id="netProfitInput" type="number" step="100" min="0" value="10000" onchange="recalculateState()" class="w-28 bg-slate-900 border border-amber-400/40 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none" />
           </div>
         </div>
       </div>
 
-      <!-- 4대 핵심 지표 카드 -->
+      <!-- 핵심 지표 4카드 -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-slate-950/75 border border-amber-400/20 rounded-2xl p-5">
+        <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
           <div class="text-xs text-slate-400">총 개인자산 (변동 변수 반영)</div>
           <div id="statTotalAsset" class="text-2xl font-black text-amber-300 mt-1.5 font-mono">125,000.00 HKW</div>
-          <div id="statTargetGoal" class="text-xs text-slate-400 mt-1.5">목표치 (x1): 125,000.00 HKW</div>
+          <div id="statTargetGoal" class="text-xs text-slate-400 mt-1.5">목표치 (x1.0): 125,000.00 HKW</div>
         </div>
 
-        <div class="bg-slate-950/75 border border-amber-400/20 rounded-2xl p-5">
+        <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
           <div class="text-xs text-slate-400">파이 수량 연동 잔고</div>
           <div id="statPiBalance" class="text-2xl font-black text-white mt-1.5 font-mono">11,765.61313 PI</div>
-          <div class="text-xs text-emerald-400 mt-1.5">메인넷 원장 동기화 연동</div>
+          <div class="text-xs text-emerald-300 mt-1.5">메인넷 원장 동기화 연동</div>
         </div>
 
-        <div class="bg-slate-950/75 border border-amber-400/20 rounded-2xl p-5">
+        <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
           <div class="text-xs text-slate-400">이율 조정 기준</div>
           <div class="text-2xl font-black text-amber-300 mt-1.5 font-mono">AGI / ASI</div>
           <div class="text-xs text-slate-400 mt-1.5">고정 이율 미사용 · AGI/ASI 산출</div>
         </div>
 
-        <div class="bg-slate-950/75 border border-amber-400/20 rounded-2xl p-5">
+        <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
           <div class="text-xs text-slate-400">백엔드 API 구동 상태</div>
-          <div id="statApiEndpoint" class="text-sm font-bold text-emerald-400 mt-2.5 font-mono">/api/v1/hkwb/web3/* READY</div>
+          <div id="statApiEndpoint" class="text-sm font-bold text-emerald-300 mt-2.5 font-mono">/api/v1/hkwb/web3/* READY</div>
           <div id="statApiLog" class="text-xs text-slate-400 mt-1.5 truncate">대기 중: 연동망 카드를 누르세요</div>
         </div>
       </div>
     </section>
 
-    <!-- 10대 분산 연동망 -->
+    <!-- 2. 10대 분산 연동망 -->
     <section id="networks" class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h3 class="text-xl md:text-2xl font-extrabold text-white">10대 분산 연동망</h3>
-          <p class="text-xs md:text-sm text-slate-400">카드를 누르면 백엔드 API 통신 시연이 실행됩니다.</p>
+          <h3 class="text-xl md:text-2xl font-black text-white">10대 분산 연동망</h3>
+          <p class="text-xs md:text-sm text-slate-400">카드를 누르면 백엔드 API 시연 호출이 구동됩니다.</p>
         </div>
-        <span class="text-xs font-mono text-amber-300 bg-amber-400/10 border border-amber-400/30 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
+        <span class="text-xs font-mono text-amber-300 bg-amber-400/10 border border-amber-400/35 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
           [개발 프로세스 작동]
         </span>
       </div>
@@ -243,20 +256,20 @@
       <div id="networkGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
     </section>
 
-    <!-- 사회환원 UBI / 고객센터 AGI/ASI 삐니 / 유튜브와 틱톡 -->
+    <!-- 3. 사회환원 UBI / 4. 고객센터 AGI/ASI 삐니 / 5. 유튜브와 틱톡 -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
       <!-- 사회환원 UBI -->
-      <div id="ubi" class="royal-card royal-card-hover rounded-3xl p-6 flex flex-col justify-between space-y-5">
+      <div id="ubi" class="hkwb-surface hkwb-card-lift rounded-3xl p-6 flex flex-col justify-between space-y-5">
         <div>
           <span class="text-[11px] font-bold text-amber-300 uppercase tracking-widest">Social Return</span>
-          <h3 class="text-xl font-extrabold text-white mt-1">사회환원 UBI</h3>
+          <h3 class="text-xl font-black text-white mt-1">사회환원 UBI</h3>
           <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">
-            순이익 기준 30% 기본소득(UBI), 30% 회사 경영비, 최대 30% HK 사회재단(회사 인수 등 전략 자본) 배분 구조입니다.
+            순이익 기준 30% 기본소득(UBI), 30% 회사 경영비, 최대 30% HK 사회재단(회사 인수 등 전략 자본) 배분 모델입니다.
           </p>
         </div>
 
-        <div class="space-y-3 text-sm bg-slate-950/80 p-4 rounded-2xl border border-amber-400/20">
+        <div class="space-y-3 text-sm bg-slate-950/85 p-4 rounded-2xl border border-amber-400/20">
           <div class="flex justify-between items-center">
             <span class="text-slate-300">기본소득 (UBI 30%)</span>
             <span id="ubiAmount" class="font-bold text-amber-300 font-mono">3,000 만원</span>
@@ -271,38 +284,38 @@
           </div>
         </div>
 
-        <button onclick="runApiAction('UBI_RETURN', '사회환원 UBI API 호출')" class="w-full py-3 rounded-2xl gold-pill-btn text-sm">
+        <button onclick="runApiAction('UBI_RETURN', '사회환원 UBI API 호출')" class="w-full py-3 rounded-2xl royal-gold-btn text-sm">
           사회환원 UBI API 시연
         </button>
       </div>
 
       <!-- 고객센터 AGI/ASI 삐니 -->
-      <div id="bbini" class="royal-card royal-card-hover rounded-3xl p-6 flex flex-col justify-between space-y-4">
+      <div id="bbini" class="hkwb-surface hkwb-card-lift rounded-3xl p-6 flex flex-col justify-between space-y-4">
         <div>
           <span class="text-[11px] font-bold text-amber-300 uppercase tracking-widest">Support &amp; AI</span>
-          <h3 class="text-xl font-extrabold text-white mt-1">고객센터 AGI/ASI 삐니</h3>
+          <h3 class="text-xl font-black text-white mt-1">고객센터 AGI/ASI 삐니</h3>
           <p class="text-xs text-slate-400 mt-1">
             이율 조정과 웹3 디지털 은행 문의를 안내하는 고객센터 AGI/ASI 삐니입니다.
           </p>
         </div>
 
-        <div id="bbiniChatBox" class="h-44 overflow-y-auto bg-slate-950/85 border border-amber-400/20 rounded-2xl p-3.5 space-y-2.5 text-xs">
-          <div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-100 leading-relaxed">
+        <div id="bbiniChatBox" class="h-44 overflow-y-auto bg-slate-950/90 border border-amber-400/20 rounded-2xl p-3.5 space-y-2.5 text-xs">
+          <div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/25 text-amber-100 leading-relaxed">
             <strong>삐니:</strong> 혜공 형님, 고객센터 AGI/ASI 삐니입니다. 이율 조정, 10대 분산 연동망, 사회환원 UBI 문의를 편하게 남겨주세요.
           </div>
         </div>
 
         <div class="flex gap-2">
-          <input id="bbiniInput" type="text" placeholder="삐니에게 문의 입력..." onkeydown="if(event.key==='Enter') sendBbiniMessage()" class="flex-1 bg-slate-950/90 border border-amber-400/30 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-300" />
-          <button onclick="sendBbiniMessage()" class="gold-pill-btn px-4 py-2.5 rounded-xl text-xs">전송</button>
+          <input id="bbiniInput" type="text" placeholder="삐니에게 문의 입력..." onkeydown="if(event.key==='Enter') sendBbiniMessage()" class="flex-1 bg-slate-950/95 border border-amber-400/35 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-300" />
+          <button onclick="sendBbiniMessage()" class="royal-gold-btn px-4 py-2.5 rounded-xl text-xs">전송</button>
         </div>
       </div>
 
       <!-- 유튜브와 틱톡 -->
-      <div id="channels" class="royal-card royal-card-hover rounded-3xl p-6 flex flex-col justify-between space-y-4">
+      <div id="channels" class="hkwb-surface hkwb-card-lift rounded-3xl p-6 flex flex-col justify-between space-y-4">
         <div>
           <span class="text-[11px] font-bold text-amber-300 uppercase tracking-widest">Broadcast Channels</span>
-          <h3 class="text-xl font-extrabold text-white mt-1">유튜브와 틱톡</h3>
+          <h3 class="text-xl font-black text-white mt-1">유튜브와 틱톡</h3>
           <p class="text-xs text-slate-400 mt-1">
             영상 방송 및 숏폼 채널 바로가기입니다.
           </p>
@@ -337,18 +350,18 @@
         </div>
 
         <div class="text-xs text-slate-400">
-          공식 지원 문의: <span class="text-amber-300 font-medium">support@hkwb.world</span>
+          공식 지원 문의: <span class="text-amber-300 font-semibold">support@hkwb.world</span>
         </div>
       </div>
 
     </section>
 
-    <!-- 인터넷 은행 완전 격리 구역 -->
-    <section id="internet-bank-room" class="royal-card rounded-3xl p-6 border border-sky-400/30">
+    <!-- 6. 인터넷 은행 완전 격리 구역 -->
+    <section id="internet-bank-room" class="hkwb-surface rounded-3xl p-6 border border-sky-400/30">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <span class="text-[11px] font-bold text-sky-300 uppercase tracking-widest">Isolated Partition · Room B</span>
-          <h3 class="text-xl font-extrabold text-white mt-1">인터넷 은행 (웹3 디지털 은행과 완전 격리된 별도 방)</h3>
+          <h3 class="text-xl font-black text-white mt-1">인터넷 은행 (웹3 디지털 은행과 완전 격리된 별도 방)</h3>
           <p class="text-xs md:text-sm text-slate-400 mt-1">
             웹3 디지털 은행과 상태·세션·원장을 공유하지 않고 독립 방으로 분리된 인터넷 은행 영역입니다.
           </p>
@@ -363,9 +376,9 @@
 
   <!-- HK NAVIGATOR 모달 -->
   <div id="navigatorModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div class="royal-card border border-amber-400/40 rounded-3xl w-full max-w-2xl max-h-[88vh] overflow-y-auto p-6 relative space-y-6">
+    <div class="hkwb-surface border border-amber-400/45 rounded-3xl w-full max-w-2xl max-h-[88vh] overflow-y-auto p-6 relative space-y-6">
       <div class="flex items-center justify-between border-b border-amber-400/20 pb-3.5">
-        <h3 class="text-xl font-black gold-title">HK NAVIGATOR</h3>
+        <h3 class="text-xl font-black royal-gold-text">HK NAVIGATOR</h3>
         <button onclick="closeNavigator()" class="text-slate-400 hover:text-white text-xl">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -375,29 +388,29 @@
       <div class="space-y-2.5">
         <div class="text-xs font-bold text-amber-300 tracking-wider">CORE LEGAL &amp; COMPLIANCE</div>
 
-        <button onclick="openWhitepaper100()" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/85 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="openWhitepaper100()" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">1. 백서 (서술형 100줄 보기)</span>
-          <span class="text-xs text-amber-300 font-semibold">100줄 열기 →</span>
+          <span class="text-xs text-amber-300 font-bold">100줄 열기 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('자주 묻는 질문', 'HKWB 웹3 디지털 은행, 10대 분산 연동망, AGI/ASI 이율 산출, 사회환원 UBI 기준을 안내합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/85 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('자주 묻는 질문', 'HKWB 웹3 디지털 은행, 10대 분산 연동망, AGI/ASI 이율 산출, 사회환원 UBI 기준을 안내합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">2. 자주 묻는 질문</span>
-          <span class="text-xs text-amber-300 font-semibold">확인 →</span>
+          <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('3대 POLICIES (AML·KYC·철통보안 상세)', 'AML 자금세탁방지, KYC 본인확인, 웹3 격리 방 및 철통보안 정책을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/85 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('3대 POLICIES (AML·KYC·철통보안 상세)', 'AML 자금세탁방지, KYC 본인확인, 웹3 격리 방 및 철통보안 정책을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">3. 3대 POLICIES (AML·KYC·철통보안 상세)</span>
-          <span class="text-xs text-amber-300 font-semibold">확인 →</span>
+          <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('21개국 디지털 자산법 및 해킹 방어 컴플라이언스', '21개국 디지털 자산법 기준과 외부 공격·해킹 방어 컴플라이언스 체계를 운영합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/85 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('21개국 디지털 자산법 및 해킹 방어 컴플라이언스', '21개국 디지털 자산법 기준과 외부 공격·해킹 방어 컴플라이언스 체계를 운영합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">4. 21개국 디지털 자산법 및 해킹 방어 컴플라이언스</span>
-          <span class="text-xs text-amber-300 font-semibold">확인 →</span>
+          <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('FATF 트래블룰 & 실시간 제재 리스트 검증 규격', 'FATF 트래블룰 전송 검증과 실시간 글로벌 제재 리스트 대조 규격을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/85 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('FATF 트래블룰 & 실시간 제재 리스트 검증 규격', 'FATF 트래블룰 전송 검증과 실시간 글로벌 제재 리스트 대조 규격을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">5. FATF 트래블룰 &amp; 실시간 제재 리스트 검증 규격</span>
-          <span class="text-xs text-amber-300 font-semibold">확인 →</span>
+          <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
       </div>
 
@@ -405,14 +418,14 @@
       <div class="space-y-2.5">
         <div class="text-xs font-bold text-amber-300 tracking-wider">HK GLOBAL ECOSYSTEM HUBS</div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-200">
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">로봇: HK-ROBOT</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">도심항공교통: HK-UAM</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">인공태양: HK-FUSION</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">퀀텀바이오: HK-QUANTUMBIO</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">우주모빌리티: HK-SPACE</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">부품뱅크: HK-PARTSBANK</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">국방기술: HK-DEFENCE-HUB</div>
-          <div class="p-3 rounded-xl bg-slate-950/75 border border-white/10">T165 초특급 랜드마크 허브 (경주 사옥)</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">로봇: HK-ROBOT</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">도심항공교통: HK-UAM</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">인공태양: HK-FUSION</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">퀀텀바이오: HK-QUANTUMBIO</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">우주모빌리티: HK-SPACE</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">부품뱅크: HK-PARTSBANK</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">국방기술: HK-DEFENCE-HUB</div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10">T165 초특급 랜드마크 허브 (경주 사옥)</div>
         </div>
       </div>
     </div>
@@ -420,9 +433,9 @@
 
   <!-- 백서 100줄 서술형 모달 -->
   <div id="whitepaperModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md items-center justify-center p-4">
-    <div class="royal-card border border-amber-400/40 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col p-6">
+    <div class="hkwb-surface border border-amber-400/45 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col p-6">
       <div class="flex items-center justify-between border-b border-amber-400/20 pb-3.5 mb-4">
-        <h3 class="text-lg font-extrabold text-white">백서 (서술형 100줄)</h3>
+        <h3 class="text-lg font-black text-white">백서 (서술형 100줄)</h3>
         <button onclick="closeWhitepaper100()" class="text-slate-400 hover:text-white text-xl">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -433,16 +446,16 @@
 
   <!-- 공통 상세/API 응답 모달 -->
   <div id="detailModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div class="royal-card border border-amber-400/40 rounded-3xl w-full max-w-lg p-6 space-y-4">
+    <div class="hkwb-surface border border-amber-400/45 rounded-3xl w-full max-w-lg p-6 space-y-4">
       <div class="flex items-center justify-between">
-        <h3 id="detailTitle" class="text-lg font-extrabold text-white"></h3>
+        <h3 id="detailTitle" class="text-lg font-black text-white"></h3>
         <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white text-xl">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <p id="detailBody" class="text-sm text-slate-300 leading-relaxed"></p>
-      <pre id="detailJson" class="bg-slate-950 border border-amber-400/20 rounded-2xl p-3.5 text-xs text-amber-300 overflow-x-auto"></pre>
-      <button onclick="closeDetailModal()" class="w-full py-3 rounded-2xl gold-pill-btn text-sm">닫기</button>
+      <pre id="detailJson" class="bg-slate-950 border border-amber-400/25 rounded-2xl p-3.5 text-xs text-amber-300 overflow-x-auto"></pre>
+      <button onclick="closeDetailModal()" class="w-full py-3 rounded-2xl royal-gold-btn text-sm">닫기</button>
     </div>
   </div>
 
@@ -464,9 +477,9 @@
       const grid = document.getElementById('networkGrid');
       grid.innerHTML = networks.map(item => `
         <div onclick="runApiAction('${item.id.toUpperCase()}', '${item.name} - ${item.desc}')"
-             class="royal-card royal-card-hover rounded-2xl p-4 cursor-pointer flex flex-col justify-between gap-2.5">
+             class="hkwb-surface hkwb-card-lift rounded-2xl p-4 cursor-pointer flex flex-col justify-between gap-2.5">
           <div>
-            <div class="text-[11px] font-mono text-amber-300/85 font-semibold">${item.code}</div>
+            <div class="text-[11px] font-mono text-amber-300/90 font-bold">${item.code}</div>
             <div class="text-base font-extrabold text-white mt-0.5">${item.name}</div>
             <p class="text-xs text-slate-400 mt-1.5 leading-snug">${item.desc}</p>
           </div>
@@ -484,7 +497,7 @@
 
       const total = baseAsset * mult;
       document.getElementById('statTotalAsset').innerText = `${total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} HKW`;
-      document.getElementById('statTargetGoal').innerText = `목표치 (x${mult}): ${total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} HKW`;
+      document.getElementById('statTargetGoal').innerText = `목표치 (x${mult.toFixed(1)}): ${total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} HKW`;
 
       const ubi30 = profit * 0.3;
       const ops30 = profit * 0.3;
@@ -498,6 +511,7 @@
     async function runApiAction(moduleKey, label) {
       const endpoint = `/api/v1/hkwb/web3/${moduleKey.toLowerCase()}`;
       const payload = {
+        domain: 'hkwb.world',
         platform: 'HKWB',
         module: moduleKey,
         isolation: 'WEB3_DIGITAL_BANK_ISOLATED',
@@ -531,7 +545,7 @@
       }
 
       document.getElementById('detailTitle').innerText = label;
-      document.getElementById('detailBody').innerText = 'HKWB 백엔드 API 호출 시연 응답입니다.';
+      document.getElementById('detailBody').innerText = 'HKWB(hkwb.world) 백엔드 API 호출 시연 응답입니다.';
       document.getElementById('detailJson').innerText = JSON.stringify(responseData, null, 2);
       document.getElementById('detailModal').classList.remove('hidden');
       document.getElementById('detailModal').classList.add('flex');
@@ -562,6 +576,7 @@
       document.getElementById('detailTitle').innerText = title;
       document.getElementById('detailBody').innerText = body;
       document.getElementById('detailJson').innerText = JSON.stringify({
+        domain: 'hkwb.world',
         platform: 'HKWB',
         complianceModule: title,
         isolation: 'WEB3_DIGITAL_BANK',
@@ -578,7 +593,7 @@
 
       const box = document.getElementById('bbiniChatBox');
       box.innerHTML += `<div class="p-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-right"><strong>혜공 형님:</strong> ${text}</div>`;
-      box.innerHTML += `<div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-100"><strong>삐니:</strong> "${text}" 내용을 확인했습니다. AGI/ASI 기준과 10대 분산 연동망 흐름에 맞춰 처리합니다.</div>`;
+      box.innerHTML += `<div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/25 text-amber-100"><strong>삐니:</strong> "${text}" 내용을 확인했습니다. AGI/ASI 기준과 10대 분산 연동망 흐름에 맞춰 처리합니다.</div>`;
       input.value = '';
       box.scrollTop = box.scrollHeight;
     }
@@ -586,7 +601,7 @@
     const whitepaper100 = Array.from({ length: 100 }, (_, idx) => {
       const n = idx + 1;
       const lines = [
-        'HKWB는 웹3 디지털 은행과 인터넷 은행을 완전히 격리된 별도 방으로 분리하여 운영합니다.',
+        'HKWB(hkwb.world)는 웹3 디지털 은행과 인터넷 은행을 완전히 격리된 별도 방으로 분리하여 운영합니다.',
         '지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX 스왑, LP 스테이킹, 파이 수량의 10대 분산 연동망이 하나의 체계로 연결됩니다.',
         '예치 및 관련 이율은 고정값이 아니라 AGI와 ASI가 실시간 조건에 따라 조정합니다.',
         '순이익의 30%는 사회환원 UBI, 30%는 회사 경영비, 최대 30%는 HK 사회재단의 전략 투자 및 기업 인수 자본으로 배분됩니다.',
@@ -600,7 +615,7 @@
 
     function openWhitepaper100() {
       document.getElementById('whitepaperLines').innerHTML = whitepaper100
-        .map(line => `<p class="p-2.5 rounded-xl bg-slate-950/75 border border-white/10">${line}</p>`)
+        .map(line => `<p class="p-2.5 rounded-xl bg-slate-950/80 border border-white/10">${line}</p>`)
         .join('');
       document.getElementById('whitepaperModal').classList.remove('hidden');
       document.getElementById('whitepaperModal').classList.add('flex');
