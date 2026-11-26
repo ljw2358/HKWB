@@ -411,14 +411,14 @@
     }
 
     .ubi-amount {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--gold);
-    }
-
-    /* 백서 100개 서술형 문장 (양파 껍질 6겹 구조) */
-    .layer-tabs {
-      display: flex;
+      <div class="nav-group-label">HK GLOBAL ECOSYSTEM HUBS</div>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('로봇: HK-ROBOT', '지능형 로봇 및 산업 자동화 생태계 허브입니다.')">로봇: HK-ROBOT</button>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('도심항공교통: HK-UAM', '도심항공교통 및 차세대 모빌리티 허브입니다.')">도심항공교통: HK-UAM</button>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('인공태양: HK-FUSION', '차세대 핵융합·청정에너지 연구 및 산업 허브입니다.')">인공태양: HK-FUSION</button>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('양자바이오: HK-QUANTUMBIO', '양자 연산과 바이오 헬스 융합 허브입니다.')">양자바이오: HK-QUANTUMBIO</button>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('우주모빌리티: HK-SPACE', '우주 수송 및 궤도 모빌리티 허브입니다.')">우주모빌리티: HK-SPACE</button>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('부품뱅크: HK-PARTSBANK', '핵심 부품 및 정밀 소재 공급망 허브입니다.')">부품뱅크: HK-PARTSBANK</button>
+      <button class="nav-item-btn" type="button" onclick="handleHubClick('국방기술: HK-DEFENCE-HUB', '첨단 국방 기술 및 보안 시스템 허브입니다.')">국방기술: HK-DEFENCE-HUB</b
       gap: 8px;
       flex-wrap: wrap;
       margin-bottom: 14px;
@@ -653,14 +653,30 @@
       </div>
     </header>
 
-    <!-- 첫 화면 슬로건 & 웹3 / 인터넷 뱅크 완전 분리 버튼 -->
-    <section class="hero-card" id="heroSection">
-      <h1 class="hero-title"><span>인류와 기술이 공존하는</span><br />차세대 디지털 금융 혁신</h1>
-      <p class="hero-desc">10대 글로벌 보안 기술 &amp; AGI/ASI 기반 글로벌 자율 금융 플랫폼 · 추천인: ljw2358</p>
-      <div class="mode-switch-grid">
-        <button id="btnModeWeb3" class="mode-btn web3 active" type="button" onclick="switchBankMode('web3')">
-          Web3 디지털 뱅크 진입하기 &gt;
-        </button>
+    function handleHubClick(hubTitle, hubDesc) {
+      const navBackdrop = document.getElementById("navBackdrop");
+      const modalBackdrop = document.getElementById("infoModalBackdrop");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBody = document.getElementById("modalBody");
+
+      if (navBackdrop) {
+        navBackdrop.classList.remove("open");
+      }
+
+      if (modalTitle && modalBody && modalBackdrop) {
+        modalTitle.textContent = `HK GLOBAL ECOSYSTEM HUB · ${hubTitle}`;
+        modalBody.innerHTML = `
+          <p style="font-size:0.95rem;color:#f8fafc;margin-bottom:10px;font-weight:700;">${hubTitle}</p>
+          <p style="font-size:0.9rem;color:#e2e8f0;margin-bottom:10px;">${hubDesc}</p>
+          <p style="font-size:0.84rem;color:#94a3b8;">HKWB 플랫폼 및 10대 분산 연동망과 연계되는 미래 산업 허브 항목입니다.</p>
+        `;
+        modalBackdrop.classList.add("open");
+      }
+    }
+
+    function openHubModal(hubTitle, hubDesc) {
+      handleHubClick(hubTitle, hubDesc);
+    }
         <button id="btnModeInternet" class="mode-btn internet" type="button" onclick="switchBankMode('internet')">
           인터넷 뱅크 진입하기 &gt;
         </button>
