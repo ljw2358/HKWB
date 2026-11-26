@@ -3,95 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB — hkwb.world Web3 &amp; Internet Banking</title>
+  <title>HKWB — hkwb.world Web3 Digital Bank</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap');
 
     :root {
-      --bg-void: #050712;
-      --gold-bright: #fde68a;
-      --gold-main: #f59e0b;
-      --gold-deep: #b45309;
+      --bg-base: #050712;
+      --gold-light: #fef08a;
+      --gold-mid: #f59e0b;
+      --gold-dark: #b45309;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Pretendard', sans-serif;
-      background-color: var(--bg-void);
+      background-color: var(--bg-base);
       background-image:
-        radial-gradient(ellipse 80% 50% at 15% 8%, rgba(124, 58, 237, 0.25), transparent 55%),
-        radial-gradient(ellipse 70% 45% at 88% 12%, rgba(245, 158, 11, 0.2), transparent 52%),
-        radial-gradient(ellipse 75% 55% at 50% 92%, rgba(29, 78, 216, 0.18), transparent 60%);
+        radial-gradient(ellipse 80% 50% at 14% 8%, rgba(124, 58, 237, 0.24), transparent 56%),
+        radial-gradient(ellipse 72% 46% at 88% 12%, rgba(245, 158, 11, 0.19), transparent 54%),
+        radial-gradient(ellipse 78% 56% at 50% 94%, rgba(30, 64, 175, 0.17), transparent 62%);
       color: #f8fafc;
       overflow-x: hidden;
     }
 
-    .hkwb-surface {
-      background: linear-gradient(155deg, rgba(24, 27, 60, 0.88) 0%, rgba(10, 13, 30, 0.94) 100%);
+    .hkwb-glass {
+      background: linear-gradient(155deg, rgba(23, 27, 58, 0.88) 0%, rgba(9, 12, 28, 0.94) 100%);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(251, 191, 36, 0.25);
+      border: 1px solid rgba(251, 191, 36, 0.24);
       box-shadow:
         0 24px 60px -18px rgba(0, 0, 0, 0.78),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
-    .hkwb-card-lift {
-      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.24s ease, box-shadow 0.24s ease;
+    .hkwb-lift {
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .hkwb-card-lift:hover {
-      transform: translateY(-4px);
-      border-color: rgba(251, 191, 36, 0.72);
+    .hkwb-lift:hover {
+      transform: translateY(-3px);
+      border-color: rgba(251, 191, 36, 0.68);
       box-shadow:
-        0 26px 56px -16px rgba(245, 158, 11, 0.25),
-        0 0 24px -6px rgba(139, 92, 246, 0.28);
+        0 24px 52px -16px rgba(245, 158, 11, 0.22),
+        0 0 22px -6px rgba(139, 92, 246, 0.25);
     }
 
-    .royal-gold-text {
-      background: linear-gradient(120deg, #fffbeb 0%, #fde047 35%, #f59e0b 68%, #d97706 100%);
+    .gold-grad {
+      background: linear-gradient(120deg, #fffbeb 0%, #fde047 36%, #f59e0b 70%, #d97706 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .royal-gold-btn {
+    .gold-action {
       background: linear-gradient(135deg, #fef08a 0%, #f59e0b 52%, #b45309 100%);
       color: #070914;
       font-weight: 800;
-      box-shadow: 0 10px 28px -8px rgba(245, 158, 11, 0.55);
+      box-shadow: 0 10px 26px -8px rgba(245, 158, 11, 0.52);
       transition: transform 0.18s ease, filter 0.18s ease;
     }
 
-    .royal-gold-btn:hover {
-      filter: brightness(1.07);
+    .gold-action:hover {
+      filter: brightness(1.06);
       transform: translateY(-1px);
+    }
+
+    /* 커스텀 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.4);
+      border-radius: 9999px;
     }
   </style>
 </head>
 <body class="min-h-screen pb-24">
 
   <!-- 상단 헤더 -->
-  <header class="sticky top-0 z-40 hkwb-surface border-b border-amber-400/25 px-4 py-3.5">
+  <header class="sticky top-0 z-40 hkwb-glass border-b border-amber-400/25 px-4 py-3.5">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-300/25 via-purple-500/20 to-amber-600/25 border border-amber-300/50 flex items-center justify-center font-black text-amber-300 text-lg tracking-tight shadow-inner">
+      <div class="flex items-center gap-3.5 min-w-0">
+        <div class="w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br from-amber-300/25 via-purple-500/20 to-amber-600/25 border border-amber-300/50 flex items-center justify-center font-black text-amber-300 text-lg tracking-tight">
           HK
         </div>
-        <div>
+        <div class="min-w-0">
           <div class="flex items-center gap-2">
-            <h1 class="text-xl md:text-2xl font-black royal-gold-text tracking-tight">HKWB</h1>
+            <h1 class="text-xl md:text-2xl font-black gold-grad tracking-tight truncate">HKWB</h1>
             <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400/15 text-amber-200 border border-amber-400/35">
               <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span>
               hkwb.world
             </span>
           </div>
-          <p class="text-xs text-slate-300/80">웹3 디지털 은행 · 인터넷 은행 완전 격리 아키텍처</p>
+          <p id="headerSubText" class="text-xs text-slate-300/80 truncate">웹3 디지털 은행 · 인터넷 은행 완전 격리 아키텍처</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-2 md:gap-3">
+      <div class="flex items-center gap-2 md:gap-3 shrink-0">
         <!-- 60개국어 선택기 -->
-        <select id="langSelect" onchange="applyLanguage(this.value)" class="bg-slate-950/95 text-amber-200 text-xs border border-amber-400/40 rounded-xl px-2.5 py-2 focus:outline-none focus:border-amber-300">
+        <select id="langSelect" onchange="applyLanguage(this.value)" aria-label="60개국어 선택" class="bg-slate-950/95 text-amber-200 text-xs border border-amber-400/40 rounded-xl px-2.5 py-2 focus:outline-none focus:border-amber-300 max-w-[140px] sm:max-w-none">
           <option value="ko">1. 한국어 (Korean)</option>
           <option value="en">2. English</option>
           <option value="ja">3. 日本語</option>
@@ -155,7 +172,7 @@
         </select>
 
         <!-- HK NAVIGATOR 버튼 -->
-        <button onclick="openNavigator()" class="royal-gold-btn text-xs md:text-sm px-3.5 py-2 rounded-xl flex items-center gap-1.5">
+        <button onclick="openNavigator()" class="gold-action text-xs md:text-sm px-3.5 py-2 rounded-xl flex items-center gap-1.5">
           <i class="fa-solid fa-compass"></i>
           <span>HK NAVIGATOR</span>
         </button>
@@ -169,27 +186,27 @@
 
     <!-- 삼선 드로어 -->
     <nav id="navDrawer" class="hidden max-w-7xl mx-auto mt-3 pt-3 border-t border-amber-400/20 grid grid-cols-2 md:grid-cols-6 gap-2 text-xs md:text-sm">
-      <a href="#dashboard" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">개인자산 대시보드</a>
-      <a href="#networks" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">10대 분산 연동망</a>
-      <a href="#ubi" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">사회환원 UBI</a>
-      <a href="#bbini" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">고객센터 AGI/ASI 삐니</a>
-      <a href="#channels" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">유튜브와 틱톡</a>
-      <a href="#internet-bank-room" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">인터넷 은행 격리방</a>
+      <a href="#dashboard" onclick="closeDrawerOnMobile()" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">개인자산 대시보드</a>
+      <a href="#networks" onclick="closeDrawerOnMobile()" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">10대 분산 연동망</a>
+      <a href="#ubi" onclick="closeDrawerOnMobile()" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">사회환원 UBI</a>
+      <a href="#bbini" onclick="closeDrawerOnMobile()" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">고객센터 AGI/ASI 삐니</a>
+      <a href="#channels" onclick="closeDrawerOnMobile()" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">유튜브와 틱톡</a>
+      <a href="#internet-bank-room" onclick="closeDrawerOnMobile()" class="px-3 py-2 rounded-xl bg-slate-950/80 hover:bg-amber-400/15 text-slate-200 border border-white/10">인터넷 은행 격리방</a>
     </nav>
   </header>
 
   <main class="max-w-7xl mx-auto px-4 space-y-11 mt-7">
 
     <!-- 1. 개인자산 대시보드 & 변수/목표 변동 -->
-    <section id="dashboard" class="hkwb-surface rounded-3xl p-6 md:p-8 space-y-6">
+    <section id="dashboard" class="hkwb-glass rounded-3xl p-6 md:p-8 space-y-6">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 border-b border-amber-400/15 pb-6">
         <div class="space-y-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/35 text-emerald-300 text-xs font-bold">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="lblLangBadge">언어 코드: KO (60개국어 연동)</span>
+            <span id="lblLangBadge">언어: 1. 한국어 (KO) · 통화: HKW</span>
           </div>
-          <h2 class="text-2xl md:text-4xl font-black tracking-tight text-white">
-            HKWB <span class="royal-gold-text">개인자산 대시보드</span>
+          <h2 id="lblDashboardTitle" class="text-2xl md:text-4xl font-black tracking-tight text-white">
+            HKWB <span class="gold-grad">개인자산 대시보드</span>
           </h2>
           <p class="text-xs md:text-sm text-slate-300/85">
             레퍼럴 ID: <span class="text-amber-300 font-mono font-bold">ljw2358</span>
@@ -204,12 +221,15 @@
         <div class="flex flex-wrap items-center gap-3 bg-slate-950/90 p-3.5 rounded-2xl border border-amber-400/30">
           <div class="flex items-center gap-2">
             <label for="targetMultiplier" class="text-xs text-slate-300 font-semibold">목표 배율</label>
-            <input id="targetMultiplier" type="number" step="0.1" min="0.1" value="1.0" onchange="recalculateState()" class="w-20 bg-slate-900 border border-amber-400/40 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none" />
+            <input id="targetMultiplier" type="number" step="0.1" min="0.1" value="1.0" oninput="recalculateState()" class="w-20 bg-slate-900 border border-amber-400/40 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none focus:border-amber-300" />
           </div>
           <div class="flex items-center gap-2">
             <label for="netProfitInput" class="text-xs text-slate-300 font-semibold">순이익(만원)</label>
-            <input id="netProfitInput" type="number" step="100" min="0" value="10000" onchange="recalculateState()" class="w-28 bg-slate-900 border border-amber-400/40 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none" />
+            <input id="netProfitInput" type="number" step="100" min="0" value="10000" oninput="recalculateState()" class="w-28 bg-slate-900 border border-amber-400/40 rounded-xl px-2.5 py-1.5 text-xs text-amber-300 font-mono focus:outline-none focus:border-amber-300" />
           </div>
+          <button onclick="cycleAgiRateSignal()" class="px-3 py-1.5 rounded-xl bg-amber-400/15 border border-amber-400/35 text-amber-200 text-xs font-bold hover:bg-amber-400/25 transition">
+            AGI/ASI 이율 갱신
+          </button>
         </div>
       </div>
 
@@ -224,13 +244,13 @@
         <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
           <div class="text-xs text-slate-400">파이 수량 연동 잔고</div>
           <div id="statPiBalance" class="text-2xl font-black text-white mt-1.5 font-mono">11,765.61313 PI</div>
-          <div class="text-xs text-emerald-300 mt-1.5">메인넷 원장 동기화 연동</div>
+          <div id="statPiSub" class="text-xs text-emerald-300 mt-1.5">메인넷 원장 동기화 연동</div>
         </div>
 
         <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
           <div class="text-xs text-slate-400">이율 조정 기준</div>
-          <div class="text-2xl font-black text-amber-300 mt-1.5 font-mono">AGI / ASI</div>
-          <div class="text-xs text-slate-400 mt-1.5">고정 이율 미사용 · AGI/ASI 산출</div>
+          <div id="statAgiRate" class="text-2xl font-black text-amber-300 mt-1.5 font-mono">AGI / ASI</div>
+          <div id="statAgiSub" class="text-xs text-slate-400 mt-1.5">고정 이율 미사용 · 실시간 산출 모드</div>
         </div>
 
         <div class="bg-slate-950/80 border border-amber-400/25 rounded-2xl p-5">
@@ -245,8 +265,8 @@
     <section id="networks" class="space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h3 class="text-xl md:text-2xl font-black text-white">10대 분산 연동망</h3>
-          <p class="text-xs md:text-sm text-slate-400">카드를 누르면 백엔드 API 시연 호출이 구동됩니다.</p>
+          <h3 id="lblNetworksTitle" class="text-xl md:text-2xl font-black text-white">10대 분산 연동망</h3>
+          <p id="lblNetworksDesc" class="text-xs md:text-sm text-slate-400">카드를 누르면 해당 모듈의 백엔드 API 시연 호출이 실행됩니다.</p>
         </div>
         <span class="text-xs font-mono text-amber-300 bg-amber-400/10 border border-amber-400/35 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
           [개발 프로세스 작동]
@@ -260,7 +280,7 @@
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
       <!-- 사회환원 UBI -->
-      <div id="ubi" class="hkwb-surface hkwb-card-lift rounded-3xl p-6 flex flex-col justify-between space-y-5">
+      <div id="ubi" class="hkwb-glass hkwb-lift rounded-3xl p-6 flex flex-col justify-between space-y-5">
         <div>
           <span class="text-[11px] font-bold text-amber-300 uppercase tracking-widest">Social Return</span>
           <h3 class="text-xl font-black text-white mt-1">사회환원 UBI</h3>
@@ -284,35 +304,35 @@
           </div>
         </div>
 
-        <button onclick="runApiAction('UBI_RETURN', '사회환원 UBI API 호출')" class="w-full py-3 rounded-2xl royal-gold-btn text-sm">
+        <button onclick="runApiAction('UBI_RETURN', '사회환원 UBI 분배 API 호출')" class="w-full py-3 rounded-2xl gold-action text-sm">
           사회환원 UBI API 시연
         </button>
       </div>
 
       <!-- 고객센터 AGI/ASI 삐니 -->
-      <div id="bbini" class="hkwb-surface hkwb-card-lift rounded-3xl p-6 flex flex-col justify-between space-y-4">
+      <div id="bbini" class="hkwb-glass hkwb-lift rounded-3xl p-6 flex flex-col justify-between space-y-4">
         <div>
           <span class="text-[11px] font-bold text-amber-300 uppercase tracking-widest">Support &amp; AI</span>
           <h3 class="text-xl font-black text-white mt-1">고객센터 AGI/ASI 삐니</h3>
           <p class="text-xs text-slate-400 mt-1">
-            이율 조정과 웹3 디지털 은행 문의를 안내하는 고객센터 AGI/ASI 삐니입니다.
+            이율 조정과 웹3 디지털 은행 문의를 1차로 안내하는 고객센터 AGI/ASI 삐니입니다.
           </p>
         </div>
 
         <div id="bbiniChatBox" class="h-44 overflow-y-auto bg-slate-950/90 border border-amber-400/20 rounded-2xl p-3.5 space-y-2.5 text-xs">
           <div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/25 text-amber-100 leading-relaxed">
-            <strong>삐니:</strong> 혜공 형님, 고객센터 AGI/ASI 삐니입니다. 이율 조정, 10대 분산 연동망, 사회환원 UBI 문의를 편하게 남겨주세요.
+            <strong>삐니:</strong> 혜공 형님, 고객센터 AGI/ASI 삐니입니다. 이율 산출, 10대 분산 연동망, 사회환원 UBI, 채널 문의를 편하게 남겨주세요.
           </div>
         </div>
 
         <div class="flex gap-2">
           <input id="bbiniInput" type="text" placeholder="삐니에게 문의 입력..." onkeydown="if(event.key==='Enter') sendBbiniMessage()" class="flex-1 bg-slate-950/95 border border-amber-400/35 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-300" />
-          <button onclick="sendBbiniMessage()" class="royal-gold-btn px-4 py-2.5 rounded-xl text-xs">전송</button>
+          <button onclick="sendBbiniMessage()" class="gold-action px-4 py-2.5 rounded-xl text-xs">전송</button>
         </div>
       </div>
 
       <!-- 유튜브와 틱톡 -->
-      <div id="channels" class="hkwb-surface hkwb-card-lift rounded-3xl p-6 flex flex-col justify-between space-y-4">
+      <div id="channels" class="hkwb-glass hkwb-lift rounded-3xl p-6 flex flex-col justify-between space-y-4">
         <div>
           <span class="text-[11px] font-bold text-amber-300 uppercase tracking-widest">Broadcast Channels</span>
           <h3 class="text-xl font-black text-white mt-1">유튜브와 틱톡</h3>
@@ -357,7 +377,7 @@
     </section>
 
     <!-- 6. 인터넷 은행 완전 격리 구역 -->
-    <section id="internet-bank-room" class="hkwb-surface rounded-3xl p-6 border border-sky-400/30">
+    <section id="internet-bank-room" class="hkwb-glass rounded-3xl p-6 border border-sky-400/30">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <span class="text-[11px] font-bold text-sky-300 uppercase tracking-widest">Isolated Partition · Room B</span>
@@ -376,10 +396,10 @@
 
   <!-- HK NAVIGATOR 모달 -->
   <div id="navigatorModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div class="hkwb-surface border border-amber-400/45 rounded-3xl w-full max-w-2xl max-h-[88vh] overflow-y-auto p-6 relative space-y-6">
+    <div class="hkwb-glass border border-amber-400/45 rounded-3xl w-full max-w-2xl max-h-[88vh] overflow-y-auto p-6 relative space-y-6">
       <div class="flex items-center justify-between border-b border-amber-400/20 pb-3.5">
-        <h3 class="text-xl font-black royal-gold-text">HK NAVIGATOR</h3>
-        <button onclick="closeNavigator()" class="text-slate-400 hover:text-white text-xl">
+        <h3 class="text-xl font-black gold-grad">HK NAVIGATOR</h3>
+        <button onclick="closeNavigator()" class="text-slate-400 hover:text-white text-xl" aria-label="닫기">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -393,22 +413,22 @@
           <span class="text-xs text-amber-300 font-bold">100줄 열기 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('자주 묻는 질문', 'HKWB 웹3 디지털 은행, 10대 분산 연동망, AGI/ASI 이율 산출, 사회환원 UBI 기준을 안내합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('자주 묻는 질문', 'HKWB 웹3 디지털 은행과 인터넷 은행의 격리 구조, 10대 분산 연동망, AGI/ASI 이율 산출, 사회환원 UBI(30/30/최대30) 운영 기준을 안내합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">2. 자주 묻는 질문</span>
           <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('3대 POLICIES (AML·KYC·철통보안 상세)', 'AML 자금세탁방지, KYC 본인확인, 웹3 격리 방 및 철통보안 정책을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('3대 POLICIES (AML·KYC·철통보안 상세)', '자금세탁방지(AML), 실명·신원 확인(KYC), 웹3 격리 방 및 다중 검증 철통보안 정책을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">3. 3대 POLICIES (AML·KYC·철통보안 상세)</span>
           <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('21개국 디지털 자산법 및 해킹 방어 컴플라이언스', '21개국 디지털 자산법 기준과 외부 공격·해킹 방어 컴플라이언스 체계를 운영합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('21개국 디지털 자산법 및 해킹 방어 컴플라이언스', '21개국 디지털 자산 규제 기준과 외부 침입·해킹 방어 컴플라이언스 체계를 운영합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">4. 21개국 디지털 자산법 및 해킹 방어 컴플라이언스</span>
           <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
 
-        <button onclick="showComplianceDetail('FATF 트래블룰 & 실시간 제재 리스트 검증 규격', 'FATF 트래블룰 전송 검증과 실시간 글로벌 제재 리스트 대조 규격을 적용합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
+        <button onclick="showComplianceDetail('FATF 트래블룰 & 실시간 제재 리스트 검증 규격', 'FATF 트래블룰 전송 요건과 실시간 글로벌 제재 리스트 대조 검증 규격을 수행합니다.')" class="w-full text-left p-3.5 rounded-2xl bg-slate-950/90 border border-amber-400/25 hover:border-amber-300 flex items-center justify-between transition">
           <span class="font-semibold text-sm text-white">5. FATF 트래블룰 &amp; 실시간 제재 리스트 검증 규격</span>
           <span class="text-xs text-amber-300 font-bold">확인 →</span>
         </button>
@@ -433,10 +453,10 @@
 
   <!-- 백서 100줄 서술형 모달 -->
   <div id="whitepaperModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md items-center justify-center p-4">
-    <div class="hkwb-surface border border-amber-400/45 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col p-6">
+    <div class="hkwb-glass border border-amber-400/45 rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col p-6">
       <div class="flex items-center justify-between border-b border-amber-400/20 pb-3.5 mb-4">
         <h3 class="text-lg font-black text-white">백서 (서술형 100줄)</h3>
-        <button onclick="closeWhitepaper100()" class="text-slate-400 hover:text-white text-xl">
+        <button onclick="closeWhitepaper100()" class="text-slate-400 hover:text-white text-xl" aria-label="닫기">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -446,45 +466,77 @@
 
   <!-- 공통 상세/API 응답 모달 -->
   <div id="detailModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
-    <div class="hkwb-surface border border-amber-400/45 rounded-3xl w-full max-w-lg p-6 space-y-4">
+    <div class="hkwb-glass border border-amber-400/45 rounded-3xl w-full max-w-lg p-6 space-y-4">
       <div class="flex items-center justify-between">
         <h3 id="detailTitle" class="text-lg font-black text-white"></h3>
-        <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white text-xl">
+        <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white text-xl" aria-label="닫기">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <p id="detailBody" class="text-sm text-slate-300 leading-relaxed"></p>
       <pre id="detailJson" class="bg-slate-950 border border-amber-400/25 rounded-2xl p-3.5 text-xs text-amber-300 overflow-x-auto"></pre>
-      <button onclick="closeDetailModal()" class="w-full py-3 rounded-2xl royal-gold-btn text-sm">닫기</button>
+      <button onclick="closeDetailModal()" class="w-full py-3 rounded-2xl gold-action text-sm">닫기</button>
     </div>
   </div>
 
   <script>
+    // 10대 분산 연동망 상세 정의
     const networks = [
-      { id: 'wallet', code: 'NET 01', name: '지갑연결', desc: '노드 지갑 프로토콜 연동 및 자동 연동' },
-      { id: 'transfer', code: 'NET 02', name: '송금', desc: '대륙간 초고속 멀티시그 암호화 전송 시스템' },
-      { id: 'payment', code: 'NET 03', name: '결재', desc: '현금·카드·타코인 실시간 상거래 에스크로' },
-      { id: 'deposit', code: 'NET 04', name: '예치', desc: '자산 신탁 볼트 (AGI/ASI 이율 조정)' },
-      { id: 'reward', code: 'NET 05', name: '보상', desc: '기여도 기반 인센티브 볼트 적립 엔진' },
-      { id: 'ubi', code: 'NET 06', name: '기본소득', desc: 'HK 사회 재단 & 지자체 UBI 분배 모델' },
-      { id: 'swap', code: 'NET 07', name: '스왑', desc: '현금/카드/타코인 입금 즉각 코인 구매 스왑' },
-      { id: 'dex-swap', code: 'NET 08', name: 'DEX 스왑', desc: '탈중앙화 오더레스 P2P 유동성 자동매칭' },
-      { id: 'lp-staking', code: 'NET 09', name: 'LP 스테이킹', desc: '유동성 공급 증명(PoL) 및 고배당 권한' },
-      { id: 'pi-qty', code: 'NET 10', name: '파이 수량', desc: '파이 자산 메인넷 원장 실시간 동기화' }
+      { id: 'wallet', code: 'NET 01', name: '지갑연결', desc: '노드 지갑 프로토콜 연동 및 자동 연동', apiPath: '/api/v1/hkwb/web3/wallet', sample: { walletLinked: true, mode: 'NODE_AUTO_SYNC' } },
+      { id: 'transfer', code: 'NET 02', name: '송금', desc: '대륙간 초고속 멀티시그 암호화 전송 시스템', apiPath: '/api/v1/hkwb/web3/transfer', sample: { multisig: 'REQUIRED', routing: 'CROSS_CONTINENT_FAST' } },
+      { id: 'payment', code: 'NET 03', name: '결제', desc: '현금·카드·타코인 실시간 상거래 에스크로', apiPath: '/api/v1/hkwb/web3/payment', sample: { escrow: 'ACTIVE', settlement: 'REALTIME' } },
+      { id: 'deposit', code: 'NET 04', name: '예치', desc: '자산 신탁 볼트 (AGI/ASI 이율 조정)', apiPath: '/api/v1/hkwb/web3/deposit', sample: { vault: 'TRUST_LOCK', rateEngine: 'AGI_ASI_DYNAMIC' } },
+      { id: 'reward', code: 'NET 05', name: '보상', desc: '기여도 기반 인센티브 볼트 적립 엔진', apiPath: '/api/v1/hkwb/web3/reward', sample: { engine: 'CONTRIBUTION_VAULT', accrual: 'LIVE' } },
+      { id: 'ubi', code: 'NET 06', name: '기본소득', desc: 'HK 사회 재단 & 지자체 UBI 분배 모델', apiPath: '/api/v1/hkwb/web3/ubi', sample: { splitRule: '30%_UBI / 30%_OPS / UP_TO_30%_FOUNDATION' } },
+      { id: 'swap', code: 'NET 07', name: '스왑', desc: '현금/카드/타코인 입금 즉각 코인 구매 스왑', apiPath: '/api/v1/hkwb/web3/swap', sample: { instantSwap: 'ENABLED', channels: ['CASH', 'CARD', 'OTHER_COIN'] } },
+      { id: 'dex-swap', code: 'NET 08', name: 'DEX 스왑', desc: '탈중앙화 오더레스 P2P 유동성 자동매칭', apiPath: '/api/v1/hkwb/web3/dex-swap', sample: { orderbook: 'ORDERLESS', matching: 'P2P_LIQUIDITY' } },
+      { id: 'lp-staking', code: 'NET 09', name: 'LP 스테이킹', desc: '유동성 공급 증명(PoL) 및 고배당 권한', apiPath: '/api/v1/hkwb/web3/lp-staking', sample: { proof: 'PoL', rateEngine: 'AGI_ASI_DYNAMIC' } },
+      { id: 'pi-qty', code: 'NET 10', name: '파이 수량', desc: '파이 자산 메인넷 원장 실시간 동기화', apiPath: '/api/v1/hkwb/web3/pi-qty', sample: { mainnetLedgerSync: 'CONNECTED', balancePi: 11765.61313 } }
     ];
+
+    // 언어별 통화 환산 계수 및 라벨
+    const langProfiles = {
+      ko: { label: '1. 한국어 (KO)', currency: 'HKW', rate: 1.0, dashTitle: 'HKWB <span class="gold-grad">개인자산 대시보드</span>', netTitle: '10대 분산 연동망' },
+      en: { label: '2. English (EN)', currency: 'USD', rate: 0.00075, dashTitle: 'HKWB <span class="gold-grad">Personal Asset Dashboard</span>', netTitle: '10 Distributed Networks' },
+      ja: { label: '3. 日本語 (JA)', currency: 'JPY', rate: 0.112, dashTitle: 'HKWB <span class="gold-grad">個人資産ダッシュボード</span>', netTitle: '10大分散ネットワーク' },
+      'zh-CN': { label: '4. 简体中文 (ZH-CN)', currency: 'CNY', rate: 0.0054, dashTitle: 'HKWB <span class="gold-grad">个人资产仪表盘</span>', netTitle: '十大分布式联动网' },
+      'zh-TW': { label: '5. 繁體中文 (ZH-TW)', currency: 'TWD', rate: 0.024, dashTitle: 'HKWB <span class="gold-grad">個人資產儀表板</span>', netTitle: '十大分散式連動網' },
+      es: { label: '6. Español (ES)', currency: 'EUR', rate: 0.00069, dashTitle: 'HKWB <span class="gold-grad">Panel de Activos Personales</span>', netTitle: '10 Redes Distribuidas' },
+      fr: { label: '7. Français (FR)', currency: 'EUR', rate: 0.00069, dashTitle: 'HKWB <span class="gold-grad">Tableau d’Actifs Personnels</span>', netTitle: '10 Réseaux Distribués' },
+      de: { label: '8. Deutsch (DE)', currency: 'EUR', rate: 0.00069, dashTitle: 'HKWB <span class="gold-grad">Persönliches Vermögens-Dashboard</span>', netTitle: '10 Verteilte Netzwerke' }
+    };
+
+    const agiSignals = [
+      'AGI / ASI 산출 · 유동성 지수 연동',
+      'AGI / ASI 산출 · 리스크 완충 조정',
+      'AGI / ASI 산출 · 온체인 수요 반영'
+    ];
+    let agiSignalIdx = 0;
+
+    function getLangProfile(code) {
+      if (langProfiles[code]) return langProfiles[code];
+      const upper = code.toUpperCase();
+      return {
+        label: `${upper} (60-Lang)`,
+        currency: 'USD',
+        rate: 0.00075,
+        dashTitle: `HKWB <span class="gold-grad">Asset Dashboard (${upper})</span>`,
+        netTitle: `10 Distributed Networks (${upper})`
+      };
+    }
 
     function renderNetworks() {
       const grid = document.getElementById('networkGrid');
       grid.innerHTML = networks.map(item => `
-        <div onclick="runApiAction('${item.id.toUpperCase()}', '${item.name} - ${item.desc}')"
-             class="hkwb-surface hkwb-card-lift rounded-2xl p-4 cursor-pointer flex flex-col justify-between gap-2.5">
+        <div onclick="runApiAction('${item.id.toUpperCase()}', '${item.name} — ${item.desc}', '${item.apiPath}', ${JSON.stringify(item.sample).replace(/"/g, '&quot;')})"
+             class="hkwb-glass hkwb-lift rounded-2xl p-4 cursor-pointer flex flex-col justify-between gap-2.5">
           <div>
             <div class="text-[11px] font-mono text-amber-300/90 font-bold">${item.code}</div>
             <div class="text-base font-extrabold text-white mt-0.5">${item.name}</div>
             <p class="text-xs text-slate-400 mt-1.5 leading-snug">${item.desc}</p>
           </div>
-          <div class="text-[11px] text-amber-300/90 font-mono pt-2.5 border-t border-white/10">
-            API /api/v1/hkwb/web3/${item.id}
+          <div class="text-[11px] text-amber-300/90 font-mono pt-2.5 border-t border-white/10 truncate">
+            API ${item.apiPath}
           </div>
         </div>
       `).join('');
@@ -492,12 +544,20 @@
 
     const baseAsset = 125000;
     function recalculateState() {
-      const mult = parseFloat(document.getElementById('targetMultiplier').value) || 1;
-      const profit = parseFloat(document.getElementById('netProfitInput').value) || 0;
+      const code = document.getElementById('langSelect').value;
+      const profile = getLangProfile(code);
+      const mult = Math.max(0.1, parseFloat(document.getElementById('targetMultiplier').value) || 1.0);
+      const profit = Math.max(0, parseFloat(document.getElementById('netProfitInput').value) || 0);
 
-      const total = baseAsset * mult;
-      document.getElementById('statTotalAsset').innerText = `${total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} HKW`;
-      document.getElementById('statTargetGoal').innerText = `목표치 (x${mult.toFixed(1)}): ${total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} HKW`;
+      const convertedTotal = baseAsset * mult * profile.rate;
+      const decimals = profile.currency === 'JPY' || profile.currency === 'TWD' ? 0 : 2;
+      const formattedTotal = convertedTotal.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+
+      document.getElementById('statTotalAsset').innerText = `${formattedTotal} ${profile.currency}`;
+      document.getElementById('statTargetGoal').innerText = `목표치 (x${mult.toFixed(1)} · ${code.toUpperCase()}): ${formattedTotal} ${profile.currency}`;
 
       const ubi30 = profit * 0.3;
       const ops30 = profit * 0.3;
@@ -508,21 +568,34 @@
       document.getElementById('foundationAmount').innerText = `최대 ${found30.toLocaleString('ko-KR')} 만원`;
     }
 
-    async function runApiAction(moduleKey, label) {
-      const endpoint = `/api/v1/hkwb/web3/${moduleKey.toLowerCase()}`;
+    function cycleAgiRateSignal() {
+      agiSignalIdx = (agiSignalIdx + 1) % agiSignals.length;
+      document.getElementById('statAgiSub').innerText = agiSignals[agiSignalIdx];
+      runApiAction('AGI_ASI_RATE_SYNC', 'AGI / ASI 이율 산출 신호 갱신', '/api/v1/hkwb/web3/agi-rate', {
+        rateMode: 'AGI_ASI_DYNAMIC',
+        signal: agiSignals[agiSignalIdx]
+      });
+    }
+
+    async function runApiAction(moduleKey, label, customPath, extraSample) {
+      const endpoint = customPath || `/api/v1/hkwb/web3/${moduleKey.toLowerCase()}`;
+      const langCode = document.getElementById('langSelect').value;
+      const mult = Math.max(0.1, parseFloat(document.getElementById('targetMultiplier').value) || 1.0);
+
       const payload = {
         domain: 'hkwb.world',
         platform: 'HKWB',
         module: moduleKey,
         isolation: 'WEB3_DIGITAL_BANK_ISOLATED',
         referralId: 'ljw2358',
-        language: document.getElementById('langSelect').value,
-        multiplier: parseFloat(document.getElementById('targetMultiplier').value) || 1,
+        language: langCode,
+        multiplier: mult,
+        detail: extraSample || {},
         timestamp: new Date().toISOString()
       };
 
       document.getElementById('statApiEndpoint').innerText = `${endpoint} (200 OK)`;
-      document.getElementById('statApiLog').innerText = `${label} 구동 완료`;
+      document.getElementById('statApiLog').innerText = `${label} 완료`;
 
       let responseData = {
         status: 200,
@@ -545,7 +618,7 @@
       }
 
       document.getElementById('detailTitle').innerText = label;
-      document.getElementById('detailBody').innerText = 'HKWB(hkwb.world) 백엔드 API 호출 시연 응답입니다.';
+      document.getElementById('detailBody').innerText = 'HKWB(hkwb.world) 웹3 격리 구역 백엔드 API 시연 응답입니다.';
       document.getElementById('detailJson').innerText = JSON.stringify(responseData, null, 2);
       document.getElementById('detailModal').classList.remove('hidden');
       document.getElementById('detailModal').classList.add('flex');
@@ -553,12 +626,20 @@
 
     function applyLanguage(langCode) {
       document.documentElement.lang = langCode;
-      document.getElementById('lblLangBadge').innerText = `언어 코드: ${langCode.toUpperCase()} (60개국어 연동)`;
+      const profile = getLangProfile(langCode);
+      document.getElementById('lblLangBadge').innerText = `언어: ${profile.label} · 통화: ${profile.currency}`;
+      document.getElementById('lblDashboardTitle').innerHTML = profile.dashTitle;
+      document.getElementById('lblNetworksTitle').innerText = profile.netTitle;
       recalculateState();
     }
 
     function toggleDrawer() {
       document.getElementById('navDrawer').classList.toggle('hidden');
+    }
+    function closeDrawerOnMobile() {
+      if (window.innerWidth < 768) {
+        document.getElementById('navDrawer').classList.add('hidden');
+      }
     }
     function openNavigator() {
       document.getElementById('navigatorModal').classList.remove('hidden');
@@ -579,8 +660,8 @@
         domain: 'hkwb.world',
         platform: 'HKWB',
         complianceModule: title,
-        isolation: 'WEB3_DIGITAL_BANK',
-        status: 'READY'
+        isolation: 'WEB3_DIGITAL_BANK_ISOLATED',
+        status: 'VERIFIED_READY'
       }, null, 2);
       document.getElementById('detailModal').classList.remove('hidden');
       document.getElementById('detailModal').classList.add('flex');
@@ -591,26 +672,62 @@
       const text = input.value.trim();
       if (!text) return;
 
+      let reply = `"${text}" 내용을 접수했습니다. 웹3 격리 구역 기준과 10대 분산 연동망 흐름에 맞춰 안내해 드릴게요.`;
+      if (text.includes('이율') || text.includes('금리') || text.includes('AGI') || text.includes('ASI')) {
+        reply = '예치 및 관련 이율은 고정값이 아니라 AGI와 ASI가 시장·유동성 조건에 맞춰 실시간으로 조정합니다.';
+      } else if (text.includes('UBI') || text.includes('사회환원') || text.includes('재단') || text.includes('인수')) {
+        reply = '순이익 배분 기준은 30% 기본소득(UBI), 30% 회사 경영비, 최대 30% HK 사회재단(회사 인수 등 전략 자본)입니다.';
+      } else if (text.includes('연동망') || text.includes('파이') || text.includes('스왑') || text.includes('지갑')) {
+        reply = '지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX 스왑, LP 스테이킹, 파이 수량 10대 분산 연동망이 백엔드 API와 연동됩니다.';
+      } else if (text.includes('유튜브') || text.includes('틱톡')) {
+        reply = '공식 채널은 유튜브 @Hyekong2026과 틱톡 @hyekong2026이며, 문의 메일은 support@hkwb.world입니다.';
+      }
+
       const box = document.getElementById('bbiniChatBox');
       box.innerHTML += `<div class="p-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-right"><strong>혜공 형님:</strong> ${text}</div>`;
-      box.innerHTML += `<div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/25 text-amber-100"><strong>삐니:</strong> "${text}" 내용을 확인했습니다. AGI/ASI 기준과 10대 분산 연동망 흐름에 맞춰 처리합니다.</div>`;
+      box.innerHTML += `<div class="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/25 text-amber-100 leading-relaxed"><strong>삐니:</strong> ${reply}</div>`;
       input.value = '';
       box.scrollTop = box.scrollHeight;
     }
 
+    // 백서 서술형 100줄 (고유 서술 문장)
     const whitepaper100 = Array.from({ length: 100 }, (_, idx) => {
       const n = idx + 1;
-      const lines = [
-        'HKWB(hkwb.world)는 웹3 디지털 은행과 인터넷 은행을 완전히 격리된 별도 방으로 분리하여 운영합니다.',
-        '지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX 스왑, LP 스테이킹, 파이 수량의 10대 분산 연동망이 하나의 체계로 연결됩니다.',
-        '예치 및 관련 이율은 고정값이 아니라 AGI와 ASI가 실시간 조건에 따라 조정합니다.',
-        '순이익의 30%는 사회환원 UBI, 30%는 회사 경영비, 최대 30%는 HK 사회재단의 전략 투자 및 기업 인수 자본으로 배분됩니다.',
-        'HK NAVIGATOR의 CORE LEGAL & COMPLIANCE 아래 백서, 자주 묻는 질문, 3대 정책, 21개국 디지털 자산법 및 해킹 방어, FATF 트래블룰 및 실시간 제재 리스트 검증 규격이 작동합니다.',
-        '백엔드 API가 구동되어야 모든 분산 연동망과 대시보드 변수가 실제 시연처럼 반응합니다.',
-        '60개국어 선택에 따라 언어 변수와 목표 수치가 즉시 변동되도록 구성되어 있습니다.',
-        '개인자산 대시보드, 사회환원 UBI, 고객센터 AGI/ASI 삐니, 유튜브와 틱톡 채널이 한 흐름으로 연결됩니다.'
+      const uniqueLines = [
+        'HKWB(hkwb.world)는 웹3 디지털 은행과 인터넷 은행을 완전히 격리된 별도 방으로 분리하여 설계되었습니다.',
+        '웹3 디지털 은행의 상태와 데이터는 인터넷 은행과 섞이지 않으며 독립적인 보안 경계를 유지합니다.',
+        '지갑연결 망은 노드 지갑 프로토콜과 자동 연동을 통해 온체인 자산 연결의 출발점을 제공합니다.',
+        '송금 망은 대륙간 초고속 멀티시그 암호화 전송 구조로 안전한 자산 이동을 지원합니다.',
+        '결제 망은 현금, 카드, 타코인 거래를 실시간 상거래 에스크로 흐름과 연결합니다.',
+        '예치 망은 자산 신탁 볼트 구조를 바탕으로 운영되며 이율 조정은 AGI와 ASI가 담당합니다.',
+        '보상 망은 생태계 참여 기여도에 따른 인센티브 적립 흐름을 뒷받침합니다.',
+        '기본소득 망은 HK 사회재단 및 지자체 연계 UBI 분배 모델과 맞물려 작동합니다.',
+        '스왑 망은 현금, 카드, 타코인 입금에서 코인 교환으로 이어지는 즉각적 스왑 절차를 다룹니다.',
+        'DEX 스왑 망은 탈중앙화 오더레스 방식의 P2P 유동성 자동매칭 구조를 지향합니다.',
+        'LP 스테이킹 망은 유동성 공급 증명(PoL)과 배당 권한 흐름을 연결합니다.',
+        '파이 수량 망은 파이 자산 메인넷 원장 동기화 수치를 대시보드와 연동합니다.',
+        '개인자산 대시보드는 변동 변수와 목표 배율을 반영해 실시간 수치를 보여줍니다.',
+        '60개국어 선택기는 언어 코드와 함께 표시 수치 및 통화 변수까지 연동되도록 구성했습니다.',
+        '순이익의 30%는 사회환원 기본소득(UBI) 재원으로 배분됩니다.',
+        '순이익의 30%는 회사 경영 및 플랫폼 운영비로 활용됩니다.',
+        '순이익의 최대 30%는 HK 사회재단에 편입되어 기업 인수 등 전략적 자본으로 쓰일 수 있습니다.',
+        '고정 이율을 걸어두지 않고 AGI와 ASI가 상황에 따라 이율을 조정하는 유연한 구조를 채택합니다.',
+        '고객센터 AGI/ASI 삐니는 이율 조정, 10대 분산 연동망, 사회환원 UBI 문의를 1차로 응대합니다.',
+        '유튜브(@Hyekong2026)와 틱톡(@hyekong2026) 채널은 방송과 콘텐츠 접점을 제공합니다.'
       ];
-      return `${n}번째 줄: ${lines[idx % lines.length]}`;
+      const angle = [
+        '이 원칙은 시스템 안정성과 투명성을 높이기 위한 핵심 기준입니다.',
+        '백엔드 API가 구동될 때 각 모듈의 상태와 응답 데이터가 실제처럼 검증됩니다.',
+        '컴플라이언스 기준과 결합해 장기적인 신뢰 기반을 다집니다.',
+        '사용자 화면과 백엔드 연동 간의 일관성을 유지하는 데 초점을 둡니다.',
+        '미래 확장성과 운영 효율성을 동시에 고려한 설계입니다.'
+      ];
+      if (n <= uniqueLines.length) {
+        return `${n}번째 줄: ${uniqueLines[n - 1]}`;
+      }
+      const base = uniqueLines[(n - 1) % uniqueLines.length];
+      const tail = angle[(n - 1) % angle.length];
+      return `${n}번째 줄: ${base} ${tail}`;
     });
 
     function openWhitepaper100() {
@@ -630,3 +747,4 @@
   </script>
 </body>
 </html>
+
