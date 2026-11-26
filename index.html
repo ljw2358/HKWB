@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  /* 모바일에서도 깔끔하게 정돈되도록 헤더/버튼 최적화 */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HKWB — 인류와 기술이 공존하는 차세대 디지털 금융 혁신</title>
+  <style>
+    :root {
+      --bg-navy: #070b1a;
+      --bg-purple: #160c33;
+      --card-bg: rgba(17, 24, 54, 0.92);
+      --card-border: rgba(250, 204, 21, 0.25);
+      --gold: #facc15;
+      --gold-soft: rgba(250, 204, 21, 0.14);
+      --purple-btn: #7c3aed;
+      --teal-btn: #0d9488;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --ok: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
+      background: radial-gradient(circle at top right, #241252 0%, var(--bg-purple) 38%, var(--bg-navy) 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 18px 16px 64px;
+    }
+
+    /* 상단 헤더 */
     header {
       display: flex;
       flex-direction: column;
       align-items: stretch;
       padding: 14px 16px;
-      background: rgba(10, 15, 36, 0.92);
+      background: rgba(10, 15, 36, 0.94);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       margin-bottom: 14px;
@@ -39,8 +77,18 @@
       align-items: center;
       justify-content: space-between;
       gap: 6px;
-      flex-wrap: nowrap; /* 한 줄로 가지런히 정렬 */
+      flex-wrap: nowrap;
       width: 100%;
+    }
+
+    select, button, input {
+      font-family: inherit;
+      border-radius: 10px;
+      transition: all 0.15s ease;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     .lang-select {
@@ -55,11 +103,97 @@
     .btn-outline, .btn-gold {
       padding: 7px 10px;
       font-size: 0.78rem;
-      white-space: nowrap; /* 글자 줄바꿈 방지 */
+      white-space: nowrap;
       flex: 1 1 auto;
       text-align: center;
     }
 
+    .btn-gold {
+      background: var(--gold);
+      color: #090d1e;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.06);
+    }
+
+    .btn-outline {
+      background: rgba(124, 58, 237, 0.2);
+      color: var(--text-main);
+      border: 1px solid rgba(167, 139, 250, 0.45);
+      font-weight: 600;
+    }
+
+    .btn-outline:hover {
+      background: rgba(124, 58, 237, 0.34);
+    }
+
+    /* 메인 히어로 & 완전 분리 진입 버튼 */
+    .hero-card {
+      background: linear-gradient(135deg, rgba(28, 16, 66, 0.95), rgba(10, 16, 38, 0.95));
+      border: 1px solid rgba(250, 204, 21, 0.38);
+      border-radius: 18px;
+      padding: 24px 20px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: clamp(1.45rem, 3.2vw, 2.25rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.28;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    .mode-switch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .mode-btn {
+      padding: 14px 18px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .mode-btn.web3 {
+      background: linear-gradient(90deg, #7c3aed, #9333ea);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+    }
+
+    .mode-btn.internet {
+      background: linear-gradient(90deg, #0d9488, #10b981);
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+    }
+
+    .mode-btn.active {
+      outline: 3px solid var(--gold);
+      transform: translateY(-1px);
+    }
+
+    /* 지갑 연결 동적 프로세스 상태 바 */
     .wallet-bar {
       display: flex;
       align-items: center;
@@ -93,7 +227,7 @@
     }
 
     .progress-track {
-      width: 140px;
+      width: 130px;
       height: 6px;
       background: rgba(148, 163, 184, 0.2);
       border-radius: 999px;
@@ -139,7 +273,7 @@
     }
 
     .stat-box, .net-item, .rate-card {
-      background: rgba(9, 13, 30, 0.76);
+      background: rgba(9, 13, 30, 0.78);
       border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: 12px;
       padding: 15px;
@@ -151,14 +285,14 @@
     }
 
     .stat-value {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 800;
       margin: 4px 0;
     }
 
     .stat-value.gold, .rate-num {
       color: var(--gold);
-      font-size: 1.35rem;
+      font-size: 1.32rem;
       font-weight: 800;
       margin: 4px 0;
     }
@@ -169,7 +303,7 @@
     }
 
     .action-card {
-      background: rgba(11, 16, 36, 0.85);
+      background: rgba(11, 16, 36, 0.88);
       border: 1px solid rgba(148, 163, 184, 0.2);
       border-radius: 12px;
       padding: 14px;
@@ -198,6 +332,57 @@
       font-size: 0.94rem;
       color: #e2e8f0;
       margin-bottom: 4px;
+    }
+
+    /* 인터넷 뱅크 전용 폼 & 버튼 */
+    .ib-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .ib-field label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+    }
+
+    .ib-field input {
+      width: 100%;
+      padding: 10px 12px;
+      background: #090d1e;
+      color: var(--text-main);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      font-size: 0.9rem;
+    }
+
+    .ib-btn-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .ib-btn {
+      padding: 11px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      color: #ffffff;
+    }
+
+    .ib-btn.blue {
+      background: #2563eb;
+    }
+
+    .ib-btn.dark {
+      background: #1e293b;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .ib-btn.green {
+      background: #059669;
     }
 
     .rate-detail {
@@ -281,7 +466,7 @@
       border-bottom: 1px solid rgba(148, 163, 184, 0.08);
     }
 
-    /* HK NAVIGATOR 슬라이드 드로어 */
+    /* HK NAVIGATOR 드로어 */
     .nav-backdrop {
       position: fixed;
       inset: 0;
@@ -355,7 +540,7 @@
       background: rgba(250, 204, 21, 0.12);
     }
 
-    /* 정보 모달 (FAQ 20선 / 규정 / 허브 상세) */
+    /* 모달 */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -453,12 +638,12 @@
     <header>
       <div class="brand">
         <span class="brand-title">HKWB</span>
-        <span class="brand-sub">웹3 디지털 은행 · 10대 분산 연동망</span>
+        <span class="brand-sub" id="headerModeLabel">현재 모드: 웹3 디지털 뱅크 · 10대 분산 연동망</span>
       </div>
       <div class="header-actions">
         <select id="langSelect" class="lang-select" aria-label="언어 선택">
           <option value="ko" selected>한국어</option>
-          <option value="en">English (60개국어 지원)</option>
+          <option value="en">English</option>
           <option value="ja">日本語</option>
           <option value="zh">中文</option>
         </select>
@@ -467,6 +652,20 @@
         <button id="walletConnectBtn" class="btn-gold" type="button">지갑 연결</button>
       </div>
     </header>
+
+    <!-- 첫 화면 슬로건 & 웹3 / 인터넷 뱅크 완전 분리 버튼 -->
+    <section class="hero-card" id="heroSection">
+      <h1 class="hero-title"><span>인류와 기술이 공존하는</span><br />차세대 디지털 금융 혁신</h1>
+      <p class="hero-desc">10대 글로벌 보안 기술 &amp; AGI/ASI 기반 글로벌 자율 금융 플랫폼 · 추천인: ljw2358</p>
+      <div class="mode-switch-grid">
+        <button id="btnModeWeb3" class="mode-btn web3 active" type="button" onclick="switchBankMode('web3')">
+          Web3 디지털 뱅크 진입하기 &gt;
+        </button>
+        <button id="btnModeInternet" class="mode-btn internet" type="button" onclick="switchBankMode('internet')">
+          인터넷 뱅크 진입하기 &gt;
+        </button>
+      </div>
+    </section>
 
     <!-- 간소화된 지갑 연결 동적 프로세스 상태 바 -->
     <div class="wallet-bar" id="walletProcessBar">
@@ -482,7 +681,7 @@
       </div>
     </div>
 
-    <!-- 1. 개인 자산 대시보드 -->
+    <!-- 공통 개인 자산 대시보드 -->
     <section class="section" id="dashboardSection">
       <div class="section-header">
         <h2 class="section-title">개인 자산 대시보드</h2>
@@ -496,7 +695,7 @@
         <div class="stat-box">
           <div class="stat-label">실시간 누적 이자·수익</div>
           <div class="stat-value">+₩15,126.52</div>
-          <div class="stat-desc">가변형 이율 자동 산정 반영 중</div>
+          <div class="stat-desc">AGI/ASI 가변형 이율 자동 산정 반영 중</div>
         </div>
         <div class="stat-box">
           <div class="stat-label">보유 파이(π) 및 생태계 지수</div>
@@ -506,59 +705,88 @@
       </div>
     </section>
 
-    <!-- 2. 웹3 디지털 은행 -->
-    <section class="section" id="web3BankSection">
-      <div class="section-header">
-        <h2 class="section-title">웹3 디지털 은행</h2>
-        <button class="btn-outline" type="button" onclick="triggerWalletAutoLink('웹3 디지털 은행 실행')">안전 자동 링크 실행</button>
-      </div>
-      <div class="bank-actions">
-        <button class="action-card" type="button" onclick="showNotice('자산 예치 메뉴가 선택되었습니다.')">
-          <strong>예치</strong>
-          <span>디지털 자산 스마트 예치 및 운용</span>
-        </button>
-        <button class="action-card" type="button" onclick="showNotice('토큰 스왑 메뉴가 선택되었습니다.')">
-          <strong>토큰 스왑</strong>
-          <span>지원 토큰 간 즉시 교환</span>
-        </button>
-        <button class="action-card" type="button" onclick="showNotice('DEX 스왑 메뉴가 선택되었습니다.')">
-          <strong>DEX 스왑</strong>
-          <span>탈중앙 유동성 풀 기반 스왑</span>
-        </button>
-        <button class="action-card" type="button" onclick="showNotice('LP 스테이킹 메뉴가 선택되었습니다.')">
-          <strong>LP 스테이킹</strong>
-          <span>유동성 공급 포지션 예치 운용</span>
-        </button>
-      </div>
-    </section>
+    <!-- [분리 영역 A] WEB3 디지털 뱅크 전용 화면 -->
+    <div id="web3Workspace">
+      <section class="section" id="web3BankSection">
+        <div class="section-header">
+          <h2 class="section-title">Web3 디지털 뱅크 전용 메뉴</h2>
+          <button class="btn-outline" type="button" onclick="triggerWalletAutoLink('Web3 디지털 뱅크 실행')">안전 자동 링크 실행</button>
+        </div>
+        <div class="bank-actions">
+          <button class="action-card" type="button" onclick="showNotice('Web3 디지털 뱅크: 자산 예치 메뉴가 선택되었습니다.')">
+            <strong>예치</strong>
+            <span>디지털 자산 스마트 예치 및 운용</span>
+          </button>
+          <button class="action-card" type="button" onclick="showNotice('Web3 디지털 뱅크: 토큰 스왑 메뉴가 선택되었습니다.')">
+            <strong>토큰 스왑</strong>
+            <span>지원 토큰 간 즉시 교환</span>
+          </button>
+          <button class="action-card" type="button" onclick="showNotice('Web3 디지털 뱅크: DEX 스왑 메뉴가 선택되었습니다.')">
+            <strong>DEX 스왑</strong>
+            <span>탈중앙 유동성 풀 기반 스왑</span>
+          </button>
+          <button class="action-card" type="button" onclick="showNotice('Web3 디지털 뱅크: LP 스테이킹 메뉴가 선택되었습니다.')">
+            <strong>LP 스테이킹</strong>
+            <span>유동성 공급 포지션 예치 운용</span>
+          </button>
+        </div>
+      </section>
 
-    <!-- 3. 10대 분산 연동망 -->
-    <section class="section" id="networkSection">
-      <div class="section-header">
-        <h2 class="section-title">10대 분산 연동망</h2>
-        <button class="btn-outline" type="button" onclick="triggerWalletAutoLink('10대 분산 연동망 동기화')">안전 자동 링크(Secure Auto-Link)</button>
-      </div>
-      <div class="network-grid">
-        <div class="net-item">
-          <h4>안전 자동 링크(Secure Auto-Link)</h4>
-          <p>분산 지갑 제공자 확인·네트워크 검증·세션 자동 연동</p>
+      <section class="section" id="networkSection">
+        <div class="section-header">
+          <h2 class="section-title">10대 분산 연동망</h2>
+          <button class="btn-outline" type="button" onclick="triggerWalletAutoLink('10대 분산 연동망 동기화')">안전 자동 링크(Secure Auto-Link)</button>
         </div>
-        <div class="net-item">
-          <h4>분산 자산 및 송금 연동</h4>
-          <p>연동 지갑 간 안전 전송 및 실시간 잔액 확인</p>
+        <div class="network-grid">
+          <div class="net-item">
+            <h4>안전 자동 링크(Secure Auto-Link)</h4>
+            <p>분산 지갑 제공자 확인·네트워크 검증·세션 자동 연동</p>
+          </div>
+          <div class="net-item">
+            <h4>분산 자산 및 송금 연동</h4>
+            <p>연동 지갑 간 안전 전송 및 실시간 잔액 확인</p>
+          </div>
+          <div class="net-item">
+            <h4>온·오프라인 결제 연동</h4>
+            <p>분산 계정 기반 즉시 결제 승인 및 내역 조회</p>
+          </div>
+          <div class="net-item">
+            <h4>생태계 리워드 순환</h4>
+            <p>참여 활동 및 네트워크 기여 기반 보상 지급</p>
+          </div>
         </div>
-        <div class="net-item">
-          <h4>온·오프라인 결제 연동</h4>
-          <p>분산 계정 기반 즉시 결제 승인 및 내역 조회</p>
-        </div>
-        <div class="net-item">
-          <h4>생태계 리워드 순환</h4>
-          <p>참여 활동 및 네트워크 기여 기반 보상 지급</p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- 4. 가변형 이율 -->
+    <!-- [분리 영역 B] 인터넷 뱅크 전용 화면 -->
+    <div id="internetWorkspace" style="display: none;">
+      <section class="section" id="internetBankSection">
+        <div class="section-header">
+          <h2 class="section-title">무점포 인터넷 뱅크 핵심 서비스</h2>
+          <button class="btn-outline" type="button" onclick="switchBankMode('web3')">Web3 디지털 뱅크로 전환</button>
+        </div>
+        <p style="font-size: 0.86rem; color: var(--text-sub); margin-bottom: 14px;">
+          지점 방문 없이 모바일·웹에서 실시간 입금, 실시간 송금 및 대출 심사를 진행합니다.
+        </p>
+        <div class="ib-form-grid">
+          <div class="ib-field">
+            <label for="ibAccountInput">계좌번호 입력</label>
+            <input id="ibAccountInput" type="text" placeholder="예: 110-452-889120" />
+          </div>
+          <div class="ib-field">
+            <label for="ibAmountInput">거래 금액 (원)</label>
+            <input id="ibAmountInput" type="number" placeholder="0" />
+          </div>
+        </div>
+        <div class="ib-btn-row">
+          <button class="ib-btn blue" type="button" onclick="runInternetBankAction('실시간 입금')">실시간 입금</button>
+          <button class="ib-btn dark" type="button" onclick="runInternetBankAction('실시간 송금')">실시간 송금</button>
+          <button class="ib-btn green" type="button" onclick="runInternetBankAction('실시간 대출 심사 신청')">실시간 대출 심사 신청</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 가변형 이율 -->
     <section class="section" id="rateSection">
       <div class="section-header">
         <h2 class="section-title">가변형 이율</h2>
@@ -569,7 +797,7 @@
           <div class="rate-period">6개월 이상</div>
           <div class="rate-num">8% ~ 12%</div>
           <div class="rate-period">현재 가변 적용 예시: 연 10.4%</div>
-          <div class="rate-detail">시장 유동성 및 생태계 운용 지표에 따라 변동 적용됩니다.</div>
+          <div class="rate-detail">시장 유동성 및 AGI/ASI 산정 지표에 따라 변동 적용됩니다.</div>
         </div>
         <div class="rate-card">
           <div class="rate-period">12개월 이상</div>
@@ -586,7 +814,7 @@
       </div>
     </section>
 
-    <!-- 5. 사회 환원 UBI -->
+    <!-- 사회 환원 UBI -->
     <section class="section" id="ubiSection">
       <div class="section-header">
         <h2 class="section-title">사회 환원 UBI</h2>
@@ -594,7 +822,7 @@
       <div class="ubi-box">
         <div>
           <p style="font-size: 0.92rem; color: #e2e8f0; margin-bottom: 4px;">
-            플랫폼 성장 가치와 생태계 수익 일부를 사회 환원 풀로 조성하여 참여 구성원의 기본 소득 형태로 순환합니다.
+            수익 배분 원칙(UBI 30% · 회사 경영비 30% · HK 사회재단 최대 30% 전략 투자)에 따라 기본 소득 형태로 순환합니다.
           </p>
           <span style="font-size: 0.82rem; color: var(--text-sub);">이번 사이클 배분 예정 UBI</span>
         </div>
@@ -605,7 +833,7 @@
       </div>
     </section>
 
-    <!-- 6. 백서 (양파 껍질 6겹 · 100개 서술형 문장) -->
+    <!-- 백서 100개 서술형 문장 (양파 껍질 6겹 구조) -->
     <section class="section" id="whitepaperSection">
       <div class="section-header">
         <h2 class="section-title">HKWB 백서 (100개 서술형 문장 · 6겹 구조)</h2>
@@ -615,10 +843,10 @@
       <div id="whitepaperContainer"></div>
     </section>
 
-    <!-- 7. AGI/ASI 고객센터 및 채널 -->
+    <!-- AGI/ASI 고객센터 및 채널 -->
     <footer class="footer-bar">
       <div>
-        <strong style="color: var(--gold);">AGI / ASI 고객센터</strong> · 24시간 지능형 안내 및 지원
+        <strong style="color: var(--gold);">AGI / ASI 고객센터</strong> · support@hkwb.world · 추천인 ljw2358
       </div>
       <div class="channel-links">
         <a href="https://www.youtube.com/@Hyekong2026" target="_blank" rel="noopener noreferrer">유튜브 @Hyekong2026</a>
@@ -635,8 +863,12 @@
         <button class="close-btn" type="button" onclick="closeNavigator()" aria-label="닫기">X</button>
       </div>
 
+      <div class="nav-group-label">BANK MODE SWITCH</div>
+      <button class="nav-item-btn" type="button" onclick="switchBankMode('web3'); closeNavigator();">Web3 디지털 뱅크 전용 화면 보기</button>
+      <button class="nav-item-btn" type="button" onclick="switchBankMode('internet'); closeNavigator();">인터넷 뱅크 전용 화면 보기</button>
+
       <div class="nav-group-label">CORE LEGAL &amp; COMPLIANCE</div>
-      <button class="nav-item-btn" type="button" onclick="jumpToWhitepaper()">백서 (Whitepaper v3.1 상세 40선 · 100문장 수록)</button>
+      <button class="nav-item-btn" type="button" onclick="jumpToWhitepaper()">백서 (100문장 6겹 구조 전문)</button>
       <button class="nav-item-btn" type="button" onclick="openFaqModal()">자주 묻는 질문 (FAQ 20선 실용)</button>
       <button class="nav-item-btn" type="button" onclick="openInfoModal('3대 POLICIES (AML·KYC·필름보안 상세)', '자금세탁방지(AML), 고객확인(KYC), 필름보안 기준을 준수하여 계정 무결성과 거래 투명성을 유지합니다.')">3대 POLICIES (AML·KYC·필름보안 상세)</button>
       <button class="nav-item-btn" type="button" onclick="openInfoModal('21개국 디지털 자산법 및 해킹 방어 림 플라이어스', '주요 21개국 디지털 자산 규제 환경에 맞춘 준법 대응 체계와 다중 보안 방어 구조를 안내합니다.')">21개국 디지털 자산법 및 해킹 방어 림 플라이어스</button>
@@ -644,18 +876,16 @@
 
       <div class="nav-group-label">HK GLOBAL ECOSYSTEM HUBS</div>
       <button class="nav-item-btn" type="button" onclick="openHubModal('로봇: HK-ROBOT', '지능형 로봇 및 산업 자동화 생태계 허브입니다.')">로봇: HK-ROBOT</button>
-      <button class="nav-item-btn" type="button" onclick="openHubModal('스마트 플러스: HK-NEXUS', '차세대 스마트 디바이스 및 연결 생태계 허브입니다.')">스마트 플러스: HK-NEXUS</button>
       <button class="nav-item-btn" type="button" onclick="openHubModal('도심항공교통: HK-UAM', '도심항공교통 및 차세대 모빌리티 허브입니다.')">도심항공교통: HK-UAM</button>
       <button class="nav-item-btn" type="button" onclick="openHubModal('인공태양: HK-FUSION', '차세대 핵융합·청정에너지 연구 및 산업 허브입니다.')">인공태양: HK-FUSION</button>
       <button class="nav-item-btn" type="button" onclick="openHubModal('양자바이오: HK-QUANTUMBIO', '양자 연산과 바이오 헬스 융합 허브입니다.')">양자바이오: HK-QUANTUMBIO</button>
       <button class="nav-item-btn" type="button" onclick="openHubModal('우주모빌리티: HK-SPACE', '우주 수송 및 궤도 모빌리티 허브입니다.')">우주모빌리티: HK-SPACE</button>
       <button class="nav-item-btn" type="button" onclick="openHubModal('부품뱅크: HK-PARTSBANK', '핵심 부품 및 정밀 소재 공급망 허브입니다.')">부품뱅크: HK-PARTSBANK</button>
       <button class="nav-item-btn" type="button" onclick="openHubModal('국방기술: HK-DEFENCE-HUB', '첨단 국방 기술 및 보안 시스템 허브입니다.')">국방기술: HK-DEFENCE-HUB</button>
-      <button class="nav-item-btn" type="button" onclick="openHubModal('T165 효목금 랜드마크 허브 (광주 사옥)', '지역 거점 및 랜드마크 허브 연계 안내입니다.')">T165 효목금 랜드마크 허브 (광주 사옥)</button>
     </aside>
   </div>
 
-  <!-- FAQ 20선 / 규정 / 허브 모달 -->
+  <!-- FAQ / 안내 모달 -->
   <div class="modal-backdrop" id="infoModalBackdrop" onclick="closeModalOnBackdrop(event)">
     <div class="modal-box">
       <div class="nav-top">
@@ -799,7 +1029,7 @@
           "87. 보안 및 해킹 방어 체계는 디지털 자산과 사용자 정보를 외부 위협으로부터 지키는 방패입니다.",
           "88. 트래블룰 및 제재 리스트 검증 규격에 대한 고려는 국제 기준에 부합하는 투명성을 추구합니다.",
           "89. 21개국 디지털 자산법과 규제 환경을 염두에 두는 것은 글로벌 확장을 대비한 시야입니다.",
-          "90. HK 글로벌 에코시스템 허브는 로봇, 스마트 플러스, 도심항공교통(UAM), 인공지능 등 미래 산업군을 아우릅니다.",
+          "90. HK 글로벌 에코시스템 허브는 로봇, 도심항공교통(UAM), 인공지능 등 미래 산업군을 아우릅니다.",
           "91. 양자바이오, 우주모빌리티, 부품뱅크, 국방기술 등 첨단 영역과의 연결은 장기적 산업 비전을 보여줍니다.",
           "92. 거점 허브와 사옥 개념은 디지털 플랫폼과 물리적 거점이 만나는 상징적 공간 역할을 합니다.",
           "93. AGI/ASI 고객센터는 이용자의 질문과 안내 요청에 상시 대응하는 지능형 지원 창구입니다.",
@@ -815,30 +1045,62 @@
     ];
 
     const FAQ_20 = [
-      ["Q1. HKWB는 어떤 플랫폼인가요?", "웹3 디지털 은행과 인터넷 은행의 장점을 결합해 디지털 자산과 금융 기능을 제공하는 플랫폼입니다."],
-      ["Q2. 왜 데모·둘러보기·시연 제어 바가 없나요?", "사용자가 화면 복잡도 없이 핵심 금융 기능과 자산 현황에 바로 집중하도록 정리했습니다."],
+      ["Q1. HKWB는 어떤 플랫폼인가요?", "인류와 기술이 공존하는 차세대 디지털 금융 혁신을 목표로 하는 웹3 디지털 뱅크 및 인터넷 뱅크 플랫폼입니다."],
+      ["Q2. Web3 디지털 뱅크와 인터넷 뱅크는 어떻게 나뉘나요?", "상단 진입 버튼으로 각 영역을 완전히 분리해 Web3 자산 운용·분산 연동망과 무점포 인터넷 뱅크 기능을 따로 제공합니다."],
       ["Q3. 지갑 연결 동적 프로세스는 어떻게 작동하나요?", "지갑 제공자 확인, 네트워크 검증, 세션 동기화 단계를 간소한 상태 표시로 안내합니다."],
       ["Q4. 안전 자동 링크(Secure Auto-Link)란 무엇인가요?", "지갑 연동 과정을 단계별로 검증해 연결 오류를 줄이고 세션을 안정적으로 이어주는 흐름입니다."],
-      ["Q5. 웹3 디지털 은행에서는 어떤 기능을 다루나요?", "예치, 토큰 스왑, DEX 스왑, LP 스테이킹 등 온체인 자산 운용 기능을 중심으로 구성합니다."],
+      ["Q5. Web3 디지털 뱅크에서는 어떤 기능을 다루나요?", "예치, 토큰 스왑, DEX 스왑, LP 스테이킹 등 온체인 자산 운용 기능을 중심으로 구성합니다."],
       ["Q6. 10대 분산 연동망은 무엇을 담당하나요?", "분산 자산 및 송금 연동, 온·오프라인 결제 연동, 리워드 순환 등 분산 연결 기능을 다룹니다."],
-      ["Q7. 중복 기능은 어떻게 정리되었나요?", "웹3 디지털 은행과 10대 분산 연동망 간 겹치던 항목을 역할에 맞게 나누어 화면을 간결하게 했습니다."],
-      ["Q8. 가변형 이율은 어떻게 적용되나요?", "6개월, 12개월, 24개월 구간별 변동 범위를 기준으로 현재 적용 예시와 세부 조건을 확인할 수 있습니다."],
-      ["Q9. 이율 조정은 어떤 기준으로 이루어지나요?", "시장 및 생태계 지표와 함께 AGI/ASI 기반 분석·조정 방향을 반영하도록 설계합니다."],
-      ["Q10. 사회 환원 UBI는 어떻게 만들어지나요?", "플랫폼 성장 가치와 생태계 수익 일부를 사회 환원 풀로 조성하여 기본 소득 형태로 순환합니다."],
-      ["Q11. UBI 배분과 재원 운용 원칙은 무엇인가요?", "기본 소득 순환, 회사 운영비, 사회재단 및 전략적 투자 재원 간 균형을 고려합니다."],
-      ["Q12. UBI 즉시 수령은 어떻게 확인하나요?", "사회 환원 UBI 카드에서 배분 예정 금액과 수령 신청 상태를 확인할 수 있습니다."],
-      ["Q13. HK NAVIGATOR에서는 무엇을 볼 수 있나요?", "백서, FAQ 20선, 컴플라이언스 정책, 그리고 HK 글로벌 에코시스템 허브 목록을 열람할 수 있습니다."],
+      ["Q7. 인터넷 뱅크에서는 어떤 기능을 쓸 수 있나요?", "무점포 기반으로 계좌번호와 거래 금액을 입력해 실시간 입금, 실시간 송금, 실시간 대출 심사 신청을 다룹니다."],
+      ["Q8. 가변형 이율은 어떻게 적용되나요?", "6개월, 12개월, 24개월 구간별 변동 범위를 기준으로 현재 가변 적용 예시를 안내합니다."],
+      ["Q9. 이율 조정은 어떤 기준으로 이루어지나요?", "시장 및 생태계 지표와 함께 AGI/ASI 기반 분석·조정 체계를 반영합니다."],
+      ["Q10. 수익 배분 원칙은 어떻게 되나요?", "UBI 30%, 회사 경영비 30%, HK 사회재단 최대 30% 전략 투자 기준을 따릅니다."],
+      ["Q11. 사회 환원 UBI는 어떻게 순환하나요?", "플랫폼 성장 가치와 생태계 수익 일부를 사회 환원 풀로 조성해 참여 구성원의 기본 소득 형태로 순환합니다."],
+      ["Q12. 추천인 코드는 무엇인가요?", "공식 추천인 코드는 ljw2358입니다."],
+      ["Q13. HK NAVIGATOR에서는 무엇을 볼 수 있나요?", "모드 전환, 백서 100문장, FAQ 20선, 컴플라이언스 정책, 글로벌 에코시스템 허브 정보를 볼 수 있습니다."],
       ["Q14. 백서 100개 문장은 어떻게 구성되어 있나요?", "거시 비전부터 대시보드, 분산 연동망, 웹3 은행·이율, UBI 순환, 규정·허브까지 6겹으로 구성했습니다."],
       ["Q15. AML과 KYC 규정은 왜 중요한가요?", "건전한 거래 환경과 이용자 보호, 규제 준수 기반을 마련하기 위해 필수적입니다."],
       ["Q16. 트래블룰 및 제재 리스트 검증은 무엇인가요?", "자산 이동 투명성과 국제 제재 기준 대조를 통해 보안성과 신뢰성을 높이기 위한 규격입니다."],
       ["Q17. 21개국 디지털 자산법은 어떤 의미인가요?", "다국가 규제 환경에 대응하는 글로벌 확장 기준을 염두에 둔 항목입니다."],
-      ["Q18. HK 글로벌 에코시스템 허브에는 어떤 분야가 있나요?", "로봇, 스마트 플러스, 도심항공교통(UAM), 인공태양, 양자바이오, 우주모빌리티, 부품뱅크, 국방기술 등이 포함됩니다."],
-      ["Q19. 고객 지원은 어디서 받을 수 있나요?", "AGI/ASI 고객센터와 공식 유튜브(@Hyekong2026), 틱톡(@hyekong2026) 채널을 통해 안내받을 수 있습니다."],
-      ["Q20. 다국어 지원은 어떻게 되나요?", "상단 언어 선택기를 통해 한국어와 영어를 포함한 글로벌 언어로 전환할 수 있습니다."]
+      ["Q18. HK 글로벌 에코시스템 허브에는 어떤 분야가 있나요?", "로봇, 도심항공교통(UAM), 인공태양, 양자바이오, 우주모빌리티, 부품뱅크, 국방기술 등이 포함됩니다."],
+      ["Q19. 고객 지원은 어디로 문의하나요?", "support@hkwb.world 및 AGI/ASI 고객센터, 유튜브(@Hyekong2026), 틱톡(@hyekong2026)으로 안내합니다."],
+      ["Q20. 다국어 지원은 어떻게 되나요?", "상단 언어 선택기를 통해 한국어, 영어, 일본어, 중국어 등으로 전환할 수 있습니다."]
     ];
 
     let isConnecting = false;
     let activeLayer = "all";
+    let currentBankMode = "web3";
+
+    function switchBankMode(mode) {
+      currentBankMode = mode;
+      const web3El = document.getElementById("web3Workspace");
+      const internetEl = document.getElementById("internetWorkspace");
+      const btnWeb3 = document.getElementById("btnModeWeb3");
+      const btnInternet = document.getElementById("btnModeInternet");
+      const headerLabel = document.getElementById("headerModeLabel");
+
+      if (mode === "internet") {
+        web3El.style.display = "none";
+        internetEl.style.display = "block";
+        btnWeb3.classList.remove("active");
+        btnInternet.classList.add("active");
+        headerLabel.textContent = "현재 모드: 무점포 인터넷 뱅크";
+        showNotice("인터넷 뱅크 화면으로 전환되었습니다.");
+      } else {
+        web3El.style.display = "block";
+        internetEl.style.display = "none";
+        btnWeb3.classList.add("active");
+        btnInternet.classList.remove("active");
+        headerLabel.textContent = "현재 모드: Web3 디지털 뱅크 · 10대 분산 연동망";
+        showNotice("Web3 디지털 뱅크 화면으로 전환되었습니다.");
+      }
+    }
+
+    function runInternetBankAction(actionName) {
+      const acc = document.getElementById("ibAccountInput").value.trim() || "기본 계좌";
+      const amt = document.getElementById("ibAmountInput").value.trim() || "0";
+      showNotice(`${actionName} 요청 접수 — 계좌: ${acc}, 금액: ₩${Number(amt || 0).toLocaleString()}`);
+    }
 
     function renderWhitepaper() {
       const tabsEl = document.getElementById("layerTabs");
