@@ -20,6 +20,7 @@
       flex-direction: column;
     }
 
+    /* 상단 헤더 */
     header {
       position: sticky;
       top: 0;
@@ -34,16 +35,10 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-
     .brand-badge {
       background: #f5b700;
       color: #120d2a;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 8px;
       font-weight: 900;
       font-size: 1.1rem;
@@ -54,8 +49,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     .lang-select {
@@ -78,11 +71,6 @@
       font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-connect:hover {
-      background: rgba(245, 183, 0, 0.26);
     }
 
     .hamburger-btn {
@@ -99,8 +87,8 @@
       justify-content: center;
     }
 
-    /* HK NAVIGATOR 삼선 메뉴 모달 */
-    .menu-modal {
+    /* 공통 모달 디자인 */
+    .modal {
       display: none;
       position: fixed;
       inset: 0;
@@ -111,199 +99,227 @@
       overflow-y: auto;
     }
 
-    .menu-modal.active {
+    .modal.active {
       display: block;
     }
 
-    .menu-wrap {
+    .modal-wrap {
       max-width: 920px;
       margin: 0 auto;
     }
 
-    .menu-header {
+    .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       padding-bottom: 14px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .menu-title {
+    .modal-title {
       font-size: 1.45rem;
       font-weight: 900;
       color: #ffd447;
-      letter-spacing: 0.04em;
     }
 
     .close-btn {
       background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
       border: none;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       cursor: pointer;
     }
 
-    .nav-section {
-      margin-bottom: 28px;
+    /* 폼 입력 요소 스타일 */
+    .form-group {
+      margin-bottom: 18px;
       text-align: left;
     }
 
-    .nav-section-title {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: #ffd447;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-      text-transform: uppercase;
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      color: #a5b4fc;
+      margin-bottom: 8px;
+      font-weight: 700;
     }
 
-    .nav-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .nav-item {
-      background: rgba(26, 21, 61, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 13px 16px;
-      color: #f1efff;
-      font-size: 0.94rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .nav-item:hover {
-      border-color: #ffd447;
-      background: rgba(42, 34, 94, 0.95);
-    }
-
-    .nav-dot {
-      color: #ffd447;
-      font-weight: 900;
-    }
-
-    main {
-      flex: 1;
+    .form-input, .form-select {
       width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 48px 20px 64px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.2;
-      font-weight: 900;
-      margin-bottom: 28px;
-    }
-
-    .hero-sub {
-      color: #b7b0e6;
-    }
-
-    .policy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
+      background: #090714;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 12px 14px;
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 12px 22px;
-      border-radius: 12px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      text-decoration: none;
-      margin-bottom: 36px;
+      font-size: 1rem;
+      font-family: monospace;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      text-align: left;
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: #ffd447;
     }
 
-    .card {
-      background: rgba(24, 19, 56, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 22px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .card-tag {
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: #ffd447;
-      margin-bottom: 6px;
-    }
-
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .card-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      color: #ddd8f8;
-      font-size: 0.96rem;
-    }
-
-    .enter-btn {
+    .btn-action {
       width: 100%;
       background: linear-gradient(135deg, #ffd447 0%, #f59e0b 100%);
       color: #161033;
       border: none;
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 14px;
       font-size: 1rem;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
+      margin-top: 10px;
     }
 
-    footer {
+    /* 카드 스타일 */
+    .wb-card {
+      background: linear-gradient(145deg, #181338 0%, #0d0b1a 100%);
+      border: 1px solid rgba(255, 212, 71, 0.3);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .bank-card {
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .asset-display {
+      background: #090714;
+      padding: 20px;
+      border-radius: 14px;
       text-align: center;
-      padding: 24px 16px;
-      font-size: 0.85rem;
-      color: #968ec7;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(8, 6, 20, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 16px;
     }
 
-    @media (max-width: 720px) {
-      .cards,
-      .nav-list {
-        grid-template-columns: 1fr;
-      }
+    .wallet-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #34d399;
+      font-family: monospace;
+      margin-bottom: 12px;
     }
+
+    .interest-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fbbf24;
+      font-family: monospace;
+    }
+
+    /* 10대 분산 연동망 및 인터넷 은행 서비스 그리드 레이아웃 */
+    .grid-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .network-card {
+      background: rgba(26, 21, 61, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s;
+    }
+
+    .network-card:hover {
+      border-color: #ffd447;
+      transform: translateY(-3px);
+      background: rgba(38, 30, 88, 0.9);
+    }
+
+    .internet-bank-item {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s;
+    }
+
+    .internet-bank-item:hover {
+      border-color: #38bdf8;
+      transform: translateY(-3px);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 212, 71, 0.15);
+      border: 1px solid #ffd447;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .blue-icon {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+    }
+
+    .card-title-text {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .card-desc-text {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    /* 삼선 NAVIGATOR 스타일 */
+    .nav-section { margin-bottom: 24px; text-align: left; }
+    .nav-section-title { font-size: 0.9rem; font-weight: 800; color: #ffd447; margin-bottom: 10px; }
+    .nav-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .nav-item { background: rgba(26, 21, 61, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 12px; font-size: 0.9rem; cursor: pointer; }
+    .nav-item:hover { border-color: #ffd447; }
+
+    /* 메인 랜딩 */
+    main { flex: 1; max-width: 980px; margin: 0 auto; padding: 48px 20px; text-align: center; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; margin-bottom: 28px; }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; text-align: left; }
+    .card { background: rgba(24, 19, 56, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 28px; }
+    .enter-btn { width: 100%; background: linear-gradient(135deg, #ffd447 0%, #f59e0b 100%); color: #161033; border: none; border-radius: 12px; padding: 14px; font-weight: 800; cursor: pointer; margin-top: 20px; }
+    .enter-btn-blue { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); color: #ffffff; }
+    footer { text-align: center; padding: 24px; font-size: 0.85rem; color: #968ec7; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+
+    @media (max-width: 720px) { .cards, .nav-list { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
+
+  <!-- 헤더 -->
   <header>
-    <a href="#" class="brand" aria-label="HKWB 홈">
-      <span class="brand-badge">HKWB</span>
-    </a>
+    <div class="brand-badge">HKWB</div>
 
     <div class="header-actions">
+      <!-- 60개국 언어 선택 -->
       <select class="lang-select" id="langSelect" aria-label="언어 선택">
         <option value="ko" selected>1. 한국어</option>
         <option value="en">2. English</option>
@@ -367,88 +383,296 @@
         <option value="ta">60. தமிழ்</option>
       </select>
 
-      <button type="button" class="btn-connect" onclick="alert('모바일 기기 연동 준비 중입니다.')">모바일 기기 연동</button>
-
+      <button type="button" class="btn-connect" onclick="alert('모바일 기기 연동 기능 준비 중입니다.')">모바일 기기 연동</button>
       <button type="button" class="hamburger-btn" id="menuOpenBtn" aria-label="삼선 메뉴">☰</button>
     </div>
   </header>
 
-  <!-- HK NAVIGATOR 모달 -->
-  <div class="menu-modal" id="navMenuModal" role="dialog" aria-modal="true" aria-label="HK NAVIGATOR">
-    <div class="menu-wrap">
-      <div class="menu-header">
-        <div class="menu-title">HK NAVIGATOR</div>
-        <button type="button" class="close-btn" id="menuCloseBtn" aria-label="메뉴 닫기">✕</button>
+  <!-- 메인 랜딩 화면 -->
+  <main>
+    <h1>인류와 기술이 공존하는<br /><span style="color: #b7b0e6;">차세대 디지털 금융 혁신</span></h1>
+
+    <section class="cards">
+      <!-- 1. 웹3 디지털 은행 카드 -->
+      <article class="card">
+        <div style="color: #ffd447; font-size: 0.85rem; font-weight: 700;">웹3 디지털 금융</div>
+        <h2 style="font-size: 1.5rem; margin: 10px 0;">웹3 디지털 은행</h2>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">• 탈중앙 지갑 연동 및 개인 자산 대시보드<br />• 10대 분산 연동망 시스템 실시간 운용<br />• AGI/ASI 실시간 변동 금리 적용</p>
+        <button type="button" class="enter-btn" id="wbOpenBtn">웹3 디지털 은행 진입 →</button>
+      </article>
+
+      <!-- 2. 무점포 인터넷 은행 카드 -->
+      <article class="card" style="border-color: rgba(56, 189, 248, 0.3);">
+        <div style="color: #38bdf8; font-size: 0.85rem; font-weight: 700;">무점포 인터넷 금융</div>
+        <h2 style="font-size: 1.5rem; margin: 10px 0;">무점포 인터넷 은행</h2>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">• 모바일 앱 기반 즉시 계좌 개설<br />• 스마트 간편 금융 거래 프로세스<br />• 실시간 계좌 출금 및 예치 연동</p>
+        <button type="button" class="enter-btn enter-btn-blue" id="ibOpenBtn">인터넷 은행 진입 →</button>
+      </article>
+    </section>
+  </main>
+
+  <!-- ==================== [ 방 1: 웹3 디지털 은행 전용 모달 ] ==================== -->
+  <div class="modal" id="web3BankModal">
+    <div class="modal-wrap">
+      <div class="modal-header">
+        <div class="modal-title">웹3 디지털 은행 개인자산 대시보드</div>
+        <button type="button" class="close-btn" id="wbCloseBtn">✕</button>
       </div>
 
-      <!-- CORE LEGAL & COMPLIANCE (5가지 + 추가 1가지) -->
+      <!-- 실시간 변동 통합 자산 카드 -->
+      <div class="wb-card">
+        <div style="font-size: 1.1rem; font-weight: 800; color: #ffd447; margin-bottom: 14px;">💼 통합 자산 현황</div>
+        <div class="asset-display">
+          <div style="font-size: 0.85rem; color: #a5b4fc; margin-bottom: 6px;">전자지갑 연동 보유 수량</div>
+          <div class="wallet-value" id="walletBalance">314,159.000000 PI / HK</div>
+          <div style="font-size: 0.85rem; color: #a5b4fc; margin: 12px 0 6px;">실시간 누적 이자 (AGI/ASI 31.41% APY 복리 연동)</div>
+          <div class="interest-value" id="liveInterest">12,450,892.690000 HK</div>
+        </div>
+      </div>
+
+      <!-- 10대 분산 연동망 버튼 그리드 -->
+      <div style="font-size: 1.2rem; font-weight: 800; color: #ffffff; margin: 28px 0 16px; text-align: left;">🌐 10대 분산 연동망</div>
+      <div class="grid-col">
+        <div class="network-card" onclick="openSubModal('subModal1')">
+          <div class="card-header"><div class="card-icon">🔗</div><div class="card-title-text">지갑 연결</div></div>
+          <div class="card-desc-text">노드 직접 프로토콜 연동 및 주소 인증</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal2')">
+          <div class="card-header"><div class="card-icon">📤</div><div class="card-title-text">송금</div></div>
+          <div class="card-desc-text">초고속 멀티시그 암호화 전송</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal3')">
+          <div class="card-header"><div class="card-icon">💳</div><div class="card-title-text">결제</div></div>
+          <div class="card-desc-text">에스크로 기반 실시간 안전 결제</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal4')">
+          <div class="card-header"><div class="card-icon">🏦</div><div class="card-title-text">예치</div></div>
+          <div class="card-desc-text">기간별 (1개월~3년) 복리 수익 운용</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal5')">
+          <div class="card-header"><div class="card-icon">🎁</div><div class="card-title-text">보상</div></div>
+          <div class="card-desc-text">기여도 기반 인센티브 포인트 수령</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal6')">
+          <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title-text">기본소득 (UBI)</div></div>
+          <div class="card-desc-text">HK 사회 재단 및 지자체 연계 분배</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal7')">
+          <div class="card-header"><div class="card-icon">🔄</div><div class="card-title-text">스왑</div></div>
+          <div class="card-desc-text">현금/카드/자산 즉시 교환 구매</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal8')">
+          <div class="card-header"><div class="card-icon">📊</div><div class="card-title-text">DEX 스왑</div></div>
+          <div class="card-desc-text">탈중앙 오더북 P2P 유동성 거래</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal9')">
+          <div class="card-header"><div class="card-icon">⛏️</div><div class="card-title-text">LP 스테이킹</div></div>
+          <div class="card-desc-text">유동성 공급 및 그래픽 예치 예치 연동</div>
+        </div>
+
+        <div class="network-card" onclick="openSubModal('subModal10')">
+          <div class="card-header"><div class="card-icon">🥧</div><div class="card-title-text">파이 수납</div></div>
+          <div class="card-desc-text">파이 자산 지갑연동 및 실시간 정산</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== [ 방 2: 무점포 인터넷 은행 전용 모달 ] ==================== -->
+  <div class="modal" id="internetBankModal">
+    <div class="modal-wrap">
+      <div class="modal-header">
+        <div class="modal-title" style="color: #38bdf8;">🏦 무점포 인터넷 은행 센터</div>
+        <button type="button" class="close-btn" id="ibCloseBtn">✕</button>
+      </div>
+
+      <!-- 인터넷 은행 원격 보유 계좌 현황 -->
+      <div class="bank-card">
+        <div style="font-size: 1.1rem; font-weight: 800; color: #38bdf8; margin-bottom: 14px;">💳 원격 대표 계좌 현황</div>
+        <div class="asset-display" style="border-color: rgba(56, 189, 248, 0.2);">
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 6px;">HK 인터넷 뱅킹 입출금 통장 (110-314-159206)</div>
+          <div class="wallet-value" style="color: #38bdf8;" id="ibBalance">50,000,000 KRW</div>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin: 10px 0 4px;">수수료 면제 혜택 및 실시간 파이/원화 환산 정산 적용</div>
+        </div>
+      </div>
+
+      <!-- 무점포 인터넷 은행 주요 서비스 항목 -->
+      <div style="font-size: 1.2rem; font-weight: 800; color: #ffffff; margin: 28px 0 16px; text-align: left;">📱 인터넷 은행 핵심 금융 서비스</div>
+      <div class="grid-col">
+        <div class="internet-bank-item" onclick="alert('즉시 비대면 계좌 개설 서비스 창으로 이동합니다.')">
+          <div class="card-header"><div class="card-icon blue-icon">📝</div><div class="card-title-text">즉시 계좌 개설</div></div>
+          <div class="card-desc-text">신분증 확인을 통한 1분 비대면 계좌 생성</div>
+        </div>
+
+        <div class="internet-bank-item" onclick="alert('스마트 간편 송금 서비스 창으로 이동합니다.')">
+          <div class="card-header"><div class="card-icon blue-icon">📲</div><div class="card-title-text">스마트 간편 송금</div></div>
+          <div class="card-desc-text">연락처 및 계좌번호 즉시 무수수료 송금</div>
+        </div>
+
+        <div class="internet-bank-item" onclick="alert('인터넷 정기 예금/적금 신청 창으로 이동합니다.')">
+          <div class="card-header"><div class="card-icon blue-icon">💰</div><div class="card-title-text">정기 예금 / 적금</div></div>
+          <div class="card-desc-text">AGI 최적 금리 적용 무점포 전용 예금상품</div>
+        </div>
+
+        <div class="internet-bank-item" onclick="alert('실시간 체크카드 발급 신청 창으로 이동합니다.')">
+          <div class="card-header"><div class="card-icon blue-icon">💳</div><div class="card-title-text">HK 체크/신용카드</div></div>
+          <div class="card-desc-text">온·오프라인 실시간 캐시백 디지털 카드</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10대 분산 연동망 세부 모달 10개 -->
+  <div class="modal" id="subModal1">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">지갑 연결</div><button class="close-btn" onclick="closeSubModal('subModal1')">✕</button></div>
+      <div class="form-group"><label class="form-label">테스트넷 지갑 주소</label><input type="text" class="form-input" value="G... 또는 Pi Test ID" /></div>
+      <div class="form-group"><label class="form-label">인증번호 (발송됨)</label><input type="text" class="form-input" value="681206" /></div>
+      <div class="form-group"><label class="form-label">6자리 보안 핀번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('지갑 연동이 완료되었습니다.'); closeSubModal('subModal1');">인증번호 승인 및 지갑 연결</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal2">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">송금</div><button class="close-btn" onclick="closeSubModal('subModal2')">✕</button></div>
+      <div class="form-group"><label class="form-label">수신 지갑 주소</label><input type="text" class="form-input" placeholder="G... 또는 Pi Test ID" /></div>
+      <div class="form-group"><label class="form-label">전송 수량</label><input type="text" class="form-input" value="314159.000000" /></div>
+      <div class="form-group"><label class="form-label">보안 인증번호 (발송됨)</label><input type="text" class="form-input" value="097222" /></div>
+      <div class="form-group"><label class="form-label">6자리 핀번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('송금이 실행되었습니다.'); closeSubModal('subModal2');">송금 실행</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal3">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">결제</div><button class="close-btn" onclick="closeSubModal('subModal3')">✕</button></div>
+      <div class="form-group"><label class="form-label">결제 수량 및 금액</label><input type="text" class="form-input" value="314159.000000" /></div>
+      <div class="form-group"><label class="form-label">결제 승인 인증번호 (발송됨)</label><input type="text" class="form-input" value="537137" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('에스크로 결제가 승인되었습니다.'); closeSubModal('subModal3');">에스크로 결제 승인</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal4">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">예치</div><button class="close-btn" onclick="closeSubModal('subModal4')">✕</button></div>
+      <div class="form-group"><label class="form-label">예치 수량</label><input type="text" class="form-input" value="314159.000000" /></div>
+      <div class="form-group">
+        <label class="form-label">예치 기간 선택</label>
+        <select class="form-select">
+          <option value="1m">1개월 (단기 예치)</option>
+          <option value="3m">3개월</option>
+          <option value="6m">6개월</option>
+          <option value="1y">1년</option>
+          <option value="2y">2년</option>
+          <option value="3y" selected>3년 (APY 31.41% 최대 수익)</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">예상 수익금 및 이자</label><input type="text" class="form-input" value="+398,751.07 HK/PI" readonly /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('예치가 승인되었습니다.'); closeSubModal('subModal4');">뱅크 예치 승인</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal5">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">보상</div><button class="close-btn" onclick="closeSubModal('subModal5')">✕</button></div>
+      <div class="form-group"><label class="form-label">수령할 보상 수량</label><input type="text" class="form-input" value="314159.000000" /></div>
+      <div class="form-group"><label class="form-label">보상 승인 인증번호 (발송됨)</label><input type="text" class="form-input" value="414552" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('보상 수령이 완료되었습니다.'); closeSubModal('subModal5');">보상 수령 승인</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal6">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">기본소득 (UBI) 청구</div><button class="close-btn" onclick="closeSubModal('subModal6')">✕</button></div>
+      <div class="form-group"><label class="form-label">청구할 수량</label><input type="text" class="form-input" value="314159.000000" /></div>
+      <div class="form-group"><label class="form-label">UBI 인증번호 (발송됨)</label><input type="text" class="form-input" value="710996" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('기본소득 청구가 승인되었습니다.'); closeSubModal('subModal6');">기본소득 청구 승인</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal7">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">스왑 (Swap)</div><button class="close-btn" onclick="closeSubModal('subModal7')">✕</button></div>
+      <div class="form-group"><label class="form-label">교환할 자산 수량</label><input type="text" class="form-input" value="314159.000000 HK Token" /></div>
+      <div class="form-group"><label class="form-label">스왑 승인 인증번호 (발송됨)</label><input type="text" class="form-input" value="164922" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('즉시 스왑이 실행되었습니다.'); closeSubModal('subModal7');">즉시 스왑 실행</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal8">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">DEX 스왑</div><button class="close-btn" onclick="closeSubModal('subModal8')">✕</button></div>
+      <div class="form-group"><label class="form-label">P2P 매수/매도 수량</label><input type="text" class="form-input" value="314159.000000" /></div>
+      <div class="form-group"><label class="form-label">DEX 인증번호 (발송됨)</label><input type="text" class="form-input" value="262782" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('P2P 주문 등록이 승인되었습니다.'); closeSubModal('subModal8');">P2P 주문 등록 승인</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal9">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">LP 스테이킹</div><button class="close-btn" onclick="closeSubModal('subModal9')">✕</button></div>
+      <div class="form-group"><label class="form-label">예상 LP 수익</label><input type="text" class="form-input" value="3년 획득 적용 시 예상 수익: +398,751.07 HK/PI" readonly /></div>
+      <div class="form-group"><label class="form-label">LP 인증번호 (발송됨)</label><input type="text" class="form-input" value="654923" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('LP 스테이킹 등록이 완료되었습니다.'); closeSubModal('subModal9');">LP 스테이킹 등록 승인</button>
+    </div>
+  </div>
+
+  <div class="modal" id="subModal10">
+    <div class="modal-wrap" style="max-width: 500px;">
+      <div class="modal-header"><div class="modal-title">파이 수납</div><button class="close-btn" onclick="closeSubModal('subModal10')">✕</button></div>
+      <div class="form-group"><label class="form-label">수납 및 정산 지갑 주소</label><input type="text" class="form-input" value="G... 또는 Pi Test ID" /></div>
+      <div class="form-group"><label class="form-label">정산 및 이체 수량</label><input type="text" class="form-input" value="314159.000000 PI" /></div>
+      <div class="form-group"><label class="form-label">6자리 인증번호 입력</label><input type="password" class="form-input" placeholder="******" /></div>
+      <button class="btn-action" onclick="alert('파이 수납 동기화가 완료되었습니다.'); closeSubModal('subModal10');">파이 수납 동기화 승인</button>
+    </div>
+  </div>
+
+  <!-- 삼선 NAVIGATOR 모달 -->
+  <div class="modal" id="navMenuModal">
+    <div class="modal-wrap">
+      <div class="modal-header">
+        <div class="modal-title">HK NAVIGATOR</div>
+        <button type="button" class="close-btn" id="menuCloseBtn">✕</button>
+      </div>
+
       <section class="nav-section">
-        <div class="nav-section-title">CORE LEGAL &amp; COMPLIANCE</div>
+        <div class="nav-section-title">CORE LEGAL & COMPLIANCE</div>
         <ul class="nav-list">
-          <li class="nav-item" onclick="openNavItem('백서 (Whitepaper v1.1 공식 문서 버전)')"><span class="nav-dot">•</span>백서 (Whitepaper v1.1 공식 문서 버전)</li>
-          <li class="nav-item" onclick="openNavItem('자주 묻는 질문 (FAQ 3단계 상세 설명)')"><span class="nav-dot">•</span>자주 묻는 질문 (FAQ 3단계 상세 설명)</li>
-          <li class="nav-item" onclick="openNavItem('3대 POLICIES (AML·KYC·법률컴플라이언스 상세)')"><span class="nav-dot">•</span>3대 POLICIES (AML·KYC·법률컴플라이언스 상세)</li>
-          <li class="nav-item" onclick="openNavItem('고래의 디지털 자산선언 및 재단 배분 정책 컴플라이언스')"><span class="nav-dot">•</span>고래의 디지털 자산선언 및 재단 배분 정책 컴플라이언스</li>
-          <li class="nav-item" onclick="openNavItem('KOTF 프레젠테이션 & 실시간 테스트 네트워크 검증 규칙')"><span class="nav-dot">•</span>KOTF 프레젠테이션 &amp; 실시간 테스트 네트워크 검증 규칙</li>
-          <li class="nav-item" onclick="openNavItem('KYB 사업자·거주·계좌 실명 검증 안내')"><span class="nav-dot">•</span>KYB 사업자·거주·계좌 실명 검증 안내</li>
+          <li class="nav-item" onclick="alert('백서 문서로 이동합니다.')">• 백서 (Whitepaper v1.1)</li>
+          <li class="nav-item" onclick="alert('FAQ 페이지로 이동합니다.')">• 자주 묻는 질문 (FAQ)</li>
+          <li class="nav-item" onclick="alert('3대 POLICIES 항목입니다.')">• 3대 POLICIES (AML·KYC)</li>
+          <li class="nav-item" onclick="alert('재단 배분 정책입니다.')">• 고래 디지털 자산 선언</li>
         </ul>
       </section>
 
-      <!-- HK GLOBAL ECOSYSTEM HUBS (9가지 + 65조 허브 1가지) -->
       <section class="nav-section">
         <div class="nav-section-title">HK GLOBAL ECOSYSTEM HUBS</div>
         <ul class="nav-list">
-          <li class="nav-item" onclick="openNavItem('로봇 HK-ROBOT')"><span class="nav-dot">•</span>로봇 HK-ROBOT</li>
-          <li class="nav-item" onclick="openNavItem('스마트 글래스 HK-NEXUS')"><span class="nav-dot">•</span>스마트 글래스 HK-NEXUS</li>
-          <li class="nav-item" onclick="openNavItem('도심항공교통 HK-UAM')"><span class="nav-dot">•</span>도심항공교통 HK-UAM</li>
-          <li class="nav-item" onclick="openNavItem('인공태양 HK-FUSION')"><span class="nav-dot">•</span>인공태양 HK-FUSION</li>
-          <li class="nav-item" onclick="openNavItem('양자바이오 HK-QUANTUMBIO')"><span class="nav-dot">•</span>양자바이오 HK-QUANTUMBIO</li>
-          <li class="nav-item" onclick="openNavItem('우주항공모빌리티 HK-SPACE')"><span class="nav-dot">•</span>우주항공모빌리티 HK-SPACE</li>
-          <li class="nav-item" onclick="openNavItem('무점포은행 HK-PARTBANK')"><span class="nav-dot">•</span>무점포은행 HK-PARTBANK</li>
-          <li class="nav-item" onclick="openNavItem('국방기술 HK-DEFENCE-HUB')"><span class="nav-dot">•</span>국방기술 HK-DEFENCE-HUB</li>
-          <li class="nav-item" onclick="openNavItem('7대 초격차 융합기술 허브 (향후 추가 예정)')"><span class="nav-dot">•</span>7대 초격차 융합기술 허브 (향후 추가 예정)</li>
-          <li class="nav-item" onclick="openNavItem('65조 글로벌 전략 투자·UBI·사회재단 허브')"><span class="nav-dot">•</span>65조 글로벌 전략 투자·UBI·사회재단 허브</li>
+          <li class="nav-item" onclick="alert('로봇 HK-ROBOT')">• 로봇 HK-ROBOT</li>
+          <li class="nav-item" onclick="alert('도심항공교통 HK-UAM')">• 도심항공교통 HK-UAM</li>
+          <li class="nav-item" onclick="alert('인공태양 HK-FUSION')">• 인공태양 HK-FUSION</li>
+          <li class="nav-item" onclick="alert('양자바이오 HK-QUANTUMBIO')">• 양자바이오 HK-QUANTUMBIO</li>
         </ul>
       </section>
     </div>
   </div>
-
-  <main>
-    <h1>
-      인류와 기술이 공존하는<br />
-      <span class="hero-sub">차세대 디지털 금융 혁신</span>
-    </h1>
-
-    <a href="#cards" class="policy-btn">3대 정책 및 백서 보기</a>
-
-    <section id="cards" class="cards">
-      <article class="card">
-        <div>
-          <div class="card-tag">웹3 디지털 금융</div>
-          <h2 class="card-title">웹3 디지털 은행</h2>
-          <ul class="card-list">
-            <li>• 탈중앙 지갑 연동 및 자산 관리</li>
-            <li>• 온체인 예치 및 스테이킹 운용</li>
-            <li>• AGI/ASI 실시간 금리 연동</li>
-          </ul>
-        </div>
-        <button type="button" class="enter-btn" onclick="alert('웹3 디지털 은행으로 이동합니다.')">웹3 디지털 은행 진입 →</button>
-      </article>
-
-      <article class="card">
-        <div>
-          <div class="card-tag">무점포 인터넷 금융</div>
-          <h2 class="card-title">무점포 인터넷 은행</h2>
-          <ul class="card-list">
-            <li>• 모바일 앱 기반 즉시 계좌 개설</li>
-            <li>• 스마트 간편 금융 거래</li>
-            <li>• 실시간 계좌 출금 및 예치 연동</li>
-          </ul>
-        </div>
-        <button type="button" class="enter-btn" onclick="alert('인터넷 은행으로 이동합니다.')">인터넷 은행 진입 →</button>
-      </article>
-    </section>
-  </main>
 
   <footer>
     <p>© 2026 HKWB. All rights reserved.</p>
@@ -456,27 +680,56 @@
   </footer>
 
   <script>
+    // 1. 삼선 메뉴 제어
     const menuOpenBtn = document.getElementById('menuOpenBtn');
     const menuCloseBtn = document.getElementById('menuCloseBtn');
     const navMenuModal = document.getElementById('navMenuModal');
 
-    menuOpenBtn.addEventListener('click', () => {
-      navMenuModal.classList.add('active');
-    });
+    menuOpenBtn.addEventListener('click', () => navMenuModal.classList.add('active'));
+    menuCloseBtn.addEventListener('click', () => navMenuModal.classList.remove('active'));
 
-    menuCloseBtn.addEventListener('click', () => {
-      navMenuModal.classList.remove('active');
-    });
+    // 2. 웹3 디지털 은행 모달 (방 1) 제어
+    const wbOpenBtn = document.getElementById('wbOpenBtn');
+    const wbCloseBtn = document.getElementById('wbCloseBtn');
+    const web3BankModal = document.getElementById('web3BankModal');
 
-    navMenuModal.addEventListener('click', (e) => {
-      if (e.target === navMenuModal) {
-        navMenuModal.classList.remove('active');
-      }
-    });
+    wbOpenBtn.addEventListener('click', () => web3BankModal.classList.add('active'));
+    wbCloseBtn.addEventListener('click', () => web3BankModal.classList.remove('active'));
 
-    function openNavItem(title) {
-      alert(title + ' 항목을 선택하셨습니다.');
+    // 3. 무점포 인터넷 은행 모달 (방 2) 제어
+    const ibOpenBtn = document.getElementById('ibOpenBtn');
+    const ibCloseBtn = document.getElementById('ibCloseBtn');
+    const internetBankModal = document.getElementById('internetBankModal');
+
+    ibOpenBtn.addEventListener('click', () => internetBankModal.classList.add('active'));
+    ibCloseBtn.addEventListener('click', () => internetBankModal.classList.remove('active'));
+
+    // 10대 분산 연동망 세부 모달 열기/닫기
+    function openSubModal(id) {
+      document.getElementById(id).classList.add('active');
     }
+    function closeSubModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    // 언어 선택 이벤트
+    document.getElementById('langSelect').addEventListener('change', (e) => {
+      const selectedText = e.target.options[e.target.selectedIndex].text;
+      alert(selectedText + ' 언어로 변경되었습니다.');
+    });
+
+    // 소수점 6자리 실시간 변동 스크립트 (점 찍고 숫자 계속 변동)
+    setInterval(() => {
+      const baseWallet = 314159.000000;
+      const randomOffset = (Math.random() * 0.000099).toFixed(6);
+      const newWallet = (baseWallet + parseFloat(randomOffset)).toFixed(6);
+      document.getElementById('walletBalance').textContent = newWallet.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' PI / HK';
+
+      const baseInterest = 12450892.690000;
+      const randomInterestOffset = (Math.random() * 0.4 - 0.2).toFixed(6);
+      const newInterest = (baseInterest + parseFloat(randomInterestOffset)).toFixed(6);
+      document.getElementById('liveInterest').textContent = newInterest.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' HK';
+    }, 800);
   </script>
 </body>
 </html>
