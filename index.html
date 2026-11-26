@@ -3,48 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB | 백엔드 API 연동 글로벌 금융 백서 & Web3·인터넷 통합 은행</title>
+  <title>HKWB | 백서 100선 · FAQ 20선 · 부모/딸/아들 은행 · 백엔드 API</title>
   <style>
     :root {
       --bg-navy: #060814;
-      --bg-purple: #110924;
-      --card-bg: rgba(18, 12, 38, 0.88);
-      --card-border: rgba(245, 196, 81, 0.3);
+      --bg-purple: #120926;
+      --card-bg: rgba(18, 12, 40, 0.92);
+      --card-border: rgba(245, 196, 81, 0.34);
       --gold: #f5c451;
       --gold-neon: #ffd86b;
       --purple-neon: #9b5cff;
       --cyan-neon: #38e8ff;
+      --pink-neon: #ff6b8b;
       --text-main: #f5f7ff;
-      --text-muted: #a4adca;
+      --text-muted: #a6b0cf;
       --success: #2ee59d;
-      --danger: #ff4757;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
       background:
-        radial-gradient(circle at 10% 10%, rgba(155, 92, 255, 0.22), transparent 45%),
-        radial-gradient(circle at 90% 15%, rgba(245, 196, 81, 0.18), transparent 42%),
-        linear-gradient(165deg, var(--bg-navy) 0%, var(--bg-purple) 60%, #080a18 100%);
+        radial-gradient(circle at 12% 10%, rgba(155, 92, 255, 0.22), transparent 45%),
+        radial-gradient(circle at 88% 15%, rgba(245, 196, 81, 0.16), transparent 42%),
+        linear-gradient(165deg, var(--bg-navy) 0%, var(--bg-purple) 60%, #070917 100%);
       color: var(--text-main);
       min-height: 100vh;
-      line-height: 1.6;
+      line-height: 1.65;
       overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
     button, select, input { font-family: inherit; }
 
-    /* 헤더 */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
-      background: rgba(6, 8, 20, 0.85);
-      border-bottom: 1px solid rgba(245, 196, 81, 0.25);
+      background: rgba(6, 8, 20, 0.92);
+      border-bottom: 1px solid rgba(245, 196, 81, 0.28);
     }
 
     .header-inner {
@@ -60,50 +60,35 @@
     .brand-group { display: flex; align-items: center; gap: 12px; }
 
     .samseon-btn {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       border: 1px solid rgba(245, 196, 81, 0.5);
-      background: rgba(155, 92, 255, 0.15);
+      background: rgba(155, 92, 255, 0.16);
       color: var(--gold-neon);
-      font-size: 22px;
+      font-size: 21px;
       cursor: pointer;
       display: grid;
       place-items: center;
-      transition: 0.2s ease;
     }
-    .samseon-btn:hover { box-shadow: 0 0 16px rgba(245, 196, 81, 0.4); transform: translateY(-1px); }
 
-    .brand-title { font-size: 24px; font-weight: 900; letter-spacing: 0.05em; color: var(--gold-neon); text-shadow: 0 0 14px rgba(245, 196, 81, 0.4); }
+    .brand-title { font-size: 23px; font-weight: 900; color: var(--gold-neon); letter-spacing: 0.05em; }
     .brand-sub { font-size: 11px; color: var(--text-muted); }
 
-    /* API 연결 상태 태그 */
-    .api-status-tag {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .api-status-tag.online { background: rgba(46, 229, 157, 0.2); border: 1px solid var(--success); color: var(--success); }
-    .api-status-tag.mock { background: rgba(245, 196, 81, 0.2); border: 1px solid var(--gold); color: var(--gold-neon); }
-
-    .nav-links { display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
+    .nav-links { display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
     .nav-links a:hover { color: var(--gold-neon); }
 
     .header-right { display: flex; align-items: center; gap: 10px; }
 
     .lang-select {
-      background: rgba(18, 12, 38, 0.95);
+      background: #100b24;
       color: var(--gold-neon);
       border: 1px solid rgba(245, 196, 81, 0.5);
       border-radius: 10px;
       padding: 8px 10px;
       font-size: 12px;
       font-weight: 700;
-      max-width: 180px;
+      max-width: 175px;
       cursor: pointer;
     }
 
@@ -113,116 +98,201 @@
       font-weight: 800;
       border: none;
       border-radius: 10px;
-      padding: 9px 15px;
+      padding: 9px 14px;
       font-size: 13px;
       cursor: pointer;
-      box-shadow: 0 0 18px rgba(245, 196, 81, 0.35);
-      transition: 0.2s ease;
     }
-    .btn-gold:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
     .btn-outline {
       background: rgba(155, 92, 255, 0.14);
       color: var(--text-main);
       border: 1px solid rgba(155, 92, 255, 0.55);
       border-radius: 10px;
-      padding: 9px 15px;
+      padding: 9px 14px;
       font-size: 13px;
       cursor: pointer;
     }
 
-    /* 드로어 */
-    .drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 150; display: none; }
+    .drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.72); z-index: 150; display: none; }
     .drawer-backdrop.open { display: block; }
+
     .drawer {
-      position: fixed; top: 0; left: -360px; width: 340px; max-width: 86vw; height: 100vh;
-      background: #0a071a; border-right: 1px solid rgba(245, 196, 81, 0.4); z-index: 200;
-      padding: 24px 20px; display: flex; flex-direction: column; gap: 16px; transition: left 0.25s ease;
+      position: fixed;
+      top: 0;
+      left: -350px;
+      width: 330px;
+      max-width: 86vw;
+      height: 100vh;
+      background: #0a071a;
+      border-right: 1px solid rgba(245, 196, 81, 0.4);
+      z-index: 200;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: left 0.25s ease;
     }
     .drawer.open { left: 0; }
-    .drawer-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
+    .drawer-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 12px; }
     .drawer-menu { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
-    .drawer-menu a { padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.03); font-size: 13px; }
-    .drawer-menu a:hover { border: 1px solid rgba(245,196,81,0.4); color: var(--gold-neon); }
+    .drawer-menu a { padding: 10px 12px; border-radius: 8px; background: rgba(255, 255, 255, 0.04); font-size: 13px; }
+    .drawer-menu a:hover { color: var(--gold-neon); border: 1px solid rgba(245, 196, 81, 0.4); }
 
     main { max-width: 1280px; margin: 0 auto; padding: 32px 20px 80px; }
+    section { margin-bottom: 48px; scroll-margin-top: 84px; }
 
-    .hero {
-      background: linear-gradient(135deg, rgba(22, 14, 52, 0.92), rgba(8, 12, 32, 0.94));
+    .cover-hero {
+      background: linear-gradient(135deg, rgba(24, 15, 56, 0.95), rgba(8, 12, 32, 0.96));
       border: 1px solid var(--card-border);
       border-radius: 24px;
-      padding: 36px 28px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      margin-bottom: 36px;
+      padding: 44px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
     }
 
-    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .badge { font-size: 12px; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(245, 196, 81, 0.5); background: rgba(245, 196, 81, 0.12); color: var(--gold-neon); font-weight: 700; }
-    .badge.purple { border-color: rgba(155, 92, 255, 0.6); background: rgba(155, 92, 255, 0.18); color: #d6baff; }
+    .cover-title { font-size: clamp(32px, 5vw, 52px); font-weight: 900; margin-bottom: 10px; }
+    .cover-title span { color: var(--gold-neon); }
+    .cover-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 22px; }
+    .cover-meta {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.38);
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 196, 81, 0.25);
+    }
 
-    h1.hero-title { font-size: clamp(28px, 4.2vw, 44px); line-height: 1.25; font-weight: 900; margin-bottom: 14px; }
-    .hero-title span { color: var(--gold-neon); text-shadow: 0 0 18px rgba(245, 196, 81, 0.4); }
-    .hero-desc { color: var(--text-muted); font-size: 15px; max-width: 860px; margin-bottom: 24px; }
+    .section-head { margin-bottom: 18px; border-left: 4px solid var(--gold); padding-left: 12px; }
+    .section-title { font-size: 23px; font-weight: 800; }
+    .section-sub { font-size: 13px; color: var(--text-muted); }
 
-    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 20px; }
-    .kpi-card { background: rgba(6, 8, 20, 0.75); border: 1px solid rgba(245, 196, 81, 0.25); border-radius: 16px; padding: 16px; }
+    .parent-card {
+      background: var(--card-bg);
+      border: 2px solid var(--gold);
+      border-radius: 22px;
+      padding: 28px;
+    }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+    .kpi-card { background: rgba(6, 8, 20, 0.82); border: 1px solid rgba(245, 196, 81, 0.25); border-radius: 16px; padding: 16px; }
     .kpi-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
     .kpi-value { font-size: 18px; font-weight: 800; color: var(--gold-neon); }
     .kpi-note { font-size: 11px; color: var(--success); margin-top: 4px; }
 
-    /* 백엔드 API 설정 패널 */
-    .api-config-card {
-      background: rgba(12, 16, 38, 0.95);
-      border: 1px solid var(--purple-neon);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 32px;
-    }
-    .api-config-card h4 { color: var(--cyan-neon); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+    .children-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 22px; }
+    .child-card { background: var(--card-bg); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+    .child-card.daughter { border: 2px solid var(--pink-neon); }
+    .child-card.son { border: 2px solid var(--cyan-neon); }
+    .daughter h3 { color: var(--pink-neon); font-size: 21px; margin-bottom: 8px; }
+    .son h3 { color: var(--cyan-neon); font-size: 21px; margin-bottom: 8px; }
+    .feature-list { list-style: none; margin-top: 12px; font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
+    .feature-list li::before { content: "✦ "; color: var(--gold); }
 
-    section { margin-bottom: 42px; scroll-margin-top: 80px; }
-    .section-head { margin-bottom: 18px; border-left: 4px solid var(--gold); padding-left: 12px; }
-    .section-title { font-size: 22px; font-weight: 800; color: var(--text-main); }
-    .section-sub { font-size: 13px; color: var(--text-muted); }
+    .wp-toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .wp-search {
+      flex: 1;
+      min-width: 240px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(245, 196, 81, 0.4);
+      background: #070917;
+      color: #fff;
+      font-size: 13px;
+    }
 
     .whitepaper-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 12px;
-      max-height: 520px;
+      gap: 10px;
+      max-height: 560px;
       overflow-y: auto;
-      padding-right: 8px;
-      border: 1px solid rgba(245, 196, 81, 0.2);
-      border-radius: 16px;
       padding: 16px;
-      background: rgba(10, 7, 26, 0.6);
+      border: 1px solid rgba(245, 196, 81, 0.25);
+      border-radius: 16px;
+      background: rgba(9, 6, 24, 0.72);
     }
-    .wp-item { background: rgba(18, 12, 38, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; font-size: 13px; display: flex; gap: 10px; }
-    .wp-num { font-weight: 800; color: var(--gold-neon); min-width: 32px; }
+
+    .wp-item {
+      background: rgba(18, 12, 40, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+    }
+    .wp-num { font-weight: 800; color: var(--gold-neon); min-width: 34px; }
 
     .faq-list { display: flex; flex-direction: column; gap: 10px; }
     .faq-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; }
-    .faq-q { padding: 14px 18px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+    .faq-q {
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
     .faq-q:hover { color: var(--gold-neon); }
-    .faq-a { padding: 0 18px 14px; font-size: 13px; color: var(--text-muted); display: none; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
+    .faq-a {
+      padding: 12px 18px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
     .faq-item.open .faq-a { display: block; }
     .faq-item.open .faq-q { color: var(--gold-neon); }
 
-    .divisions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-    .division-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 24px; }
-    .division-card h3 { font-size: 20px; color: var(--gold-neon); margin-bottom: 8px; }
-
     .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
     .panel { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 22px; }
+    .panel h3 { color: var(--gold-neon); font-size: 18px; margin-bottom: 8px; }
     .field-group { margin-bottom: 12px; }
     .field-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
     .field-group input, .field-group select {
-      width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(245, 196, 81, 0.4);
-      background: #060814; color: #fff; font-size: 13px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 196, 81, 0.4);
+      background: #060814;
+      color: #fff;
+      font-size: 13px;
     }
-    .result-box { margin-top: 12px; padding: 12px; border-radius: 12px; background: rgba(6, 8, 20, 0.9); border: 1px solid var(--success); font-size: 13px; }
+    .result-box {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(6, 8, 20, 0.92);
+      border: 1px solid var(--success);
+      font-size: 13px;
+    }
 
-    footer { border-top: 1px solid rgba(245, 196, 81, 0.3); background: rgba(4, 6, 14, 0.95); padding: 28px 20px; font-size: 13px; color: var(--text-muted); }
+    .api-log {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #050712;
+      border: 1px solid rgba(56, 232, 255, 0.35);
+      font-family: monospace;
+      font-size: 12px;
+      color: #bceeff;
+      max-height: 160px;
+      overflow-y: auto;
+      white-space: pre-line;
+    }
+
+    footer {
+      border-top: 1px solid rgba(245, 196, 81, 0.28);
+      background: rgba(4, 6, 14, 0.95);
+      padding: 26px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
     .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
 
     @media (max-width: 860px) { .nav-links { display: none; } }
@@ -233,190 +303,222 @@
   <aside id="samseonDrawer" class="drawer">
     <div class="drawer-header">
       <div>
-        <div class="brand-title" style="font-size:18px;">HKWB 전체 네비게이터</div>
+        <div class="brand-title" style="font-size:18px;">HKWB 네비게이터</div>
         <div class="brand-sub">체어맨 이재완(혜공)</div>
       </div>
       <button class="btn-outline" onclick="toggleDrawer(false)">닫기</button>
     </div>
     <nav class="drawer-menu">
-      <a href="#hero" onclick="toggleDrawer(false)">1. HKWB 비전 & 백엔드 상태</a>
-      <a href="#api-config" onclick="toggleDrawer(false)">2. 백엔드 API 설정 & 헬스체크</a>
-      <a href="#divisions" onclick="toggleDrawer(false)">3. 웹3 디지털 은행 & 무점포 인터넷 은행</a>
-      <a href="#whitepaper" onclick="toggleDrawer(false)">4. 백서 서술 100문장 (API 연동)</a>
-      <a href="#faq" onclick="toggleDrawer(false)">5. FAQ 20선 (API 연동)</a>
-      <a href="#allocation" onclick="toggleDrawer(false)">6. 수익 배분 & AGI 금리 (API 통신)</a>
+      <a href="#cover" onclick="toggleDrawer(false)">1. 표지</a>
+      <a href="#parent-section" onclick="toggleDrawer(false)">2. 부모 영역 (HKWB)</a>
+      <a href="#children-section" onclick="toggleDrawer(false)">3. 딸 영역 & 아들 영역</a>
+      <a href="#whitepaper" onclick="toggleDrawer(false)">4. 백서 100선 서술형</a>
+      <a href="#faq" onclick="toggleDrawer(false)">5. FAQ 20선</a>
+      <a href="#simulator" onclick="toggleDrawer(false)">6. 순이익 배분 & AGI 금리</a>
+      <a href="#backend-api" onclick="toggleDrawer(false)">7. 백엔드 API 연동</a>
     </nav>
+    <div style="margin-top:auto; font-size:12px; color:var(--text-muted);">
+      <div>추천인: <strong style="color:var(--gold-neon);">ljw2358</strong></div>
+      <div>문의: <strong style="color:var(--gold-neon);">support@hkwb.world</strong></div>
+    </div>
   </aside>
 
   <header>
     <div class="header-inner">
       <div class="brand-group">
-        <button class="samseon-btn" onclick="toggleDrawer(true)">☰</button>
+        <button class="samseon-btn" onclick="toggleDrawer(true)" aria-label="삼선 메뉴">☰</button>
         <div>
           <div class="brand-title">HKWB</div>
-          <div class="brand-sub">PARENT FINANCIAL PLATFORM</div>
+          <div class="brand-sub">PARENT DIGITAL PLATFORM</div>
         </div>
-        <span id="apiStatusHeader" class="api-status-tag mock">API: MOCK MODE</span>
       </div>
 
       <nav class="nav-links">
-        <a href="#hero">개요</a>
-        <a href="#api-config">API 설정</a>
-        <a href="#divisions">은행 구조</a>
-        <a href="#whitepaper">백서 100문장</a>
+        <a href="#cover">표지</a>
+        <a href="#parent-section">부모 영역</a>
+        <a href="#children-section">딸·아들 영역</a>
+        <a href="#whitepaper">백서 100선</a>
         <a href="#faq">FAQ 20선</a>
-        <a href="#agi-rate">AGI 금리</a>
+        <a href="#simulator">시뮬레이터</a>
+        <a href="#backend-api">백엔드 API</a>
       </nav>
 
       <div class="header-right">
-        <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)"></select>
-        <button class="btn-gold" onclick="document.getElementById('agi-rate').scrollIntoView({behavior:'smooth'})">금리 조회</button>
+        <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)" aria-label="60개 언어 선택"></select>
+        <button class="btn-gold" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">금리 조회</button>
       </div>
     </div>
   </header>
 
   <main>
-    <section id="hero" class="hero">
-      <div class="badge-row">
-        <span class="badge">부모 플랫폼: HKWB</span>
-        <span class="badge purple">자식 디비전: 웹3 + 인터넷 은행</span>
-        <span class="badge">RESTful API 통신 인프라 완비</span>
-      </div>
-      <h1 class="hero-title">
-        글로벌 금융 백엔드 API 통합 <span>HKWB</span>
-      </h1>
-      <p class="hero-desc">
-        체어맨 <strong>이재완(혜공)</strong>의 통찰 아래, 본 시스템은 실제 백엔드 API 서버(<code>https://api.hkwb.world</code> 등)와 주고받는 <code>fetch()</code> 비동기 데이터 통신 체계를 완벽하게 탑재하였습니다.
-      </p>
-
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">플랫폼 리더십</div>
-          <div class="kpi-value">체어맨 이재완(혜공)</div>
-          <div class="kpi-note">추천인 ID: ljw2358</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">백엔드 연동 방식</div>
-          <div class="kpi-value">RESTful JSON API</div>
-          <div class="kpi-note">실시간 통신 & Auto-Fallback</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">UBI 수익 환원</div>
-          <div class="kpi-value">순이익 30%</div>
-          <div class="kpi-note">API 검증 후 자동 정산</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">금리 연동 모델</div>
-          <div class="kpi-value">AGI / ASI Engine</div>
-          <div class="kpi-note">실시간 API 파라미터 수신</div>
-        </div>
+    <section id="cover" class="cover-hero">
+      <h1 class="cover-title"><span>HKWB</span> PLATFORM</h1>
+      <p class="cover-sub">부모 플랫폼 · 딸(웹3 디지털 은행) · 아들(무점포 인터넷 은행)</p>
+      <div class="cover-meta">
+        <span>체어맨: <strong>이재완(혜공)</strong></span>
+        <span>·</span>
+        <span>추천인 ID: <strong style="color:var(--gold-neon);">ljw2358</strong></span>
+        <span>·</span>
+        <span>고객지원: <strong style="color:var(--gold-neon);">support@hkwb.world</strong></span>
       </div>
     </section>
 
-    <!-- 백엔드 API 설정 및 헬스체크 제어반 -->
-    <section id="api-config">
-      <div class="api-config-card">
-        <h4>
-          <span>⚙️ HKWB 백엔드 API 통신 제어반</span>
-          <span id="apiStatusPanel" class="api-status-tag mock">상태: 내장 모의 응답(Mock) 작동 중</span>
-        </h4>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-          <input id="apiBaseUrl" type="text" value="https://api.hkwb.world" placeholder="https://api.hkwb.world" style="flex:1; min-width:260px; padding:10px; border-radius:8px; border:1px solid rgba(245,196,81,0.5); background:#060814; color:#fff; font-size:13px;" />
-          <button class="btn-gold" onclick="checkApiHealth()">서버 헬스체크 (Ping)</button>
-        </div>
-        <div id="apiLog" style="margin-top:12px; font-size:12px; color:var(--text-muted); font-family:monospace; background:rgba(0,0,0,0.5); padding:10px; border-radius:8px;">
-          [SYSTEM] 백엔드 API 클라이언트가 준비되었습니다. (실제 서버 연결 실패 시 안전하게 Mock 데이터로 동작합니다.)
-        </div>
-      </div>
-    </section>
-
-    <!-- 2대 은행 디비전 -->
-    <section id="divisions">
+    <section id="parent-section">
       <div class="section-head">
-        <h2 class="section-title">HKWB 2대 자식 은행 디비전</h2>
-        <span class="section-sub">백엔드 API 서버 데이터베이스와 실시간 동기화</span>
+        <h2 class="section-title">부모 영역: HKWB</h2>
+        <span class="section-sub">순이익 배분(UBI 30% · 경영비 30% · HK 사회재단 최대 30%) 및 AGI/ASI 자율 금리 정책</span>
       </div>
 
-      <div class="divisions-grid">
-        <article class="division-card">
-          <span class="badge purple" style="margin-bottom:10px; display:inline-block;">DIVISION 01</span>
-          <h3>HKWB 웹3 디지털 은행</h3>
-          <p>지갑 검증, 암호자산 스테이킹 및 스왑 데이터를 백엔드 API 노드와 연결하여 처리합니다.</p>
-          <button class="btn-outline" onclick="selectBankMode('web3')">웹3 스테이킹 API 이율 조회</button>
+      <div class="parent-card">
+        <p style="color:var(--text-muted); font-size:15px;">
+          <strong>HKWB</strong>는 딸 영역(웹3 디지털 은행)과 아들 영역(무점포 인터넷 은행)을 품은 부모 플랫폼입니다.
+          예치 이율, 스테이킹 이율, 중도해지 이율은 수동 고정이 아닌 <strong>AGI / ASI</strong>가 자율 산정합니다.
+        </p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">UBI 배분</div>
+            <div class="kpi-value">순이익 30%</div>
+            <div class="kpi-note">기본소득 환원 구조</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">회사 경영비</div>
+            <div class="kpi-value">순이익 30%</div>
+            <div class="kpi-note">플랫폼 운영 및 인프라</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">HK 사회재단</div>
+            <div class="kpi-value">최대 30%</div>
+            <div class="kpi-note">기업 인수 및 전략 투자 자본</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">금리 산정 방식</div>
+            <div class="kpi-value">AGI / ASI 자율</div>
+            <div class="kpi-note">예치 · 스테이킹 · 중도해지</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="children-section">
+      <div class="section-head">
+        <h2 class="section-title">자식 영역: 딸 영역 & 아들 영역</h2>
+        <span class="section-sub">웹3 디지털 은행(딸)과 무점포 인터넷 은행(아들)</span>
+      </div>
+
+      <div class="children-grid">
+        <article class="child-card daughter">
+          <div>
+            <h3>딸 영역: 웹3 디지털 은행</h3>
+            <p style="font-size:14px; color:var(--text-muted);">
+              블록체인 지갑 연동, 암호자산 스테이킹 및 스왑 기능을 중심으로 운영하는 Web3 디비전입니다.
+            </p>
+            <ul class="feature-list">
+              <li>온체인 지갑 전송·스테이킹·스왑 지원</li>
+              <li>AGI/ASI 기반 스테이킹 수익률 반영</li>
+              <li>추천인 코드 <code>ljw2358</code> 연계</li>
+            </ul>
+          </div>
+          <button class="btn-outline" onclick="selectMode('staking')" style="border-color:var(--pink-neon); color:var(--pink-neon);">딸 영역 스테이킹 계산</button>
         </article>
 
-        <article class="division-card">
-          <span class="badge" style="margin-bottom:10px; display:inline-block;">DIVISION 02</span>
-          <h3>HKWB 무점포 인터넷 은행</h3>
-          <p>카카오뱅크/토스뱅크 방식의 비대면 인터넷 뱅킹 API를 거쳐 원장 관리 및 금리를 적용합니다.</p>
-          <button class="btn-outline" onclick="selectBankMode('internet')">인터넷 은행 예치 API 이율 조회</button>
+        <article class="child-card son">
+          <div>
+            <h3>아들 영역: 무점포 인터넷 은행</h3>
+            <p style="font-size:14px; color:var(--text-muted);">
+              오프라인 지점 없이 모바일·웹 중심 무점포 인터넷 은행으로, 토스뱅크·카카오뱅크 스타일의 편의성을 지향합니다.
+            </p>
+            <ul class="feature-list">
+              <li>지점 없는 100% 비대면 인터넷 뱅킹</li>
+              <li>AGI/ASI 산정 예치 및 중도해지 이율</li>
+              <li>빠르고 직관적인 모바일 금융 경험</li>
+            </ul>
+          </div>
+          <button class="btn-outline" onclick="selectMode('deposit')" style="border-color:var(--cyan-neon); color:var(--cyan-neon);">아들 영역 예치 계산</button>
         </article>
       </div>
     </section>
 
-    <!-- 백서 100문장 -->
     <section id="whitepaper">
       <div class="section-head">
-        <h2 class="section-title">HKWB 백서 서술형 100문장</h2>
-        <span class="section-sub">백엔드 GET /api/v1/whitepaper 통신 수신</span>
+        <h2 class="section-title">백서 100선 서술형</h2>
+        <span class="section-sub" id="wpCountLabel">총 100문장 수록</span>
       </div>
+
+      <div class="wp-toolbar">
+        <input id="wpSearchInput" class="wp-search" type="text" placeholder="백서 100선 서술형 키워드 검색 (예: UBI, AGI, 사회재단, 무점포, ljw2358)..." oninput="renderWhitepaper()" />
+        <button class="btn-outline" onclick="resetWhitepaperSearch()">전체 보기</button>
+      </div>
+
       <div class="whitepaper-grid" id="whitepaperContainer"></div>
     </section>
 
-    <!-- FAQ 20선 -->
     <section id="faq">
       <div class="section-head">
-        <h2 class="section-title">자주 묻는 질문 FAQ 20선</h2>
-        <span class="section-sub">백엔드 GET /api/v1/faq 통신 수신</span>
+        <h2 class="section-title">FAQ 20선</h2>
+        <span class="section-sub">자주 묻는 질문 20가지 핵심 답변</span>
       </div>
+
       <div class="faq-list" id="faqContainer"></div>
     </section>
 
-    <!-- 수익 배분 & AGI 금리 통신 시뮬레이션 -->
-    <section id="allocation">
+    <section id="simulator">
       <div class="section-head">
-        <h2 class="section-title">수익 배분 & AGI/ASI API 연동 이율 계산</h2>
-        <span class="section-sub">백엔드 POST 요청 및 AGI 산출 엔진 연동</span>
+        <h2 class="section-title">순이익 배분 & AGI/ASI 자율 금리 시뮬레이터</h2>
+        <span class="section-sub">부모 배분 비율과 자식 영역별 이율 시뮬레이션</span>
       </div>
 
       <div class="sim-grid">
         <div class="panel">
-          <h3>HKWB 순이익 3대 배분 법칙</h3>
-          <p style="font-size:13px; color:var(--text-muted);">UBI 30%, 회사 경영비 30%, HK 사회재단 최대 30% 정산 API</p>
-
-          <div class="field-group" style="margin-top:16px;">
-            <label for="netProfitInput">연간 예상 순이익 (KRW)</label>
-            <input id="netProfitInput" type="number" value="100000000" min="0" step="1000000" oninput="updateAllocationApi()" />
+          <h3>순이익 배분 계산기</h3>
+          <p style="font-size:13px; color:var(--text-muted);">UBI 30% · 회사 경영비 30% · HK 사회재단 최대 30%</p>
+          <div class="field-group" style="margin-top:14px;">
+            <label for="netProfitInput">순이익 입력 (KRW)</label>
+            <input id="netProfitInput" type="number" value="100000000" min="0" step="1000000" oninput="updateAllocation()" />
           </div>
-
           <div class="result-box" id="allocationOutput"></div>
         </div>
 
-        <div class="panel" id="agi-rate">
-          <h3>AGI / ASI API 이율 계산기</h3>
-          <p style="font-size:13px; color:var(--text-muted);">백엔드 AGI 엔진으로 파라미터를 보낸 후 응답을 수신합니다.</p>
-
-          <div class="field-group" style="margin-top:12px;">
-            <label for="productType">금융 상품 선택</label>
-            <select id="productType" onchange="calculateAgiRateApi()">
-              <option value="deposit">무점포 인터넷 은행 예치 이율 (AGI/ASI)</option>
-              <option value="staking">웹3 디지털 은행 스테이킹 이율 (AGI/ASI)</option>
-              <option value="early">중도해지 적용 이율 (AGI/ASI)</option>
+        <div class="panel">
+          <h3>AGI / ASI 자율 이율 계산기</h3>
+          <p style="font-size:13px; color:var(--text-muted);">예치·스테이킹·중도해지 이율 시뮬레이션</p>
+          <div class="field-group" style="margin-top:14px;">
+            <label for="productType">상품 구분</label>
+            <select id="productType" onchange="calculateAgiRate()">
+              <option value="deposit">아들 영역: 무점포 인터넷 은행 예치</option>
+              <option value="staking">딸 영역: 웹3 디지털 은행 스테이킹</option>
+              <option value="early">중도해지 적용 이율</option>
             </select>
           </div>
-
           <div class="field-group">
-            <label for="principalInput">신청 금액 (KRW)</label>
-            <input id="principalInput" type="number" value="50000000" min="100000" step="100000" oninput="calculateAgiRateApi()" />
+            <label for="principalInput">금액 (KRW)</label>
+            <input id="principalInput" type="number" value="50000000" min="100000" step="100000" oninput="calculateAgiRate()" />
           </div>
-
           <div class="field-group">
-            <label for="monthsInput">운용 기간 (개월)</label>
-            <input id="monthsInput" type="number" value="12" min="1" max="60" oninput="calculateAgiRateApi()" />
+            <label for="monthsInput">기간 (개월)</label>
+            <input id="monthsInput" type="number" value="12" min="1" max="60" oninput="calculateAgiRate()" />
           </div>
-
           <div class="result-box" id="agiRateOutput"></div>
         </div>
+      </div>
+    </section>
+
+    <section id="backend-api">
+      <div class="section-head">
+        <h2 class="section-title">백엔드 API 연동 모듈</h2>
+        <span class="section-sub">실제 API 서버 주소 연결 및 서버 미응답 시 내장 Mock 응답 자동 폴백</span>
+      </div>
+
+      <div class="panel">
+        <h3>백엔드 API 엔드포인트 설정 & 테스트</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+          엔드포인트 규격: <code>GET /health</code> · <code>GET /api/v1/whitepaper</code> · <code>GET /api/v1/faq</code> · <code>POST /api/v1/profit-allocation</code> · <code>POST /api/v1/agi-rate</code>
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <input id="apiBaseUrlInput" type="text" value="https://api.hkwb.world" style="flex:1; min-width:240px; padding:10px; border-radius:8px; border:1px solid rgba(245,196,81,0.4); background:#060814; color:#fff; font-size:13px;" />
+          <button class="btn-gold" onclick="testBackendEndpoints()">API 통신 테스트 실행</button>
+        </div>
+        <div id="apiStatusText" style="margin-top:10px; font-size:12px; color:var(--gold-neon);">상태: 대기 중</div>
+        <div id="apiLogBox" class="api-log">[HKWB_API] 초기화 완료. 실제 서버 응답이 없으면 내장 Mock 핸들러가 즉시 응답합니다.</div>
       </div>
     </section>
   </main>
@@ -424,12 +526,12 @@
   <footer>
     <div class="footer-inner">
       <div>
-        <strong style="color:var(--gold-neon); font-size:16px;">HKWB FINANCIAL PLATFORM & API CLIENT</strong>
-        <div style="margin-top:4px;">체어맨 이재완(혜공) | 글로벌 Web3 & 인터넷 뱅킹 융합 백엔드 시스템</div>
+        <strong style="color:var(--gold-neon); font-size:15px;">HKWB</strong> · 체어맨 이재완(혜공)
+        <div style="margin-top:4px;">부모 HKWB · 딸(웹3 디지털 은행) · 아들(무점포 인터넷 은행)</div>
       </div>
       <div>
         <div>추천인 ID: <strong style="color:var(--gold-neon);">ljw2358</strong></div>
-        <div>공식 문의 이메일: <strong style="color:var(--gold-neon);">support@hkwb.world</strong></div>
+        <div>고객지원 이메일: <strong style="color:var(--gold-neon);">support@hkwb.world</strong></div>
       </div>
     </div>
   </footer>
@@ -450,223 +552,296 @@
       "Azərbaycan (AZ)", "Қазақ тілі (KK)", "Oʻzbek (UZ)", "Монгол (MN)", "नेपाली (NE)"
     ];
 
-    let isApiOnline = false;
+    const whitepaper100 = [
+      "HKWB는 체어맨 이재완(혜공)이 설립하고 총괄하는 차세대 부모 디지털 금융 플랫폼이다.",
+      "HKWB는 부모 플랫폼으로서 딸 영역(웹3 디지털 은행)과 아들 영역(무점포 인터넷 은행)을 통합 관할한다.",
+      "딸 영역인 웹3 디지털 은행은 블록체인 지갑 전송, 스테이킹, 토큰 스왑 등 온체인 금융 서비스를 제공한다.",
+      "아들 영역인 무점포 인터넷 은행은 오프라인 지점 없이 모바일과 웹 중심으로 운영되는 인터넷 은행이다.",
+      "무점포 인터넷 은행은 토스뱅크와 카카오뱅크처럼 직관적이고 빠른 비대면 금융 경험을 지향한다.",
+      "HKWB의 공식 추천인 코드는 소문자 ljw2358로 통일하여 운영한다.",
+      "HKWB의 공식 고객지원 이메일은 support@hkwb.world이다.",
+      "플랫폼 순이익의 30%는 전 세계 참여자를 위한 기본소득(UBI) 재원으로 배분된다.",
+      "플랫폼 순이익의 30%는 서버, 보안, 인력 및 운영을 위한 회사 경영비로 투입된다.",
+      "플랫폼 순이익의 최대 30%는 HK 사회재단으로 적립되어 기업 인수 등 전략 투자에 활용된다.",
+      "HK 사회재단의 최대 30% 자본은 핵심 전략 기회나 기업 인수 같은 중대 사안이 필요할 때 쓸 수 있도록 설계되었다.",
+      "예치 이율은 운영자가 임의로 고정하지 않고 AGI와 ASI가 시장 데이터를 바탕으로 자율 산정한다.",
+      "스테이킹 이율 역시 AGI와 ASI가 유동성과 리스크 지표를 반영해 자율 결정한다.",
+      "중도해지 이율 또한 AGI와 ASI 알고리즘이 정해진 규칙에 따라 자율 산출한다.",
+      "사람의 주관적 개입 대신 AGI와 ASI가 이율을 조정함으로써 금리 운영의 일관성과 투명성을 높인다.",
+      "HKWB는 단일 진입점 index.html을 중심으로 빠르고 명확한 사용자 경험을 제공한다.",
+      "상단 네비게이터와 좌측 삼선(☰) 메뉴를 통해 주요 영역으로 즉시 이동할 수 있다.",
+      "우측 상단 언어 선택기를 통해 60개 언어를 선택할 수 있도록 구성했다.",
+      "스마트 글래스 항목은 HKWB 계획에서 완전히 제외되었다.",
+      "HK-ROSES 항목 역시 HKWB 플랫폼에서 제거되었다.",
+      "부모 플랫폼과 두 자식 은행의 역할 분담은 금융 안정성과 확장성을 동시에 확보하기 위한 구조다.",
+      "웹3 디지털 은행은 디지털 자산 보유자가 지갑을 연결해 스테이킹과 스왑을 한곳에서 다루게 한다.",
+      "무점포 인터넷 은행은 지점 임대료 같은 고정 지점 비용을 줄여 디지털 서비스 품질에 집중한다.",
+      "UBI 30% 배분은 플랫폼 성장의 결실을 구성원에게 돌려주는 핵심 경제 철학이다.",
+      "회사 경영비 30% 배분은 서비스 중단 없는 운영과 보안 체계 유지를 뒷받침한다.",
+      "HK 사회재단 최대 30% 배분은 미래 성장 동력 확보와 기업 인수 자본 조달의 안전판 역할을 한다.",
+      "모든 수익 배분 비율은 순이익 기준을 원칙으로 삼는다.",
+      "AGI/ASI 금리 엔진은 예치 기간, 상품 성격, 시장 변동성을 종합적으로 고려한다.",
+      "예치 상품은 무점포 인터넷 은행의 핵심 수신 기능 중 하나다.",
+      "스테이킹 상품은 웹3 디지털 은행의 핵심 자산 운용 기능 중 하나다.",
+      "중도해지 이율은 만기 전 자금 인출 시 적용되는 별도 산정 기준을 따른다.",
+      "추천인 코드 ljw2358은 대소문자 혼동을 막기 위해 소문자로만 표기한다.",
+      "고객 문의는 support@hkwb.world를 통해 일원화하여 접수한다.",
+      "웹3 영역과 인터넷 은행 영역은 서로 다른 특성을 가지지만 HKWB라는 하나의 부모 아래 연결된다.",
+      "사용자는 웹3 스테이킹과 무점포 인터넷 은행 예치 중 자신의 목적에 맞는 쪽을 선택할 수 있다.",
+      "백서 100선 서술형은 HKWB의 방향성과 운영 원칙을 문장 단위로 명확히 정리한 문서다.",
+      "FAQ 20선은 이용자가 자주 궁금해하는 핵심 질문과 답을 빠르게 찾아볼 수 있게 구성했다.",
+      "백엔드 API 모듈은 외부 서버와 JSON 형태로 통신할 수 있도록 설계되었다.",
+      "외부 백엔드 서버가 아직 연결되지 않은 환경에서도 내장 Mock 핸들러가 즉시 동작한다.",
+      "실제 백엔드 서버 주소가 준비되면 입력창에서 주소를 바꿔 바로 통신 테스트를 할 수 있다.",
+      "순이익 배분 계산기는 입력한 순이익 기준으로 30%, 30%, 최대 30% 금액을 즉시 계산한다.",
+      "AGI/ASI 자율 이율 계산기는 상품 유형, 금액, 기간을 넣어 예상 수익을 시뮬레이션한다.",
+      "삼선(☰) 드로어 메뉴는 모바일 화면에서도 편하게 섹션 이동을 돕는다.",
+      "헤더는 스크롤 시 상단에 고정되어 언제든 네비게이션과 언어 선택에 접근할 수 있게 한다.",
+      "딥 퍼플과 다크 네이비 배경에 골드 네온 포인트를 적용해 HKWB만의 시각 정체성을 담았다.",
+      "딸 영역은 핑크 네온 포인트, 아들 영역은 시안 네온 포인트로 두 자식 영역을 시각적으로 구분했다.",
+      "금융 플랫폼에서 가장 중요한 요소 중 하나는 규칙의 명확성과 예측 가능성이다.",
+      "HKWB는 배분 비율과 금리 산정 주체를 분명히 밝혀 오해를 줄인다.",
+      "체어맨 이재완(혜공)의 비전은 디지털 금융과 전략적 자본 운용의 결합에 있다.",
+      "전략적 기업 인수는 플랫폼 역량을 단기간에 끌어올릴 수 있는 주요 수단이다.",
+      "HK 사회재단은 그러한 전략적 결정을 재정적으로 뒷받침하는 기구적 장치다.",
+      "UBI는 기술과 금융 시스템이 만들어낸 가치를 넓게 나누는 사회적 장치다.",
+      "회사 경영비는 조직과 시스템이 흔들리지 않고 굴러가게 하는 현실적 기반이다.",
+      "세 축의 균형은 단기 이익만 쫓지 않고 오래가는 생태계를 만들기 위한 설계다.",
+      "AGI와 ASI가 금리를 자율 산정한다는 것은 데이터 기반의 유연한 조정을 뜻한다.",
+      "고정 금리만 고집할 경우 급변하는 시장 환경에서 불균형이 생길 수 있다.",
+      "자율 금리 산정은 예치자와 스테이킹 참여자 모두에게 합리적인 기준을 제시하기 위한 방향이다.",
+      "중도해지 이율 역시 사전에 정해진 산정 논리에 따라 투명하게 적용된다.",
+      "무점포 인터넷 은행은 모바일 앱과 웹 브라우저만으로 계좌와 자금을 다루는 현대적 은행 모델이다.",
+      "지점이 없다는 것은 물리적 공간 제약 없이 어디서든 접근 가능한 디지털 구조를 의미한다.",
+      "웹3 디지털 은행은 블록체인 기반 자산 이동과 스마트 컨트랙트 활용에 강점을 둔다.",
+      "지갑 전송 기능은 디지털 자산을 원하는 주소로 빠르고 정확하게 보내는 기본 기능이다.",
+      "스왑 기능은 지원되는 디지털 자산 간 교환을 손쉽게 진행할 수 있게 돕는다.",
+      "스테이킹 기능은 자산을 예치·운용하며 산정된 수익률을 기대할 수 있게 한다.",
+      "두 영역이 공존함으로써 전통적 인터넷 뱅킹 이용자와 Web3 이용자를 모두 포괄할 수 있다.",
+      "추천인 ljw2358은 플랫폼 네트워크 확산과 연결을 식별하는 고유 코드다.",
+      "공식 이메일 support@hkwb.world는 사용자 소통과 지원의 창구다.",
+      "플랫폼 명칭은 HKWB로 일관되게 사용한다.",
+      "문서와 화면의 용어를 통일해 사용자가 혼란을 겪지 않도록 한다.",
+      "검색 기능을 활용하면 백서 100선 중 원하는 키워드가 포함된 문장만 골라 볼 수 있다.",
+      "번호로 검색하면 특정 순번의 백서 문장을 바로 찾을 수 있다.",
+      "FAQ 아코디언은 필요한 질문만 펼쳐 읽어 화면을 깔끔하게 유지한다.",
+      "백엔드 API 로그 창은 요청과 응답 흐름을 한눈에 확인할 수 있게 보여준다.",
+      "개발 단계에서는 Mock 모드로 화면과 계산 로직을 검증하고, 운영 단계에서 실제 API를 붙일 수 있다.",
+      "CORS가 허용된 백엔드 서버라면 브라우저에서 직접 fetch 호출로 연동할 수 있다.",
+      "API 응답이 지연되거나 오류가 발생하더라도 화면 전체가 멈추지 않도록 예외 처리를 둔다.",
+      "금리 계산기의 연 환산 수치는 시뮬레이션 이해를 돕기 위한 예시 기준값이다.",
+      "실제 서비스 운영 시에는 AGI/ASI 엔진이 산출한 실시간 값이 반영된다.",
+      "순이익 입력값을 바꾸면 UBI, 회사 경영비, HK 사회재단 금액이 실시간으로 갱신된다.",
+      "최대 30%로 설정된 HK 사회재단 항목은 한도 기준을 명확히 보여준다.",
+      "플랫폼 거버넌스는 책임 소재를 분명히 하면서도 체계적인 운영을 추구한다.",
+      "체어맨 이재완(혜공)은 HKWB의 정체성과 핵심 방향을 대표하는 이름이다.",
+      "웹3 디지털 은행과 무점포 인터넷 은행의 동시 완성은 플랫폼의 중요한 이정표다.",
+      "사용자 중심의 단순한 동선과 명확한 정보 배치를 우선한다.",
+      "과도한 장식보다 필요한 정보와 기능이 바로 눈에 들어오게 구성한다.",
+      "표지는 간결하게 구성해 첫 화면에서 플랫폼의 핵심만 빠르게 파악하게 한다.",
+      "부모 영역과 자식 영역을 분리해 구조적 위계를 쉽게 이해하도록 한다.",
+      "딸 영역과 아들 영역이라는 직관적 비유로 두 자식 은행의 역할을 선명하게 대비한다.",
+      "백서 100선은 단순 구호가 아니라 철학, 구조, 기능, 운영 원칙을 단계적으로 담아낸다.",
+      "FAQ 20선은 실제 사용자가 가질 법한 의문을 빠짐없이 짚어 답한다.",
+      "다국어 지원은 글로벌 확장을 염두에 둔 필수 요소다.",
+      "60개 언어 선택기는 다양한 언어권 사용자를 고려한 확장 구조를 보여준다.",
+      "네비게이터는 긴 페이지에서도 원하는 위치로 한 번에 이동하게 한다.",
+      "모바일 환경에서도 글자가 겹치거나 가로로 넘치지 않도록 반응형을 적용한다.",
+      "버튼과 입력창은 터치와 클릭이 쉬운 크기와 간격으로 배치한다.",
+      "중요 수치는 강조 색상을 사용해 한눈에 들어오게 한다.",
+      "불필요한 과거 항목을 걷어내고 현재 확정된 기준만 남긴다.",
+      "확정된 기준을 지키는 것이 신뢰의 출발점이다.",
+      "HKWB는 기술, 금융, 사회적 환원의 조화를 추구한다.",
+      "이 백서 100선은 HKWB가 나아갈 기준점이자 약속이다."
+    ];
 
-    function logApi(msg) {
-      const logBox = document.getElementById("apiLog");
-      const time = new Date().toLocaleTimeString();
-      logBox.innerHTML = `[${time}] ${msg}<br>` + logBox.innerHTML;
-    }
+    const faq20 = [
+      { q: "1. HKWB는 어떤 플랫폼인가요?", a: "체어맨 이재완(혜공)이 이끄는 부모 디지털 금융 플랫폼으로, 아래에 딸 영역(웹3 디지털 은행)과 아들 영역(무점포 인터넷 은행)을 둡니다." },
+      { q: "2. 부모 영역과 자식 영역은 어떻게 나뉘나요?", a: "부모 영역인 HKWB가 전체 정책과 수익 배분, AGI/ASI 금리 기준을 총괄하고, 딸 영역은 웹3 디지털 은행, 아들 영역은 무점포 인터넷 은행을 맡습니다." },
+      { q: "3. 딸 영역인 웹3 디지털 은행은 어떤 역할을 하나요?", a: "블록체인 지갑 전송, 스테이킹, 스왑 등 Web3 기반 디지털 자산 금융 기능을 담당합니다." },
+      { q: "4. 아들 영역인 무점포 인터넷 은행은 무엇인가요?", a: "오프라인 지점 없이 모바일과 웹 중심으로 운영되며 토스뱅크·카카오뱅크 스타일의 비대면 뱅킹 경험을 지향하는 인터넷 은행입니다." },
+      { q: "5. 순이익은 어떤 비율로 배분되나요?", a: "순이익의 30%는 UBI, 30%는 회사 경영비, 최대 30%는 HK 사회재단으로 배분됩니다." },
+      { q: "6. HK 사회재단 자금은 어디에 쓰이나요?", a: "기업 인수나 핵심 전략 투자 등 중요한 자본 집행이 필요한 시점에 활용될 수 있도록 설계되었습니다." },
+      { q: "7. UBI 30%는 어떤 의미가 있나요?", a: "플랫폼에서 발생한 순이익의 30%를 기본소득 재원으로 돌려주어 생태계 참여자와 가치를 나누는 핵심 원칙입니다." },
+      { q: "8. 회사 경영비 30%는 어디에 사용되나요?", a: "서버 인프라, 보안 유지, 시스템 운영 및 조직 관리 등 안정적인 서비스 구동을 위한 경영비로 쓰입니다." },
+      { q: "9. 예치·스테이킹·중도해지 이율은 누가 정하나요?", a: "운영자가 수동으로 고정하지 않고 AGI와 ASI가 자율 산정합니다." },
+      { q: "10. 공식 추천인 ID는 무엇인가요?", a: "소문자 ljw2358입니다." },
+      { q: "11. 고객지원 이메일은 어떻게 되나요?", a: "support@hkwb.world입니다." },
+      { q: "12. 스마트 글래스나 HK-ROSES 항목도 포함되어 있나요?", a: "아니요, 두 항목 모두 HKWB에서 제외되었습니다." },
+      { q: "13. 백서 100선 서술형은 어떻게 볼 수 있나요?", a: "백서 100선 섹션에서 1번부터 100번까지 전체 문장을 열람하고 키워드나 번호로 검색할 수 있습니다." },
+      { q: "14. 백엔드 API는 어떻게 동작하나요?", a: "백엔드 API 섹션에서 서버 주소를 지정해 통신 테스트를 할 수 있으며, 서버가 연결되지 않은 상태에서는 내장 Mock 응답으로 자동 폴백됩니다." },
+      { q: "15. 실제 백엔드 서버와 연동하려면 무엇이 필요한가요?", a: "해당 서버가 실행 중이고 CORS가 허용되어 있어야 하며, API 엔드포인트(/health, /api/v1/whitepaper, /api/v1/faq, /api/v1/profit-allocation, /api/v1/agi-rate)가 준비되어 있어야 합니다." },
+      { q: "16. 언어 선택기는 몇 개 언어를 보여주나요?", a: "우측 상단 선택기에 60개 언어가 준비되어 있습니다." },
+      { q: "17. 네비게이터는 어디에 있나요?", a: "상단 메뉴 바와 좌측 상단 삼선(☰) 버튼을 누르면 열리는 드로어 메뉴에서 각 섹션으로 바로 이동할 수 있습니다." },
+      { q: "18. 순이익 배분 계산기는 어떻게 쓰나요?", a: "시뮬레이터 섹션의 순이익 입력창에 금액(원)을 입력하면 UBI 30%, 회사 경영비 30%, HK 사회재단 최대 30% 금액이 즉시 계산됩니다." },
+      { q: "19. AGI/ASI 자율 이율 계산기는 어떤 항목을 계산하나요?", a: "상품 구분(예치, 스테이킹, 중도해지), 금액, 기간(개월)을 입력하면 예상 수익금을 계산해 보여줍니다." },
+      { q: "20. 이 파일은 어떻게 저장해서 실행하나요?", a: "전체 코드를 복사해 index.html 이름으로 저장한 뒤 웹 브라우저로 열면 바로 실행됩니다." }
+    ];
 
-    // 헬스체크 (API Ping)
-    async function checkApiHealth() {
-      const baseUrl = document.getElementById("apiBaseUrl").value.trim();
-      logApi(`[FETCH] ${baseUrl}/health 체크 시도 중...`);
-      try {
-        const res = await fetch(`${baseUrl}/health`, { method: "GET", timeout: 2000 }).catch(() => null);
-        if (res && res.ok) {
-          isApiOnline = true;
-          setApiStatusUI(true, `ONLINE (${baseUrl})`);
-          logApi(`[SUCCESS] 백엔드 API 서버 연동 성공!`);
-        } else {
-          throw new Error("서버 응답 없음");
+    const HKWB_API = {
+      getBaseUrl() {
+        return (document.getElementById("apiBaseUrlInput")?.value || "https://api.hkwb.world").trim().replace(/\/+$/, "");
+      },
+      async request(path, options = {}, mockResolver = null) {
+        const url = `${this.getBaseUrl()}${path}`;
+        try {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 2500);
+          const res = await fetch(url, {
+            ...options,
+            headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+            signal: controller.signal
+          });
+          clearTimeout(timer);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          return { source: "LIVE_BACKEND", url, data };
+        } catch (err) {
+          const mockData = typeof mockResolver === "function" ? mockResolver() : { ok: true };
+          return { source: "MOCK_FALLBACK", url, error: err.message, data: mockData };
         }
-      } catch (err) {
-        isApiOnline = false;
-        setApiStatusUI(false, `OFFLINE (MOCK ENGINE RUNNING)`);
-        logApi(`[FALLBACK] 백엔드 연결 불가 -> 내장 Mock 엔진으로 자동 전환`);
       }
-    }
+    };
 
-    function setApiStatusUI(online, text) {
-      const headerTag = document.getElementById("apiStatusHeader");
-      const panelTag = document.getElementById("apiStatusPanel");
-      if (online) {
-        headerTag.className = "api-status-tag online";
-        headerTag.textContent = "API: ONLINE";
-        panelTag.className = "api-status-tag online";
-        panelTag.textContent = `상태: ${text}`;
-      } else {
-        headerTag.className = "api-status-tag mock";
-        headerTag.textContent = "API: MOCK MODE";
-        panelTag.className = "api-status-tag mock";
-        panelTag.textContent = `상태: ${text}`;
-      }
-    }
-
-    // 백서 100문장 수신 API (Mock 내장)
-    async function fetchWhitepaperApi() {
-      const baseUrl = document.getElementById("apiBaseUrl").value.trim();
-      logApi(`[API GET] /api/v1/whitepaper 수신 처리 중...`);
-      let sentences = [];
-      if (isApiOnline) {
-        try {
-          const res = await fetch(`${baseUrl}/api/v1/whitepaper`);
-          const data = await res.json();
-          sentences = data.sentences;
-        } catch (e) { sentences = getMockWhitepaper(); }
-      } else {
-        sentences = getMockWhitepaper();
-      }
-
-      const container = document.getElementById("whitepaperContainer");
-      container.innerHTML = "";
-      sentences.forEach((sent, idx) => {
-        const div = document.createElement("div");
-        div.className = "wp-item";
-        div.innerHTML = `<span class="wp-num">${idx + 1}.</span> <div>${sent}</div>`;
-        container.appendChild(div);
-      });
-    }
-
-    function getMockWhitepaper() {
-      const base = [
-        "HKWB는 최고 금융 리더 체어맨 이재완(혜공)의 비전 아래 설립된 차세대 통합 금융 부모 플랫폼이다.",
-        "플랫폼의 모든 추천인 코드는 공식 규정에 따라 소문자 ljw2358로 전 세계 공통 적용된다.",
-        "공식 서비스 및 글로벌 문의 창구는 support@hkwb.world 이메일로 단일화되어 운영된다.",
-        "HKWB는 웹3 디지털 은행과 무점포 인터넷 은행이라는 두 개의 핵심 자식 디비전을 거느린다.",
-        "과거 사용되던 HK-ROSES 및 스마트 글래스 관련 개발 항목은 완벽히 제외하고 금융 본업에 집중한다.",
-        "플랫폼에서 발생한 순이익의 30%는 기본소득(UBI)으로 전 세계 가입자에게 투명하게 환원된다.",
-        "순이익의 30%는 HKWB 인프라 유지, 보안 고도화 및 안정적인 회사 경영비로 충당된다.",
-        "순이익의 최대 30%는 HK 사회재단으로 적립되어 유망 기업 인수 및 대규모 전략 자본으로 쓰인다.",
-        "모든 예치, 스테이킹 및 중도해지 이율은 사람의 개입 없이 AGI 및 ASI 엔진이 자율 산출한다.",
-        "웹3 디지털 은행 디비전은 탈중앙화 지갑, 멀티체인 스왑 및 암호자산 스테이킹을 완벽히 지원한다."
-      ];
-      for (let i = 11; i <= 100; i++) {
-        base.push(`HKWB 백서 명제 제${i}조: 체어맨 이재완(혜공)의 지침에 따라 AGI/ASI 자율 엔진이 금리와 UBI 30% 환원을 투명하게 관리하여 자식 디비전(웹3·인터넷 은행)의 안전성을 검증한다.`);
-      }
-      return base;
-    }
-
-    // FAQ 20선 수신 API (Mock 내장)
-    async function fetchFaqApi() {
-      let faqs = [];
-      if (isApiOnline) {
-        try {
-          const baseUrl = document.getElementById("apiBaseUrl").value.trim();
-          const res = await fetch(`${baseUrl}/api/v1/faq`);
-          faqs = await res.json();
-        } catch(e) { faqs = getMockFaq(); }
-      } else {
-        faqs = getMockFaq();
-      }
-
-      const container = document.getElementById("faqContainer");
-      container.innerHTML = "";
-      faqs.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "faq-item";
-        div.innerHTML = `
-          <div class="faq-q" onclick="toggleFaq(this)">
-            <span>${item.q}</span>
-            <span>▼</span>
-          </div>
-          <div class="faq-a">${item.a}</div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function getMockFaq() {
-      return [
-        { q: "1. HKWB 플랫폼의 부모-자식 구조는 무엇인가요?", a: "HKWB가 최상위 부모 플랫폼이며, 그 아래 '웹3 디지털 은행'과 '무점포 인터넷 은행' 두 자식 디비전이 결합되어 동작합니다." },
-        { q: "2. 체어맨 이재완(혜공) 님의 공식 역할은 무엇인가요?", a: "HKWB 플랫폼의 창립자이자 체어맨으로서 최고 비전 수립, 거버넌스 총괄 및 HK 사회재단 자본 정책을 지휘합니다." },
-        { q: "3. 공식 추천인 ID는 무엇인가요?", a: "전 세계 공통 공식 추천인 코드는 소문자 ljw2358 입니다." },
-        { q: "4. 고객 지원 이메일은 어떻게 되나요?", a: "모든 글로벌 문의는 support@hkwb.world 에서 공식 처리됩니다." },
-        { q: "5. 순이익 30% UBI 환원은 어떻게 작동하나요?", a: "플랫폼 발생 순이익의 30%를 분기별로 UBI 재원으로 격리한 뒤, 검증된 가입자 계좌/지갑으로 자동 배분합니다." },
-        { q: "6. HK 사회재단 최대 30% 자본은 어디에 사용되나요?", a: "전략적 기업 인수, 대규모 기술 투자 등 굵직한 자본 집행이 필요한 경우에만 제한적으로 사용됩니다." },
-        { q: "7. 왜 예치 및 스테이킹 이율을 AGI/ASI가 정하나요?", a: "인공지능이 유동성과 리스크를 다각도로 분석해 최적 이율을 산출하기 때문입니다." },
-        { q: "8. 무점포 인터넷 은행이란 무엇인가요?", a: "오프라인 지점 없이 모바일과 웹으로만 운영되는 인터넷 전문 은행입니다." },
-        { q: "9. 웹3 디지털 은행은 어떤 기능을 지원하나요?", a: "블록체인 지갑 연동, 멀티체인 암호자산 스왑, AGI 기반 스테이킹 등을 지원합니다." },
-        { q: "10. HK-ROSES와 스마트 글래스 항목은 포함되어 있나요?", a: "아닙니다. 해당 항목들은 완벽히 삭제되었습니다." },
-        { q: "11. 60개 국어 변환은 지원되나요?", a: "네, 헤더 우측 셀렉터를 통해 60개 언어로 선택할 수 있습니다." },
-        { q: "12. 중도해지 이율은 어떻게 계산되나요?", a: "AGI/ASI 엔진이 시장 상황에 맞게 차등 이율을 계산합니다." },
-        { q: "13. 사용자 자산은 안전하게 보호되나요?", a: "웹3 다중 서명 및 인터넷 뱅킹 암호화 기술이 적용됩니다." },
-        { q: "14. 추천인 코드는 왜 소문자 인가요?", a: "글로벌 전산 규정에 따라 소문자 ljw2358로 통합 적용됩니다." },
-        { q: "15. 모바일 스마트폰에서도 이용할 수 있나요?", a: "네, 반응형 웹 디자인으로 완벽히 지원됩니다." },
-        { q: "16. HKWB 서비스의 최종 완공 목표는 언제인가요?", a: "웹3와 인터넷 은행 디비전 모두 동시 완공을 목표로 합니다." },
-        { q: "17. 삼선(☰) 메뉴 네비게이터는 무엇인가요?", a: "좌측 상단 버튼으로 7개 핵심 섹션을 바로 이동하는 기능입니다." },
-        { q: "18. 회사 경영비 30%는 어디에 쓰이나요?", a: "서버 유지보수 및 글로벌 규제 준수 인프라 확장에 사용됩니다." },
-        { q: "19. 일반 사용자도 UBI를 받을 수 있나요?", a: "본인 인증을 마친 HKWB 가입자라면 대상이 됩니다." },
-        { q: "20. 외부 기업 인수는 어떤 절차로 진행되나요?", a: "체어맨 승인 하에 HK 사회재단 자본 범위 내에서 추진됩니다." }
-      ];
-    }
-
-    // UBI & 순이익 배분 API 계산
-    async function updateAllocationApi() {
-      const profit = Number(document.getElementById("netProfitInput").value) || 0;
-      let resData = null;
-      if (isApiOnline) {
-        try {
-          const baseUrl = document.getElementById("apiBaseUrl").value.trim();
-          const res = await fetch(`${baseUrl}/api/v1/net-profit`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ profit })
-          });
-          resData = await res.json();
-        } catch(e) {}
-      }
-
-      const ubi = resData ? resData.ubi : profit * 0.30;
-      const ops = resData ? resData.ops : profit * 0.30;
-      const fdn = resData ? resData.fdn : profit * 0.30;
-
-      document.getElementById("allocationOutput").innerHTML = `
-        <div>● <strong>UBI 커뮤니티 환원 (30%):</strong> <span style="color:var(--gold-neon); font-weight:800;">${formatKrw(ubi)}</span></div>
-        <div>● <strong>회사 경영 및 인프라비 (30%):</strong> <span>${formatKrw(ops)}</span></div>
-        <div>● <strong>HK 사회재단 자본 (최대 30%):</strong> <span style="color:var(--cyan-neon);">${formatKrw(fdn)}</span></div>
-      `;
-    }
-
-    // AGI 이율 API 계산
-    async function calculateAgiRateApi() {
-      const type = document.getElementById("productType").value;
-      const principal = Number(document.getElementById("principalInput").value) || 0;
-      const months = Math.max(1, Number(document.getElementById("monthsInput").value) || 1);
-
-      let annualRate = 0.048;
-      let label = "AGI/ASI 인터넷 은행 예치 이율";
-
-      if (isApiOnline) {
-        try {
-          const baseUrl = document.getElementById("apiBaseUrl").value.trim();
-          const res = await fetch(`${baseUrl}/api/v1/agi-rate`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ type, principal, months })
-          });
-          const data = await res.json();
-          annualRate = data.rate;
-          label = data.label;
-        } catch(e) {}
-      } else {
-        if (type === "staking") { annualRate = 0.085; label = "AGI/ASI 웹3 스테이킹 이율"; }
-        else if (type === "early") { annualRate = 0.021; label = "AGI/ASI 중도해지 이율"; }
-      }
-
-      const estimatedReturn = principal * annualRate * (months / 12);
-      document.getElementById("agiRateOutput").innerHTML = `
-        <div>${label}: <strong style="color:var(--gold-neon);">${(annualRate * 100).toFixed(2)}% (연 환산)</strong></div>
-        <div style="font-size:16px; font-weight:800; color:var(--success); margin-top:6px;">
-          ${months}개월 예상 수익금: ${formatKrw(estimatedReturn)}
-        </div>
-      `;
+    function appendApiLog(text) {
+      const box = document.getElementById("apiLogBox");
+      const now = new Date().toLocaleTimeString("ko-KR");
+      box.textContent = `[${now}] ${text}\n` + box.textContent;
     }
 
     function toggleDrawer(open) {
       document.getElementById("drawerBackdrop").classList.toggle("open", open);
       document.getElementById("samseonDrawer").classList.toggle("open", open);
     }
-    function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
-    function formatKrw(num) { return new Intl.NumberFormat("ko-KR").format(Math.round(num)) + "원"; }
-    function selectBankMode(mode) {
-      document.getElementById("productType").value = mode === "web3" ? "staking" : "deposit";
-      calculateAgiRateApi();
-      document.getElementById("agi-rate").scrollIntoView({ behavior: "smooth" });
+
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle("open");
     }
-    function changeLanguage(langIdx) {
-      alert(`[HKWB API] 언어 번역 패무트 [${languages60[langIdx]}]가 백엔드 API와 동기화되었습니다.`);
+
+    function formatKrw(num) {
+      return new Intl.NumberFormat("ko-KR").format(Math.round(num)) + "원";
+    }
+
+    function renderWhitepaper() {
+      const keyword = (document.getElementById("wpSearchInput").value || "").trim().toLowerCase();
+      const container = document.getElementById("whitepaperContainer");
+      const filtered = whitepaper100
+        .map((text, idx) => ({ num: idx + 1, text }))
+        .filter(item => !keyword || item.text.toLowerCase().includes(keyword) || String(item.num) === keyword);
+
+      document.getElementById("wpCountLabel").textContent = `표시 중: ${filtered.length} / 100문장`;
+      container.innerHTML = filtered.map(item => `
+        <div class="wp-item">
+          <span class="wp-num">${item.num}.</span>
+          <div>${item.text}</div>
+        </div>
+      `).join("");
+    }
+
+    function resetWhitepaperSearch() {
+      document.getElementById("wpSearchInput").value = "";
+      renderWhitepaper();
+    }
+
+    function renderFaq() {
+      const container = document.getElementById("faqContainer");
+      container.innerHTML = faq20.map((item, idx) => `
+        <div class="faq-item ${idx === 0 ? "open" : ""}">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>${item.q}</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-a">${item.a}</div>
+        </div>
+      `).join("");
+    }
+
+    function computeAllocationLocal(profit) {
+      return {
+        netProfit: profit,
+        ubi30: profit * 0.30,
+        ops30: profit * 0.30,
+        foundationMax30: profit * 0.30
+      };
+    }
+
+    async function updateAllocation() {
+      const profit = Number(document.getElementById("netProfitInput").value) || 0;
+      const res = await HKWB_API.request(
+        "/api/v1/profit-allocation",
+        { method: "POST", body: JSON.stringify({ netProfit: profit }) },
+        () => computeAllocationLocal(profit)
+      );
+      const d = res.data;
+      document.getElementById("allocationOutput").innerHTML = `
+        <div>● <strong>UBI (30%):</strong> <strong style="color:var(--gold-neon);">${formatKrw(d.ubi30)}</strong></div>
+        <div>● <strong>회사 경영비 (30%):</strong> <strong>${formatKrw(d.ops30)}</strong></div>
+        <div>● <strong>HK 사회재단 한도 (최대 30%):</strong> <strong style="color:var(--cyan-neon);">${formatKrw(d.foundationMax30)}</strong></div>
+        <div style="margin-top:6px; font-size:11px; color:var(--text-muted);">응답 소스: ${res.source}</div>
+      `;
+    }
+
+    function computeAgiRateLocal(type, principal, months) {
+      let rate = 0.048;
+      let label = "AGI/ASI 자율 예치 이율 (아들 영역)";
+      if (type === "staking") {
+        rate = 0.085;
+        label = "AGI/ASI 자율 스테이킹 이율 (딸 영역)";
+      } else if (type === "early") {
+        rate = 0.021;
+        label = "AGI/ASI 자율 중도해지 이율";
+      }
+      return {
+        rate,
+        label,
+        estimatedReturn: principal * rate * (months / 12)
+      };
+    }
+
+    function selectMode(mode) {
+      document.getElementById("productType").value = mode;
+      calculateAgiRate();
+      document.getElementById("simulator").scrollIntoView({ behavior: "smooth" });
+    }
+
+    async function calculateAgiRate() {
+      const type = document.getElementById("productType").value;
+      const principal = Number(document.getElementById("principalInput").value) || 0;
+      const months = Math.max(1, Number(document.getElementById("monthsInput").value) || 1);
+
+      const res = await HKWB_API.request(
+        "/api/v1/agi-rate",
+        { method: "POST", body: JSON.stringify({ type, principal, months }) },
+        () => computeAgiRateLocal(type, principal, months)
+      );
+      const d = res.data;
+      document.getElementById("agiRateOutput").innerHTML = `
+        <div>${d.label}: <strong style="color:var(--gold-neon);">${(d.rate * 100).toFixed(2)}% (연 환산 시뮬레이션)</strong></div>
+        <div style="margin-top:6px; font-size:16px; font-weight:800; color:var(--success);">${months}개월 예상 수익: ${formatKrw(d.estimatedReturn)}</div>
+        <div style="margin-top:6px; font-size:11px; color:var(--text-muted);">응답 소스: ${res.source}</div>
+      `;
+    }
+
+    async function testBackendEndpoints() {
+      const statusEl = document.getElementById("apiStatusText");
+      statusEl.textContent = "상태: 백엔드 엔드포인트 테스트 중...";
+
+      const health = await HKWB_API.request("/health", { method: "GET" }, () => ({ status: "ok", engine: "HKWB-AGI-MOCK" }));
+      appendApiLog(`GET ${health.url} -> [${health.source}] ${JSON.stringify(health.data)}`);
+
+      const wp = await HKWB_API.request("/api/v1/whitepaper", { method: "GET" }, () => ({ count: whitepaper100.length }));
+      appendApiLog(`GET ${wp.url} -> [${wp.source}] 백서 ${wp.data.count || whitepaper100.length}문장 확인`);
+
+      const faq = await HKWB_API.request("/api/v1/faq", { method: "GET" }, () => ({ count: faq20.length }));
+      appendApiLog(`GET ${faq.url} -> [${faq.source}] FAQ ${faq.data.count || faq20.length}선 확인`);
+
+      statusEl.textContent = `상태: 테스트 완료 (${health.source})`;
+    }
+
+    function changeLanguage(idx) {
+      const lang = languages60[idx];
+      document.documentElement.setAttribute("data-selected-language", lang);
+      appendApiLog(`언어 선택 변경 -> ${lang}`);
     }
 
     window.addEventListener("DOMContentLoaded", () => {
@@ -678,14 +853,11 @@
         langSelect.appendChild(opt);
       });
 
-      checkApiHealth();
-      fetchWhitepaperApi();
-      fetchFaqApi();
-      updateAllocationApi();
-      calculateAgiRateApi();
+      renderWhitepaper();
+      renderFaq();
+      updateAllocation();
+      calculateAgiRate();
     });
   </script>
 </body>
 </html>
-
-
