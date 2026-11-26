@@ -1,124 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB — 웹3 디지털 은행 · 10대 분산 연동망 · 백서 100선</title>
-  <style>
-    :root {
-      --bg-navy: #070b1a;
-      --bg-purple: #140b2e;
-      --card-bg: rgba(17, 24, 54, 0.9);
-      --card-border: rgba(250, 204, 21, 0.25);
-      --gold: #facc15;
-      --gold-soft: rgba(250, 204, 21, 0.14);
-      --purple-accent: #7c3aed;
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
-      --ok: #22c55e;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", sans-serif;
-      background: radial-gradient(circle at top right, #23124d 0%, var(--bg-purple) 38%, var(--bg-navy) 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      line-height: 1.55;
-    }
-
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 20px 18px 64px;
-    }
-
+  /* 모바일에서도 깔끔하게 정돈되도록 헤더/버튼 최적화 */
     header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 18px;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 14px 16px;
       background: rgba(10, 15, 36, 0.92);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       margin-bottom: 14px;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .brand {
       display: flex;
       align-items: baseline;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .brand-title {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: var(--gold);
       letter-spacing: 0.5px;
     }
 
     .brand-sub {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-sub);
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    select, button {
-      font-family: inherit;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: all 0.15s ease;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: nowrap; /* 한 줄로 가지런히 정렬 */
+      width: 100%;
     }
 
     .lang-select {
       background: #0d1430;
       color: var(--text-main);
       border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 8px 12px;
-      font-size: 0.86rem;
+      padding: 7px 8px;
+      font-size: 0.78rem;
+      flex: 0 0 auto;
     }
 
-    .btn-gold {
-      background: var(--gold);
-      color: #090d1e;
-      border: none;
-      font-weight: 700;
-      padding: 9px 15px;
-      font-size: 0.88rem;
+    .btn-outline, .btn-gold {
+      padding: 7px 10px;
+      font-size: 0.78rem;
+      white-space: nowrap; /* 글자 줄바꿈 방지 */
+      flex: 1 1 auto;
+      text-align: center;
     }
 
-    .btn-gold:hover {
-      filter: brightness(1.06);
-    }
-
-    .btn-outline {
-      background: rgba(124, 58, 237, 0.18);
-      color: var(--text-main);
-      border: 1px solid rgba(167, 139, 250, 0.45);
-      font-weight: 600;
-      padding: 8px 13px;
-      font-size: 0.84rem;
-    }
-
-    .btn-outline:hover {
-      background: rgba(124, 58, 237, 0.32);
-    }
-
-    /* 간소화된 지갑 연결 동적 프로세스 상태 바 */
     .wallet-bar {
       display: flex;
       align-items: center;
