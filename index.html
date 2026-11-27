@@ -9,25 +9,25 @@
       --bg-navy: #060913;
       --bg-purple: #120b24;
       --bg-gradient: linear-gradient(135deg, #060913 0%, #120b24 55%, #091122 100%);
-      --panel-gradient: linear-gradient(145deg, rgba(24, 15, 48, 0.95) 0%, rgba(11, 18, 38, 0.97) 100%);
-      --card-gradient: linear-gradient(160deg, rgba(31, 18, 62, 0.88) 0%, rgba(13, 21, 44, 0.94) 100%);
+      --panel-gradient: linear-gradient(145deg, rgba(24, 15, 48, 0.96) 0%, rgba(11, 18, 38, 0.98) 100%);
+      --card-gradient: linear-gradient(160deg, rgba(31, 18, 62, 0.9) 0%, rgba(13, 21, 44, 0.95) 100%);
       --gold-gradient: linear-gradient(90deg, #fff099 0%, #f7b733 50%, #d97706 100%);
       --cyan-purple-gradient: linear-gradient(90deg, #66fcf1 0%, #a855f7 65%, #e879f9 100%);
       --neon-purple: #a855f7;
       --neon-cyan: #66fcf1;
       --neon-gold: #f59e0b;
       --text-main: #f8fafc;
-      --text-sub: #cbd5e1;
+      --text-sub: #e2e8f0;
       --text-muted: #94a3b8;
-      --border-soft: rgba(168, 85, 247, 0.28);
-      --border-cyan: rgba(102, 252, 241, 0.35);
-      --border-gold: rgba(245, 158, 11, 0.35);
+      --border-soft: rgba(168, 85, 247, 0.32);
+      --border-cyan: rgba(102, 252, 241, 0.38);
+      --border-gold: rgba(245, 158, 11, 0.38);
       --radius-xl: 22px;
       --radius-lg: 16px;
       --radius-md: 12px;
       --radius-sm: 8px;
       --shadow-main: 0 12px 32px rgba(0, 0, 0, 0.55);
-      --shadow-glow: 0 0 22px rgba(102, 252, 241, 0.16);
+      --shadow-glow: 0 0 22px rgba(102, 252, 241, 0.18);
     }
 
     * {
@@ -50,7 +50,7 @@
     }
 
     .app-shell {
-      max-width: 840px;
+      max-width: 860px;
       margin: 0 auto;
       padding-bottom: 64px;
     }
@@ -78,7 +78,7 @@
     }
 
     .brand-logo {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 950;
       letter-spacing: 1.5px;
       background: var(--gold-gradient);
@@ -88,13 +88,13 @@
     }
 
     .brand-tag {
-      font-size: 12px;
-      padding: 4px 10px;
+      font-size: 13px;
+      padding: 5px 12px;
       border-radius: 999px;
-      background: rgba(168, 85, 247, 0.18);
+      background: rgba(168, 85, 247, 0.2);
       border: 1px solid var(--border-soft);
       color: var(--neon-cyan);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .header-controls {
@@ -107,21 +107,21 @@
       background: #141029;
       color: var(--text-main);
       border: 1px solid var(--neon-purple);
-      padding: 9px 14px;
+      padding: 10px 14px;
       border-radius: var(--radius-md);
       font-weight: 700;
-      font-size: 13px;
+      font-size: 14px;
       cursor: pointer;
     }
 
     .login-pill-btn {
-      background: linear-gradient(90deg, rgba(168, 85, 247, 0.25), rgba(102, 252, 241, 0.22));
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.28), rgba(102, 252, 241, 0.24));
       color: var(--text-main);
       border: 1px solid var(--border-cyan);
-      padding: 9px 14px;
+      padding: 10px 16px;
       border-radius: var(--radius-md);
-      font-weight: 700;
-      font-size: 13px;
+      font-weight: 800;
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -139,13 +139,13 @@
     }
 
     .mode-btn {
-      padding: 16px 14px;
+      padding: 17px 14px;
       border-radius: var(--radius-lg);
       background: var(--panel-gradient);
       color: var(--text-muted);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 15px;
-      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 16px;
+      font-weight: 900;
       cursor: pointer;
       transition: all 0.25s ease;
       text-align: center;
@@ -154,13 +154,13 @@
     .mode-btn.active {
       color: #ffffff;
       border-color: var(--neon-cyan);
-      background: linear-gradient(90deg, rgba(168, 85, 247, 0.32), rgba(102, 252, 241, 0.22));
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.34), rgba(102, 252, 241, 0.24));
       box-shadow: var(--shadow-glow);
     }
 
     .panel-box {
       margin-top: 18px;
-      padding: 22px;
+      padding: 24px;
       border-radius: var(--radius-xl);
       background: var(--panel-gradient);
       border: 1px solid var(--border-gold);
@@ -169,7 +169,7 @@
 
     .section-heading {
       margin: 0 0 12px 0;
-      font-size: 21px;
+      font-size: 23px;
       font-weight: 900;
       background: var(--gold-gradient);
       -webkit-background-clip: text;
@@ -177,17 +177,17 @@
     }
 
     .sub-heading {
-      margin: 24px 0 12px 0;
+      margin: 26px 0 14px 0;
       padding-left: 12px;
       border-left: 4px solid var(--neon-purple);
-      font-size: 17px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 900;
       color: var(--neon-cyan);
     }
 
     .section-desc {
       margin: 0 0 16px 0;
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-sub);
     }
 
@@ -198,7 +198,7 @@
     }
 
     .kpi-card {
-      padding: 18px;
+      padding: 20px;
       border-radius: var(--radius-lg);
       background: var(--card-gradient);
       border: 1px solid var(--border-soft);
@@ -214,37 +214,37 @@
     }
 
     .kpi-label {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .kpi-value {
-      margin-top: 6px;
-      font-size: 22px;
-      font-weight: 900;
+      margin-top: 8px;
+      font-size: 24px;
+      font-weight: 950;
       background: var(--cyan-purple-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .kpi-note {
-      margin-top: 4px;
-      font-size: 12px;
+      margin-top: 6px;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
     .action-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 14px;
       margin-top: 12px;
     }
 
     .action-tile {
-      padding: 18px 16px;
+      padding: 20px 18px;
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(102, 252, 241, 0.14));
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.24), rgba(102, 252, 241, 0.15));
       border: 1px solid var(--border-cyan);
       cursor: pointer;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -258,23 +258,23 @@
     }
 
     .action-tile-title {
-      font-size: 17px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 900;
       color: #ffffff;
     }
 
     .action-tile-sub {
-      margin-top: 4px;
-      font-size: 13px;
+      margin-top: 5px;
+      font-size: 14px;
       color: var(--text-sub);
     }
 
     .drawer-box {
       display: none;
       margin-top: 16px;
-      padding: 18px;
+      padding: 20px;
       border-radius: var(--radius-lg);
-      background: rgba(6, 10, 24, 0.92);
+      background: rgba(6, 10, 24, 0.94);
       border: 1px solid var(--border-cyan);
     }
 
@@ -290,8 +290,8 @@
     }
 
     .drawer-title {
-      font-size: 17px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 900;
       color: var(--neon-cyan);
     }
 
@@ -300,8 +300,8 @@
       color: var(--text-sub);
       border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: var(--radius-sm);
-      padding: 5px 10px;
-      font-size: 12px;
+      padding: 6px 12px;
+      font-size: 13px;
       cursor: pointer;
     }
 
@@ -314,7 +314,7 @@
 
     .field-input {
       width: 100%;
-      padding: 11px 13px;
+      padding: 12px 14px;
       border-radius: var(--radius-md);
       border: 1px solid rgba(255, 255, 255, 0.18);
       background: #10162b;
@@ -323,7 +323,7 @@
     }
 
     .submit-gold-btn {
-      padding: 11px 18px;
+      padding: 12px 20px;
       border-radius: var(--radius-md);
       border: none;
       background: var(--gold-gradient);
@@ -336,24 +336,24 @@
 
     .result-banner {
       margin-top: 12px;
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-radius: var(--radius-md);
-      background: rgba(168, 85, 247, 0.16);
+      background: rgba(168, 85, 247, 0.18);
       border: 1px solid rgba(102, 252, 241, 0.25);
       color: #fde047;
-      font-size: 13px;
+      font-size: 14px;
       min-height: 20px;
     }
 
     .tier-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
+      gap: 12px;
       margin-top: 12px;
     }
 
     .tier-card {
-      padding: 14px;
+      padding: 16px;
       border-radius: var(--radius-md);
       background: var(--card-gradient);
       border: 1px solid var(--border-soft);
@@ -361,15 +361,15 @@
     }
 
     .tier-period {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-muted);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .tier-rate {
       margin-top: 6px;
-      font-size: 20px;
-      font-weight: 900;
+      font-size: 22px;
+      font-weight: 950;
       background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -377,14 +377,15 @@
 
     .tier-type {
       margin-top: 4px;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--neon-cyan);
+      font-weight: 700;
     }
 
     .accordion-stack {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .acc-item {
@@ -400,30 +401,30 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      padding: 16px 18px;
+      padding: 18px 20px;
       background: transparent;
       border: none;
       color: var(--text-main);
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 800;
       text-align: left;
       cursor: pointer;
     }
 
     .acc-trigger:hover {
-      background: rgba(168, 85, 247, 0.12);
+      background: rgba(168, 85, 247, 0.14);
     }
 
     .acc-tag {
       font-size: 12px;
       color: var(--neon-cyan);
-      font-weight: 700;
+      font-weight: 800;
       white-space: nowrap;
     }
 
     .acc-panel {
       display: none;
-      padding: 0 18px 18px 18px;
+      padding: 0 20px 20px 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--text-sub);
       font-size: 14px;
@@ -431,27 +432,27 @@
 
     .acc-item.open .acc-panel {
       display: block;
-      padding-top: 14px;
+      padding-top: 16px;
     }
 
     .acc-detail-box {
-      margin-top: 10px;
-      padding: 14px;
+      margin-top: 12px;
+      padding: 16px;
       border-radius: var(--radius-md);
-      background: rgba(6, 10, 22, 0.85);
+      background: rgba(6, 10, 22, 0.88);
       border-left: 3px solid var(--neon-cyan);
       white-space: pre-line;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-main);
     }
 
     .chapter-intro {
-      padding: 12px 14px;
-      margin-top: 10px;
+      padding: 14px 16px;
+      margin-top: 12px;
       border-radius: var(--radius-md);
-      background: rgba(168, 85, 247, 0.12);
-      border: 1px solid rgba(102, 252, 241, 0.22);
-      font-size: 13px;
+      background: rgba(168, 85, 247, 0.14);
+      border: 1px solid rgba(102, 252, 241, 0.25);
+      font-size: 14px;
       color: var(--text-main);
     }
 
@@ -459,14 +460,14 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
 
     .narrative-card {
-      padding: 14px 16px;
+      padding: 15px 18px;
       border-radius: var(--radius-md);
-      background: rgba(8, 13, 28, 0.86);
-      border: 1px solid rgba(168, 85, 247, 0.24);
+      background: rgba(8, 13, 28, 0.88);
+      border: 1px solid rgba(168, 85, 247, 0.25);
       border-left: 3px solid var(--neon-gold);
       font-size: 14px;
       color: var(--text-main);
@@ -490,9 +491,9 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      padding: 10px 14px;
+      padding: 11px 14px;
       border-radius: var(--radius-md);
-      background: rgba(10, 16, 34, 0.8);
+      background: rgba(10, 16, 34, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 13px;
     }
@@ -504,7 +505,7 @@
       background: var(--panel-gradient);
       border: 1px solid var(--border-soft);
       text-align: center;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-muted);
     }
 
