@@ -20,13 +20,17 @@
             flex-direction: column;
         }
 
-        /* 상단 헤더: 좌측 로고 / 우측 언어 선택 */
+        /* 상단 헤더: 좌측 HKWB 노란색 로고 / 우측 언어 선택 */
         header {
             width: 100%;
-            padding: 30px 60px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            background-color: #0d0b21;
+            z-index: 1000;
         }
 
         .brand-logo {
@@ -34,6 +38,7 @@
             font-weight: 800;
             color: #fbbf24;
             letter-spacing: 1px;
+            cursor: pointer;
         }
 
         .lang-select {
@@ -45,9 +50,15 @@
             font-size: 14px;
             cursor: pointer;
             outline: none;
+            max-width: 190px;
         }
 
-        /* 메인 컨텐츠 (중앙 정렬) */
+        .lang-select option {
+            background: #0d0b21;
+            color: #ffffff;
+        }
+
+        /* 메인 컨텐츠 영역 (중앙 정렬) */
         main {
             flex: 1;
             display: flex;
@@ -57,24 +68,16 @@
             text-align: center;
             padding: 40px 20px;
             max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .tagline {
-            color: #f59e0b;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
+            margin: auto;
         }
 
         .main-title {
             font-size: 48px;
             font-weight: 700;
-            line-height: 1.3;
+            line-height: 1.35;
             margin-bottom: 48px;
             color: #fbbf24;
+            word-break: keep-all;
         }
 
         /* 버튼 그룹 */
@@ -83,6 +86,7 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .btn {
@@ -94,6 +98,8 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border: none;
+            flex: 1;
+            min-width: 250px;
         }
 
         .btn-primary {
@@ -120,54 +126,150 @@
 
         @media (max-width: 768px) {
             header {
-                padding: 20px;
+                padding: 15px 20px;
+            }
+            .brand-logo {
+                font-size: 24px;
             }
             .main-title {
-                font-size: 32px;
+                font-size: 30px;
+                margin-bottom: 32px;
             }
             .btn-group {
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
             }
             .btn {
                 width: 100%;
-                max-width: 300px;
+                min-width: unset;
+                padding: 16px 24px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 상단 헤더: 좌측 HKWB 로고, 우측 언어 선택 -->
+    <!-- 상단 헤더: 좌측 HKWB 노란색 로고, 우측 60개국어 선택 메뉴 -->
     <header>
-        <div class="brand-logo">HKWB</div>
-        <select class="lang-select" aria-label="언어 선택">
-            <option value="ko">한국어 (KR)</option>
-            <option value="en">English (US)</option>
-            <option value="ja">日本語 (JP)</option>
-            <option value="zh">中文 (CN)</option>
+        <div class="brand-logo" onclick="navigateWeb3()">HKWB</div>
+        <select class="lang-select" id="languageSelect" aria-label="언어 선택">
+            <option value="ko">한국어 (Korean)</option>
+            <option value="en">English</option>
+            <option value="zh">中文 (Chinese)</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="fr">Français (French)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="ru">Русский (Russian)</option>
+            <option value="pt">Português (Portuguese)</option>
+            <option value="ar">العربية (Arabic)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="vi">Tiếng Việt (Vietnamese)</option>
+            <option value="th">ไทย (Thai)</option>
+            <option value="tr">Türkçe (Turkish)</option>
+            <option value="it">Italiano (Italian)</option>
+            <option value="nl">Nederlands (Dutch)</option>
+            <option value="pl">Polski (Polish)</option>
+            <option value="uk">Українська (Ukrainian)</option>
+            <option value="fa">فارسی (Persian)</option>
+            <option value="ur">اردو (Urdu)</option>
+            <option value="ms">Bahasa Melayu</option>
+            <option value="fil">Filipino / Tagalog</option>
+            <option value="el">Ελληνικά (Greek)</option>
+            <option value="cs">Čeština (Czech)</option>
+            <option value="hu">Magyar (Hungarian)</option>
+            <option value="ro">Română (Romanian)</option>
+            <option value="sv">Svenska (Swedish)</option>
+            <option value="da">Dansk (Danish)</option>
+            <option value="fi">Suomi (Finnish)</option>
+            <option value="no">Norsk (Norwegian)</option>
+            <option value="he">עברית (Hebrew)</option>
+            <option value="sw">Kiswahili (Swahili)</option>
+            <option value="ha">Hausa</option>
+            <option value="yo">Yorùbá</option>
+            <option value="ig">Igbo</option>
+            <option value="am">አማርኛ (Amharic)</option>
+            <option value="zu">IsiZulu</option>
+            <option value="af">Afrikaans</option>
+            <option value="km">ភាសាខ្មែរ (Khmer)</option>
+            <option value="my">မြန်မာဘာသာ (Burmese)</option>
+            <option value="lo">ພາສາລາວ (Lao)</option>
+            <option value="ne">नेपाली (Nepali)</option>
+            <option value="si">සිංහල (Sinhala)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="kk">Қазақ тілі (Kazakh)</option>
+            <option value="uz">Oʻzbekcha (Uzbek)</option>
+            <option value="az">Azərbaycan (Azerbaijani)</option>
+            <option value="ka">ქართული (Georgian)</option>
+            <option value="hy">Հայերեն (Armenian)</option>
+            <option value="mn">Монгол (Mongolian)</option>
+            <option value="sr">Српски (Serbian)</option>
+            <option value="hr">Hrvatski (Croatian)</option>
         </select>
     </header>
 
     <!-- 중앙 배치 메인 컨텐츠 -->
     <main>
-        <div class="tagline">Next-Generation Digital Banking</div>
-        <h1 class="main-title">
+        <h1 class="main-title" id="txt-title">
             인류와 기술이 공존하는<br>
             차세대 디지털 금융 혁신
         </h1>
 
         <div class="btn-group">
-            <button class="btn btn-primary" onclick="alert('Web3 디지털 은행으로 이동합니다.')">
+            <button class="btn btn-primary" id="btn-web3" onclick="navigateWeb3()">
                 Web3 디지털 은행 진입하기
             </button>
-            <button class="btn btn-secondary" onclick="alert('인터넷 은행으로 이동합니다.')">
+            <button class="btn btn-secondary" id="btn-internet" onclick="navigateInternet()">
                 인터넷 은행 진입하기
             </button>
         </div>
     </main>
 
-</body>
-</html>
+    <script>
+        const i18nData = {
+            ko: { title: "인류와 기술이 공존하는<br>차세대 디지털 금융 혁신", web3Btn: "Web3 디지털 은행 진입하기", internetBtn: "인터넷 은행 진입하기" },
+            en: { title: "Coexistence of Humanity & Technology<br>Next-Gen Digital Financial Innovation", web3Btn: "Enter Web3 Digital Bank", internetBtn: "Enter Internet Bank" },
+            zh: { title: "人类与科技共存<br>下一代数字金融创新", web3Btn: "进入 Web3 数字银行", internetBtn: "进入互联网银行" },
+            ja: { title: "人類と技術が共存する<br>次世代デジタル金融革新", web3Btn: "Web3デジタル銀行に入る", internetBtn: "インターネット銀行に入る" },
+            es: { title: "Coexistencia de Humanidad y Tecnología<br>Innovación Financiera Digital de Próxima Generación", web3Btn: "Entrar al Banco Digital Web3", internetBtn: "Entrar al Banco por Internet" },
+            fr: { title: "Coexistence de l'Humanité et de la Technologie<br>Innovation Financière Numérique de Nouvelle Génération", web3Btn: "Accéder à la Banque Web3", internetBtn: "Accéder à la Banque en Ligne" },
+            de: { title: "Koexistenz von Menschheit und Technologie<br>Digitale Finanzinnovation der nächsten Generation", web3Btn: "Web3 Digitalbank betreten", internetBtn: "Internetbank betreten" },
+            ru: { title: "Сосуществование Человечества и Технологий<br>Цифровые Финансовые Инновации Нового Поколения", web3Btn: "Войти в Web3 Цифровой Банк", internetBtn: "Войти в Интернет-Банк" },
+            pt: { title: "Coexistência de Humanidade e Tecnologia<br>Inovação Financeira Digital de Próxima Geração", web3Btn: "Entrar no Banco Digital Web3", internetBtn: "Entrar no Banco de Internet" },
+            ar: { title: "التعايش بين البشرية والتكنولوجيا<br>ابتكار مالي رقمي من الجيل القادم", web3Btn: "الدخول إلى بنك Web3 الرقمي", internetBtn: "الدخول إلى بنك الإنترنت" },
+            hi: { title: "मानवता और प्रौद्योगिकी का सह-अस्तित्व<br>अगली पीढ़ी का डिजिटल वित्तीय नवाचार", web3Btn: "Web3 डिजिटल बैंक में प्रवेश करें", internetBtn: "इंटरनेट बैंक में प्रवेश करें" },
+            bn: { title: "মানবতা ও প্রযুক্তির সহাবস্থান<br>পরবর্তী প্রজন্মের ডিজিটাল আর্থিক উদ্ভাবন", web3Btn: "Web3 ডিজিটাল ব্যাংকে প্রবেশ করুন", internetBtn: "ইন্টারনেট ব্যাংকে প্রবেশ করুন" },
+            id: { title: "Koeksistensi Manusia & Teknologi<br>Inovasi Keuangan Digital Generasi Baru", web3Btn: "Masuk ke Bank Digital Web3", internetBtn: "Masuk ke Bank Internet" },
+            vi: { title: "Con Người & Công Nghệ Cùng Tồn Tại<br>Đổi Mới Tài Chính Số Thế Hệ Mới", web3Btn: "Vào Ngân Hàng Số Web3", internetBtn: "Vào Ngân Hàng Internet" },
+            th: { title: "การอยู่ร่วมกันของมนุษยชาติและเทคโนโลยี<br>นวัตกรรมทางการเงินดิจิทัลแห่งอนาคต", web3Btn: "เข้าสู่ธนาคารดิจิทัล Web3", internetBtn: "เข้าสู่ธนาคารอินเทอร์เน็ต" },
+            tr: { title: "İnsanlık ve Teknolojinin Bir Arada Var Oluşu<br>Yeni Nesil Dijital Finansal İnovasyon", web3Btn: "Web3 Dijital Bankaya Girin", internetBtn: "İnternet Bankasına Girin" },
+            it: { title: "Coesistenza di Umanità e Tecnologia<br>Innovazione Finanziaria Digitale di Nuova Generazione", web3Btn: "Entra nella Banca Digitale Web3", internetBtn: "Entra nella Banca Online" },
+            nl: { title: "Coëxistentie van Mensheid en Technologie<br>Volgende Generatie Digitale Financiële Innovatie", web3Btn: "Ga naar Web3 Digitale Bank", internetBtn: "Ga naar Internetbank" },
+            pl: { title: "Współistnienie Ludzkości i Technologii<br>Innowacje Finansowe Nowej Generacji", web3Btn: "Wejdź do Banku Cyfrowego Web3", internetBtn: "Wejdź do Banku Internetowego" },
+            uk: { title: "Співіснування Людства та Технологій<br>Цифрові Фінансові Інновації Нового Покоління", web3Btn: "Увійти до Цифрового Банку Web3", internetBtn: "Увійти до Інтернет-Банку" },
+            fa: { title: "همزیستی بشریت و فناوری<br>نوآوری مالی دیجیتال نسل بعدی", web3Btn: "ورود به بانک دیجیتال Web3", internetBtn: "ورود به اینترنت بانک" },
+            ur: { title: "انسانیت اور ٹیکنالوجی کا باہمی وجود<br>اگلی نسل کی ڈیجیٹل مالیاتی جدت", web3Btn: "Web3 ڈیجیٹل بینک میں داخل ہوں", internetBtn: "انٹرنیٹ بینک میں داخل ہوں" },
+            ms: { title: "Kehadiran Bersama Kemanusiaan & Teknologi<br>Inovasi Kewangan Digital Generasi Baru", web3Btn: "Masuk Bank Digital Web3", internetBtn: "Masuk Bank Internet" },
+            fil: { title: "Pagkakasundo ng Tao at Teknolohiya<br>Susunod na Henerasyon ng Digital Financial Innovation", web3Btn: "Pumasok sa Web3 Digital Bank", internetBtn: "Pumasok sa Internet Bank" },
+            el: { title: "Συνύπαρξη Ανθρωπότητας & Τεχνολογίας<br>Ψηφιακή Χρηματοπιστωτική Καινοτομία Νέας Γενιάς", web3Btn: "Είσοδος στη Ψηφιακή Τράπεζα Web3", internetBtn: "Είσοδος στη διαδικτυακή τράπεζα" },
+            cs: { title: "Koexistence Lidstva a Technologií<br>Digitální Finanční Inovace Nové Generace", web3Btn: "Vstoupit do Web3 Digitální Banky", internetBtn: "Vstoupit do Internetového Bankovnictví" },
+            hu: { title: "Emberiség és Technológia Együttélése<br>Új Generációs Digitális Pénzügyi Innováció", web3Btn: "Belépés a Web3 Digitális Bankba", internetBtn: "Belépés az Internet Bankba" },
+            ro: { title: "Coexistența Omenirii și Tehnologiei<br>Inovație Financiară Digitală de Generație Viitoare", web3Btn: "Intră în Banca Digitală Web3", internetBtn: "Intră în Banca pe Internet" },
+            sv: { title: "Samexistens av Mänsklighet och Teknik<br>Nästa Generationens Digitala Finansiella Innovation", web3Btn: "Gå till Web3 Digital Bank", internetBtn: "Gå till Internetbanken" },
+            da: { title: "Sameksistens af Menneskehed og Teknologi<br>Næste Generations Digitale Finansielle Innovation", web3Btn: "Gå til Web3 Digital Bank", internetBtn: "Gå til Internetbank" },
+            fi: { title: "Ihmisyyden ja Teknologian Yhteiselo<br>Seuraavan Sukupolven Digitaalinen Rahoitusinnovaatio", web3Btn: "Siirry Web3 Digipankkiin", internetBtn: "Siirry Internet-pankkiin" },
+            no: { title: "Sameksistens av Menneskelighet og Teknologi<br>Neste Generasjons Digitale Finansielle Innovasjon", web3Btn: "Gå til Web3 Digital Bank", internetBtn: "Gå til Nettbank" },
+            he: { title: "דו-קיום של אנושות וטכנולוגיה<br>חדשנות פיננסית דיגיטלית של הדור הבא", web3Btn: "כניסה לבנק דיגיטלי Web3", internetBtn: "כניסה לבנק באינטרנט" },
+            sw: { title: "Ushirikiano wa Binadamu na Teknolojia<br>Ubunifu wa Kifedha wa Dijitali wa Kizazi Kipya", web3Btn: "Ingia Benki ya Dijitali ya Web3", internetBtn: "Ingia Benki ya Mtandao" },
+            ha: { title: "Zaman Tare da Dan Adam da Fasaha<br>Sabon Zamani na Sabuntwar Kudade na Digital", web3Btn: "Shiga Bankin Digital na Web3", internetBtn: "Shiga Bankin Intanet" },
+            yo: { title: "Ìṣọ̀kan Ènìyàn àti Ìmọ̀-Ẹ̀rọ<br>Ìṣẹ̀dá 
 
