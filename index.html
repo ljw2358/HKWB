@@ -12,6 +12,7 @@
       --surface: rgba(13, 22, 52, 0.9);
       --border-gold: rgba(251, 191, 36, 0.5);
       --border-purple: rgba(192, 132, 252, 0.42);
+      --border-cyan: rgba(56, 189, 248, 0.42);
       --gold: #fbbf24;
       --purple: #c084fc;
       --cyan: #38bdf8;
@@ -111,12 +112,12 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     nav a {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: var(--text-sub);
       padding: 6px 8px;
@@ -190,6 +191,11 @@
     .btn-purple {
       background: linear-gradient(135deg, #9333ea, #2563eb);
       color: #ffffff;
+    }
+
+    .btn-cyan {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #041024;
     }
 
     .btn-ghost {
@@ -461,6 +467,10 @@
       margin-bottom: 4px;
     }
 
+    .wp-num.cyan {
+      color: var(--cyan);
+    }
+
     .wp-title {
       font-size: 14px;
       font-weight: 700;
@@ -541,6 +551,8 @@
         <a href="#rates">변동금리</a>
         <a href="#web3-wp">웹3 백서 100선</a>
         <a href="#web3-faq">웹3 FAQ 20선</a>
+        <a href="#int-wp">인터넷 백서 50선</a>
+        <a href="#int-faq">인터넷 FAQ 20선</a>
         <a href="#hq">사회환원·165층</a>
       </nav>
     </div>
@@ -552,14 +564,16 @@
       <h1>HKWB 웹3 디지털 은행</h1>
       <p class="hero-desc">
         HKWB 웹3 디지털 은행은 파이 개척자만을 위한 웹3 금융 플랫폼입니다. 개인 자산 대시보드와
-        10대 분산, 웹3 백서 100선, 웹3 FAQ 20선, 6개월(8~12%)·1년(12~18%)·2년(16~24%) AGI·ASI 변동 금리
-        및 순수익 최대 60% 사회환원·리워드 기준을 제공합니다.
+        10대 분산, 웹3 백서 100선·웹3 FAQ 20선, 무점포 인터넷 백서 50선·무점포 인터넷 FAQ 20선,
+        6개월(8~12%)·1년(12~18%)·2년(16~24%) AGI·ASI 변동 금리 및 순수익 최대 60% 사회환원·리워드 기준을 제공합니다.
       </p>
       <div class="cta-row">
         <a href="#web3-dash" class="btn btn-purple">개인 자산·10대 분산</a>
         <a href="#rates" class="btn btn-gold">변동금리 시뮬레이터</a>
         <a href="#web3-wp" class="btn btn-purple">웹3 백서 100선</a>
         <a href="#web3-faq" class="btn btn-ghost">웹3 FAQ 20선</a>
+        <a href="#int-wp" class="btn btn-cyan">인터넷 백서 50선</a>
+        <a href="#int-faq" class="btn btn-ghost">인터넷 FAQ 20선</a>
       </div>
       <div class="kpi-grid">
         <div class="kpi-card">
@@ -685,6 +699,21 @@
       <div id="faqWeb3" class="faq-list"></div>
     </section>
 
+    <section id="int-wp">
+      <div class="sec-kicker">INTERNET BANK WHITEPAPER (50)</div>
+      <h2 class="sec-title">무점포 인터넷 은행 백서 50선</h2>
+      <p class="sec-desc">지점 없는 무점포 인터넷 은행(HK-BANK)의 입출금·송금·예적금·대출 및 인증 기준 50선입니다.</p>
+      <input id="searchInt" class="search-box" type="text" placeholder="무점포 인터넷 은행 백서 50선 검색..." oninput="renderLists()" />
+      <div id="gridInt" class="wp-grid"></div>
+    </section>
+
+    <section id="int-faq">
+      <div class="sec-kicker">INTERNET BANK FAQ (20)</div>
+      <h2 class="sec-title">무점포 인터넷 은행 FAQ 20선</h2>
+      <p class="sec-desc">무점포 인터넷 은행 계좌, 인증 방식, 변동 금리 및 문의 절차에 관한 20가지 질문과 답변입니다.</p>
+      <div id="faqInt" class="faq-list"></div>
+    </section>
+
     <section id="hq">
       <div class="sec-kicker">SOCIAL CONTRIBUTION &amp; 165F HQ</div>
       <h2 class="sec-title">순수익 최대 60% 사회환원 &amp; 3대 구호단체 165층 우선 입주</h2>
@@ -761,38 +790,23 @@
 
       document.getElementById('resTerm').textContent = tier.label;
       document.getElementById('resRate').textContent = `${rate.toFixed(2)}%`;
-      document.getElementById('resReward').textContent = `+${reward.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-      document.getElementById('resTotal').textContent = total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    const web3Topics = [
-      '파이 개척자 전용 웹3 계좌 구조',
-      '개인 자산 대시보드 및 10대 분산 운용',
-      '6개월(8~12%) AGI·ASI 변동금리 운용',
-      '1년(12~18%) AGI·ASI 변동금리 운용',
-      '2년(16~24%) AGI·ASI 변동금리 운용',
-      '순수익 최대 60% 사회환원 및 리워드',
-      'Pi 테스트넷·메인넷 지갑 연동 기준',
-      '수동 지갑 주소 입력 검증 및 보호',
-      '삔이·삔·피니투 AI 비서 협업 체계',
-      '2026년 11월 30일 앱 완공 및 KYB·165층 우선 입주'
-    ];
-
-    const web3Wp = Array.from({ length: 100 }, (_, i) => ({
-      num: i + 1,
-      title: `웹3 백서 제${i + 1}선 · ${web3Topics[i % web3Topics.length]}`,
-      desc: `HKWB(hkwb.world, ljw2358) 웹3 디지털 은행의 제${i + 1}선 조항으로, 개인 자산 대시보드·10대 분산, 6개월(8~12%)·1년(12~18%)·2년(16~24%) 변동금리 및 순수익 최대 60% 사회환원·리워드 원칙을 규정합니다.`
+      document.getElementById('resReward').textContent = `+${reward.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`; document.getElementById('resTotal').textContent = total.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); } const web3Topics = [ '파이 개척자 전용 웹3 계좌 구조', '개인 자산 대시보드 및 10대 분산 운용', '6개월(8~12\%) AGI·ASI 변동금리 운용', '1년(12~18\%) AGI·ASI 변동금리 운용', '2년(16~24\%) AGI·ASI 변동금리 운용', '순수익 최대 60\% 사회환원 및 리워드', 'Pi 테스트넷·메인넷 지갑 연동 기준', '수동 지갑 주소 입력 검증 및 보호', '삔이·삔·피니투 AI 비서 협업 체계', '2026년 11월 30일 앱 완공 및 KYB·165층 우선 입주' ]; const web3Wp = Array.from({ length: 100 }, (_, i) => ({ num: i + 1, title: `웹3 백서 제${i + 1}선 · ${web3Topics[i \% web3Topics.length]}`, desc: `HKWB(hkwb.world, ljw2358) 웹3 디지털 은행의 제${i + 1}선 조항으로, 개인 자산 대시보드·10대 분산, 6개월(8~12%)·1년(12~18%)·2년(16~24%) 변동금리 및 순수익 최대 60% 사회환원·리워드 원칙을 규정합니다.`
     }));
 
     const web3Faq = Array.from({ length: 20 }, (_, i) => ({
-      q: `웹3 FAQ Q${i + 1}. 웹3 디지털 은행의 개인 자산 대시보드·10대 분산·변동금리·리워드는 어떻게 되나요?`,
-      a: `HKWB 웹3 디지털 은행(hkwb.world, 코드 ljw2358, 문의 support@hkwb.world)은 파이 개척자 전용으로 개인 자산 대시보드와 10대 분산, 6개월 8~12%, 1년 12~18%, 2년 16~24% 변동금리, 순수익 최대 60% 사회환원·리워드를 적용합니다.`
+      q: `웹3 FAQ Q${i + 1}. 웹3 디지털 은행의 개인 자산 대시보드·10대 분산·변동금리·리워드는 어떻게 되나요?`, a: `HKWB 웹3 디지털 은행(hkwb.world, 코드 ljw2358, 문의 support@hkwb.world)은 파이 개척자 전용으로 개인 자산 대시보드와 10대 분산, 6개월 8~12\%, 1년 12~18\%, 2년 16~24\% 변동금리, 순수익 최대 60\% 사회환원·리워드를 적용합니다.` })); const intTopics = [ '무점포 비대면 모바일 뱅킹 운영 원칙', '입출금·송금·예적금·대출 기능 구성', '6자리 PIN·패턴 잠금(줄 그리기)·생체인증', '변동금리(6개월 8~12\%, 1년 12~18\%, 2년 16~24\%) 연계', '순수익 최대 60\% 사회환원 및 개척자 리워드' ]; const intWp = Array.from({ length: 50 }, (_, i) => ({ num: i + 1, title: `무점포 백서 제${i + 1}선 · ${intTopics[i \% intTopics.length]}`, desc: `HKWB 산하 무점포 인터넷 은행(hkwb.world, ljw2358)의 제${i + 1}선 조항으로, 지점 없는 비대면 금융 서비스와 순수익 최대 60% 사회환원·리워드 기준을 규정합니다.`
+    }));
+
+    const intFaq = Array.from({ length: 20 }, (_, i) => ({
+      q: `인터넷 FAQ Q${i + 1}. 무점포 인터넷 은행의 인증·이체 및 금리·환원 정책은 무엇인가요?`,
+      a: `HKWB 무점포 인터넷 은행(hkwb.world, 코드 ljw2358, 문의 support@hkwb.world)은 6자리 PIN·패턴·생체인증을 지원하며, 6개월 8~12%, 1년 12~18%, 2년 16~24% 변동금리 및 순수익 최대 60% 사회환원·리워드를 따릅니다.`
     }));
 
     function renderLists() {
       const q3 = (document.getElementById('searchWeb3').value || '').trim().toLowerCase();
-      const f3 = web3Wp.filter(x => x.title.toLowerCase().includes(q3) || x.desc.toLowerCase().includes(q3));
+      const qI = (document.getElementById('searchInt').value || '').trim().toLowerCase();
 
+      const f3 = web3Wp.filter(x => x.title.toLowerCase().includes(q3) || x.desc.toLowerCase().includes(q3));
       document.getElementById('gridWeb3').innerHTML = f3.map(x => `
         <div class="wp-card">
           <div class="wp-num">WEB3 WP #${x.num} / 100</div>
@@ -802,6 +816,25 @@
       `).join('');
 
       document.getElementById('faqWeb3').innerHTML = web3Faq.map((x, idx) => `
+        <div class="faq-item ${idx === 0 ? 'open' : ''}">
+          <button type="button" class="faq-btn" onclick="toggleFaq(this)">
+            <span>${x.q}</span>
+            <span>${idx === 0 ? '－' : '＋'}</span>
+          </button>
+          <div class="faq-ans">${x.a}</div>
+        </div>
+      `).join('');
+
+      const fI = intWp.filter(x => x.title.toLowerCase().includes(qI) || x.desc.toLowerCase().includes(qI));
+      document.getElementById('gridInt').innerHTML = fI.map(x => `
+        <div class="wp-card">
+          <div class="wp-num cyan">INTERNET WP #${x.num} / 50</div>
+          <div class="wp-title">${x.title}</div>
+          <div class="wp-desc">${x.desc}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('faqInt').innerHTML = intFaq.map((x, idx) => `
         <div class="faq-item ${idx === 0 ? 'open' : ''}">
           <button type="button" class="faq-btn" onclick="toggleFaq(this)">
             <span>${x.q}</span>
