@@ -20,7 +20,7 @@
             flex-direction: column;
         }
 
-        /* 상단 헤더: 좌측 HKWB 3배 확대 로고 / 우측 1/3로 축소된 60개국어 선택 메뉴 */
+        /* 상단 헤더: 좌측 HKWB 로고 / 우측 60개국어 선택 메뉴 */
         header {
             width: 100%;
             padding: 20px 30px;
@@ -33,7 +33,6 @@
             z-index: 1000;
         }
 
-        /* HKWB 로고 3배 확대 (48px) & 노란색 네온 텍스트 */
         .brand-logo {
             font-size: 48px;
             font-weight: 900;
@@ -44,7 +43,6 @@
             line-height: 1;
         }
 
-        /* 드롭다운 메뉴 폭 1/3 수준으로 축소 (슬림형) */
         .lang-select {
             background: #1a173b;
             color: #fbbf24;
@@ -66,7 +64,7 @@
             color: #ffffff;
         }
 
-        /* 메인 컨텐츠 영역 (중앙 정렬) */
+        /* 메인 컨텐츠 영역 */
         main {
             flex: 1;
             display: flex;
@@ -79,7 +77,6 @@
             margin: auto;
         }
 
-        /* 타이틀: 황금색/골드 그라데이션 및 웅장한 타이포그래피 */
         .main-title {
             font-size: 44px;
             font-weight: 800;
@@ -92,7 +89,7 @@
             text-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
         }
 
-        /* 버튼 그룹 디자인 개편 */
+        /* 버튼 그룹 */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -103,41 +100,41 @@
 
         .btn {
             padding: 18px 36px;
-            border-radius: 14px;
+            border-radius: 999px;
             font-size: 18px;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             border: none;
             flex: 1;
             min-width: 260px;
+            letter-spacing: -0.2px;
         }
 
-        /* Web3 디지털 은행 진입하기 (골드 네온 버튼) */
         .btn-primary {
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            background: linear-gradient(135deg, #fde68a 0%, #fbbf24 45%, #d97706 100%);
             color: #0d0b21;
-            box-shadow: 0 4px 25px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 6px 24px rgba(251, 191, 36, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(245, 158, 11, 0.7);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.75);
         }
 
-        /* 인터넷 은행 진입하기 (딥 퍼플/골드 아웃라인 버튼) */
         .btn-secondary {
-            background: #1a173b;
-            color: #fbbf24;
-            border: 2px solid #fbbf24;
-            box-shadow: 0 4px 20px rgba(26, 23, 59, 0.6);
+            background: linear-gradient(180deg, rgba(45, 38, 89, 0.9) 0%, rgba(26, 23, 59, 0.95) 100%);
+            color: #fde68a;
+            border: 1.5px solid rgba(251, 191, 36, 0.75);
+            box-shadow: 0 6px 20px rgba(13, 11, 33, 0.65), 0 0 14px rgba(251, 191, 36, 0.15);
         }
 
         .btn-secondary:hover {
-            background: #2d2659;
+            background: linear-gradient(180deg, rgba(61, 51, 120, 0.95) 0%, rgba(34, 29, 77, 1) 100%);
+            border-color: #fbbf24;
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(251, 191, 36, 0.3);
+            box-shadow: 0 8px 26px rgba(13, 11, 33, 0.8), 0 0 20px rgba(251, 191, 36, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -159,11 +156,12 @@
             .btn-group {
                 flex-direction: column;
                 align-items: center;
+                gap: 14px;
             }
             .btn {
                 width: 100%;
                 min-width: unset;
-                padding: 16px 20px;
+                padding: 16px 22px;
                 font-size: 16px;
             }
         }
@@ -171,7 +169,7 @@
 </head>
 <body>
 
-    <!-- 상단 헤더: 좌측 HKWB 3배 확대 로고, 우측 1/3 슬림 60개국어 선택 -->
+    <!-- 상단 헤더: 좌측 HKWB 로고, 우측 60개국어 선택 메뉴 -->
     <header>
         <div class="brand-logo" onclick="navigateWeb3()">HKWB</div>
         <select class="lang-select" id="languageSelect" aria-label="언어 선택" onchange="updateLanguage(this.value)">
@@ -256,7 +254,6 @@
     </main>
 
     <script>
-        // 60개국어 다국어 데이터베이스 (선택 시 텍스트 전체 실시간 변환)
         const i18nData = {
             ko: { title: "인류와 기술이 공존하는<br>차세대 디지털 금융 혁신", web3Btn: "Web3 디지털 은행 진입하기", internetBtn: "인터넷 은행 진입하기" },
             en: { title: "Coexistence of Humanity & Technology<br>Next-Gen Digital Financial Innovation", web3Btn: "Enter Web3 Digital Bank", internetBtn: "Enter Internet Bank" },
@@ -266,7 +263,7 @@
             fr: { title: "Coexistence de l'Humanité et de la Technologie<br>Innovation Financière Numérique de Nouvelle Génération", web3Btn: "Accéder à la Banque Web3", internetBtn: "Accéder à la Banque en Ligne" },
             de: { title: "Koexistenz von Menschheit und Technologie<br>Digitale Finanzinnovation der nächsten Generation", web3Btn: "Web3 Digitalbank betreten", internetBtn: "Internetbank betreten" },
             ru: { title: "Сосуществование Человечества и Технологий<br>Цифровые Финансовые Инновации Нового Поколения", web3Btn: "Войти в Web3 Цифровой Банк", internetBtn: "Войти в Интернет-Банк" },
-            pt: { title: "Coexistência de Humanidade e Tecnologia<br>Inovação Financeira Digital de Próxima Geração", web3Btn: "Entrar no Banco Digital Web3", internetBtn: "Entrar no Banco de Internet" },
+            pt: { title: "Coexistência de Humanidade e Tecnologia<br>Inovação Financeira Digital de Próxima Generação", web3Btn: "Entrar no Banco Digital Web3", internetBtn: "Entrar no Banco de Internet" },
             ar: { title: "التعايش بين البشرية والتكنولوجيا<br>ابتكار مالي رقمي من الجيل القادم", web3Btn: "الدخول إلى بنك Web3 الرقمي", internetBtn: "الدخول إلى بنك الإنترنت" },
             hi: { title: "मानवता और प्रौद्योगिकी का सह-अस्तित्व<br>अगली पीढ़ी का डिजिटल वित्तीय नवाचार", web3Btn: "Web3 डिजिटल बैंक में प्रवेश करें", internetBtn: "इंटरनेट बैंक में प्रवेश करें" },
             bn: { title: "মানবতা ও প্রযুক্তির সহাবস্থান<br>পরবর্তী প্রজন্মের ডিজিটাল আর্থিক উদ্ভাবন", web3Btn: "Web3 ডিজিটাল ব্যাংকে প্রবেশ করুন", internetBtn: "ইন্টারনেট ব্যাংকে প্রবেশ করুন" },
@@ -274,7 +271,7 @@
             vi: { title: "Con Người & Công Nghệ Cùng Tồn Tại<br>Đổi Mới Tài Chính Số Thế Hệ Mới", web3Btn: "Vào Ngân Hàng Số Web3", internetBtn: "Vào Ngân Hàng Internet" },
             th: { title: "การอยู่ร่วมกันของมนุษยชาติและเทคโนโลยี<br>นวัตกรรมทางการเงินดิจิทัลแห่งอนาคต", web3Btn: "เข้าสู่ธนาคารดิจิทัล Web3", internetBtn: "เข้าสู่ธนาคารอินเทอร์เน็ต" },
             tr: { title: "İnsanlık ve Teknolojinin Bir Arada Var Oluşu<br>Yeni Nesil Dijital Finansal İnovasyon", web3Btn: "Web3 Dijital Bankaya Girin", internetBtn: "İnternet Bankasına Girin" },
-            it: { title: "Coesistenziale di Umanità e Tecnologia<br>Innovazione Finanziaria Digitale di Nuova Generazione", web3Btn: "Entra nella Banca Digitale Web3", internetBtn: "Entra nella Banca Online" },
+            it: { title: "Coesistenza di Umanità e Tecnologia<br>Innovazione Finanziaria Digitale di Nuova Generazione", web3Btn: "Entra nella Banca Digitale Web3", internetBtn: "Entra nella Banca Online" },
             nl: { title: "Coëxistentie van Mensheid en Technologie<br>Volgende Generatie Digitale Financiële Innovatie", web3Btn: "Ga naar Web3 Digitale Bank", internetBtn: "Ga naar Internetbank" },
             pl: { title: "Współistnienie Ludzkości i Technologii<br>Innowacje Finansowe Nowej Generacji", web3Btn: "Wejdź do Banku Cyfrowego Web3", internetBtn: "Wejdź do Banku Internetowego" },
             uk: { title: "Співіснування Людства та Технологій<br>Цифрові Фінансові Інновації Нового Покоління", web3Btn: "Увійти до Цифрового Банку Web3", internetBtn: "Увійти до Інтернет-Банку" },
@@ -305,7 +302,7 @@
             si: { title: "මානව වර්ගයා සහ තාක්ෂණයේ සහජීවනය<br>ඊළඟ පරම්පරාවේ ඩිජිටල් මූල් ය නවෝත්පාදනය", web3Btn: "Web3 ඩිජිටල් බැංකුවට පිවිසෙන්න", internetBtn: "ඉන්ටර්නෙට් බැංකුවට පිවිසෙන්න" },
             ta: { title: "மனிதகுலம் மற்றும் தொழில்நுட்பத்தின் இணைவு<br>அடுத்த தலைமுறை டிஜிட்டல் நிதி புதுமை", web3Btn: "Web3 டிஜிட்டல் வங்கியில் நுழைக", internetBtn: "இணைய வங்கியில் நுழைக" },
             te: { title: "మానవత్వం & సాంకేతికత సహజీవనం<br>తరువాతి తరం డిజిటల్ ఆర్థిక ఆవిష్కరణ", web3Btn: "Web3 డిజిటల్ బ్యాంక్ లోకి ప్రవేశించండి", internetBtn: "ఇంటర్నెట్ బ్యాంక్ లోకి ప్రవేశించండి" },
-            kn: { title: "ಮಾನವೀಯತೆ ಮತ್ತು ತಂತ್ರಜ್ಞಾನದ ಸಹಬಾಳ್ವೆ<br>ಮುಂದಿನ ಪီಳಿಗೆಯ ಡಿಜಿಟಲ್ ಹಣಕಾಸು ಆವಿಷ್ಕಾರ", web3Btn: "Web3 ಡಿಜಿಟಲ್ ಬ್ಯಾಂಕ್ ಪ್ರವೇಶಿಸಿ", internetBtn: "ಇಂಟರ್ನೆಟ್ ಬ್ಯಾಂಕ್ ಪ್ರವೇಶಿಸಿ" },
+            kn: { title: "ಮಾನವೀಯತೆ ಮತ್ತು ತಂತ್ರಜ್ಞಾನದ ಸಹಬಾಳ್ವೆ<br>ಮುಂದಿನ ಪೀಳಿಗೆಯ ಡಿಜಿಟಲ್ ಹಣಕಾಸು ಆವಿಷ್ಕಾರ", web3Btn: "Web3 ಡಿಜಿಟಲ್ ಬ್ಯಾಂಕ್ ಪ್ರವೇಶಿಸಿ", internetBtn: "ಇಂಟರ್ನೆಟ್ ಬ್ಯಾಂಕ್ ಪ್ರವೇಶಿಸಿ" },
             ml: { title: "മനുഷ്യത്വത്തിന്റെയും സാങ്കേതികവിദ്യയുടെയും സഹവർത്തിത്വം<br>അടുത്ത തലമുറ ഡിജിറ്റൽ സാമ്പത്തിക നവീകരണം", web3Btn: "Web3 ഡിജിറ്റൽ ബാങ്കിൽ പ്രവേശിക്കുക", internetBtn: "ഇന്റർനെറ്റ് ബാങ്കിൽ പ്രവേശിക്കുക" },
             mr: { title: "मानवता आणि तंत्रज्ञानाचे सहअस्तित्व<br>पुढील पिढीचे डिजिटल आर्थिक नवोपक्रम", web3Btn: "Web3 डिजिटल बँकेत प्रवेश करा", internetBtn: "इंटरनेट बँकेत प्रवेश करा" },
             gu: { title: "માનવતા અને ટેકનોલોજીનું સહ-અસ્તિત્વ<br>આગામી પેઢીની ડિજિટલ નાણાકીય નવીનતા", web3Btn: "Web3 ડિજિટલ બેંકમાં પ્રવેશ કરો", internetBtn: "ઈન્ટરનેટ બેંકમાં પ્રવેશ કરો" },
@@ -344,3 +341,4 @@
     </script>
 </body>
 </html>
+
