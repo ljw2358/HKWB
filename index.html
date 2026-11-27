@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB · 백서 · FAQ20 · 네비게이터</title>
+  <title>HKWB · 웹3 디지털 &amp; 무점포 인터넷 뱅크 분리형</title>
   <style>
     :root {
       --bg-deep: #060a16;
@@ -72,11 +72,21 @@
       background: var(--grad-btn-primary); color: #fff; border: none; border-radius: 10px;
       padding: 12px 22px; font-size: 14px; font-weight: 700; cursor: pointer;
     }
+    .cta-web3.inactive-mode { opacity: 0.55; }
     .cta-internet {
       background: linear-gradient(135deg, #1a284d, #111a34); color: var(--text-main);
       border: 1px solid var(--line-gold); border-radius: 10px; padding: 12px 22px;
       font-size: 14px; font-weight: 700; cursor: pointer;
     }
+    .cta-internet.active-mode {
+      background: var(--grad-btn-gold); color: #090e1a; border-color: transparent;
+    }
+    .mode-banner {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
+      padding: 12px 18px; margin-bottom: 18px; border-radius: 12px;
+      background: rgba(16, 26, 52, 0.92); border: 1px solid var(--line-cyan); font-size: 13px;
+    }
+    .mode-banner.net-banner { border-color: var(--line-gold); }
     .block-panel {
       background: var(--grad-panel); border: 1px solid var(--line-soft); border-radius: 16px;
       padding: 20px 22px; margin-bottom: 18px;
@@ -230,16 +240,22 @@
       <h1 class="hero-title" data-i18n="heroTitle">인류와 기술이 공존하는<br />차세대 디지털 금융 혁신</h1>
       <p class="hero-sub" data-i18n="heroSub">10대 글로벌 보안 기술 &amp; AGI/ASI 기반 글로벌 자율 금융 플랫폼 · 추천인: ljw2358 · 문의: support@hkwb.world</p>
       <div class="hero-cta-row">
-        <button type="button" class="cta-web3" onclick="switchBankMode('web3')" data-i18n="enterWeb3">Web3 디지털 뱅크 진입하기 &gt;</button>
-        <button type="button" class="cta-internet" onclick="switchBankMode('internet')" data-i18n="enterInternet">무점포 인터넷 뱅크 진입하기 &gt;</button>
+        <button type="button" class="cta-web3" id="btnModeWeb3" onclick="switchBankMode('web3')" data-i18n="enterWeb3">Web3 디지털 뱅크 진입하기 &gt;</button>
+        <button type="button" class="cta-internet" id="btnModeInternet" onclick="switchBankMode('internet')" data-i18n="enterInternet">무점포 인터넷 뱅크 진입하기 &gt;</button>
       </div>
     </section>
 
+    <!-- ==================== 1. WEB3 디지털 뱅크 전용 구역 (완전 분리) ==================== -->
     <div id="web3Workspace">
+      <div class="mode-banner">
+        <div><strong class="grad-text-cyan">[WEB3 DIGITAL BANK]</strong> · 온체인 자산 · 10대 분산 연동망 · 초단위 변동 이자 · 60% 사회환원·UBI 전용 화면</div>
+        <button type="button" class="nav-pill" onclick="switchBankMode('internet')">무점포 인터넷 뱅크로 전환 &gt;</button>
+      </div>
+
       <section class="block-panel">
         <div class="block-head">
           <div class="title-with-logo">
-            <h2 class="block-heading" data-i18n="dashboardTitle">개인 자산 대시보드</h2>
+            <h2 class="block-heading" data-i18n="dashboardTitle">Web3 개인 자산 대시보드</h2>
             <span class="custom-logo-badge">
               <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
@@ -248,14 +264,14 @@
               <span data-i18n="web3LogoTag">웹3 디지털 · WEB3 DIGITAL</span>
             </span>
           </div>
-          <span class="tag-pill" data-i18n="liveSync">실시간 연동 · 자산 요약</span>
+          <span class="tag-pill" data-i18n="liveSync">실시간 연동 · Web3 요약</span>
         </div>
 
         <div class="dash-3col">
           <div class="dash-box">
-            <div class="dash-label" data-i18n="totalAssets">총 보유 자산 (통합 환산 가치)</div>
-            <div class="dash-value">₩128,450,000</div>
-            <div class="dash-desc">Web3 ₩63,450,000 · Vault ₩65,000,000</div>
+            <div class="dash-label" data-i18n="totalAssets">Web3 총 보유 자산 (통합 환산)</div>
+            <div class="dash-value">₩63,450,000</div>
+            <div class="dash-desc">On-Chain Vault · ljw2358</div>
           </div>
           <div class="dash-box">
             <div class="dash-label" data-i18n="accInterest">실시간 누적 이자·수익</div>
@@ -263,8 +279,8 @@
             <div class="dash-desc" id="liveRateTicker" data-i18n="agiRateNote">AGI/ASI 가변형 이율 초단위 변동 산정 중</div>
           </div>
           <div class="dash-box">
-            <div class="dash-label" data-i18n="piIndex">개인 신용도 &amp; 생태계 지수</div>
-            <div class="dash-value grad-text-gold" id="dashCreditBadge">신용 885점 · 최우량 1등급</div>
+            <div class="dash-label" data-i18n="piIndex">Web3 보안·연동 지수</div>
+            <div class="dash-value grad-text-gold">10-MESH ACTIVE</div>
             <div class="dash-desc">Secure Auto-Link · ljw2358</div>
           </div>
         </div>
@@ -358,9 +374,50 @@
           </div>
         </div>
       </section>
+
+      <section class="block-panel" id="web3NavigatorSection">
+        <div class="block-head"><h2 class="block-heading">WEB3 NAVIGATOR</h2><span class="tag-pill">WEB3 LEGAL &amp; ECOSYSTEM HUBS</span></div>
+        <div class="nav-hub-2col">
+          <div class="sub-panel">
+            <div class="sub-panel-title grad-text-cyan" data-i18n="coreLegalTitle">CORE LEGAL &amp; COMPLIANCE</div>
+            <div class="card-feed-list" id="web3LegalCards"></div>
+          </div>
+          <div class="sub-panel">
+            <div class="sub-panel-title grad-text-gold" data-i18n="globalEcoTitle">HK GLOBAL ECOSYSTEM HUBS</div>
+            <div class="card-feed-list" id="web3EcoCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <details class="wp-dropdown" id="web3WhitepaperDropdown" open>
+        <summary>
+          <span class="wp-summary-title" data-i18n="wp100Title">WEB3 백서 (6개 핵심 제목 · 전체 100문장)</span>
+          <div class="wp-summary-meta"><span id="wpCountLabel">100</span><span data-i18n="toggleLabel">▼ 열기/닫기</span></div>
+        </summary>
+        <div class="wp-6-tabs" id="wp6TopicTabs"></div>
+        <div class="wp-filter-bar">
+          <input type="text" class="wp-search" id="wpSearchInput" placeholder="6개 백서 제목 또는 문장 검색 (UBI, UAM, AGI...)" oninput="renderWhitepaper100()" />
+          <button type="button" class="nav-pill" onclick="resetWhitepaperFilter()" data-i18n="resetBtn">전체 보기</button>
+        </div>
+        <div class="wp-100-list" id="whitepaper100List"></div>
+      </details>
+
+      <details class="wp-dropdown" id="web3FaqDropdown" open>
+        <summary>
+          <span class="wp-summary-title" data-i18n="faq20Title">WEB3 FAQ 20선</span>
+          <div class="wp-summary-meta"><span>20</span><span data-i18n="toggleLabel">▼ 열기/닫기</span></div>
+        </summary>
+        <div class="faq-list" id="web3Faq20List"></div>
+      </details>
     </div>
 
+    <!-- ==================== 2. 무점포 인터넷 뱅크 전용 구역 (완전 분리) ==================== -->
     <div id="internetWorkspace" style="display: none;">
+      <div class="mode-banner net-banner">
+        <div><strong class="grad-text-gold">[무점포 인터넷 뱅크]</strong> · 계좌 · 즉시 이체 · 신용도 &amp; 맞춤 대출 · 인터넷 뱅크 전용 네비게이터/백서/FAQ 화면</div>
+        <button type="button" class="nav-pill" onclick="switchBankMode('web3')">Web3 디지털 뱅크로 전환 &gt;</button>
+      </div>
+
       <section class="block-panel">
         <div class="block-head"><h2 class="block-heading" data-i18n="internetAccTitle">무점포 인터넷 뱅크 · 계좌 현황</h2><span class="tag-pill">ljw2358</span></div>
         <div class="dash-3col">
@@ -392,82 +449,99 @@
           <div>support@hkwb.world · ljw2358</div>
         </div>
       </section>
+
+      <section class="block-panel" id="tossCreditLoanSection">
+        <div class="block-head">
+          <div class="title-with-logo">
+            <h2 class="block-heading">개인 신용도 &amp; 맞춤 대출 상품 조회</h2>
+            <span class="custom-logo-badge gold">TOSS-STYLE CREDIT &amp; LOAN MATCH</span>
+          </div>
+          <span class="tag-pill" id="creditGradePill">신용 885점 · 최우량 1등급</span>
+        </div>
+
+        <div class="credit-form-grid">
+          <div class="credit-input-group">
+            <label for="creditIncomeInput">연소득 (만원)</label>
+            <input type="number" class="bank-field" id="creditIncomeInput" value="6500" min="0" />
+          </div>
+          <div class="credit-input-group">
+            <label for="creditDebtInput">기존 대출 잔액 (만원)</label>
+            <input type="number" class="bank-field" id="creditDebtInput" value="1800" min="0" />
+          </div>
+          <div class="credit-input-group">
+            <label for="creditHistorySelect">상환 이력 및 연체 여부</label>
+            <select class="bank-field" id="creditHistorySelect">
+              <option value="clean" selected>연체 없음 · 성실 상환 중</option>
+              <option value="minor">과거 단기 연체 해소 (3년 경과)</option>
+              <option value="recent">최근 연체 이력 있음</option>
+            </select>
+          </div>
+          <div class="credit-input-group">
+            <label for="creditTenureSelect">신용거래 기간</label>
+            <select class="bank-field" id="creditTenureSelect">
+              <option value="long" selected>5년 이상 장기 거래</option>
+              <option value="mid">2년 ~ 5년</option>
+              <option value="short">2년 미만 (씬파일러)</option>
+            </select>
+          </div>
+          <div class="credit-input-group" style="justify-content:flex-end;">
+            <button type="button" class="cta-web3" onclick="evaluateCreditAndLoans()" style="width:100%;">내 신용도 &amp; 대출 조회</button>
+          </div>
+        </div>
+
+        <div class="credit-summary-row">
+          <div class="credit-score-card">
+            <div class="dash-label">예상 개인 신용점수 (KCB·NICE 통합 기준)</div>
+            <div class="dash-value grad-text-cyan" id="creditScoreOutput">885점</div>
+            <div class="dash-desc" id="creditTierDesc">최우량 1등급 (상위 8%) · 금리·한도 우대 대상</div>
+          </div>
+          <div class="credit-score-card">
+            <div class="dash-label">예상 총 대출 가능 한도</div>
+            <div class="dash-value grad-text-gold" id="creditMaxLimitOutput">₩120,000,000</div>
+            <div class="dash-desc" id="creditDsrDesc">연소득 대비 부채비율 약 28% · 중도상환수수료 0원</div>
+          </div>
+          <div class="credit-score-card">
+            <div class="dash-label">신용점수 핵심 영향 요인</div>
+            <div class="dash-value" style="font-size:16px;" id="creditFactorMain">상환 이력 우수 · 한도 여력 양호</div>
+            <div class="dash-desc" id="creditFactorTip">신용카드 사용률 30% 이하 유지 시 추가 상승 여지</div>
+          </div>
+        </div>
+
+        <div class="loan-product-grid" id="matchedLoanList"></div>
+      </section>
+
+      <section class="block-panel" id="netNavigatorSection">
+        <div class="block-head"><h2 class="block-heading">무점포 인터넷 뱅크 NAVIGATOR</h2><span class="tag-pill">BANKING &amp; CREDIT HUBS</span></div>
+        <div class="nav-hub-2col">
+          <div class="sub-panel">
+            <div class="sub-panel-title grad-text-cyan">BANKING COMPLIANCE &amp; CREDIT</div>
+            <div class="card-feed-list" id="netLegalCards"></div>
+          </div>
+          <div class="sub-panel">
+            <div class="sub-panel-title grad-text-gold">NO-BRANCH SERVICES &amp; ECOSYSTEM</div>
+            <div class="card-feed-list" id="netEcoCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <details class="wp-dropdown" id="netWhitepaperDropdown" open>
+        <summary>
+          <span class="wp-summary-title">무점포 인터넷 뱅크 백서 (6개 핵심 제목 · 전체 100문장)</span>
+          <div class="wp-summary-meta"><span>100</span><span data-i18n="toggleLabel">▼ 열기/닫기</span></div>
+        </summary>
+        <div class="wp-100-list" id="netWhitepaper100List"></div>
+      </details>
+
+      <details class="wp-dropdown" id="netFaqDropdown" open>
+        <summary>
+          <span class="wp-summary-title">무점포 인터넷 뱅크 FAQ 20선</span>
+          <div class="wp-summary-meta"><span>20</span><span data-i18n="toggleLabel">▼ 열기/닫기</span></div>
+        </summary>
+        <div class="faq-list" id="netFaq20List"></div>
+      </details>
     </div>
 
-    <section class="block-panel" id="tossCreditLoanSection">
-      <div class="block-head">
-        <div class="title-with-logo">
-          <h2 class="block-heading">개인 신용도 &amp; 맞춤 대출 상품 조회</h2>
-          <span class="custom-logo-badge gold">TOSS-STYLE CREDIT &amp; LOAN MATCH</span>
-        </div>
-        <span class="tag-pill" id="creditGradePill">신용 885점 · 최우량 1등급</span>
-      </div>
-
-      <div class="credit-form-grid">
-        <div class="credit-input-group">
-          <label for="creditIncomeInput">연소득 (만원)</label>
-          <input type="number" class="bank-field" id="creditIncomeInput" value="6500" min="0" />
-        </div>
-        <div class="credit-input-group">
-          <label for="creditDebtInput">기존 대출 잔액 (만원)</label>
-          <input type="number" class="bank-field" id="creditDebtInput" value="1800" min="0" />
-        </div>
-        <div class="credit-input-group">
-          <label for="creditHistorySelect">상환 이력 및 연체 여부</label>
-          <select class="bank-field" id="creditHistorySelect">
-            <option value="clean" selected>연체 없음 · 성실 상환 중</option>
-            <option value="minor">과거 단기 연체 해소 (3년 경과)</option>
-            <option value="recent">최근 연체 이력 있음</option>
-          </select>
-        </div>
-        <div class="credit-input-group">
-          <label for="creditTenureSelect">신용거래 기간</label>
-          <select class="bank-field" id="creditTenureSelect">
-            <option value="long" selected>5년 이상 장기 거래</option>
-            <option value="mid">2년 ~ 5년</option>
-            <option value="short">2년 미만 (씬파일러)</option>
-          </select>
-        </div>
-        <div class="credit-input-group" style="justify-content:flex-end;">
-          <button type="button" class="cta-web3" onclick="evaluateCreditAndLoans()" style="width:100%;">내 신용도 &amp; 대출 조회</button>
-        </div>
-      </div>
-
-      <div class="credit-summary-row">
-        <div class="credit-score-card">
-          <div class="dash-label">예상 개인 신용점수 (KCB·NICE 통합 기준)</div>
-          <div class="dash-value grad-text-cyan" id="creditScoreOutput">885점</div>
-          <div class="dash-desc" id="creditTierDesc">최우량 1등급 (상위 8%) · 금리·한도 우대 대상</div>
-        </div>
-        <div class="credit-score-card">
-          <div class="dash-label">예상 총 대출 가능 한도</div>
-          <div class="dash-value grad-text-gold" id="creditMaxLimitOutput">₩120,000,000</div>
-          <div class="dash-desc" id="creditDsrDesc">연소득 대비 부채비율 약 28% · 중도상환수수료 0원</div>
-        </div>
-        <div class="credit-score-card">
-          <div class="dash-label">신용점수 핵심 영향 요인</div>
-          <div class="dash-value" style="font-size:16px;" id="creditFactorMain">상환 이력 우수 · 한도 여력 양호</div>
-          <div class="dash-desc" id="creditFactorTip">신용카드 사용률 30% 이하 유지 시 추가 상승 여지</div>
-        </div>
-      </div>
-
-      <div class="loan-product-grid" id="matchedLoanList"></div>
-    </section>
-
-    <section class="block-panel" id="hkNavigatorSection">
-      <div class="block-head"><h2 class="block-heading">HK NAVIGATOR</h2><span class="tag-pill">COMPLIANCE &amp; ECOSYSTEM HUBS</span></div>
-      <div class="nav-hub-2col">
-        <div class="sub-panel">
-          <div class="sub-panel-title grad-text-cyan" data-i18n="coreLegalTitle">CORE LEGAL &amp; COMPLIANCE</div>
-          <div class="card-feed-list" id="coreLegalCards"></div>
-        </div>
-        <div class="sub-panel">
-          <div class="sub-panel-title grad-text-gold" data-i18n="globalEcoTitle">HK GLOBAL ECOSYSTEM HUBS</div>
-          <div class="card-feed-list" id="globalEcoCards"></div>
-        </div>
-      </div>
-    </section>
-
+    <!-- 공통 미디어 채널 바 -->
     <div class="channel-bar">
       <div>
         <div style="font-size:14px;font-weight:800;" class="grad-text-gold" data-i18n="mediaTitle">HKWB 공식 미디어 채널 · 유튜브 &amp; 틱톡</div>
@@ -478,27 +552,6 @@
         <a class="social-chip tt" href="https://www.tiktok.com/@hyekong2026" target="_blank" rel="noopener noreferrer">♪ TikTok @hyekong2026</a>
       </div>
     </div>
-
-    <details class="wp-dropdown" id="whitepaper100Dropdown" open>
-      <summary>
-        <span class="wp-summary-title" data-i18n="wp100Title">HKWB 백서 (6개 핵심 제목 · 전체 100문장)</span>
-        <div class="wp-summary-meta"><span id="wpCountLabel">100</span><span data-i18n="toggleLabel">▼ 열기/닫기</span></div>
-      </summary>
-      <div class="wp-6-tabs" id="wp6TopicTabs"></div>
-      <div class="wp-filter-bar">
-        <input type="text" class="wp-search" id="wpSearchInput" placeholder="6개 백서 제목 또는 문장 검색 (UBI, 신용, UAM, AGI...)" oninput="renderWhitepaper100()" />
-        <button type="button" class="nav-pill" onclick="resetWhitepaperFilter()" data-i18n="resetBtn">전체 보기</button>
-      </div>
-      <div class="wp-100-list" id="whitepaper100List"></div>
-    </details>
-
-    <details class="wp-dropdown" id="faq20Dropdown" open>
-      <summary>
-        <span class="wp-summary-title" data-i18n="faq20Title">HKWB FAQ 20선</span>
-        <div class="wp-summary-meta"><span>20</span><span data-i18n="toggleLabel">▼ 열기/닫기</span></div>
-      </summary>
-      <div class="faq-list" id="faq20List"></div>
-    </details>
   </div>
 
   <div class="toast-msg" id="toastBox"></div>
@@ -518,23 +571,37 @@
     ];
     const RTL_CODES = new Set(["ar", "he", "fa", "ur"]);
 
-    const CORE_LEGAL_ITEMS = [
-      ["백서 (6개 핵심 제목 · 전체 100문장)", "6개 핵심 제목 체계와 100개 조항으로 구성된 HKWB 금융·분산·UBI·미래 산업 기준 문서."],
-      ["자주 묻는 질문 (FAQ 20선)", "지갑 연결 절차, Web3·무점포 인터넷 뱅크 차이, 추천인 ljw2358, 지원 채널 핵심 안내."],
-      ["3대 POLICIES (AML · KYC · 철통보안 상세)", "자금세탁방지(AML), 본인확인(KYC), 다중 키·세션 격리 및 실시간 이상거래 탐지 보안 체계."],
-      ["21개국 디지털 자산법 및 해킹 방어 컴플라이언스", "주요 21개국 디지털 자산 규제 기준 준수 및 온·오프라인 해킹 방어·침해 대응 규격."],
-      ["FATF 트래블룰 & 실시간 제재 리스트 검증 규격", "송신·수신 주체 식별 정보 연계 및 글로벌 제재 리스트 실시간 대조·차단 검증 프로토콜."]
+    const WEB3_LEGAL_ITEMS = [
+      ["WEB3 백서 (6개 핵심 제목 · 전체 100문장)", "웹3 디지털 자산·10대 분산 연동망·AGI/ASI 이율·60% 사회환원 기준 문서."],
+      ["WEB3 FAQ 20선", "지갑 연결 절차, 예치·스왑·스테이킹, 추천인 ljw2358 안내."],
+      ["3대 POLICIES (AML · KYC · 철통보안 상세)", "자금세탁방지(AML), 본인확인(KYC), 다중 키·세션 격리 보안 체계."],
+      ["21개국 디지털 자산법 및 해킹 방어 컴플라이언스", "주요 21개국 디지털 자산 규제 기준 준수 및 해킹 방어 규격."],
+      ["FATF 트래블룰 & 실시간 제재 리스트 검증 규격", "송신·수신 식별 정보 연계 및 실시간 제재 리스트 대조 프로토콜."]
     ];
 
-    const GLOBAL_ECO_ITEMS = [
-      ["로봇: HK-ROBOT", "자율주행·산업용 로봇 및 자동화 물류·제조 제어 생태계 허브."],
-      ["도시항공교통: HK-UAM", "도심 항공 모빌리티·버티포트 연계 및 차세대 항공 이동 인프라 허브."],
-      ["인공지능: HK-AI", "AGI/ASI 기반 자율 금리·리스크 분석 및 지능형 운영 엔진 허브."],
-      ["양자바이오: HK-QUANTUMBIO", "양자 시뮬레이션 기반 바이오 연산·정밀 헬스케어 연구 허브."],
-      ["우주모빌리티: HK-SPACE", "궤도 모빌리티·위성 통신 및 우주 산업 연계 데이터 허브."],
-      ["부품장비: HK-PARTSBANK", "정밀 부품·반도체·모빌리티 핵심 장비 공급망 허브."],
-      ["국방기술: HK-DEFENCE-HUB", "첨단 방위 센서·무인체계·보안 통신 기술 협력 허브."],
-      ["165층 랜드마크 허브 & 해오름 특별시 산업 연계", "165층 복합 랜드마크 거점과 해오름 특별시(울산·경주·포항) 첨단 산업 클러스터 연계."]
+    const WEB3_ECO_ITEMS = [
+      ["로봇: HK-ROBOT", "자율주행·산업용 로봇 및 자동화 물류 제어 허브."],
+      ["도시항공교통: HK-UAM", "도심 항공 모빌리티·버티포트 연계 허브."],
+      ["인공지능: HK-AI", "AGI/ASI 기반 자율 금리·리스크 분석 허브."],
+      ["양자바이오: HK-QUANTUMBIO", "양자 시뮬레이션 기반 바이오 연산 허브."],
+      ["우주모빌리티: HK-SPACE", "궤도 모빌리티·위성 통신 허브."],
+      ["부품장비: HK-PARTSBANK", "정밀 부품·반도체·모빌리티 공급망 허브."],
+      ["국방기술: HK-DEFENCE-HUB", "첨단 방위 센서·무인체계·보안 통신 허브."],
+      ["165층 랜드마크 허브 & 해오름 특별시 산업 연계", "165층 복합 랜드마크 거점과 해오름 특별시(울산·경주·포항) 연계."]
+    ];
+
+    const NET_LEGAL_ITEMS = [
+      ["무점포 인터넷 뱅크 여신·신용 평가 기준", "연소득·부채비율·상환 이력 기반 신용점수 산출 및 한도 산정 기준."],
+      ["무점포 인터넷 뱅크 FAQ 20선", "입출금 계좌·즉시 이체·정기 예치·맞춤 대출 안내."],
+      ["전자금융거래 및 비대면 본인확인 보안", "비대면 계좌·이체 인증 및 이상거래 차단 체계."],
+      ["중도상환수수료 0원 및 상환 유연성 정책", "원리금균등·만기일시·분할 상환 안내."]
+    ];
+
+    const NET_ECO_ITEMS = [
+      ["무점포 입출금 계좌 (HKWB-2358-001)", "상시 입출금 및 즉시 이체 전용 무점포 계좌."],
+      ["무점포 정기 예치 계좌", "기간별 이율 확인 및 여유 자금 예치 운용."],
+      ["개인 신용도 & 맞춤 대출 매칭", "프라임 신용대출 · 비상금 한도대출 · 중금리 전환대출 비교."],
+      ["고객 지원 채널 (support@hkwb.world)", "무점포 계좌 및 한도·상환 문의 창구."]
     ];
 
     const I18N_DICT = {
@@ -544,9 +611,9 @@
         enterWeb3: "Web3 디지털 뱅크 진입하기 >", enterInternet: "무점포 인터넷 뱅크 진입하기 >",
         web3LogoTag: "웹3 디지털 · WEB3 DIGITAL", distLogoTag: "10대 분산 연동망 · 10-MESH",
         walletLink: "지갑 연결", walletWaiting: "지갑 연결 동적 프로세스: 대기 중 (안전 자동 링크 준비됨)",
-        dashboardTitle: "개인 자산 대시보드", liveSync: "실시간 연동 · 자산 요약",
-        totalAssets: "총 보유 자산 (통합 환산 가치)", accInterest: "실시간 누적 이자·수익",
-        agiRateNote: "AGI/ASI 가변형 이율 초단위 변동 산정 중", piIndex: "개인 신용도 & 생태계 지수",
+        dashboardTitle: "Web3 개인 자산 대시보드", liveSync: "실시간 연동 · Web3 요약",
+        totalAssets: "Web3 총 보유 자산 (통합 환산)", accInterest: "실시간 누적 이자·수익",
+        agiRateNote: "AGI/ASI 가변형 이율 초단위 변동 산정 중", piIndex: "Web3 보안·연동 지수",
         web3Menu: "Web3 디지털 뱅크 전용 메뉴", deposit: "예치", depositSub: "디지털 자산 스마트 예치 및 운용",
         tokenSwap: "토큰 스왑", tokenSwapSub: "지원 토큰 간 즉시 교환", dexSwap: "DEX 스왑", dexSwapSub: "탈중앙 유동성 풀 기반 스왑",
         lpStaking: "LP 스테이킹", lpStakingSub: "유동성 공급 포지션 예치 운용", distNet: "10대 분산 연동망",
@@ -564,9 +631,10 @@
         actHistory: "계좌 내역 조회", actHistorySub: "입출금·이체·순환 내역 확인", actLoan: "대출 · 한도 관리", actLoanSub: "무점포 한도 확인 및 상환 계획 안내",
         execTx: "무점포 계좌 거래 실행", runTx: "거래 실행", txLogTitle: "최근 무점포 거래 안내",
         coreLegalTitle: "CORE LEGAL & COMPLIANCE", globalEcoTitle: "HK GLOBAL ECOSYSTEM HUBS",
-        mediaTitle: "HKWB 공식 미디어 채널 · 유튜브 & 틱톡", wp100Title: "HKWB 백서 (6개 핵심 제목 · 전체 100문장)",
-        faq20Title: "HKWB FAQ 20선", toggleLabel: "▼ 열기/닫기", resetBtn: "전체 보기",
-        switchedWeb3: "Web3 디지털 뱅크 모드로 전환되었습니다.", switchedInternet: "무점포 인터넷 뱅크 모드로 전환되었습니다."
+        mediaTitle: "HKWB 공식 미디어 채널 · 유튜브 & 틱톡", wp100Title: "WEB3 백서 (6개 핵심 제목 · 전체 100문장)",
+        faq20Title: "WEB3 FAQ 20선", toggleLabel: "▼ 열기/닫기", resetBtn: "전체 보기",
+        switchedWeb3: "Web3 디지털 뱅크 전용 화면으로 전환되었습니다.",
+        switchedInternet: "무점포 인터넷 뱅크 전용 화면으로 전환되었습니다."
       },
       en: {
         brand: "HKWB", heroTitle: "Next-Gen Digital Finance<br />Where Humanity & Tech Coexist",
@@ -574,9 +642,9 @@
         enterWeb3: "Enter Web3 Digital Bank >", enterInternet: "Enter No-Branch Internet Bank >",
         web3LogoTag: "WEB3 DIGITAL", distLogoTag: "10-MESH NETWORK",
         walletLink: "Connect Wallet", walletWaiting: "Wallet Dynamic Process: Standby (Secure Auto-Link Ready)",
-        dashboardTitle: "Personal Asset Dashboard", liveSync: "Live Sync · Asset Summary",
-        totalAssets: "Total Holdings (Unified Value)", accInterest: "Real-Time Accumulated Interest",
-        agiRateNote: "AGI/ASI variable rate updating every second", piIndex: "Credit Score & Ecosystem Index",
+        dashboardTitle: "Web3 Personal Asset Dashboard", liveSync: "Live Sync · Web3 Summary",
+        totalAssets: "Web3 Total Holdings", accInterest: "Real-Time Accumulated Interest",
+        agiRateNote: "AGI/ASI variable rate updating every second", piIndex: "Web3 Mesh Index",
         web3Menu: "Web3 Digital Bank Menu", deposit: "Deposit", depositSub: "Smart deposit & digital asset vault",
         tokenSwap: "Token Swap", tokenSwapSub: "Instant swap across supported tokens", dexSwap: "DEX Swap", dexSwapSub: "Decentralized liquidity pool swap",
         lpStaking: "LP Staking", lpStakingSub: "Liquidity pool staking & yield", distNet: "10 Distributed Networks",
@@ -594,9 +662,10 @@
         actHistory: "Account History", actHistorySub: "Check deposits, transfers & cycles", actLoan: "Loan & Limit", actLoanSub: "Check credit limit & repayment",
         execTx: "Execute No-Branch Transaction", runTx: "Execute", txLogTitle: "Recent No-Branch Transaction Log",
         coreLegalTitle: "CORE LEGAL & COMPLIANCE", globalEcoTitle: "HK GLOBAL ECOSYSTEM HUBS",
-        mediaTitle: "HKWB Official Media · YouTube & TikTok", wp100Title: "HKWB Whitepaper (6 Core Titles · 100 Sentences)",
-        faq20Title: "HKWB FAQ 20", toggleLabel: "▼ Open / Close", resetBtn: "Show All",
-        switchedWeb3: "Switched to Web3 Digital Bank.", switchedInternet: "Switched to No-Branch Internet Bank."
+        mediaTitle: "HKWB Official Media · YouTube & TikTok", wp100Title: "WEB3 Whitepaper (6 Core Titles · 100 Sentences)",
+        faq20Title: "WEB3 FAQ 20", toggleLabel: "▼ Open / Close", resetBtn: "Show All",
+        switchedWeb3: "Switched to Web3 Digital Bank only.",
+        switchedInternet: "Switched to No-Branch Internet Bank only."
       }
     };
 
@@ -614,20 +683,20 @@
       "2. 웹3·무점포 이중 은행 구조",
       "3. 10대 분산 연동망·보안 아키텍처",
       "4. AGI/ASI 가변 이율 & 60% 사회환원·UBI",
-      "5. 개인 신용도 & 맞춤 여신·컴플라이언스",
+      "5. 신용·컴플라이언스 체계",
       "6. 글로벌 허브 & 해오름 특별시 연계"
     ];
 
     const WP_SENTENCE_TEMPLATES = [
       ["HKWB는 인류와 기술이 공존하는 차세대 디지털 금융 및 분산 생태계를 구축합니다.", "기술 발전이 공동체 전반으로 확장되어 신뢰할 수 있는 디지털 금융 표준을 세웁니다."],
-      ["웹3 디지털 은행과 무점포 인터넷 뱅크가 유기적으로 연결되어 자산 운용을 지원합니다.", "계좌·이체·예치·한도 거래와 온체인 예치·스왑·스테이킹을 한 흐름으로 연결합니다."],
+      ["웹3 디지털 은행과 무점포 인터넷 뱅크는 역할별로 분리·연계되어 운영됩니다.", "각 뱅크의 고유 기능과 화면을 명확히 구분해 혼선을 줄입니다."],
       ["10대 분산 연동망과 안전 자동 링크(Secure Auto-Link)로 지갑 연결과 전송을 안정화합니다.", "다중 세션 격리와 실시간 이상거래 탐지로 온·오프라인 결제 신뢰도를 높입니다."],
       ["AGI/ASI 가변형 이율과 순수익 최대 60% 사회환원·리워드·UBI 순환 구조를 운영합니다.", "6개월 6%, 1년 13%, 3년 20%, 5년 31.41% 기준선과 기간별 변동 이율을 반영합니다."],
-      ["신용점수와 부채비율·상환 이력을 다각 분석해 개인 맞춤 대출 한도와 금리를 매칭합니다.", "AML, KYC, FATF 트래블룰 및 21개국 규제 준수로 투명한 여신·금융 질서를 지향합니다."],
+      ["AML, KYC, FATF 트래블룰 및 21개국 규제 준수로 투명한 금융 질서를 지향합니다.", "신용·한도·상환 정보는 무점포 인터넷 뱅크 영역에서 체계적으로 안내합니다."],
       ["로봇·UAM·AI·양자바이오·우주·부품장비·국방 허브가 유기적으로 연결됩니다.", "165층 복합 랜드마크 거점과 해오름 특별시(울산·경주·포항) 첨단 산업 클러스터를 잇습니다."]
     ];
 
-    const WHITEPAPER_100 = Array.from({ length: 100 }, (_, i) => {
+    const WEB3_WHITEPAPER_100 = Array.from({ length: 100 }, (_, i) => {
       const n = i + 1;
       const tIdx = i % 6;
       const groupTitle = WP_SIX_TITLES[tIdx];
@@ -636,25 +705,44 @@
       return {
         num: n,
         groupTitle,
-        heading: `${groupTitle} · 조항 ${n}`,
+        heading: `[WEB3] ${groupTitle} · 조항 ${n}`,
         body: `${n}. ${text}`
       };
     });
 
-    const FAQ_20 = [
-      ["Q1. HKWB는 어떤 플랫폼인가요?", "Web3 디지털 뱅크와 무점포 인터넷 뱅크를 결합한 자율 금융 플랫폼입니다. (추천인: ljw2358)"],
-      ["Q2. 백서는 어떻게 6개 제목으로 구성되어 있나요?", "인류·기술 공존, 웹3·무점포 이중 구조, 10대 분산 연동망·보안, AGI/ASI 이율·60% 사회환원·UBI, 신용·컴플라이언스, 글로벌 허브·해오름 특별시 6개 제목으로 분류됩니다."],
-      ["Q3. 개인 신용도와 맞춤 대출은 어떻게 조회하나요?", "연소득·기존 대출·상환 이력·신용거래 기간을 입력하면 예상 신용점수와 맞춤 대출 상품 한도·금리를 즉시 비교합니다."],
-      ["Q4. Web3 디지털 뱅크와 무점포 인터넷 뱅크의 차이는?", "Web3는 예치·스왑·스테이킹·10대 분산 연동망 중심이며, 무점포 인터넷 뱅크는 계좌·이체·한도 거래 중심입니다."],
-      ["Q5. 지갑 연결 동적 프로세스는 어떻게 동작하나요?", "1/3 연결 확인, 2/3 네트워크 검증, 3/3 세션 완료의 3단계로 안전 자동 링크가 진행됩니다."],
-      ["Q6. 가변형 이율 기준은 어떻게 구성되어 있나요?", "6개월 6%, 1년 13%, 3년 20%, 5년 31.41% 기준 및 기간별 변동 이율 밴드로 운영됩니다."],
-      ...Array.from({ length: 14 }, (_, i) => [
-        `Q${i + 7}. HKWB 컴플라이언스·보안 및 글로벌 운영 안내 (${i + 7}/20)`,
+    const NET_WHITEPAPER_100 = Array.from({ length: 100 }, (_, i) => {
+      const n = i + 1;
+      const groupTitle = WP_SIX_TITLES[i % 6];
+      return {
+        heading: `[무점포 인터넷 뱅크] ${groupTitle} · 조항 ${n}`,
+        body: `${n}. 무점포 계좌·즉시 이체·예치·개인 신용도 및 맞춤 대출 한도·상환 체계를 투명하게 안내합니다.`
+      };
+    });
+
+    const WEB3_FAQ_20 = [
+      ["Q1. Web3 디지털 뱅크는 어떤 영역인가요?", "예치·토큰 스왑·DEX 스왑·LP 스테이킹·10대 분산 연동망·UBI 중심의 웹3 전용 화면입니다. (추천인: ljw2358)"],
+      ["Q2. 무점포 인터넷 뱅크와 어떻게 나뉘나요?", "상단 버튼 또는 전환 버튼으로 Web3 디지털 뱅크와 무점포 인터넷 뱅크 화면이 각각 단독으로 표시됩니다."],
+      ["Q3. 지갑 연결 동적 프로세스는 어떻게 동작하나요?", "1/3 연결 확인, 2/3 네트워크 검증, 3/3 세션 완료의 3단계로 안전 자동 링크가 진행됩니다."],
+      ["Q4. 가변형 이율 기준은 어떻게 구성되어 있나요?", "6개월 6%, 1년 13%, 3년 20%, 5년 31.41% 기준 및 기간별 변동 이율 밴드로 운영됩니다."],
+      ...Array.from({ length: 16 }, (_, i) => [
+        `Q${i + 5}. Web3 보안·컴플라이언스 및 생태계 안내 (${i + 5}/20)`,
         "AML·KYC·FATF 트래블룰 및 21개국 규제 준수 · 문의: support@hkwb.world · @Hyekong2026"
       ])
     ];
 
+    const NET_FAQ_20 = [
+      ["Q1. 무점포 인터넷 뱅크는 어떤 서비스가 있나요?", "무점포 입출금·정기 예치 계좌 현황, 즉시 이체·거래 실행, 개인 신용도 및 맞춤 대출 조회를 제공합니다."],
+      ["Q2. 개인 신용도와 맞춤 대출은 어떻게 계산되나요?", "연소득·기존 대출 잔액·상환 이력·신용거래 기간을 바탕으로 신용점수와 예상 한도·상품을 산출합니다."],
+      ["Q3. Web3 화면과 섞이지 않나요?", "무점포 인터넷 뱅크 선택 시 웹3 전용 영역은 숨겨지고 무점포 인터넷 뱅크 전용 영역만 표시됩니다."],
+      ["Q4. 문의 채널은 어디인가요?", "support@hkwb.world 및 @Hyekong2026 채널로 안내됩니다. (추천인: ljw2358)"],
+      ...Array.from({ length: 16 }, (_, i) => [
+        `Q${i + 5}. 무점포 계좌·한도·상환 안내 (${i + 5}/20)`,
+        "비대면 계좌 조회·이체 및 상환 시뮬레이션 제공 · 문의: support@hkwb.world"
+      ])
+    ];
+
     let currentLang = localStorage.getItem("hk_worldbank_lang") || "ko";
+    let currentBankMode = localStorage.getItem("hk_bank_mode") || "web3";
     let selectedWpGroup = "";
     let isConnecting = false;
     let selectedInternetAction = "즉시 이체";
@@ -705,7 +793,6 @@
       const maxLimitWon = Math.min(200000000, rawLimitWon);
 
       document.getElementById("creditGradePill").textContent = `신용 ${score}점 · ${gradeLabel}`;
-      document.getElementById("dashCreditBadge").textContent = `신용 ${score}점 · ${gradeLabel}`;
       document.getElementById("creditScoreOutput").textContent = `${score}점`;
       document.getElementById("creditTierDesc").textContent = `${gradeLabel} (${topPct}) · 상환 이력·부채 비율 반영`;
       document.getElementById("creditMaxLimitOutput").textContent = `₩${maxLimitWon.toLocaleString("ko-KR")}`;
@@ -726,27 +813,21 @@
 
       const products = [
         {
-          best: true,
-          badge: "금리·한도 최적 매칭",
-          badgeGold: false,
+          best: true, badge: "금리·한도 최적 매칭", badgeGold: false,
           name: "HKWB 무점포 프라임 신용대출",
           limitText: `최대 ₩${lim1.toLocaleString("ko-KR")}`,
           rateText: `연 ${r1}% ~ ${(Number(r1) + 1.8).toFixed(1)}% (변동/고정 선택)`,
           desc: "원리금균등·만기일시 상환 · 무서류 비대면 한도 조회 · 중도상환수수료 면제"
         },
         {
-          best: false,
-          badge: "비상금·마이너스 한도",
-          badgeGold: true,
+          best: false, badge: "비상금·마이너스 한도", badgeGold: true,
           name: "HKWB 스마트 비상금·한도대출",
           limitText: `최대 ₩${lim2.toLocaleString("ko-KR")}`,
           rateText: `연 ${r2}% ~ ${(Number(r2) + 2.1).toFixed(1)}%`,
           desc: "쓴 만큼만 일할 이자 계산 · 수시 입출금 연계 · 모바일 즉시 실행"
         },
         {
-          best: false,
-          badge: "상환 유연성 특화",
-          badgeGold: true,
+          best: false, badge: "상환 유연성 특화", badgeGold: true,
           name: "HKWB 플렉스 중금리 전환대출",
           limitText: `최대 ₩${lim3.toLocaleString("ko-KR")}`,
           rateText: `연 ${r3}% ~ ${(Number(r3) + 2.4).toFixed(1)}%`,
@@ -780,19 +861,29 @@
     }
 
     function renderNavigatorCards() {
-      const legalBox = document.getElementById("coreLegalCards");
-      const ecoBox = document.getElementById("globalEcoCards");
-      if (legalBox) {
-        legalBox.innerHTML = CORE_LEGAL_ITEMS.map(([title, desc]) => {
-          const label = currentLang === "ko" ? title : `${title} [${currentLang.toUpperCase()}]`;
-          return `<div class="feed-card" onclick="showToast('${label.replace(/'/g, "\\'")}')"><div class="feed-card-title">${label}</div><div class="feed-card-body">${desc}</div></div>`;
-        }).join("");
+      const wLegal = document.getElementById("web3LegalCards");
+      const wEco = document.getElementById("web3EcoCards");
+      const nLegal = document.getElementById("netLegalCards");
+      const nEco = document.getElementById("netEcoCards");
+      if (wLegal) {
+        wLegal.innerHTML = WEB3_LEGAL_ITEMS.map(([title, desc]) =>
+          `<div class="feed-card" onclick="showToast('${title.replace(/'/g, "\\'")}')"><div class="feed-card-title">${title}</div><div class="feed-card-body">${desc}</div></div>`
+        ).join("");
       }
-      if (ecoBox) {
-        ecoBox.innerHTML = GLOBAL_ECO_ITEMS.map(([title, desc]) => {
-          const label = currentLang === "ko" ? title : `${title} [${currentLang.toUpperCase()}]`;
-          return `<div class="feed-card gold-card" onclick="showToast('${label.replace(/'/g, "\\'")}')"><div class="feed-card-title">${label}</div><div class="feed-card-body">${desc}</div></div>`;
-        }).join("");
+      if (wEco) {
+        wEco.innerHTML = WEB3_ECO_ITEMS.map(([title, desc]) =>
+          `<div class="feed-card gold-card" onclick="showToast('${title.replace(/'/g, "\\'")}')"><div class="feed-card-title">${title}</div><div class="feed-card-body">${desc}</div></div>`
+        ).join("");
+      }
+      if (nLegal) {
+        nLegal.innerHTML = NET_LEGAL_ITEMS.map(([title, desc]) =>
+          `<div class="feed-card" onclick="showToast('${title.replace(/'/g, "\\'")}')"><div class="feed-card-title">${title}</div><div class="feed-card-body">${desc}</div></div>`
+        ).join("");
+      }
+      if (nEco) {
+        nEco.innerHTML = NET_ECO_ITEMS.map(([title, desc]) =>
+          `<div class="feed-card gold-card" onclick="showToast('${title.replace(/'/g, "\\'")}')"><div class="feed-card-title">${title}</div><div class="feed-card-body">${desc}</div></div>`
+        ).join("");
       }
     }
 
@@ -824,7 +915,7 @@
     }
 
     function startEverySecondInterestEngine() {
-      const basePrincipal = 128450000;
+      const basePrincipal = 63450000;
       const secondsPerYear = 365 * 24 * 3600;
       setInterval(() => {
         const wave = Math.sin(Date.now() / 3000) * 1.45 + Math.cos(Date.now() / 7000) * 0.85;
@@ -845,17 +936,26 @@
       toastTimer = setTimeout(() => { box.style.display = "none"; }, 3000);
     }
 
-    function switchBankMode(mode) {
+    function switchBankMode(mode, silent = false) {
+      currentBankMode = mode === "internet" ? "internet" : "web3";
+      localStorage.setItem("hk_bank_mode", currentBankMode);
       const web3El = document.getElementById("web3Workspace");
       const internetEl = document.getElementById("internetWorkspace");
-      if (mode === "internet") {
+      const btnWeb3 = document.getElementById("btnModeWeb3");
+      const btnNet = document.getElementById("btnModeInternet");
+
+      if (currentBankMode === "internet") {
         if (web3El) web3El.style.display = "none";
         if (internetEl) internetEl.style.display = "block";
-        showToast(t("switchedInternet"));
+        if (btnWeb3) btnWeb3.classList.add("inactive-mode");
+        if (btnNet) btnNet.classList.add("active-mode");
+        if (!silent) showToast(t("switchedInternet"));
       } else {
         if (web3El) web3El.style.display = "block";
         if (internetEl) internetEl.style.display = "none";
-        showToast(t("switchedWeb3"));
+        if (btnWeb3) btnWeb3.classList.remove("inactive-mode");
+        if (btnNet) btnNet.classList.remove("active-mode");
+        if (!silent) showToast(t("switchedWeb3"));
       }
     }
 
@@ -902,7 +1002,7 @@
       const input = document.getElementById("wpSearchInput");
       if (!list) return;
       const q = (input?.value || "").trim().toLowerCase();
-      const rows = WHITEPAPER_100.filter((item) => {
+      const rows = WEB3_WHITEPAPER_100.filter((item) => {
         const matchGroup = !selectedWpGroup || item.groupTitle === selectedWpGroup;
         const matchText = !q || item.heading.toLowerCase().includes(q) || item.body.toLowerCase().includes(q);
         return matchGroup && matchText;
@@ -918,6 +1018,17 @@
         : `<div class="wp-100-item"><div class="wp-item-body">검색 결과가 없습니다.</div></div>`;
     }
 
+    function renderNetWhitepaper100() {
+      const list = document.getElementById("netWhitepaper100List");
+      if (!list) return;
+      list.innerHTML = NET_WHITEPAPER_100.map((item) => `
+        <div class="wp-100-item">
+          <div class="wp-item-title">${item.heading}</div>
+          <div class="wp-item-body">${item.body}</div>
+        </div>
+      `).join("");
+    }
+
     function resetWhitepaperFilter() {
       selectedWpGroup = "";
       const input = document.getElementById("wpSearchInput");
@@ -926,10 +1037,15 @@
       renderWhitepaper100();
     }
 
-    function renderFaq20() {
-      const list = document.getElementById("faq20List");
-      if (!list) return;
-      list.innerHTML = FAQ_20.map(([q, a]) => `<div class="faq-card"><div class="faq-q">${q}</div><div class="faq-a">${a}</div></div>`).join("");
+    function renderFaqs() {
+      const wList = document.getElementById("web3Faq20List");
+      const nList = document.getElementById("netFaq20List");
+      if (wList) {
+        wList.innerHTML = WEB3_FAQ_20.map(([q, a]) => `<div class="faq-card"><div class="faq-q">${q}</div><div class="faq-a">${a}</div></div>`).join("");
+      }
+      if (nList) {
+        nList.innerHTML = NET_FAQ_20.map(([q, a]) => `<div class="faq-card"><div class="faq-q">${q}</div><div class="faq-a">${a}</div></div>`).join("");
+      }
     }
 
     function triggerWalletAutoLink(sourceLabel) {
@@ -978,8 +1094,10 @@
       evaluateCreditAndLoans();
       renderWpSixTabs();
       renderWhitepaper100();
-      renderFaq20();
+      renderNetWhitepaper100();
+      renderFaqs();
       startEverySecondInterestEngine();
+      switchBankMode(currentBankMode, true);
     });
   </script>
 </body>
