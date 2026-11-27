@@ -548,9 +548,6 @@
       <button class="mode-btn" id="tabInternet" onclick="switchBankMode('internet')">무점포 인터넷 뱅크</button>
     </nav>
 
-    <!-- ========================================================== -->
-    <!-- 1. WEB3 디지털 뱅크 영역 -->
-    <!-- ========================================================== -->
     <main id="viewWeb3">
       <section class="panel-box">
         <h2 class="section-heading" id="web3OverviewTitle">자산 및 보안 현황</h2>
@@ -641,9 +638,6 @@
         </div>
       </section>
 
-      <!-- ======================================================== -->
-      <!-- 2. WEB3 내비게이터, 6장 구성 백서 100선 및 COMPLIANCE 영역 -->
-      <!-- ======================================================== -->
       <section class="panel-box" id="web3NavigatorSection">
         <h2 class="section-heading">Web3 내비게이터</h2>
         <p class="section-desc">
@@ -665,9 +659,6 @@
       </section>
     </main>
 
-    <!-- ========================================================== -->
-    <!-- 3. 무점포 인터넷 뱅크 & 서술형 50선 백서 영역 -->
-    <!-- ========================================================== -->
     <section class="panel-box" id="viewInternet" style="display: none;">
       <h2 class="section-heading">무점포 인터넷 뱅크</h2>
       <p class="section-desc">
@@ -1128,4 +1119,266 @@
 
         wrapper.appendChild(btn);
         wrapper.appendChild(panel);
-        container.append
+        container.appendChild(wrapper);
+      });
+    }
+
+    function renderSixChapterWhitepaper(containerId, chapters) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = "";
+
+      let runningNumber = 1;
+
+      chapters.forEach((chapter, idx) => {
+        const startNum = runningNumber;
+        const endNum = runningNumber + chapter.items.length - 1;
+        runningNumber = endNum + 1;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "acc-item" + (idx === 0 ? " open" : "");
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "acc-trigger";
+        btn.onclick = function () {
+          wrapper.classList.toggle("open");
+        };
+
+        const titleSpan = document.createElement("span");
+        titleSpan.textContent = chapter.title;
+
+        const tagSpan = document.createElement("span");
+        tagSpan.className = "acc-tag";
+        tagSpan.textContent = `${chapter.items.length}개 항목 · 펼치기/접기`;
+
+        btn.appendChild(titleSpan);
+        btn.appendChild(tagSpan);
+
+        const panel = document.createElement("div");
+        panel.className = "acc-panel";
+
+        const summaryDiv = document.createElement("div");
+        summaryDiv.textContent = chapter.summary;
+        panel.appendChild(summaryDiv);
+
+        const introBox = document.createElement("div");
+        introBox.className = "chapter-intro";
+        introBox.textContent = `[장 개요 (${startNum}번 ~ ${endNum}번)] ${chapter.overview}`;
+        panel.appendChild(introBox);
+
+        const listDiv = document.createElement("div");
+        listDiv.className = "narrative-list";
+
+        chapter.items.forEach((sentence, offset) => {
+          const itemNo = startNum + offset;
+          const card = document.createElement("div");
+          card.className = "narrative-card";
+
+          const numSpan = document.createElement("span");
+          numSpan.className = "narrative-num";
+          numSpan.textContent = `${itemNo}번.`;
+
+          const textSpan = document.createElement("span");
+          textSpan.textContent = " " + sentence;
+
+          card.appendChild(numSpan);
+          card.appendChild(textSpan);
+          listDiv.appendChild(card);
+        });
+
+        panel.appendChild(listDiv);
+        wrapper.appendChild(btn);
+        wrapper.appendChild(panel);
+        container.appendChild(wrapper);
+      });
+    }
+
+    function renderNarrativeCollectionAccordion(containerId, titleText, tagText, summaryText, lines, prefixLabel, openByDefault) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = "";
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "acc-item" + (openByDefault ? " open" : "");
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "acc-trigger";
+      btn.onclick = function () {
+        wrapper.classList.toggle("open");
+      };
+
+      const titleSpan = document.createElement("span");
+      titleSpan.textContent = titleText;
+
+      const tagSpan = document.createElement("span");
+      tagSpan.className = "acc-tag";
+      tagSpan.textContent = tagText + " · 펼치기/접기";
+
+      btn.appendChild(titleSpan);
+      btn.appendChild(tagSpan);
+
+      const panel = document.createElement("div");
+      panel.className = "acc-panel";
+
+      const summaryDiv = document.createElement("div");
+      summaryDiv.textContent = summaryText;
+      panel.appendChild(summaryDiv);
+
+      const listDiv = document.createElement("div");
+      listDiv.className = "narrative-list";
+
+      lines.forEach((line, idx) => {
+        const card = document.createElement("div");
+        card.className = "narrative-card";
+
+        const numSpan = document.createElement("span");
+        numSpan.className = "narrative-num";
+        numSpan.textContent = `${prefixLabel} ${idx + 1}.`;
+
+        const textSpan = document.createElement("span");
+        textSpan.textContent = " " + line;
+
+        card.appendChild(numSpan);
+        card.appendChild(textSpan);
+        listDiv.appendChild(card);
+      });
+
+      panel.appendChild(listDiv);
+      wrapper.appendChild(btn);
+      wrapper.appendChild(panel);
+      container.appendChild(wrapper);
+    }
+
+    function switchBankMode(mode) {
+      APP_STATE.mode = mode;
+      const isWeb3 = mode === "web3";
+
+      document.getElementById("tabWeb3").classList.toggle("active", isWeb3);
+      document.getElementById("tabInternet").classList.toggle("active", !isWeb3);
+      document.getElementById("viewWeb3").style.display = isWeb3 ? "block" : "none";
+      document.getElementById("viewInternet").style.display = isWeb3 ? "none" : "block";
+    }
+
+    function openAction(actionType) {
+      APP_STATE.activeAction = actionType;
+      const cfg = ACTION_CONFIG[actionType] || ACTION_CONFIG.deposit;
+      const drawer = document.getElementById("actionDrawer");
+
+      document.getElementById("drawerTitle").textContent = cfg.title;
+      document.getElementById("drawerDesc").textContent = cfg.desc;
+      document.getElementById("drawerTargetInput").placeholder = cfg.targetPlaceholder;
+      document.getElementById("drawerAmountInput").placeholder = cfg.amountPlaceholder;
+      document.getElementById("drawerResult").textContent = cfg.title + " 준비가 되었습니다. 입력 후 실행하기를 눌러 주세요.";
+
+      drawer.classList.add("open");
+      drawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function closeAction() {
+      document.getElementById("actionDrawer").classList.remove("open");
+    }
+
+    function renderHistory() {
+      const listEl = document.getElementById("recentHistoryList");
+      if (!listEl) return;
+      listEl.innerHTML = "";
+
+      APP_STATE.history.slice(0, 6).forEach((entry) => {
+        const row = document.createElement("div");
+        row.className = "history-row";
+        row.innerHTML = `<span><strong>${entry.label}</strong> · ${entry.target}</span><span>${entry.amountText}</span>`;
+        listEl.appendChild(row);
+      });
+    }
+
+    function executeAction() {
+      const action = APP_STATE.activeAction;
+      const target = document.getElementById("drawerTargetInput").value.trim() || "기본 대상";
+      const rawAmount = Number(document.getElementById("drawerAmountInput").value);
+      const resultEl = document.getElementById("drawerResult");
+
+      if (action === "login") {
+        APP_STATE.loggedIn = !APP_STATE.loggedIn;
+        const statusText = APP_STATE.loggedIn ? "로그인 테스트 연결됨 (로그인 API 연동 대기)" : "로그아웃 상태";
+        document.getElementById("web3SecurityState").textContent = APP_STATE.loggedIn ? "인증 테스트 중" : "안전 · 인증 준비";
+        document.getElementById("loginToggleBtn").textContent = APP_STATE.loggedIn ? "인증 상태: 활성" : "로그인 상태 확인";
+        resultEl.textContent = `${target} 계정 기준 ${statusText}입니다. 실제 운영 시 로그인 API 엔드포인트가 연결됩니다.`;
+        APP_STATE.history.unshift({
+          label: "로그인 확인",
+          target: target,
+          amountText: APP_STATE.loggedIn ? "활성" : "대기"
+        });
+        renderHistory();
+        return;
+      }
+
+      if (!rawAmount || rawAmount <= 0) {
+        resultEl.textContent = "0보다 큰 금액을 입력해 주세요.";
+        return;
+      }
+
+      const currentPool = APP_STATE.mode === "web3" ? "web3Balance" : "internetBalance";
+
+      if (action === "deposit" || action === "reward") {
+        APP_STATE[currentPool] += rawAmount;
+      } else if (action === "transfer" || action === "payment") {
+        if (rawAmount > APP_STATE[currentPool]) {
+          resultEl.textContent = "현재 잔액보다 큰 금액입니다. 잔액을 확인해 주세요.";
+          return;
+        }
+        APP_STATE[currentPool] -= rawAmount;
+      }
+
+      document.getElementById("web3TotalAssets").textContent = formatWon(APP_STATE.web3Balance);
+      document.getElementById("internetBalanceText").textContent = formatWon(APP_STATE.internetBalance);
+
+      const actionLabel = ACTION_CONFIG[action].title;
+      const amountFormatted = formatWon(rawAmount);
+      resultEl.textContent = `${actionLabel} 처리 완료: ${target} (${amountFormatted})`;
+
+      APP_STATE.history.unshift({
+        label: actionLabel,
+        target: target,
+        amountText: amountFormatted
+      });
+
+      document.getElementById("drawerAmountInput").value = "";
+      renderHistory();
+    }
+
+    function applyLanguage() {
+      const lang = document.getElementById("langSelector").value;
+      APP_STATE.lang = lang;
+
+      if (lang === "en") {
+        document.getElementById("brandTag").textContent = "Simple Unified Mode";
+        document.getElementById("tabWeb3").textContent = "Web3 Digital Bank";
+        document.getElementById("tabInternet").textContent = "Branchless Internet Bank";
+      } else {
+        document.getElementById("brandTag").textContent = "심플 통합 모드";
+        document.getElementById("tabWeb3").textContent = "Web3 디지털 뱅크";
+        document.getElementById("tabInternet").textContent = "무점포 인터넷 뱅크";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      renderAccordion("navigatorAccordion", NAVIGATOR_DATA, true);
+      renderSixChapterWhitepaper("web3Whitepaper6ChaptersAccordion", WEB3_WHITEPAPER_CHAPTERS);
+      renderAccordion("complianceAccordion", COMPLIANCE_DATA, false);
+      renderNarrativeCollectionAccordion(
+        "internetWhitepaper50Accordion",
+        "무점포 인터넷 뱅크 서술형 50선 백서 전체 보기 (1번 ~ 50번)",
+        "총 50문장",
+        "비대면 무점포 금융 운영과 간편 메뉴, 보안 및 이용자 보호 원칙을 서술형 50개 문장으로 정리했습니다.",
+        INTERNET_WHITEPAPER_50,
+        "문장",
+        true
+      );
+      renderAccordion("internetGuideAccordion", INTERNET_GUIDE_DATA, false);
+      renderHistory();
+    });
+  </script>
+</body>
+</html>
