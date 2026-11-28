@@ -56,7 +56,7 @@
       padding: 20px 20px 72px;
     }
 
-    /* 상단 상태 및 모드 바 */
+    /* 상단 바 */
     .topbar {
       display: flex;
       flex-wrap: wrap;
@@ -158,10 +158,10 @@
       color: #05110c;
     }
 
-    /* 중앙 히어로 영역 */
+    /* 중앙 히어로 */
     .hero {
       text-align: center;
-      padding: 38px 24px;
+      padding: 36px 24px;
       background: linear-gradient(180deg, rgba(22, 34, 60, 0.95), rgba(14, 22, 39, 0.98));
       border: 1px solid var(--line-gold);
       border-radius: var(--r-lg);
@@ -177,11 +177,11 @@
       color: var(--gold-bright);
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hero h1 {
-      font-size: clamp(32px, 5vw, 46px);
+      font-size: clamp(32px, 5vw, 44px);
       font-weight: 900;
       color: var(--gold-bright);
       margin-bottom: 8px;
@@ -189,10 +189,10 @@
     }
 
     .hero .lead {
-      font-size: 16px;
+      font-size: 15.5px;
       color: var(--text-sub);
       max-width: 780px;
-      margin: 0 auto 18px;
+      margin: 0 auto 16px;
     }
 
     .hero-meta {
@@ -215,7 +215,7 @@
       color: var(--gold-bright);
     }
 
-    /* 은행 전환 선택 카드 (웹3 디지털 은행 vs 인터넷 은행 HK 뱅크) */
+    /* 양대 은행 선택 카드 */
     .division-selector {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -273,7 +273,7 @@
       color: var(--text-sub);
     }
 
-    /* 분리된 영역 표시 제어 */
+    /* 독립 전환 뷰 */
     .bank-view {
       display: none;
     }
@@ -282,17 +282,126 @@
       display: block;
     }
 
+    /* 접기/펼치기 아코디언 블록 */
+    .accordion-box {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      margin-bottom: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: rgba(19, 31, 54, 0.96);
+      color: var(--text-main);
+      border: none;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 800;
+      transition: background 0.2s ease;
+    }
+
+    .accordion-trigger:hover {
+      background: var(--bg-card-alt);
+    }
+
+    .accordion-trigger .sub-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.16);
+      color: var(--gold-bright);
+    }
+
+    .accordion-arrow {
+      font-size: 14px;
+      color: var(--cyan);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 20px 22px 24px;
+      border-top: 1px solid var(--line);
+      background: rgba(11, 18, 32, 0.72);
+    }
+
+    .accordion-box.open .accordion-content {
+      display: block;
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-sm);
+      padding: 13px 15px;
+      font-size: 13px;
+    }
+
+    .item-card strong {
+      display: block;
+      color: var(--gold-bright);
+      font-size: 13.5px;
+      margin-bottom: 4px;
+    }
+
+    .item-card span {
+      color: var(--text-sub);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .policy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line-gold);
+      border-radius: var(--r-md);
+      padding: 18px;
+    }
+
+    .policy-card h4 {
+      color: var(--gold-bright);
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .policy-card p {
+      font-size: 13.5px;
+      color: var(--text-sub);
+    }
+
     .section-header {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin: 28px 0 14px;
+      margin: 26px 0 14px;
     }
 
     .section-header h3 {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
     }
 
@@ -305,19 +414,19 @@
     .ten-modules {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
     .mod-box {
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: var(--r-md);
-      padding: 16px;
+      padding: 15px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .mod-box:hover {
@@ -333,8 +442,8 @@
     }
 
     .mod-badge {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -353,12 +462,12 @@
     }
 
     .mod-title {
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 800;
     }
 
     .mod-desc {
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
@@ -373,12 +482,12 @@
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: var(--r-lg);
-      padding: 22px;
+      padding: 20px;
       box-shadow: var(--shadow);
     }
 
     .panel-heading {
-      font-size: 18px;
+      font-size: 17.5px;
       font-weight: 800;
       color: var(--gold-bright);
       margin-bottom: 14px;
@@ -403,7 +512,7 @@
     }
 
     .field {
-      margin-bottom: 13px;
+      margin-bottom: 12px;
     }
 
     .field label {
@@ -455,8 +564,8 @@
     }
 
     .result-box {
-      margin-top: 13px;
-      padding: 13px 14px;
+      margin-top: 12px;
+      padding: 12px 14px;
       border-radius: var(--r-sm);
       background: var(--bg-input);
       border: 1px solid rgba(56, 189, 248, 0.25);
@@ -464,41 +573,6 @@
       color: var(--cyan);
       white-space: pre-line;
       word-break: break-word;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13.5px;
-    }
-
-    th, td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-    }
-
-    th {
-      color: var(--gold-bright);
-    }
-
-    .charity-box {
-      display: grid;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .charity-row {
-      padding: 12px 14px;
-      border-radius: var(--r-sm);
-      background: var(--bg-input);
-      border: 1px solid var(--line);
-      font-size: 13.5px;
-      color: var(--text-sub);
-    }
-
-    .charity-row strong {
-      color: var(--gold-bright);
     }
 
     /* 로그 영역 */
@@ -516,7 +590,7 @@
       border: 1px solid var(--line);
       border-radius: var(--r-sm);
       padding: 12px 14px;
-      max-height: 190px;
+      max-height: 180px;
       overflow-y: auto;
       font-size: 13px;
     }
@@ -604,7 +678,7 @@
           <option value="ja">日本語 (JA)</option>
           <option value="60">전체 60개 언어 팩</option>
         </select>
-        <button class="btn btn-gold" onclick="showModal('HKWB 중앙 안내', '원하는 은행(웹3 디지털 은행 또는 인터넷 은행 HK 뱅크)을 선택하면 해당 영역만 깔끔하게 표시됩니다.\n닫기 버튼을 눌러도 화면 중앙 정렬이 유지됩니다.')">중앙 안내</button>
+        <button class="btn btn-gold" onclick="showModal('HKWB 중앙 안내', '웹3 디지털 은행과 인터넷 은행 (HK 뱅크)을 선택하면 각 영역만 분리되어 열립니다.\n백서 50선, 에픽 20선, 3대 폴리시도 눌러서 펼치고 닫을 수 있습니다.')">중앙 안내</button>
       </div>
     </header>
 
@@ -623,17 +697,17 @@
       </div>
     </section>
 
-    <!-- 은행 선택 카드 (클릭 시 해당 은행 영역만 표시) -->
+    <!-- 은행 전환 선택 카드 -->
     <section class="division-selector">
       <div id="cardWeb3" class="division-card selected" onclick="selectDivision('web3')">
         <div>
           <span class="division-tag">WEB3 DIGITAL BANK</span>
           <h2>웹3 디지털 은행</h2>
           <p>
-            10대 분산 연동망(지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, PI수량), 코인마켓캡 시세, 파이코인 KYC 연동을 전용으로 표시합니다.
+            웹3 디지털 은행 전용 영역입니다. 클릭하면 백서 50선, 에픽 20선, 3대 폴리시, 10대 분산 연동망, 스왑/DEX스왑/예치/LP스테이킹/파이코인 KYC가 표시됩니다.
           </p>
         </div>
-        <button type="button" class="btn btn-gold" onclick="event.stopPropagation(); selectDivision('web3');">웹3 디지털 은행 보기</button>
+        <button type="button" class="btn btn-gold" onclick="event.stopPropagation(); selectDivision('web3');">웹3 디지털 은행 열기</button>
       </div>
 
       <div id="cardInternet" class="division-card" onclick="selectDivision('internet')">
@@ -641,33 +715,86 @@
           <span class="division-tag">INTERNET BANK · HK 뱅크</span>
           <h2>인터넷 은행 (HK 뱅크)</h2>
           <p>
-            HK 뱅크 전용 계좌 조회, 계좌 이체, 예금/변동금리 운용, 결제 및 웹3 브릿지 기능만 별도로 분리해서 표시합니다.
+            인터넷 은행 (HK 뱅크) 전용 영역입니다. 클릭하면 HK 뱅크 백서 50선, HK 뱅크 에픽 20선, 3대 폴리시, 계좌 이체/예금/브릿지가 분리되어 표시됩니다.
           </p>
         </div>
-        <button type="button" class="btn btn-gold" onclick="event.stopPropagation(); selectDivision('internet');">인터넷 은행 (HK 뱅크) 보기</button>
+        <button type="button" class="btn btn-gold" onclick="event.stopPropagation(); selectDivision('internet');">인터넷 은행 (HK 뱅크) 열기</button>
       </div>
     </section>
 
-    <!-- [1] 웹3 디지털 은행 전용 화면 -->
+    <!-- [1] 웹3 디지털 은행 전용 영역 -->
     <div id="viewWeb3" class="bank-view active">
+      <!-- 웹3 백서 50선 (펼치기/접기) -->
+      <div id="accWeb3Wp50" class="accordion-box open">
+        <button type="button" class="accordion-trigger" onclick="toggleAccordion('accWeb3Wp50')">
+          <span>웹3 디지털 은행 백서 50선 <span class="sub-badge">WEB3 WHITEPAPER 50</span></span>
+          <span id="arrow-accWeb3Wp50" class="accordion-arrow">접기 ▲</span>
+        </button>
+        <div class="accordion-content">
+          <p style="font-size: 13.5px; color: var(--text-sub);">
+            웹3 디지털 은행 핵심 아키텍처, 10대 분산 연동망, 토큰·유동성 운용, 파이코인 연동 및 거버넌스 백서 50선입니다.
+          </p>
+          <div id="web3Wp50Grid" class="item-grid"></div>
+        </div>
+      </div>
+
+      <!-- 웹3 에픽 20선 (펼치기/접기) -->
+      <div id="accWeb3Epic20" class="accordion-box">
+        <button type="button" class="accordion-trigger" onclick="toggleAccordion('accWeb3Epic20')">
+          <span>웹3 디지털 은행 에픽 20선 <span class="sub-badge">WEB3 EPIC 20</span></span>
+          <span id="arrow-accWeb3Epic20" class="accordion-arrow">펼치기 ▼</span>
+        </button>
+        <div class="accordion-content">
+          <p style="font-size: 13.5px; color: var(--text-sub);">
+            웹3 디지털 은행 단계별 핵심 에픽(Epic) 로드맵 20선입니다.
+          </p>
+          <div id="web3Epic20Grid" class="item-grid"></div>
+        </div>
+      </div>
+
+      <!-- 웹3 3대 폴리시 (펼치기/접기) -->
+      <div id="accWeb3Policy3" class="accordion-box">
+        <button type="button" class="accordion-trigger" onclick="toggleAccordion('accWeb3Policy3')">
+          <span>웹3 디지털 은행 3대 폴리시 (LPS · 에픽 · 사회환원) <span class="sub-badge">3 POLICIES</span></span>
+          <span id="arrow-accWeb3Policy3" class="accordion-arrow">펼치기 ▼</span>
+        </button>
+        <div class="accordion-content">
+          <div class="policy-grid">
+            <div class="policy-card">
+              <h4>1. LPS 폴리시 (LP 스테이킹 · 유동성 풀)</h4>
+              <p>유동성 공급(LP) 스테이킹 및 기간별(6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4%) 변동금리 보상 운용 정책입니다.</p>
+            </div>
+            <div class="policy-card">
+              <h4>2. 에픽 폴리시 (단계별 실행 로드맵)</h4>
+              <p>지갑연결·스왑·DEX스왑·LP스테이킹·파이코인 KYC·HK-NEXUS 단말 연동까지 체계적으로 확장하는 실행 정책입니다.</p>
+            </div>
+            <div class="policy-card">
+              <h4>3. 사회환원 폴리시 (순수익 최대 60%)</h4>
+              <p>순수익의 최대 60%를 사회환원 및 리워드로 배분하며, 국경없는 의사회·세이브드 칠드런·유엔 난민기구에 165층 우선권을 부여합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10대 분산 연동망 -->
       <div class="section-header">
         <div>
           <h3>10대 분산 연동망</h3>
-          <p>각 모듈을 누르면 중앙 창에서 상세 안내와 현재 모드(테스트/실질) 상태를 확인할 수 있습니다.</p>
+          <p>모듈을 누르면 중앙 창에서 상세 안내를 확인할 수 있습니다.</p>
         </div>
         <button class="btn btn-emerald" onclick="loadMarketPrices()">코인마켓캡 시세 새로고침</button>
       </div>
       <div id="tenModulesGrid" class="ten-modules"></div>
 
+      <!-- 스왑/DEX스왑 · 예치/LP스테이킹 · 파이코인 KYC -->
       <div class="section-header">
         <div>
           <h3>스왑 · DEX 스왑 · 예치 · LP 스테이킹 · 파이코인 KYC</h3>
-          <p>웹3 디지털 은행 전용 거래, 변동금리 예치/LP 스테이킹, 파이코인 KYC 검증 연동 화면입니다.</p>
+          <p>코인마켓캡 시세, 기간별 변동금리, 파이코인 KYC 검증 흐름을 제공합니다.</p>
         </div>
       </div>
 
       <div class="panel-grid">
-        <!-- 스왑 & DEX 스왑 -->
         <div class="panel">
           <div class="panel-heading">
             <span>스왑 &amp; DEX 스왑</span>
@@ -723,7 +850,6 @@
           <div id="swapResultBox" class="result-box">예상 수령량을 계산 중입니다.</div>
         </div>
 
-        <!-- 예치 & LP 스테이킹 -->
         <div class="panel">
           <div class="panel-heading">
             <span>예치 &amp; LP 스테이킹</span>
@@ -765,7 +891,6 @@
           <div id="earnResultBox" class="result-box">예상 이자 및 보상을 계산 중입니다.</div>
         </div>
 
-        <!-- 파이코인 KYC & HK-NEXUS 연동 -->
         <div class="panel">
           <div class="panel-heading">
             <span>파이코인 KYC &amp; HK-NEXUS 연동</span>
@@ -807,67 +932,67 @@
           <div id="kycResultBox" class="result-box">파이코인 KYC 검증 상태가 표시됩니다.</div>
         </div>
       </div>
+    </div>
 
-      <div class="section-header">
-        <div>
-          <h3>기간별 변동금리 구간표 &amp; 사회환원 · 165층 구호단체 우선권</h3>
-          <p>순수익 최대 60% 사회환원 및 후원 구호단체 3곳(국경없는 의사회, 세이브드 칠드런, 유엔 난민기구) 165층 우선권 안내입니다.</p>
+    <!-- [2] 인터넷 은행 (HK 뱅크) 전용 영역 -->
+    <div id="viewInternet" class="bank-view">
+      <!-- HK 뱅크 백서 50선 (펼치기/접기) -->
+      <div id="accHkWp50" class="accordion-box open">
+        <button type="button" class="accordion-trigger" onclick="toggleAccordion('accHkWp50')">
+          <span>HK 뱅크 백서 50선 <span class="sub-badge">HK BANK WHITEPAPER 50</span></span>
+          <span id="arrow-accHkWp50" class="accordion-arrow">접기 ▲</span>
+        </button>
+        <div class="accordion-content">
+          <p style="font-size: 13.5px; color: var(--text-sub);">
+            인터넷 은행 (HK 뱅크) 계좌 시스템, 이체·결제, 예금 운용, 보안 및 웹3 브릿지 백서 50선입니다.
+          </p>
+          <div id="hkWp50Grid" class="item-grid"></div>
         </div>
       </div>
 
-      <div class="panel-grid">
-        <div class="panel">
-          <div class="panel-heading">기간별 변동금리 구간표</div>
-          <table>
-            <thead>
-              <tr>
-                <th>기간</th>
-                <th>연 변동금리</th>
-                <th>운용 기준</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>6개월</td>
-                <td>8% ~ 12%</td>
-                <td>단기 변동금리</td>
-              </tr>
-              <tr>
-                <td>1년</td>
-                <td>12% ~ 18%</td>
-                <td>중기 변동금리</td>
-              </tr>
-              <tr>
-                <td>2년</td>
-                <td>16% ~ 24%</td>
-                <td>장기 변동금리</td>
-              </tr>
-              <tr>
-                <td>3년</td>
-                <td>20% ~ 31.4%</td>
-                <td>최고 변동금리</td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- HK 뱅크 에픽 20선 (펼치기/접기) -->
+      <div id="accHkEpic20" class="accordion-box">
+        <button type="button" class="accordion-trigger" onclick="toggleAccordion('accHkEpic20')">
+          <span>HK 뱅크 에픽 20선 <span class="sub-badge">HK BANK EPIC 20</span></span>
+          <span id="arrow-accHkEpic20" class="accordion-arrow">펼치기 ▼</span>
+        </button>
+        <div class="accordion-content">
+          <p style="font-size: 13.5px; color: var(--text-sub);">
+            인터넷 은행 (HK 뱅크) 핵심 기능 고도화 및 연동 에픽(Epic) 로드맵 20선입니다.
+          </p>
+          <div id="hkEpic20Grid" class="item-grid"></div>
         </div>
+      </div>
 
-        <div class="panel">
-          <div class="panel-heading">사회환원 (순수익 최대 60%) &amp; 165층 우선권</div>
-          <div class="charity-box">
-            <div class="charity-row"><strong>국경없는 의사회</strong> — 구호 지원 및 165층 건물 입주 우선권 부여</div>
-            <div class="charity-row"><strong>세이브드 칠드런</strong> — 아동 지원 및 165층 건물 입주 우선권 부여</div>
-            <div class="charity-row"><strong>유엔 난민기구</strong> — 난민 구호 및 165층 건물 입주 우선권 부여</div>
+      <!-- HK 뱅크 3대 폴리시 (펼치기/접기) -->
+      <div id="accHkPolicy3" class="accordion-box">
+        <button type="button" class="accordion-trigger" onclick="toggleAccordion('accHkPolicy3')">
+          <span>HK 뱅크 3대 폴리시 (LPS · 에픽 · 사회환원) <span class="sub-badge">3 POLICIES</span></span>
+          <span id="arrow-accHkPolicy3" class="accordion-arrow">펼치기 ▼</span>
+        </button>
+        <div class="accordion-content">
+          <div class="policy-grid">
+            <div class="policy-card">
+              <h4>1. LPS 폴리시 (유동성·예금·LP 연계)</h4>
+              <p>HK 뱅크 예금 및 유동성 연계 운용을 통해 기간별(6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4%) 변동금리 기준을 제공합니다.</p>
+            </div>
+            <div class="policy-card">
+              <h4>2. 에픽 폴리시 (인터넷 뱅킹 고도화)</h4>
+              <p>실시간 잔액 조회, 계좌 이체, 예금 상품, 웹3 디지털 은행 브릿지 기능을 단계적으로 고도화하는 실행 정책입니다.</p>
+            </div>
+            <div class="policy-card">
+              <h4>3. 사회환원 폴리시 (순수익 최대 60%)</h4>
+              <p>순수익 최대 60% 사회환원 및 리워드 정책에 따라 국경없는 의사회·세이브드 칠드런·유엔 난민기구 165층 우선권을 지원합니다.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- [2] 인터넷 은행 (HK 뱅크) 전용 화면 -->
-    <div id="viewInternet" class="bank-view">
+      <!-- HK 뱅크 계좌 이체 & 예금/브릿지 -->
       <div class="section-header">
         <div>
-          <h3>인터넷 은행 (HK 뱅크) 전용 메뉴</h3>
-          <p>인터넷 은행(HK 뱅크)을 선택했을 때만 표시되는 전용 계좌 조회·이체·예금·결제 영역입니다.</p>
+          <h3>인터넷 은행 (HK 뱅크) 계좌 · 이체 · 예금 · 브릿지</h3>
+          <p>HK 뱅크 선택 시에만 보이는 전용 인터넷 뱅킹 처리 패널입니다.</p>
         </div>
       </div>
 
@@ -933,7 +1058,7 @@
       <div class="section-header" style="margin: 0 0 8px;">
         <div>
           <h3>실시간 활동 로그</h3>
-          <p>은행 전환, 스왑/예치/KYC 확인, HK 뱅크 처리 내역이 기록됩니다.</p>
+          <p>은행 전환, 백서/에픽/폴리시 펼치기·접기, 거래 및 KYC 내역이 기록됩니다.</p>
         </div>
         <button class="btn btn-outline" onclick="clearActivityLog()">로그 비우기</button>
       </div>
@@ -970,6 +1095,48 @@
       { no: "10", code: "PI", name: "PI수량", desc: "파이코인 수량 조회 및 KYC 연동" }
     ];
 
+    const WEB3_WP_TOPICS = [
+      "부모 플랫폼 HKWB 거버넌스", "웹3 디지털 은행 비전", "지갑연결 프로토콜", "온체인 송금 아키텍처", "탈중앙 결재 시스템",
+      "6개월 변동금리(8~12%) 모델", "1년 변동금리(12~18%) 모델", "2년 변동금리(16~24%) 모델", "3년 변동금리(20~31.4%) 모델", "기여도 리워드 보상 구조",
+      "기본소득 분배 메커니즘", "코인마켓캡 시세 오라클", "통합 스왑 엔진", "DEX 유동성 풀 스왑", "LP 스테이킹 인센티브",
+      "파이코인 수량 조회 연동", "파이코인 KYC 통과 절차", "HK-NEXUS 스마트 단말 연동", "다중 서명 보안 모델", "스마트 컨트랙트 감사",
+      "크로스체인 브릿지 구조", "슬리피지 보호 로직", "유동성 깊이 관리", "수수료 분배 규칙", "순수익 최대 60% 사회환원",
+      "국경없는 의사회 후원 구조", "세이브드 칠드런 후원 구조", "유엔 난민기구 후원 구조", "165층 건물 구호단체 우선권", "60개 언어 글로벌 지원",
+      "고객센터 AI 삐니 안내", "테스트 모드 시뮬레이션", "실질 운영 모드 전환", "데이터 무결성 검증", "지갑 복구 및 키 보호",
+      "비정상 거래 모니터링", "유동성 비상 안전장치", "커뮤니티 투명성 리포트", "생태계 파트너 온보딩", "개발자 API 표준",
+      "모바일·데스크톱 반응형 UI", "접근성 및 가독성 기준", "글로벌 규제 준수 체계", "자금세탁 방지(AML) 기본 원칙", "감사 로그 기록 체계",
+      "장기 지속가능성 모델", "인류·기술 공존 철학", "단계별 업그레이드 정책", "글로벌 확장 로드맵", "HKWB 최종 비전 요약"
+    ];
+
+    const WEB3_EPIC_TOPICS = [
+      "Epic 01. 지갑연결 코어 구축", "Epic 02. 초고속 송금 모듈", "Epic 03. 통합 결재 게이트웨이", "Epic 04. 변동금리 예치 엔진",
+      "Epic 05. 리워드 보상 분배기", "Epic 06. 기본소득 분배 모듈", "Epic 07. 코인마켓캡 시세 연동", "Epic 08. 스왑 실행 엔진",
+      "Epic 09. DEX 스왑 풀 연동", "Epic 10. LP 스테이킹 보상 풀", "Epic 11. 파이코인 수량 조회", "Epic 12. 파이코인 KYC 검증 흐름",
+      "Epic 13. HK-NEXUS 연동 브릿지", "Epic 14. 60개 언어 인터페이스", "Epic 15. 고객센터 AI 삐니 연동", "Epic 16. 테스트·실질 모드 전환",
+      "Epic 17. 순수익 60% 사회환원 트래커", "Epic 18. 165층 구호단체 우선권 포털", "Epic 19. 보안·모니터링 고도화", "Epic 20. 메인넷 정식 확장"
+    ];
+
+    const HK_WP_TOPICS = [
+      "인터넷 은행 (HK 뱅크) 개요", "HKWB 부모-자식 은행 구조", "HK 뱅크 계좌 체계 설계", "실시간 잔액 조회 엔진", "계좌 이체 처리 프로세스",
+      "이체 한도 및 보안 인증", "6개월 예금 변동금리(8~12%)", "1년 예금 변동금리(12~18%)", "2년 예금 변동금리(16~24%)", "3년 예금 변동금리(20~31.4%)",
+      "정기·변동 예금 이자 산출", "온·오프라인 결제 연동", "웹3 디지털 은행 브릿지", "자산 전환 정산 구조", "테스트 모드 시뮬레이션",
+      "실질 운영 모드 전환 기준", "거래 내역 및 로그 관리", "오류 복구 및 재시도 정책", "세션 보안 및 타임아웃", "데이터 암호화 전송 기준",
+      "접근 권한 및 역할 관리", "고객 문의 및 AI 삐니 연계", "60개 언어 다국어 지원", "추천인(ljw2358) 식별 체계", "공식 도메인(hkwb.world) 운영",
+      "지원 채널(support@hkwb.world)", "순수익 최대 60% 사회환원", "구호단체 3곳 후원 연계", "165층 우선 입주 협력", "유동성 건전성 관리",
+      "지급준비 및 정산 주기", "파트너 금융기관 연계", "정기 감사 및 리포팅", "재해 복구(DR) 시나리오", "고트래픽 부하 분산",
+      "사용자 경험(UX) 표준화", "모바일·PC 화면 일관성", "알림 및 상태 피드백", "수수료 정책 투명화", "분쟁 및 이의제기 절차",
+      "컴플라이언스 준수 체계", "개인정보 보호 기준", "API 버전 관리 정책", "점검 공지 및 유지보수", "생태계 확장 전략",
+      "HK-NEXUS 연동 시나리오", "글로벌 통화 확장성", "장기 운영 로드맵", "리스크 관리 매트릭스", "HK 뱅크 종합 요약"
+    ];
+
+    const HK_EPIC_TOPICS = [
+      "Epic 01. HK 뱅크 계좌 개설·조회", "Epic 02. 즉시 계좌 이체 엔진", "Epic 03. 이체 메모 및 내역 관리", "Epic 04. 6개월 예금 상품 구현",
+      "Epic 05. 1년 예금 상품 구현", "Epic 06. 2년 예금 상품 구현", "Epic 07. 3년 예금 상품 구현", "Epic 08. HK 뱅크 결제 모듈",
+      "Epic 09. 웹3 디지털 은행 브릿지", "Epic 10. 테스트·실질 모드 연동", "Epic 11. 실시간 로그 기록기", "Epic 12. 중앙 안내 모달 연동",
+      "Epic 13. 60개 언어 선택 지원", "Epic 14. 고객센터 AI 삐니 연결", "Epic 15. 사회환원 60% 기준 반영", "Epic 16. 구호단체 우선권 안내 연동",
+      "Epic 17. 보안·인증 강화 단계", "Epic 18. 대용량 정산 성능 개선", "Epic 19. HK-NEXUS 단말 연계", "Epic 20. HK 뱅크 통합 안정화"
+    ];
+
     let activeMode = "test";
     let hkBalance = 100000000;
     let prices = {
@@ -1003,14 +1170,38 @@
         cardInternet.classList.remove("selected");
         viewWeb3.classList.add("active");
         viewInternet.classList.remove("active");
-        writeLog("웹3 디지털 은행 전용 화면으로 전환");
+        writeLog("웹3 디지털 은행 전용 화면 열림");
       } else {
         cardInternet.classList.add("selected");
         cardWeb3.classList.remove("selected");
         viewInternet.classList.add("active");
         viewWeb3.classList.remove("active");
-        writeLog("인터넷 은행 (HK 뱅크) 전용 화면으로 전환");
+        writeLog("인터넷 은행 (HK 뱅크) 전용 화면 열림");
       }
+    }
+
+    function toggleAccordion(id) {
+      const box = document.getElementById(id);
+      const arrow = document.getElementById("arrow-" + id);
+      box.classList.toggle("open");
+      const isOpen = box.classList.contains("open");
+      if (arrow) {
+        arrow.textContent = isOpen ? "접기 ▲" : "펼치기 ▼";
+      }
+      writeLog(`${id} ${isOpen ? "펼침" : "접음"}`);
+    }
+
+    function populateNumberedCards(containerId, items, prefix) {
+      const el = document.getElementById(containerId);
+      el.innerHTML = items.map((label, idx) => {
+        const num = String(idx + 1).padStart(2, "0");
+        return `
+          <div class="item-card">
+            <strong>${prefix} #${num}</strong>
+            <span>${label}</span>
+          </div>
+        `;
+      }).join("");
     }
 
     function setMode(nextMode) {
@@ -1083,7 +1274,7 @@
           if (data.tether?.usd) prices.USDT = Number(data.tether.usd);
         }
       } catch (e) {
-        // 기본 기준 시세 유지
+        // 기준 시세 유지
       }
       prices.updated = new Date().toLocaleTimeString("ko-KR");
       renderPriceBox();
@@ -1226,6 +1417,10 @@
     }
 
     // 초기 실행
+    populateNumberedCards("web3Wp50Grid", WEB3_WP_TOPICS, "웹3 백서");
+    populateNumberedCards("web3Epic20Grid", WEB3_EPIC_TOPICS, "웹3 에픽");
+    populateNumberedCards("hkWp50Grid", HK_WP_TOPICS, "HK 뱅크 백서");
+    populateNumberedCards("hkEpic20Grid", HK_EPIC_TOPICS, "HK 뱅크 에픽");
     renderTenModules();
     renderPriceBox();
     recalcSwap();
