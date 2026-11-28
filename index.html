@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB · HK WorldBank</title>
+  <title>HKWB</title>
   <style>
     * {
       box-sizing: border-box;
@@ -23,7 +23,6 @@
       padding: 28px 20px;
     }
 
-    /* 화면의 약 2/3 비중을 차지하는 중앙 컨테이너 */
     .page-wrapper {
       width: 68vw;
       min-width: 640px;
@@ -34,7 +33,6 @@
       gap: 18px;
     }
 
-    /* 우측 상단 언어 선택 영역 (한국어만 깔끔히 표시) */
     .top-bar {
       width: 100%;
       display: flex;
@@ -124,7 +122,6 @@
       font-weight: 700;
     }
 
-    /* 메인 게이트웨이 카드 */
     .gateway-card {
       width: 100%;
       background: rgba(15, 20, 46, 0.9);
@@ -136,9 +133,9 @@
     }
 
     .brand-title {
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 800;
-      letter-spacing: -0.4px;
+      letter-spacing: 1px;
       color: #facc15;
       margin-bottom: 8px;
     }
@@ -221,7 +218,6 @@
       transform: translateY(-1px);
     }
 
-    /* 하단 푸터 */
     .footer-info {
       width: 100%;
       display: flex;
@@ -239,7 +235,6 @@
       font-weight: 600;
     }
 
-    /* 구글 번역 상단 배너 및 기본 위젯 숨김 */
     .goog-te-banner-frame.skiptranslate,
     .goog-te-gadget-icon,
     .VIpgJd-ZVi9od-ORHb-OEVmcd,
@@ -265,7 +260,7 @@
         padding: 24px 18px;
       }
       .brand-title {
-        font-size: 28px;
+        font-size: 30px;
       }
       .brand-tagline {
         font-size: 15px;
@@ -290,13 +285,13 @@
       </button>
 
       <div class="lang-dropdown" id="langDropdown" role="listbox" aria-label="언어 선택">
-        <input type="text" class="lang-search" id="langSearch" placeholder="언어 검색 (60개국어)..." />
+        <input type="text" class="lang-search" id="langSearch" placeholder="언어 검색..." />
         <div id="langList"></div>
       </div>
     </div>
 
     <main class="gateway-card">
-      <h1 class="brand-title" data-i18n="title">HKWB · HK WorldBank</h1>
+      <h1 class="brand-title" translate="no">HKWB</h1>
       <p class="brand-tagline" data-i18n="tagline">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
 
       <section class="bank-grid">
@@ -327,8 +322,8 @@
     </main>
 
     <footer class="footer-info">
-      <div><span data-i18n="footerRole">체어맨 이재완</span> · <span data-i18n="footerRefLabel">추천인</span>: <span>ljw2358</span></div>
-      <div><span data-i18n="footerSupportLabel">문의</span>: <span>support@hkwb.world</span></div>
+      <div><span data-i18n="footerRole">체어맨 이재완</span> · <span data-i18n="footerRefLabel">추천인</span>: <span translate="no">ljw2358</span></div>
+      <div><span data-i18n="footerSupportLabel">문의</span>: <span translate="no">support@hkwb.world</span></div>
     </footer>
   </div>
 
@@ -398,7 +393,6 @@
 
     const UI_TEXT = {
       ko: {
-        title: "HKWB · HK WorldBank",
         tagline: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
         web3Title: "웹3 디지털 은행",
         web3Desc: "지갑연결 · 송금 · 결재 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량",
@@ -411,7 +405,6 @@
         footerSupportLabel: "문의"
       },
       en: {
-        title: "HKWB · HK WorldBank",
         tagline: "Next-Generation Digital Financial Innovation Where Humanity and Technology Coexist",
         web3Title: "Web3 Digital Bank",
         web3Desc: "Wallet Connect · Transfer · Pay · Deposit · Reward · UBI · Swap · DEX Swap · LP Staking · PI Balance",
@@ -422,6 +415,18 @@
         footerRole: "Chairman Lee Jae-wan",
         footerRefLabel: "Referral",
         footerSupportLabel: "Support"
+      },
+      ja: {
+        tagline: "人類と技術が共存する次世代デジタル金融イノベーション",
+        web3Title: "Web3デジタルバンク",
+        web3Desc: "ウォレット接続 · 送金 · 決済 · 預け入れ · 報酬 · ベーシックインカム · スワップ · DEXスワップ · LPステーキング · PI残高",
+        web3Btn: "Web3デジタルバンクへ進む",
+        internetTitle: "インターネットバンク",
+        internetDesc: "口座開設 · 入出金 · 即時振込 · 定期預金 · 積立 · 融資 · 無料信用スコア照会",
+        internetBtn: "インターネットバンクへ進む",
+        footerRole: "チェアマン 李載完",
+        footerRefLabel: "紹介コード",
+        footerSupportLabel: "お問い合わせ"
       }
     };
 
@@ -467,18 +472,20 @@
     }
 
     function setGoogleTranslateCookie(langCode) {
-      const value = langCode === "ko" ? "/ko/ko" : `/ko/${langCode}`;
+      const value = `/ko/${langCode}`;
       document.cookie = `googtrans=${value}; path=/`;
-      document.cookie = `googtrans=${value}; path=/; domain=${window.location.hostname}`;
+      if (window.location.hostname) {
+        document.cookie = `googtrans=${value}; path=/; domain=${window.location.hostname}`;
+      }
     }
 
     function triggerGoogleTranslate(langCode, retry = 0) {
       setGoogleTranslateCookie(langCode);
       const selectEl = document.querySelector("select.goog-te-combo");
       if (selectEl) {
-        selectEl.value = langCode === "ko" ? "ko" : langCode;
+        selectEl.value = langCode;
         selectEl.dispatchEvent(new Event("change"));
-      } else if (retry < 8) {
+      } else if (retry < 10) {
         setTimeout(() => triggerGoogleTranslate(langCode, retry + 1), 250);
       }
     }
@@ -539,3 +546,4 @@
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
+
