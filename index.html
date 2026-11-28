@@ -45,7 +45,7 @@
       padding: 20px 16px 48px;
     }
 
-    /* 첫 화면 (외부 껍질: 타이틀·슬로건·언어·진입버튼 2개만 표시) */
+    /* 첫 화면 (외부 껍질: 우측 상단 축소 '한국어', 타이틀·슬로건, 진입버튼 2개만 표시) */
     .first-page {
       min-height: calc(100vh - 68px);
       display: flex;
@@ -58,41 +58,24 @@
     .lang-bar {
       width: 100%;
       display: flex;
-      justify-content: center;
-      margin-bottom: 34px;
+      justify-content: flex-end;
+      margin-bottom: 28px;
     }
 
-    .lang-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .lang-fixed {
       background: rgba(26, 20, 56, 0.94);
       border: 1px solid var(--line-gold);
-      border-radius: 12px;
-      padding: 8px 14px;
-    }
-
-    .lang-box label {
-      font-size: 0.88rem;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 0.76rem;
       font-weight: 700;
       color: var(--gold);
-      white-space: nowrap;
+      letter-spacing: -0.2px;
     }
 
     select, input, button {
       font-family: inherit;
       color: var(--text);
-    }
-
-    select#langSelect {
-      background: #0c081c;
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      max-width: 260px;
-      cursor: pointer;
     }
 
     .hero-brand {
@@ -138,7 +121,7 @@
         grid-template-columns: 1fr;
       }
       .lang-bar {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
       }
       .hero-brand {
         padding: 26px 14px 32px;
@@ -423,35 +406,33 @@
   <div class="wrap">
     <!-- 양파 1단계: 첫 화면 -->
     <section class="first-page" id="firstPage">
+      <!-- 우측 상단으로 이동 및 축소된 한국어 표시 -->
       <div class="lang-bar">
-        <div class="lang-box">
-          <label for="langSelect" data-i18n="langLabel">60개국어 언어 선택</label>
-          <select id="langSelect" aria-label="60개국어 언어 선택"></select>
-        </div>
+        <div class="lang-fixed">한국어</div>
       </div>
 
       <div class="hero-brand">
-        <h1 class="hero-title" data-i18n="heroTitle">HKWB · HK WorldBank</h1>
-        <p class="hero-slogan" data-i18n="heroSlogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
+        <h1 class="hero-title">HKWB · HK WorldBank</h1>
+        <p class="hero-slogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
       </div>
 
       <div class="entry-grid">
         <div class="entry-card web3">
           <div>
-            <h2 data-i18n="web3Title">웹3 디지털 은행</h2>
-            <p data-i18n="web3Desc">안쪽 열기: 10대 분산 연동망 · 스왑 · 예치 · UBI</p>
+            <h2>웹3 디지털 은행</h2>
+            <p>안쪽 열기: 10대 분산 연동망 · 스왑 · 예치 · UBI</p>
           </div>
-          <button type="button" class="btn-enter web3" onclick="peelLayer('web3')" data-i18n="web3Btn">
+          <button type="button" class="btn-enter web3" onclick="peelLayer('web3')">
             웹3 디지털 은행 진입하기
           </button>
         </div>
 
         <div class="entry-card internet">
           <div>
-            <h2 data-i18n="internetTitle">인터넷 은행</h2>
-            <p data-i18n="internetDesc">안쪽 열기: 입금·출금·송금·예치·적금·대출 · 신용점수</p>
+            <h2>인터넷 은행</h2>
+            <p>안쪽 열기: 입금·출금·송금·예치·적금·대출 · 신용점수</p>
           </div>
-          <button type="button" class="btn-enter internet" onclick="peelLayer('internet')" data-i18n="internetBtn">
+          <button type="button" class="btn-enter internet" onclick="peelLayer('internet')">
             인터넷 은행 진입하기
           </button>
         </div>
@@ -461,43 +442,43 @@
     <!-- 양파 2단계 A: 웹3 디지털 은행 안쪽 -->
     <section class="inner-page" id="web3Inner">
       <div class="inner-top">
-        <h2 data-i18n="web3PageTitle">웹3 디지털 은행 — 10대 분산 연동망</h2>
-        <button type="button" class="back-btn" onclick="peelLayer('home')" data-i18n="backHomeBtn">← 첫 화면</button>
+        <h2>웹3 디지털 은행 — 10대 분산 연동망</h2>
+        <button type="button" class="back-btn" onclick="peelLayer('home')">← 첫 화면</button>
       </div>
 
       <div class="net-grid" id="netGrid"></div>
 
       <div class="two-col">
         <div class="box">
-          <h3 data-i18n="swapBoxTitle">스왑 &amp; DEX 스왑</h3>
+          <h3>스왑 &amp; DEX 스왑</h3>
           <div class="field">
-            <label for="fromAsset" data-i18n="fromLabel">출발 자산</label>
+            <label for="fromAsset">출발 자산</label>
             <select id="fromAsset" onchange="calcSwap()"></select>
           </div>
           <div class="field">
-            <label for="toAsset" data-i18n="toLabel">도착 자산</label>
+            <label for="toAsset">도착 자산</label>
             <select id="toAsset" onchange="calcSwap()"></select>
           </div>
           <div class="field">
-            <label for="swapQty" data-i18n="qtyLabel">수량</label>
+            <label for="swapQty">수량</label>
             <input type="number" id="swapQty" value="100" min="0" step="any" oninput="calcSwap()" />
           </div>
           <div class="calc-box" id="swapCalcOut"></div>
-          <button type="button" class="gold-btn" onclick="calcSwap()" data-i18n="calcBtn">계산 반영</button>
+          <button type="button" class="gold-btn" onclick="calcSwap()">계산 반영</button>
         </div>
 
         <div class="box">
-          <h3 data-i18n="w3DepBoxTitle">기간별 예치 이자율</h3>
+          <h3>기간별 예치 이자율</h3>
           <div class="field">
-            <label for="w3Term" data-i18n="termLabel">예치 기간</label>
+            <label for="w3Term">예치 기간</label>
             <select id="w3Term" onchange="calcW3Dep()"></select>
           </div>
           <div class="field">
-            <label for="w3Amt" data-i18n="amtLabel">예치 금액 (KRW)</label>
+            <label for="w3Amt">예치 금액 (KRW)</label>
             <input type="number" id="w3Amt" value="10000000" min="0" step="10000" oninput="calcW3Dep()" />
           </div>
           <div class="calc-box" id="w3DepOut"></div>
-          <button type="button" class="gold-btn" onclick="calcW3Dep()" data-i18n="calcBtn">계산 반영</button>
+          <button type="button" class="gold-btn" onclick="calcW3Dep()">계산 반영</button>
         </div>
       </div>
     </section>
@@ -505,46 +486,46 @@
     <!-- 양파 2단계 B: 인터넷 은행 안쪽 -->
     <section class="inner-page" id="internetInner">
       <div class="inner-top">
-        <h2 data-i18n="internetPageTitle">인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수</h2>
-        <button type="button" class="back-btn" onclick="peelLayer('home')" data-i18n="backHomeBtn">← 첫 화면</button>
+        <h2>인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수</h2>
+        <button type="button" class="back-btn" onclick="peelLayer('home')">← 첫 화면</button>
       </div>
 
       <div class="six-grid">
         <button type="button" class="six-btn active" data-fn="deposit" onclick="pickFn('deposit')">
-          <strong data-i18n="fn1">1. 입금</strong>
+          <strong>1. 입금</strong>
           <span>DEPOSIT</span>
         </button>
         <button type="button" class="six-btn" data-fn="withdraw" onclick="pickFn('withdraw')">
-          <strong data-i18n="fn2">2. 출금</strong>
+          <strong>2. 출금</strong>
           <span>WITHDRAW</span>
         </button>
         <button type="button" class="six-btn" data-fn="transfer" onclick="pickFn('transfer')">
-          <strong data-i18n="fn3">3. 송금</strong>
+          <strong>3. 송금</strong>
           <span>TRANSFER</span>
         </button>
         <button type="button" class="six-btn" data-fn="staking" onclick="pickFn('staking')">
-          <strong data-i18n="fn4">4. 예치</strong>
+          <strong>4. 예치</strong>
           <span>TERM DEPOSIT</span>
         </button>
         <button type="button" class="six-btn" data-fn="savings" onclick="pickFn('savings')">
-          <strong data-i18n="fn5">5. 적금</strong>
+          <strong>5. 적금</strong>
           <span>SAVINGS</span>
         </button>
         <button type="button" class="six-btn" data-fn="loan" onclick="pickFn('loan')">
-          <strong data-i18n="fn6">6. 대출</strong>
+          <strong>6. 대출</strong>
           <span>LOAN</span>
         </button>
       </div>
 
       <div class="two-col">
         <div class="box">
-          <h3 data-i18n="bankRateTitle">예치 이자율 안내</h3>
+          <h3>예치 이자율 안내</h3>
           <div class="field">
-            <label for="bankTerm" data-i18n="termLabel">예치 기간</label>
+            <label for="bankTerm">예치 기간</label>
             <select id="bankTerm" onchange="calcBank()"></select>
           </div>
           <div class="field">
-            <label for="bankAmt" data-i18n="amtLabel">금액 (KRW)</label>
+            <label for="bankAmt">금액 (KRW)</label>
             <input type="number" id="bankAmt" value="10000000" min="0" step="10000" oninput="calcBank()" />
           </div>
           <div class="calc-box" id="bankCalcOut"></div>
@@ -552,8 +533,8 @@
           <table class="rate-tbl">
             <thead>
               <tr>
-                <th data-i18n="thPeriod">기간</th>
-                <th data-i18n="thRate">이자율</th>
+                <th>기간</th>
+                <th>이자율</th>
               </tr>
             </thead>
             <tbody id="rateRows"></tbody>
@@ -561,20 +542,20 @@
         </div>
 
         <div class="box">
-          <h3 data-i18n="creditTitle">신용정보 조회 (NICE + 블록체인)</h3>
+          <h3>신용정보 조회 (NICE + 블록체인)</h3>
           <div class="field">
-            <label for="niceIn" data-i18n="niceLabel">NICE 지수 (0~100)</label>
+            <label for="niceIn">NICE 지수 (0~100)</label>
             <input type="number" id="niceIn" value="88" min="0" max="100" />
           </div>
           <div class="field">
-            <label for="chainIn" data-i18n="chainLabel">블록체인 지수 (0~100)</label>
+            <label for="chainIn">블록체인 지수 (0~100)</label>
             <input type="number" id="chainIn" value="92" min="0" max="100" />
           </div>
-          <button type="button" class="gold-btn" onclick="calcCredit()" data-i18n="creditBtn">신용정보 점수 조회</button>
+          <button type="button" class="gold-btn" onclick="calcCredit()">신용정보 점수 조회</button>
 
           <div class="credit-box">
             <div>
-              <div style="font-size:0.78rem; color:var(--text-sub);" data-i18n="creditScoreLabel">통합 신용점수</div>
+              <div style="font-size:0.78rem; color:var(--text-sub);">통합 신용점수</div>
               <div class="credit-score" id="creditScoreOut">915점</div>
             </div>
             <div style="font-size:0.84rem; text-align:right;" id="creditLimitOut"></div>
@@ -585,185 +566,35 @@
   </div>
 
   <script>
-    const LANGS = [
-      { code: "ko", ko: "한국어", native: "한국어" },
-      { code: "en", ko: "영어", native: "English" },
-      { code: "zh-CN", ko: "중국어(간체)", native: "简体中文" },
-      { code: "zh-TW", ko: "중국어(번체)", native: "繁體中文" },
-      { code: "ja", ko: "일본어", native: "日本語" },
-      { code: "es", ko: "스페인어", native: "Español" },
-      { code: "fr", ko: "프랑스어", native: "Français" },
-      { code: "de", ko: "독일어", native: "Deutsch" },
-      { code: "it", ko: "이탈리아어", native: "Italiano" },
-      { code: "pt", ko: "포르투갈어", native: "Português" },
-      { code: "ru", ko: "러시아어", native: "Русский" },
-      { code: "ar", ko: "아랍어", native: "العربية", rtl: true },
-      { code: "hi", ko: "힌디어", native: "हिन्दी" },
-      { code: "bn", ko: "벵골어", native: "বাংলা" },
-      { code: "ur", ko: "우르두어", native: "اردو", rtl: true },
-      { code: "vi", ko: "베트남어", native: "Tiếng Việt" },
-      { code: "th", ko: "태국어", native: "ไทย" },
-      { code: "id", ko: "인도네시아어", native: "Bahasa Indonesia" },
-      { code: "ms", ko: "말레이어", native: "Bahasa Melayu" },
-      { code: "tl", ko: "필리핀어", native: "Filipino" },
-      { code: "tr", ko: "튀르키예어", native: "Türkçe" },
-      { code: "nl", ko: "네덜란드어", native: "Nederlands" },
-      { code: "pl", ko: "폴란드어", native: "Polski" },
-      { code: "uk", ko: "우크라이나어", native: "Українська" },
-      { code: "sv", ko: "스웨덴어", native: "Svenska" },
-      { code: "no", ko: "노르웨이어", native: "Norsk" },
-      { code: "da", ko: "덴마크어", native: "Dansk" },
-      { code: "fi", ko: "핀란드어", native: "Suomi" },
-      { code: "cs", ko: "체코어", native: "Čeština" },
-      { code: "el", ko: "그리스어", native: "Ελληνικά" },
-      { code: "he", ko: "히브리어", native: "עברית", rtl: true },
-      { code: "fa", ko: "페르시아어", native: "فارسی", rtl: true },
-      { code: "sw", ko: "스와힐리어", native: "Kiswahili" },
-      { code: "af", ko: "아프리칸스어", native: "Afrikaans" },
-      { code: "am", ko: "암하라어", native: "አማርኛ" },
-      { code: "az", ko: "아제르바이잔어", native: "Azərbaycan" },
-      { code: "be", ko: "벨라루스어", native: "Беларуская" },
-      { code: "bg", ko: "불가리아어", native: "Български" },
-      { code: "ca", ko: "카탈루냐어", native: "Català" },
-      { code: "et", ko: "에스토니아어", native: "Eesti" },
-      { code: "eu", ko: "바스크어", native: "Euskara" },
-      { code: "gl", ko: "갈리시아어", native: "Galego" },
-      { code: "ka", ko: "조지아어", native: "ქართული" },
-      { code: "hr", ko: "크로아티아어", native: "Hrvatski" },
-      { code: "hu", ko: "헝가리어", native: "Magyar" },
-      { code: "is", ko: "아이슬란드어", native: "Íslenska" },
-      { code: "kk", ko: "카자흐어", native: "Қазақ тілі" },
-      { code: "km", ko: "크메르어", native: "ខ្មែរ" },
-      { code: "kn", ko: "칸나다어", native: "ಕನ್ನಡ" },
-      { code: "lo", ko: "라오어", native: "ລາວ" },
-      { code: "lt", ko: "리투아니아어", native: "Lietuvių" },
-      { code: "lv", ko: "라트비아어", native: "Latviešu" },
-      { code: "mk", ko: "마케도니아어", native: "Македонски" },
-      { code: "ml", ko: "말라얄람어", native: "മലയാളം" },
-      { code: "mn", ko: "몽골어", native: "Монгол" },
-      { code: "mr", ko: "마라티어", native: "मराठी" },
-      { code: "my", ko: "미얀마어", native: "မြန်မာ" },
-      { code: "ne", ko: "네팔어", native: "नेपाली" },
-      { code: "ro", ko: "루마니아어", native: "Română" },
-      { code: "si", ko: "싱할라어", native: "සිංහල" }
-    ];
-
-    const KO_TEXT = {
-      langLabel: "60개국어 언어 선택",
-      heroTitle: "HKWB · HK WorldBank",
-      heroSlogan: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
-      web3Title: "웹3 디지털 은행",
-      web3Desc: "안쪽 열기: 10대 분산 연동망 · 스왑 · 예치 · UBI",
-      web3Btn: "웹3 디지털 은행 진입하기",
-      internetTitle: "인터넷 은행",
-      internetDesc: "안쪽 열기: 입금·출금·송금·예치·적금·대출 · 신용점수",
-      internetBtn: "인터넷 은행 진입하기",
-      web3PageTitle: "웹3 디지털 은행 — 10대 분산 연동망",
-      internetPageTitle: "인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수",
-      backHomeBtn: "← 첫 화면",
-      swapBoxTitle: "스왑 & DEX 스왑",
-      fromLabel: "출발 자산",
-      toLabel: "도착 자산",
-      qtyLabel: "수량",
-      calcBtn: "계산 반영",
-      w3DepBoxTitle: "기간별 예치 이자율",
-      termLabel: "예치 기간",
-      amtLabel: "예치 금액 (KRW)",
-      fn1: "1. 입금",
-      fn2: "2. 출금",
-      fn3: "3. 송금",
-      fn4: "4. 예치",
-      fn5: "5. 적금",
-      fn6: "6. 대출",
-      bankRateTitle: "예치 이자율 안내",
-      thPeriod: "기간",
-      thRate: "이자율",
-      creditTitle: "신용정보 조회 (NICE + 블록체인)",
-      niceLabel: "NICE 지수 (0~100)",
-      chainLabel: "블록체인 지수 (0~100)",
-      creditBtn: "신용정보 점수 조회",
-      creditScoreLabel: "통합 신용점수",
-      p6m: "6개월",
-      p1y: "1년",
-      p2y: "2년",
-      p3y: "3년",
-      estInt: "예상 이자",
-      loanLimit: "추천 한도"
-    };
-
-    const EN_TEXT = {
-      ...KO_TEXT,
-      langLabel: "60 Languages",
-      heroSlogan: "Next-Generation Digital Finance Where Humanity & Technology Coexist",
-      web3Title: "Web3 Digital Bank",
-      web3Desc: "Inner View: 10 Modules · Swap · Deposit · UBI",
-      web3Btn: "Enter Web3 Digital Bank",
-      internetTitle: "Internet Bank",
-      internetDesc: "Inner View: 6 Modules · Deposit Rates · Credit Score",
-      internetBtn: "Enter Internet Bank",
-      web3PageTitle: "Web3 Digital Bank — 10 Decentralized Modules",
-      internetPageTitle: "Internet Bank — 6 Modules · Rates · Credit",
-      backHomeBtn: "← Home",
-      swapBoxTitle: "Swap & DEX Swap",
-      fromLabel: "From Asset",
-      toLabel: "To Asset",
-      qtyLabel: "Quantity",
-      calcBtn: "Update Calculation",
-      w3DepBoxTitle: "Term Deposit Yields",
-      termLabel: "Deposit Term",
-      amtLabel: "Amount (KRW)",
-      fn1: "1. Deposit",
-      fn2: "2. Withdraw",
-      fn3: "3. Transfer",
-      fn4: "4. Term Deposit",
-      fn5: "5. Savings",
-      fn6: "6. Loan",
-      bankRateTitle: "Deposit Interest Rates",
-      thPeriod: "Term",
-      thRate: "Rate",
-      creditTitle: "Credit Score Check (NICE + Blockchain)",
-      niceLabel: "NICE Index (0–100)",
-      chainLabel: "Blockchain Index (0–100)",
-      creditBtn: "Check Credit Score",
-      creditScoreLabel: "Combined Credit Score",
-      p6m: "6 Months",
-      p1y: "1 Year",
-      p2y: "2 Years",
-      p3y: "3 Years",
-      estInt: "Estimated Interest",
-      loanLimit: "Recommended Limit"
-    };
-
     const ASSETS = [
-      { id: "PI", sym: "PI", nameKo: "파이", nameEn: "Pi", krw: 2400 },
-      { id: "USDT", sym: "USDT", nameKo: "테더", nameEn: "USDT", krw: 1420 },
-      { id: "XRP", sym: "XRP", nameKo: "리플", nameEn: "XRP", krw: 1850 },
-      { id: "SOL", sym: "SOL", nameKo: "솔라나", nameEn: "SOL", krw: 245000 },
-      { id: "ETH", sym: "ETH", nameKo: "이더리움", nameEn: "ETH", krw: 4250000 },
-      { id: "BTC", sym: "BTC", nameKo: "비트코인", nameEn: "BTC", krw: 118000000 }
+      { id: "PI", sym: "PI", name: "파이", krw: 2400 },
+      { id: "USDT", sym: "USDT", name: "테더", krw: 1420 },
+      { id: "XRP", sym: "XRP", name: "리플", krw: 1850 },
+      { id: "SOL", sym: "SOL", name: "솔라나", krw: 245000 },
+      { id: "ETH", sym: "ETH", name: "이더리움", krw: 4250000 },
+      { id: "BTC", sym: "BTC", name: "비트코인", krw: 118000000 }
     ];
 
     const NET_10 = [
-      { id: "wallet", ko: "1. 지갑연결", en: "1. Wallet Connect", subKo: "멀티체인 지갑 연동", subEn: "Wallet link" },
-      { id: "remit", ko: "2. 송금", en: "2. Transfer", subKo: "즉시 온체인 송금", subEn: "Instant transfer" },
-      { id: "pay", ko: "3. 결재", en: "3. Payment", subKo: "글로벌 결재 연동", subEn: "Global pay" },
-      { id: "deposit", ko: "4. 예치", en: "4. Deposit", subKo: "기간별 이자 예치", subEn: "Term deposit" },
-      { id: "reward", ko: "5. 보상", en: "5. Reward", subKo: "참여 리워드 지급", subEn: "Rewards" },
-      { id: "ubi", ko: "6. 기본소득", en: "6. UBI", subKo: "최대 60% UBI 환원", subEn: "Up to 60% UBI" },
-      { id: "swap", ko: "7. 스왑", en: "7. Swap", subKo: "즉시 자산 전환", subEn: "Instant swap" },
-      { id: "dex", ko: "8. DEX스왑", en: "8. DEX Swap", subKo: "탈중앙 유동성 스왑", subEn: "DEX swap" },
-      { id: "lp", ko: "9. LP스테이킹", en: "9. LP Staking", subKo: "유동성 풀 스테이킹", subEn: "LP staking" },
-      { id: "piQty", ko: "10. PI수량", en: "10. PI Balance", subKo: "파이 수량 연동", subEn: "PI balance" }
+      { id: "wallet", title: "1. 지갑연결", sub: "멀티체인 지갑 연동" },
+      { id: "remit", title: "2. 송금", sub: "즉시 온체인 송금" },
+      { id: "pay", title: "3. 결재", sub: "글로벌 결재 연동" },
+      { id: "deposit", title: "4. 예치", sub: "기간별 이자 예치" },
+      { id: "reward", title: "5. 보상", sub: "참여 리워드 지급" },
+      { id: "ubi", title: "6. 기본소득", sub: "최대 60% UBI 환원" },
+      { id: "swap", title: "7. 스왑", sub: "즉시 자산 전환" },
+      { id: "dex", title: "8. DEX스왑", sub: "탈중앙 유동성 스왑" },
+      { id: "lp", title: "9. LP스테이킹", sub: "유동성 풀 스테이킹" },
+      { id: "piQty", title: "10. PI수량", sub: "파이 수량 연동" }
     ];
 
     const TERMS = {
-      "6m": { key: "p6m", min: 8.0, max: 12.0, yrs: 0.5 },
-      "1y": { key: "p1y", min: 12.0, max: 18.0, yrs: 1.0 },
-      "2y": { key: "p2y", min: 16.0, max: 24.0, yrs: 2.0 },
-      "3y": { key: "p3y", min: 20.0, max: 31.4, yrs: 3.0 }
+      "6m": { label: "6개월", min: 8.0, max: 12.0, yrs: 0.5 },
+      "1y": { label: "1년", min: 12.0, max: 18.0, yrs: 1.0 },
+      "2y": { label: "2년", min: 16.0, max: 24.0, yrs: 2.0 },
+      "3y": { label: "3년", min: 20.0, max: 31.4, yrs: 3.0 }
     };
 
-    let curLang = "ko";
     let curNet = "swap";
     let curFn = "deposit";
 
@@ -775,46 +606,6 @@
       if (n >= 1000) return n.toLocaleString("ko-KR", { maximumFractionDigits: 2 });
       if (n >= 1) return n.toLocaleString("ko-KR", { maximumFractionDigits: 4 });
       return n.toLocaleString("ko-KR", { maximumFractionDigits: 6 });
-    }
-
-    function getDict(code) {
-      if (code === "ko") return KO_TEXT;
-      const meta = LANGS.find((x) => x.code === code) || LANGS[1];
-      return {
-        ...EN_TEXT,
-        langLabel: `${meta.native} (${meta.ko})`,
-        heroSlogan: `${EN_TEXT.heroSlogan} · ${meta.native}`
-      };
-    }
-
-    function initLangs() {
-      const sel = document.getElementById("langSelect");
-      sel.innerHTML = LANGS.map((l, i) =>
-        `<option value="${l.code}">${i + 1}. ${l.native} (${l.ko})</option>`
-      ).join("");
-      sel.value = curLang;
-      sel.addEventListener("change", (e) => setLang(e.target.value));
-    }
-
-    function setLang(code) {
-      curLang = code;
-      const meta = LANGS.find((x) => x.code === code) || LANGS[0];
-      const d = getDict(code);
-      document.documentElement.lang = code;
-      document.documentElement.dir = meta.rtl ? "rtl" : "ltr";
-
-      document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const k = el.getAttribute("data-i18n");
-        if (d[k] !== undefined) el.textContent = d[k];
-      });
-
-      renderNets();
-      fillAssetSelects();
-      fillTermSelects();
-      calcSwap();
-      calcW3Dep();
-      calcBank();
-      calcCredit();
     }
 
     function peelLayer(layer) {
@@ -837,11 +628,10 @@
     }
 
     function renderNets() {
-      const isKo = curLang === "ko";
       document.getElementById("netGrid").innerHTML = NET_10.map((n) => `
         <button type="button" class="net-btn ${curNet === n.id ? "active" : ""}" onclick="pickNet('${n.id}')">
-          <strong>${isKo ? n.ko : n.en}</strong>
-          <span>${isKo ? n.subKo : n.subEn}</span>
+          <strong>${n.title}</strong>
+          <span>${n.sub}</span>
         </button>
       `).join("");
     }
@@ -856,9 +646,7 @@
       const t = document.getElementById("toAsset");
       const prevF = f.value || "PI";
       const prevT = t.value || "USDT";
-      const opts = ASSETS.map((a) =>
-        `<option value="${a.id}">${curLang === "ko" ? a.nameKo : a.nameEn} (${a.sym})</option>`
-      ).join("");
+      const opts = ASSETS.map((a) => `<option value="${a.id}">${a.name} (${a.sym})</option>`).join("");
       f.innerHTML = opts;
       t.innerHTML = opts;
       f.value = prevF;
@@ -866,13 +654,12 @@
     }
 
     function fillTermSelects() {
-      const d = getDict(curLang);
       const w3 = document.getElementById("w3Term");
       const bk = document.getElementById("bankTerm");
       const prevW3 = w3.value || "1y";
       const prevBk = bk.value || "1y";
       const html = Object.entries(TERMS).map(([k, v]) =>
-        `<option value="${k}">${d[v.key]} (${v.min}% ~ ${v.max}%)</option>`
+        `<option value="${k}">${v.label} (${v.min}% ~ ${v.max}%)</option>`
       ).join("");
       w3.innerHTML = html;
       bk.innerHTML = html;
@@ -880,7 +667,7 @@
       bk.value = prevBk;
 
       document.getElementById("rateRows").innerHTML = Object.values(TERMS).map((v) =>
-        `<tr><td>${d[v.key]}</td><td class="rate-em">${v.min}% ~ ${v.max}%</td></tr>`
+        `<tr><td>${v.label}</td><td class="rate-em">${v.min}% ~ ${v.max}%</td></tr>`
       ).join("");
     }
 
@@ -896,13 +683,12 @@
     }
 
     function calcW3Dep() {
-      const d = getDict(curLang);
       const t = TERMS[document.getElementById("w3Term").value] || TERMS["1y"];
       const amt = Math.max(0, parseFloat(document.getElementById("w3Amt").value) || 0);
       const minI = amt * (t.min / 100) * t.yrs;
       const maxI = amt * (t.max / 100) * t.yrs;
       document.getElementById("w3DepOut").innerHTML =
-        `${d[t.key]} (${t.min}%~${t.max}%) · ${d.estInt}: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
+        `${t.label} (${t.min}%~${t.max}%) · 예상 이자: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
     }
 
     function pickFn(fn) {
@@ -914,28 +700,30 @@
     }
 
     function calcBank() {
-      const d = getDict(curLang);
       const t = TERMS[document.getElementById("bankTerm").value] || TERMS["1y"];
       const amt = Math.max(0, parseFloat(document.getElementById("bankAmt").value) || 0);
       const minI = amt * (t.min / 100) * t.yrs;
       const maxI = amt * (t.max / 100) * t.yrs;
       document.getElementById("bankCalcOut").innerHTML =
-        `${fmtKrw(amt)} (${d[t.key]}) · ${d.estInt}: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
+        `${fmtKrw(amt)} (${t.label}) · 예상 이자: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
     }
 
     function calcCredit() {
-      const d = getDict(curLang);
       const niceV = Math.max(0, Math.min(100, parseFloat(document.getElementById("niceIn").value) || 0));
       const chainV = Math.max(0, Math.min(100, parseFloat(document.getElementById("chainIn").value) || 0));
       const score = Math.round(300 + ((niceV * 0.55 + chainV * 0.45) / 100) * 700);
       const limit = score >= 900 ? 200000000 : score >= 800 ? 100000000 : 50000000;
       document.getElementById("creditScoreOut").textContent = `${score}`;
-      document.getElementById("creditLimitOut").innerHTML = `${d.loanLimit}: <strong>${fmtKrw(limit)}</strong>`;
+      document.getElementById("creditLimitOut").innerHTML = `추천 한도: <strong>${fmtKrw(limit)}</strong>`;
     }
 
-    initLangs();
-    setLang("ko");
+    renderNets();
+    fillAssetSelects();
+    fillTermSelects();
+    calcSwap();
+    calcW3Dep();
+    calcBank();
+    calcCredit();
   </script>
 </body>
 </html>
-
