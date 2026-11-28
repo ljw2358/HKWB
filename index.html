@@ -37,7 +37,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
       background: radial-gradient(circle at top right, #132244 0%, var(--bg-primary) 55%);
       color: var(--text-primary);
-      line-height: 1.65;
+      line-height: 1.72;
       min-height: 100vh;
     }
 
@@ -56,7 +56,7 @@
     }
 
     .nav-container {
-      max-width: 1260px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 13px 20px;
       display: flex;
@@ -93,7 +93,7 @@
     .nav-links a {
       padding: 6px 10px;
       border-radius: 8px;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: var(--text-secondary);
       transition: background 0.2s, color 0.2s;
     }
@@ -122,18 +122,18 @@
     }
 
     main {
-      max-width: 1260px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 34px 20px 84px;
+      padding: 36px 20px 96px;
     }
 
     .hero {
       background: linear-gradient(145deg, rgba(22, 34, 62, 0.94), rgba(13, 20, 38, 0.98));
       border: 1px solid rgba(229, 184, 75, 0.32);
       border-radius: var(--radius-lg);
-      padding: 36px 28px;
+      padding: 38px 30px;
       box-shadow: var(--shadow-card);
-      margin-bottom: 40px;
+      margin-bottom: 44px;
     }
 
     .hero-kicker {
@@ -149,30 +149,37 @@
     }
 
     .hero h1 {
-      font-size: clamp(1.75rem, 3.5vw, 2.55rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.6rem);
       line-height: 1.24;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .hero p.lead {
       color: var(--text-secondary);
-      font-size: 1rem;
-      max-width: 920px;
+      font-size: 1.02rem;
+      max-width: 980px;
+      margin-bottom: 12px;
+    }
+
+    .hero p.sub-lead {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      max-width: 980px;
       margin-bottom: 22px;
     }
 
     .meta-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
       gap: 12px;
       margin-top: 18px;
     }
 
     .meta-item {
-      background: rgba(7, 11, 20, 0.7);
+      background: rgba(7, 11, 20, 0.72);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 13px 15px;
+      padding: 14px 16px;
     }
 
     .meta-label {
@@ -184,12 +191,12 @@
 
     .meta-value {
       font-weight: 700;
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       color: var(--text-primary);
     }
 
     section.block {
-      margin-bottom: 48px;
+      margin-bottom: 54px;
     }
 
     .section-header {
@@ -202,7 +209,7 @@
     }
 
     .section-header h2 {
-      font-size: 1.44rem;
+      font-size: 1.48rem;
       letter-spacing: -0.015em;
     }
 
@@ -219,19 +226,19 @@
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 16px;
     }
 
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 16px;
     }
 
     .grid-modules {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
       gap: 14px;
     }
 
@@ -239,7 +246,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 24px;
       box-shadow: var(--shadow-card);
       transition: transform 0.2s, background 0.2s, border-color 0.2s;
     }
@@ -251,13 +258,13 @@
     }
 
     .card h3 {
-      font-size: 1.14rem;
-      margin-bottom: 8px;
+      font-size: 1.16rem;
+      margin-bottom: 10px;
     }
 
     .card p {
       color: var(--text-secondary);
-      font-size: 0.92rem;
+      font-size: 0.93rem;
       margin-bottom: 12px;
     }
 
@@ -265,12 +272,12 @@
       list-style: none;
       margin-top: 8px;
       color: var(--text-secondary);
-      font-size: 0.88rem;
+      font-size: 0.89rem;
     }
 
     .spec-list li {
-      padding: 5px 0;
-      border-bottom: 1px dashed rgba(148, 163, 184, 0.14);
+      padding: 7px 0;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.15);
     }
 
     .spec-list li:last-child {
@@ -317,13 +324,13 @@
     }
 
     .module-name {
-      font-size: 1.03rem;
+      font-size: 1.04rem;
       font-weight: 700;
       margin-bottom: 6px;
     }
 
     .module-desc {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: var(--text-muted);
     }
 
@@ -333,7 +340,7 @@
       color: var(--text-primary);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 6px 10px;
+      padding: 6px 11px;
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
@@ -346,24 +353,54 @@
     }
 
     .rate-term {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
       margin-bottom: 6px;
     }
 
     .rate-val {
-      font-size: 1.5rem;
+      font-size: 1.54rem;
       font-weight: 800;
       color: var(--accent-emerald);
       margin-bottom: 8px;
     }
 
-    .sim-box {
+    .table-wrap {
+      overflow-x: auto;
       margin-top: 18px;
-      background: rgba(7, 11, 20, 0.68);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 18px;
+      background: rgba(7, 11, 20, 0.58);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sim-box {
+      margin-top: 20px;
+      background: rgba(7, 11, 20, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
     }
 
     .sim-controls {
@@ -404,21 +441,21 @@
 
     .charity-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 14px;
-      margin-top: 14px;
+      margin-top: 16px;
     }
 
     .charity-box {
-      background: rgba(7, 11, 20, 0.6);
+      background: rgba(7, 11, 20, 0.62);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 18px;
     }
 
     .charity-box strong {
       display: block;
-      font-size: 1.02rem;
+      font-size: 1.04rem;
       color: var(--accent-gold);
       margin-bottom: 6px;
     }
@@ -427,7 +464,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 16px;
     }
 
     button.btn {
@@ -455,7 +492,7 @@
 
     .status-banner {
       margin-top: 14px;
-      padding: 12px 16px;
+      padding: 13px 16px;
       border-radius: var(--radius-md);
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.35);
@@ -466,11 +503,11 @@
 
     .lang-directory {
       margin-top: 14px;
-      background: rgba(7, 11, 20, 0.62);
+      background: rgba(7, 11, 20, 0.64);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 14px 16px;
-      font-size: 0.86rem;
+      padding: 15px 17px;
+      font-size: 0.88rem;
       color: var(--text-secondary);
     }
 
@@ -494,7 +531,7 @@
       position: fixed;
       right: 22px;
       bottom: 78px;
-      width: min(390px, calc(100vw - 32px));
+      width: min(400px, calc(100vw - 32px));
       background: var(--bg-secondary);
       border: 1px solid rgba(229, 184, 75, 0.4);
       border-radius: var(--radius-lg);
@@ -528,7 +565,7 @@
 
     .drawer-body {
       padding: 14px;
-      max-height: 310px;
+      max-height: 320px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -577,18 +614,18 @@
     footer {
       border-top: 1px solid var(--border-subtle);
       background: #050810;
-      padding: 28px 20px;
+      padding: 30px 20px;
       color: var(--text-muted);
       font-size: 0.86rem;
     }
 
     .footer-inner {
-      max-width: 1260px;
+      max-width: 1320px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
     }
   </style>
 </head>
@@ -605,6 +642,8 @@
         <a href="#rates">변동 예치 금리</a>
         <a href="#social">사회환원·165층</a>
         <a href="#nexus">넥서스 스마트 글래스</a>
+        <a href="#roadmap">운영 로드맵</a>
+        <a href="#faq">주요 FAQ</a>
         <a href="#languages">60개 언어</a>
       </nav>
       <div class="lang-box">
@@ -630,10 +669,15 @@
       <span class="hero-kicker">PARENT PLATFORM · HKWB (hkwb.world)</span>
       <h1>웹3 디지털 은행과 HK 뱅크를 아우르는<br />HKWB 통합 금융 네트워크</h1>
       <p class="lead">
-        2026년 2월 구축이 시작된 <strong>HKWB</strong>는 모(母) 플랫폼으로서 <strong>웹3 디지털 은행</strong>과
+        2026년 2월 시작된 <strong>HKWB</strong>는 모(母) 플랫폼으로서 <strong>웹3 디지털 은행</strong>과
         <strong>HK 뱅크(인터넷 은행)</strong>를 양대 축으로 운영하며, <strong>60개 언어 지원</strong>,
         <strong>10대 분산 연동망</strong>, <strong>AGI·ASI 연계 변동 예치 금리</strong>, 그리고
         <strong>순수익 최대 60% 사회환원 및 리워드</strong> 체계를 통합 제공합니다.
+      </p>
+      <p class="sub-lead">
+        산하 디지털 금융·뱅킹 체계부터 인도적 사회환원 및 165층 빌딩 우선권 정책, 초경량 스마트 글래스 폰
+        <strong>넥서스(NEXUS)</strong> 사양, 단계별 로드맵, 자주 묻는 질문(FAQ)과 고객센터 AI <strong>삐니(삔)</strong>
+        상담까지 한 페이지에서 상세히 살펴볼 수 있도록 구성했습니다.
       </p>
 
       <div class="btn-row">
@@ -673,6 +717,8 @@
           <h3>웹3 디지털 은행 (Web3 Digital Bank)</h3>
           <p>
             온체인 지갑 연동과 탈중앙화 금융 기능을 중심으로 10대 분산 연동망을 통합 운용하는 디지털 금융 부문입니다.
+            디지털 자산의 예치, 보상, 기본소득, 스왑, DEX 스왑, LP 스테이킹, PI 수량 연동을 단일 포털 경험으로
+            결합합니다.
           </p>
           <ul class="spec-list">
             <li><strong>핵심 역할:</strong> 지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, PI수량 연동</li>
@@ -685,8 +731,8 @@
           <span class="tag">CHILD DIVISION 02 · INTERNET BANK</span>
           <h3>HK 뱅크 (인터넷 은행)</h3>
           <p>
-            HKWB 산하 인터넷 은행 부문으로, 실생활 계좌·송금·결제와 디지털 자산 생태계를 연결하여 직관적인
-            비대면 금융 환경을 제공합니다.
+            HKWB 산하 인터넷 은행 부문으로, 일상적인 계좌·송금·결제와 디지털 자산 생태계를 연결하여 접근성과
+            편의성을 높인 비대면 금융 서비스를 지향합니다.
           </p>
           <ul class="spec-list">
             <li><strong>핵심 역할:</strong> 계좌·송금·결제 및 예치·리워드 연계 인터넷 뱅킹 서비스</li>
@@ -709,7 +755,7 @@
     <section class="block" id="rates">
       <div class="section-header">
         <h2>3. AGI · ASI 연계 변동 예치 금리</h2>
-        <span class="sub">기간별 변동 금리 구간 및 예치 수익 시뮬레이터</span>
+        <span class="sub">기간별 변동 금리 구간, 요약표 및 예치 수익 시뮬레이터</span>
       </div>
       <div class="grid-4">
         <div class="card">
@@ -732,6 +778,40 @@
           <div class="rate-val">20% ~ 31.4%</div>
           <p>3년 예치 기준 최대 31.4% 변동 금리 구간</p>
         </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>예치 기간</th>
+              <th>변동 금리 구간</th>
+              <th>운용 특성</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>6개월</td>
+              <td>8% ~ 12%</td>
+              <td>단기 유동성과 AGI·ASI 변동 수익을 병행하는 단기 예치 구간</td>
+            </tr>
+            <tr>
+              <td>1년</td>
+              <td>12% ~ 18%</td>
+              <td>연 단위 자산 운용과 리워드 연계를 고려한 중기 예치 구간</td>
+            </tr>
+            <tr>
+              <td>2년</td>
+              <td>16% ~ 24%</td>
+              <td>생태계 확장 주기에 맞춘 중장기 변동 예치 구간</td>
+            </tr>
+            <tr>
+              <td>3년</td>
+              <td>20% ~ 31.4%</td>
+              <td>최장기 3년 예치 기준 최대 31.4%까지 열려 있는 장기 구간</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="sim-box">
@@ -768,7 +848,8 @@
         <h3>순수익 최대 60% 사회환원 · 리워드 및 165층 빌딩 우선권</h3>
         <p>
           HKWB는 순수익의 <strong>최대 60%</strong>를 사회환원 및 리워드로 배분하며, 후원 대상 구호단체가
-          <strong>165층 빌딩</strong>에 입주할 경우 우선권을 부여하는 방향으로 추진합니다.
+          <strong>165층 빌딩</strong>에 입주할 경우 우선권을 부여하는 방향으로 추진합니다. 국제 인도주의 현장과
+          공동체 리워드를 함께 연결하는 핵심 공공가치 축입니다.
         </p>
         <div class="charity-list">
           <div class="charity-box">
@@ -824,9 +905,81 @@
       </div>
     </section>
 
+    <section class="block" id="roadmap">
+      <div class="section-header">
+        <h2>6. 플랫폼 구축 및 확장 로드맵</h2>
+        <span class="sub">2026년 2월 출범 기반 단계별 고도화 방향</span>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="tag tag-gold">PHASE 01 · FOUNDATION</span>
+          <h3>플랫폼 기반 &amp; 2축 구조 정립</h3>
+          <p>
+            2026년 2월 시작된 HKWB(hkwb.world)를 중심으로 웹3 디지털 은행(ljw2358.github.io/HKWB)과 HK
+            뱅크(ljw2358/bank)의 역할을 구분하고, 추천코드(ljw2358) 및 60개 언어 지원 기반을 마련합니다.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">PHASE 02 · NETWORK &amp; YIELD</span>
+          <h3>10대 분산 연동망 &amp; 변동 예치 고도화</h3>
+          <p>
+            지갑연결·송금·결재·예치·보상·기본소득·스왑·DEX스왑·LP스테이킹·PI수량 모듈을 통합하고, AGI·ASI 연계
+            6개월~3년 변동 예치 금리 체계를 고도화합니다.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag tag-green">PHASE 03 · IMPACT &amp; NEXUS</span>
+          <h3>사회환원·165층 우선권 &amp; 넥서스 연계</h3>
+          <p>
+            순수익 최대 60% 사회환원·리워드와 국경없는 의사회·세이브드 칠드런·유엔 난민기구의 165층 빌딩 입주
+            우선권을 추진하는 한편, 넥서스 스마트 글래스 폰 및 SK·LG·KT 대리점 AS 연계를 확장합니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <div class="section-header">
+        <h2>7. 주요 안내 사항 (FAQ)</h2>
+        <span class="sub">포털 구조, 예치 금리, 구호단체 및 넥서스 핵심 요약</span>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Q. HKWB와 HK 뱅크의 관계는 어떻게 되나요?</h3>
+          <p>
+            HKWB(hkwb.world)가 부모 플랫폼이며, 산하에 <strong>웹3 디지털 은행</strong>과 <strong>HK 뱅크(인터넷 은행)</strong>를
+            두어 디지털 금융과 인터넷 뱅킹 기능을 함께 연결합니다.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Q. 예치 금리와 사회환원 정책은 어떻게 구성되나요?</h3>
+          <p>
+            AGI·ASI 연계 변동 예치 금리는 6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4%이며, 순수익의 최대
+            60%를 사회환원 및 리워드에 배분하고 3개 구호단체의 165층 빌딩 입주 우선권을 검토합니다.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Q. 넥서스(NEXUS) 스마트 글래스 폰의 주요 특징은 무엇인가요?</h3>
+          <p>
+            30g 이하 무게, 36시간 배터리, 테라 메모리, 타자·카카오톡·문자, 다초점·변색 렌즈, 뒷 배경이 함께
+            나오는 3인칭 촬영, 그리고 SK·LG·KT 대리점 AS 활용을 목표로 합니다.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Q. 고객지원 및 추천인 정보는 어디서 확인하나요?</h3>
+          <p>
+            공식 도메인은 <strong>hkwb.world</strong>, 고객지원 이메일은 <strong>support@hkwb.world</strong>, 추천인
+            코드는 <strong>ljw2358</strong>이며, 고객센터 AI <strong>삐니(삔)</strong>를 통해서도 안내받을 수 있습니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
     <section class="block" id="languages">
       <div class="section-header">
-        <h2>6. 60개 언어 지원 체계</h2>
+        <h2>8. 60개 언어 지원 체계</h2>
         <span class="sub">글로벌 사용자를 위한 다국어 인터페이스 및 고객지원</span>
       </div>
       <div class="card">
