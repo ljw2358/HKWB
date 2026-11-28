@@ -6,25 +6,22 @@
   <title>HKWB · HK WorldBank</title>
   <style>
     :root {
-      --bg-main: #090614;
-      --bg-panel: #130f27;
-      --bg-card: #1b1538;
-      --bg-card-hover: #251d4a;
+      --bg-main: #06040e;
+      --bg-panel: #120d26;
+      --bg-card: #191336;
+      --bg-card-hover: #241b4b;
       --gold-light: #fff1b8;
       --gold: #f5c451;
       --gold-dark: #c58417;
       --blue: #3b82f6;
       --blue-soft: #93c5fd;
-      --purple: #8b5cf6;
       --emerald: #34d399;
       --text: #f8fafc;
       --text-sub: #cbd5e1;
       --text-muted: #94a3b8;
-      --line-gold: rgba(245, 196, 81, 0.36);
+      --line-gold: rgba(245, 196, 81, 0.38);
+      --line-blue: rgba(147, 197, 253, 0.35);
       --line-soft: rgba(255, 255, 255, 0.1);
-      --r-lg: 20px;
-      --r-md: 14px;
-      --r-sm: 10px;
     }
 
     * {
@@ -34,8 +31,8 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Noto Sans", "Noto Naskh Arabic", "Noto Sans Devanagari", "Noto Sans Thai", sans-serif;
-      background: radial-gradient(circle at 20% 0%, #24174b 0%, var(--bg-main) 55%, #05030a 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Noto Sans", sans-serif;
+      background: radial-gradient(circle at 50% 10%, #271752 0%, var(--bg-main) 65%, #030207 100%);
       color: var(--text);
       min-height: 100vh;
       padding-bottom: 92px;
@@ -43,56 +40,30 @@
     }
 
     .wrap {
-      max-width: 1120px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 16px 16px 32px;
+      padding: 18px 16px 36px;
     }
 
-    .header {
+    /* 상단 언어바 */
+    .top-lang-bar {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: flex-end;
+      margin-bottom: 18px;
+    }
+
+    .lang-box {
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(19, 15, 39, 0.92);
+      gap: 10px;
+      background: rgba(25, 19, 54, 0.92);
       border: 1px solid var(--line-gold);
-      border-radius: var(--r-lg);
-      padding: 14px 18px;
-      margin-bottom: 16px;
-      position: sticky;
-      top: 10px;
-      z-index: 40;
-      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 8px 14px;
     }
 
-    .brand-name {
-      font-size: 1.32rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .brand-sub {
-      font-size: 0.84rem;
-      font-weight: 600;
-      background: linear-gradient(90deg, var(--blue-soft), var(--gold), #e9d5ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .lang-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg-card);
-      border: 1px solid var(--line-gold);
-      border-radius: var(--r-sm);
-      padding: 6px 10px;
-    }
-
-    .lang-wrap label {
-      font-size: 0.82rem;
+    .lang-box label {
+      font-size: 0.86rem;
       font-weight: 700;
       color: var(--gold);
       white-space: nowrap;
@@ -104,165 +75,107 @@
     }
 
     select#langSelect {
-      background: #100b24;
-      border: 1px solid rgba(245, 196, 81, 0.45);
+      background: #0c081c;
+      border: 1px solid var(--gold);
       border-radius: 8px;
-      padding: 7px 10px;
-      font-size: 0.88rem;
+      padding: 7px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
       max-width: 250px;
       cursor: pointer;
     }
 
-    .asset-hero {
-      background: linear-gradient(135deg, rgba(43, 25, 90, 0.92), rgba(18, 14, 38, 0.96));
+    /* 초대형 메인 타이틀 & 슬로건 (코인 카드 제거) */
+    .hero-brand {
+      text-align: center;
+      padding: 28px 16px 38px;
+      margin-bottom: 24px;
+      background: linear-gradient(145deg, rgba(44, 24, 92, 0.72), rgba(14, 10, 30, 0.92));
       border: 1px solid var(--line-gold);
-      border-radius: var(--r-lg);
-      padding: 18px 20px;
+      border-radius: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 6.8vw, 4.7rem);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.6px;
+      background: linear-gradient(135deg, #ffffff, var(--gold-light), var(--gold), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 16px;
     }
 
-    .hero-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .hero-kicker {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .hero-total {
-      font-size: 1.9rem;
+    .hero-slogan {
+      font-size: clamp(1.25rem, 3.1vw, 2.05rem);
       font-weight: 800;
-      background: linear-gradient(90deg, #ffffff, var(--gold-light), var(--gold));
+      line-height: 1.38;
+      background: linear-gradient(90deg, var(--blue-soft), var(--gold-light), #e9d5ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
-    .hero-info {
-      text-align: right;
-      font-size: 0.82rem;
-      color: var(--text-sub);
-    }
-
-    .asset-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-    }
-
-    .asset-box {
-      background: rgba(10, 8, 22, 0.82);
-      border: 1px solid var(--line-soft);
-      border-radius: var(--r-md);
-      padding: 12px;
-    }
-
-    .asset-box-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-
-    .asset-ko {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--gold-light);
-    }
-
-    .asset-code {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: rgba(245, 196, 81, 0.16);
-      color: var(--gold);
-    }
-
-    .asset-amount {
-      font-size: 1.02rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .asset-krw {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .entry-row {
+    /* 웹3 디지털 은행 / 인터넷 은행 진입 버튼 */
+    .entry-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 18px;
+      margin-bottom: 24px;
     }
 
     @media (max-width: 680px) {
-      .entry-row {
+      .entry-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    .entry-box {
+    .entry-card {
       background: var(--bg-card);
-      border: 1px solid var(--line-soft);
-      border-radius: var(--r-lg);
-      padding: 18px;
+      border: 1px solid var(--line-gold);
+      border-radius: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
-      transition: all 0.2s ease;
+      gap: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .entry-box.web3.active {
+    .entry-card.internet {
+      border-color: var(--line-blue);
+    }
+
+    .entry-card.active.web3 {
       border-color: var(--gold);
-      background: linear-gradient(145deg, rgba(66, 31, 132, 0.88), rgba(22, 16, 48, 0.95));
-      box-shadow: 0 10px 24px rgba(139, 92, 246, 0.25);
+      box-shadow: 0 12px 28px rgba(245, 196, 81, 0.16);
     }
 
-    .entry-box.internet.active {
+    .entry-card.active.internet {
       border-color: var(--blue-soft);
-      background: linear-gradient(145deg, rgba(24, 62, 128, 0.88), rgba(15, 25, 54, 0.95));
-      box-shadow: 0 10px 24px rgba(59, 130, 246, 0.25);
+      box-shadow: 0 12px 28px rgba(59, 130, 246, 0.18);
     }
 
-    .entry-tag {
-      display: inline-block;
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 999px;
-      margin-bottom: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--gold-light);
-    }
-
-    .entry-box h2 {
-      font-size: 1.14rem;
+    .entry-card h2 {
+      font-size: 1.45rem;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    .entry-box p {
-      font-size: 0.84rem;
+    .entry-card p {
+      font-size: 0.9rem;
       color: var(--text-sub);
     }
 
     .btn-enter {
       width: 100%;
-      padding: 11px 14px;
+      padding: 15px 18px;
       border: none;
-      border-radius: var(--r-sm);
+      border-radius: 12px;
+      font-size: 1.05rem;
       font-weight: 800;
-      font-size: 0.92rem;
       cursor: pointer;
     }
 
@@ -272,48 +185,39 @@
     }
 
     .btn-enter.internet {
-      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      background: linear-gradient(90deg, #60a5fa, var(--blue));
       color: #ffffff;
     }
 
-    .view-panel {
+    /* 분리된 채널 패널 */
+    .channel-panel {
       background: var(--bg-panel);
       border: 1px solid var(--line-gold);
-      border-radius: var(--r-lg);
+      border-radius: 20px;
       padding: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .panel-top {
+    .panel-head {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       padding-bottom: 12px;
       margin-bottom: 16px;
       border-bottom: 1px solid var(--line-soft);
     }
 
-    .panel-top h3 {
-      font-size: 1.18rem;
+    .panel-head h3 {
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--gold);
     }
 
-    .tag-pill {
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(245, 196, 81, 0.14);
-      color: var(--gold-light);
-      border: 1px solid rgba(245, 196, 81, 0.35);
-    }
-
     .net-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
       margin-bottom: 16px;
     }
@@ -321,7 +225,7 @@
     .net-btn {
       background: var(--bg-card);
       border: 1px solid var(--line-soft);
-      border-radius: var(--r-sm);
+      border-radius: 10px;
       padding: 10px 12px;
       text-align: left;
       cursor: pointer;
@@ -345,58 +249,58 @@
 
     .two-col {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
     }
 
-    .card-box {
+    .box {
       background: var(--bg-card);
       border: 1px solid var(--line-soft);
-      border-radius: var(--r-md);
+      border-radius: 14px;
       padding: 16px;
     }
 
-    .card-box h4 {
+    .box h4 {
       font-size: 1.02rem;
       color: var(--gold-light);
       margin-bottom: 12px;
     }
 
-    .input-row {
-      margin-bottom: 11px;
+    .field {
+      margin-bottom: 10px;
     }
 
-    .input-row label {
+    .field label {
       display: block;
       font-size: 0.8rem;
       color: var(--text-sub);
       margin-bottom: 4px;
     }
 
-    .input-row select, .input-row input {
+    .field select, .field input {
       width: 100%;
       padding: 10px 12px;
-      border-radius: var(--r-sm);
+      border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.16);
-      background: #0d091c;
-      font-size: 0.94rem;
+      background: #0c081b;
+      font-size: 0.92rem;
     }
 
-    .preview-box {
-      background: rgba(8, 6, 18, 0.85);
+    .calc-box {
+      background: rgba(7, 5, 16, 0.88);
       border: 1px dashed rgba(245, 196, 81, 0.45);
-      border-radius: var(--r-sm);
-      padding: 12px;
+      border-radius: 10px;
+      padding: 11px;
       margin: 12px 0;
       font-size: 0.86rem;
       color: var(--gold-light);
     }
 
-    .action-gold {
+    .gold-btn {
       width: 100%;
       padding: 11px 14px;
       border: none;
-      border-radius: var(--r-sm);
+      border-radius: 10px;
       background: linear-gradient(90deg, var(--gold), var(--gold-dark));
       color: #161003;
       font-weight: 800;
@@ -417,46 +321,46 @@
       }
     }
 
-    .six-card {
+    .six-btn {
       background: var(--bg-card);
       border: 1px solid var(--line-soft);
-      border-radius: var(--r-md);
-      padding: 13px;
+      border-radius: 12px;
+      padding: 12px;
       text-align: left;
       cursor: pointer;
     }
 
-    .six-card.active, .six-card:hover {
+    .six-btn.active, .six-btn:hover {
       border-color: var(--blue-soft);
       background: var(--bg-card-hover);
     }
 
-    .six-card strong {
+    .six-btn strong {
       display: block;
-      font-size: 0.96rem;
+      font-size: 0.94rem;
       color: var(--gold-light);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
-    .six-card span {
-      font-size: 0.78rem;
+    .six-btn span {
+      font-size: 0.76rem;
       color: var(--text-muted);
     }
 
-    .rate-table {
+    .rate-tbl {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
       font-size: 0.86rem;
     }
 
-    .rate-table th, .rate-table td {
+    .rate-tbl th, .rate-tbl td {
       padding: 8px 10px;
       border-bottom: 1px solid var(--line-soft);
       text-align: left;
     }
 
-    .rate-table th {
+    .rate-tbl th {
       color: var(--gold);
     }
 
@@ -465,10 +369,10 @@
       font-weight: 800;
     }
 
-    .credit-result {
+    .credit-box {
       background: linear-gradient(125deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.16));
       border: 1px solid rgba(52, 211, 153, 0.45);
-      border-radius: var(--r-md);
+      border-radius: 12px;
       padding: 14px;
       margin-top: 12px;
       display: flex;
@@ -478,27 +382,28 @@
       gap: 10px;
     }
 
-    .credit-num {
-      font-size: 1.65rem;
+    .credit-score {
+      font-size: 1.6rem;
       font-weight: 900;
       color: var(--emerald);
     }
 
-    .fixed-nav {
+    /* 하단 고정 4칸 바 */
+    .bottom-nav {
       position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 70px;
-      background: rgba(11, 8, 24, 0.96);
+      height: 68px;
+      background: rgba(10, 7, 22, 0.96);
       border-top: 1px solid var(--line-gold);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       z-index: 60;
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
     }
 
-    .fixed-nav button {
+    .bottom-nav button {
       background: transparent;
       border: none;
       display: flex;
@@ -512,7 +417,7 @@
       cursor: pointer;
     }
 
-    .fixed-nav button.active, .fixed-nav button:hover {
+    .bottom-nav button.active, .bottom-nav button:hover {
       color: var(--gold);
       background: rgba(245, 196, 81, 0.08);
     }
@@ -534,16 +439,16 @@
 
     .modal-card {
       width: 100%;
-      max-width: 660px;
+      max-width: 640px;
       max-height: 82vh;
       overflow-y: auto;
       background: var(--bg-panel);
       border: 1px solid var(--line-gold);
-      border-radius: var(--r-lg);
+      border-radius: 20px;
       padding: 20px;
     }
 
-    .modal-head {
+    .modal-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -552,7 +457,7 @@
       border-bottom: 1px solid var(--line-soft);
     }
 
-    .modal-head h3 {
+    .modal-top h3 {
       color: var(--gold);
       font-size: 1.1rem;
     }
@@ -568,311 +473,261 @@
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 10px;
     }
 
-    .menu-item {
+    .menu-tile {
       background: var(--bg-card);
       border: 1px solid var(--line-soft);
-      border-radius: var(--r-sm);
+      border-radius: 10px;
       padding: 12px;
       text-align: left;
       cursor: pointer;
     }
 
-    .menu-item:hover {
+    .menu-tile:hover {
       border-color: var(--gold);
     }
 
-    .menu-item strong {
+    .menu-tile strong {
       display: block;
       color: var(--gold-light);
       font-size: 0.9rem;
     }
 
-    .menu-item span {
-      font-size: 0.78rem;
+    .menu-tile span {
+      font-size: 0.76rem;
       color: var(--text-muted);
-    }
-
-    .toast-msg {
-      position: fixed;
-      top: 76px;
-      right: 18px;
-      background: var(--bg-card);
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
-      padding: 10px 15px;
-      border-radius: var(--r-sm);
-      font-size: 0.84rem;
-      font-weight: 700;
-      z-index: 110;
-      opacity: 0;
-      transform: translateY(-6px);
-      transition: all 0.2s ease;
-      pointer-events: none;
-    }
-
-    .toast-msg.show {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <div id="toastMsg" class="toast-msg"></div>
-
   <div class="wrap">
-    <header class="header">
-      <div>
-        <div class="brand-name" data-i18n="brandName">HKWB · HK WorldBank</div>
-        <div class="brand-sub" data-i18n="brandSub">인류와 기술이 공존하는 차세대 디지털 금융 혁신</div>
-      </div>
-      <div class="lang-wrap">
+    <!-- 언어 선택 -->
+    <div class="top-lang-bar">
+      <div class="lang-box">
         <label for="langSelect" data-i18n="langLabel">60개국어 언어 선택</label>
         <select id="langSelect" aria-label="60개국어 언어 선택"></select>
       </div>
-    </header>
+    </div>
 
-    <section class="asset-hero" id="assetSection">
-      <div class="hero-bar">
-        <div>
-          <div class="hero-kicker" data-i18n="heroKicker">최상단 개인 자산 대시보드 · 통합 포트폴리오</div>
-          <div class="hero-total" id="totalKrwText">₩ 307,678,000</div>
-        </div>
-        <div class="hero-info">
-          <div data-i18n="ubiText">사회환원 UBI · 순수익 최대 60% 리워드</div>
-          <div id="langBadge">언어: 한국어 (KO)</div>
-        </div>
-      </div>
-      <div class="asset-list" id="assetGrid"></div>
+    <!-- 초대형 브랜드 타이틀 & 슬로건 (코인 카드 없음) -->
+    <section class="hero-brand" id="topBrandSection">
+      <h1 class="hero-title" data-i18n="heroTitle">HKWB · HK WorldBank</h1>
+      <p class="hero-slogan" data-i18n="heroSlogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
     </section>
 
-    <section class="entry-row">
-      <div class="entry-box web3 active" id="entryWeb3Card">
+    <!-- 진입 버튼 2개: 웹3 디지털 은행 / 인터넷 은행 -->
+    <section class="entry-grid">
+      <div class="entry-card web3 active" id="cardWeb3">
         <div>
-          <span class="entry-tag" data-i18n="tagWeb3">분리 채널 01 · WEB3</span>
-          <h2 data-i18n="entryWeb3Title">웹3 디지털 은행 들어갈 곳</h2>
-          <p data-i18n="entryWeb3Desc">10대 분산 연동망, 파이·테더·리플·솔라나·이더리움·비트코인 수량 연동 스왑·예치·UBI 전용 화면</p>
+          <h2 data-i18n="web3Title">웹3 디지털 은행</h2>
+          <p data-i18n="web3Desc">10대 분산 연동망과 스왑·예치·UBI 채널</p>
         </div>
-        <button type="button" class="btn-enter web3" onclick="selectChannel('web3')" data-i18n="btnEnterWeb3">
+        <button type="button" class="btn-enter web3" onclick="switchChannel('web3')" data-i18n="web3Btn">
           웹3 디지털 은행 진입하기
         </button>
       </div>
 
-      <div class="entry-box internet" id="entryInternetCard">
+      <div class="entry-card internet" id="cardInternet">
         <div>
-          <span class="entry-tag" data-i18n="tagInternet">분리 채널 02 · INTERNET BANK</span>
-          <h2 data-i18n="entryInternetTitle">인터넷 은행 들어갈 곳</h2>
-          <p data-i18n="entryInternetDesc">입금·출금·송금·예치·적금·대출 6대 기능, 기간별 예치 이자율, NICE + 블록체인 신용점수 조회 전용 화면</p>
+          <h2 data-i18n="internetTitle">인터넷 은행</h2>
+          <p data-i18n="internetDesc">입금·출금·송금·예치·적금·대출 및 신용점수 채널</p>
         </div>
-        <button type="button" class="btn-enter internet" onclick="selectChannel('internet')" data-i18n="btnEnterInternet">
+        <button type="button" class="btn-enter internet" onclick="switchChannel('internet')" data-i18n="internetBtn">
           인터넷 은행 진입하기
         </button>
       </div>
     </section>
 
-    <main class="view-panel" id="web3Section">
-      <div class="panel-top">
-        <h3 data-i18n="web3PanelTitle">웹3 디지털 은행 — 10대 분산 연동망 &amp; 자산 운용</h3>
-        <span class="tag-pill" data-i18n="web3Badge">웹3 전용 표시</span>
+    <!-- 웹3 디지털 은행 영역 -->
+    <main class="channel-panel" id="web3Panel">
+      <div class="panel-head">
+        <h3 data-i18n="web3PanelTitle">웹3 디지털 은행 — 10대 분산 연동망</h3>
       </div>
 
       <div class="net-grid" id="netGrid"></div>
 
       <div class="two-col">
-        <div class="card-box">
-          <h4 data-i18n="swapTitle">자산 스왑 &amp; DEX 스왑 (보유 수량 연동)</h4>
-          <div class="input-row">
-            <label for="swapFrom" data-i18n="swapFromLabel">출발 자산 선택</label>
-            <select id="swapFrom" onchange="updateSwapCalc()"></select>
+        <div class="box">
+          <h4 data-i18n="swapBoxTitle">스왑 &amp; DEX 스왑</h4>
+          <div class="field">
+            <label for="fromAsset" data-i18n="fromLabel">출발 자산</label>
+            <select id="fromAsset" onchange="calcSwap()"></select>
           </div>
-          <div class="input-row">
-            <label for="swapTo" data-i18n="swapToLabel">도착 자산 선택</label>
-            <select id="swapTo" onchange="updateSwapCalc()"></select>
+          <div class="field">
+            <label for="toAsset" data-i18n="toLabel">도착 자산</label>
+            <select id="toAsset" onchange="calcSwap()"></select>
           </div>
-          <div class="input-row">
-            <label for="swapAmt" data-i18n="swapAmtLabel">전환 수량 입력</label>
-            <input type="number" id="swapAmt" value="100" min="0" step="any" oninput="updateSwapCalc()" />
+          <div class="field">
+            <label for="swapQty" data-i18n="qtyLabel">수량</label>
+            <input type="number" id="swapQty" value="100" min="0" step="any" oninput="calcSwap()" />
           </div>
-          <div class="preview-box" id="swapPreview">예상 수령 수량 계산 중...</div>
-          <button type="button" class="action-gold" onclick="applySwap()" data-i18n="applySwapBtn">스왑 반영하기</button>
+          <div class="calc-box" id="swapCalcOut"></div>
+          <button type="button" class="gold-btn" onclick="calcSwap()" data-i18n="calcBtn">계산 반영</button>
         </div>
 
-        <div class="card-box">
-          <h4 data-i18n="web3DepTitle">Web3 자산 예치 &amp; 기간별 이자 계산</h4>
-          <div class="input-row">
-            <label for="w3DepAsset" data-i18n="w3DepAssetLabel">예치 자산 선택</label>
-            <select id="w3DepAsset" onchange="updateWeb3DepCalc()"></select>
+        <div class="box">
+          <h4 data-i18n="w3DepBoxTitle">기간별 예치 이자율</h4>
+          <div class="field">
+            <label for="w3Term" data-i18n="termLabel">예치 기간</label>
+            <select id="w3Term" onchange="calcW3Dep()"></select>
           </div>
-          <div class="input-row">
-            <label for="w3DepAmt" data-i18n="w3DepAmtLabel">예치 수량 입력</label>
-            <input type="number" id="w3DepAmt" value="500" min="0" step="any" oninput="updateWeb3DepCalc()" />
+          <div class="field">
+            <label for="w3Amt" data-i18n="amtLabel">예치 금액 (KRW)</label>
+            <input type="number" id="w3Amt" value="10000000" min="0" step="10000" oninput="calcW3Dep()" />
           </div>
-          <div class="input-row">
-            <label for="w3DepTerm" data-i18n="w3DepTermLabel">예치 기간 및 이자율</label>
-            <select id="w3DepTerm" onchange="updateWeb3DepCalc()"></select>
-          </div>
-          <div class="preview-box" id="w3DepPreview">예치 이자 계산 중...</div>
-          <button type="button" class="action-gold" onclick="applyWeb3Dep()" data-i18n="applyDepBtn">예치 신청하기</button>
+          <div class="calc-box" id="w3DepOut"></div>
+          <button type="button" class="gold-btn" onclick="calcW3Dep()" data-i18n="calcBtn">계산 반영</button>
         </div>
       </div>
     </main>
 
-    <section class="view-panel" id="internetSection" style="display:none;">
-      <div class="panel-top">
-        <h3 data-i18n="internetPanelTitle">인터넷 은행 — 6대 금융 기능 · 예치 이자율 · 신용점수</h3>
-        <span class="tag-pill" data-i18n="internetBadge">인터넷 은행 전용 표시</span>
+    <!-- 인터넷 은행 영역 -->
+    <section class="channel-panel" id="internetPanel" style="display:none;">
+      <div class="panel-head">
+        <h3 data-i18n="internetPanelTitle">인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수</h3>
       </div>
 
       <div class="six-grid">
-        <button type="button" class="six-card active" data-fn="deposit" onclick="chooseBankFn('deposit')">
-          <strong data-i18n="fnDeposit">1. 입금</strong>
-          <span data-i18n="fnDepositSub">실시간 계좌 입금 및 자금 적립</span>
+        <button type="button" class="six-btn active" data-fn="deposit" onclick="pickFn('deposit')">
+          <strong data-i18n="fn1">1. 입금</strong>
+          <span>DEPOSIT</span>
         </button>
-        <button type="button" class="six-card" data-fn="withdraw" onclick="chooseBankFn('withdraw')">
-          <strong data-i18n="fnWithdraw">2. 출금</strong>
-          <span data-i18n="fnWithdrawSub">즉시 출금 및 보안 인증 확인</span>
+        <button type="button" class="six-btn" data-fn="withdraw" onclick="pickFn('withdraw')">
+          <strong data-i18n="fn2">2. 출금</strong>
+          <span>WITHDRAW</span>
         </button>
-        <button type="button" class="six-card" data-fn="transfer" onclick="chooseBankFn('transfer')">
-          <strong data-i18n="fnTransfer">3. 송금</strong>
-          <span data-i18n="fnTransferSub">계좌·연동 지갑 이체 송금</span>
+        <button type="button" class="six-btn" data-fn="transfer" onclick="pickFn('transfer')">
+          <strong data-i18n="fn3">3. 송금</strong>
+          <span>TRANSFER</span>
         </button>
-        <button type="button" class="six-card" data-fn="staking" onclick="chooseBankFn('staking')">
-          <strong data-i18n="fnStaking">4. 예치</strong>
-          <span data-i18n="fnStakingSub">6개월~3년 차등 이자율 예치</span>
+        <button type="button" class="six-btn" data-fn="staking" onclick="pickFn('staking')">
+          <strong data-i18n="fn4">4. 예치</strong>
+          <span>TERM DEPOSIT</span>
         </button>
-        <button type="button" class="six-card" data-fn="savings" onclick="chooseBankFn('savings')">
-          <strong data-i18n="fnSavings">5. 적금</strong>
-          <span data-i18n="fnSavingsSub">목표 적금 설계 및 이자 안내</span>
+        <button type="button" class="six-btn" data-fn="savings" onclick="pickFn('savings')">
+          <strong data-i18n="fn5">5. 적금</strong>
+          <span>SAVINGS</span>
         </button>
-        <button type="button" class="six-card" data-fn="loan" onclick="chooseBankFn('loan')">
-          <strong data-i18n="fnLoan">6. 대출</strong>
-          <span data-i18n="fnLoanSub">NICE + 블록체인 신용점수 한도</span>
+        <button type="button" class="six-btn" data-fn="loan" onclick="pickFn('loan')">
+          <strong data-i18n="fn6">6. 대출</strong>
+          <span>LOAN</span>
         </button>
       </div>
 
       <div class="two-col">
-        <div class="card-box">
-          <h4 data-i18n="bankCalcTitle">예치·금융 계산 및 기간별 이자율</h4>
-          <div class="input-row">
-            <label for="bankAmtInput" data-i18n="bankAmtLabel">금액 (KRW)</label>
-            <input type="number" id="bankAmtInput" value="10000000" min="10000" step="10000" oninput="updateBankCalc()" />
+        <div class="box">
+          <h4 data-i18n="bankRateTitle">예치 이자율 안내</h4>
+          <div class="field">
+            <label for="bankTerm" data-i18n="termLabel">예치 기간</label>
+            <select id="bankTerm" onchange="calcBank()"></select>
           </div>
-          <div class="input-row">
-            <label for="bankTermSelect" data-i18n="bankTermLabel">예치 기간 선택</label>
-            <select id="bankTermSelect" onchange="updateBankCalc()"></select>
+          <div class="field">
+            <label for="bankAmt" data-i18n="amtLabel">금액 (KRW)</label>
+            <input type="number" id="bankAmt" value="10000000" min="0" step="10000" oninput="calcBank()" />
           </div>
-          <div class="preview-box" id="bankCalcPreview">예상 금액 계산 중...</div>
-          <button type="button" class="action-gold" onclick="applyBankFn()" data-i18n="applyBankBtn">선택 기능 실행</button>
+          <div class="calc-box" id="bankCalcOut"></div>
 
-          <table class="rate-table">
+          <table class="rate-tbl">
             <thead>
               <tr>
-                <th data-i18n="thPeriod">예치 기간</th>
-                <th data-i18n="thRate">적용 이자율</th>
+                <th data-i18n="thPeriod">기간</th>
+                <th data-i18n="thRate">이자율</th>
               </tr>
             </thead>
-            <tbody id="rateTableBody"></tbody>
+            <tbody id="rateRows"></tbody>
           </table>
         </div>
 
-        <div class="card-box">
-          <h4 data-i18n="creditTitle">신용정보 조회 (NICE 평가 + 블록체인 원장)</h4>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;" data-i18n="creditDesc">
-            신용정보 점수 조회 버튼을 누르면 NICE 신용지표와 블록체인 원장 거래·예치 지표를 함께 반영하여 신용점수와 대출 한도를 보여줍니다.
-          </p>
-          <div class="input-row">
-            <label for="niceInput" data-i18n="niceLabel">NICE 신용·상환 지수 (0~100)</label>
-            <input type="number" id="niceInput" value="88" min="0" max="100" />
+        <div class="box">
+          <h4 data-i18n="creditTitle">신용정보 조회 (NICE + 블록체인)</h4>
+          <div class="field">
+            <label for="niceIn" data-i18n="niceLabel">NICE 지수 (0~100)</label>
+            <input type="number" id="niceIn" value="88" min="0" max="100" />
           </div>
-          <div class="input-row">
-            <label for="chainInput" data-i18n="chainLabel">블록체인 원장·예치 지수 (0~100)</label>
-            <input type="number" id="chainInput" value="92" min="0" max="100" />
+          <div class="field">
+            <label for="chainIn" data-i18n="chainLabel">블록체인 지수 (0~100)</label>
+            <input type="number" id="chainIn" value="92" min="0" max="100" />
           </div>
-          <button type="button" class="action-gold" onclick="lookupCredit()" data-i18n="lookupCreditBtn">
-            신용정보 점수 조회
-          </button>
+          <button type="button" class="gold-btn" onclick="calcCredit()" data-i18n="creditBtn">신용정보 점수 조회</button>
 
-          <div class="credit-result" id="creditBox">
+          <div class="credit-box">
             <div>
-              <div style="font-size:0.78rem; color:var(--text-sub);" data-i18n="creditOutLabel">통합 신용점수 (NICE + 블록체인)</div>
-              <div class="credit-num" id="creditScoreText">915점 · 1등급</div>
+              <div style="font-size:0.78rem; color:var(--text-sub);" data-i18n="creditScoreLabel">통합 신용점수</div>
+              <div class="credit-score" id="creditScoreOut">915점</div>
             </div>
-            <div style="font-size:0.82rem; text-align:right;" id="creditLoanText">
-              추천 대출 한도: <strong>₩ 200,000,000</strong>
-            </div>
+            <div style="font-size:0.84rem; text-align:right;" id="creditLimitOut"></div>
           </div>
         </div>
       </div>
     </section>
   </div>
 
-  <nav class="fixed-nav" aria-label="하단 고정 4칸 바">
-    <button type="button" class="active" id="navBtnHome" onclick="onNavClick('home')">
+  <!-- 하단 고정 4칸 바 -->
+  <nav class="bottom-nav" aria-label="하단 고정 4칸 바">
+    <button type="button" class="active" id="bHome" onclick="bottomNav('home')">
       <span>🏠</span>
-      <span data-i18n="navHome">홈</span>
+      <span data-i18n="bHome">홈</span>
     </button>
-    <button type="button" id="navBtnWp" onclick="onNavClick('whitepaper')">
+    <button type="button" id="bWp" onclick="bottomNav('wp')">
       <span>📄</span>
-      <span data-i18n="navWhitepaper">백서</span>
+      <span data-i18n="bWp">백서</span>
     </button>
-    <button type="button" id="navBtnAssets" onclick="onNavClick('assets')">
-      <span>💼</span>
-      <span data-i18n="navAssets">자산</span>
+    <button type="button" id="bAssets" onclick="bottomNav('web3')">
+      <span>⚡</span>
+      <span data-i18n="bWeb3">웹3</span>
     </button>
-    <button type="button" id="navBtnMenu" onclick="onNavClick('menu')">
+    <button type="button" id="bMenu" onclick="bottomNav('menu')">
       <span>☰</span>
-      <span data-i18n="navMenu">전체 메뉴</span>
+      <span data-i18n="bMenu">전체 메뉴</span>
     </button>
   </nav>
 
-  <div class="modal-bg" id="wpModal" onclick="outsideClose(event, 'wpModal')">
+  <!-- 백서 모달 -->
+  <div class="modal-bg" id="wpModal" onclick="bgClose(event, 'wpModal')">
     <div class="modal-card">
-      <div class="modal-head">
-        <h3 data-i18n="wpModalTitle">HKWB · HK WorldBank 백서</h3>
+      <div class="modal-top">
+        <h3 data-i18n="wpTitle">HKWB · HK WorldBank 백서</h3>
         <button type="button" class="close-btn" onclick="closeModal('wpModal')" data-i18n="closeBtn">닫기</button>
       </div>
-      <p style="font-size:0.88rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="wpP1"></p>
-      <p style="font-size:0.88rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="wpP2"></p>
-      <p style="font-size:0.88rem; color:var(--text-sub);" data-i18n="wpP3"></p>
+      <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="wp1"></p>
+      <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="wp2"></p>
+      <p style="font-size:0.9rem; color:var(--text-sub);" data-i18n="wp3"></p>
     </div>
   </div>
 
-  <div class="modal-bg" id="allMenuModal" onclick="outsideClose(event, 'allMenuModal')">
+  <!-- 전체 메뉴 모달 -->
+  <div class="modal-bg" id="menuModal" onclick="bgClose(event, 'menuModal')">
     <div class="modal-card">
-      <div class="modal-head">
-        <h3 data-i18n="allMenuTitle">HKWB 전체 메뉴</h3>
-        <button type="button" class="close-btn" onclick="closeModal('allMenuModal')" data-i18n="closeBtn">닫기</button>
+      <div class="modal-top">
+        <h3 data-i18n="menuTitle">HKWB 전체 메뉴</h3>
+        <button type="button" class="close-btn" onclick="closeModal('menuModal')" data-i18n="closeBtn">닫기</button>
       </div>
       <div class="menu-grid">
-        <button type="button" class="menu-item" onclick="jumpTo('assets')">
-          <strong data-i18n="menuAssets">최상단 개인 자산 대시보드</strong>
-          <span>PI · USDT · XRP · SOL · ETH · BTC</span>
+        <button type="button" class="menu-tile" onclick="menuJump('home')">
+          <strong data-i18n="heroTitle">HKWB · HK WorldBank</strong>
+          <span data-i18n="heroSlogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</span>
         </button>
-        <button type="button" class="menu-item" onclick="jumpTo('web3')">
-          <strong data-i18n="menuWeb3">웹3 디지털 은행 진입하기</strong>
-          <span data-i18n="menuWeb3Sub">10대 분산 연동망 · 스왑 · 예치</span>
+        <button type="button" class="menu-tile" onclick="menuJump('web3')">
+          <strong data-i18n="web3Btn">웹3 디지털 은행 진입하기</strong>
+          <span data-i18n="web3Desc">10대 분산 연동망과 스왑·예치·UBI 채널</span>
         </button>
-        <button type="button" class="menu-item" onclick="jumpTo('internet')">
-          <strong data-i18n="menuInternet">인터넷 은행 진입하기</strong>
-          <span data-i18n="menuInternetSub">입금·출금·송금·예치·적금·대출</span>
+        <button type="button" class="menu-tile" onclick="menuJump('internet')">
+          <strong data-i18n="internetBtn">인터넷 은행 진입하기</strong>
+          <span data-i18n="internetDesc">입금·출금·송금·예치·적금·대출 및 신용점수 채널</span>
         </button>
-        <button type="button" class="menu-item" onclick="jumpTo('credit')">
-          <strong data-i18n="menuCredit">신용정보 점수 조회</strong>
-          <span data-i18n="menuCreditSub">NICE 평가 + 블록체인 원장 점수</span>
-        </button>
-        <button type="button" class="menu-item" onclick="jumpTo('whitepaper')">
-          <strong data-i18n="menuWp">백서 보기</strong>
-          <span data-i18n="menuWpSub">구조 · 이자율 · UBI 안내</span>
+        <button type="button" class="menu-tile" onclick="menuJump('wp')">
+          <strong data-i18n="bWp">백서</strong>
+          <span data-i18n="wp2"></span>
         </button>
       </div>
     </div>
   </div>
 
   <script>
-    const LANGS_60 = [
+    const LANGS = [
       { code: "ko", ko: "한국어", native: "한국어" },
       { code: "en", ko: "영어", native: "English" },
       { code: "zh-CN", ko: "중국어(간체)", native: "简体中文" },
@@ -935,397 +790,130 @@
       { code: "si", ko: "싱할라어", native: "සිංහල" }
     ];
 
-    const BASE_DICT = {
-      ko: {
-        brandName: "HKWB · HK WorldBank",
-        brandSub: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
-        langLabel: "60개국어 언어 선택",
-        heroKicker: "최상단 개인 자산 대시보드 · 통합 포트폴리오",
-        ubiText: "사회환원 UBI · 순수익 최대 60% 리워드",
-        tagWeb3: "분리 채널 01 · WEB3",
-        entryWeb3Title: "웹3 디지털 은행 들어갈 곳",
-        entryWeb3Desc: "10대 분산 연동망, 파이·테더·리플·솔라나·이더리움·비트코인 수량 연동 스왑·예치·UBI 전용 화면",
-        btnEnterWeb3: "웹3 디지털 은행 진입하기",
-        tagInternet: "분리 채널 02 · INTERNET BANK",
-        entryInternetTitle: "인터넷 은행 들어갈 곳",
-        entryInternetDesc: "입금·출금·송금·예치·적금·대출 6대 기능, 기간별 예치 이자율, NICE + 블록체인 신용점수 조회 전용 화면",
-        btnEnterInternet: "인터넷 은행 진입하기",
-        web3PanelTitle: "웹3 디지털 은행 — 10대 분산 연동망 & 자산 운용",
-        web3Badge: "웹3 전용 표시",
-        swapTitle: "자산 스왑 & DEX 스왑 (보유 수량 연동)",
-        swapFromLabel: "출발 자산 선택",
-        swapToLabel: "도착 자산 선택",
-        swapAmtLabel: "전환 수량 입력",
-        applySwapBtn: "스왑 반영하기",
-        web3DepTitle: "Web3 자산 예치 & 기간별 이자 계산",
-        w3DepAssetLabel: "예치 자산 선택",
-        w3DepAmtLabel: "예치 수량 입력",
-        w3DepTermLabel: "예치 기간 및 이자율",
-        applyDepBtn: "예치 신청하기",
-        internetPanelTitle: "인터넷 은행 — 6대 금융 기능 · 예치 이자율 · 신용점수",
-        internetBadge: "인터넷 은행 전용 표시",
-        fnDeposit: "1. 입금",
-        fnDepositSub: "실시간 계좌 입금 및 자금 적립",
-        fnWithdraw: "2. 출금",
-        fnWithdrawSub: "즉시 출금 및 보안 인증 확인",
-        fnTransfer: "3. 송금",
-        fnTransferSub: "계좌·연동 지갑 이체 송금",
-        fnStaking: "4. 예치",
-        fnStakingSub: "6개월~3년 차등 이자율 예치",
-        fnSavings: "5. 적금",
-        fnSavingsSub: "목표 적금 설계 및 이자 안내",
-        fnLoan: "6. 대출",
-        fnLoanSub: "NICE + 블록체인 신용점수 한도",
-        bankCalcTitle: "예치·금융 계산 및 기간별 이자율",
-        bankAmtLabel: "금액 (KRW)",
-        bankTermLabel: "예치 기간 선택",
-        applyBankBtn: "선택 기능 실행",
-        thPeriod: "예치 기간",
-        thRate: "적용 이자율",
-        creditTitle: "신용정보 조회 (NICE 평가 + 블록체인 원장)",
-        creditDesc: "신용정보 점수 조회 버튼을 누르면 NICE 신용지표와 블록체인 원장 거래·예치 지표를 함께 반영하여 신용점수와 대출 한도를 보여줍니다.",
-        niceLabel: "NICE 신용·상환 지수 (0~100)",
-        chainLabel: "블록체인 원장·예치 지수 (0~100)",
-        lookupCreditBtn: "신용정보 점수 조회",
-        creditOutLabel: "통합 신용점수 (NICE + 블록체인)",
-        navHome: "홈",
-        navWhitepaper: "백서",
-        navAssets: "자산",
-        navMenu: "전체 메뉴",
-        wpModalTitle: "HKWB · HK WorldBank 백서",
-        wpP1: "• HKWB 아래 웹3 디지털 은행과 인터넷 은행(HK 뱅크)을 분리 운영합니다.",
-        wpP2: "• 예치 이자율은 6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4%로 적용됩니다.",
-        wpP3: "• 순수익 최대 60% 사회환원 UBI와 NICE + 블록체인 원장 신용점수 조회를 제공합니다.",
-        allMenuTitle: "HKWB 전체 메뉴",
-        closeBtn: "닫기",
-        menuAssets: "최상단 개인 자산 대시보드",
-        menuWeb3: "웹3 디지털 은행 진입하기",
-        menuWeb3Sub: "10대 분산 연동망 · 스왑 · 예치",
-        menuInternet: "인터넷 은행 진입하기",
-        menuInternetSub: "입금·출금·송금·예치·적금·대출",
-        menuCredit: "신용정보 점수 조회",
-        menuCreditSub: "NICE 평가 + 블록체인 원장 점수",
-        menuWp: "백서 보기",
-        menuWpSub: "구조 · 이자율 · UBI 안내",
-        p6m: "6개월",
-        p1y: "1년",
-        p2y: "2년",
-        p3y: "3년",
-        grade1: "1등급",
-        grade2: "2등급",
-        grade3: "3등급",
-        loanRec: "추천 대출 한도",
-        swapOut: "예상 수령",
-        depOut: "예상 만기 이자",
-        estInt: "예상 이자",
-        langLabelPrefix: "언어"
-      },
-      en: {
-        brandName: "HKWB · HK WorldBank",
-        brandSub: "Next-Gen Digital Finance Where Humanity & Tech Coexist",
-        langLabel: "60 Languages",
-        heroKicker: "Top Personal Asset Dashboard · Unified Portfolio",
-        ubiText: "Social Return UBI · Up to 60% Net Profit Reward",
-        tagWeb3: "Channel 01 · WEB3",
-        entryWeb3Title: "Web3 Digital Bank Entry",
-        entryWeb3Desc: "10 Decentralized Modules · PI/USDT/XRP/SOL/ETH/BTC Swap, Deposit & UBI",
-        btnEnterWeb3: "Enter Web3 Digital Bank",
-        tagInternet: "Channel 02 · INTERNET BANK",
-        entryInternetTitle: "Internet Bank Entry",
-        entryInternetDesc: "6 Banking Modules · Term Deposit Rates · NICE + Blockchain Credit Score",
-        btnEnterInternet: "Enter Internet Bank",
-        web3PanelTitle: "Web3 Digital Bank — 10 Decentralized Modules & Assets",
-        web3Badge: "Web3 View Only",
-        swapTitle: "Asset Swap & DEX Swap",
-        swapFromLabel: "From Asset",
-        swapToLabel: "To Asset",
-        swapAmtLabel: "Quantity to Convert",
-        applySwapBtn: "Apply Swap",
-        web3DepTitle: "Web3 Deposit & Term Yield Calculator",
-        w3DepAssetLabel: "Deposit Asset",
-        w3DepAmtLabel: "Deposit Quantity",
-        w3DepTermLabel: "Term & Yield Rate",
-        applyDepBtn: "Submit Deposit",
-        internetPanelTitle: "Internet Bank — 6 Modules · Deposit Rates · Credit Score",
-        internetBadge: "Internet Bank Only",
-        fnDeposit: "1. Deposit",
-        fnDepositSub: "Real-time deposit",
-        fnWithdraw: "2. Withdraw",
-        fnWithdrawSub: "Instant withdrawal",
-        fnTransfer: "3. Transfer",
-        fnTransferSub: "Account & wallet transfer",
-        fnStaking: "4. Term Deposit",
-        fnStakingSub: "6M–3Y tiered yields",
-        fnSavings: "5. Savings",
-        fnSavingsSub: "Goal savings plan",
-        fnLoan: "6. Loan",
-        fnLoanSub: "NICE + Blockchain limit",
-        bankCalcTitle: "Deposit Calculator & Term Rates",
-        bankAmtLabel: "Amount (KRW)",
-        bankTermLabel: "Select Term",
-        applyBankBtn: "Execute Action",
-        thPeriod: "Term",
-        thRate: "Rate",
-        creditTitle: "Credit Score Check (NICE + Blockchain)",
-        creditDesc: "Combines NICE credit history with blockchain ledger health to display your score and loan limit.",
-        niceLabel: "NICE Credit Index (0–100)",
-        chainLabel: "Blockchain Ledger Index (0–100)",
-        lookupCreditBtn: "Check Credit Score",
-        creditOutLabel: "Combined Credit Score",
-        navHome: "Home",
-        navWhitepaper: "Whitepaper",
-        navAssets: "Assets",
-        navMenu: "All Menu",
-        wpModalTitle: "HKWB · HK WorldBank Whitepaper",
-        wpP1: "• Separates Web3 Digital Bank and Internet Bank under HKWB.",
-        wpP2: "• Deposit rates: 6M (8–12%), 1Y (12–18%), 2Y (16–24%), 3Y (20–31.4%).",
-        wpP3: "• Up to 60% social return UBI and NICE + Blockchain credit scoring.",
-        allMenuTitle: "HKWB All Menu",
-        closeBtn: "Close",
-        menuAssets: "Personal Asset Dashboard",
-        menuWeb3: "Enter Web3 Digital Bank",
-        menuWeb3Sub: "10 Modules · Swap · Deposit",
-        menuInternet: "Enter Internet Bank",
-        menuInternetSub: "Deposit·Withdraw·Transfer·Term·Savings·Loan",
-        menuCredit: "Credit Score Check",
-        menuCreditSub: "NICE + Blockchain Score",
-        menuWp: "Whitepaper",
-        menuWpSub: "Architecture · Rates · UBI",
-        p6m: "6 Months",
-        p1y: "1 Year",
-        p2y: "2 Years",
-        p3y: "3 Years",
-        grade1: "Tier 1",
-        grade2: "Tier 2",
-        grade3: "Tier 3",
-        loanRec: "Recommended Loan Limit",
-        swapOut: "Estimated Receive",
-        depOut: "Estimated Maturity Interest",
-        estInt: "Estimated Interest",
-        langLabelPrefix: "Language"
-      },
-      "zh-CN": {
-        brandName: "HKWB · HK WorldBank",
-        brandSub: "人类与科技共存的新一代数字金融",
-        langLabel: "60种语言选择",
-        heroKicker: "顶部个人资产仪表盘 · 持仓与数量",
-        ubiText: "社会回馈 UBI · 最高60%净利润奖励",
-        tagWeb3: "通道 01 · WEB3",
-        entryWeb3Title: "Web3 数字银行入口",
-        entryWeb3Desc: "十大分布式联动 · PI/USDT/XRP/SOL/ETH/BTC 兑换·存入·UBI",
-        btnEnterWeb3: "进入 Web3 数字银行",
-        tagInternet: "通道 02 · 互联网银行",
-        entryInternetTitle: "互联网银行入口",
-        entryInternetDesc: "六大功能 · 定期利率 · NICE + 区块链信用分",
-        btnEnterInternet: "进入 互联网银行",
-        web3PanelTitle: "Web3 数字银行 — 十大分布式联动与资产管理",
-        web3Badge: "仅显示 Web3",
-        swapTitle: "资产兑换与 DEX 兑换",
-        swapFromLabel: "转出资产",
-        swapToLabel: "换入资产",
-        swapAmtLabel: "转换数量",
-        applySwapBtn: "确认兑换",
-        web3DepTitle: "Web3 存入与期限收益",
-        w3DepAssetLabel: "存入资产",
-        w3DepAmtLabel: "存入数量",
-        w3DepTermLabel: "期限与利率",
-        applyDepBtn: "提交存入",
-        internetPanelTitle: "互联网银行 — 六大功能·利率·信用分",
-        internetBadge: "仅显示互联网银行",
-        fnDeposit: "1. 入金",
-        fnDepositSub: "账户入金",
-        fnWithdraw: "2. 出金",
-        fnWithdrawSub: "快速出金",
-        fnTransfer: "3. 转账",
-        fnTransferSub: "账户与钱包转账",
-        fnStaking: "4. 定期存入",
-        fnStakingSub: "6个月~3年利率",
-        fnSavings: "5. 储蓄",
-        fnSavingsSub: "目标储蓄",
-        fnLoan: "6. 信贷",
-        fnLoanSub: "NICE + 区块链额度",
-        bankCalcTitle: "存入计算与期限利率",
-        bankAmtLabel: "金额 (KRW)",
-        bankTermLabel: "存款期限",
-        applyBankBtn: "执行功能",
-        thPeriod: "期限",
-        thRate: "利率",
-        creditTitle: "信用分查询（NICE + 区块链账本）",
-        creditDesc: "综合 NICE 信用指标与区块链账本健康度评估信用分。",
-        niceLabel: "NICE 指数 (0~100)",
-        chainLabel: "区块链账本指数 (0~100)",
-        lookupCreditBtn: "查询信用分",
-        creditOutLabel: "综合信用分",
-        navHome: "首页",
-        navWhitepaper: "白皮书",
-        navAssets: "资产",
-        navMenu: "全部菜单",
-        wpModalTitle: "HKWB · HK WorldBank 白皮书",
-        wpP1: "• 在 HKWB 架构下独立提供 Web3 数字银行与互联网银行。",
-        wpP2: "• 利率：6个月 8~12%，1年 12~18%，2年 16~24%，3年 20~31.4%。",
-        wpP3: "• 最高60%净利润社会回馈 UBI 与 NICE + 区块链信用评估。",
-        allMenuTitle: "HKWB 全部菜单",
-        closeBtn: "关闭",
-        menuAssets: "个人资产仪表盘",
-        menuWeb3: "进入 Web3 数字银行",
-        menuWeb3Sub: "十大联动 · 兑换 · 存入",
-        menuInternet: "进入 互联网银行",
-        menuInternetSub: "入金·出金·转账·定期·储蓄·信贷",
-        menuCredit: "信用分查询",
-        menuCreditSub: "NICE + 区块链评分",
-        menuWp: "查看白皮书",
-        menuWpSub: "架构 · 利率 · UBI",
-        p6m: "6个月",
-        p1y: "1年",
-        p2y: "2年",
-        p3y: "3年",
-        grade1: "1级",
-        grade2: "2级",
-        grade3: "3级",
-        loanRec: "推荐授信额度",
-        swapOut: "预计到账",
-        depOut: "预计到期利息",
-        estInt: "预计利息",
-        langLabelPrefix: "语言"
-      },
-      ja: {
-        brandName: "HKWB · HK WorldBank",
-        brandSub: "人類と技術が共存する次世代デジタル金融",
-        langLabel: "60カ国語 選択",
-        heroKicker: "最上段 個人資産ダッシュボード · 保有数量",
-        ubiText: "社会還元 UBI · 純利益最大60%リワード",
-        tagWeb3: "チャネル01 · WEB3",
-        entryWeb3Title: "Web3 デジタル銀行 入口",
-        entryWeb3Desc: "10大分散連動網 · PI/USDT/XRP/SOL/ETH/BTC スワップ・預け入れ・UBI",
-        btnEnterWeb3: "Web3 デジタル銀行へ入る",
-        tagInternet: "チャネル02 · インターネット銀行",
-        entryInternetTitle: "インターネット銀行 入口",
-        entryInternetDesc: "6大機能 · 期間別金利 · NICE＋ブロックチェーン信用スコア",
-        btnEnterInternet: "インターネット銀行へ入る",
-        web3PanelTitle: "Web3 デジタル銀行 — 10大分散連動網＆資産運用",
-        web3Badge: "Web3 専用表示",
-        swapTitle: "資産スワップ＆DEXスワップ",
-        swapFromLabel: "交換元",
-        swapToLabel: "交換先",
-        swapAmtLabel: "数量",
-        applySwapBtn: "スワップ反映",
-        web3DepTitle: "Web3 預け入れ＆期間別利息",
-        w3DepAssetLabel: "預け入れ資産",
-        w3DepAmtLabel: "預け入れ数量",
-        w3DepTermLabel: "期間と金利",
-        applyDepBtn: "預け入れ申請",
-        internetPanelTitle: "インターネット銀行 — 6大機能・金利・信用スコア",
-        internetBadge: "インターネット銀行 専用",
-        fnDeposit: "1. 入金",
-        fnDepositSub: "口座入金",
-        fnWithdraw: "2. 出金",
-        fnWithdrawSub: "即時出金",
-        fnTransfer: "3. 送金",
-        fnTransferSub: "送金・振込",
-        fnStaking: "4. 預金",
-        fnStakingSub: "6カ月〜3年金利",
-        fnSavings: "5. 積立",
-        fnSavingsSub: "積立プラン",
-        fnLoan: "6. ローン",
-        fnLoanSub: "NICE＋ブロックチェーン枠",
-        bankCalcTitle: "預金計算＆期間別金利",
-        bankAmtLabel: "金額 (KRW)",
-        bankTermLabel: "預け入れ期間",
-        applyBankBtn: "機能実行",
-        thPeriod: "期間",
-        thRate: "金利",
-        creditTitle: "信用スコア照会（NICE＋ブロックチェーン）",
-        creditDesc: "NICE指標とブロックチェーン台帳指標を合算して信用スコアを表示します。",
-        niceLabel: "NICE 指数 (0〜100)",
-        chainLabel: "ブロックチェーン台帳指数 (0〜100)",
-        lookupCreditBtn: "信用スコアを照会",
-        creditOutLabel: "統合信用スコア",
-        navHome: "ホーム",
-        navWhitepaper: "白書",
-        navAssets: "資産",
-        navMenu: "全メニュー",
-        wpModalTitle: "HKWB · HK WorldBank 白書",
-        wpP1: "• Web3デジタル銀行とインターネット銀行を独立提供します。",
-        wpP2: "• 金利：6カ月8〜12%、1年12〜18%、2年16〜24%、3年20〜31.4%。",
-        wpP3: "• 純利益最大60%の社会還元UBIとNICE＋ブロックチェーン信用評価。",
-        allMenuTitle: "HKWB 全メニュー",
-        closeBtn: "閉じる",
-        menuAssets: "個人資産ダッシュボード",
-        menuWeb3: "Web3 デジタル銀行",
-        menuWeb3Sub: "10大連動 · スワップ · 預金",
-        menuInternet: "インターネット銀行",
-        menuInternetSub: "入金・出金・送金・預金・積立・ローン",
-        menuCredit: "信用スコア照会",
-        menuCreditSub: "NICE＋ブロックチェーン評価",
-        menuWp: "白書を見る",
-        menuWpSub: "構造・金利・UBI",
-        p6m: "6カ月",
-        p1y: "1年",
-        p2y: "2年",
-        p3y: "3年",
-        grade1: "1等級",
-        grade2: "2等級",
-        grade3: "3等級",
-        loanRec: "推奨融資枠",
-        swapOut: "受取予定",
-        depOut: "満期利息予定",
-        estInt: "利息予定",
-        langLabelPrefix: "言語"
-      }
+    const KO_TEXT = {
+      langLabel: "60개국어 언어 선택",
+      heroTitle: "HKWB · HK WorldBank",
+      heroSlogan: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
+      web3Title: "웹3 디지털 은행",
+      web3Desc: "10대 분산 연동망과 스왑·예치·UBI 채널",
+      web3Btn: "웹3 디지털 은행 진입하기",
+      internetTitle: "인터넷 은행",
+      internetDesc: "입금·출금·송금·예치·적금·대출 및 신용점수 채널",
+      internetBtn: "인터넷 은행 진입하기",
+      web3PanelTitle: "웹3 디지털 은행 — 10대 분산 연동망",
+      swapBoxTitle: "스왑 & DEX 스왑",
+      fromLabel: "출발 자산",
+      toLabel: "도착 자산",
+      qtyLabel: "수량",
+      calcBtn: "계산 반영",
+      w3DepBoxTitle: "기간별 예치 이자율",
+      termLabel: "예치 기간",
+      amtLabel: "예치 금액 (KRW)",
+      internetPanelTitle: "인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수",
+      fn1: "1. 입금",
+      fn2: "2. 출금",
+      fn3: "3. 송금",
+      fn4: "4. 예치",
+      fn5: "5. 적금",
+      fn6: "6. 대출",
+      bankRateTitle: "예치 이자율 안내",
+      thPeriod: "기간",
+      thRate: "이자율",
+      creditTitle: "신용정보 조회 (NICE + 블록체인)",
+      niceLabel: "NICE 지수 (0~100)",
+      chainLabel: "블록체인 지수 (0~100)",
+      creditBtn: "신용정보 점수 조회",
+      creditScoreLabel: "통합 신용점수",
+      bHome: "홈",
+      bWp: "백서",
+      bWeb3: "웹3",
+      bMenu: "전체 메뉴",
+      wpTitle: "HKWB · HK WorldBank 백서",
+      wp1: "• HKWB 아래 웹3 디지털 은행과 인터넷 은행(HK 뱅크)을 분리 운영합니다.",
+      wp2: "• 예치 이자율: 6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4%.",
+      wp3: "• 순수익 최대 60% 사회환원 UBI와 NICE + 블록체인 신용점수 조회를 지원합니다.",
+      menuTitle: "HKWB 전체 메뉴",
+      closeBtn: "닫기",
+      p6m: "6개월",
+      p1y: "1년",
+      p2y: "2년",
+      p3y: "3년",
+      estInt: "예상 이자",
+      loanLimit: "추천 한도"
     };
 
-    // 60개국어 전체 사전 생성 (별도 사전 언어 외 56개 언어도 고유 번역 문구와 native 표기로 100% 매핑)
-    function buildFull60Dict() {
-      const full = {};
-      LANGS_60.forEach((lang) => {
-        if (BASE_DICT[lang.code]) {
-          full[lang.code] = { ...BASE_DICT[lang.code] };
-        } else {
-          // 영어 기반 구조에 해당 언어 이름/코드가 명확히 반영된 로컬라이즈 세트
-          const en = BASE_DICT.en;
-          full[lang.code] = {
-            ...en,
-            brandSub: `${en.brandSub} · ${lang.native}`,
-            langLabel: `${lang.native} (${lang.ko}) · 60`,
-            heroKicker: `${en.heroKicker} · ${lang.native}`,
-            ubiText: `${en.ubiText} · ${lang.native}`,
-            btnEnterWeb3: `${en.btnEnterWeb3} (${lang.native})`,
-            btnEnterInternet: `${en.btnEnterInternet} (${lang.native})`,
-            web3PanelTitle: `${en.web3PanelTitle} · ${lang.native}`,
-            internetPanelTitle: `${en.internetPanelTitle} · ${lang.native}`,
-            navHome: `🏠 ${lang.code.toUpperCase()}`,
-            navWhitepaper: `📄 ${lang.code.toUpperCase()}`,
-            navAssets: `💼 ${lang.code.toUpperCase()}`,
-            navMenu: `☰ ${lang.native}`,
-            langLabelPrefix: lang.native
-          };
-        }
-      });
-      return full;
-    }
-
-    const FULL_DICT = buildFull60Dict();
+    const EN_TEXT = {
+      ...KO_TEXT,
+      langLabel: "60 Languages",
+      heroSlogan: "Next-Generation Digital Finance Where Humanity & Technology Coexist",
+      web3Title: "Web3 Digital Bank",
+      web3Desc: "10 Decentralized Modules · Swap · Deposit · UBI",
+      web3Btn: "Enter Web3 Digital Bank",
+      internetTitle: "Internet Bank",
+      internetDesc: "Deposit · Withdraw · Transfer · Term · Savings · Loan & Credit",
+      internetBtn: "Enter Internet Bank",
+      web3PanelTitle: "Web3 Digital Bank — 10 Decentralized Modules",
+      swapBoxTitle: "Swap & DEX Swap",
+      fromLabel: "From Asset",
+      toLabel: "To Asset",
+      qtyLabel: "Quantity",
+      calcBtn: "Update Calculation",
+      w3DepBoxTitle: "Term Deposit Yields",
+      termLabel: "Deposit Term",
+      amtLabel: "Amount (KRW)",
+      internetPanelTitle: "Internet Bank — 6 Modules · Rates · Credit",
+      fn1: "1. Deposit",
+      fn2: "2. Withdraw",
+      fn3: "3. Transfer",
+      fn4: "4. Term Deposit",
+      fn5: "5. Savings",
+      fn6: "6. Loan",
+      bankRateTitle: "Deposit Interest Rates",
+      thPeriod: "Term",
+      thRate: "Rate",
+      creditTitle: "Credit Score Check (NICE + Blockchain)",
+      niceLabel: "NICE Index (0–100)",
+      chainLabel: "Blockchain Index (0–100)",
+      creditBtn: "Check Credit Score",
+      creditScoreLabel: "Combined Credit Score",
+      bHome: "Home",
+      bWp: "Whitepaper",
+      bWeb3: "Web3",
+      bMenu: "All Menu",
+      wpTitle: "HKWB · HK WorldBank Whitepaper",
+      wp1: "• Separates Web3 Digital Bank and Internet Bank under HKWB.",
+      wp2: "• Deposit rates: 6M 8–12%, 1Y 12–18%, 2Y 16–24%, 3Y 20–31.4%.",
+      wp3: "• Up to 60% social return UBI and NICE + Blockchain credit scoring.",
+      menuTitle: "HKWB All Menu",
+      closeBtn: "Close",
+      p6m: "6 Months",
+      p1y: "1 Year",
+      p2y: "2 Years",
+      p3y: "3 Years",
+      estInt: "Estimated Interest",
+      loanLimit: "Recommended Limit"
+    };
 
     const ASSETS = [
-      { id: "PI", koName: "파이", enName: "Pi Network", sym: "PI", qty: 12500, krw: 2400 },
-      { id: "USDT", koName: "테더", enName: "Tether", sym: "USDT", qty: 18400, krw: 1420 },
-      { id: "XRP", koName: "리플", enName: "Ripple", sym: "XRP", qty: 42000, krw: 1850 },
-      { id: "SOL", koName: "솔라나", enName: "Solana", sym: "SOL", qty: 145, krw: 245000 },
-      { id: "ETH", koName: "이더리움", enName: "Ethereum", sym: "ETH", qty: 14.5, krw: 4250000 },
-      { id: "BTC", koName: "비트코인", enName: "Bitcoin", sym: "BTC", qty: 0.65, krw: 118000000 }
+      { id: "PI", sym: "PI", nameKo: "파이", nameEn: "Pi", krw: 2400 },
+      { id: "USDT", sym: "USDT", nameKo: "테더", nameEn: "USDT", krw: 1420 },
+      { id: "XRP", sym: "XRP", nameKo: "리플", nameEn: "XRP", krw: 1850 },
+      { id: "SOL", sym: "SOL", nameKo: "솔라나", nameEn: "SOL", krw: 245000 },
+      { id: "ETH", sym: "ETH", nameKo: "이더리움", nameEn: "ETH", krw: 4250000 },
+      { id: "BTC", sym: "BTC", nameKo: "비트코인", nameEn: "BTC", krw: 118000000 }
     ];
 
     const NET_10 = [
-      { id: "wallet", ko: "1. 지갑연결", en: "1. Wallet Connect", subKo: "멀티체인 지갑 연동", subEn: "Multi-chain wallet" },
+      { id: "wallet", ko: "1. 지갑연결", en: "1. Wallet Connect", subKo: "멀티체인 지갑 연동", subEn: "Wallet link" },
       { id: "remit", ko: "2. 송금", en: "2. Transfer", subKo: "즉시 온체인 송금", subEn: "Instant transfer" },
       { id: "pay", ko: "3. 결재", en: "3. Payment", subKo: "글로벌 결재 연동", subEn: "Global pay" },
       { id: "deposit", ko: "4. 예치", en: "4. Deposit", subKo: "기간별 이자 예치", subEn: "Term deposit" },
-      { id: "reward", ko: "5. 보상", en: "5. Reward", subKo: "참여 리워드 지급", subEn: "Ecosystem reward" },
+      { id: "reward", ko: "5. 보상", en: "5. Reward", subKo: "참여 리워드 지급", subEn: "Rewards" },
       { id: "ubi", ko: "6. 기본소득", en: "6. UBI", subKo: "최대 60% UBI 환원", subEn: "Up to 60% UBI" },
       { id: "swap", ko: "7. 스왑", en: "7. Swap", subKo: "즉시 자산 전환", subEn: "Instant swap" },
-      { id: "dex", ko: "8. DEX스왑", en: "8. DEX Swap", subKo: "탈중앙 유동성 스왑", subEn: "DEX liquidity" },
+      { id: "dex", ko: "8. DEX스왑", en: "8. DEX Swap", subKo: "탈중앙 유동성 스왑", subEn: "DEX swap" },
       { id: "lp", ko: "9. LP스테이킹", en: "9. LP Staking", subKo: "유동성 풀 스테이킹", subEn: "LP staking" },
-      { id: "piQty", ko: "10. PI수량", en: "10. PI Balance", subKo: "파이 보유 수량 연동", subEn: "PI holdings" }
+      { id: "piQty", ko: "10. PI수량", en: "10. PI Balance", subKo: "파이 수량 연동", subEn: "PI balance" }
     ];
 
     const TERMS = {
@@ -1335,18 +923,9 @@
       "3y": { key: "p3y", min: 20.0, max: 31.4, yrs: 3.0 }
     };
 
-    let langNow = "ko";
-    let channelNow = "web3";
-    let netNow = "swap";
-    let bankFnNow = "deposit";
-
-    function toast(msg) {
-      const el = document.getElementById("toastMsg");
-      el.textContent = msg;
-      el.classList.add("show");
-      clearTimeout(toast._t);
-      toast._t = setTimeout(() => el.classList.remove("show"), 2400);
-    }
+    let curLang = "ko";
+    let curNet = "swap";
+    let curFn = "deposit";
 
     function fmtKrw(n) {
       return "₩ " + Math.round(n).toLocaleString("ko-KR");
@@ -1359,93 +938,49 @@
     }
 
     function getDict(code) {
-      return FULL_DICT[code] || FULL_DICT.en;
+      if (code === "ko") return KO_TEXT;
+      const meta = LANGS.find((x) => x.code === code) || LANGS[1];
+      return {
+        ...EN_TEXT,
+        langLabel: `${meta.native} (${meta.ko})`,
+        heroSlogan: `${EN_TEXT.heroSlogan} · ${meta.native}`
+      };
     }
 
     function initLangs() {
       const sel = document.getElementById("langSelect");
-      sel.innerHTML = LANGS_60.map((l, idx) =>
-        `<option value="${l.code}">${idx + 1}. ${l.native} (${l.ko})</option>`
+      sel.innerHTML = LANGS.map((l, i) =>
+        `<option value="${l.code}">${i + 1}. ${l.native} (${l.ko})</option>`
       ).join("");
-      sel.value = langNow;
-      sel.addEventListener("change", (e) => applyLang(e.target.value));
+      sel.value = curLang;
+      sel.addEventListener("change", (e) => setLang(e.target.value));
     }
 
-    function renderTermOptions() {
-      const d = getDict(langNow);
-      const makeHtml = (selectedVal) => Object.entries(TERMS).map(([k, v]) =>
-        `<option value="${k}" ${k === selectedVal ? "selected" : ""}>${d[v.key]} (${v.min}% ~ ${v.max}%)</option>`
-      ).join("");
-
-      const w3Sel = document.getElementById("w3DepTerm");
-      const bSel = document.getElementById("bankTermSelect");
-      const prevW3 = w3Sel.value || "1y";
-      const prevB = bSel.value || "1y";
-      w3Sel.innerHTML = makeHtml(prevW3);
-      bSel.innerHTML = makeHtml(prevB);
-
-      document.getElementById("rateTableBody").innerHTML = Object.values(TERMS).map((v) =>
-        `<tr><td>${d[v.key]}</td><td class="rate-em">${v.min}% ~ ${v.max}%</td></tr>`
-      ).join("");
-    }
-
-    function applyLang(code) {
-      langNow = code;
-      const meta = LANGS_60.find((x) => x.code === code) || LANGS_60[0];
+    function setLang(code) {
+      curLang = code;
+      const meta = LANGS.find((x) => x.code === code) || LANGS[0];
       const d = getDict(code);
-
       document.documentElement.lang = code;
       document.documentElement.dir = meta.rtl ? "rtl" : "ltr";
 
       document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        if (d[key] !== undefined) {
-          el.textContent = d[key];
-        }
+        const k = el.getAttribute("data-i18n");
+        if (d[k] !== undefined) el.textContent = d[k];
       });
 
-      document.getElementById("langBadge").textContent =
-        `${d.langLabelPrefix}: ${meta.native} (${meta.ko} · ${code.toUpperCase()})`;
-
-      renderTermOptions();
-      renderAssets();
       renderNets();
-      fillSelects();
-      updateSwapCalc();
-      updateWeb3DepCalc();
-      updateBankCalc();
-      lookupCredit();
-      toast(`${meta.native} (${meta.ko})`);
-    }
-
-    function renderAssets() {
-      const wrap = document.getElementById("assetGrid");
-      let total = 0;
-      const labelName = (a) => (langNow === "ko" ? a.koName : `${a.enName} (${a.koName})`);
-
-      wrap.innerHTML = ASSETS.map((a) => {
-        const krwVal = a.qty * a.krw;
-        total += krwVal;
-        return `
-          <div class="asset-box">
-            <div class="asset-box-top">
-              <span class="asset-ko">${labelName(a)}</span>
-              <span class="asset-code">${a.sym}</span>
-            </div>
-            <div class="asset-amount">${fmtQty(a.qty)} ${a.sym}</div>
-            <div class="asset-krw">${fmtKrw(krwVal)}</div>
-          </div>
-        `;
-      }).join("");
-
-      document.getElementById("totalKrwText").textContent = fmtKrw(total);
+      fillAssetSelects();
+      fillTermSelects();
+      calcSwap();
+      calcW3Dep();
+      calcBank();
+      calcCredit();
     }
 
     function renderNets() {
-      const wrap = document.getElementById("netGrid");
-      const isKo = langNow === "ko";
-      wrap.innerHTML = NET_10.map((n) => `
-        <button type="button" class="net-btn ${netNow === n.id ? "active" : ""}" onclick="pickNet('${n.id}')">
+      const isKo = curLang === "ko";
+      document.getElementById("netGrid").innerHTML = NET_10.map((n) => `
+        <button type="button" class="net-btn ${curNet === n.id ? "active" : ""}" onclick="pickNet('${n.id}')">
           <strong>${isKo ? n.ko : n.en}</strong>
           <span>${isKo ? n.subKo : n.subEn}</span>
         </button>
@@ -1453,98 +988,69 @@
     }
 
     function pickNet(id) {
-      netNow = id;
+      curNet = id;
       renderNets();
-      const found = NET_10.find((x) => x.id === id);
-      if (found) toast(langNow === "ko" ? found.ko : found.en);
     }
 
-    function fillSelects() {
-      const f = document.getElementById("swapFrom");
-      const t = document.getElementById("swapTo");
-      const d = document.getElementById("w3DepAsset");
+    function fillAssetSelects() {
+      const f = document.getElementById("fromAsset");
+      const t = document.getElementById("toAsset");
       const prevF = f.value || "PI";
       const prevT = t.value || "USDT";
-      const prevD = d.value || "PI";
-
-      const opts = ASSETS.map((a) => {
-        const nm = langNow === "ko" ? a.koName : a.enName;
-        return `<option value="${a.id}">${nm} (${a.sym}) · ${fmtQty(a.qty)}</option>`;
-      }).join("");
-
+      const opts = ASSETS.map((a) =>
+        `<option value="${a.id}">${curLang === "ko" ? a.nameKo : a.nameEn} (${a.sym})</option>`
+      ).join("");
       f.innerHTML = opts;
       t.innerHTML = opts;
-      d.innerHTML = opts;
       f.value = prevF;
       t.value = prevT;
-      d.value = prevD;
     }
 
-    function updateSwapCalc() {
-      const d = getDict(langNow);
-      const fId = document.getElementById("swapFrom").value;
-      const tId = document.getElementById("swapTo").value;
-      const amt = Math.max(0, parseFloat(document.getElementById("swapAmt").value) || 0);
+    function fillTermSelects() {
+      const d = getDict(curLang);
+      const w3 = document.getElementById("w3Term");
+      const bk = document.getElementById("bankTerm");
+      const prevW3 = w3.value || "1y";
+      const prevBk = bk.value || "1y";
+      const html = Object.entries(TERMS).map(([k, v]) =>
+        `<option value="${k}">${d[v.key]} (${v.min}% ~ ${v.max}%)</option>`
+      ).join("");
+      w3.innerHTML = html;
+      bk.innerHTML = html;
+      w3.value = prevW3;
+      bk.value = prevBk;
+
+      document.getElementById("rateRows").innerHTML = Object.values(TERMS).map((v) =>
+        `<tr><td>${d[v.key]}</td><td class="rate-em">${v.min}% ~ ${v.max}%</td></tr>`
+      ).join("");
+    }
+
+    function calcSwap() {
+      const fId = document.getElementById("fromAsset").value;
+      const tId = document.getElementById("toAsset").value;
+      const qty = Math.max(0, parseFloat(document.getElementById("swapQty").value) || 0);
       const aFrom = ASSETS.find((a) => a.id === fId) || ASSETS[0];
       const aTo = ASSETS.find((a) => a.id === tId) || ASSETS[1];
-      const out = amt * (aFrom.krw / aTo.krw) * 0.997;
-
-      document.getElementById("swapPreview").innerHTML = `
-        <strong>${fmtQty(amt)} ${aFrom.sym}</strong> → ${d.swapOut}: <strong>${fmtQty(out)} ${aTo.sym}</strong><br/>
-        <span style="color:var(--text-muted); font-size:0.78rem;">${fmtKrw(amt * aFrom.krw)} · ${langNow.toUpperCase()}</span>
-      `;
+      const out = qty * (aFrom.krw / aTo.krw) * 0.997;
+      document.getElementById("swapCalcOut").innerHTML =
+        `<strong>${fmtQty(qty)} ${aFrom.sym}</strong> → <strong>${fmtQty(out)} ${aTo.sym}</strong>`;
     }
 
-    function applySwap() {
-      const fId = document.getElementById("swapFrom").value;
-      const tId = document.getElementById("swapTo").value;
-      const amt = Math.max(0, parseFloat(document.getElementById("swapAmt").value) || 0);
-      if (fId === tId) return toast("다른 자산을 선택해 주세요.");
-      const aFrom = ASSETS.find((a) => a.id === fId);
-      const aTo = ASSETS.find((a) => a.id === tId);
-      if (amt <= 0 || amt > aFrom.qty) return toast("보유 수량 내에서 입력해 주세요.");
-
-      const out = amt * (aFrom.krw / aTo.krw) * 0.997;
-      aFrom.qty -= amt;
-      aTo.qty += out;
-      renderAssets();
-      fillSelects();
-      updateSwapCalc();
-      toast(`${aFrom.sym} → ${aTo.sym}`);
+    function calcW3Dep() {
+      const d = getDict(curLang);
+      const t = TERMS[document.getElementById("w3Term").value] || TERMS["1y"];
+      const amt = Math.max(0, parseFloat(document.getElementById("w3Amt").value) || 0);
+      const minI = amt * (t.min / 100) * t.yrs;
+      const maxI = amt * (t.max / 100) * t.yrs;
+      document.getElementById("w3DepOut").innerHTML =
+        `${d[t.key]} (${t.min}%~${t.max}%) · ${d.estInt}: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
     }
 
-    function updateWeb3DepCalc() {
-      const d = getDict(langNow);
-      const aId = document.getElementById("w3DepAsset").value;
-      const amt = Math.max(0, parseFloat(document.getElementById("w3DepAmt").value) || 0);
-      const t = TERMS[document.getElementById("w3DepTerm").value] || TERMS["1y"];
-      const asset = ASSETS.find((a) => a.id === aId) || ASSETS[0];
-      const minInt = amt * (t.min / 100) * t.yrs;
-      const maxInt = amt * (t.max / 100) * t.yrs;
-
-      document.getElementById("w3DepPreview").innerHTML = `
-        <strong>${fmtQty(amt)} ${asset.sym}</strong> (${d[t.key]}, ${t.min}%~${t.max}%)<br/>
-        ${d.depOut}: <strong>${fmtQty(minInt)} ~ ${fmtQty(maxInt)} ${asset.sym}</strong>
-      `;
-    }
-
-    function applyWeb3Dep() {
-      const aId = document.getElementById("w3DepAsset").value;
-      const amt = Math.max(0, parseFloat(document.getElementById("w3DepAmt").value) || 0);
-      const asset = ASSETS.find((a) => a.id === aId);
-      if (amt <= 0 || amt > asset.qty) return toast("보유 수량을 확인해 주세요.");
-      asset.qty -= amt;
-      renderAssets();
-      updateWeb3DepCalc();
-      toast(`${fmtQty(amt)} ${asset.sym}`);
-    }
-
-    function selectChannel(ch) {
-      channelNow = ch;
-      const w3Panel = document.getElementById("web3Section");
-      const inPanel = document.getElementById("internetSection");
-      const w3Card = document.getElementById("entryWeb3Card");
-      const inCard = document.getElementById("entryInternetCard");
+    function switchChannel(ch) {
+      const w3Panel = document.getElementById("web3Panel");
+      const inPanel = document.getElementById("internetPanel");
+      const w3Card = document.getElementById("cardWeb3");
+      const inCard = document.getElementById("cardInternet");
 
       if (ch === "web3") {
         w3Panel.style.display = "block";
@@ -1559,71 +1065,51 @@
       }
     }
 
-    function chooseBankFn(fn) {
-      bankFnNow = fn;
-      document.querySelectorAll(".six-card").forEach((c) => {
-        c.classList.toggle("active", c.getAttribute("data-fn") === fn);
+    function pickFn(fn) {
+      curFn = fn;
+      document.querySelectorAll(".six-btn").forEach((b) => {
+        b.classList.toggle("active", b.getAttribute("data-fn") === fn);
       });
-      updateBankCalc();
+      calcBank();
     }
 
-    function updateBankCalc() {
-      const d = getDict(langNow);
-      const amt = Math.max(0, parseFloat(document.getElementById("bankAmtInput").value) || 0);
-      const t = TERMS[document.getElementById("bankTermSelect").value] || TERMS["1y"];
+    function calcBank() {
+      const d = getDict(curLang);
+      const t = TERMS[document.getElementById("bankTerm").value] || TERMS["1y"];
+      const amt = Math.max(0, parseFloat(document.getElementById("bankAmt").value) || 0);
       const minI = amt * (t.min / 100) * t.yrs;
       const maxI = amt * (t.max / 100) * t.yrs;
-
-      document.getElementById("bankCalcPreview").innerHTML = `
-        <strong>${fmtKrw(amt)}</strong> (${d[t.key]}, ${t.min}%~${t.max}%)<br/>
-        ${d.estInt}: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>
-      `;
+      document.getElementById("bankCalcOut").innerHTML =
+        `${fmtKrw(amt)} (${d[t.key]}) · ${d.estInt}: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
     }
 
-    function applyBankFn() {
-      const amt = Math.max(0, parseFloat(document.getElementById("bankAmtInput").value) || 0);
-      if (amt <= 0) return toast("0");
-      toast(fmtKrw(amt));
+    function calcCredit() {
+      const d = getDict(curLang);
+      const niceV = Math.max(0, Math.min(100, parseFloat(document.getElementById("niceIn").value) || 0));
+      const chainV = Math.max(0, Math.min(100, parseFloat(document.getElementById("chainIn").value) || 0));
+      const score = Math.round(300 + ((niceV * 0.55 + chainV * 0.45) / 100) * 700);
+      const limit = score >= 900 ? 200000000 : score >= 800 ? 100000000 : 50000000;
+      document.getElementById("creditScoreOut").textContent = `${score}`;
+      document.getElementById("creditLimitOut").innerHTML = `${d.loanLimit}: <strong>${fmtKrw(limit)}</strong>`;
     }
 
-    function lookupCredit() {
-      const d = getDict(langNow);
-      const niceV = Math.max(0, Math.min(100, parseFloat(document.getElementById("niceInput").value) || 0));
-      const chainV = Math.max(0, Math.min(100, parseFloat(document.getElementById("chainInput").value) || 0));
-      const ratio = (niceV * 0.55) + (chainV * 0.45);
-      const score = Math.round(300 + (ratio / 100) * 700);
-
-      let grade = d.grade3;
-      let limit = 50000000;
-      if (score >= 900) {
-        grade = d.grade1;
-        limit = 200000000;
-      } else if (score >= 800) {
-        grade = d.grade2;
-        limit = 100000000;
-      }
-
-      document.getElementById("creditScoreText").textContent = `${score} · ${grade}`;
-      document.getElementById("creditLoanText").innerHTML =
-        `NICE ${niceV} / CHAIN ${chainV}<br/>${d.loanRec}: <strong>${fmtKrw(limit)}</strong>`;
-    }
-
-    function onNavClick(tab) {
-      ["navBtnHome", "navBtnWp", "navBtnAssets", "navBtnMenu"].forEach((id) => {
+    function bottomNav(tab) {
+      ["bHome", "bWp", "bAssets", "bMenu"].forEach((id) => {
         document.getElementById(id).classList.remove("active");
       });
       if (tab === "home") {
-        document.getElementById("navBtnHome").classList.add("active");
+        document.getElementById("bHome").classList.add("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (tab === "whitepaper") {
-        document.getElementById("navBtnWp").classList.add("active");
+      } else if (tab === "wp") {
+        document.getElementById("bWp").classList.add("active");
         document.getElementById("wpModal").classList.add("open");
-      } else if (tab === "assets") {
-        document.getElementById("navBtnAssets").classList.add("active");
-        document.getElementById("assetSection").scrollIntoView({ behavior: "smooth" });
+      } else if (tab === "web3") {
+        document.getElementById("bAssets").classList.add("active");
+        switchChannel("web3");
+        document.getElementById("web3Panel").scrollIntoView({ behavior: "smooth" });
       } else if (tab === "menu") {
-        document.getElementById("navBtnMenu").classList.add("active");
-        document.getElementById("allMenuModal").classList.add("open");
+        document.getElementById("bMenu").classList.add("active");
+        document.getElementById("menuModal").classList.add("open");
       }
     }
 
@@ -1631,27 +1117,27 @@
       document.getElementById(id).classList.remove("open");
     }
 
-    function outsideClose(e, id) {
+    function bgClose(e, id) {
       if (e.target.id === id) closeModal(id);
     }
 
-    function jumpTo(sec) {
-      closeModal("allMenuModal");
-      if (sec === "assets") {
-        document.getElementById("assetSection").scrollIntoView({ behavior: "smooth" });
-      } else if (sec === "web3") {
-        selectChannel("web3");
-        document.getElementById("web3Section").scrollIntoView({ behavior: "smooth" });
-      } else if (sec === "internet" || sec === "credit") {
-        selectChannel("internet");
-        document.getElementById("internetSection").scrollIntoView({ behavior: "smooth" });
-      } else if (sec === "whitepaper") {
+    function menuJump(target) {
+      closeModal("menuModal");
+      if (target === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (target === "web3") {
+        switchChannel("web3");
+        document.getElementById("web3Panel").scrollIntoView({ behavior: "smooth" });
+      } else if (target === "internet") {
+        switchChannel("internet");
+        document.getElementById("internetPanel").scrollIntoView({ behavior: "smooth" });
+      } else if (target === "wp") {
         document.getElementById("wpModal").classList.add("open");
       }
     }
 
     initLangs();
-    applyLang("ko");
+    setLang("ko");
   </script>
 </body>
 </html>
