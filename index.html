@@ -270,7 +270,7 @@
   <script>
     const RTL_LOCALES = new Set(["ar", "fa", "he", "ur"]);
 
-    const translations = {
+    const baseTranslations = {
       ko: {
         brand: "HKWB",
         subtitle: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
@@ -359,6 +359,39 @@
         internet_btn: "Internetbank betreten",
         referrer: "Empfehlungsgeber"
       },
+      it: {
+        brand: "HKWB",
+        subtitle: "Innovazione finanziaria digitale di nuova generazione in cui umanità e tecnologia coesistono",
+        web3_title: "Banca Digitale Web3",
+        web3_desc: "Connessione Wallet · Bonifico · Pagamento · Deposito · Ricompense · RBU · Swap · DEX Swap · LP Staking · Quantità PI",
+        web3_btn: "Accedi alla Banca Digitale Web3",
+        internet_title: "Banca Internet (HK Bank)",
+        internet_desc: "Apertura Conto · Versamento/Prelievo · Bonifico Istantaneo · Risparmio · Deposito a Termine · Prestiti · Verifica Credito Gratuita",
+        internet_btn: "Accedi alla Banca Internet",
+        referrer: "Referente"
+      },
+      pt: {
+        brand: "HKWB",
+        subtitle: "Inovação financeira digital de próxima geração onde humanidade e tecnologia coexistem",
+        web3_title: "Banco Digital Web3",
+        web3_desc: "Conexão de Carteira · Transferência · Pagamento · Depósito · Recompensas · RBU · Swap · DEX Swap · LP Staking · Quantidade PI",
+        web3_btn: "Entrar no Banco Digital Web3",
+        internet_title: "Banco Internet (HK Bank)",
+        internet_desc: "Abertura de Conta · Depósito/Saque · Transferência Instantânea · Poupança · Depósito a Prazo · Empréstimo · Consulta de Crédito Gratuita",
+        internet_btn: "Entrar no Banco Internet",
+        referrer: "Indicador"
+      },
+      "pt-BR": {
+        brand: "HKWB",
+        subtitle: "Inovação financeira digital de próxima geração onde humanidade e tecnologia coexistem",
+        web3_title: "Banco Digital Web3",
+        web3_desc: "Conexão de Carteira · Transferência · Pagamento · Depósito · Recompensas · RBU · Swap · DEX Swap · LP Staking · Quantidade PI",
+        web3_btn: "Acessar Banco Digital Web3",
+        internet_title: "Banco Internet (HK Bank)",
+        internet_desc: "Abertura de Conta · Depósito/Saque · Transferência Instantânea · Poupança · Depósito a Prazo · Empréstimo · Consulta de Crédito Gratuita",
+        internet_btn: "Acessar Banco Internet",
+        referrer: "Indicador"
+      },
       ru: {
         brand: "HKWB",
         subtitle: "Цифровые финансовые инновации нового поколения, где человечество и технологии сосуществуют",
@@ -380,20 +413,39 @@
         internet_desc: "فتح حساب · إيداع وسحب · تحويل فوري · ادخار · وديعة لأجل · قروض · استعلام مجاني عن التصنيف الائتماني",
         internet_btn: "الدخول إلى بنك الإنترنت",
         referrer: "المُحيل"
+      },
+      he: {
+        brand: "HKWB",
+        subtitle: "חדשנות פיננסית דיגיטלית מהדור הבא שבה אנושות וטכנולוגיה מתקיימות יחד",
+        web3_title: "בנק דיגיטלי Web3",
+        web3_desc: "חיבור ארנק · העברה · תשלום · הפקדה · תגמולים · הכנסה בסיסית · החלפה · החלפת DEX · סטייקינג LP · כמות PI",
+        web3_btn: "כניסה לבנק דיגיטלי Web3",
+        internet_title: "בנק אינטרנט (HK Bank)",
+        internet_desc: "פתיחת חשבון · הפקדה/משיכה · העברה מיידית · חיסכון · פיקדון · הלוואה · בדיקת דירוג אשראי חינם",
+        internet_btn: "כניסה לבנק אינטרנט",
+        referrer: "ממליץ"
       }
     };
 
-    const defaultLang = "ko";
     const selectElement = document.getElementById("language-select");
+    const translations = new Proxy(baseTranslations, {
+      get(target, prop) {
+        if (typeof prop !== "string") return undefined;
+        if (target[prop]) return target[prop];
+        const shortCode = prop.split("-")[0];
+        if (target[shortCode]) return target[shortCode];
+        return target.en;
+      }
+    });
 
     function updateLanguage(langCode) {
-      const selectedTranslation = translations[langCode] || translations[defaultLang];
+      const selectedTranslation = translations[langCode] || baseTranslations.ko;
       document.documentElement.lang = langCode;
       document.documentElement.dir = RTL_LOCALES.has(langCode) ? "rtl" : "ltr";
 
       document.querySelectorAll("[data-key]").forEach((element) => {
         const key = element.getAttribute("data-key");
-        if (selectedTranslation[key]) {
+        if (selectedTranslation && selectedTranslation[key]) {
           element.textContent = selectedTranslation[key];
         }
       });
@@ -409,11 +461,11 @@
       updateLanguage(event.target.value);
     });
 
-    let initialLang = defaultLang;
+    let initialLang = "ko";
     try {
-      initialLang = localStorage.getItem("hkwb_lang") || defaultLang;
+      initialLang = localStorage.getItem("hkwb_lang") || "ko";
     } catch (_err) {
-      initialLang = defaultLang;
+      initialLang = "ko";
     }
 
     selectElement.value = initialLang;
