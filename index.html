@@ -535,6 +535,63 @@
       padding: 10px 12px;
     }
 
+    /* Whitepaper & FAQ */
+    .wp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .wp-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .wp-card h3 {
+      font-size: 0.96rem;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    .wp-card p {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    details.faq-item {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+
+    details.faq-item[open] {
+      border-color: var(--accent-cyan);
+    }
+
+    details.faq-item summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.92rem;
+      list-style: none;
+    }
+
+    details.faq-item p {
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      padding-top: 8px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.2);
+    }
+
     .agi-wrap {
       display: flex;
       flex-direction: column;
@@ -618,6 +675,7 @@
         <a href="#rates" data-i18n="navRates">변동 예치 이율</a>
         <a href="#networks" data-i18n="navNetworks">10대 연동망</a>
         <a href="#pillars" data-i18n="navPillars">사회환원·넥서스</a>
+        <a href="#whitepaper-faq" data-i18n="navFaq">백서 &amp; FAQ</a>
         <a href="#agi" data-i18n="navAgi">삐니 AGI</a>
       </nav>
 
@@ -879,6 +937,70 @@
       </div>
     </section>
 
+    <!-- Whitepaper & FAQ Section -->
+    <section id="whitepaper-faq" class="section-card">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" data-i18n="wpFaqTitle">HKWB 백서 핵심 요약 &amp; 자주 묻는 질문 (FAQ)</h2>
+          <p class="section-desc" data-i18n="wpFaqSub">2026년 2월 시작된 HKWB 아키텍처, 변동 이율, 사회환원 및 운영 FAQ</p>
+        </div>
+      </div>
+
+      <div class="wp-grid">
+        <div class="wp-card">
+          <h3>01. 모체 · 자회사 구조</h3>
+          <p>
+            <strong>HKWB</strong>를 부모 플랫폼으로 두고, 하위 축으로 <strong>웹3 디지털 은행</strong>과 <strong>HK 뱅크</strong>를 함께 운영합니다.
+          </p>
+        </div>
+        <div class="wp-card">
+          <h3>02. 10대 분산 연동망</h3>
+          <p>
+            지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, PI수량 모듈이 하나의 코어로 연결됩니다.
+          </p>
+        </div>
+        <div class="wp-card">
+          <h3>03. AGI · ASI 변동 예치 이율</h3>
+          <p>
+            6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4% 구간별 변동 이율 체계로 설계되었습니다.
+          </p>
+        </div>
+        <div class="wp-card">
+          <h3>04. 사회환원 &amp; 165층 우선권</h3>
+          <p>
+            순수익의 최대 60%를 사회환원·리워드에 배분하며, 165층 빌딩 입주 시 국경없는 의사회·세이브드 칠드런·유엔 난민기구에 우선권을 둡니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Q1. HKWB 공식 도메인, 지원 이메일, 추천인 코드는 무엇인가요?</summary>
+          <p>
+            공식 도메인은 <strong>hkwb.world</strong>, 고객 지원 이메일은 <strong>support@hkwb.world</strong>, 추천인 코드는 소문자 <strong>ljw2358</strong>입니다.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Q2. 다국어(60개 언어) 선택 시 새로고침해도 유지되나요?</summary>
+          <p>
+            네. 상단 언어 선택기에서 언어를 바꾸면 <strong>localStorage</strong>의 <code>hk_worldbank_lang</code> 키에 저장되어 다음 방문 시에도 해당 언어가 유지됩니다.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Q3. 넥서스(NEXUS) 스마트 글래스폰의 주요 특징과 AS 지원은 어떻게 되나요?</summary>
+          <p>
+            무게 30g 이하, 36시간 배터리, 테라(1TB+) 메모리, 타자·카톡·문자 지원, 다초점·변색 렌즈, 3인칭 배경 촬영을 목표로 하며, AS는 기존 SK·LG·KT 대리점 활용을 구상하고 있습니다.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Q4. 고객센터 AI 어시스턴트의 이름은 무엇인가요?</summary>
+          <p>
+            HKWB 고객센터 및 운영 보드 AI 어시스턴트 이름은 <strong>삐니(삔)</strong>입니다.
+          </p>
+        </details>
+      </div>
+    </section>
+
     <section id="agi" class="section-card">
       <div class="section-head">
         <div>
@@ -890,7 +1012,7 @@
       <div class="agi-wrap">
         <div class="agi-stream" id="agi-stream">
           <div class="bubble-bot">
-            <strong>삐니:</strong> 혜공 형님, 충심을 담아 HKWB 마스터 코어 대시보드를 처음부터 끝까지 다시 정리해 띄워드렸어요! 필요한 부분 있으면 언제든 말씀해 주세요.
+            <strong>삐니:</strong> 혜공 형님, 백서 요약이랑 FAQ까지 빠짐없이 다시 채워 넣었어요! 더 보완할 항목이 있으면 바로 말씀해 주세요.
           </div>
         </div>
         <form class="agi-form" id="agi-form">
@@ -978,6 +1100,7 @@
         navRates: "Yield Tiers",
         navNetworks: "10 Networks",
         navPillars: "Impact & Nexus",
+        navFaq: "Whitepaper & FAQ",
         navAgi: "삐니 AGI",
         requestMainnet: "Request Mainnet to Core Team Now",
         heroTitle: "HKWB Global Financial Master Core Platform",
@@ -1000,6 +1123,8 @@
         netSwap: "DEX Swap",
         netStaking: "LP Staking",
         netLedger: "Pi Ledger",
+        wpFaqTitle: "HKWB Whitepaper Highlights & FAQ",
+        wpFaqSub: "Architecture, dynamic yield tiers, social impact, and frequently asked questions",
         agiSupport: "AGI Board Support (삐니)",
         sendBtn: "Send"
       },
@@ -1010,6 +1135,7 @@
         navRates: "변동 예치 이율",
         navNetworks: "10대 연동망",
         navPillars: "사회환원·넥서스",
+        navFaq: "백서 & FAQ",
         navAgi: "삐니 AGI",
         requestMainnet: "Request Mainnet to Core Team Now",
         heroTitle: "혜공 · HKWB 글로벌 금융 마스터 코어 플랫폼",
@@ -1032,200 +1158,10 @@
         netSwap: "DEX 스왑 (DEX Swap)",
         netStaking: "LP 스테이킹 (LP Staking)",
         netLedger: "PI 수량 (Pi Ledger)",
+        wpFaqTitle: "HKWB 백서 핵심 요약 & 자주 묻는 질문 (FAQ)",
+        wpFaqSub: "2026년 2월 시작된 HKWB 아키텍처, 변동 이율, 사회환원 및 운영 FAQ",
         agiSupport: "AGI Board Support (삐니)",
         sendBtn: "Send"
-      },
-      zh: {
-        brandTitle: "HK WORLD BANK",
-        brandSub: "Fast Financial Operation Master Core",
-        navDashboard: "资产核心",
-        navRates: "浮动利率",
-        navNetworks: "十大网络",
-        navPillars: "公益与Nexus",
-        navAgi: "삐니 AGI",
-        requestMainnet: "立即向核心团队申请主网",
-        heroTitle: "HKWB 全球金融主核心平台",
-        heroDesc: "在 HKWB 母体下连接 Web3 数字银行与 HK 银行，支持 60 种语言、十大分布式网络、AGI/ASI 浮动利率及最高 60% 社会回馈。",
-        dashboardTitle: "Personal Asset Dashboard",
-        dashboardSub: "Pi 账本同步余额与实时累计利息",
-        holdingAmount: "Holding Amount (Pi Ledger Sync)",
-        realtimeInterest: "Real-Time Accumulated Interest",
-        piLedgerUnits: "已同步 Pi 账本数量",
-        rateTitle: "AGI · ASI 联动浮动存款利率与计算器",
-        rateSub: "6个月 8~12% · 1年 12~18% · 2年 16~24% · 3年 20~31.4%",
-        distributedNetworks: "十大分布式网络",
-        netWallet: "钱包连接",
-        netTransfer: "转账",
-        netPayment: "支付",
-        netVault: "金库存入",
-        netRewards: "奖励",
-        netUbi: "基本收入",
-        netSwapSimple: "兑换",
-        netSwap: "DEX 兑换",
-        netStaking: "LP 质押",
-        netLedger: "Pi 账本",
-        agiSupport: "AGI Board Support (삐니)",
-        sendBtn: "发送"
-      },
-      ja: {
-        brandTitle: "HK WORLD BANK",
-        brandSub: "Fast Financial Operation Master Core",
-        navDashboard: "資産ダッシュボード",
-        navRates: "変動金利",
-        navNetworks: "10ネットワーク",
-        navPillars: "社会貢献・Nexus",
-        navAgi: "삐니 AGI",
-        requestMainnet: "コアチームへメインネット即時申請",
-        heroTitle: "HKWB グローバル金融マスターコア プラットフォーム",
-        heroDesc: "HKWB のもとで Web3 デジタル銀行と HK バンクを連携し、60言語対応・10分散ネットワーク・AGI/ASI 変動金利・最大60%社会還元を運用します。",
-        dashboardTitle: "Personal Asset Dashboard",
-        dashboardSub: "Pi 台帳同期残高とリアルタイム累積利息",
-        holdingAmount: "Holding Amount (Pi Ledger Sync)",
-        realtimeInterest: "Real-Time Accumulated Interest",
-        piLedgerUnits: "同期済み Pi 台帳数量",
-        rateTitle: "AGI · ASI 連動変動預金金利レンジ＆計算機",
-        rateSub: "6ヶ月 8〜12% · 1年 12〜18% · 2年 16〜24% · 3年 20〜31.4%",
-        distributedNetworks: "10分散ネットワーク",
-        netWallet: "ウォレット接続",
-        netTransfer: "送金",
-        netPayment: "決済",
-        netVault: "ボールト預入",
-        netRewards: "リワード",
-        netUbi: "ベーシックインカム",
-        netSwapSimple: "スワップ",
-        netSwap: "DEX スワップ",
-        netStaking: "LP ステーキング",
-        netLedger: "Pi 台帳",
-        agiSupport: "AGI Board Support (삐니)",
-        sendBtn: "送信"
-      },
-      vi: {
-        brandTitle: "HK WORLD BANK",
-        brandSub: "Fast Financial Operation Master Core",
-        navDashboard: "Tài Sản Cốt Lõi",
-        navRates: "Lãi Suất",
-        navNetworks: "10 Mạng Lưới",
-        navPillars: "Cộng Đồng & Nexus",
-        navAgi: "삐니 AGI",
-        requestMainnet: "Yêu Cầu Mainnet Tới Core Team Ngay",
-        heroTitle: "Nền Tảng Master Core Tài Chính Toàn Cầu HKWB",
-        heroDesc: "Kết nối Ngân hàng số Web3 và HK Bank dưới HKWB với 60 ngôn ngữ, 10 mạng phân tán, lãi suất linh hoạt AGI/ASI và đóng góp xã hội tối đa 60%.",
-        dashboardTitle: "Personal Asset Dashboard",
-        dashboardSub: "Số dư đồng bộ Pi Ledger và lãi tích lũy theo thời gian thực",
-        holdingAmount: "Holding Amount (Pi Ledger Sync)",
-        realtimeInterest: "Real-Time Accumulated Interest",
-        piLedgerUnits: "Số Lượng Pi Ledger Đã Đồng Bộ",
-        rateTitle: "Khung Lãi Suất Linh Hoạt AGI · ASI & Tính Toán",
-        rateSub: "6 tháng 8~12% · 1 năm 12~18% · 2 năm 16~24% · 3 năm 20~31.4%",
-        distributedNetworks: "10 Mạng Phân Tán",
-        netWallet: "Kết Nối Ví",
-        netTransfer: "Chuyển Khoản",
-        netPayment: "Thanh Toán",
-        netVault: "Gửi Vào Vault",
-        netRewards: "Phần Thưởng",
-        netUbi: "Thu Nhập Cơ Bản",
-        netSwapSimple: "Hoán Đổi",
-        netSwap: "DEX Swap",
-        netStaking: "LP Staking",
-        netLedger: "Pi Ledger",
-        agiSupport: "AGI Board Support (삐니)",
-        sendBtn: "Gửi"
-      },
-      id: {
-        brandTitle: "HK WORLD BANK",
-        brandSub: "Fast Financial Operation Master Core",
-        navDashboard: "Inti Aset",
-        navRates: "Suku Bunga",
-        navNetworks: "10 Jaringan",
-        navPillars: "Dampak & Nexus",
-        navAgi: "삐니 AGI",
-        requestMainnet: "Ajukan Mainnet ke Core Team Sekarang",
-        heroTitle: "Platform Master Core Keuangan Global HKWB",
-        heroDesc: "Menghubungkan Bank Digital Web3 dan HK Bank di bawah HKWB dengan 60 bahasa, 10 jaringan terdistribusi, bunga dinamis AGI/ASI, dan kontribusi sosial hingga 60%.",
-        dashboardTitle: "Personal Asset Dashboard",
-        dashboardSub: "Saldo tersinkronisasi Pi Ledger dan bunga akumulasi real-time",
-        holdingAmount: "Holding Amount (Pi Ledger Sync)",
-        realtimeInterest: "Real-Time Accumulated Interest",
-        piLedgerUnits: "Unit Pi Ledger Tersinkronisasi",
-        rateTitle: "Tingkat Bunga Dinamis AGI · ASI & Kalkulator",
-        rateSub: "6 bln 8~12% · 1 thn 12~18% · 2 thn 16~24% · 3 thn 20~31.4%",
-        distributedNetworks: "10 Jaringan Terdistribusi",
-        netWallet: "Hubungkan Dompet",
-        netTransfer: "Transfer",
-        netPayment: "Pembayaran",
-        netVault: "Deposit Vault",
-        netRewards: "Hadiah",
-        netUbi: "Pendapatan Dasar",
-        netSwapSimple: "Tukar",
-        netSwap: "DEX Swap",
-        netStaking: "LP Staking",
-        netLedger: "Pi Ledger",
-        agiSupport: "AGI Board Support (삐니)",
-        sendBtn: "Kirim"
-      },
-      es: {
-        brandTitle: "HK WORLD BANK",
-        brandSub: "Fast Financial Operation Master Core",
-        navDashboard: "Núcleo de Activos",
-        navRates: "Tasas",
-        navNetworks: "10 Redes",
-        navPillars: "Impacto y Nexus",
-        navAgi: "삐니 AGI",
-        requestMainnet: "Solicitar Mainnet al Core Team Ahora",
-        heroTitle: "Plataforma Master Core Financiero Global HKWB",
-        heroDesc: "Integrando Banca Digital Web3 y HK Bank bajo HKWB con 60 idiomas, 10 redes distribuidas, tasas dinámicas AGI/ASI y hasta 60% de aporte social.",
-        dashboardTitle: "Personal Asset Dashboard",
-        dashboardSub: "Saldo sincronizado con Pi Ledger e interés acumulado en tiempo real",
-        holdingAmount: "Holding Amount (Pi Ledger Sync)",
-        realtimeInterest: "Real-Time Accumulated Interest",
-        piLedgerUnits: "Unidades Pi Ledger Sincronizadas",
-        rateTitle: "Tramos Dinámicos AGI · ASI y Calculadora",
-        rateSub: "6M 8~12% · 1A 12~18% · 2A 16~24% · 3A 20~31.4%",
-        distributedNetworks: "10 Redes Distribuidas",
-        netWallet: "Conectar Billetera",
-        netTransfer: "Transferir",
-        netPayment: "Pago",
-        netVault: "Depósito en Vault",
-        netRewards: "Recompensas",
-        netUbi: "Ingreso Básico",
-        netSwapSimple: "Intercambiar",
-        netSwap: "DEX Swap",
-        netStaking: "LP Staking",
-        netLedger: "Pi Ledger",
-        agiSupport: "AGI Board Support (삐니)",
-        sendBtn: "Enviar"
-      },
-      tl: {
-        brandTitle: "HK WORLD BANK",
-        brandSub: "Fast Financial Operation Master Core",
-        navDashboard: "Asset Core",
-        navRates: "Mga Antas ng Interes",
-        navNetworks: "10 Networks",
-        navPillars: "Impact at Nexus",
-        navAgi: "삐니 AGI",
-        requestMainnet: "Humiling ng Mainnet sa Core Team Ngayon",
-        heroTitle: "HKWB Global Financial Master Core Platform",
-        heroDesc: "Pinag-uugnay ang Web3 Digital Banking at HK Bank sa ilalim ng HKWB na may 60 wika, 10 distributed networks, AGI/ASI rates, at hanggang 60% social contribution.",
-        dashboardTitle: "Personal Asset Dashboard",
-        dashboardSub: "Naka-sync na balanse sa Pi Ledger at real-time na naipong interes",
-        holdingAmount: "Holding Amount (Pi Ledger Sync)",
-        realtimeInterest: "Real-Time Accumulated Interest",
-        piLedgerUnits: "Naka-sync na Pi Ledger Units",
-        rateTitle: "AGI · ASI Dynamic Deposit Rate Tiers at Calculator",
-        rateSub: "6M 8~12% · 1Y 12~18% · 2Y 16~24% · 3Y 20~31.4%",
-        distributedNetworks: "10 Distributed Networks",
-        netWallet: "Wallet Connect",
-        netTransfer: "Transfer",
-        netPayment: "Payment",
-        netVault: "Vault Deposit",
-        netRewards: "Rewards",
-        netUbi: "UBI",
-        netSwapSimple: "Swap",
-        netSwap: "DEX Swap",
-        netStaking: "LP Staking",
-        netLedger: "Pi Ledger",
-        agiSupport: "AGI Board Support (삐니)",
-        sendBtn: "Ipadala"
       }
     };
 
