@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="pageTitle">HKWB · 웹3 디지털 은행</title>
+  <title>HKWB</title>
   <style>
     :root {
-      --bg: #070b14;
-      --surface: #0f172a;
-      --card: #162033;
-      --card-hover: #1d2b45;
-      --border: #283856;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --gold: #f59e0b;
-      --gold-bright: #fbbf24;
-      --green: #22c55e;
-      --blue: #3b82f6;
-      --cyan: #06b6d4;
-      --purple: #a855f7;
-      --rose: #f43f5e;
+      --bg-color: #0b0f19;
+      --card-bg: #161e31;
+      --text-main: #ffffff;
+      --text-sub: #94a3b8;
+      --accent-yellow: #eab308;
+      --accent-blue: #3b82f6;
+      --border-color: #2e3b56;
     }
 
     * {
@@ -30,640 +23,191 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-      background: radial-gradient(circle at top, #13203b 0%, var(--bg) 55%);
-      color: var(--text);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 40px 20px;
       min-height: 100vh;
-      padding: 28px 18px 64px;
-      line-height: 1.5;
-    }
-
-    .wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    /* 상단 헤더 및 60개 언어 선택기 */
-    .topbar {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      background: rgba(15, 23, 42, 0.88);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 20px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(8px);
     }
 
-    .brand-mark {
+    .main-container {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    header {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      font-size: 1.25rem;
-      color: var(--gold-bright);
-      letter-spacing: 0.5px;
-    }
-
-    .lang-box {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .lang-box label {
-      font-size: 0.92rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .lang-select {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 9px 14px;
-      font-size: 0.95rem;
-      min-width: 240px;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .lang-select:focus {
-      border-color: var(--gold);
-    }
-
-    /* 개인 자산 대시보드 */
-    .dashboard {
-      background: linear-gradient(145deg, #17233b 0%, #10192b 100%);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 26px;
-      margin-bottom: 32px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-    }
-
-    .dash-head {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .dash-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-    }
-
-    .live-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(34, 197, 94, 0.14);
-      border: 1px solid rgba(34, 197, 94, 0.45);
-      color: #86efac;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 1.4s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-
-    .stat-box {
-      background: rgba(7, 11, 20, 0.65);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 14px;
-      padding: 20px;
-    }
-
-    .stat-label {
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 1.95rem;
-      font-weight: 900;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.5px;
-    }
-
-    .stat-value.gold {
-      color: var(--gold-bright);
-    }
-
-    .stat-value.green {
-      color: #4ade80;
-    }
-
-    .stat-unit {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-left: 6px;
-      font-weight: 600;
-    }
-
-    .dash-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 12px;
-      padding: 13px 18px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.06);
-    }
-
-    .btn-gold {
-      background: var(--gold-bright);
-      color: #090d16;
-    }
-
-    .btn-surface {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    /* 10대 분산 연동망: PC 2열 x 5행 (2x5), 핸드폰 5열 x 2행 (5x2) */
-    .section-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-    }
-
-    .section-sub {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .network-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* PC: 2 x 5 */
-      gap: 16px;
+      justify-content: flex-end;
       margin-bottom: 36px;
     }
 
-    @media (max-width: 767px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .network-grid {
-        grid-template-columns: repeat(5, 1fr); /* 모바일/핸드폰: 5 x 2 */
-        gap: 8px;
-      }
+    .language-selector {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      outline: none;
+      min-width: 260px;
     }
 
-    .net-tile {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
+    .language-selector option {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+    }
+
+    .brand-section {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .brand-title {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--accent-yellow);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .brand-subtitle {
+      font-size: 1.45rem;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .banking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .bank-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 20px;
-      text-align: left;
-      color: var(--text);
-      cursor: pointer;
+      padding: 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
-      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-      overflow: hidden;
+      min-height: 240px;
+      transition: transform 0.2s;
     }
 
-    /* 블라인드 셔터 연출 */
-    .net-tile::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.06) 0px,
-        rgba(255, 255, 255, 0.06) 3px,
-        transparent 3px,
-        transparent 9px
-      );
-      opacity: 0.45;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
+    .bank-card:hover {
+      transform: translateY(-4px);
     }
 
-    .net-tile:hover {
-      transform: translateY(-3px);
-      background: var(--card-hover);
-      border-color: var(--tile-color, var(--gold));
-    }
-
-    .net-tile:hover::before {
-      opacity: 0.12;
-    }
-
-    .net-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .net-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: #ffffff;
-      background: var(--tile-grad);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-      flex-shrink: 0;
-    }
-
-    .net-name {
-      font-size: 1.08rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .net-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .net-action-tag {
-      font-size: 0.78rem;
+    .card-title {
+      font-size: 1.75rem;
       font-weight: 700;
-      color: var(--tile-color, var(--gold-bright));
+      margin-bottom: 12px;
     }
 
-    @media (max-width: 767px) {
-      .net-tile {
-        padding: 10px 6px;
-        border-radius: 12px;
-        text-align: center;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .net-top {
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .net-logo {
-        width: 34px;
-        height: 34px;
-        font-size: 1rem;
-        border-radius: 9px;
-      }
-
-      .net-name {
-        font-size: 0.74rem;
-        line-height: 1.2;
-        word-break: keep-all;
-      }
-
-      .net-desc,
-      .net-action-tag {
-        display: none;
-      }
+    .card-desc {
+      font-size: 1rem;
+      color: var(--text-sub);
+      line-height: 1.55;
+      margin-bottom: 24px;
     }
 
-    /* 고객센터 AI 삐니 + 유튜브 & 틱톡 */
-    .support-row {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 18px;
-      margin-bottom: 28px;
+    .action-btn {
+      width: 100%;
+      padding: 18px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      display: inline-block;
     }
 
-    @media (max-width: 820px) {
-      .support-row {
-        grid-template-columns: 1fr;
-      }
+    .action-btn:hover {
+      opacity: 0.9;
     }
 
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
+    .btn-yellow {
+      background-color: var(--accent-yellow);
+      color: #000000;
     }
 
-    .panel-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .btn-blue {
+      background-color: var(--accent-blue);
+      color: #ffffff;
     }
 
-    .panel-desc {
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .social-btns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .btn-yt {
-      background: linear-gradient(135deg, #ef4444, #b91c1c);
-      color: #fff;
-    }
-
-    .btn-tt {
-      background: linear-gradient(135deg, #06b6d4, #ec4899);
-      color: #fff;
-    }
-
-    .footer-bar {
+    .referral-info {
+      text-align: left;
+      font-size: 1.05rem;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 12px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
     }
 
-    /* 인터랙티브 모달 (송금 · 모듈 실행 · 고객센터 AI 삐니) */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 23, 0.78);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 999;
+    .referral-info strong {
+      color: var(--text-main);
     }
 
-    .modal-backdrop.open {
-      display: flex;
-    }
+    @media (max-width: 768px) {
+      .banking-grid {
+        grid-template-columns: 1fr;
+      }
 
-    .modal-box {
-      width: 100%;
-      max-width: 480px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
-    }
-
-    .modal-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .modal-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
-
-    .close-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-
-    .field {
-      margin-bottom: 14px;
-    }
-
-    .field label {
-      display: block;
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .field input,
-    .field select {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      border-radius: 10px;
-      padding: 11px 13px;
-      font-size: 0.96rem;
-      outline: none;
-    }
-
-    .status-msg {
-      margin-top: 12px;
-      padding: 11px 14px;
-      border-radius: 10px;
-      background: rgba(34, 197, 94, 0.14);
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      color: #bbf7d0;
-      font-size: 0.9rem;
-      display: none;
-    }
-
-    .status-msg.show {
-      display: block;
+      .brand-title {
+        font-size: 3rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- 상단 언어 전환 바 -->
-    <header class="topbar">
-      <div class="brand-mark">
-        <span>HKWB</span>
-        <span style="font-size:0.85rem;color:var(--muted);font-weight:600;" data-i18n="divisionTag">웹3 디지털 은행</span>
-      </div>
-
-      <div class="lang-box">
-        <label for="langSelect" data-i18n="langLabel">60개 언어 선택</label>
-        <select id="langSelect" class="lang-select" aria-label="언어 선택"></select>
-      </div>
+  <div class="main-container">
+    <header>
+      <select id="language-select" class="language-selector" aria-label="언어 선택"></select>
     </header>
 
-    <!-- 개인 자산 대시보드 (실시간 숫자 변동) -->
-    <section class="dashboard" aria-label="개인 자산 대시보드">
-      <div class="dash-head">
-        <h1 class="dash-title" data-i18n="dashTitle">개인 자산 대시보드</h1>
-        <span class="live-pill">
-          <span class="live-dot"></span>
-          <span data-i18n="liveBadge">실시간 반영 중</span>
-        </span>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-label" data-i18n="holdingLabel">보유 수량</div>
-          <div class="stat-value gold">
-            <span id="holdingAmount">314,159.000000</span>
-            <span class="stat-unit">PI / HK</span>
-          </div>
-        </div>
-
-        <div class="stat-box">
-          <div class="stat-label" data-i18n="interestLabel">실시간 누적 이자</div>
-          <div class="stat-value green">
-            <span id="accruedInterest">12,450,894.843751</span>
-            <span class="stat-unit">HK</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dash-actions">
-        <button type="button" class="btn btn-gold" id="openTransferBtn" data-i18n="transferBtn">계좌 송금하기</button>
-        <button type="button" class="btn btn-surface" id="openPiniBtn" data-i18n="piniBtn">고객센터 AI 삐니</button>
-      </div>
+    <section class="brand-section">
+      <h1 class="brand-title" data-key="brand">HKWB</h1>
+      <p class="brand-subtitle" data-key="subtitle">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
     </section>
 
-    <!-- 10대 분산 연동망 -->
-    <section aria-label="10대 분산 연동망">
-      <div class="section-header">
-        <h2 class="section-title" data-i18n="netTitle">10대 분산 연동망</h2>
-        <span class="section-sub" data-i18n="netSub">PC 2×5 · 모바일 5×2 반응형 그리드</span>
-      </div>
-
-      <div id="networkGrid" class="network-grid"></div>
-    </section>
-
-    <!-- 고객센터 AI 삐니 + 유튜브 & 틱톡 -->
-    <section class="support-row">
-      <div class="panel">
-        <h2 class="panel-title">
-          <span>🤖</span>
-          <span data-i18n="piniTitle">고객센터 AI 삐니</span>
-        </h2>
-        <p class="panel-desc" data-i18n="piniDesc">송금, 예치, 지갑 연결 및 10대 분산 연동망 이용 안내를 즉시 도와드립니다.</p>
-        <button type="button" class="btn btn-gold" id="openPiniCardBtn" data-i18n="piniOpenBtn">삐니와 대화 시작하기</button>
-      </div>
-
-      <div class="panel">
-        <h2 class="panel-title">
-          <span>📡</span>
-          <span data-i18n="socialTitle">공식 채널</span>
-        </h2>
-        <p class="panel-desc" data-i18n="socialDesc">유튜브와 틱톡에서 최신 소식과 가이드를 확인하세요.</p>
-        <div class="social-btns">
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="btn btn-yt" data-i18n="youtubeBtn">유튜브</a>
-          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="btn btn-tt" data-i18n="tiktokBtn">틱톡</a>
+    <section class="banking-grid">
+      <article class="bank-card">
+        <div>
+          <h2 class="card-title" data-key="web3_title">웹3 디지털 은행</h2>
+          <p class="card-desc" data-key="web3_desc">지갑연결 · 송금 · 결제 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량</p>
         </div>
-      </div>
+        <a href="#web3" class="action-btn btn-yellow" data-key="web3_btn">웹3 디지털 은행 진입하기</a>
+      </article>
+
+      <article class="bank-card">
+        <div>
+          <h2 class="card-title" data-key="internet_title">인터넷 은행 (HK 뱅크)</h2>
+          <p class="card-desc" data-key="internet_desc">계좌 개설 · 입출금 · 즉시이체 · 예금 · 적금 · 대출 · 무료 신용점수 조회</p>
+        </div>
+        <a href="#internet" class="action-btn btn-blue" data-key="internet_btn">인터넷 은행 진입하기</a>
+      </article>
     </section>
 
-    <footer class="footer-bar">
-      <div><span data-i18n="referrerLabel">추천인</span>: <strong>ljw2358</strong></div>
-      <div>support@hkwb.world</div>
+    <footer class="referral-info">
+      <p><span data-key="referrer">추천인</span>: <strong>ljw2358</strong></p>
+      <p>support@hkwb.world</p>
     </footer>
   </div>
 
-  <!-- 계좌 송금 및 모듈 실행 모달 -->
-  <div id="actionModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-box">
-      <div class="modal-head">
-        <h3 id="modalTitle" class="modal-title">계좌 송금하기</h3>
-        <button type="button" class="close-btn" id="closeModalBtn" aria-label="닫기">✕</button>
-      </div>
-      <form id="actionForm">
-        <div class="field">
-          <label for="recipientInput" id="recipientLabel">받는 계좌 / 지갑 주소</label>
-          <input id="recipientInput" type="text" required placeholder="HK-01-ljw2358" />
-        </div>
-        <div class="field">
-          <label for="amountInput" id="amountLabel">송금 수량</label>
-          <input id="amountInput" type="number" step="0.000001" min="0.000001" value="100.000000" required />
-        </div>
-        <button type="submit" class="btn btn-gold" style="width:100%;" id="submitActionBtn">실행하기</button>
-        <div id="modalStatus" class="status-msg"></div>
-      </form>
-    </div>
-  </div>
-
-  <!-- 고객센터 AI 삐니 모달 -->
-  <div id="piniModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="piniModalTitle">
-    <div class="modal-box">
-      <div class="modal-head">
-        <h3 id="piniModalTitle" class="modal-title">고객센터 AI 삐니</h3>
-        <button type="button" class="close-btn" id="closePiniBtn" aria-label="닫기">✕</button>
-      </div>
-      <div class="field">
-        <label for="piniTopicSelect" id="piniTopicLabel">문의 항목 선택</label>
-        <select id="piniTopicSelect">
-          <option value="transfer" id="optTransfer">계좌 송금 반응 및 처리 문의</option>
-          <option value="deposit" id="optDeposit">예치 이자 및 실시간 반영 문의</option>
-          <option value="network" id="optNetwork">10대 분산 연동망 안내</option>
-        </select>
-      </div>
-      <button type="button" class="btn btn-gold" style="width:100%;" id="askPiniBtn">삐니 답변 받기</button>
-      <div id="piniReply" class="status-msg"></div>
-    </div>
-  </div>
-
   <script>
-    const RTL_CODES = new Set(["ar", "fa", "he", "ur"]);
+    const RTL_LOCALES = new Set(["ar", "fa", "he", "ur"]);
 
-    // 60개 언어 목록
     const LANGUAGES = [
       { code: "ko", label: "한국어 (Korean)" },
       { code: "en", label: "English (영어)" },
@@ -728,321 +272,726 @@
       { code: "mt", label: "Malti (몰타어)" }
     ];
 
-    // 10대 분산 연동망 정의 (컬러 로고 + 제목 + 간지 나는 소개)
-    const TEN_MODULES = [
-      { id: "wallet", icon: "👛", color: "#f59e0b", grad: "linear-gradient(135deg,#f59e0b,#d97706)", actionType: "module" },
-      { id: "transfer", icon: "💸", color: "#3b82f6", grad: "linear-gradient(135deg,#3b82f6,#1d4ed8)", actionType: "transfer" },
-      { id: "pay", icon: "💳", color: "#10b981", grad: "linear-gradient(135deg,#10b981,#047857)", actionType: "module" },
-      { id: "deposit", icon: "🏦", color: "#8b5cf6", grad: "linear-gradient(135deg,#8b5cf6,#6d28d9)", actionType: "module" },
-      { id: "reward", icon: "🎁", color: "#ec4899", grad: "linear-gradient(135deg,#ec4899,#be185d)", actionType: "module" },
-      { id: "ubi", icon: "🌱", color: "#22c55e", grad: "linear-gradient(135deg,#22c55e,#15803d)", actionType: "module" },
-      { id: "swap", icon: "🔄", color: "#06b6d4", grad: "linear-gradient(135deg,#06b6d4,#0e7490)", actionType: "module" },
-      { id: "dex", icon: "⚡", color: "#eab308", grad: "linear-gradient(135deg,#eab308,#ca8a04)", actionType: "module" },
-      { id: "lp", icon: "💧", color: "#6366f1", grad: "linear-gradient(135deg,#6366f1,#4338ca)", actionType: "module" },
-      { id: "pi", icon: "π", color: "#f43f5e", grad: "linear-gradient(135deg,#f43f5e,#be123c)", actionType: "module" }
-    ];
-
-    // 핵심 언어 사전 + 60개 언어 전체 보강 함수
-    const CORE_I18N = {
+    const translations = {
       ko: {
-        pageTitle: "HKWB · 웹3 디지털 은행",
-        divisionTag: "웹3 디지털 은행",
-        langLabel: "60개 언어 선택",
-        dashTitle: "개인 자산 대시보드",
-        liveBadge: "실시간 반영 중",
-        holdingLabel: "보유 수량",
-        interestLabel: "실시간 누적 이자",
-        transferBtn: "계좌 송금하기",
-        piniBtn: "고객센터 AI 삐니",
-        netTitle: "10대 분산 연동망",
-        netSub: "PC 2×5 · 모바일 5×2 반응형 그리드",
-        piniTitle: "고객센터 AI 삐니",
-        piniDesc: "송금, 예치, 지갑 연결 및 10대 분산 연동망 이용 안내를 즉시 도와드립니다.",
-        piniOpenBtn: "삐니와 대화 시작하기",
-        socialTitle: "공식 채널",
-        socialDesc: "유튜브와 틱톡에서 최신 소식과 가이드를 확인하세요.",
-        youtubeBtn: "유튜브",
-        tiktokBtn: "틱톡",
-        referrerLabel: "추천인",
-        recipientLabel: "받는 계좌 / 지갑 주소",
-        amountLabel: "송금 수량",
-        submitActionBtn: "실행하기",
-        closeLabel: "닫기",
-        piniTopicLabel: "문의 항목 선택",
-        optTransfer: "계좌 송금 반응 및 처리 문의",
-        optDeposit: "예치 이자 및 실시간 반영 문의",
-        optNetwork: "10대 분산 연동망 안내",
-        askPiniBtn: "삐니 답변 받기",
-        transferDone: "송금 요청이 접수되었습니다! 대시보드 수량과 실시간 이자가 즉시 반영됩니다.",
-        moduleDone: "모듈이 활성화되었습니다. 즉시 연동 작업을 진행할 수 있습니다.",
-        piniAnswers: {
-          transfer: "삐니 안내: 계좌 송금 버튼을 누르시면 받는 계좌와 수량을 입력해 즉시 송금 요청을 처리할 수 있습니다.",
-          deposit: "삐니 안내: 보유 수량과 실시간 누적 이자는 초단위로 연동되어 화면에 즉시 반영됩니다.",
-          network: "삐니 안내: 지갑연결부터 PI수량까지 10대 분산 연동망이 모두 연결되어 있습니다."
-        },
-        modules: {
-          wallet: ["지갑연결", "글로벌 지갑을 한 번에 동기화", "바로 열기"],
-          transfer: ["송금", "국경 없는 초고속 자산 전송", "바로 송금"],
-          pay: ["결제", "온·오프라인 즉시 결제 엔진", "바로 열기"],
-          deposit: ["예치", "스마트 예치 및 복리 운용", "바로 열기"],
-          reward: ["보상", "활동 기여 기반 리워드 분배", "바로 열기"],
-          ubi: ["기본소득", "참여자를 위한 기본소득 분배", "바로 열기"],
-          swap: ["스왑", "원클릭 자산 즉시 교환", "바로 열기"],
-          dex: ["DEX스왑", "탈중앙 유동성 다이렉트 스왑", "바로 열기"],
-          lp: ["LP스테이킹", "유동성 풀 스테이킹 수익", "바로 열기"],
-          pi: ["PI수량", "실시간 PI 수량 검증 및 연동", "바로 열기"]
-        }
+        brand: "HKWB",
+        subtitle: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
+        web3_title: "웹3 디지털 은행",
+        web3_desc: "지갑연결 · 송금 · 결제 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량",
+        web3_btn: "웹3 디지털 은행 진입하기",
+        internet_title: "인터넷 은행 (HK 뱅크)",
+        internet_desc: "계좌 개설 · 입출금 · 즉시이체 · 예금 · 적금 · 대출 · 무료 신용점수 조회",
+        internet_btn: "인터넷 은행 진입하기",
+        referrer: "추천인"
       },
       en: {
-        pageTitle: "HKWB · Web3 Digital Bank",
-        divisionTag: "Web3 Digital Bank",
-        langLabel: "60+ Languages",
-        dashTitle: "Personal Asset Dashboard",
-        liveBadge: "Live Syncing",
-        holdingLabel: "Holdings",
-        interestLabel: "Real-Time Accrued Interest",
-        transferBtn: "Bank Transfer",
-        piniBtn: "Support AI Pini",
-        netTitle: "10 Distributed Interconnects",
-        netSub: "PC 2×5 · Mobile 5×2 Responsive Grid",
-        piniTitle: "Support AI Pini",
-        piniDesc: "Instant help with transfers, deposits, wallet connect, and all 10 interconnects.",
-        piniOpenBtn: "Chat with Pini",
-        socialTitle: "Official Channels",
-        socialDesc: "Check the latest updates and guides on YouTube and TikTok.",
-        youtubeBtn: "YouTube",
-        tiktokBtn: "TikTok",
-        referrerLabel: "Referrer",
-        recipientLabel: "Recipient Account / Wallet Address",
-        amountLabel: "Transfer Amount",
-        submitActionBtn: "Execute",
-        closeLabel: "Close",
-        piniTopicLabel: "Select Topic",
-        optTransfer: "Bank Transfer Response & Processing",
-        optDeposit: "Deposit Yield & Real-Time Sync",
-        optNetwork: "10 Distributed Interconnects Guide",
-        askPiniBtn: "Ask Pini",
-        transferDone: "Transfer submitted! Your balance and real-time yield updated immediately.",
-        moduleDone: "Module activated and ready for instant operation.",
-        piniAnswers: {
-          transfer: "Pini: Use Bank Transfer to enter a recipient account and amount for instant processing.",
-          deposit: "Pini: Holdings and real-time accrued interest stream continuously on the dashboard.",
-          network: "Pini: All 10 distributed interconnects from Wallet Connect to PI Quantity are active."
-        },
-        modules: {
-          wallet: ["Wallet Connect", "Sync global wallets in one step", "Open"],
-          transfer: ["Transfer", "Borderless ultra-fast asset transfer", "Send Now"],
-          pay: ["Payment", "Instant online & offline payment", "Open"],
-          deposit: ["Deposit", "Smart deposit & compound yield", "Open"],
-          reward: ["Reward", "Activity-based reward distribution", "Open"],
-          ubi: ["UBI", "Universal basic income allocation", "Open"],
-          swap: ["Swap", "One-click instant asset swap", "Open"],
-          dex: ["DEX Swap", "Direct decentralized liquidity swap", "Open"],
-          lp: ["LP Staking", "Liquidity pool staking rewards", "Open"],
-          pi: ["PI Quantity", "Real-time PI balance verification", "Open"]
-        }
+        brand: "HKWB",
+        subtitle: "Next-Generation Digital Financial Innovation Where Humanity and Technology Coexist",
+        web3_title: "Web3 Digital Bank",
+        web3_desc: "Wallet Connect · Remittance · Payment · Deposit · Reward · UBI · Swap · DEX Swap · LP Staking · PI Quantity",
+        web3_btn: "Enter Web3 Digital Bank",
+        internet_title: "Internet Bank (HK Bank)",
+        internet_desc: "Account Opening · Deposit/Withdrawal · Instant Transfer · Savings · Time Deposit · Loan · Free Credit Score Check",
+        internet_btn: "Enter Internet Bank",
+        referrer: "Referrer"
+      },
+      "zh-CN": {
+        brand: "HKWB",
+        subtitle: "人类与技术共存的下一代数字金融创新",
+        web3_title: "Web3 数字银行",
+        web3_desc: "钱包连接 · 汇款 · 支付 · 存款 · 奖励 · 基本收入 · 兑换 · DEX兑换 · LP质押 · PI数量",
+        web3_btn: "进入 Web3 数字银行",
+        internet_title: "互联网银行 (HK 银行)",
+        internet_desc: "开户 · 存取款 · 即时转账 · 活期存款 · 定期存款 · 贷款 · 免费信用评分查询",
+        internet_btn: "进入互联网银行",
+        referrer: "推荐人"
+      },
+      "zh-TW": {
+        brand: "HKWB",
+        subtitle: "人類與技術共存的下一代數位金融創新",
+        web3_title: "Web3 數位銀行",
+        web3_desc: "錢包連接 · 匯款 · 支付 · 存款 · 獎勵 · 基本收入 · 兌換 · DEX兌換 · LP質押 · PI數量",
+        web3_btn: "進入 Web3 數位銀行",
+        internet_title: "網際網路銀行 (HK 銀行)",
+        internet_desc: "開戶 · 存取款 · 即時轉帳 · 活期存款 · 定期存款 · 貸款 · 免費信用評分查詢",
+        internet_btn: "進入網際網路銀行",
+        referrer: "推薦人"
+      },
+      ja: {
+        brand: "HKWB",
+        subtitle: "人類と技術が共存する次世代デジタル金融革新",
+        web3_title: "Web3 デジタル銀行",
+        web3_desc: "ウォレット接続 · 送金 · 決済 · 預치 · 報酬 · 基本所得 · スワップ · DEXスワップ · LPステーミング · PI数量",
+        web3_btn: "Web3 デジタル銀行に入る",
+        internet_title: "インターネット銀行 (HKバンク)",
+        internet_desc: "口座開設 · 入出金 · 即時振込 · 普通預金 · 定期預金 · ローン · 無料信用スコア照会",
+        internet_btn: "インターネット銀行に入る",
+        referrer: "紹介者"
+      },
+      es: {
+        brand: "HKWB",
+        subtitle: "Innovación Financiera Digital de Próxima Generación donde la Humanidad y la Tecnología Coexisten",
+        web3_title: "Banco Digital Web3",
+        web3_desc: "Conexión de Billetera · Remesas · Pago · Depósito · Recompensas · RBU · Intercambio · Intercambio DEX · Staking LP · Cantidad PI",
+        web3_btn: "Ingresar al Banco Digital Web3",
+        internet_title: "Banco de Internet (HK Bank)",
+        internet_desc: "Apertura de Cuenta · Depósito/Retiro · Transferencia Instantánea · Ahorros · Depósito a Plazo · Préstamos · Consulta de Crédito Gratuita",
+        internet_btn: "Ingresar al Banco de Internet",
+        referrer: "Referidor"
+      },
+      fr: {
+        brand: "HKWB",
+        subtitle: "Innovation financière numérique de nouvelle génération où l'humanité et la technologie coexistent",
+        web3_title: "Banque Numérique Web3",
+        web3_desc: "Connexion Portefeuille · Virement · Paiement · Dépôt · Récompenses · RBU · Échange · Échange DEX · Staking LP · Quantité PI",
+        web3_btn: "Entrer dans la Banque Numérique Web3",
+        internet_title: "Banque Internet (HK Bank)",
+        internet_desc: "Ouverture de Compte · Dépôt/Retrait · Virement Instantané · Épargne · Dépôt à Terme · Prêt · Vérification de Crédit Gratuite",
+        internet_btn: "Entrer dans la Banque Internet",
+        referrer: "Parrain"
+      },
+      de: {
+        brand: "HKWB",
+        subtitle: "Digitale Finanzinnovation der nächsten Generation, in der Menschlichkeit und Technologie koexistieren",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Wallet-Verbindung · Überweisung · Zahlung · Einzahlung · Belohnung · Grundeinkommen · Swap · DEX-Swap · LP-Staking · PI-Menge",
+        web3_btn: "Web3 Digitalbank betreten",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Kontoeröffnung · Ein-/Auszahlung · Sofortüberweisung · Sparguthaben · Festgeld · Kredit · Kostenlose Bonitätsprüfung",
+        internet_btn: "Internetbank betreten",
+        referrer: "Empfehlungsgeber"
+      },
+      it: {
+        brand: "HKWB",
+        subtitle: "Innovazione finanziaria digitale di nuova generazione in cui umanità e tecnologia coesistono",
+        web3_title: "Banca Digitale Web3",
+        web3_desc: "Connessione Wallet · Bonifico · Pagamento · Deposito · Ricompense · RBU · Swap · DEX Swap · LP Staking · Quantità PI",
+        web3_btn: "Accedi alla Banca Digitale Web3",
+        internet_title: "Banca Internet (HK Bank)",
+        internet_desc: "Apertura Conto · Versamento/Prelievo · Bonifico Istantaneo · Risparmio · Deposito a Termine · Prestiti · Verifica Credito Gratuita",
+        internet_btn: "Accedi alla Banca Internet",
+        referrer: "Referente"
+      },
+      pt: {
+        brand: "HKWB",
+        subtitle: "Inovação financeira digital de próxima geração onde humanidade e tecnologia coexistem",
+        web3_title: "Banco Digital Web3",
+        web3_desc: "Conexão de Carteira · Transferência · Pagamento · Depósito · Recompensas · RBU · Swap · DEX Swap · LP Staking · Quantidade PI",
+        web3_btn: "Entrar no Banco Digital Web3",
+        internet_title: "Banco Internet (HK Bank)",
+        internet_desc: "Abertura de Conta · Depósito/Saque · Transferência Instantânea · Poupança · Depósito a Prazo · Empréstimo · Consulta de Crédito Gratuita",
+        internet_btn: "Entrar no Banco Internet",
+        referrer: "Indicador"
+      },
+      "pt-BR": {
+        brand: "HKWB",
+        subtitle: "Inovação financeira digital de próxima geração onde humanidade e tecnologia coexistem",
+        web3_title: "Banco Digital Web3",
+        web3_desc: "Conexão de Carteira · Transferência · Pagamento · Depósito · Recompensas · RBU · Swap · DEX Swap · LP Staking · Quantidade PI",
+        web3_btn: "Acessar Banco Digital Web3",
+        internet_title: "Banco Internet (HK Bank)",
+        internet_desc: "Abertura de Conta · Depósito/Saque · Transferência Instantânea · Poupança · Depósito a Prazo · Empréstimo · Consulta de Crédito Gratuita",
+        internet_btn: "Acessar Banco Internet",
+        referrer: "Indicador"
+      },
+      ru: {
+        brand: "HKWB",
+        subtitle: "Цифровые финансовые инновации нового поколения, где человечество и технологии сосуществуют",
+        web3_title: "Цифровой банк Web3",
+        web3_desc: "Подключение кошелька · Перевод · Оплата · Депозит · Награда · БДД · Своп · DEX Своп · LP Стейкинг · Количество PI",
+        web3_btn: "Войти в цифровой банк Web3",
+        internet_title: "Интернет-банк (HK Bank)",
+        internet_desc: "Открытие счета · Ввод/вывод · Мгновенный перевод · Сбережения · Срочный вклад · Кредит · Бесплатная проверка кредитного рейтинга",
+        internet_btn: "Войти в интернет-банк",
+        referrer: "Реферер"
+      },
+      ar: {
+        brand: "HKWB",
+        subtitle: "الابتكار المالي الرقمي للجيل القادم حيث تتعايش الإنسانية والتكنولوجيا",
+        web3_title: "بنك ويب3 الرقمي",
+        web3_desc: "ربط المحفظة · التحويل · الدفع · الإيداع · المكافآت · الدخل الأساسي · المبادلة · مبادلة DEX · تخزين LP · كمية PI",
+        web3_btn: "الدخول إلى بنك ويب3 الرقمي",
+        internet_title: "بنك الإنترنت (HK Bank)",
+        internet_desc: "فتح حساب · إيداع وسحب · تحويل فوري · ادخار · وديعة لأجل · قروض · استعلام مجاني عن التصنيف الائتماني",
+        internet_btn: "الدخول إلى بنك الإنترنت",
+        referrer: "المُحيل"
+      },
+      fa: {
+        brand: "HKWB",
+        subtitle: "نوآوری مالی دیجیتال نسل آینده که در آن انسانیت و فناوری همزیستی دارند",
+        web3_title: "بانک دیجیتال وب۳",
+        web3_desc: "اتصال کیف پول · حواله · پرداخت · سپرده · پاداش · درآمد پایه · سواپ · سواپ DEX · استیکینگ LP · مقدار PI",
+        web3_btn: "ورود به بانک دیجیتال وب۳",
+        internet_title: "بانک اینترنتی (HK Bank)",
+        internet_desc: "افتتاح حساب · واریز/برداشت · انتقال آنی · پس انداز · سپرده مدت دار · وام · استعلام رایگان رتبه اعتباری",
+        internet_btn: "ورود به بانک اینترنتی",
+        referrer: "معرف"
+      },
+      he: {
+        brand: "HKWB",
+        subtitle: "חדשנות פיננסית דיגיטלית מהדור הבא שבה אנושות וטכנולוגיה מתקיימות יחד",
+        web3_title: "בנק דיגיטלי Web3",
+        web3_desc: "חיבור ארנק · העברה · תשלום · הפקדה · תגמולים · הכנסה בסיסית · החלפה · החלפת DEX · סטייקינג LP · כמות PI",
+        web3_btn: "כניסה לבנק דיגיטלי Web3",
+        internet_title: "בנק אינטרנט (HK Bank)",
+        internet_desc: "פתיחת חשבון · הפקדה/משיכה · העברה מיידית · חיסכון · פיקדון · הלוואה · בדיקת דירוג אשראי חינם",
+        internet_btn: "כניסה לבנק אינטרנט",
+        referrer: "ממליץ"
+      },
+      hi: {
+        brand: "HKWB",
+        subtitle: "अगली पीढ़ी का डिजिटल वित्तीय नवाचार जहाँ मानवता और तकनीक साथ-साथ चलते हैं",
+        web3_title: "वेब3 डिजिटल बैंक",
+        web3_desc: "वॉलेट कनेक्ट · प्रेषण · भुगतान · जमा · रिवॉर्ड · यूबीआई · स्वैप · DEX स्वैप · LP स्टेकिंग · PI मात्रा",
+        web3_btn: "वेब3 डिजिटल बैंक में प्रवेश करें",
+        internet_title: "इंटरनेट बैंक (HK Bank)",
+        internet_desc: "खाता खोलना · जमा/निकासी · त्वरित ट्रांसफर · बचत · सावधि जमा · ऋण · निःशुल्क क्रेडिट स्कोर जाँच",
+        internet_btn: "इंटरनेट बैंक में प्रवेश करें",
+        referrer: "रेफ़रर"
+      },
+      bn: {
+        brand: "HKWB",
+        subtitle: "পরবর্তী প্রজন্মের ডিজিটাল আর্থিক উদ্ভাবন যেখানে মানবতা ও প্রযুক্তি একসাথে চলে",
+        web3_title: "ওয়েব৩ ডিজিটাল ব্যাংক",
+        web3_desc: "ওয়ালেট সংযোগ · রেমিট্যান্স · পেমেন্ট · ডিপোজিট · রিওয়ার্ড · ইউবিআই · সোয়াপ · DEX সোয়াপ · LP স্টেকিং · PI পরিমাণ",
+        web3_btn: "ওয়েব৩ ডিজিটাল ব্যাংকে প্রবেশ করুন",
+        internet_title: "ইন্টারনেট ব্যাংক (HK Bank)",
+        internet_desc: "অ্যাকাউন্ট খোলা · জমা/উত্তোলন · তাৎক্ষণিক ট্রান্সফার · সঞ্চয় · স্থায়ী আমানত · লোন · বিনামূল্যে ক্রেডিট স্কোর যাচাই",
+        internet_btn: "ইন্টারনেট ব্যাংকে প্রবেশ করুন",
+        referrer: "রেফারার"
+      },
+      pa: {
+        brand: "HKWB",
+        subtitle: "ਅਗਲੀ ਪੀੜ੍ਹੀ ਦੀ ਡਿਜੀਟਲ ਵਿੱਤੀ ਨਵੀਨਤਾ ਜਿੱਥੇ ਮਨੁੱਖਤਾ ਅਤੇ ਤਕਨਾਲੋਜੀ ਨਾਲ-ਨਾਲ ਚੱਲਦੇ ਹਨ",
+        web3_title: "ਵੈੱਬ3 ਡਿਜੀਟਲ ਬੈਂਕ",
+        web3_desc: "ਵਾਲਿਟ ਕਨੈਕਟ · ਰੈਮਿਟੈਂਸ · ਭੁਗਤਾਨ · ਡਿਪਾਜ਼ਿਟ · ਇਨਾਮ · ਯੂਬੀਆਈ · ਸਵੈਪ · DEX ਸਵੈਪ · LP ਸਟੇਕਿੰਗ · PI ਮਾਤਰਾ",
+        web3_btn: "ਵੈੱਬ3 ਡਿਜੀਟਲ ਬੈਂਕ ਵਿੱਚ ਦਾਖਲ ਹੋਵੋ",
+        internet_title: "ਇੰਟਰਨੈੱਟ ਬੈਂਕ (HK Bank)",
+        internet_desc: "ਖਾਤਾ ਖੋਲ੍ਹਣਾ · ਜਮ੍ਹਾਂ/ਕਢਵਾਉਣਾ · ਤੁਰੰਤ ਟ੍ਰਾਂਸਫਰ · ਬੱਚਤ · ਫਿਕਸਡ ਡਿਪਾਜ਼ਿਟ · ਕਰਜ਼ਾ · ਮੁਫ਼ਤ ਕ੍ਰੈਡਿਟ ਸਕੋਰ ਜਾਂਚ",
+        internet_btn: "ਇੰਟਰਨੈੱਟ ਬੈਂਕ ਵਿੱਚ ਦਾਖਲ ਹੋਵੋ",
+        referrer: "ਰੈਫ਼ਰਰ"
+      },
+      ta: {
+        brand: "HKWB",
+        subtitle: "மனிதகுலமும் தொழில்நுட்பமும் இணைந்து செயல்படும் அடுத்த தலைமுறை டிஜிட்டல் நிதி கண்டுபிடிப்பு",
+        web3_title: "வெப்3 டிஜிட்டல் வங்கி",
+        web3_desc: "வாலட் இணைப்பு · பணம் அனுப்புதல் · கட்டணம் · வைப்பு · வெகுமதி · அடிப்படை வருமானம் · ஸ்வாப் · DEX ஸ்வாப் · LP ஸ்டேக்கிங் · PI அளவு",
+        web3_btn: "வெப்3 டிஜிட்டல் வங்கியில் நுழையவும்",
+        internet_title: "இணைய வங்கி (HK Bank)",
+        internet_desc: "கணக்கு தொடங்குதல் · வைப்பு/எடுத்தல் · உடனடி பரிமாற்றம் · சேமிப்பு · நிலையான வைப்பு · கடன் · இலவச கிரெடிட் ஸ்கோர் சரிபார்ப்பு",
+        internet_btn: "இணைய வங்கியில் நுழையவும்",
+        referrer: "பரிந்துரைப்பாளர்"
+      },
+      te: {
+        brand: "HKWB",
+        subtitle: "మానవత్వం మరియు సాంకేతికత కలిసి సాగే తదుపరి తరం డిజిటల్ ఆర్థిక ఆవిష్కరణ",
+        web3_title: "వెబ్3 డిజిటల్ బ్యాంక్",
+        web3_desc: "వాలెట్ కనెక్ట్ · బదిలీ · చెల్లింపు · డిపాజిట్ · రివార్డ్ · ప్రాథమిక ఆదాయం · స్వాప్ · DEX స్వాప్ · LP స్టేకింగ్ · PI పరిమాణం",
+        web3_btn: "వెబ్3 డిజిటల్ బ్యాంక్ లోకి ప్రవేశించండి",
+        internet_title: "ఇంటర్నెట్ బ్యాంక్ (HK Bank)",
+        internet_desc: "ఖాతా తెరవడం · డిపాజిట్/విత్ డ్రా · తక్షణ బదిలీ · పొదుపు · ఫిక్స్ డ్ డిపాజిట్ · రుణం · ఉచిత క్రెడిట్ స్కోర్ తనిఖీ",
+        internet_btn: "ఇంటర్నెట్ బ్యాంక్ లోకి ప్రవేశించండి",
+        referrer: "సిఫార్సుదారు"
+      },
+      mr: {
+        brand: "HKWB",
+        subtitle: "मानवता आणि तंत्रज्ञान एकत्र नांदणारा पुढील पिढीतील डिजिटल आर्थिक नावीन्यपूर्ण उपक्रम",
+        web3_title: "वेब३ डिजिटल बँक",
+        web3_desc: "वॉलेट कनेक्ट · पाठवणे · पेमेंट · ठेव · रिवॉर्ड · मूलभूत उत्पन्न · स्वॅप · DEX स्वॅप · LP स्टेकिंग · PI प्रमाण",
+        web3_btn: "वेब३ डिजिटल बँकेत प्रवेश करा",
+        internet_title: "इंटरनेट बँक (HK Bank)",
+        internet_desc: "खाते उघडणे · जमा/काढणे · झटपट ट्रान्सफर · बचत · मुदत ठेव · कर्ज · मोफत क्रेडिट स्कोअर तपासणी",
+        internet_btn: "इंटरनेट बँकेत प्रवेश करा",
+        referrer: "रेफरर"
+      },
+      ur: {
+        brand: "HKWB",
+        subtitle: "اگلی نسل کی ڈیجیٹل مالیاتی جدت جہاں انسانیت اور ٹیکنالوجی ساتھ چلتے ہیں",
+        web3_title: "ویب3 ڈیجیٹل بینک",
+        web3_desc: "والٹ کنیکٹ · ترسیل زر · ادائیگی · ڈپازٹ · انعام · بنیادی آمدنی · سویپ · DEX سویپ · LP اسٹیکنگ · PI مقدار",
+        web3_btn: "ویب3 ڈیجیٹل بینک میں داخل ہوں",
+        internet_title: "انٹرنیٹ بینک (HK Bank)",
+        internet_desc: "اکاؤنٹ کھولنا · جمع/نکالنا · فوری منتقلی · بچت · فکسڈ ڈپازٹ · قرض · مفت کریڈٹ اسکور چیک",
+        internet_btn: "انٹرنیٹ بینک میں داخل ہوں",
+        referrer: "حوالہ دہندہ"
+      },
+      vi: {
+        brand: "HKWB",
+        subtitle: "Đổi mới tài chính số thế hệ mới nơi nhân loại và công nghệ cùng tồn tại",
+        web3_title: "Ngân hàng số Web3",
+        web3_desc: "Kết nối ví · Chuyển tiền · Thanh toán · Tiền gửi · Phần thưởng · Thu nhập cơ bản · Hoán đổi · Hoán đổi DEX · LP Staking · Số lượng PI",
+        web3_btn: "Vào Ngân hàng số Web3",
+        internet_title: "Ngân hàng Internet (HK Bank)",
+        internet_desc: "Mở tài khoản · Nạp/rút tiền · Chuyển khoản tức thì · Tiết kiệm · Tiền gửi có kỳ hạn · Vay vốn · Tra cứu điểm tín dụng miễn phí",
+        internet_btn: "Vào Ngân hàng Internet",
+        referrer: "Người giới thiệu"
+      },
+      th: {
+        brand: "HKWB",
+        subtitle: "นวัตกรรมการเงินดิจิทัลยุคใหม่ที่มนุษยชาติและเทคโนโลยีอยู่ร่วมกัน",
+        web3_title: "ธนาคารดิจิทัล Web3",
+        web3_desc: "เชื่อมต่อกระเป๋าเงิน · โอนเงิน · ชำระเงิน · ฝากเงิน · รางวัล · รายได้พื้นฐาน · สวอป · DEX สวอป · LP สเตกกิ้ง · จำนวน PI",
+        web3_btn: "เข้าสู่ธนาคารดิจิทัล Web3",
+        internet_title: "ธนาคารอินเทอร์เน็ต (HK Bank)",
+        internet_desc: "เปิดบัญชี · ฝาก/ถอน · โอนทันที · ออมทรัพย์ · เงินฝากประจำ · สินเชื่อ · ตรวจสอบคะแนนเครดิตฟรี",
+        internet_btn: "เข้าสู่ธนาคารอินเทอร์เน็ต",
+        referrer: "ผู้แนะนำ"
+      },
+      id: {
+        brand: "HKWB",
+        subtitle: "Inovasi Keuangan Digital Generasi Baru tempat Kemanusiaan dan Teknologi Berdampingan",
+        web3_title: "Bank Digital Web3",
+        web3_desc: "Hubungkan Dompet · Kirim Uang · Pembayaran · Deposito · Hadiah · Pendapatan Dasar · Swap · Swap DEX · LP Staking · Jumlah PI",
+        web3_btn: "Masuk ke Bank Digital Web3",
+        internet_title: "Bank Internet (HK Bank)",
+        internet_desc: "Buka Rekening · Setor/Tarik · Transfer Instan · Tabungan · Deposito Berjangka · Pinjaman · Cek Skor Kredit Gratis",
+        internet_btn: "Masuk ke Bank Internet",
+        referrer: "Perujuk"
+      },
+      ms: {
+        brand: "HKWB",
+        subtitle: "Inovasi Kewangan Digital Generasi Baharu di mana Kemanusiaan dan Teknologi Wujud Bersama",
+        web3_title: "Bank Digital Web3",
+        web3_desc: "Sambung Dompet · Kiriman Wang · Pembayaran · Deposit · Ganjaran · Pendapatan Asas · Tukar · Tukar DEX · LP Staking · Kuantiti PI",
+        web3_btn: "Masuk ke Bank Digital Web3",
+        internet_title: "Bank Internet (HK Bank)",
+        internet_desc: "Buka Akaun · Deposit/Pengeluaran · Pemindahan Segera · Simpanan · Deposit Tetap · Pinjaman · Semakan Skor Kredit Percuma",
+        internet_btn: "Masuk ke Bank Internet",
+        referrer: "Perujuk"
+      },
+      fil: {
+        brand: "HKWB",
+        subtitle: "Makabagong Pinansyal na Teknolohiya kung saan Nagkakaisa ang Sangkatauhan at Teknolohiya",
+        web3_title: "Web3 Digital Bank",
+        web3_desc: "Konek Wallet · Padala · Bayad · Deposito · Gantimpala · Pangunahing Kita · Swap · DEX Swap · LP Staking · Dami ng PI",
+        web3_btn: "Pumasok sa Web3 Digital Bank",
+        internet_title: "Internet Bank (HK Bank)",
+        internet_desc: "Pagbukas ng Account · Deposito/Withdraw · Instant Transfer · Ipon · Time Deposit · Pautang · Libreng Credit Score Check",
+        internet_btn: "Pumasok sa Internet Bank",
+        referrer: "Nagrekomenda"
+      },
+      km: {
+        brand: "HKWB",
+        subtitle: "ការច្នៃប្រឌិតហិរញ្ញវត្ថុឌីជីថលជំនាន់ថ្មី ដែលមនុស្សជាតិ និងបច្ចេកវិទ្យារួមរស់ជាមួយគ្នា",
+        web3_title: "ធនាគារឌីជីថល Web3",
+        web3_desc: "ភ្ជាប់កាបូប · ផ្ទេរប្រាក់ · ការទូទាត់ · ដាក់ប្រាក់ · រង្វាន់ · ប្រាក់ចំណូលមូលដ្ឋាន · ដូរ · ដូរ DEX · LP Staking · បរិមាណ PI",
+        web3_btn: "ចូលទៅកាន់ធនាគារឌីជីថល Web3",
+        internet_title: "ធនាគារអ៊ីនធឺណិត (HK Bank)",
+        internet_desc: "បើកគណនី · ដាក់/ដកប្រាក់ · ផ្ទេរភ្លាមៗ · សន្សំ · ប្រាក់បញ្ញើមានកាលកំណត់ · កម្ចី · ពិនិត្យពិន្ទុឥណទានឥតគិតថ្លៃ",
+        internet_btn: "ចូលទៅកាន់ធនាគារអ៊ីនធឺណិត",
+        referrer: "អ្នកណែនាំ"
+      },
+      lo: {
+        brand: "HKWB",
+        subtitle: "ນະວັດຕະກຳການເງິນດິຈິຕອນຍຸກໃໝ່ ບ່ອນທີ່ມະນຸດ ແລະ ເຕັກໂນໂລຊີຢູ່ຮ່ວມກັນ",
+        web3_title: "ທະນາຄານດິຈິຕອນ Web3",
+        web3_desc: "ເຊື່ອມຕໍ່ກະເປົາເງິນ · ໂອນເງິນ · ຊຳລະເງິນ · ຝາກເງິນ · ລາງວັນ · ລາຍໄດ້ພື້ນຖານ · ແລກປ່ຽນ · ແລກປ່ຽນ DEX · LP Staking · ຈຳນວນ PI",
+        web3_btn: "ເຂົ້າສູ່ທະນາຄານດິຈິຕອນ Web3",
+        internet_title: "ທະນາຄານອິນເຕີເນັດ (HK Bank)",
+        internet_desc: "ເປີດບັນຊີ · ຝາກ/ຖອນ · ໂອນທັນທີ · ເງິນຝາກປະຢັດ · ເງິນຝາກປະຈຳ · ເງິນກູ້ · ກວດສອບຄະແນນສິນເຊື່ອຟຣີ",
+        internet_btn: "ເຂົ້າສູ່ທະນາຄານອິນເຕີເນັດ",
+        referrer: "ຜູ້ແນະນຳ"
+      },
+      my: {
+        brand: "HKWB",
+        subtitle: "လူသားနှင့် နည်းပညာ အတူယှဉ်တွဲသော မျိုးဆက်သစ် ဒစ်ဂျစ်တယ် ဘဏ္ဍာရေး ဆန်းသစ်တီထွင်မှု",
+        web3_title: "Web3 ဒစ်ဂျစ်တယ်ဘဏ်",
+        web3_desc: "ပိုက်ဆံအိတ်ချိတ်ဆက် · ငွေလွှဲ · ငွေပေးချေ · အပ်ငွေ · ဆုလာဘ် · အခြေခံဝင်ငွေ · လဲလှယ် · DEX လဲလှယ် · LP Staking · PI ပမာဏ",
+        web3_btn: "Web3 ဒစ်ဂျစ်တယ်ဘဏ်သို့ ဝင်ရောက်ရန်",
+        internet_title: "အင်တာနက်ဘဏ် (HK Bank)",
+        internet_desc: "စာရင်းဖွင့် · ငွေသွင်း/ထုတ် · ချက်ချင်းလွှဲ · စုငွေ · ပုံသေအပ်ငွေ · ချေးငွေ · ခရက်ဒစ်ရမှတ် အခမဲ့စစ်ဆေး",
+        internet_btn: "အင်တာနက်ဘဏ်သို့ ဝင်ရောက်ရန်",
+        referrer: "ညွှန်းဆိုသူ"
+      },
+      mn: {
+        brand: "HKWB",
+        subtitle: "Хүн төрөлхтөн ба технологи зэрэгцэн орших дараа үеийн дижитал санхүүгийн шинэчлэл",
+        web3_title: "Web3 Дижитал Банк",
+        web3_desc: "Хэтэвч холбох · Шилжүүлэг · Төлбөр · Хадгаламж · Шагнал · Суурь орлого · Солилцоо · DEX солилцоо · LP Staking · PI тоо хэмжээ",
+        web3_btn: "Web3 Дижитал Банк руу орох",
+        internet_title: "Интернэт Банк (HK Bank)",
+        internet_desc: "Данс нээх · Орлого/зарлага · Шуурхай шилжүүлэг · Хадгаламж · Хугацаат хадгаламж · Зээл · Зээлийн оноо үнэгүй шалгах",
+        internet_btn: "Интернэт Банк руу орох",
+        referrer: "Зөвлөгч"
+      },
+      tr: {
+        brand: "HKWB",
+        subtitle: "İnsanlık ve Teknolojinin Birlikte Var Olduğu Yeni Nesil Dijital Finans İnovasyonu",
+        web3_title: "Web3 Dijital Bankası",
+        web3_desc: "Cüzdan Bağlantısı · Havale · Ödeme · Mevduat · Ödül · Temel Gelir · Takas · DEX Takas · LP Staking · PI Miktarı",
+        web3_btn: "Web3 Dijital Bankasına Gir",
+        internet_title: "İnternet Bankası (HK Bank)",
+        internet_desc: "Hesap Açılışı · Yatırma/Çekme · Anında Transfer · Birikim · Vadeli Mevduat · Kredi · Ücretsiz Kredi Notu Sorgulama",
+        internet_btn: "İnternet Bankasına Gir",
+        referrer: "Referans"
+      },
+      nl: {
+        brand: "HKWB",
+        subtitle: "Digitale financiële innovatie van de volgende generatie waar mens en technologie samengaan",
+        web3_title: "Web3 Digitale Bank",
+        web3_desc: "Wallet Koppelen · Overboeking · Betaling · Storting · Beloning · Basisinkomen · Swap · DEX Swap · LP Staking · PI Hoeveelheid",
+        web3_btn: "Naar Web3 Digitale Bank",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Rekening Openen · Storten/Opnemen · Directe Overboeking · Sparen · Termijndeposito · Lening · Gratis Kredietscore Check",
+        internet_btn: "Naar Internetbank",
+        referrer: "Verwijzer"
+      },
+      pl: {
+        brand: "HKWB",
+        subtitle: "Innowacja finansowa nowej generacji, w której ludzkość i technologia współistnieją",
+        web3_title: "Bank Cyfrowy Web3",
+        web3_desc: "Połączenie Portfela · Przelew · Płatność · Depozyt · Nagrody · Dochód Podstawowy · Swap · Swap DEX · LP Staking · Ilość PI",
+        web3_btn: "Wejdź do Banku Cyfrowego Web3",
+        internet_title: "Bank Internetowy (HK Bank)",
+        internet_desc: "Otwarcie Konta · Wpłaty/Wypłaty · Przelew Natychmiastowy · Oszczędności · Lokata · Pożyczka · Darmowy Raport Kredytowy",
+        internet_btn: "Wejdź do Banku Internetowego",
+        referrer: "Polecający"
+      },
+      uk: {
+        brand: "HKWB",
+        subtitle: "Цифрові фінансові інновації нового покоління, де людство і технології співіснують",
+        web3_title: "Цифровий банк Web3",
+        web3_desc: "Підключення гаманця · Переказ · Оплата · Депозит · Винагорода · Базовий дохід · Своп · DEX Своп · LP Стейкінг · Кількість PI",
+        web3_btn: "Увійти до цифрового банку Web3",
+        internet_title: "Інтернет-банк (HK Bank)",
+        internet_desc: "Відкриття рахунку · Поповнення/зняття · Миттєвий переказ · Заощадження · Строковий вклад · Кредит · Безкоштовна перевірка кредитного рейтингу",
+        internet_btn: "Увійти до інтернет-банку",
+        referrer: "Реферер"
+      },
+      cs: {
+        brand: "HKWB",
+        subtitle: "Digitální finanční inovace nové generace, kde lidstvo a technologie žijí v souladu",
+        web3_title: "Digitální banka Web3",
+        web3_desc: "Připojení peněženky · Platba převodem · Platba · Vklad · Odměny · Základní příjem · Swap · DEX Swap · LP Staking · Množství PI",
+        web3_btn: "Vstoupit do digitální banky Web3",
+        internet_title: "Internetová banka (HK Bank)",
+        internet_desc: "Založení účtu · Vklad/výběr · Okamžitý převod · Spoření · Termínovaný vklad · Úvěr · Ověření úvěrového skóre zdarma",
+        internet_btn: "Vstoupit do internetové banky",
+        referrer: "Doporučitel"
+      },
+      sk: {
+        brand: "HKWB",
+        subtitle: "Digitálna finančná inovácia novej generácie, kde ľudstvo a technológia spolunažívajú",
+        web3_title: "Digitálna banka Web3",
+        web3_desc: "Pripojenie peňaženky · Prevod · Platba · Vklad · Odmeny · Základný príjem · Swap · DEX Swap · LP Staking · Množstvo PI",
+        web3_btn: "Vstúpiť do digitálnej banky Web3",
+        internet_title: "Internetová banka (HK Bank)",
+        internet_desc: "Otvorenie účtu · Vklad/výber · Okamžitý prevod · Úspory · Termínovaný vklad · Úver · Bezplatné overenie úverového skóre",
+        internet_btn: "Vstúpiť do internetovej banky",
+        referrer: "Odporúčateľ"
+      },
+      hu: {
+        brand: "HKWB",
+        subtitle: "Új generációs digitális pénzügyi innováció, ahol az emberiség és a technológia egymás mellett él",
+        web3_title: "Web3 Digitális Bank",
+        web3_desc: "Tárca csatlakoztatás · Utalás · Fizetés · Betét · Jutalmak · Alapjövedelem · Swap · DEX Swap · LP Staking · PI mennyiség",
+        web3_btn: "Belépés a Web3 Digitális Bankba",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Számlanyitás · Befizetés/kifizetés · Azonnali átutalás · Megtakarítás · Lekötött betét · Hitel · Ingyenes hitelminősítés",
+        internet_btn: "Belépés az Internetbankba",
+        referrer: "Ajánló"
+      },
+      ro: {
+        brand: "HKWB",
+        subtitle: "Inovație financiară digitală de nouă generație în care umanitatea și tehnologia coexistă",
+        web3_title: "Bancă Digitală Web3",
+        web3_desc: "Conectare Portofel · Transfer · Plată · Depozit · Recompense · Venit de Bază · Swap · Swap DEX · LP Staking · Cantitate PI",
+        web3_btn: "Intră în Banca Digitală Web3",
+        internet_title: "Bancă Internet (HK Bank)",
+        internet_desc: "Deschidere Cont · Depunere/Retragere · Transfer Instant · Economii · Depozit la Termen · Credit · Verificare Scor Credit Gratuită",
+        internet_btn: "Intră în Banca Internet",
+        referrer: "Referent"
+      },
+      bg: {
+        brand: "HKWB",
+        subtitle: "Дигитална финансова иновация от ново поколение, където човечеството и технологиите съжителстват",
+        web3_title: "Дигитална банка Web3",
+        web3_desc: "Свързване на портфейл · Превод · Плащане · Депозит · Награди · Базов доход · Суап · DEX Суап · LP Стейкинг · Количество PI",
+        web3_btn: "Вход в Дигитална банка Web3",
+        internet_title: "Интернет банка (HK Bank)",
+        internet_desc: "Откриване на сметка · Внасяне/теглене · Незабавен превод · Спестявания · Срочен депозит · Кредит · Безплатна кредитна оценка",
+        internet_btn: "Вход в Интернет банка",
+        referrer: "Препоръчител"
+      },
+      el: {
+        brand: "HKWB",
+        subtitle: "Ψηφιακή χρηματοοικονομική καινοτομία νέας γενιάς όπου η ανθρωπότητα και η τεχνολογία συνυπάρχουν",
+        web3_title: "Ψηφιακή Τράπεζα Web3",
+        web3_desc: "Σύνδεση Πορτοφολιού · Έμβασμα · Πληρωμή · Κατάθεση · Ανταμοιβές · Βασικό Εισόδημα · Swap · DEX Swap · LP Staking · Ποσότητα PI",
+        web3_btn: "Είσοδος στην Ψηφιακή Τράπεζα Web3",
+        internet_title: "Διαδικτυακή Τράπεζα (HK Bank)",
+        internet_desc: "Άνοιγμα Λογαριασμού · Κατάθεση/Ανάληψη · Άμεση Μεταφορά · Αποταμίευση · Προθεσμιακή Κατάθεση · Δάνειο · Δωρεάν Πιστωτικός Έλεγχος",
+        internet_btn: "Είσοδος στη Διαδικτυακή Τράπεζα",
+        referrer: "Συστήνων"
+      },
+      sv: {
+        brand: "HKWB",
+        subtitle: "Nästa generations digitala finansiella innovation där mänsklighet och teknik samexisterar",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Anslut Plånbok · Överföring · Betalning · Insättning · Belöningar · Basinkomst · Swap · DEX Swap · LP Staking · PI Mängd",
+        web3_btn: "Gå till Web3 Digitalbank",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Öppna Konto · Insättning/Uttag · Direktöverföring · Sparkonto · Fasträntekonto · Lån · Kostnadsfri Kreditupplysning",
+        internet_btn: "Gå till Internetbank",
+        referrer: "Hänvisare"
+      },
+      no: {
+        brand: "HKWB",
+        subtitle: "Neste generasjons digitale finansinnovasjon der menneskehet og teknologi sameksisterer",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Koble Lommebok · Overføring · Betaling · Innskudd · Belønninger · Basis inntekt · Swap · DEX Swap · LP Staking · PI Mengde",
+        web3_btn: "Gå til Web3 Digitalbank",
+        internet_title: "Internettbank (HK Bank)",
+        internet_desc: "Åpne Konto · Innskudd/Uttak · Straksoverføring · Sparing · Fastrenteinnskudd · Lån · Gratis Kredittsjekk",
+        internet_btn: "Gå til Internettbank",
+        referrer: "Henviser"
+      },
+      da: {
+        brand: "HKWB",
+        subtitle: "Næste generations digitale finansielle innovation, hvor menneskelighed og teknologi sameksisterer",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Tilslut Tegnebog · Overførsel · Betaling · Indskud · Belønninger · Basisindkomst · Swap · DEX Swap · LP Staking · PI Mængde",
+        web3_btn: "Gå til Web3 Digitalbank",
+        internet_title: "Netbank (HK Bank)",
+        internet_desc: "Åbn Konto · Indbetaling/Udbetaling · Straksoverførsel · Opsparing · Indskudskonto · Lån · Gratis Kreditvurdering",
+        internet_btn: "Gå til Netbank",
+        referrer: "Henviser"
+      },
+      fi: {
+        brand: "HKWB",
+        subtitle: "Seuraavan sukupolven digitaalinen rahoitusinnovaatio, jossa ihmisyys ja teknologia elävät rinnakkain",
+        web3_title: "Web3 Digipankki",
+        web3_desc: "Yhdistä Lompakko · Tilisiirto · Maksu · Talletus · Palkkiot · Perustulo · Swap · DEX Swap · LP Staking · PI Määrä",
+        web3_btn: "Siirry Web3 Digipankkiin",
+        internet_title: "Verkkopankki (HK Bank)",
+        internet_desc: "Avaa Tili · Talletus/Nosto · Pikasiirto · Säästötili · Määräaikaistalletus · Laina · Maksuton Luottotietotarkistus",
+        internet_btn: "Siirry Verkkopankkiin",
+        referrer: "Suosittelija"
+      },
+      et: {
+        brand: "HKWB",
+        subtitle: "Uue põlvkonna digitaalne finantsinnovatsioon, kus inimkond ja tehnoloogia eksisteerivad koos",
+        web3_title: "Web3 Digipank",
+        web3_desc: "Ühenda Rahakott · Ülekanne · Makse · Hoius · Preemiad · Põhisissetulek · Swap · DEX Swap · LP Staking · PI Kogus",
+        web3_btn: "Sisene Web3 Digipanka",
+        internet_title: "Internetipank (HK Bank)",
+        internet_desc: "Konto Avamine · Sissemakse/Väljamakse · Kiirülekanne · Kogumine · Tähtajaline Hoius · Laen · Tasuta Krediidiskoor",
+        internet_btn: "Sisene Internetipanka",
+        referrer: "Soovitaja"
+      },
+      lv: {
+        brand: "HKWB",
+        subtitle: "Nākamās paaudzes digitālās finanšu inovācijas, kur cilvēce un tehnoloģijas pastāv līdzās",
+        web3_title: "Web3 Digitālā Banka",
+        web3_desc: "Savienot Maku · Pārskaitījums · Maksājums · Noguldījums · Atlīdzības · Pamata ienākumi · Swap · DEX Swap · LP Staking · PI Daudzums",
+        web3_btn: "Ieiet Web3 Digitālajā Bankā",
+        internet_title: "Interneta Banka (HK Bank)",
+        internet_desc: "Konta Atvēršana · Iemaksa/Izmaksa · Zibmaksājums · Uzkrājumi · Termiņnoguldījums · Aizdevums · Bezmaksas Kredītvēsture",
+        internet_btn: "Ieiet Interneta Bankā",
+        referrer: "Ieteicējs"
+      },
+      lt: {
+        brand: "HKWB",
+        subtitle: "Naujos kartos skaitmeninės finansų inovacijos, kuriose žmonija ir technologijos egzistuoja kartu",
+        web3_title: "Web3 Skaitmeninis Bankas",
+        web3_desc: "Prijungti Piniginę · Pavedimas · Mokėjimas · Indėlis · Atlygiai · Bazinės pajamos · Swap · DEX Swap · LP Staking · PI Kiekis",
+        web3_btn: "Įeiti į Web3 Skaitmeninį Banką",
+        internet_title: "Internetinis Bankas (HK Bank)",
+        internet_desc: "Sąskaitos Atidarymas · Įnešimas/Išėmimas · Greitas Pavedimas · Taupymas · Terminuotas Indėlis · Paskola · Nemokamas Kredito Patikrinimas",
+        internet_btn: "Įeiti į Internetinį Banką",
+        referrer: "Rekomenduotojas"
+      },
+      hr: {
+        brand: "HKWB",
+        subtitle: "Digitalna financijska inovacija nove generacije u kojoj čovječanstvo i tehnologija žive zajedno",
+        web3_title: "Web3 Digitalna Banka",
+        web3_desc: "Poveži Novčanik · Prijenos · Plaćanje · Polog · Nagrade · Temeljni dohodak · Swap · DEX Swap · LP Staking · Količina PI",
+        web3_btn: "Uđi u Web3 Digitalnu Banku",
+        internet_title: "Internetska Banka (HK Bank)",
+        internet_desc: "Otvaranje Računa · Uplata/Isplata · Trenutni Prijenos · Štednja · Oročena Štednja · Kredit · Besplatna Provjera Kreditnog Rejtinga",
+        internet_btn: "Uđi u Internetsku Banku",
+        referrer: "Preporučitelj"
+      },
+      sr: {
+        brand: "HKWB",
+        subtitle: "Дигитална финансијска иновација нове генерације у којој човечанство и технологија коегзистирају",
+        web3_title: "Web3 Дигитална Банка",
+        web3_desc: "Повежи Новчаник · Пренос · Плаћање · Депозит · Награде · Основни приход · Swap · DEX Swap · LP Staking · Количина PI",
+        web3_btn: "Уђи у Web3 Дигиталну Банку",
+        internet_title: "Интернет Банка (HK Bank)",
+        internet_desc: "Отварање Рачуна · Уплата/Исплата · Тренутни Пренос · Штедња · Орочени Депозит · Кредит · Бесплатна Провера Кредитног Скора",
+        internet_btn: "Уђи у Интернет Банку",
+        referrer: "Препоручилац"
+      },
+      sl: {
+        brand: "HKWB",
+        subtitle: "Digitalna finančna inovacija nove generacije, kjer človeštvo in tehnologija sobivata",
+        web3_title: "Web3 Digitalna Banka",
+        web3_desc: "Poveži Denarnico · Nakazilo · Plačilo · Vlog · Nagrade · Temeljni dohodek · Swap · DEX Swap · LP Staking · Količina PI",
+        web3_btn: "Vstopi v Web3 Digitalno Banko",
+        internet_title: "Spletna Banka (HK Bank)",
+        internet_desc: "Odprtje Računa · Polog/Dvig · Takojšnje Nakazilo · Varčevanje · Vezani Depozit · Posojilo · Brezplačno Preverjanje Bonitete",
+        internet_btn: "Vstopi v Spletno Banko",
+        referrer: "Priporočitelj"
+      },
+      sw: {
+        brand: "HKWB",
+        subtitle: "Ubunifu wa kifedha wa kidijitali wa kizazi kipya ambapo ubinadamu na teknolojia huishi pamoja",
+        web3_title: "Benki ya Kidijitali ya Web3",
+        web3_desc: "Unganisha Wallet · Uhamisho · Malipo · Amana · Zawadi · Mapato ya Msingi · Swap · DEX Swap · LP Staking · Kiasi cha PI",
+        web3_btn: "Ingia Benki ya Kidijitali ya Web3",
+        internet_title: "Benki ya Mtandao (HK Bank)",
+        internet_desc: "Kufungua Akaunti · Kuweka/Kutoa · Uhamisho wa Papo Hapo · Akiba · Amana Maalum · Mkopo · Ukaguzi wa Alama za Mkopo Bure",
+        internet_btn: "Ingia Benki ya Mtandao",
+        referrer: "Mwongozaji"
+      },
+      am: {
+        brand: "HKWB",
+        subtitle: "ሰብአዊነት እና ቴክኖሎጂ አብረው የሚጓዙበት የቀጣይ ትውልድ ዲጂታል የፋይናንስ ፈጠራ",
+        web3_title: "Web3 ዲጂታል ባንክ",
+        web3_desc: "ዋሌት ያገናኙ · ዝውውር · ክፍያ · ተቀማጭ · ሽልማት · መሠረታዊ ገቢ · Swap · DEX Swap · LP Staking · የPI መጠን",
+        web3_btn: "ወደ Web3 ዲጂታል ባንክ ይግቡ",
+        internet_title: "የኢንተርኔት ባንክ (HK Bank)",
+        internet_desc: "ሂሳብ መክፈት · ማስገባት/ማውጣት · ፈጣን ዝውውር · ቁጠባ · የጊዜ ተቀማጭ · ብድር · ነፃ የክሬዲት ነጥብ ፍተሻ",
+        internet_btn: "ወደ ኢንተርኔት ባንክ ይግቡ",
+        referrer: "ጠቋሚ"
+      },
+      zu: {
+        brand: "HKWB",
+        subtitle: "Ukuqamba okusha kwezezimali kwedijithali kwesizukulwane esilandelayo lapho ubuntu nobuchwepheshe kuhambisana khona",
+        web3_title: "Ibhange Ledijithali le-Web3",
+        web3_desc: "Xhuma I-Wallet · Ukudlulisa Imali · Inkokhelo · Idiphozithi · Imivuzo · Imali Eyisisekelo · Swap · DEX Swap · LP Staking · Inani le-PI",
+        web3_btn: "Ngena Ebhange Ledijithali le-Web3",
+        internet_title: "Ibhange Le-Inthanethi (HK Bank)",
+        internet_desc: "Ukuvula I-akhawunti · Ukufaka/Ukukhipha · Ukudlulisa Ngokushesha · Ukonga · Idiphozithi Yesikhathi · Imalimboleko · Ukuhlola I-Credit Score Mahhala",
+        internet_btn: "Ngena Ebhange Le-Inthanethi",
+        referrer: "Umphakeli"
+      },
+      af: {
+        brand: "HKWB",
+        subtitle: "Volgende-generasie digitale finansiële innovasie waar menslikheid en tegnologie saamleef",
+        web3_title: "Web3 Digitale Bank",
+        web3_desc: "Koppel Beursie · Oordrag · Betaling · Deposito · Belonings · Basiese Inkomste · Ruil · DEX Ruil · LP Staking · PI Hoeveelheid",
+        web3_btn: "Betree Web3 Digitale Bank",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Rekening Opening · Deposito/Onttrekking · Onmiddellike Oordrag · Spaargeld · Vaste Deposito · Lening · Gratis Krediettelling",
+        internet_btn: "Betree Internetbank",
+        referrer: "Verwyser"
+      },
+      ca: {
+        brand: "HKWB",
+        subtitle: "Innovació financera digital de nova generació on la humanitat i la tecnologia conviuen",
+        web3_title: "Banc Digital Web3",
+        web3_desc: "Connecta la Cartera · Transferència · Pagament · Dipòsit · Recompenses · Renda Bàsica · Swap · Swap DEX · LP Staking · Quantitat PI",
+        web3_btn: "Entra al Banc Digital Web3",
+        internet_title: "Banc d'Internet (HK Bank)",
+        internet_desc: "Obertura de Compte · Dipòsit/Retirada · Transferència Instantània · Estalvi · Dipòsit a Termini · Préstec · Consulta de Crèdit Gratuïta",
+        internet_btn: "Entra al Banc d'Internet",
+        referrer: "Referent"
+      },
+      eu: {
+        brand: "HKWB",
+        subtitle: "Hurrengo belaunaldiko finantza berrikuntza digitala, gizadia eta teknologia elkarrekin bizi diren lekua",
+        web3_title: "Web3 Banku Digitala",
+        web3_desc: "Konektatu Zorrorra · Transferentzia · Ordainketa · Gordailua · Sariak · Oinarrizko Errenta · Swap · DEX Swap · LP Staking · PI Kopurua",
+        web3_btn: "Sartu Web3 Banku Digitalean",
+        internet_title: "Interneteko Bankua (HK Bank)",
+        internet_desc: "Kontua Irekitzea · Gordailua/Ateratzea · Berehalako Transferentzia · Aurrezkia · Epe Finkoko Gordailua · Mailegua · Doako Kreditu Kontsulta",
+        internet_btn: "Sartu Interneteko Bankuan",
+        referrer: "Erreferentea"
+      },
+      gl: {
+        brand: "HKWB",
+        subtitle: "Innovación financeira dixital de nova xeración onde a humanidade e a tecnoloxía conviven",
+        web3_title: "Banco Dixital Web3",
+        web3_desc: "Conectar Carteira · Transferencia · Pago · Depósito · Recompensas · Renda Básica · Swap · Swap DEX · LP Staking · Cantidade PI",
+        web3_btn: "Entrar no Banco Dixital Web3",
+        internet_title: "Banco de Internet (HK Bank)",
+        internet_desc: "Apertura de Conta · Depósito/Retirada · Transferencia Instantánea · Aforro · Depósito a Prazo · Préstamo · Consulta de Crédito Gratuíta",
+        internet_btn: "Entrar no Banco de Internet",
+        referrer: "Recomendador"
+      },
+      is: {
+        brand: "HKWB",
+        subtitle: "Ný kynslóð stafrænnar fjármálanýsköpunar þar sem mannkyn og tækni lifa saman",
+        web3_title: "Web3 Stafrænn Banki",
+        web3_desc: "Tengja Veski · Millifærsla · Greiðsla · Innlán · Verðlaun · Grunntekjur · Skipti · DEX Skipti · LP Staking · PI Magn",
+        web3_btn: "Fara í Web3 Stafrænan Banka",
+        internet_title: "Netbanki (HK Bank)",
+        internet_desc: "Reikningsopnun · Innlán/Úttekt · Hraðmillifærsla · Sparnaður · Bundið Innlán · Lán · Ókeypis Lánshæfismat",
+        internet_btn: "Fara í Netbanka",
+        referrer: "Tilvísun"
+      },
+      ga: {
+        brand: "HKWB",
+        subtitle: "Nuálaíocht airgeadais dhigiteach den chéad ghlúin eile ina maireann an cine daonna agus an teicneolaíocht le chéile",
+        web3_title: "Banc Digiteach Web3",
+        web3_desc: "Ceangail Sparán · Aistriú · Íocaíocht · Taisce · Luaíochtaí · Bunioncam · Babhtáil · Babhtáil DEX · LP Staking · Méid PI",
+        web3_btn: "Téigh go Banc Digiteach Web3",
+        internet_title: "Banc Idirlín (HK Bank)",
+        internet_desc: "Cuntas a Oscailt · Taisce/Tarraingt Siar · Aistriú Láithreach · Coigilteas · Taisce Téarma · Iasacht · Seiceáil Scóir Creidmheasa Saor in Aisce",
+        internet_btn: "Téigh go Banc Idirlín",
+        referrer: "Moltóir"
+      },
+      mt: {
+        brand: "HKWB",
+        subtitle: "Innovazzjoni finanzjarja diġitali tal-ġenerazzjoni li jmiss fejn l-umanità u t-teknoloġija jeżistu flimkien",
+        web3_title: "Bank Diġitali Web3",
+        web3_desc: "Qabbad il-Kartiera · Trasferiment · Ħlas · Depożitu · Premjijiet · Dħul Bażiku · Swap · Swap DEX · LP Staking · Kwantità PI",
+        web3_btn: "Idħol fil-Bank Diġitali Web3",
+        internet_title: "Bank tal-Internet (HK Bank)",
+        internet_desc: "Ftuħ ta' Kont · Depożitu/Rtirar · Trasferiment Instantanju · Tifdil · Depożitu b'Terminu · Self · Iċċekkjar tal-Kreditu B'xejn",
+        internet_btn: "Idħol fil-Bank tal-Internet",
+        referrer: "Referent"
       }
     };
 
-    // 선택한 언어 코드를 화면/모달/문구 전체에 반영하는 딕셔너리 생성기
-    function getLocalePack(code) {
-      if (CORE_I18N[code]) return CORE_I18N[code];
-      const base = code.split("-")[0];
-      if (CORE_I18N[base]) return CORE_I18N[base];
+    const selectElement = document.getElementById("language-select");
 
-      const langMeta = LANGUAGES.find((l) => l.code === code) || LANGUAGES[1];
-      const en = CORE_I18N.en;
-      return {
-        ...en,
-        pageTitle: `HKWB · ${langMeta.label}`,
-        divisionTag: `${en.divisionTag} (${code})`,
-        langLabel: `${langMeta.label} · ${code}`,
-        liveBadge: `${en.liveBadge} [${code}]`,
-        piniTitle: `${en.piniTitle} (${langMeta.label})`
-      };
-    }
-
-    let currentLang = "ko";
-    let holdings = 314159.0;
-    let accruedInterest = 12450894.843751;
-    let modalMode = "transfer";
-
-    const langSelect = document.getElementById("langSelect");
-    const holdingEl = document.getElementById("holdingAmount");
-    const interestEl = document.getElementById("accruedInterest");
-    const networkGrid = document.getElementById("networkGrid");
-
-    // 60개 언어 드롭다운 채우기
     LANGUAGES.forEach((lang) => {
-      const opt = document.createElement("option");
-      opt.value = lang.code;
-      opt.textContent = lang.label;
-      langSelect.appendChild(opt);
+      const option = document.createElement("option");
+      option.value = lang.code;
+      option.textContent = lang.label;
+      selectElement.appendChild(option);
     });
 
-    // 실시간 숫자 움직임(보유 수량 및 실시간 누적 이자)
-    function formatFixed6(num) {
-      return num.toLocaleString("en-US", {
-        minimumFractionDigits: 6,
-        maximumFractionDigits: 6
-      });
-    }
+    function updateLanguage(langCode) {
+      const selectedTranslation = translations[langCode] || translations.en || translations.ko;
+      document.documentElement.lang = langCode;
+      document.documentElement.dir = RTL_LOCALES.has(langCode) ? "rtl" : "ltr";
 
-    function renderNumbers() {
-      holdingEl.textContent = formatFixed6(holdings);
-      interestEl.textContent = formatFixed6(accruedInterest);
-    }
-
-    setInterval(() => {
-      accruedInterest += 0.004321;
-      holdings += 0.000012;
-      renderNumbers();
-    }, 250);
-
-    // 10대 분산 연동망 타일 렌더링
-    function renderModules(pack) {
-      networkGrid.innerHTML = "";
-      TEN_MODULES.forEach((mod) => {
-        const [title, desc, tag] = pack.modules[mod.id] || CORE_I18N.en.modules[mod.id];
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "net-tile";
-        btn.style.setProperty("--tile-color", mod.color);
-        btn.style.setProperty("--tile-grad", mod.grad);
-        btn.innerHTML = `
-          <div class="net-top">
-            <div class="net-logo">${mod.icon}</div>
-            <div class="net-name">${title}</div>
-          </div>
-          <div class="net-desc">${desc}</div>
-          <div class="net-action-tag">${tag} →</div>
-        `;
-        btn.addEventListener("click", () => {
-          if (mod.actionType === "transfer") {
-            openActionModal("transfer", title);
-          } else {
-            openActionModal("module", title);
-          }
-        });
-        networkGrid.appendChild(btn);
-      });
-    }
-
-    // 화면 전체 언어 적용
-    function applyLanguage(code) {
-      currentLang = code;
-      const pack = getLocalePack(code);
-      document.documentElement.lang = code;
-      document.documentElement.dir = RTL_CODES.has(code.split("-")[0]) ? "rtl" : "ltr";
-      document.title = pack.pageTitle;
-
-      document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        if (pack[key] !== undefined) {
-          el.textContent = pack[key];
+      document.querySelectorAll("[data-key]").forEach((element) => {
+        const key = element.getAttribute("data-key");
+        if (selectedTranslation && selectedTranslation[key]) {
+          element.textContent = selectedTranslation[key];
         }
       });
 
-      document.getElementById("recipientLabel").textContent = pack.recipientLabel;
-      document.getElementById("amountLabel").textContent = pack.amountLabel;
-      document.getElementById("submitActionBtn").textContent = pack.submitActionBtn;
-      document.getElementById("closeModalBtn").setAttribute("aria-label", pack.closeLabel);
-      document.getElementById("closePiniBtn").setAttribute("aria-label", pack.closeLabel);
-      document.getElementById("piniTopicLabel").textContent = pack.piniTopicLabel;
-      document.getElementById("optTransfer").textContent = pack.optTransfer;
-      document.getElementById("optDeposit").textContent = pack.optDeposit;
-      document.getElementById("optNetwork").textContent = pack.optNetwork;
-      document.getElementById("askPiniBtn").textContent = pack.askPiniBtn;
-
-      langSelect.value = code;
-      renderModules(pack);
+      selectElement.value = langCode;
 
       try {
-        localStorage.setItem("hkwb_web3_lang", code);
-      } catch (_e) {
-        // 저장소 제한 환경 무시
+        localStorage.setItem("hkwb_lang", langCode);
+      } catch (_err) {
+        // 저장소 접근 제한 환경 무시
       }
     }
 
-    // 모달 제어
-    const actionModal = document.getElementById("actionModal");
-    const piniModal = document.getElementById("piniModal");
-    const modalStatus = document.getElementById("modalStatus");
-    const piniReply = document.getElementById("piniReply");
-
-    function openActionModal(mode, customTitle) {
-      modalMode = mode;
-      const pack = getLocalePack(currentLang);
-      document.getElementById("modalTitle").textContent = customTitle || pack.transferBtn;
-      document.getElementById("amountFieldWrap")?.remove();
-      const amountInput = document.getElementById("amountInput");
-      amountInput.closest(".field").style.display = mode === "transfer" ? "block" : "none";
-      document.getElementById("recipientInput").closest(".field").style.display = mode === "transfer" ? "block" : "none";
-      modalStatus.className = "status-msg";
-      modalStatus.textContent = "";
-      actionModal.classList.add("open");
-    }
-
-    function closeActionModal() {
-      actionModal.classList.remove("open");
-    }
-
-    function openPiniModal() {
-      piniReply.className = "status-msg";
-      piniReply.textContent = "";
-      piniModal.classList.add("open");
-    }
-
-    function closePiniModal() {
-      piniModal.classList.remove("open");
-    }
-
-    document.getElementById("openTransferBtn").addEventListener("click", () => {
-      const pack = getLocalePack(currentLang);
-      openActionModal("transfer", pack.transferBtn);
+    selectElement.addEventListener("change", (event) => {
+      updateLanguage(event.target.value);
     });
 
-    document.getElementById("closeModalBtn").addEventListener("click", closeActionModal);
-    document.getElementById("closePiniBtn").addEventListener("click", closePiniModal);
-    document.getElementById("openPiniBtn").addEventListener("click", openPiniModal);
-    document.getElementById("openPiniCardBtn").addEventListener("click", openPiniModal);
-
-    document.getElementById("actionForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const pack = getLocalePack(currentLang);
-      if (modalMode === "transfer") {
-        const amt = parseFloat(document.getElementById("amountInput").value || "0");
-        if (amt > 0) {
-          holdings = Math.max(0, holdings - amt);
-          accruedInterest += amt * 0.01;
-          renderNumbers();
-        }
-        modalStatus.textContent = pack.transferDone;
-      } else {
-        modalStatus.textContent = pack.moduleDone;
-      }
-      modalStatus.classList.add("show");
-    });
-
-    document.getElementById("askPiniBtn").addEventListener("click", () => {
-      const pack = getLocalePack(currentLang);
-      const topic = document.getElementById("piniTopicSelect").value;
-      piniReply.textContent = pack.piniAnswers[topic] || pack.piniAnswers.transfer;
-      piniReply.classList.add("show");
-    });
-
-    langSelect.addEventListener("change", (e) => {
-      applyLanguage(e.target.value);
-    });
-
-    renderNumbers();
-    let savedCode = "ko";
+    let initialLang = "ko";
     try {
-      savedCode = localStorage.getItem("hkwb_web3_lang") || "ko";
-    } catch (_e) {
-      savedCode = "ko";
+      initialLang = localStorage.getItem("hkwb_lang") || "ko";
+    } catch (_err) {
+      initialLang = "ko";
     }
-    applyLanguage(savedCode);
+
+    if (!translations[initialLang]) {
+      initialLang = "ko";
+    }
+
+    updateLanguage(initialLang);
   </script>
 </body>
 </html>
