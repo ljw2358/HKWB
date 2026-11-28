@@ -8,19 +8,19 @@
     :root {
       --bg-main: #06040e;
       --bg-panel: #120d26;
-      --bg-card: #191336;
+      --bg-card: #1a1438;
       --bg-card-hover: #241b4b;
       --gold-light: #fff1b8;
       --gold: #f5c451;
       --gold-dark: #c58417;
-      --blue: #3b82f6;
+      --blue: #2563eb;
       --blue-soft: #93c5fd;
       --emerald: #34d399;
       --text: #f8fafc;
       --text-sub: #cbd5e1;
       --text-muted: #94a3b8;
-      --line-gold: rgba(245, 196, 81, 0.38);
-      --line-blue: rgba(147, 197, 253, 0.35);
+      --line-gold: rgba(245, 196, 81, 0.42);
+      --line-blue: rgba(147, 197, 253, 0.36);
       --line-soft: rgba(255, 255, 255, 0.1);
     }
 
@@ -32,38 +32,48 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Noto Sans", sans-serif;
-      background: radial-gradient(circle at 50% 10%, #271752 0%, var(--bg-main) 65%, #030207 100%);
+      background: radial-gradient(circle at 50% 10%, #271752 0%, var(--bg-main) 68%, #030207 100%);
       color: var(--text);
       min-height: 100vh;
-      padding-bottom: 92px;
       line-height: 1.5;
     }
 
     .wrap {
-      max-width: 1100px;
+      width: 100%;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 18px 16px 36px;
+      padding: 20px 16px 48px;
     }
 
-    /* 상단 언어바 */
-    .top-lang-bar {
+    /* 첫 화면 (외부 껍질: 타이틀·슬로건·언어·진입버튼 2개만 표시) */
+    .first-page {
+      min-height: calc(100vh - 68px);
       display: flex;
-      justify-content: flex-end;
-      margin-bottom: 18px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .lang-bar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 34px;
     }
 
     .lang-box {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(25, 19, 54, 0.92);
+      background: rgba(26, 20, 56, 0.94);
       border: 1px solid var(--line-gold);
       border-radius: 12px;
       padding: 8px 14px;
     }
 
     .lang-box label {
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--gold);
       white-space: nowrap;
@@ -78,36 +88,35 @@
       background: #0c081c;
       border: 1px solid var(--gold);
       border-radius: 8px;
-      padding: 7px 12px;
-      font-size: 0.9rem;
+      padding: 8px 12px;
+      font-size: 0.92rem;
       font-weight: 600;
-      max-width: 250px;
+      max-width: 260px;
       cursor: pointer;
     }
 
-    /* 초대형 메인 타이틀 & 슬로건 (코인 카드 제거) */
     .hero-brand {
-      text-align: center;
-      padding: 28px 16px 38px;
-      margin-bottom: 24px;
+      width: 100%;
+      padding: 38px 20px 46px;
+      margin-bottom: 32px;
       background: linear-gradient(145deg, rgba(44, 24, 92, 0.72), rgba(14, 10, 30, 0.92));
       border: 1px solid var(--line-gold);
-      border-radius: 24px;
+      border-radius: 26px;
     }
 
     .hero-title {
-      font-size: clamp(2.6rem, 6.8vw, 4.7rem);
+      font-size: clamp(2.8rem, 7.2vw, 5rem);
       font-weight: 900;
       line-height: 1.12;
       letter-spacing: -0.6px;
       background: linear-gradient(135deg, #ffffff, var(--gold-light), var(--gold), var(--gold-dark));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .hero-slogan {
-      font-size: clamp(1.25rem, 3.1vw, 2.05rem);
+      font-size: clamp(1.35rem, 3.3vw, 2.2rem);
       font-weight: 800;
       line-height: 1.38;
       background: linear-gradient(90deg, var(--blue-soft), var(--gold-light), #e9d5ff);
@@ -117,55 +126,55 @@
       margin: 0 auto;
     }
 
-    /* 웹3 디지털 은행 / 인터넷 은행 진입 버튼 */
     .entry-grid {
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-bottom: 24px;
+      gap: 20px;
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 660px) {
       .entry-grid {
         grid-template-columns: 1fr;
+      }
+      .lang-bar {
+        margin-bottom: 24px;
+      }
+      .hero-brand {
+        padding: 26px 14px 32px;
+        margin-bottom: 22px;
       }
     }
 
     .entry-card {
-      background: var(--bg-card);
+      background: rgba(26, 20, 56, 0.92);
       border: 1px solid var(--line-gold);
-      border-radius: 20px;
-      padding: 22px;
+      border-radius: 22px;
+      padding: 24px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 16px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      gap: 18px;
+      transition: transform 0.2s ease;
     }
 
     .entry-card.internet {
       border-color: var(--line-blue);
     }
 
-    .entry-card.active.web3 {
-      border-color: var(--gold);
-      box-shadow: 0 12px 28px rgba(245, 196, 81, 0.16);
-    }
-
-    .entry-card.active.internet {
-      border-color: var(--blue-soft);
-      box-shadow: 0 12px 28px rgba(59, 130, 246, 0.18);
+    .entry-card:hover {
+      transform: translateY(-4px);
     }
 
     .entry-card h2 {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 6px;
     }
 
     .entry-card p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-sub);
     }
 
@@ -174,7 +183,7 @@
       padding: 15px 18px;
       border: none;
       border-radius: 12px;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       font-weight: 800;
       cursor: pointer;
     }
@@ -189,37 +198,58 @@
       color: #ffffff;
     }
 
-    /* 분리된 채널 패널 */
-    .channel-panel {
+    /* 안쪽 페이지 (진입 버튼을 눌렀을 때만 양파 속처럼 열림) */
+    .inner-page {
+      display: none;
       background: var(--bg-panel);
       border: 1px solid var(--line-gold);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 22px;
+      padding: 22px;
+      animation: fadeIn 0.2s ease;
     }
 
-    .panel-head {
+    .inner-page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .inner-top {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
       border-bottom: 1px solid var(--line-soft);
     }
 
-    .panel-head h3 {
-      font-size: 1.2rem;
+    .inner-top h2 {
+      font-size: 1.35rem;
       font-weight: 800;
       color: var(--gold);
+    }
+
+    .back-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--line-gold);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      cursor: pointer;
     }
 
     .net-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .net-btn {
@@ -260,7 +290,7 @@
       padding: 16px;
     }
 
-    .box h4 {
+    .box h3 {
       font-size: 1.02rem;
       color: var(--gold-light);
       margin-bottom: 12px;
@@ -312,7 +342,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     @media (max-width: 700px) {
@@ -387,171 +417,59 @@
       font-weight: 900;
       color: var(--emerald);
     }
-
-    /* 하단 고정 4칸 바 */
-    .bottom-nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 68px;
-      background: rgba(10, 7, 22, 0.96);
-      border-top: 1px solid var(--line-gold);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      z-index: 60;
-      backdrop-filter: blur(12px);
-    }
-
-    .bottom-nav button {
-      background: transparent;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .bottom-nav button.active, .bottom-nav button:hover {
-      color: var(--gold);
-      background: rgba(245, 196, 81, 0.08);
-    }
-
-    .modal-bg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(3, 2, 10, 0.84);
-      z-index: 90;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .modal-bg.open {
-      display: flex;
-    }
-
-    .modal-card {
-      width: 100%;
-      max-width: 640px;
-      max-height: 82vh;
-      overflow-y: auto;
-      background: var(--bg-panel);
-      border: 1px solid var(--line-gold);
-      border-radius: 20px;
-      padding: 20px;
-    }
-
-    .modal-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 10px;
-      margin-bottom: 14px;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .modal-top h3 {
-      color: var(--gold);
-      font-size: 1.1rem;
-    }
-
-    .close-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--line-soft);
-      border-radius: 8px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-weight: 700;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 10px;
-    }
-
-    .menu-tile {
-      background: var(--bg-card);
-      border: 1px solid var(--line-soft);
-      border-radius: 10px;
-      padding: 12px;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .menu-tile:hover {
-      border-color: var(--gold);
-    }
-
-    .menu-tile strong {
-      display: block;
-      color: var(--gold-light);
-      font-size: 0.9rem;
-    }
-
-    .menu-tile span {
-      font-size: 0.76rem;
-      color: var(--text-muted);
-    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- 언어 선택 -->
-    <div class="top-lang-bar">
-      <div class="lang-box">
-        <label for="langSelect" data-i18n="langLabel">60개국어 언어 선택</label>
-        <select id="langSelect" aria-label="60개국어 언어 선택"></select>
+    <!-- 양파 1단계: 첫 화면 -->
+    <section class="first-page" id="firstPage">
+      <div class="lang-bar">
+        <div class="lang-box">
+          <label for="langSelect" data-i18n="langLabel">60개국어 언어 선택</label>
+          <select id="langSelect" aria-label="60개국어 언어 선택"></select>
+        </div>
       </div>
-    </div>
 
-    <!-- 초대형 브랜드 타이틀 & 슬로건 (코인 카드 없음) -->
-    <section class="hero-brand" id="topBrandSection">
-      <h1 class="hero-title" data-i18n="heroTitle">HKWB · HK WorldBank</h1>
-      <p class="hero-slogan" data-i18n="heroSlogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
+      <div class="hero-brand">
+        <h1 class="hero-title" data-i18n="heroTitle">HKWB · HK WorldBank</h1>
+        <p class="hero-slogan" data-i18n="heroSlogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
+      </div>
+
+      <div class="entry-grid">
+        <div class="entry-card web3">
+          <div>
+            <h2 data-i18n="web3Title">웹3 디지털 은행</h2>
+            <p data-i18n="web3Desc">안쪽 열기: 10대 분산 연동망 · 스왑 · 예치 · UBI</p>
+          </div>
+          <button type="button" class="btn-enter web3" onclick="peelLayer('web3')" data-i18n="web3Btn">
+            웹3 디지털 은행 진입하기
+          </button>
+        </div>
+
+        <div class="entry-card internet">
+          <div>
+            <h2 data-i18n="internetTitle">인터넷 은행</h2>
+            <p data-i18n="internetDesc">안쪽 열기: 입금·출금·송금·예치·적금·대출 · 신용점수</p>
+          </div>
+          <button type="button" class="btn-enter internet" onclick="peelLayer('internet')" data-i18n="internetBtn">
+            인터넷 은행 진입하기
+          </button>
+        </div>
+      </div>
     </section>
 
-    <!-- 진입 버튼 2개: 웹3 디지털 은행 / 인터넷 은행 -->
-    <section class="entry-grid">
-      <div class="entry-card web3 active" id="cardWeb3">
-        <div>
-          <h2 data-i18n="web3Title">웹3 디지털 은행</h2>
-          <p data-i18n="web3Desc">10대 분산 연동망과 스왑·예치·UBI 채널</p>
-        </div>
-        <button type="button" class="btn-enter web3" onclick="switchChannel('web3')" data-i18n="web3Btn">
-          웹3 디지털 은행 진입하기
-        </button>
-      </div>
-
-      <div class="entry-card internet" id="cardInternet">
-        <div>
-          <h2 data-i18n="internetTitle">인터넷 은행</h2>
-          <p data-i18n="internetDesc">입금·출금·송금·예치·적금·대출 및 신용점수 채널</p>
-        </div>
-        <button type="button" class="btn-enter internet" onclick="switchChannel('internet')" data-i18n="internetBtn">
-          인터넷 은행 진입하기
-        </button>
-      </div>
-    </section>
-
-    <!-- 웹3 디지털 은행 영역 -->
-    <main class="channel-panel" id="web3Panel">
-      <div class="panel-head">
-        <h3 data-i18n="web3PanelTitle">웹3 디지털 은행 — 10대 분산 연동망</h3>
+    <!-- 양파 2단계 A: 웹3 디지털 은행 안쪽 -->
+    <section class="inner-page" id="web3Inner">
+      <div class="inner-top">
+        <h2 data-i18n="web3PageTitle">웹3 디지털 은행 — 10대 분산 연동망</h2>
+        <button type="button" class="back-btn" onclick="peelLayer('home')" data-i18n="backHomeBtn">← 첫 화면</button>
       </div>
 
       <div class="net-grid" id="netGrid"></div>
 
       <div class="two-col">
         <div class="box">
-          <h4 data-i18n="swapBoxTitle">스왑 &amp; DEX 스왑</h4>
+          <h3 data-i18n="swapBoxTitle">스왑 &amp; DEX 스왑</h3>
           <div class="field">
             <label for="fromAsset" data-i18n="fromLabel">출발 자산</label>
             <select id="fromAsset" onchange="calcSwap()"></select>
@@ -569,7 +487,7 @@
         </div>
 
         <div class="box">
-          <h4 data-i18n="w3DepBoxTitle">기간별 예치 이자율</h4>
+          <h3 data-i18n="w3DepBoxTitle">기간별 예치 이자율</h3>
           <div class="field">
             <label for="w3Term" data-i18n="termLabel">예치 기간</label>
             <select id="w3Term" onchange="calcW3Dep()"></select>
@@ -582,12 +500,13 @@
           <button type="button" class="gold-btn" onclick="calcW3Dep()" data-i18n="calcBtn">계산 반영</button>
         </div>
       </div>
-    </main>
+    </section>
 
-    <!-- 인터넷 은행 영역 -->
-    <section class="channel-panel" id="internetPanel" style="display:none;">
-      <div class="panel-head">
-        <h3 data-i18n="internetPanelTitle">인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수</h3>
+    <!-- 양파 2단계 B: 인터넷 은행 안쪽 -->
+    <section class="inner-page" id="internetInner">
+      <div class="inner-top">
+        <h2 data-i18n="internetPageTitle">인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수</h2>
+        <button type="button" class="back-btn" onclick="peelLayer('home')" data-i18n="backHomeBtn">← 첫 화면</button>
       </div>
 
       <div class="six-grid">
@@ -619,7 +538,7 @@
 
       <div class="two-col">
         <div class="box">
-          <h4 data-i18n="bankRateTitle">예치 이자율 안내</h4>
+          <h3 data-i18n="bankRateTitle">예치 이자율 안내</h3>
           <div class="field">
             <label for="bankTerm" data-i18n="termLabel">예치 기간</label>
             <select id="bankTerm" onchange="calcBank()"></select>
@@ -642,7 +561,7 @@
         </div>
 
         <div class="box">
-          <h4 data-i18n="creditTitle">신용정보 조회 (NICE + 블록체인)</h4>
+          <h3 data-i18n="creditTitle">신용정보 조회 (NICE + 블록체인)</h3>
           <div class="field">
             <label for="niceIn" data-i18n="niceLabel">NICE 지수 (0~100)</label>
             <input type="number" id="niceIn" value="88" min="0" max="100" />
@@ -663,67 +582,6 @@
         </div>
       </div>
     </section>
-  </div>
-
-  <!-- 하단 고정 4칸 바 -->
-  <nav class="bottom-nav" aria-label="하단 고정 4칸 바">
-    <button type="button" class="active" id="bHome" onclick="bottomNav('home')">
-      <span>🏠</span>
-      <span data-i18n="bHome">홈</span>
-    </button>
-    <button type="button" id="bWp" onclick="bottomNav('wp')">
-      <span>📄</span>
-      <span data-i18n="bWp">백서</span>
-    </button>
-    <button type="button" id="bAssets" onclick="bottomNav('web3')">
-      <span>⚡</span>
-      <span data-i18n="bWeb3">웹3</span>
-    </button>
-    <button type="button" id="bMenu" onclick="bottomNav('menu')">
-      <span>☰</span>
-      <span data-i18n="bMenu">전체 메뉴</span>
-    </button>
-  </nav>
-
-  <!-- 백서 모달 -->
-  <div class="modal-bg" id="wpModal" onclick="bgClose(event, 'wpModal')">
-    <div class="modal-card">
-      <div class="modal-top">
-        <h3 data-i18n="wpTitle">HKWB · HK WorldBank 백서</h3>
-        <button type="button" class="close-btn" onclick="closeModal('wpModal')" data-i18n="closeBtn">닫기</button>
-      </div>
-      <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="wp1"></p>
-      <p style="font-size:0.9rem; color:var(--text-sub); margin-bottom:10px;" data-i18n="wp2"></p>
-      <p style="font-size:0.9rem; color:var(--text-sub);" data-i18n="wp3"></p>
-    </div>
-  </div>
-
-  <!-- 전체 메뉴 모달 -->
-  <div class="modal-bg" id="menuModal" onclick="bgClose(event, 'menuModal')">
-    <div class="modal-card">
-      <div class="modal-top">
-        <h3 data-i18n="menuTitle">HKWB 전체 메뉴</h3>
-        <button type="button" class="close-btn" onclick="closeModal('menuModal')" data-i18n="closeBtn">닫기</button>
-      </div>
-      <div class="menu-grid">
-        <button type="button" class="menu-tile" onclick="menuJump('home')">
-          <strong data-i18n="heroTitle">HKWB · HK WorldBank</strong>
-          <span data-i18n="heroSlogan">인류와 기술이 공존하는 차세대 디지털 금융 혁신</span>
-        </button>
-        <button type="button" class="menu-tile" onclick="menuJump('web3')">
-          <strong data-i18n="web3Btn">웹3 디지털 은행 진입하기</strong>
-          <span data-i18n="web3Desc">10대 분산 연동망과 스왑·예치·UBI 채널</span>
-        </button>
-        <button type="button" class="menu-tile" onclick="menuJump('internet')">
-          <strong data-i18n="internetBtn">인터넷 은행 진입하기</strong>
-          <span data-i18n="internetDesc">입금·출금·송금·예치·적금·대출 및 신용점수 채널</span>
-        </button>
-        <button type="button" class="menu-tile" onclick="menuJump('wp')">
-          <strong data-i18n="bWp">백서</strong>
-          <span data-i18n="wp2"></span>
-        </button>
-      </div>
-    </div>
   </div>
 
   <script>
@@ -795,12 +653,14 @@
       heroTitle: "HKWB · HK WorldBank",
       heroSlogan: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
       web3Title: "웹3 디지털 은행",
-      web3Desc: "10대 분산 연동망과 스왑·예치·UBI 채널",
+      web3Desc: "안쪽 열기: 10대 분산 연동망 · 스왑 · 예치 · UBI",
       web3Btn: "웹3 디지털 은행 진입하기",
       internetTitle: "인터넷 은행",
-      internetDesc: "입금·출금·송금·예치·적금·대출 및 신용점수 채널",
+      internetDesc: "안쪽 열기: 입금·출금·송금·예치·적금·대출 · 신용점수",
       internetBtn: "인터넷 은행 진입하기",
-      web3PanelTitle: "웹3 디지털 은행 — 10대 분산 연동망",
+      web3PageTitle: "웹3 디지털 은행 — 10대 분산 연동망",
+      internetPageTitle: "인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수",
+      backHomeBtn: "← 첫 화면",
       swapBoxTitle: "스왑 & DEX 스왑",
       fromLabel: "출발 자산",
       toLabel: "도착 자산",
@@ -809,7 +669,6 @@
       w3DepBoxTitle: "기간별 예치 이자율",
       termLabel: "예치 기간",
       amtLabel: "예치 금액 (KRW)",
-      internetPanelTitle: "인터넷 은행 — 6대 기능 · 예치 이자율 · 신용점수",
       fn1: "1. 입금",
       fn2: "2. 출금",
       fn3: "3. 송금",
@@ -824,16 +683,6 @@
       chainLabel: "블록체인 지수 (0~100)",
       creditBtn: "신용정보 점수 조회",
       creditScoreLabel: "통합 신용점수",
-      bHome: "홈",
-      bWp: "백서",
-      bWeb3: "웹3",
-      bMenu: "전체 메뉴",
-      wpTitle: "HKWB · HK WorldBank 백서",
-      wp1: "• HKWB 아래 웹3 디지털 은행과 인터넷 은행(HK 뱅크)을 분리 운영합니다.",
-      wp2: "• 예치 이자율: 6개월 8~12%, 1년 12~18%, 2년 16~24%, 3년 20~31.4%.",
-      wp3: "• 순수익 최대 60% 사회환원 UBI와 NICE + 블록체인 신용점수 조회를 지원합니다.",
-      menuTitle: "HKWB 전체 메뉴",
-      closeBtn: "닫기",
       p6m: "6개월",
       p1y: "1년",
       p2y: "2년",
@@ -847,12 +696,14 @@
       langLabel: "60 Languages",
       heroSlogan: "Next-Generation Digital Finance Where Humanity & Technology Coexist",
       web3Title: "Web3 Digital Bank",
-      web3Desc: "10 Decentralized Modules · Swap · Deposit · UBI",
+      web3Desc: "Inner View: 10 Modules · Swap · Deposit · UBI",
       web3Btn: "Enter Web3 Digital Bank",
       internetTitle: "Internet Bank",
-      internetDesc: "Deposit · Withdraw · Transfer · Term · Savings · Loan & Credit",
+      internetDesc: "Inner View: 6 Modules · Deposit Rates · Credit Score",
       internetBtn: "Enter Internet Bank",
-      web3PanelTitle: "Web3 Digital Bank — 10 Decentralized Modules",
+      web3PageTitle: "Web3 Digital Bank — 10 Decentralized Modules",
+      internetPageTitle: "Internet Bank — 6 Modules · Rates · Credit",
+      backHomeBtn: "← Home",
       swapBoxTitle: "Swap & DEX Swap",
       fromLabel: "From Asset",
       toLabel: "To Asset",
@@ -861,7 +712,6 @@
       w3DepBoxTitle: "Term Deposit Yields",
       termLabel: "Deposit Term",
       amtLabel: "Amount (KRW)",
-      internetPanelTitle: "Internet Bank — 6 Modules · Rates · Credit",
       fn1: "1. Deposit",
       fn2: "2. Withdraw",
       fn3: "3. Transfer",
@@ -876,16 +726,6 @@
       chainLabel: "Blockchain Index (0–100)",
       creditBtn: "Check Credit Score",
       creditScoreLabel: "Combined Credit Score",
-      bHome: "Home",
-      bWp: "Whitepaper",
-      bWeb3: "Web3",
-      bMenu: "All Menu",
-      wpTitle: "HKWB · HK WorldBank Whitepaper",
-      wp1: "• Separates Web3 Digital Bank and Internet Bank under HKWB.",
-      wp2: "• Deposit rates: 6M 8–12%, 1Y 12–18%, 2Y 16–24%, 3Y 20–31.4%.",
-      wp3: "• Up to 60% social return UBI and NICE + Blockchain credit scoring.",
-      menuTitle: "HKWB All Menu",
-      closeBtn: "Close",
       p6m: "6 Months",
       p1y: "1 Year",
       p2y: "2 Years",
@@ -977,6 +817,26 @@
       calcCredit();
     }
 
+    // 양파 껍질 벗기듯 바깥 첫 화면과 안쪽 채널 화면 전환
+    function peelLayer(layer) {
+      const first = document.getElementById("firstPage");
+      const w3Inner = document.getElementById("web3Inner");
+      const inInner = document.getElementById("internetInner");
+
+      first.style.display = "none";
+      w3Inner.classList.remove("active");
+      inInner.classList.remove("active");
+
+      if (layer === "web3") {
+        w3Inner.classList.add("active");
+      } else if (layer === "internet") {
+        inInner.classList.add("active");
+      } else {
+        first.style.display = "flex";
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     function renderNets() {
       const isKo = curLang === "ko";
       document.getElementById("netGrid").innerHTML = NET_10.map((n) => `
@@ -1046,25 +906,6 @@
         `${d[t.key]} (${t.min}%~${t.max}%) · ${d.estInt}: <strong>${fmtKrw(minI)} ~ ${fmtKrw(maxI)}</strong>`;
     }
 
-    function switchChannel(ch) {
-      const w3Panel = document.getElementById("web3Panel");
-      const inPanel = document.getElementById("internetPanel");
-      const w3Card = document.getElementById("cardWeb3");
-      const inCard = document.getElementById("cardInternet");
-
-      if (ch === "web3") {
-        w3Panel.style.display = "block";
-        inPanel.style.display = "none";
-        w3Card.classList.add("active");
-        inCard.classList.remove("active");
-      } else {
-        w3Panel.style.display = "none";
-        inPanel.style.display = "block";
-        inCard.classList.add("active");
-        w3Card.classList.remove("active");
-      }
-    }
-
     function pickFn(fn) {
       curFn = fn;
       document.querySelectorAll(".six-btn").forEach((b) => {
@@ -1091,49 +932,6 @@
       const limit = score >= 900 ? 200000000 : score >= 800 ? 100000000 : 50000000;
       document.getElementById("creditScoreOut").textContent = `${score}`;
       document.getElementById("creditLimitOut").innerHTML = `${d.loanLimit}: <strong>${fmtKrw(limit)}</strong>`;
-    }
-
-    function bottomNav(tab) {
-      ["bHome", "bWp", "bAssets", "bMenu"].forEach((id) => {
-        document.getElementById(id).classList.remove("active");
-      });
-      if (tab === "home") {
-        document.getElementById("bHome").classList.add("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (tab === "wp") {
-        document.getElementById("bWp").classList.add("active");
-        document.getElementById("wpModal").classList.add("open");
-      } else if (tab === "web3") {
-        document.getElementById("bAssets").classList.add("active");
-        switchChannel("web3");
-        document.getElementById("web3Panel").scrollIntoView({ behavior: "smooth" });
-      } else if (tab === "menu") {
-        document.getElementById("bMenu").classList.add("active");
-        document.getElementById("menuModal").classList.add("open");
-      }
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove("open");
-    }
-
-    function bgClose(e, id) {
-      if (e.target.id === id) closeModal(id);
-    }
-
-    function menuJump(target) {
-      closeModal("menuModal");
-      if (target === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (target === "web3") {
-        switchChannel("web3");
-        document.getElementById("web3Panel").scrollIntoView({ behavior: "smooth" });
-      } else if (target === "internet") {
-        switchChannel("internet");
-        document.getElementById("internetPanel").scrollIntoView({ behavior: "smooth" });
-      } else if (target === "wp") {
-        document.getElementById("wpModal").classList.add("open");
-      }
     }
 
     initLangs();
