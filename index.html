@@ -3,39 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HKWB - 통합 금융 플랫폼</title>
+  <title>HKWB</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     html, body {
       min-height: 100vh;
       width: 100%;
-      background: radial-gradient(circle at top, #1b1846 0%, #0a0d24 55%, #050612 100%);
+      background: radial-gradient(circle at top, #17153b 0%, #090b1e 55%, #050612 100%);
       color: #f3f4f6;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      padding-bottom: 94px;
+      justify-content: center;
+      padding: 28px 20px 84px;
     }
+
     .page-wrapper {
-      width: 100%;
-      max-width: 1180px;
+      width: 68vw;
+      min-width: 640px;
+      max-width: 1120px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 18px;
-      padding: 20px;
     }
+
     .top-bar {
       width: 100%;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       position: relative;
-      z-index: 2500;
     }
+
     .lang-btn {
       background: #141936;
       color: #facc15;
-      border: 1.5px solid rgba(250, 204, 21, 0.8);
+      border: 1.5px solid rgba(250, 204, 21, 0.65);
       border-radius: 8px;
       padding: 8px 16px;
       font-size: 14px;
@@ -44,294 +53,325 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: all 0.15s ease;
     }
+
+    .lang-btn:hover {
+      background: #1c234b;
+      border-color: #fde047;
+      color: #fde047;
+    }
+
     .lang-dropdown {
       display: none;
       position: absolute;
       top: 44px;
       right: 0;
-      width: 280px;
-      max-height: 330px;
+      width: 260px;
+      max-height: 310px;
       overflow-y: auto;
       background: #0d1229;
-      border: 1px solid rgba(148, 163, 184, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.4);
       border-radius: 10px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.78);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75);
+      z-index: 9999;
       padding: 6px;
     }
-    .lang-dropdown.open { display: block; }
+
+    .lang-dropdown.open {
+      display: block;
+    }
+
     .lang-search {
       width: 100%;
-      padding: 8px 10px;
+      padding: 7px 10px;
       margin-bottom: 6px;
-      background: #161d3f;
-      color: #fff;
-      border: 1px solid #334155;
-      border-radius: 6px;
       font-size: 12px;
+      color: #f9fafb;
+      background: #161d3f;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 6px;
       outline: none;
     }
+
+    .lang-search:focus {
+      border-color: #facc15;
+    }
+
     .lang-option {
       width: 100%;
       text-align: left;
       background: transparent;
       border: none;
       color: #e5e7eb;
+      font-size: 12px;
       padding: 7px 10px;
       border-radius: 6px;
-      font-size: 12px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
     }
-    .lang-option:hover, .lang-option.active {
-      background: rgba(99, 102, 241, 0.3);
+
+    .lang-option:hover,
+    .lang-option.active {
+      background: rgba(99, 102, 241, 0.28);
       color: #fde047;
       font-weight: 700;
     }
+
     .gateway-card {
-      background: rgba(15, 20, 48, 0.92);
+      width: 100%;
+      background: rgba(15, 20, 46, 0.9);
       border: 1.5px solid rgba(129, 140, 248, 0.35);
       border-radius: 18px;
-      padding: 28px;
+      padding: 36px 32px;
+      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.6);
       text-align: center;
-      box-shadow: 0 22px 52px rgba(0, 0, 0, 0.58);
     }
+
     .brand-title {
-      font-size: 38px;
+      font-size: 40px;
       font-weight: 800;
       letter-spacing: 1px;
       color: #facc15;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
+
     .brand-tagline {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
       background: linear-gradient(90deg, #93c5fd 0%, #c084fc 50%, #facc15 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
-    .dashboard-card {
-      background: linear-gradient(135deg, rgba(49, 46, 129, 0.75) 0%, rgba(15, 23, 42, 0.95) 62%, rgba(88, 28, 135, 0.45) 100%);
-      border: 1px solid rgba(129, 140, 248, 0.55);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 20px;
-      text-align: left;
+
+    .view-panel {
+      display: none;
     }
-    .asset-label { font-size: 13px; color: #cbd5e1; margin-bottom: 6px; }
-    .asset-value { font-size: 30px; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
-    .hk-value { font-size: 18px; font-weight: 700; color: #facc15; margin-bottom: 14px; }
-    .ubi-banner {
-      background: linear-gradient(90deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
-      border: 1px solid rgba(52, 211, 153, 0.55);
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 13.5px;
-      color: #6ee7b7;
-      margin-bottom: 14px;
-      font-weight: 700;
+
+    .view-panel.active {
+      display: block;
     }
-    .api-status {
-      font-size: 12px;
-      color: #34d399;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .api-status::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      display: inline-block;
-    }
+
     .bank-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-bottom: 22px;
+      gap: 20px;
     }
+
     .bank-box {
-      background: rgba(11, 16, 36, 0.92);
+      background: rgba(10, 14, 34, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .bank-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .bank-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #cbd5e1;
+      word-break: keep-all;
+    }
+
+    .btn-web3 {
+      width: 100%;
+      background: #facc15;
+      color: #111827;
+      border: none;
+      border-radius: 9px;
+      padding: 13px 16px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.15s ease;
+    }
+
+    .btn-web3:hover {
+      background: #fde047;
+      transform: translateY(-1px);
+    }
+
+    .btn-internet {
+      width: 100%;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 9px;
+      padding: 13px 16px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.15s ease;
+    }
+
+    .btn-internet:hover {
+      background: #3b82f6;
+      transform: translateY(-1px);
+    }
+
+    /* 서브 화면(백서 / 자산 / 전체) 카드 스타일 */
+    .sub-box {
+      background: rgba(10, 14, 34, 0.9);
       border: 1px solid rgba(148, 163, 184, 0.28);
       border-radius: 14px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 14px;
+      padding: 24px;
       text-align: left;
     }
-    .bank-name { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
-    .bank-desc { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
-    .section-heading {
-      text-align: left;
-      font-size: 18px;
-      font-weight: 800;
-      color: #f8fafc;
-      margin: 8px 0 12px;
-    }
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-    }
-    .module-box {
-      background: linear-gradient(160deg, rgba(20, 27, 58, 0.92), rgba(11, 16, 36, 0.95));
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 14px;
-    }
-    .module-title { font-size: 16px; font-weight: 700; color: #38bdf8; margin-bottom: 6px; }
-    .module-desc { font-size: 12.5px; color: #cbd5e1; line-height: 1.45; }
-    .action-btn {
-      width: 100%;
-      background: linear-gradient(90deg, #2563eb, #4f46e5);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 13px;
+
+    .sub-title {
+      font-size: 20px;
       font-weight: 700;
-      cursor: pointer;
+      color: #facc15;
+      margin-bottom: 12px;
     }
-    .action-btn:hover { filter: brightness(1.08); }
-    .action-btn.gold {
-      background: linear-gradient(90deg, #facc15, #f59e0b);
-      color: #111827;
-    }
-    .channel-section {
-      margin-top: 24px;
-      text-align: left;
-      border-top: 1px solid rgba(148, 163, 184, 0.25);
-      padding-top: 18px;
-    }
-    .channel-grid {
+
+    .sub-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 10px;
     }
-    .channel-link {
-      display: block;
-      padding: 12px;
-      border-radius: 8px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
+
+    .sub-item {
+      background: rgba(20, 25, 54, 0.85);
+      border: 1px solid rgba(129, 140, 248, 0.22);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .sub-item-title {
+      font-size: 15px;
       font-weight: 700;
-      text-align: center;
+      color: #ffffff;
+      margin-bottom: 4px;
     }
-    .channel-link.youtube { background: #dc2626; }
-    .channel-link.tiktok { background: #090d16; border: 1px solid #475569; }
+
+    .sub-item-desc {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
     .footer-info {
+      width: 100%;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
       font-size: 13px;
       color: #94a3b8;
       padding: 0 6px;
     }
-    .footer-info span { color: #e2e8f0; font-weight: 600; }
-    .view-panel { display: none; }
-    .view-panel.active { display: block; }
+
+    .footer-info span {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* 하단 4개 탭 내비게이션 (홈 · 백서 · 자산 · 전체) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(9, 13, 28, 0.97);
+      background: rgba(9, 12, 30, 0.96);
       border-top: 1px solid rgba(129, 140, 248, 0.35);
+      backdrop-filter: blur(10px);
+      z-index: 9990;
       display: flex;
       justify-content: center;
-      z-index: 1500;
     }
-    .nav-inner {
-      width: 100%;
-      max-width: 720px;
+
+    .bottom-nav-inner {
+      width: 68vw;
+      min-width: 640px;
+      max-width: 1120px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
     }
+
     .nav-tab {
-      background: none;
+      background: transparent;
       border: none;
       color: #94a3b8;
-      padding: 13px 6px;
-      font-size: 13.5px;
+      padding: 12px 8px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       border-top: 2.5px solid transparent;
+      transition: all 0.15s ease;
     }
+
+    .nav-tab:hover {
+      color: #f3f4f6;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
     .nav-tab.active {
       color: #facc15;
       border-top-color: #facc15;
       background: rgba(250, 204, 21, 0.07);
     }
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 3000;
-    }
-    .modal-content {
-      background: #0f172a;
-      border: 1px solid #475569;
-      width: 92%;
-      max-width: 470px;
-      border-radius: 16px;
-      padding: 24px;
-      color: #fff;
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-    .close-btn {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 22px;
-      cursor: pointer;
-    }
-    .form-group { margin-bottom: 14px; text-align: left; }
-    .form-group label { display: block; font-size: 12px; color: #cbd5e1; margin-bottom: 6px; }
-    .form-control {
-      width: 100%;
-      padding: 10px;
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 14px;
-    }
+
     .goog-te-banner-frame.skiptranslate,
     .goog-te-gadget-icon,
     .VIpgJd-ZVi9od-ORHb-OEVmcd,
     .VIpgJd-ZVi9od-l4eHX-hSRGPd {
       display: none !important;
     }
-    body { top: 0 !important; position: static !important; }
-    #google_translate_element { display: none !important; }
-    @media (max-width: 720px) {
-      .bank-grid, .channel-grid { grid-template-columns: 1fr; }
-      .asset-value { font-size: 24px; }
-      .brand-title { font-size: 30px; }
+
+    body {
+      top: 0 !important;
+      position: static !important;
+    }
+
+    #google_translate_element {
+      display: none !important;
+    }
+
+    @media (max-width: 900px) {
+      .page-wrapper,
+      .bottom-nav-inner {
+        width: 94vw;
+        min-width: 0;
+      }
+      .gateway-card {
+        padding: 24px 18px;
+      }
+      .brand-title {
+        font-size: 30px;
+      }
+      .brand-tagline {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bank-grid,
+      .sub-list {
+        grid-template-columns: 1fr;
+      }
+      .nav-tab {
+        font-size: 12.5px;
+        padding: 11px 4px;
+      }
     }
   </style>
 </head>
@@ -344,183 +384,120 @@
         <span id="currentLangLabel">한국어</span>
         <span>▼</span>
       </button>
-      <div class="lang-dropdown" id="langDropdown" role="listbox" aria-label="60개국어 선택">
-        <input type="text" class="lang-search" id="langSearch" placeholder="60개국어 검색..." />
+
+      <div class="lang-dropdown" id="langDropdown" role="listbox" aria-label="언어 선택">
+        <input type="text" class="lang-search" id="langSearch" placeholder="언어 검색..." />
         <div id="langList"></div>
       </div>
     </div>
 
     <main class="gateway-card">
       <h1 class="brand-title" translate="no">HKWB</h1>
-      <p class="brand-tagline">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
+      <p class="brand-tagline" data-i18n="tagline">인류와 기술이 공존하는 차세대 디지털 금융 혁신</p>
 
       <!-- 1. 홈 화면 -->
       <section class="view-panel active" id="view-home">
-        <div class="dashboard-card">
-          <div class="asset-label">개인 자산 대시보드 · 보유 수량 (PI 수량 동기화)</div>
-          <div class="asset-value" id="pi-balance">314,159.000000</div>
-          <div class="hk-value">실시간 누적 이자: <span id="hk-balance">12,450,897.882503</span> HK</div>
-          <div class="ubi-banner">
-            UBI 환전 & 수익률 안내: 순수익 기반 UBI 환전 및 수익률 30% ~ 60% 제공 · 예치 금리 6개월(8~12%) · 1년(12~18%) · 2년(16~24%) · 3년(20~31.4%)
-          </div>
-          <div class="api-status">백엔드 API 실시간 연동 대기 및 시뮬레이션 활성</div>
-        </div>
-
         <div class="bank-grid">
           <div class="bank-box">
             <div>
-              <div class="bank-name">웹3 디지털 은행</div>
-              <p class="bank-desc">지갑연결 · 송금 · 결재 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량</p>
+              <div class="bank-name" data-i18n="web3Title">웹3 디지털 은행</div>
+              <p class="bank-desc" data-i18n="web3Desc">
+                지갑연결 · 송금 · 결재 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량
+              </p>
             </div>
-            <button type="button" class="action-btn gold" onclick="openModal('웹3 디지털 은행 진입')">웹3 디지털 은행 진입하기</button>
+            <button type="button" class="btn-web3" id="enterWeb3Btn" data-i18n="web3Btn">
+              웹3 디지털 은행 진입하기
+            </button>
           </div>
+
           <div class="bank-box">
             <div>
-              <div class="bank-name">인터넷 은행</div>
-              <p class="bank-desc">계좌 개설 · 입출금 · 즉시이체 · 예금 · 적금 · 대출 · 무료 신용점수 조회</p>
+              <div class="bank-name" data-i18n="internetTitle">인터넷 은행</div>
+              <p class="bank-desc" data-i18n="internetDesc">
+                계좌 개설 · 입출금 · 즉시이체 · 예금 · 적금 · 대출 · 무료 신용점수 조회
+              </p>
             </div>
-            <button type="button" class="action-btn" onclick="openModal('인터넷 은행 진입')">인터넷 은행 진입하기</button>
-          </div>
-        </div>
-
-        <div class="section-heading">분산 연동망 (10대 모듈)</div>
-        <div class="module-grid">
-          <div class="module-box">
-            <div>
-              <div class="module-title">지갑연결</div>
-              <div class="module-desc">노드 지갑 프로토콜 연동 및 테스트·실전 주소 연결</div>
-            </div>
-            <button type="button" class="action-btn gold" onclick="openModal('지갑연결')">지갑연결</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">송금</div>
-              <div class="module-desc">수신자 주소·수량 입력 및 6자리 보안 인증 전송</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('송금')">송금하기</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">결재</div>
-              <div class="module-desc">현금·카드·디지털자산 실시간 결제 및 영수증 확인</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('결재')">결재하기</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">예치</div>
-              <div class="module-desc">6개월·1년·2년·3년 기간별 예치 신청 및 예상 수익</div>
-            </div>
-            <button type="button" class="action-btn gold" onclick="openModal('예치')">예치하기</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">보상</div>
-              <div class="module-desc">생태계 기여 및 활동 리워드 수령 내역 조회</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('보상')">보상받기</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">기본소득</div>
-              <div class="module-desc">UBI 수익률 30~60% 기준 기본소득 환전 및 수령</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('기본소득')">UBI 실행</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">스왑</div>
-              <div class="module-desc">자산 간 즉시 환전 및 예상 수령액 계산</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('스왑')">스왑하기</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">DEX스왑</div>
-              <div class="module-desc">탈중앙 유동성 풀 기반 토큰 스왑 실행</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('DEX스왑')">DEX스왑</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">LP스테이킹</div>
-              <div class="module-desc">유동성 공급(LP) 예치 및 누적 보상 관리</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('LP스테이킹')">LP스테이킹</button>
-          </div>
-          <div class="module-box">
-            <div>
-              <div class="module-title">PI수량</div>
-              <div class="module-desc">보유 PI 수량 동기화 및 원장 검증</div>
-            </div>
-            <button type="button" class="action-btn" onclick="openModal('PI수량')">PI수량 조회</button>
-          </div>
-        </div>
-
-        <div class="channel-section">
-          <div style="font-size: 14px; font-weight: 700; color: #cbd5e1;">공식 채널 · 고객센터 AI 삐니</div>
-          <div class="channel-grid">
-            <a href="https://www.youtube.com/@Hyekong2026" class="channel-link youtube" target="_blank" rel="noopener noreferrer">YouTube (@Hyekong2026)</a>
-            <a href="https://www.tiktok.com/@hyekong2026" class="channel-link tiktok" target="_blank" rel="noopener noreferrer">TikTok (@Hyekong2026)</a>
+            <button type="button" class="btn-internet" id="enterInternetBtn" data-i18n="internetBtn">
+              인터넷 은행 진입하기
+            </button>
           </div>
         </div>
       </section>
 
       <!-- 2. 백서 화면 -->
       <section class="view-panel" id="view-whitepaper">
-        <div class="module-box">
-          <div class="module-title">HKWB 백서 & 정책 아카이브</div>
-          <div class="module-desc">
-            백서 100선 · FAQ 20선 · 3대 POLICIES · 21개국 디지털 자산법 · FATF 트래블 룰 기준 안내
+        <div class="sub-box">
+          <div class="sub-title" data-i18n="wpTitle">HKWB 백서 & 정책 아카이브</div>
+          <div class="sub-list">
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="wpItem1Title">백서 100선 & FAQ 20선</div>
+              <div class="sub-item-desc" data-i18n="wpItem1Desc">웹3 디지털 금융 아키텍처, 거버넌스, 주요 질의응답 안내</div>
+            </div>
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="wpItem2Title">3대 POLICIES & 컴플라이언스</div>
+              <div class="sub-item-desc" data-i18n="wpItem2Desc">21개국 디지털 자산법 및 FATF 트래블 룰 준수 기준</div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- 3. 자산 화면 -->
       <section class="view-panel" id="view-assets">
-        <div class="module-box">
-          <div class="module-title">통합 자산 & 예치·UBI 현황</div>
-          <div class="module-desc">
-            예치 금리: 6개월(8~12%) · 1년(12~18%) · 2년(16~24%) · 3년(20~31.4%) / UBI 환전·수익률: 30~60%
+        <div class="sub-box">
+          <div class="sub-title" data-i18n="assetTitle">통합 자산 & 예치 현황</div>
+          <div class="sub-list">
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="assetItem1Title">디지털 자산 · PI · 스테이킹</div>
+              <div class="sub-item-desc" data-i18n="assetItem1Desc">지갑연결 · 스왑 · DEX스왑 · LP스테이킹 · PI수량 관리</div>
+            </div>
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="assetItem2Title">예금 · 적금 · 신용점수</div>
+              <div class="sub-item-desc" data-i18n="assetItem2Desc">6개월(8~12%) · 1년(12~18%) · 2년(16~24%) · 3년(20~31.4%)</div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- 4. 전체 화면 -->
       <section class="view-panel" id="view-all">
-        <div class="module-box">
-          <div class="module-title">HKWB 전체 메뉴</div>
-          <div class="module-desc">
-            웹3 디지털 은행 · 인터넷 은행 · 지갑연결 · 송금 · 결재 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량
+        <div class="sub-box">
+          <div class="sub-title" data-i18n="allTitle">HKWB 전체 메뉴</div>
+          <div class="sub-list">
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="web3Title">웹3 디지털 은행</div>
+              <div class="sub-item-desc" data-i18n="web3Desc">지갑연결 · 송금 · 결재 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량</div>
+            </div>
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="internetTitle">인터넷 은행</div>
+              <div class="sub-item-desc" data-i18n="internetDesc">계좌 개설 · 입출금 · 즉시이체 · 예금 · 적금 · 대출 · 무료 신용점수 조회</div>
+            </div>
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="wpItem1Title">백서 100선 & FAQ 20선</div>
+              <div class="sub-item-desc" data-i18n="wpItem2Desc">21개국 디지털 자산법 및 FATF 트래블 룰 준수 기준</div>
+            </div>
+            <div class="sub-item">
+              <div class="sub-item-title" data-i18n="assetTitle">통합 자산 & 예치 현황</div>
+              <div class="sub-item-desc" data-i18n="assetItem2Desc">6개월(8~12%) · 1년(12~18%) · 2년(16~24%) · 3년(20~31.4%)</div>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer-info">
-      <div><span>체어맨 이재완</span> · 추천인: <span translate="no">ljw2358</span></div>
-      <div>문의: <span translate="no">support@hkwb.world</span></div>
+      <div><span data-i18n="footerRole">체어맨 이재완</span> · <span data-i18n="footerRefLabel">추천인</span>: <span translate="no">ljw2358</span></div>
+      <div><span data-i18n="footerSupportLabel">문의</span>: <span translate="no">support@hkwb.world</span></div>
     </footer>
   </div>
 
   <nav class="bottom-nav" aria-label="하단 메인 메뉴">
-    <div class="nav-inner">
-      <button type="button" class="nav-tab active" onclick="switchView('view-home', this)">홈</button>
-      <button type="button" class="nav-tab" onclick="switchView('view-whitepaper', this)">백서</button>
-      <button type="button" class="nav-tab" onclick="switchView('view-assets', this)">자산</button>
-      <button type="button" class="nav-tab" onclick="switchView('view-all', this)">전체</button>
+    <div class="bottom-nav-inner">
+      <button type="button" class="nav-tab active" data-target="view-home" data-i18n="tabHome">홈</button>
+      <button type="button" class="nav-tab" data-target="view-whitepaper" data-i18n="tabWhitepaper">백서</button>
+      <button type="button" class="nav-tab" data-target="view-assets" data-i18n="tabAssets">자산</button>
+      <button type="button" class="nav-tab" data-target="view-all" data-i18n="tabAll">전체</button>
     </div>
   </nav>
-
-  <div class="modal" id="actionModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="modalTitle">모듈 실행</h3>
-        <button type="button" class="close-btn" onclick="closeModal()" aria-label="닫기">×</button>
-      </div>
-      <div id="modalBody"></div>
-    </div>
-  </div>
 
   <script>
     const LANGUAGES_60 = [
@@ -586,160 +563,174 @@
       { code: "et", name: "에스토니아어", native: "Eesti" }
     ];
 
-    const CORE_DICT = {
+    const UI_TEXT = {
+      ko: {
+        tagline: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
+        web3Title: "웹3 디지털 은행",
+        web3Desc: "지갑연결 · 송금 · 결재 · 예치 · 보상 · 기본소득 · 스왑 · DEX스왑 · LP스테이킹 · PI수량",
+        web3Btn: "웹3 디지털 은행 진입하기",
+        internetTitle: "인터넷 은행",
+        internetDesc: "계좌 개설 · 입출금 · 즉시이체 · 예금 · 적금 · 대출 · 무료 신용점수 조회",
+        internetBtn: "인터넷 은행 진입하기",
+        wpTitle: "HKWB 백서 & 정책 아카이브",
+        wpItem1Title: "백서 100선 & FAQ 20선",
+        wpItem1Desc: "웹3 디지털 금융 아키텍처, 거버넌스, 주요 질의응답 안내",
+        wpItem2Title: "3대 POLICIES & 컴플라이언스",
+        wpItem2Desc: "21개국 디지털 자산법 및 FATF 트래블 룰 준수 기준",
+        assetTitle: "통합 자산 & 예치 현황",
+        assetItem1Title: "디지털 자산 · PI · 스테이킹",
+        assetItem1Desc: "지갑연결 · 스왑 · DEX스왑 · LP스테이킹 · PI수량 관리",
+        assetItem2Title: "예금 · 적금 · 신용점수",
+        assetItem2Desc: "6개월(8~12%) · 1년(12~18%) · 2년(16~24%) · 3년(20~31.4%)",
+        allTitle: "HKWB 전체 메뉴",
+        tabHome: "홈",
+        tabWhitepaper: "백서",
+        tabAssets: "자산",
+        tabAll: "전체",
+        footerRole: "체어맨 이재완",
+        footerRefLabel: "추천인",
+        footerSupportLabel: "문의"
+      },
       en: {
-        "인류와 기술이 공존하는 차세대 디지털 금융 혁신": "Next-Generation Digital Financial Innovation Where Humanity and Technology Coexist",
-        "개인 자산 대시보드 · 보유 수량 (PI 수량 동기화)": "Personal Asset Dashboard · Balance (PI Balance Sync)",
-        "실시간 누적 이자:": "Real-Time Accrued Interest:",
-        "백엔드 API 실시간 연동 대기 및 시뮬레이션 활성": "Backend API Real-Time Sync Ready & Simulation Active",
-        "웹3 디지털 은행": "Web3 Digital Bank",
-        "인터넷 은행": "Internet Bank",
-        "웹3 디지털 은행 진입하기": "Enter Web3 Digital Bank",
-        "인터넷 은행 진입하기": "Enter Internet Bank",
-        "분산 연동망 (10대 모듈)": "Distributed Network (10 Core Modules)",
-        "지갑연결": "Wallet Connect",
-        "송금": "Transfer",
-        "결재": "Payment",
-        "예치": "Deposit",
-        "보상": "Reward",
-        "기본소득": "UBI",
-        "스왑": "Swap",
-        "DEX스왑": "DEX Swap",
-        "LP스테이킹": "LP Staking",
-        "PI수량": "PI Balance",
-        "홈": "Home",
-        "백서": "Whitepaper",
-        "자산": "Assets",
-        "전체": "All",
-        "체어맨 이재완": "Chairman Lee Jae-wan",
-        "추천인:": "Referral:",
-        "문의:": "Support:"
+        tagline: "Next-Generation Digital Financial Innovation Where Humanity and Technology Coexist",
+        web3Title: "Web3 Digital Bank",
+        web3Desc: "Wallet Connect · Transfer · Pay · Deposit · Reward · UBI · Swap · DEX Swap · LP Staking · PI Balance",
+        web3Btn: "Enter Web3 Digital Bank",
+        internetTitle: "Internet Bank",
+        internetDesc: "Open Account · Deposit/Withdraw · Instant Transfer · Savings · Time Deposit · Loan · Free Credit Score",
+        internetBtn: "Enter Internet Bank",
+        wpTitle: "HKWB Whitepaper & Policy Archive",
+        wpItem1Title: "100 Whitepapers & 20 FAQs",
+        wpItem1Desc: "Web3 digital banking architecture, governance, and key FAQs",
+        wpItem2Title: "3 Core Policies & Compliance",
+        wpItem2Desc: "Digital asset laws across 21 jurisdictions and FATF Travel Rule standards",
+        assetTitle: "Unified Assets & Yield Overview",
+        assetItem1Title: "Digital Assets · PI · Staking",
+        assetItem1Desc: "Wallet Connect · Swap · DEX Swap · LP Staking · PI Balance",
+        assetItem2Title: "Deposits · Savings · Credit Score",
+        assetItem2Desc: "6M (8–12%) · 1Y (12–18%) · 2Y (16–24%) · 3Y (20–31.4%)",
+        allTitle: "HKWB All Menus",
+        tabHome: "Home",
+        tabWhitepaper: "Whitepaper",
+        tabAssets: "Assets",
+        tabAll: "All",
+        footerRole: "Chairman Lee Jae-wan",
+        footerRefLabel: "Referral",
+        footerSupportLabel: "Support"
       },
       ja: {
-        "인류와 기술이 공존하는 차세대 디지털 금융 혁신": "人類と技術が共存する次世代デジタル金融イノベーション",
-        "개인 자산 대시보드 · 보유 수량 (PI 수량 동기화)": "個人資産ダッシュボード · 保有数量 (PI数量同期)",
-        "실시간 누적 이자:": "リアルタイム累積利息:",
-        "백엔드 API 실시간 연동 대기 및 시뮬레이션 활성": "バックエンドAPIリアルタイム連携待機・シミュレーション稼働中",
-        "웹3 디지털 은행": "Web3デジタルバンク",
-        "인터넷 은행": "インターネットバンク",
-        "웹3 디지털 은행 진입하기": "Web3デジタルバンクへ進む",
-        "인터넷 은행 진입하기": "インターネットバンクへ進む",
-        "분산 연동망 (10대 모듈)": "分散連動網 (10大モジュール)",
-        "지갑연결": "ウォレット接続",
-        "송금": "送金",
-        "결재": "決済",
-        "예치": "預け入れ",
-        "보상": "報酬",
-        "기본소득": "ベーシックインカム",
-        "스왑": "スワップ",
-        "DEX스왑": "DEXスワップ",
-        "LP스테이킹": "LPステーキング",
-        "PI수량": "PI数量",
-        "홈": "ホーム",
-        "백서": "白書",
-        "자산": "資産",
-        "전체": "全体",
-        "체어맨 이재완": "チェアマン 李載完",
-        "추천인:": "紹介コード:",
-        "문의:": "お問い合わせ:"
+        tagline: "人類と技術が共存する次世代デジタル金融イノベーション",
+        web3Title: "Web3デジタルバンク",
+        web3Desc: "ウォレット接続 · 送金 · 決済 · 預け入れ · 報酬 · ベーシックインカム · スワップ · DEXスワップ · LPステーキング · PI残高",
+        web3Btn: "Web3デジタルバンクへ進む",
+        internetTitle: "インターネットバンク",
+        internetDesc: "口座開設 · 入出金 · 即時振込 · 定期預金 · 積立 · 融資 · 無料信用スコア照会",
+        internetBtn: "インターネットバンクへ進む",
+        wpTitle: "HKWB ホワイトペーパー＆ポリシー",
+        wpItem1Title: "ホワイトペーパー100選＆FAQ20選",
+        wpItem1Desc: "Web3デジタル金融アーキテクチャと主要FAQのご案内",
+        wpItem2Title: "3大ポリシー＆コンプライアンス",
+        wpItem2Desc: "21カ国のデジタル資産法およびFATFトラベルルール対応",
+        assetTitle: "統合資産＆預金金利一覧",
+        assetItem1Title: "デジタル資産 · PI · ステーキング",
+        assetItem1Desc: "ウォレット接続 · スワップ · DEXスワップ · LPステーキング · PI残高",
+        assetItem2Title: "預金 · 積立 · 信用スコア",
+        assetItem2Desc: "6カ月(8〜12%) · 1年(12〜18%) · 2年(16〜24%) · 3年(20〜31.4%)",
+        allTitle: "HKWB 全メニュー",
+        tabHome: "ホーム",
+        tabWhitepaper: "白書",
+        tabAssets: "資産",
+        tabAll: "全体",
+        footerRole: "チェアマン 李載完",
+        footerRefLabel: "紹介コード",
+        footerSupportLabel: "お問い合わせ"
       }
     };
 
-    const KO_SNAPSHOT = new WeakMap();
     const langToggleBtn = document.getElementById("langToggleBtn");
     const langDropdown = document.getElementById("langDropdown");
     const langSearch = document.getElementById("langSearch");
     const langList = document.getElementById("langList");
     const currentLangLabel = document.getElementById("currentLangLabel");
-    let selectedLang = LANGUAGES_60[0];
 
-    function captureKoreanTexts() {
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      let node;
-      while ((node = walker.nextNode())) {
-        if (!node.parentElement) continue;
-        if (node.parentElement.closest("#langDropdown, #google_translate_element, script, style")) continue;
-        if (node.parentElement.hasAttribute("translate") && node.parentElement.getAttribute("translate") === "no") continue;
-        if (!KO_SNAPSHOT.has(node)) {
-          KO_SNAPSHOT.set(node, node.nodeValue);
-        }
-      }
-    }
+    let activeLang = LANGUAGES_60[0];
 
-    function applyDeepTranslation(langCode) {
-      captureKoreanTexts();
-      const dict = CORE_DICT[langCode] || null;
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      let node;
-      while ((node = walker.nextNode())) {
-        if (!node.parentElement) continue;
-        if (node.parentElement.closest("#langDropdown, #google_translate_element, script, style")) continue;
-        if (node.parentElement.hasAttribute("translate") && node.parentElement.getAttribute("translate") === "no") continue;
-        const original = KO_SNAPSHOT.get(node);
-        if (typeof original !== "string") continue;
-        if (langCode === "ko") {
-          node.nodeValue = original;
-        } else if (dict && dict[original.trim()]) {
-          node.nodeValue = original.replace(original.trim(), dict[original.trim()]);
-        }
-      }
-
-      if (langSearch) {
-        langSearch.placeholder = langCode === "ko" ? "60개국어 검색..." : `Search 60 languages (${langCode})...`;
-      }
-    }
-
-    function renderLanguages(filter = "") {
-      const q = filter.trim().toLowerCase();
+    function renderLanguageList(filterText = "") {
+      const q = filterText.trim().toLowerCase();
       langList.innerHTML = "";
-      LANGUAGES_60
-        .filter((l) => l.name.toLowerCase().includes(q) || l.native.toLowerCase().includes(q) || l.code.toLowerCase().includes(q))
-        .forEach((lang) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "lang-option" + (lang.code === selectedLang.code ? " active" : "");
-          btn.innerHTML = `<span>${lang.native}</span><span style="opacity:0.72;font-size:11px;">${lang.name}</span>`;
-          btn.onclick = () => {
-            selectedLang = lang;
-            currentLangLabel.textContent = lang.native;
-            document.documentElement.lang = lang.code;
-            renderLanguages(langSearch.value);
-            applyDeepTranslation(lang.code);
-            triggerTranslate(lang.code);
-            langDropdown.classList.remove("open");
-            langToggleBtn.setAttribute("aria-expanded", "false");
-          };
-          langList.appendChild(btn);
-        });
+
+      const filtered = LANGUAGES_60.filter(
+        (item) =>
+          item.name.toLowerCase().includes(q) ||
+          item.native.toLowerCase().includes(q) ||
+          item.code.toLowerCase().includes(q)
+      );
+
+      filtered.forEach((lang) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "lang-option" + (lang.code === activeLang.code ? " active" : "");
+        btn.innerHTML = `<span>${lang.native}</span><span style="opacity:0.7;font-size:11px;">${lang.name}</span>`;
+        btn.addEventListener("click", () => selectLanguage(lang));
+        langList.appendChild(btn);
+      });
     }
 
-    function triggerTranslate(langCode, retry = 0) {
-      const cookieVal = `/ko/${langCode}`;
-      document.cookie = `googtrans=${cookieVal}; path=/`;
+    function applyBaseTexts(lang) {
+      const dict = UI_TEXT[lang.code] || (lang.code === "ko" ? UI_TEXT.ko : UI_TEXT.en);
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+      currentLangLabel.textContent = lang.native;
+      document.documentElement.lang = lang.code;
+    }
+
+    function setGoogleTranslateCookie(langCode) {
+      const value = `/ko/${langCode}`;
+      document.cookie = `googtrans=${value}; path=/`;
       if (window.location.hostname) {
-        document.cookie = `googtrans=${cookieVal}; path=/; domain=${window.location.hostname}`;
+        document.cookie = `googtrans=${value}; path=/; domain=${window.location.hostname}`;
       }
-      const combo = document.querySelector("select.goog-te-combo");
-      if (combo) {
-        combo.value = langCode;
-        combo.dispatchEvent(new Event("change"));
-      } else if (retry < 12) {
-        setTimeout(() => triggerTranslate(langCode, retry + 1), 250);
+    }
+
+    function triggerGoogleTranslate(langCode, retry = 0) {
+      setGoogleTranslateCookie(langCode);
+      const selectEl = document.querySelector("select.goog-te-combo");
+      if (selectEl) {
+        selectEl.value = langCode;
+        selectEl.dispatchEvent(new Event("change"));
+      } else if (retry < 10) {
+        setTimeout(() => triggerGoogleTranslate(langCode, retry + 1), 250);
       }
+    }
+
+    function selectLanguage(lang) {
+      activeLang = lang;
+      applyBaseTexts(lang);
+      renderLanguageList(langSearch.value);
+      triggerGoogleTranslate(lang.code);
+      langDropdown.classList.remove("open");
+      langToggleBtn.setAttribute("aria-expanded", "false");
     }
 
     langToggleBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const open = langDropdown.classList.toggle("open");
-      langToggleBtn.setAttribute("aria-expanded", String(open));
-      if (open) {
+      const isOpen = langDropdown.classList.toggle("open");
+      langToggleBtn.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
         langSearch.value = "";
-        renderLanguages("");
+        renderLanguageList("");
         langSearch.focus();
       }
     });
 
-    langSearch.addEventListener("input", (e) => renderLanguages(e.target.value));
+    langSearch.addEventListener("input", (e) => {
+      renderLanguageList(e.target.value);
+    });
+
     document.addEventListener("click", (e) => {
       if (!langDropdown.contains(e.target) && e.target !== langToggleBtn) {
         langDropdown.classList.remove("open");
@@ -758,55 +749,34 @@
       );
     }
 
-    function switchView(viewId, tabEl) {
-      document.querySelectorAll(".view-panel").forEach((el) => el.classList.remove("active"));
-      document.querySelectorAll(".nav-tab").forEach((el) => el.classList.remove("active"));
-      document.getElementById(viewId).classList.add("active");
-      tabEl.classList.add("active");
-      applyDeepTranslation(selectedLang.code);
-    }
+    // 하단 4탭 전환 로직
+    const navTabs = document.querySelectorAll(".nav-tab");
+    const viewPanels = document.querySelectorAll(".view-panel");
 
-    const modal = document.getElementById("actionModal");
-    function openModal(moduleName) {
-      document.getElementById("modalTitle").textContent = moduleName + " (백엔드 API 연동 준비)";
-      document.getElementById("modalBody").innerHTML = `
-        <div class="form-group">
-          <label>대상 수량 / 주소 입력</label>
-          <input type="text" class="form-control" value="314159.000000" />
-        </div>
-        <div class="form-group">
-          <label>보안 인증번호 (6자리)</label>
-          <input type="password" class="form-control" maxlength="6" placeholder="6자리 입력" />
-        </div>
-        <button type="button" class="action-btn gold" onclick="submitModule('${moduleName}')">${moduleName} 실행</button>
-      `;
-      modal.style.display = "flex";
-      applyDeepTranslation(selectedLang.code);
-    }
+    navTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.getAttribute("data-target");
+        navTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
 
-    function closeModal() {
-      modal.style.display = "none";
-    }
-
-    function submitModule(moduleName) {
-      alert(moduleName + " 요청이 접수되었습니다. 실제 백엔드 API 엔드포인트 연결 시 실시간 처리됩니다.");
-      closeModal();
-    }
-
-    setInterval(() => {
-      const hkEl = document.getElementById("hk-balance");
-      if (!hkEl) return;
-      const current = parseFloat(hkEl.textContent.replace(/,/g, "")) || 12450897.882503;
-      const next = (current + 0.000127).toFixed(6);
-      hkEl.textContent = Number(next).toLocaleString("en-US", {
-        minimumFractionDigits: 6,
-        maximumFractionDigits: 6
+        viewPanels.forEach((panel) => {
+          panel.classList.toggle("active", panel.id === targetId);
+        });
       });
-    }, 1000);
+    });
 
-    captureKoreanTexts();
-    renderLanguages("");
+    document.getElementById("enterWeb3Btn").addEventListener("click", () => {
+      alert("웹3 디지털 은행 포털로 진입합니다.");
+    });
+
+    document.getElementById("enterInternetBtn").addEventListener("click", () => {
+      alert("인터넷 은행 포털로 진입합니다.");
+    });
+
+    applyBaseTexts(activeLang);
+    renderLanguageList("");
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
+
