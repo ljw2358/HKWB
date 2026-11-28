@@ -16,7 +16,6 @@
       --gold-dark: #b45309;
       --cyan: #38bdf8;
       --emerald: #10b981;
-      --rose: #f43f5e;
       --text-primary: #f8fafc;
       --text-secondary: #cbd5e1;
       --text-muted: #94a3b8;
@@ -47,10 +46,12 @@
       color: var(--text-primary);
       line-height: 1.65;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .wrap {
-      max-width: 1280px;
+      width: 100%;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 20px 20px 72px;
     }
@@ -61,23 +62,21 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 14px 20px;
-      background: rgba(15, 23, 42, 0.88);
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(15, 23, 42, 0.92);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       margin-bottom: 24px;
-      position: sticky;
-      top: 12px;
-      z-index: 50;
     }
 
     .brand-mini {
       display: flex;
-      align-items: center;
-      gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
     }
 
     .brand-tag {
@@ -87,26 +86,27 @@
       font-size: 13px;
       padding: 5px 12px;
       border-radius: 999px;
-      letter-spacing: 0.3px;
+      flex-shrink: 0;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.12);
+      background: rgba(56, 189, 248, 0.14);
       color: var(--cyan);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      flex-shrink: 0;
     }
 
     .status-pill.live {
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(16, 185, 129, 0.16);
       color: var(--emerald);
-      border-color: rgba(16, 185, 129, 0.35);
+      border-color: rgba(16, 185, 129, 0.4);
     }
 
     .controls-group {
@@ -123,11 +123,12 @@
       gap: 6px;
       border: none;
       border-radius: var(--radius-sm);
-      padding: 10px 16px;
-      font-size: 14px;
+      padding: 10px 15px;
+      font-size: 13.5px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .btn-gold {
@@ -141,7 +142,7 @@
     }
 
     .btn-ghost {
-      background: rgba(30, 41, 59, 0.7);
+      background: rgba(30, 41, 59, 0.78);
       color: var(--text-primary);
       border: 1px solid var(--border);
     }
@@ -167,8 +168,8 @@
     /* 중앙 히어로 섹션 */
     .hero {
       text-align: center;
-      padding: 44px 24px;
-      background: linear-gradient(180deg, rgba(22, 33, 58, 0.95) 0%, rgba(15, 23, 42, 0.96) 100%);
+      padding: 40px 24px;
+      background: linear-gradient(180deg, rgba(22, 33, 58, 0.95) 0%, rgba(15, 23, 42, 0.97) 100%);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow);
@@ -179,15 +180,15 @@
       display: inline-block;
       padding: 6px 16px;
       border-radius: 999px;
-      background: rgba(245, 158, 11, 0.14);
+      background: rgba(245, 158, 11, 0.15);
       color: var(--gold-light);
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .hero h1 {
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(32px, 5vw, 46px);
       font-weight: 900;
       color: var(--gold-light);
       letter-spacing: 1px;
@@ -195,10 +196,10 @@
     }
 
     .hero .subtitle {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--text-secondary);
       max-width: 780px;
-      margin: 0 auto 20px;
+      margin: 0 auto 18px;
     }
 
     .hero-badges {
@@ -206,11 +207,11 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .hero-chip {
-      background: rgba(11, 18, 32, 0.85);
+      background: rgba(11, 18, 32, 0.88);
       border: 1px solid var(--border);
       padding: 8px 14px;
       border-radius: 12px;
@@ -224,16 +225,15 @@
 
     .kpi-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 14px;
-      margin-top: 12px;
     }
 
     .kpi-box {
-      background: rgba(11, 18, 32, 0.78);
+      background: rgba(11, 18, 32, 0.82);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 15px;
       text-align: center;
     }
 
@@ -244,7 +244,7 @@
     }
 
     .kpi-val {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
       color: var(--cyan);
     }
@@ -264,26 +264,23 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin: 34px 0 16px;
+      margin: 32px 0 16px;
     }
 
     .sec-head h2 {
-      font-size: 23px;
+      font-size: 22px;
       font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .sec-head p {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
     }
 
     /* 양대 은행 카드 */
     .banks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
 
@@ -291,12 +288,12 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 26px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 18px;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      min-width: 0;
     }
 
     .bank-card.featured {
@@ -304,16 +301,11 @@
       background: linear-gradient(180deg, rgba(28, 39, 66, 0.96), rgba(19, 29, 51, 0.98));
     }
 
-    .bank-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
-    }
-
     .bank-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 10px;
     }
 
@@ -332,7 +324,7 @@
     }
 
     .bank-card h3 {
-      font-size: 23px;
+      font-size: 22px;
       margin-bottom: 8px;
     }
 
@@ -356,10 +348,10 @@
       font-weight: 800;
     }
 
-    /* 10대 분산 연동망 그리드 */
+    /* 10대 분산 연동망 그리드 (2x5 / 반응형) */
     .ten-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
       gap: 14px;
     }
 
@@ -374,10 +366,11 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 10px;
+      min-width: 0;
     }
 
     .mod-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: var(--gold);
       background: var(--bg-card-hover);
     }
@@ -389,16 +382,16 @@
     }
 
     .mod-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(245, 158, 11, 0.2));
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(245, 158, 11, 0.22));
       border: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--gold-light);
     }
 
@@ -409,7 +402,7 @@
     }
 
     .mod-title {
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 800;
       color: var(--text-primary);
     }
@@ -422,7 +415,7 @@
     /* 메인 작업대 */
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 20px;
     }
 
@@ -430,29 +423,32 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 22px;
       box-shadow: var(--shadow);
+      min-width: 0;
     }
 
     .panel-title {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       color: var(--gold-light);
       margin-bottom: 14px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
     }
 
     .cmc-banner {
-      background: rgba(16, 185, 129, 0.09);
+      background: rgba(16, 185, 129, 0.1);
       border: 1px solid rgba(16, 185, 129, 0.32);
       border-radius: var(--radius-sm);
       padding: 12px 14px;
       font-size: 13px;
       color: var(--text-secondary);
       margin-bottom: 16px;
+      word-break: keep-all;
     }
 
     .cmc-banner strong {
@@ -474,7 +470,7 @@
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 11px 13px;
+      padding: 10px 12px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
       background: var(--bg-input);
@@ -513,19 +509,21 @@
 
     .output-box {
       margin-top: 14px;
-      padding: 14px;
+      padding: 13px 14px;
       border-radius: var(--radius-sm);
       background: var(--bg-input);
       border: 1px solid rgba(56, 189, 248, 0.25);
       font-size: 13.5px;
       color: var(--cyan);
       line-height: 1.6;
+      white-space: pre-line;
+      word-break: break-word;
     }
 
     /* 금리표 및 165층 구호단체 섹션 */
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 20px;
     }
 
@@ -570,7 +568,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 14px 16px;
-      max-height: 220px;
+      max-height: 210px;
       overflow-y: auto;
       font-size: 13px;
     }
@@ -604,7 +602,7 @@
 
     .modal-card {
       width: 100%;
-      max-width: 560px;
+      max-width: 540px;
       background: var(--bg-card);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-lg);
@@ -614,7 +612,7 @@
     }
 
     .modal-card h3 {
-      font-size: 22px;
+      font-size: 21px;
       color: var(--gold-light);
       margin-bottom: 12px;
     }
@@ -624,12 +622,13 @@
       color: var(--text-secondary);
       margin-bottom: 22px;
       white-space: pre-line;
+      word-break: break-word;
     }
 
     footer {
       text-align: center;
       margin-top: 40px;
-      padding: 26px 16px;
+      padding: 24px 16px;
       border-top: 1px solid var(--border);
       color: var(--text-muted);
       font-size: 13px;
@@ -712,7 +711,7 @@
           </div>
           <h3>웹3 디지털 은행</h3>
           <p class="bank-desc">
-            탈중앙 지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, PI수량 관리를 하나의 화면에서 처리합니다.
+            지갑연결, 송금, 결재, 예치, 보상, 기본소득, 스왑, DEX스왑, LP스테이킹, PI수량 관리를 하나의 화면에서 처리합니다.
           </p>
           <ul class="feature-list">
             <li>10대 분산 연동망 실시간 모듈 실행</li>
@@ -1042,6 +1041,7 @@
         addLog("실질 운영 모드로 전환되었습니다. (실제 거래·연동 처리 기준)");
       }
 
+      render10Modules();
       calcSwap();
       calcYield();
     }
@@ -1091,7 +1091,7 @@
           if (data.tether?.usd) cmcRate.USDT = Number(data.tether.usd);
         }
       } catch (err) {
-        // 네트워크 환경 제한 시 기존 시세 유지
+        // 네트워크 제한 시 기존 시세 유지
       }
       cmcRate.time = new Date().toLocaleTimeString("ko-KR");
       renderCmcSummary();
@@ -1133,10 +1133,7 @@
       const minOut = estAmount * (1 - slip / 100);
       const tag = mode === "test" ? "[테스트]" : "[실질]";
 
-      out.innerHTML = `
-        ${tag} 환율: <strong>1 ${from} ≈ ${unitPrice.toFixed(4)} ${to}</strong><br/>
-        예상 수령량: <strong>${estAmount.toFixed(4)} ${to}</strong> (슬리피지 ${slip}% 적용 최소 <strong>${minOut.toFixed(4)} ${to}</strong>)
-      `;
+      out.innerHTML = `${tag} 환율: <strong>1 ${from} ≈ ${unitPrice.toFixed(4)} ${to}</strong>\n예상 수령량: <strong>${estAmount.toFixed(4)} ${to}</strong> (슬리피지 ${slip}% 적용 최소 <strong>${minOut.toFixed(4)} ${to}</strong>)`;
     }
 
     function submitSwap() {
@@ -1169,11 +1166,7 @@
       const maxGain = principal * info.max * info.yr;
       const tag = mode === "test" ? "[테스트]" : "[실질]";
 
-      out.innerHTML = `
-        ${tag} <strong>${catLabel} (${info.name})</strong><br/>
-        예상 수익/보상: <strong>+${minGain.toFixed(2)} ~ +${maxGain.toFixed(2)}</strong><br/>
-        예상 만기 합계: <strong>${(principal + minGain).toFixed(2)} ~ ${(principal + maxGain).toFixed(2)}</strong>
-      `;
+      out.innerHTML = `${tag} <strong>${catLabel} (${info.name})</strong>\n예상 수익/보상: <strong>+${minGain.toFixed(2)} ~ +${maxGain.toFixed(2)}</strong>\n예상 만기 합계: <strong>${(principal + minGain).toFixed(2)} ~ ${(principal + maxGain).toFixed(2)}</strong>`;
     }
 
     function submitYield() {
