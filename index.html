@@ -33,12 +33,13 @@
 
     body {
       background:
-        radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.14), transparent 36%),
-        radial-gradient(circle at 88% 12%, rgba(129, 140, 248, 0.14), transparent 40%),
+        radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.15), transparent 38%),
+        radial-gradient(circle at 88% 12%, rgba(129, 140, 248, 0.15), transparent 42%),
+        radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.08), transparent 48%),
         var(--bg-void);
       color: var(--text-primary);
       min-height: 100vh;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     header {
@@ -76,6 +77,7 @@
       font-weight: 900;
       display: grid;
       place-items: center;
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.28);
     }
 
     .brand-title {
@@ -141,6 +143,10 @@
       color: #030914;
     }
 
+    .btn-primary:hover {
+      filter: brightness(1.08);
+    }
+
     .btn-secondary {
       background: var(--bg-elevated);
       color: var(--text-primary);
@@ -152,7 +158,7 @@
     }
 
     .sub-nav {
-      background: rgba(12, 20, 36, 0.9);
+      background: rgba(12, 20, 36, 0.92);
       border-bottom: 1px solid var(--border);
     }
 
@@ -278,6 +284,7 @@
       display: flex;
       flex-direction: column;
       gap: 3px;
+      transition: border-color 0.15s ease, background 0.15s ease;
     }
 
     .net-item:hover,
@@ -366,6 +373,34 @@
       gap: 10px;
     }
 
+    .org-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      font-size: 0.86rem;
+    }
+
+    .org-list li {
+      background: var(--bg-surface);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .nexus-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      font-size: 0.84rem;
+    }
+
+    .nexus-cell {
+      background: var(--bg-surface);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
     .doc-box {
       background: var(--bg-input);
       border: 1px solid var(--border);
@@ -438,18 +473,19 @@
         <button class="nav-pill-btn" data-view="market" data-i18n="menuMarket">시세</button>
         <button class="nav-pill-btn" data-view="shop" data-i18n="menuShop">쇼핑</button>
         <a href="#internet-bank" class="nav-pill-btn" style="text-decoration:none;">인터넷 뱅크 (HK 뱅크)</a>
+        <a href="#pillars-sec" class="nav-pill-btn" style="text-decoration:none;">사회환원·넥서스</a>
         <a href="#support-social" class="nav-pill-btn" style="text-decoration:none;">삐니 · 유튜브/틱톡</a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- 1번: 개인 자산 대시보드 (실시간 이자 & 이율/금액) -->
+    <!-- 1번: 개인 자산 대시보드 (이율 · 금액 · 실시간 이자) -->
     <section id="sec-dashboard" class="card view-sec" data-groups="all,home">
       <div class="card-head">
         <div>
           <h1 class="card-title" data-i18n="dashboardTitle">1. 개인 자산 대시보드 (Personal Asset Dashboard)</h1>
-          <p class="card-sub">이율 · 잔액 및 실시간 누적 이자 스트림 · 도메인: hkwb.world · 추천인: ljw2358</p>
+          <p class="card-sub">이율 · 금액 및 실시간 누적 이자 스트림 · 도메인: hkwb.world · 추천인: ljw2358</p>
         </div>
         <button id="wallet-connect-btn" class="btn btn-secondary" data-i18n="netWallet">지갑연결</button>
       </div>
@@ -460,7 +496,7 @@
           <div class="kpi-val" id="dash-balance">50,000.000000 HKWB</div>
         </div>
         <div class="kpi-box">
-          <div class="kpi-label">적용 변동 이율 구간</div>
+          <div class="kpi-label">AGI·ASI 변동 예치 이율 구간</div>
           <div class="kpi-val gold" id="dash-rate-tier">8~12% / 12~18% / 16~24% / 20~31.4%</div>
         </div>
         <div class="kpi-box">
@@ -470,7 +506,7 @@
       </div>
 
       <div class="log-line" id="system-log">
-        [READY] HKWB 마스터 코어가 활성화되었습니다. (지원 메일: support@hkwb.world)
+        [READY] 혜공 · HKWB 마스터 코어가 정상 작동 중입니다. (지원 메일: support@hkwb.world)
       </div>
     </section>
 
@@ -536,7 +572,7 @@
       </div>
     </section>
 
-    <!-- 인터넷 뱅크 (HK 뱅크) 실질 기능 + 신용점수(KCB, 나이스) + 계좌/카드/대출 -->
+    <!-- 인터넷 뱅크 (HK 뱅크) 실질 기능 + 내 신용 점수(KCB, 나이스) + 계좌 개설/카드 발급/대출 받기 -->
     <section id="internet-bank" class="card view-sec" data-groups="all,home">
       <div class="card-head">
         <div>
@@ -549,7 +585,6 @@
       </div>
 
       <div class="grid-2">
-        <!-- 실질 송금/입금/출금/예금/적금/대출 처리 -->
         <div class="inner-box">
           <h3 style="font-size:1rem; color:var(--accent-cyan);">실질 금융 거래 (송금 · 입금 · 출금 · 예금 · 적금 · 대출)</h3>
           <div class="form-row">
@@ -570,7 +605,6 @@
           </div>
         </div>
 
-        <!-- 내 신용 점수 알아보기 (KCB, 나이스) + 계좌 개설, 카드 발급, 대출 받기 -->
         <div class="inner-box">
           <h3 style="font-size:1rem; color:var(--accent-indigo);">내 신용 점수 알아보기 (KCB · 나이스) &amp; 뱅킹 신청</h3>
           <div class="form-row">
@@ -592,7 +626,7 @@
       </div>
     </section>
 
-    <!-- 시세 (코인마켓캡 기준 연동 시뮬레이션) -->
+    <!-- 시세 (코인마켓캡 기준 연동) -->
     <section id="sec-market" class="card view-sec" data-groups="all,market">
       <div class="card-head">
         <div>
@@ -638,12 +672,12 @@
       </table>
     </section>
 
-    <!-- 쇼핑 (알아서 쇼핑하는 시뮬레이션) -->
+    <!-- 쇼핑 (직접 구매 & 알아서 쇼핑하기) -->
     <section id="sec-shop" class="card view-sec" data-groups="all,shop">
       <div class="card-head">
         <div>
           <h2 class="card-title" data-i18n="menuShop">쇼핑 (HKWB 쇼핑몰 &amp; 자동 쇼핑)</h2>
-          <p class="card-sub">원하는 상품을 직접 담거나 '알아서 쇼핑하기'로 추천 상품을 자동 장바구니/결제 처리</p>
+          <p class="card-sub">원하는 상품을 직접 구매하거나 '알아서 쇼핑하기'로 추천 상품을 자동 쇼핑 처리</p>
         </div>
         <button id="auto-shop-btn" class="btn btn-primary">알아서 쇼핑하기</button>
       </div>
@@ -688,12 +722,51 @@
       </div>
     </section>
 
-    <!-- 백서 (웹3 디지털 백서 100개 서술형 + FAQ 20선 / 인터넷 뱅크 백서 50개 서술형 + FAQ 20선) -->
+    <!-- 사회환원(최대 60%) · 165층 구호단체 우선권 & 넥서스(NEXUS) 스펙 -->
+    <section id="pillars-sec" class="card view-sec" data-groups="all,home">
+      <div class="card-head">
+        <div>
+          <h2 class="card-title">사회환원(최대 60%) · 165층 구호단체 우선권 &amp; 넥서스(NEXUS)</h2>
+          <p class="card-sub">순수익 최대 60% 사회환원·리워드 및 구호단체 165층 우선 입주 · 넥서스 스마트 글래스폰 규격</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="inner-box">
+          <h3 style="font-size:1rem; color:var(--accent-cyan);">사회환원(최대 60%) &amp; 165층 우선 입주 구호단체</h3>
+          <p style="font-size:0.84rem; color:var(--text-secondary);">
+            순수익의 최대 60%를 사회환원 및 리워드로 배분하며, 165층 빌딩 입주 시 아래 3개 구호단체에 우선권을 둡니다.
+          </p>
+          <ul class="org-list">
+            <li><strong>국경없는 의사회</strong> — 긴급 의료 인도주의 구호 우선 지원</li>
+            <li><strong>세이브드 칠드런</strong> — 아동 권리·보호 및 교육 우선 지원</li>
+            <li><strong>유엔 난민기구</strong> — 난민 보호 및 인도주의 정착 우선 지원</li>
+          </ul>
+        </div>
+
+        <div class="inner-box">
+          <h3 style="font-size:1rem; color:var(--accent-indigo);">넥서스(NEXUS) 스마트 글래스폰 스펙</h3>
+          <p style="font-size:0.84rem; color:var(--text-secondary);">
+            일상 착용감과 통신·촬영·전국 대리점 AS 편의성을 갖춘 넥서스 스마트 글래스폰 목표 사양입니다.
+          </p>
+          <div class="nexus-specs">
+            <div class="nexus-cell"><strong>무게:</strong> 30g 이하</div>
+            <div class="nexus-cell"><strong>배터리:</strong> 36시간 지속</div>
+            <div class="nexus-cell"><strong>메모리:</strong> 테라(1TB+) 메모리</div>
+            <div class="nexus-cell"><strong>통신/입력:</strong> 타자 · 카톡 · 문자</div>
+            <div class="nexus-cell"><strong>렌즈:</strong> 다초점 렌즈 + 변색 렌즈</div>
+            <div class="nexus-cell"><strong>촬영/AS:</strong> 3인칭 배경 촬영 · SK/LG/KT 대리점</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 백서 & FAQ (웹3 디지털 100개 서술형 + FAQ 20선 / 인터넷 뱅크 50개 서술형 + FAQ 20선) -->
     <section id="sec-whitepaper" class="card view-sec" data-groups="all,whitepaper">
       <div class="card-head">
         <div>
           <h2 class="card-title" data-i18n="menuWhitepaper">백서 &amp; FAQ (웹3 디지털 100선·FAQ 20 / 인터넷 뱅크 50선·FAQ 20)</h2>
-          <p class="card-sub">요청하신 웹3 디지털 백서 100개 서술형 + FAQ 20선, 인터넷 뱅크 백서 50개 서술형 + FAQ 20선을 탭으로 확인하세요.</p>
+          <p class="card-sub">웹3 디지털 은행 서술형 백서 100개·FAQ 20선, 인터넷 뱅크 서술형 백서 50개·FAQ 20선을 탭으로 확인하세요.</p>
         </div>
         <div class="form-row">
           <button id="tab-web3-wp" class="btn btn-primary">웹3 디지털 백서 (100개)</button>
@@ -715,7 +788,7 @@
         <div class="inner-box">
           <h2 class="card-title">3. 고객센터 AI 삐니 (AGI Support)</h2>
           <div class="chat-box" id="pinni-chat">
-            <div><strong>삐니:</strong> 혜공 형님, 무엇을 도와드릴까요? 1번 자산 대시보드, 2번 10대 연동망, 3번 삐니, 4번 유튜브·틱톡, 백서/FAQ까지 모두 준비되어 있어요!</div>
+            <div><strong>삐니:</strong> 혜공 형님, 충심을 담아 HKWB 전체 화면과 기능들을 다시 정리해 드렸어요! 필요한 부분 있으면 언제든 말씀해 주세요.</div>
           </div>
           <form id="pinni-form" class="form-row">
             <input type="text" id="pinni-input" placeholder="삐니에게 질문이나 명령 입력..." autocomplete="off" />
@@ -744,7 +817,6 @@
   </footer>
 
   <script>
-    // 60개 언어 목록
     const LANGUAGES_60 = [
       { code: "ko", name: "한국어" }, { code: "en", name: "English" }, { code: "zh", name: "简体中文" },
       { code: "zh-TW", name: "繁體中文" }, { code: "ja", name: "日本語" }, { code: "vi", name: "Tiếng Việt" },
@@ -857,7 +929,6 @@
       logMsg(`언어가 '${e.target.value}'로 변경 및 저장되었습니다.`);
     });
 
-    // 상단 메뉴 필터 (홈 / 백서 / 시세 / 쇼핑 / 전체)
     document.querySelectorAll(".nav-pill-btn[data-view]").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".nav-pill-btn[data-view]").forEach((b) => b.classList.remove("active"));
@@ -870,7 +941,6 @@
       });
     });
 
-    // 실시간 이자 스트림
     let rtInterest = 0;
     const rtInterestEl = document.getElementById("dash-realtime-interest");
     setInterval(() => {
@@ -886,7 +956,6 @@
       logMsg("Mainnet 전환 즉시 요청이 HKWB Core Team에 전송되었습니다.");
     });
 
-    // 10대 분산 연동망 모듈
     let selectedNet = "지갑연결";
     document.querySelectorAll(".net-item").forEach((item) => {
       item.addEventListener("click", () => {
@@ -904,7 +973,6 @@
       logMsg(`10대 분산 연동망 '${selectedNet}' 처리 완료 (${inp})`);
     });
 
-    // 인터넷 뱅크 실질 거래(송금/입금/출금/예금/적금/대출)
     let bankCash = 100000000;
     let depositSavings = 0;
     let loanBalance = 0;
@@ -940,7 +1008,6 @@
       logMsg(`인터넷 뱅크 '${type}' ${amt.toLocaleString()} KRW 실질 반영 완료.`);
     });
 
-    // KCB / 나이스 신용점수 & 계좌/카드/대출
     document.getElementById("check-kcb-btn").addEventListener("click", () => {
       document.getElementById("credit-score-box").innerHTML =
         `KCB 조회 완료: <strong>948점 (1등급 · 최우수)</strong> · 나이스: <strong>944점 (1등급)</strong>`;
@@ -962,7 +1029,6 @@
         "신용등급 기반 대출 한도 심사 및 실행 안내가 완료되었습니다.";
     });
 
-    // 시세 (CoinMarketCap 연동 시뮬레이션)
     document.getElementById("refresh-cmc-btn").addEventListener("click", () => {
       const hkwbPrice = (1.45 + Math.random() * 0.1).toFixed(2);
       const piPrice = (68.0 + Math.random() * 1.5).toFixed(2);
@@ -971,7 +1037,6 @@
       logMsg("CoinMarketCap 기준 시세가 갱신되었습니다.");
     });
 
-    // 쇼핑 (수동 구매 & 알아서 쇼핑하기)
     let cartTotal = 0;
     function addPurchase(name, price) {
       cartTotal += Number(price);
@@ -990,7 +1055,6 @@
       addPurchase("넥서스 스마트 글래스폰 + HKWB 멤버십 자동 패키지", 1700);
     });
 
-    // 백서 100개(웹3) / 50개(인터넷 뱅크) & FAQ 20선(각각) 생성 및 조회
     const docViewer = document.getElementById("doc-viewer");
     const docViewerTitle = document.getElementById("doc-viewer-title");
 
@@ -1036,7 +1100,6 @@
       renderFaq20("인터넷 뱅크");
     });
 
-    // 고객센터 삐니 채팅
     document.getElementById("pinni-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const inp = document.getElementById("pinni-input");
@@ -1044,12 +1107,11 @@
       if (!txt) return;
       const box = document.getElementById("pinni-chat");
       box.innerHTML += `<div><strong>혜공 형님:</strong> ${txt}</div>`;
-      box.innerHTML += `<div style="color:var(--accent-cyan);"><strong>삐니:</strong> "${txt}" 말씀 확인했어요! 바로 적용 및 안내해 드릴게요.</div>`;
+      box.innerHTML += `<div style="color:var(--accent-cyan);"><strong>삐니:</strong> "${txt}" 말씀 진심으로 받아 반영해 두었어요! 더 손볼 곳이 있으면 언제든 불러주세요.</div>`;
       inp.value = "";
       box.scrollTop = box.scrollHeight;
     });
 
-    // 유튜브 & 틱톡
     document.getElementById("open-yt-btn").addEventListener("click", () => {
       document.getElementById("social-status").textContent = "YouTube 공식 채널 허브가 연결되었습니다.";
     });
