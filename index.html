@@ -131,17 +131,17 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
-      margin-bottom: 22px;
+      margin-bottom: 8px;
     }
     .bank-box {
       background: rgba(11, 16, 36, 0.92);
       border: 1px solid rgba(148, 163, 184, 0.28);
       border-radius: 14px;
-      padding: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
       text-align: left;
     }
     .bank-name { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
@@ -152,8 +152,8 @@
       color: #fff;
       border: none;
       border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 13px;
+      padding: 11px 12px;
+      font-size: 13.5px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -164,8 +164,8 @@
     }
     .web3-workspace {
       display: none;
-      margin-top: 8px;
-      padding-top: 18px;
+      margin-top: 22px;
+      padding-top: 22px;
       border-top: 1px solid rgba(129, 140, 248, 0.35);
       text-align: left;
     }
@@ -179,7 +179,7 @@
       margin-bottom: 14px;
     }
     .workspace-badge {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
       color: #facc15;
     }
@@ -493,11 +493,11 @@
           </div>
         </div>
 
-        <!-- 웹3 디지털 은행 내부 통합 화면 -->
-        <div class="web3-workspace open" id="web3Workspace">
+        <!-- 웹3 디지털 은행 진입 시 열리는 내부 대시보드 & 10대 분산 연동망 -->
+        <div class="web3-workspace" id="web3Workspace">
           <div class="workspace-topbar">
             <div class="workspace-badge">웹3 디지털 은행 · 개인 자산 대시보드 & 10대 분산 연동망</div>
-            <button type="button" class="close-workspace-btn" onclick="toggleWeb3Bank()">접기 / 펼치기</button>
+            <button type="button" class="close-workspace-btn" onclick="toggleWeb3Bank(false)">닫기</button>
           </div>
 
           <div class="dashboard-card">
@@ -615,7 +615,7 @@
         <div class="detail-card">
           <div class="detail-title">HKWB 백서 & 정책 아카이브</div>
           <p class="detail-sub">
-            2026년 2월 시작된 HKWB 디지털 금융 체계의 핵심 백서, 정책, 글로벌 규제 기준을 정리했습니다.
+            HKWB 디지털 금융 체계의 핵심 백서, 정책, 글로벌 규제 기준을 정리했습니다.
           </p>
           <div class="info-list">
             <div class="info-item">
@@ -868,9 +868,14 @@
       ws.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    function toggleWeb3Bank() {
+    function toggleWeb3Bank(forceState) {
       const ws = document.getElementById("web3Workspace");
-      if (ws) ws.classList.toggle("open");
+      if (!ws) return;
+      if (typeof forceState === "boolean") {
+        ws.classList.toggle("open", forceState);
+      } else {
+        ws.classList.toggle("open");
+      }
     }
 
     function switchView(viewId, tabEl) {
