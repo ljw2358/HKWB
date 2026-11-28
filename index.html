@@ -52,7 +52,7 @@
       font-size: 1rem;
       cursor: pointer;
       outline: none;
-      min-width: 240px;
+      min-width: 260px;
     }
 
     .language-selector option {
@@ -173,69 +173,7 @@
 <body>
   <div class="main-container">
     <header>
-      <select id="language-select" class="language-selector" aria-label="언어 선택">
-        <option value="ko">한국어 (Korean)</option>
-        <option value="en">English (영어)</option>
-        <option value="zh-CN">简体中文 (중국어 간체)</option>
-        <option value="zh-TW">繁體中文 (중국어 번체)</option>
-        <option value="ja">日本語 (일본어)</option>
-        <option value="es">Español (스페인어)</option>
-        <option value="fr">Français (프랑스어)</option>
-        <option value="de">Deutsch (독일어)</option>
-        <option value="it">Italiano (이탈리아어)</option>
-        <option value="pt">Português (포르투갈어)</option>
-        <option value="pt-BR">Português Brasil (포르투갈어 브라질)</option>
-        <option value="ru">Русский (러시아어)</option>
-        <option value="ar">العربية (아랍어)</option>
-        <option value="fa">فارسی (페르시아어)</option>
-        <option value="he">עברית (히브리어)</option>
-        <option value="hi">हिन्दी (힌디어)</option>
-        <option value="bn">বাংলা (벵골어)</option>
-        <option value="pa">ਪੰਜਾਬੀ (펀자브어)</option>
-        <option value="ta">தமிழ் (타밀어)</option>
-        <option value="te">తెలుగు (텔루구어)</option>
-        <option value="mr">मराठी (마라티어)</option>
-        <option value="ur">اردو (우르두어)</option>
-        <option value="vi">Tiếng Việt (베트남어)</option>
-        <option value="th">ไทย (태국어)</option>
-        <option value="id">Bahasa Indonesia (인도네시아어)</option>
-        <option value="ms">Bahasa Melayu (말레이어)</option>
-        <option value="fil">Filipino (필리핀어)</option>
-        <option value="km">ខ្មែរ (크메르어)</option>
-        <option value="lo">ລາວ (라오어)</option>
-        <option value="my">မြန်မာ (미얀마어)</option>
-        <option value="mn">Монгол (몽골어)</option>
-        <option value="tr">Türkçe (터키어)</option>
-        <option value="nl">Nederlands (네덜란드어)</option>
-        <option value="pl">Polski (폴란드어)</option>
-        <option value="uk">Українська (우크라이나어)</option>
-        <option value="cs">Čeština (체코어)</option>
-        <option value="sk">Slovenčina (슬로바키아어)</option>
-        <option value="hu">Magyar (헝가리어)</option>
-        <option value="ro">Română (루마니아어)</option>
-        <option value="bg">Български (불가리아어)</option>
-        <option value="el">Ελληνικά (그리스어)</option>
-        <option value="sv">Svenska (스웨덴어)</option>
-        <option value="no">Norsk (노르웨이어)</option>
-        <option value="da">Dansk (덴마크어)</option>
-        <option value="fi">Suomi (핀란드어)</option>
-        <option value="et">Eesti (에스토니아어)</option>
-        <option value="lv">Latviešu (라트비아어)</option>
-        <option value="lt">Lietuvių (리투아니아어)</option>
-        <option value="hr">Hrvatski (크로아티아어)</option>
-        <option value="sr">Српски (세르비아어)</option>
-        <option value="sl">Slovenščina (슬로베니아어)</option>
-        <option value="sw">Kiswahili (스와힐리어)</option>
-        <option value="am">አማርኛ (암하라어)</option>
-        <option value="zu">isiZulu (줄루어)</option>
-        <option value="af">Afrikaans (아프리칸스어)</option>
-        <option value="ca">Català (카탈루냐어)</option>
-        <option value="eu">Euskara (바스크어)</option>
-        <option value="gl">Galego (갈리시아어)</option>
-        <option value="is">Íslenska (아이슬란드어)</option>
-        <option value="ga">Gaeilge (아일랜드어)</option>
-        <option value="mt">Malti (몰타어)</option>
-      </select>
+      <select id="language-select" class="language-selector" aria-label="언어 선택"></select>
     </header>
 
     <section class="brand-section">
@@ -270,7 +208,71 @@
   <script>
     const RTL_LOCALES = new Set(["ar", "fa", "he", "ur"]);
 
-    const baseTranslations = {
+    const LANGUAGES = [
+      { code: "ko", label: "한국어 (Korean)" },
+      { code: "en", label: "English (영어)" },
+      { code: "zh-CN", label: "简体中文 (중국어 간체)" },
+      { code: "zh-TW", label: "繁體中文 (중국어 번체)" },
+      { code: "ja", label: "日本語 (일본어)" },
+      { code: "es", label: "Español (스페인어)" },
+      { code: "fr", label: "Français (프랑스어)" },
+      { code: "de", label: "Deutsch (독일어)" },
+      { code: "it", label: "Italiano (이탈리아어)" },
+      { code: "pt", label: "Português (포르투갈어)" },
+      { code: "pt-BR", label: "Português Brasil (포르투갈어 브라질)" },
+      { code: "ru", label: "Русский (러시아어)" },
+      { code: "ar", label: "العربية (아랍어)" },
+      { code: "fa", label: "فارسی (페르시아어)" },
+      { code: "he", label: "עברית (히브리어)" },
+      { code: "hi", label: "हिन्दी (힌디어)" },
+      { code: "bn", label: "বাংলা (벵골어)" },
+      { code: "pa", label: "ਪੰਜਾਬੀ (펀자브어)" },
+      { code: "ta", label: "தமிழ் (타밀어)" },
+      { code: "te", label: "తెలుగు (텔루구어)" },
+      { code: "mr", label: "मराठी (마라티어)" },
+      { code: "ur", label: "اردو (우르두어)" },
+      { code: "vi", label: "Tiếng Việt (베트남어)" },
+      { code: "th", label: "ไทย (태국어)" },
+      { code: "id", label: "Bahasa Indonesia (인도네시아어)" },
+      { code: "ms", label: "Bahasa Melayu (말레이어)" },
+      { code: "fil", label: "Filipino (필리핀어)" },
+      { code: "km", label: "ខ្មែរ (크메르어)" },
+      { code: "lo", label: "ລາວ (라오어)" },
+      { code: "my", label: "မြန်မာ (미얀마어)" },
+      { code: "mn", label: "Монгол (몽골어)" },
+      { code: "tr", label: "Türkçe (터키어)" },
+      { code: "nl", label: "Nederlands (네덜란드어)" },
+      { code: "pl", label: "Polski (폴란드어)" },
+      { code: "uk", label: "Українська (우크라이나어)" },
+      { code: "cs", label: "Čeština (체코어)" },
+      { code: "sk", label: "Slovenčina (슬로바키아어)" },
+      { code: "hu", label: "Magyar (헝가리어)" },
+      { code: "ro", label: "Română (루마니아어)" },
+      { code: "bg", label: "Български (불가리아어)" },
+      { code: "el", label: "Ελληνικά (그리스어)" },
+      { code: "sv", label: "Svenska (스웨덴어)" },
+      { code: "no", label: "Norsk (노르웨이어)" },
+      { code: "da", label: "Dansk (덴마크어)" },
+      { code: "fi", label: "Suomi (핀란드어)" },
+      { code: "et", label: "Eesti (에스토니아어)" },
+      { code: "lv", label: "Latviešu (라트비아어)" },
+      { code: "lt", label: "Lietuvių (리투아니아어)" },
+      { code: "hr", label: "Hrvatski (크로아티아어)" },
+      { code: "sr", label: "Српски (세르비아어)" },
+      { code: "sl", label: "Slovenščina (슬로베니아어)" },
+      { code: "sw", label: "Kiswahili (스와힐리어)" },
+      { code: "am", label: "አማርኛ (암하라어)" },
+      { code: "zu", label: "isiZulu (줄루어)" },
+      { code: "af", label: "Afrikaans (아프리칸스어)" },
+      { code: "ca", label: "Català (카탈루냐어)" },
+      { code: "eu", label: "Euskara (바스크어)" },
+      { code: "gl", label: "Galego (갈리시아어)" },
+      { code: "is", label: "Íslenska (아이슬란드어)" },
+      { code: "ga", label: "Gaeilge (아일랜드어)" },
+      { code: "mt", label: "Malti (몰타어)" }
+    ];
+
+    const translations = {
       ko: {
         brand: "HKWB",
         subtitle: "인류와 기술이 공존하는 차세대 디지털 금융 혁신",
@@ -414,6 +416,17 @@
         internet_btn: "الدخول إلى بنك الإنترنت",
         referrer: "المُحيل"
       },
+      fa: {
+        brand: "HKWB",
+        subtitle: "نوآوری مالی دیجیتال نسل آینده که در آن انسانیت و فناوری همزیستی دارند",
+        web3_title: "بانک دیجیتال وب۳",
+        web3_desc: "اتصال کیف پول · حواله · پرداخت · سپرده · پاداش · درآمد پایه · سواپ · سواپ DEX · استیکینگ LP · مقدار PI",
+        web3_btn: "ورود به بانک دیجیتال وب۳",
+        internet_title: "بانک اینترنتی (HK Bank)",
+        internet_desc: "افتتاح حساب · واریز/برداشت · انتقال آنی · پس انداز · سپرده مدت دار · وام · استعلام رایگان رتبه اعتباری",
+        internet_btn: "ورود به بانک اینترنتی",
+        referrer: "معرف"
+      },
       he: {
         brand: "HKWB",
         subtitle: "חדשנות פיננסית דיגיטלית מהדור הבא שבה אנושות וטכנולוגיה מתקיימות יחד",
@@ -424,22 +437,526 @@
         internet_desc: "פתיחת חשבון · הפקדה/משיכה · העברה מיידית · חיסכון · פיקדון · הלוואה · בדיקת דירוג אשראי חינם",
         internet_btn: "כניסה לבנק אינטרנט",
         referrer: "ממליץ"
+      },
+      hi: {
+        brand: "HKWB",
+        subtitle: "अगली पीढ़ी का डिजिटल वित्तीय नवाचार जहाँ मानवता और तकनीक साथ-साथ चलते हैं",
+        web3_title: "वेब3 डिजिटल बैंक",
+        web3_desc: "वॉलेट कनेक्ट · प्रेषण · भुगतान · जमा · रिवॉर्ड · यूबीआई · स्वैप · DEX स्वैप · LP स्टेकिंग · PI मात्रा",
+        web3_btn: "वेब3 डिजिटल बैंक में प्रवेश करें",
+        internet_title: "इंटरनेट बैंक (HK Bank)",
+        internet_desc: "खाता खोलना · जमा/निकासी · त्वरित ट्रांसफर · बचत · सावधि जमा · ऋण · निःशुल्क क्रेडिट स्कोर जाँच",
+        internet_btn: "इंटरनेट बैंक में प्रवेश करें",
+        referrer: "रेफ़रर"
+      },
+      bn: {
+        brand: "HKWB",
+        subtitle: "পরবর্তী প্রজন্মের ডিজিটাল আর্থিক উদ্ভাবন যেখানে মানবতা ও প্রযুক্তি একসাথে চলে",
+        web3_title: "ওয়েব৩ ডিজিটাল ব্যাংক",
+        web3_desc: "ওয়ালেট সংযোগ · রেমিট্যান্স · পেমেন্ট · ডিপোজিট · রিওয়ার্ড · ইউবিআই · সোয়াপ · DEX সোয়াপ · LP স্টেকিং · PI পরিমাণ",
+        web3_btn: "ওয়েব৩ ডিজিটাল ব্যাংকে প্রবেশ করুন",
+        internet_title: "ইন্টারনেট ব্যাংক (HK Bank)",
+        internet_desc: "অ্যাকাউন্ট খোলা · জমা/উত্তোলন · তাৎক্ষণিক ট্রান্সফার · সঞ্চয় · স্থায়ী আমানত · লোন · বিনামূল্যে ক্রেডিট স্কোর যাচাই",
+        internet_btn: "ইন্টারনেট ব্যাংকে প্রবেশ করুন",
+        referrer: "রেফারার"
+      },
+      pa: {
+        brand: "HKWB",
+        subtitle: "ਅਗਲੀ ਪੀੜ੍ਹੀ ਦੀ ਡਿਜੀਟਲ ਵਿੱਤੀ ਨਵੀਨਤਾ ਜਿੱਥੇ ਮਨੁੱਖਤਾ ਅਤੇ ਤਕਨਾਲੋਜੀ ਨਾਲ-ਨਾਲ ਚੱਲਦੇ ਹਨ",
+        web3_title: "ਵੈੱਬ3 ਡਿਜੀਟਲ ਬੈਂਕ",
+        web3_desc: "ਵਾਲਿਟ ਕਨੈਕਟ · ਰੈਮਿਟੈਂਸ · ਭੁਗਤਾਨ · ਡਿਪਾਜ਼ਿਟ · ਇਨਾਮ · ਯੂਬੀਆਈ · ਸਵੈਪ · DEX ਸਵੈਪ · LP ਸਟੇਕਿੰਗ · PI ਮਾਤਰਾ",
+        web3_btn: "ਵੈੱਬ3 ਡਿਜੀਟਲ ਬੈਂਕ ਵਿੱਚ ਦਾਖਲ ਹੋਵੋ",
+        internet_title: "ਇੰਟਰਨੈੱਟ ਬੈਂਕ (HK Bank)",
+        internet_desc: "ਖਾਤਾ ਖੋਲ੍ਹਣਾ · ਜਮ੍ਹਾਂ/ਕਢਵਾਉਣਾ · ਤੁਰੰਤ ਟ੍ਰਾਂਸਫਰ · ਬੱਚਤ · ਫਿਕਸਡ ਡਿਪਾਜ਼ਿਟ · ਕਰਜ਼ਾ · ਮੁਫ਼ਤ ਕ੍ਰੈਡਿਟ ਸਕੋਰ ਜਾਂਚ",
+        internet_btn: "ਇੰਟਰਨੈੱਟ ਬੈਂਕ ਵਿੱਚ ਦਾਖਲ ਹੋਵੋ",
+        referrer: "ਰੈਫ਼ਰਰ"
+      },
+      ta: {
+        brand: "HKWB",
+        subtitle: "மனிதகுலமும் தொழில்நுட்பமும் இணைந்து செயல்படும் அடுத்த தலைமுறை டிஜிட்டல் நிதி கண்டுபிடிப்பு",
+        web3_title: "வெப்3 டிஜிட்டல் வங்கி",
+        web3_desc: "வாலட் இணைப்பு · பணம் அனுப்புதல் · கட்டணம் · வைப்பு · வெகுமதி · அடிப்படை வருமானம் · ஸ்வாப் · DEX ஸ்வாப் · LP ஸ்டேக்கிங் · PI அளவு",
+        web3_btn: "வெப்3 டிஜிட்டல் வங்கியில் நுழையவும்",
+        internet_title: "இணைய வங்கி (HK Bank)",
+        internet_desc: "கணக்கு தொடங்குதல் · வைப்பு/எடுத்தல் · உடனடி பரிமாற்றம் · சேமிப்பு · நிலையான வைப்பு · கடன் · இலவச கிரெடிட் ஸ்கோர் சரிபார்ப்பு",
+        internet_btn: "இணைய வங்கியில் நுழையவும்",
+        referrer: "பரிந்துரைப்பாளர்"
+      },
+      te: {
+        brand: "HKWB",
+        subtitle: "మానవత్వం మరియు సాంకేతికత కలిసి సాగే తదుపరి తరం డిజిటల్ ఆర్థిక ఆవిష్కరణ",
+        web3_title: "వెబ్3 డిజిటల్ బ్యాంక్",
+        web3_desc: "వాలెట్ కనెక్ట్ · బదిలీ · చెల్లింపు · డిపాజిట్ · రివార్డ్ · ప్రాథమిక ఆదాయం · స్వాప్ · DEX స్వాప్ · LP స్టేకింగ్ · PI పరిమాణం",
+        web3_btn: "వెబ్3 డిజిటల్ బ్యాంక్ లోకి ప్రవేశించండి",
+        internet_title: "ఇంటర్నెట్ బ్యాంక్ (HK Bank)",
+        internet_desc: "ఖాతా తెరవడం · డిపాజిట్/విత్ డ్రా · తక్షణ బదిలీ · పొదుపు · ఫిక్స్ డ్ డిపాజిట్ · రుణం · ఉచిత క్రెడిట్ స్కోర్ తనిఖీ",
+        internet_btn: "ఇంటర్నెట్ బ్యాంక్ లోకి ప్రవేశించండి",
+        referrer: "సిఫార్సుదారు"
+      },
+      mr: {
+        brand: "HKWB",
+        subtitle: "मानवता आणि तंत्रज्ञान एकत्र नांदणारा पुढील पिढीतील डिजिटल आर्थिक नावीन्यपूर्ण उपक्रम",
+        web3_title: "वेब३ डिजिटल बँक",
+        web3_desc: "वॉलेट कनेक्ट · पाठवणे · पेमेंट · ठेव · रिवॉर्ड · मूलभूत उत्पन्न · स्वॅप · DEX स्वॅप · LP स्टेकिंग · PI प्रमाण",
+        web3_btn: "वेब३ डिजिटल बँकेत प्रवेश करा",
+        internet_title: "इंटरनेट बँक (HK Bank)",
+        internet_desc: "खाते उघडणे · जमा/काढणे · झटपट ट्रान्सफर · बचत · मुदत ठेव · कर्ज · मोफत क्रेडिट स्कोअर तपासणी",
+        internet_btn: "इंटरनेट बँकेत प्रवेश करा",
+        referrer: "रेफरर"
+      },
+      ur: {
+        brand: "HKWB",
+        subtitle: "اگلی نسل کی ڈیجیٹل مالیاتی جدت جہاں انسانیت اور ٹیکنالوجی ساتھ چلتے ہیں",
+        web3_title: "ویب3 ڈیجیٹل بینک",
+        web3_desc: "والٹ کنیکٹ · ترسیل زر · ادائیگی · ڈپازٹ · انعام · بنیادی آمدنی · سویپ · DEX سویپ · LP اسٹیکنگ · PI مقدار",
+        web3_btn: "ویب3 ڈیجیٹل بینک میں داخل ہوں",
+        internet_title: "انٹرنیٹ بینک (HK Bank)",
+        internet_desc: "اکاؤنٹ کھولنا · جمع/نکالنا · فوری منتقلی · بچت · فکسڈ ڈپازٹ · قرض · مفت کریڈٹ اسکور چیک",
+        internet_btn: "انٹرنیٹ بینک میں داخل ہوں",
+        referrer: "حوالہ دہندہ"
+      },
+      vi: {
+        brand: "HKWB",
+        subtitle: "Đổi mới tài chính số thế hệ mới nơi nhân loại và công nghệ cùng tồn tại",
+        web3_title: "Ngân hàng số Web3",
+        web3_desc: "Kết nối ví · Chuyển tiền · Thanh toán · Tiền gửi · Phần thưởng · Thu nhập cơ bản · Hoán đổi · Hoán đổi DEX · LP Staking · Số lượng PI",
+        web3_btn: "Vào Ngân hàng số Web3",
+        internet_title: "Ngân hàng Internet (HK Bank)",
+        internet_desc: "Mở tài khoản · Nạp/rút tiền · Chuyển khoản tức thì · Tiết kiệm · Tiền gửi có kỳ hạn · Vay vốn · Tra cứu điểm tín dụng miễn phí",
+        internet_btn: "Vào Ngân hàng Internet",
+        referrer: "Người giới thiệu"
+      },
+      th: {
+        brand: "HKWB",
+        subtitle: "นวัตกรรมการเงินดิจิทัลยุคใหม่ที่มนุษยชาติและเทคโนโลยีอยู่ร่วมกัน",
+        web3_title: "ธนาคารดิจิทัล Web3",
+        web3_desc: "เชื่อมต่อกระเป๋าเงิน · โอนเงิน · ชำระเงิน · ฝากเงิน · รางวัล · รายได้พื้นฐาน · สวอป · DEX สวอป · LP สเตกกิ้ง · จำนวน PI",
+        web3_btn: "เข้าสู่ธนาคารดิจิทัล Web3",
+        internet_title: "ธนาคารอินเทอร์เน็ต (HK Bank)",
+        internet_desc: "เปิดบัญชี · ฝาก/ถอน · โอนทันที · ออมทรัพย์ · เงินฝากประจำ · สินเชื่อ · ตรวจสอบคะแนนเครดิตฟรี",
+        internet_btn: "เข้าสู่ธนาคารอินเทอร์เน็ต",
+        referrer: "ผู้แนะนำ"
+      },
+      id: {
+        brand: "HKWB",
+        subtitle: "Inovasi Keuangan Digital Generasi Baru tempat Kemanusiaan dan Teknologi Berdampingan",
+        web3_title: "Bank Digital Web3",
+        web3_desc: "Hubungkan Dompet · Kirim Uang · Pembayaran · Deposito · Hadiah · Pendapatan Dasar · Swap · Swap DEX · LP Staking · Jumlah PI",
+        web3_btn: "Masuk ke Bank Digital Web3",
+        internet_title: "Bank Internet (HK Bank)",
+        internet_desc: "Buka Rekening · Setor/Tarik · Transfer Instan · Tabungan · Deposito Berjangka · Pinjaman · Cek Skor Kredit Gratis",
+        internet_btn: "Masuk ke Bank Internet",
+        referrer: "Perujuk"
+      },
+      ms: {
+        brand: "HKWB",
+        subtitle: "Inovasi Kewangan Digital Generasi Baharu di mana Kemanusiaan dan Teknologi Wujud Bersama",
+        web3_title: "Bank Digital Web3",
+        web3_desc: "Sambung Dompet · Kiriman Wang · Pembayaran · Deposit · Ganjaran · Pendapatan Asas · Tukar · Tukar DEX · LP Staking · Kuantiti PI",
+        web3_btn: "Masuk ke Bank Digital Web3",
+        internet_title: "Bank Internet (HK Bank)",
+        internet_desc: "Buka Akaun · Deposit/Pengeluaran · Pemindahan Segera · Simpanan · Deposit Tetap · Pinjaman · Semakan Skor Kredit Percuma",
+        internet_btn: "Masuk ke Bank Internet",
+        referrer: "Perujuk"
+      },
+      fil: {
+        brand: "HKWB",
+        subtitle: "Makabagong Pinansyal na Teknolohiya kung saan Nagkakaisa ang Sangkatauhan at Teknolohiya",
+        web3_title: "Web3 Digital Bank",
+        web3_desc: "Konek Wallet · Padala · Bayad · Deposito · Gantimpala · Pangunahing Kita · Swap · DEX Swap · LP Staking · Dami ng PI",
+        web3_btn: "Pumasok sa Web3 Digital Bank",
+        internet_title: "Internet Bank (HK Bank)",
+        internet_desc: "Pagbukas ng Account · Deposito/Withdraw · Instant Transfer · Ipon · Time Deposit · Pautang · Libreng Credit Score Check",
+        internet_btn: "Pumasok sa Internet Bank",
+        referrer: "Nagrekomenda"
+      },
+      km: {
+        brand: "HKWB",
+        subtitle: "ការច្នៃប្រឌិតហិរញ្ញវត្ថុឌីជីថលជំនាន់ថ្មី ដែលមនុស្សជាតិ និងបច្ចេកវិទ្យារួមរស់ជាមួយគ្នា",
+        web3_title: "ធនាគារឌីជីថល Web3",
+        web3_desc: "ភ្ជាប់កាបូប · ផ្ទេរប្រាក់ · ការទូទាត់ · ដាក់ប្រាក់ · រង្វាន់ · ប្រាក់ចំណូលមូលដ្ឋាន · ដូរ · ដូរ DEX · LP Staking · បរិមាណ PI",
+        web3_btn: "ចូលទៅកាន់ធនាគារឌីជីថល Web3",
+        internet_title: "ធនាគារអ៊ីនធឺណិត (HK Bank)",
+        internet_desc: "បើកគណនី · ដាក់/ដកប្រាក់ · ផ្ទេរភ្លាមៗ · សន្សំ · ប្រាក់បញ្ញើមានកាលកំណត់ · កម្ចី · ពិនិត្យពិន្ទុឥណទានឥតគិតថ្លៃ",
+        internet_btn: "ចូលទៅកាន់ធនាគារអ៊ីនធឺណិត",
+        referrer: "អ្នកណែនាំ"
+      },
+      lo: {
+        brand: "HKWB",
+        subtitle: "ນະວັດຕະກຳການເງິນດິຈິຕອນຍຸກໃໝ່ ບ່ອນທີ່ມະນຸດ ແລະ ເຕັກໂນໂລຊີຢູ່ຮ່ວມກັນ",
+        web3_title: "ທະນາຄານດິຈິຕອນ Web3",
+        web3_desc: "ເຊື່ອມຕໍ່ກະເປົາເງິນ · ໂອນເງິນ · ຊຳລະເງິນ · ຝາກເງິນ · ລາງວັນ · ລາຍໄດ້ພື້ນຖານ · ແລກປ່ຽນ · ແລກປ່ຽນ DEX · LP Staking · ຈຳນວນ PI",
+        web3_btn: "ເຂົ້າສູ່ທະນາຄານດິຈິຕອນ Web3",
+        internet_title: "ທະນາຄານອິນເຕີເນັດ (HK Bank)",
+        internet_desc: "ເປີດບັນຊີ · ຝາກ/ຖອນ · ໂອນທັນທີ · ເງິນຝາກປະຢັດ · ເງິນຝາກປະຈຳ · ເງິນກູ້ · ກວດສອບຄະແນນສິນເຊື່ອຟຣີ",
+        internet_btn: "ເຂົ້າສູ່ທະນາຄານອິນເຕີເນັດ",
+        referrer: "ຜູ້ແນະນຳ"
+      },
+      my: {
+        brand: "HKWB",
+        subtitle: "လူသားနှင့် နည်းပညာ အတူယှဉ်တွဲသော မျိုးဆက်သစ် ဒစ်ဂျစ်တယ် ဘဏ္ဍာရေး ဆန်းသစ်တီထွင်မှု",
+        web3_title: "Web3 ဒစ်ဂျစ်တယ်ဘဏ်",
+        web3_desc: "ပိုက်ဆံအိတ်ချိတ်ဆက် · ငွေလွှဲ · ငွေပေးချေ · အပ်ငွေ · ဆုလာဘ် · အခြေခံဝင်ငွေ · လဲလှယ် · DEX လဲလှယ် · LP Staking · PI ပမာဏ",
+        web3_btn: "Web3 ဒစ်ဂျစ်တယ်ဘဏ်သို့ ဝင်ရောက်ရန်",
+        internet_title: "အင်တာနက်ဘဏ် (HK Bank)",
+        internet_desc: "စာရင်းဖွင့် · ငွေသွင်း/ထုတ် · ချက်ချင်းလွှဲ · စုငွေ · ပုံသေအပ်ငွေ · ချေးငွေ · ခရက်ဒစ်ရမှတ် အခမဲ့စစ်ဆေး",
+        internet_btn: "အင်တာနက်ဘဏ်သို့ ဝင်ရောက်ရန်",
+        referrer: "ညွှန်းဆိုသူ"
+      },
+      mn: {
+        brand: "HKWB",
+        subtitle: "Хүн төрөлхтөн ба технологи зэрэгцэн орших дараа үеийн дижитал санхүүгийн шинэчлэл",
+        web3_title: "Web3 Дижитал Банк",
+        web3_desc: "Хэтэвч холбох · Шилжүүлэг · Төлбөр · Хадгаламж · Шагнал · Суурь орлого · Солилцоо · DEX солилцоо · LP Staking · PI тоо хэмжээ",
+        web3_btn: "Web3 Дижитал Банк руу орох",
+        internet_title: "Интернэт Банк (HK Bank)",
+        internet_desc: "Данс нээх · Орлого/зарлага · Шуурхай шилжүүлэг · Хадгаламж · Хугацаат хадгаламж · Зээл · Зээлийн оноо үнэгүй шалгах",
+        internet_btn: "Интернэт Банк руу орох",
+        referrer: "Зөвлөгч"
+      },
+      tr: {
+        brand: "HKWB",
+        subtitle: "İnsanlık ve Teknolojinin Birlikte Var Olduğu Yeni Nesil Dijital Finans İnovasyonu",
+        web3_title: "Web3 Dijital Bankası",
+        web3_desc: "Cüzdan Bağlantısı · Havale · Ödeme · Mevduat · Ödül · Temel Gelir · Takas · DEX Takas · LP Staking · PI Miktarı",
+        web3_btn: "Web3 Dijital Bankasına Gir",
+        internet_title: "İnternet Bankası (HK Bank)",
+        internet_desc: "Hesap Açılışı · Yatırma/Çekme · Anında Transfer · Birikim · Vadeli Mevduat · Kredi · Ücretsiz Kredi Notu Sorgulama",
+        internet_btn: "İnternet Bankasına Gir",
+        referrer: "Referans"
+      },
+      nl: {
+        brand: "HKWB",
+        subtitle: "Digitale financiële innovatie van de volgende generatie waar mens en technologie samengaan",
+        web3_title: "Web3 Digitale Bank",
+        web3_desc: "Wallet Koppelen · Overboeking · Betaling · Storting · Beloning · Basisinkomen · Swap · DEX Swap · LP Staking · PI Hoeveelheid",
+        web3_btn: "Naar Web3 Digitale Bank",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Rekening Openen · Storten/Opnemen · Directe Overboeking · Sparen · Termijndeposito · Lening · Gratis Kredietscore Check",
+        internet_btn: "Naar Internetbank",
+        referrer: "Verwijzer"
+      },
+      pl: {
+        brand: "HKWB",
+        subtitle: "Innowacja finansowa nowej generacji, w której ludzkość i technologia współistnieją",
+        web3_title: "Bank Cyfrowy Web3",
+        web3_desc: "Połączenie Portfela · Przelew · Płatność · Depozyt · Nagrody · Dochód Podstawowy · Swap · Swap DEX · LP Staking · Ilość PI",
+        web3_btn: "Wejdź do Banku Cyfrowego Web3",
+        internet_title: "Bank Internetowy (HK Bank)",
+        internet_desc: "Otwarcie Konta · Wpłaty/Wypłaty · Przelew Natychmiastowy · Oszczędności · Lokata · Pożyczka · Darmowy Raport Kredytowy",
+        internet_btn: "Wejdź do Banku Internetowego",
+        referrer: "Polecający"
+      },
+      uk: {
+        brand: "HKWB",
+        subtitle: "Цифрові фінансові інновації нового покоління, де людство і технології співіснують",
+        web3_title: "Цифровий банк Web3",
+        web3_desc: "Підключення гаманця · Переказ · Оплата · Депозит · Винагорода · Базовий дохід · Своп · DEX Своп · LP Стейкінг · Кількість PI",
+        web3_btn: "Увійти до цифрового банку Web3",
+        internet_title: "Інтернет-банк (HK Bank)",
+        internet_desc: "Відкриття рахунку · Поповнення/зняття · Миттєвий переказ · Заощадження · Строковий вклад · Кредит · Безкоштовна перевірка кредитного рейтингу",
+        internet_btn: "Увійти до інтернет-банку",
+        referrer: "Реферер"
+      },
+      cs: {
+        brand: "HKWB",
+        subtitle: "Digitální finanční inovace nové generace, kde lidstvo a technologie žijí v souladu",
+        web3_title: "Digitální banka Web3",
+        web3_desc: "Připojení peněženky · Platba převodem · Platba · Vklad · Odměny · Základní příjem · Swap · DEX Swap · LP Staking · Množství PI",
+        web3_btn: "Vstoupit do digitální banky Web3",
+        internet_title: "Internetová banka (HK Bank)",
+        internet_desc: "Založení účtu · Vklad/výběr · Okamžitý převod · Spoření · Termínovaný vklad · Úvěr · Ověření úvěrového skóre zdarma",
+        internet_btn: "Vstoupit do internetové banky",
+        referrer: "Doporučitel"
+      },
+      sk: {
+        brand: "HKWB",
+        subtitle: "Digitálna finančná inovácia novej generácie, kde ľudstvo a technológia spolunažívajú",
+        web3_title: "Digitálna banka Web3",
+        web3_desc: "Pripojenie peňaženky · Prevod · Platba · Vklad · Odmeny · Základný príjem · Swap · DEX Swap · LP Staking · Množstvo PI",
+        web3_btn: "Vstúpiť do digitálnej banky Web3",
+        internet_title: "Internetová banka (HK Bank)",
+        internet_desc: "Otvorenie účtu · Vklad/výber · Okamžitý prevod · Úspory · Termínovaný vklad · Úver · Bezplatné overenie úverového skóre",
+        internet_btn: "Vstúpiť do internetovej banky",
+        referrer: "Odporúčateľ"
+      },
+      hu: {
+        brand: "HKWB",
+        subtitle: "Új generációs digitális pénzügyi innováció, ahol az emberiség és a technológia egymás mellett él",
+        web3_title: "Web3 Digitális Bank",
+        web3_desc: "Tárca csatlakoztatás · Utalás · Fizetés · Betét · Jutalmak · Alapjövedelem · Swap · DEX Swap · LP Staking · PI mennyiség",
+        web3_btn: "Belépés a Web3 Digitális Bankba",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Számlanyitás · Befizetés/kifizetés · Azonnali átutalás · Megtakarítás · Lekötött betét · Hitel · Ingyenes hitelminősítés",
+        internet_btn: "Belépés az Internetbankba",
+        referrer: "Ajánló"
+      },
+      ro: {
+        brand: "HKWB",
+        subtitle: "Inovație financiară digitală de nouă generație în care umanitatea și tehnologia coexistă",
+        web3_title: "Bancă Digitală Web3",
+        web3_desc: "Conectare Portofel · Transfer · Plată · Depozit · Recompense · Venit de Bază · Swap · Swap DEX · LP Staking · Cantitate PI",
+        web3_btn: "Intră în Banca Digitală Web3",
+        internet_title: "Bancă Internet (HK Bank)",
+        internet_desc: "Deschidere Cont · Depunere/Retragere · Transfer Instant · Economii · Depozit la Termen · Credit · Verificare Scor Credit Gratuită",
+        internet_btn: "Intră în Banca Internet",
+        referrer: "Referent"
+      },
+      bg: {
+        brand: "HKWB",
+        subtitle: "Дигитална финансова иновация от ново поколение, където човечеството и технологиите съжителстват",
+        web3_title: "Дигитална банка Web3",
+        web3_desc: "Свързване на портфейл · Превод · Плащане · Депозит · Награди · Базов доход · Суап · DEX Суап · LP Стейкинг · Количество PI",
+        web3_btn: "Вход в Дигитална банка Web3",
+        internet_title: "Интернет банка (HK Bank)",
+        internet_desc: "Откриване на сметка · Внасяне/теглене · Незабавен превод · Спестявания · Срочен депозит · Кредит · Безплатна кредитна оценка",
+        internet_btn: "Вход в Интернет банка",
+        referrer: "Препоръчител"
+      },
+      el: {
+        brand: "HKWB",
+        subtitle: "Ψηφιακή χρηματοοικονομική καινοτομία νέας γενιάς όπου η ανθρωπότητα και η τεχνολογία συνυπάρχουν",
+        web3_title: "Ψηφιακή Τράπεζα Web3",
+        web3_desc: "Σύνδεση Πορτοφολιού · Έμβασμα · Πληρωμή · Κατάθεση · Ανταμοιβές · Βασικό Εισόδημα · Swap · DEX Swap · LP Staking · Ποσότητα PI",
+        web3_btn: "Είσοδος στην Ψηφιακή Τράπεζα Web3",
+        internet_title: "Διαδικτυακή Τράπεζα (HK Bank)",
+        internet_desc: "Άνοιγμα Λογαριασμού · Κατάθεση/Ανάληψη · Άμεση Μεταφορά · Αποταμίευση · Προθεσμιακή Κατάθεση · Δάνειο · Δωρεάν Πιστωτικός Έλεγχος",
+        internet_btn: "Είσοδος στη Διαδικτυακή Τράπεζα",
+        referrer: "Συστήνων"
+      },
+      sv: {
+        brand: "HKWB",
+        subtitle: "Nästa generations digitala finansiella innovation där mänsklighet och teknik samexisterar",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Anslut Plånbok · Överföring · Betalning · Insättning · Belöningar · Basinkomst · Swap · DEX Swap · LP Staking · PI Mängd",
+        web3_btn: "Gå till Web3 Digitalbank",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Öppna Konto · Insättning/Uttag · Direktöverföring · Sparkonto · Fasträntekonto · Lån · Kostnadsfri Kreditupplysning",
+        internet_btn: "Gå till Internetbank",
+        referrer: "Hänvisare"
+      },
+      no: {
+        brand: "HKWB",
+        subtitle: "Neste generasjons digitale finansinnovasjon der menneskehet og teknologi sameksisterer",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Koble Lommebok · Overføring · Betaling · Innskudd · Belønninger · Basis inntekt · Swap · DEX Swap · LP Staking · PI Mengde",
+        web3_btn: "Gå til Web3 Digitalbank",
+        internet_title: "Internettbank (HK Bank)",
+        internet_desc: "Åpne Konto · Innskudd/Uttak · Straksoverføring · Sparing · Fastrenteinnskudd · Lån · Gratis Kredittsjekk",
+        internet_btn: "Gå til Internettbank",
+        referrer: "Henviser"
+      },
+      da: {
+        brand: "HKWB",
+        subtitle: "Næste generations digitale finansielle innovation, hvor menneskelighed og teknologi sameksisterer",
+        web3_title: "Web3 Digitalbank",
+        web3_desc: "Tilslut Tegnebog · Overførsel · Betaling · Indskud · Belønninger · Basisindkomst · Swap · DEX Swap · LP Staking · PI Mængde",
+        web3_btn: "Gå til Web3 Digitalbank",
+        internet_title: "Netbank (HK Bank)",
+        internet_desc: "Åbn Konto · Indbetaling/Udbetaling · Straksoverførsel · Opsparing · Indskudskonto · Lån · Gratis Kreditvurdering",
+        internet_btn: "Gå til Netbank",
+        referrer: "Henviser"
+      },
+      fi: {
+        brand: "HKWB",
+        subtitle: "Seuraavan sukupolven digitaalinen rahoitusinnovaatio, jossa ihmisyys ja teknologia elävät rinnakkain",
+        web3_title: "Web3 Digipankki",
+        web3_desc: "Yhdistä Lompakko · Tilisiirto · Maksu · Talletus · Palkkiot · Perustulo · Swap · DEX Swap · LP Staking · PI Määrä",
+        web3_btn: "Siirry Web3 Digipankkiin",
+        internet_title: "Verkkopankki (HK Bank)",
+        internet_desc: "Avaa Tili · Talletus/Nosto · Pikasiirto · Säästötili · Määräaikaistalletus · Laina · Maksuton Luottotietotarkistus",
+        internet_btn: "Siirry Verkkopankkiin",
+        referrer: "Suosittelija"
+      },
+      et: {
+        brand: "HKWB",
+        subtitle: "Uue põlvkonna digitaalne finantsinnovatsioon, kus inimkond ja tehnoloogia eksisteerivad koos",
+        web3_title: "Web3 Digipank",
+        web3_desc: "Ühenda Rahakott · Ülekanne · Makse · Hoius · Preemiad · Põhisissetulek · Swap · DEX Swap · LP Staking · PI Kogus",
+        web3_btn: "Sisene Web3 Digipanka",
+        internet_title: "Internetipank (HK Bank)",
+        internet_desc: "Konto Avamine · Sissemakse/Väljamakse · Kiirülekanne · Kogumine · Tähtajaline Hoius · Laen · Tasuta Krediidiskoor",
+        internet_btn: "Sisene Internetipanka",
+        referrer: "Soovitaja"
+      },
+      lv: {
+        brand: "HKWB",
+        subtitle: "Nākamās paaudzes digitālās finanšu inovācijas, kur cilvēce un tehnoloģijas pastāv līdzās",
+        web3_title: "Web3 Digitālā Banka",
+        web3_desc: "Savienot Maku · Pārskaitījums · Maksājums · Noguldījums · Atlīdzības · Pamata ienākumi · Swap · DEX Swap · LP Staking · PI Daudzums",
+        web3_btn: "Ieiet Web3 Digitālajā Bankā",
+        internet_title: "Interneta Banka (HK Bank)",
+        internet_desc: "Konta Atvēršana · Iemaksa/Izmaksa · Zibmaksājums · Uzkrājumi · Termiņnoguldījums · Aizdevums · Bezmaksas Kredītvēsture",
+        internet_btn: "Ieiet Interneta Bankā",
+        referrer: "Ieteicējs"
+      },
+      lt: {
+        brand: "HKWB",
+        subtitle: "Naujos kartos skaitmeninės finansų inovacijos, kuriose žmonija ir technologijos egzistuoja kartu",
+        web3_title: "Web3 Skaitmeninis Bankas",
+        web3_desc: "Prijungti Piniginę · Pavedimas · Mokėjimas · Indėlis · Atlygiai · Bazinės pajamos · Swap · DEX Swap · LP Staking · PI Kiekis",
+        web3_btn: "Įeiti į Web3 Skaitmeninį Banką",
+        internet_title: "Internetinis Bankas (HK Bank)",
+        internet_desc: "Sąskaitos Atidarymas · Įnešimas/Išėmimas · Greitas Pavedimas · Taupymas · Terminuotas Indėlis · Paskola · Nemokamas Kredito Patikrinimas",
+        internet_btn: "Įeiti į Internetinį Banką",
+        referrer: "Rekomenduotojas"
+      },
+      hr: {
+        brand: "HKWB",
+        subtitle: "Digitalna financijska inovacija nove generacije u kojoj čovječanstvo i tehnologija žive zajedno",
+        web3_title: "Web3 Digitalna Banka",
+        web3_desc: "Poveži Novčanik · Prijenos · Plaćanje · Polog · Nagrade · Temeljni dohodak · Swap · DEX Swap · LP Staking · Količina PI",
+        web3_btn: "Uđi u Web3 Digitalnu Banku",
+        internet_title: "Internetska Banka (HK Bank)",
+        internet_desc: "Otvaranje Računa · Uplata/Isplata · Trenutni Prijenos · Štednja · Oročena Štednja · Kredit · Besplatna Provjera Kreditnog Rejtinga",
+        internet_btn: "Uđi u Internetsku Banku",
+        referrer: "Preporučitelj"
+      },
+      sr: {
+        brand: "HKWB",
+        subtitle: "Дигитална финансијска иновација нове генерације у којој човечанство и технологија коегзистирају",
+        web3_title: "Web3 Дигитална Банка",
+        web3_desc: "Повежи Новчаник · Пренос · Плаћање · Депозит · Награде · Основни приход · Swap · DEX Swap · LP Staking · Количина PI",
+        web3_btn: "Уђи у Web3 Дигиталну Банку",
+        internet_title: "Интернет Банка (HK Bank)",
+        internet_desc: "Отварање Рачуна · Уплата/Исплата · Тренутни Пренос · Штедња · Орочени Депозит · Кредит · Бесплатна Провера Кредитног Скора",
+        internet_btn: "Уђи у Интернет Банку",
+        referrer: "Препоручилац"
+      },
+      sl: {
+        brand: "HKWB",
+        subtitle: "Digitalna finančna inovacija nove generacije, kjer človeštvo in tehnologija sobivata",
+        web3_title: "Web3 Digitalna Banka",
+        web3_desc: "Poveži Denarnico · Nakazilo · Plačilo · Vlog · Nagrade · Temeljni dohodek · Swap · DEX Swap · LP Staking · Količina PI",
+        web3_btn: "Vstopi v Web3 Digitalno Banko",
+        internet_title: "Spletna Banka (HK Bank)",
+        internet_desc: "Odprtje Računa · Polog/Dvig · Takojšnje Nakazilo · Varčevanje · Vezani Depozit · Posojilo · Brezplačno Preverjanje Bonitete",
+        internet_btn: "Vstopi v Spletno Banko",
+        referrer: "Priporočitelj"
+      },
+      sw: {
+        brand: "HKWB",
+        subtitle: "Ubunifu wa kifedha wa kidijitali wa kizazi kipya ambapo ubinadamu na teknolojia huishi pamoja",
+        web3_title: "Benki ya Kidijitali ya Web3",
+        web3_desc: "Unganisha Wallet · Uhamisho · Malipo · Amana · Zawadi · Mapato ya Msingi · Swap · DEX Swap · LP Staking · Kiasi cha PI",
+        web3_btn: "Ingia Benki ya Kidijitali ya Web3",
+        internet_title: "Benki ya Mtandao (HK Bank)",
+        internet_desc: "Kufungua Akaunti · Kuweka/Kutoa · Uhamisho wa Papo Hapo · Akiba · Amana Maalum · Mkopo · Ukaguzi wa Alama za Mkopo Bure",
+        internet_btn: "Ingia Benki ya Mtandao",
+        referrer: "Mwongozaji"
+      },
+      am: {
+        brand: "HKWB",
+        subtitle: "ሰብአዊነት እና ቴክኖሎጂ አብረው የሚጓዙበት የቀጣይ ትውልድ ዲጂታል የፋይናንስ ፈጠራ",
+        web3_title: "Web3 ዲጂታል ባንክ",
+        web3_desc: "ዋሌት ያገናኙ · ዝውውር · ክፍያ · ተቀማጭ · ሽልማት · መሠረታዊ ገቢ · Swap · DEX Swap · LP Staking · የPI መጠን",
+        web3_btn: "ወደ Web3 ዲጂታል ባንክ ይግቡ",
+        internet_title: "የኢንተርኔት ባንክ (HK Bank)",
+        internet_desc: "ሂሳብ መክፈት · ማስገባት/ማውጣት · ፈጣን ዝውውር · ቁጠባ · የጊዜ ተቀማጭ · ብድር · ነፃ የክሬዲት ነጥብ ፍተሻ",
+        internet_btn: "ወደ ኢንተርኔት ባንክ ይግቡ",
+        referrer: "ጠቋሚ"
+      },
+      zu: {
+        brand: "HKWB",
+        subtitle: "Ukuqamba okusha kwezezimali kwedijithali kwesizukulwane esilandelayo lapho ubuntu nobuchwepheshe kuhambisana khona",
+        web3_title: "Ibhange Ledijithali le-Web3",
+        web3_desc: "Xhuma I-Wallet · Ukudlulisa Imali · Inkokhelo · Idiphozithi · Imivuzo · Imali Eyisisekelo · Swap · DEX Swap · LP Staking · Inani le-PI",
+        web3_btn: "Ngena Ebhange Ledijithali le-Web3",
+        internet_title: "Ibhange Le-Inthanethi (HK Bank)",
+        internet_desc: "Ukuvula I-akhawunti · Ukufaka/Ukukhipha · Ukudlulisa Ngokushesha · Ukonga · Idiphozithi Yesikhathi · Imalimboleko · Ukuhlola I-Credit Score Mahhala",
+        internet_btn: "Ngena Ebhange Le-Inthanethi",
+        referrer: "Umphakeli"
+      },
+      af: {
+        brand: "HKWB",
+        subtitle: "Volgende-generasie digitale finansiële innovasie waar menslikheid en tegnologie saamleef",
+        web3_title: "Web3 Digitale Bank",
+        web3_desc: "Koppel Beursie · Oordrag · Betaling · Deposito · Belonings · Basiese Inkomste · Ruil · DEX Ruil · LP Staking · PI Hoeveelheid",
+        web3_btn: "Betree Web3 Digitale Bank",
+        internet_title: "Internetbank (HK Bank)",
+        internet_desc: "Rekening Opening · Deposito/Onttrekking · Onmiddellike Oordrag · Spaargeld · Vaste Deposito · Lening · Gratis Krediettelling",
+        internet_btn: "Betree Internetbank",
+        referrer: "Verwyser"
+      },
+      ca: {
+        brand: "HKWB",
+        subtitle: "Innovació financera digital de nova generació on la humanitat i la tecnologia conviuen",
+        web3_title: "Banc Digital Web3",
+        web3_desc: "Connecta la Cartera · Transferència · Pagament · Dipòsit · Recompenses · Renda Bàsica · Swap · Swap DEX · LP Staking · Quantitat PI",
+        web3_btn: "Entra al Banc Digital Web3",
+        internet_title: "Banc d'Internet (HK Bank)",
+        internet_desc: "Obertura de Compte · Dipòsit/Retirada · Transferència Instantània · Estalvi · Dipòsit a Termini · Préstec · Consulta de Crèdit Gratuïta",
+        internet_btn: "Entra al Banc d'Internet",
+        referrer: "Referent"
+      },
+      eu: {
+        brand: "HKWB",
+        subtitle: "Hurrengo belaunaldiko finantza berrikuntza digitala, gizadia eta teknologia elkarrekin bizi diren lekua",
+        web3_title: "Web3 Banku Digitala",
+        web3_desc: "Konektatu Zorrorra · Transferentzia · Ordainketa · Gordailua · Sariak · Oinarrizko Errenta · Swap · DEX Swap · LP Staking · PI Kopurua",
+        web3_btn: "Sartu Web3 Banku Digitalean",
+        internet_title: "Interneteko Bankua (HK Bank)",
+        internet_desc: "Kontua Irekitzea · Gordailua/Ateratzea · Berehalako Transferentzia · Aurrezkia · Epe Finkoko Gordailua · Mailegua · Doako Kreditu Kontsulta",
+        internet_btn: "Sartu Interneteko Bankuan",
+        referrer: "Erreferentea"
+      },
+      gl: {
+        brand: "HKWB",
+        subtitle: "Innovación financeira dixital de nova xeración onde a humanidade e a tecnoloxía conviven",
+        web3_title: "Banco Dixital Web3",
+        web3_desc: "Conectar Carteira · Transferencia · Pago · Depósito · Recompensas · Renda Básica · Swap · Swap DEX · LP Staking · Cantidade PI",
+        web3_btn: "Entrar no Banco Dixital Web3",
+        internet_title: "Banco de Internet (HK Bank)",
+        internet_desc: "Apertura de Conta · Depósito/Retirada · Transferencia Instantánea · Aforro · Depósito a Prazo · Préstamo · Consulta de Crédito Gratuíta",
+        internet_btn: "Entrar no Banco de Internet",
+        referrer: "Recomendador"
+      },
+      is: {
+        brand: "HKWB",
+        subtitle: "Ný kynslóð stafrænnar fjármálanýsköpunar þar sem mannkyn og tækni lifa saman",
+        web3_title: "Web3 Stafrænn Banki",
+        web3_desc: "Tengja Veski · Millifærsla · Greiðsla · Innlán · Verðlaun · Grunntekjur · Skipti · DEX Skipti · LP Staking · PI Magn",
+        web3_btn: "Fara í Web3 Stafrænan Banka",
+        internet_title: "Netbanki (HK Bank)",
+        internet_desc: "Reikningsopnun · Innlán/Úttekt · Hraðmillifærsla · Sparnaður · Bundið Innlán · Lán · Ókeypis Lánshæfismat",
+        internet_btn: "Fara í Netbanka",
+        referrer: "Tilvísun"
+      },
+      ga: {
+        brand: "HKWB",
+        subtitle: "Nuálaíocht airgeadais dhigiteach den chéad ghlúin eile ina maireann an cine daonna agus an teicneolaíocht le chéile",
+        web3_title: "Banc Digiteach Web3",
+        web3_desc: "Ceangail Sparán · Aistriú · Íocaíocht · Taisce · Luaíochtaí · Bunioncam · Babhtáil · Babhtáil DEX · LP Staking · Méid PI",
+        web3_btn: "Téigh go Banc Digiteach Web3",
+        internet_title: "Banc Idirlín (HK Bank)",
+        internet_desc: "Cuntas a Oscailt · Taisce/Tarraingt Siar · Aistriú Láithreach · Coigilteas · Taisce Téarma · Iasacht · Seiceáil Scóir Creidmheasa Saor in Aisce",
+        internet_btn: "Téigh go Banc Idirlín",
+        referrer: "Moltóir"
+      },
+      mt: {
+        brand: "HKWB",
+        subtitle: "Innovazzjoni finanzjarja diġitali tal-ġenerazzjoni li jmiss fejn l-umanità u t-teknoloġija jeżistu flimkien",
+        web3_title: "Bank Diġitali Web3",
+        web3_desc: "Qabbad il-Kartiera · Trasferiment · Ħlas · Depożitu · Premjijiet · Dħul Bażiku · Swap · Swap DEX · LP Staking · Kwantità PI",
+        web3_btn: "Idħol fil-Bank Diġitali Web3",
+        internet_title: "Bank tal-Internet (HK Bank)",
+        internet_desc: "Ftuħ ta' Kont · Depożitu/Rtirar · Trasferiment Instantanju · Tifdil · Depożitu b'Terminu · Self · Iċċekkjar tal-Kreditu B'xejn",
+        internet_btn: "Idħol fil-Bank tal-Internet",
+        referrer: "Referent"
       }
     };
 
     const selectElement = document.getElementById("language-select");
-    const translations = new Proxy(baseTranslations, {
-      get(target, prop) {
-        if (typeof prop !== "string") return undefined;
-        if (target[prop]) return target[prop];
-        const shortCode = prop.split("-")[0];
-        if (target[shortCode]) return target[shortCode];
-        return target.en;
-      }
+
+    LANGUAGES.forEach((lang) => {
+      const option = document.createElement("option");
+      option.value = lang.code;
+      option.textContent = lang.label;
+      selectElement.appendChild(option);
     });
 
     function updateLanguage(langCode) {
-      const selectedTranslation = translations[langCode] || baseTranslations.ko;
+      const selectedTranslation = translations[langCode] || translations.en || translations.ko;
       document.documentElement.lang = langCode;
       document.documentElement.dir = RTL_LOCALES.has(langCode) ? "rtl" : "ltr";
 
@@ -449,6 +966,8 @@
           element.textContent = selectedTranslation[key];
         }
       });
+
+      selectElement.value = langCode;
 
       try {
         localStorage.setItem("hkwb_lang", langCode);
@@ -468,7 +987,10 @@
       initialLang = "ko";
     }
 
-    selectElement.value = initialLang;
+    if (!translations[initialLang]) {
+      initialLang = "ko";
+    }
+
     updateLanguage(initialLang);
   </script>
 </body>
